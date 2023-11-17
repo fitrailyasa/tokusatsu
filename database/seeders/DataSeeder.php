@@ -143,7 +143,7 @@ class DataSeeder extends Seeder
             ];
         }
 
-        for ($i = 1; $i <= 52; $i++) {
+        for ($i = 1; $i <= 35; $i++) {
             $datas[] = [
                 'name' => "Kamen Rider Kiva ($i)",
                 'img' => "Kamen Rider/Era Heisei/9. Kiva/1.9 KivaRiders ($i).jpg",
@@ -151,7 +151,7 @@ class DataSeeder extends Seeder
             ];
         }
 
-        for ($i = 1; $i <= 28; $i++) {
+        for ($i = 1; $i <= 45; $i++) {
             $datas[] = [
                 'name' => "Villain Kamen Rider Kiva ($i)",
                 'img' => "Kamen Rider/Era Heisei/9. Kiva/1.9.1 Fangire ($i).jpg",
