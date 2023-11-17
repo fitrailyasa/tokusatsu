@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminDataController;
 use App\Http\Controllers\Client\ClientDataController;
+use App\Http\Controllers\Client\ClientCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,11 @@ use App\Http\Controllers\Client\ClientDataController;
 |
 */
 
-Route::get('/', [ClientDataController::class, 'index'])->name('beranda');
+Route::get('/', [HomeController::class, 'index'])->name('beranda');
+
+Route::get('/category', [ClientCategoryController::class, 'index'])->name('category');
+Route::get('/category/{id}', [ClientCategoryController::class, 'show'])->name('category.show');
+Route::get('/data', [ClientDataController::class, 'index'])->name('data');
 
 Auth::routes();
 

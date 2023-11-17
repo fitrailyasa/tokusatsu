@@ -42,10 +42,33 @@
                 </ul>
             </li>
             <li class="nav-item">
+                <a href="#" class="nav-link text-white @yield('datadata')">
+                    <i class="nav-icon fas fa-database"></i>
+                    <p>
+                        Data Kamen Rider
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{ route('admin.data.index') }}" class="nav-link text-white @yield('tabledata')">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Data Table</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('admin.data.create') }}" class="nav-link text-white @yield('createdata')">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Create Data</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
                 <a href="#" class="nav-link text-white @yield('dataCategory')">
                     <i class="nav-icon fas fa-tag"></i>
                     <p>
-                        Category
+                        Category Kamen Rider
                         <i class="fas fa-angle-left right"></i>
                     </p>
                 </a>

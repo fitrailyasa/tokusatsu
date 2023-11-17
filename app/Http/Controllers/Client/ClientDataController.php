@@ -11,8 +11,8 @@ class ClientDataController extends Controller
 {
     public function index()
     {
-        $datas = Data::all();
-        return view('client.index', compact('datas'));
+        $datas = Data::latest('category_id')->get();
+        return view('client.data', compact('datas'));
     }
 
 }
