@@ -175,6 +175,174 @@ class DataSeeder extends Seeder
             ];
         }
 
+        for ($i = 1; $i <= 69; $i++) {
+            $datas[] = [
+                'name' => "Kamen Rider W ($i)",
+                'img' => "Kamen Rider/Era Heisei/11. W/2.1 WRiders ($i).jpg",
+                'category_id' => 24,
+            ];
+        }
+
+        for ($i = 1; $i <= 51; $i++) {
+            $datas[] = [
+                'name' => "Villain Kamen Rider W ($i)",
+                'img' => "Kamen Rider/Era Heisei/11. W/2.1.1 Dopant ($i).jpg",
+                'category_id' => 24,
+            ];
+        }
+
+        for ($i = 1; $i <= 69; $i++) {
+            $datas[] = [
+                'name' => "Kamen Rider Ooo ($i)",
+                'img' => "Kamen Rider/Era Heisei/12. Ooo/2.2 OooRiders ($i).jpg",
+                'category_id' => 25,
+            ];
+        }
+
+        for ($i = 1; $i <= 55; $i++) {
+            $datas[] = [
+                'name' => "Villain Kamen Rider Ooo ($i)",
+                'img' => "Kamen Rider/Era Heisei/12. Ooo/2.2.1 Greed ($i).jpg",
+                'category_id' => 25,
+            ];
+        }
+
+        for ($i = 1; $i <= 63; $i++) {
+            $datas[] = [
+                'name' => "Kamen Rider Fourze ($i)",
+                'img' => "Kamen Rider/Era Heisei/13. Fourze/2.3 FourzeRiders ($i).jpg",
+                'category_id' => 26,
+            ];
+        }
+
+        for ($i = 1; $i <= 47; $i++) {
+            $datas[] = [
+                'name' => "Villain Kamen Rider Fourze ($i)",
+                'img' => "Kamen Rider/Era Heisei/13. Fourze/2.3.1 Zodiarts ($i).jpg",
+                'category_id' => 26,
+            ];
+        }
+
+        for ($i = 1; $i <= 50; $i++) {
+            $datas[] = [
+                'name' => "Kamen Rider Wizard ($i)",
+                'img' => "Kamen Rider/Era Heisei/14. Wizard/2.4 WizardRiders ($i).jpg",
+                'category_id' => 27,
+            ];
+        }
+
+        for ($i = 1; $i <= 39; $i++) {
+            $datas[] = [
+                'name' => "Villain Kamen Rider Wizard ($i)",
+                'img' => "Kamen Rider/Era Heisei/14. Wizard/2.4.1 Phantom ($i).jpg",
+                'category_id' => 27,
+            ];
+        }
+
+        for ($i = 1; $i <= 84; $i++) {
+            $datas[] = [
+                'name' => "Kamen Rider Gaim ($i)",
+                'img' => "Kamen Rider/Era Heisei/15. Gaim/2.5 GaimRiders ($i).jpg",
+                'category_id' => 28,
+            ];
+        }
+
+        for ($i = 1; $i <= 34; $i++) {
+            $datas[] = [
+                'name' => "Villain Kamen Rider Gaim ($i)",
+                'img' => "Kamen Rider/Era Heisei/15. Gaim/2.5.1 Overlord ($i).jpg",
+                'category_id' => 28,
+            ];
+        }
+
+        for ($i = 1; $i <= 76; $i++) {
+            $datas[] = [
+                'name' => "Kamen Rider Drive ($i)",
+                'img' => "Kamen Rider/Era Heisei/16. Drive/2.6 DriveRiders ($i).jpg",
+                'category_id' => 29,
+            ];
+        }
+
+        for ($i = 1; $i <= 55; $i++) {
+            $datas[] = [
+                'name' => "Villain Kamen Rider Drive ($i)",
+                'img' => "Kamen Rider/Era Heisei/16. Drive/2.6.1 Roidmude ($i).jpg",
+                'category_id' => 29,
+            ];
+        }
+
+        for ($i = 1; $i <= 60; $i++) {
+            $datas[] = [
+                'name' => "Kamen Rider Ghost ($i)",
+                'img' => "Kamen Rider/Era Heisei/17. Ghost/2.7 GhostRiders ($i).jpg",
+                'category_id' => 30,
+            ];
+        }
+
+        for ($i = 1; $i <= 49; $i++) {
+            $datas[] = [
+                'name' => "Villain Kamen Rider Ghost ($i)",
+                'img' => "Kamen Rider/Era Heisei/17. Ghost/2.7.1 Gamma ($i).jpg",
+                'category_id' => 30,
+            ];
+        }
+
+        for ($i = 1; $i <= 87; $i++) {
+            $datas[] = [
+                'name' => "Kamen Rider Ex-Aid ($i)",
+                'img' => "Kamen Rider/Era Heisei/18. Ex-Aid/2.8 Ex-AidRiders ($i).jpg",
+                'category_id' => 31,
+            ];
+        }
+
+        for ($i = 1; $i <= 42; $i++) {
+            $datas[] = [
+                'name' => "Villain Kamen Rider Ex-Aid ($i)",
+                'img' => "Kamen Rider/Era Heisei/18. Ex-Aid/2.8.1 Bugster ($i).jpg",
+                'category_id' => 31,
+            ];
+        }
+
+        for ($i = 1; $i <= 146; $i++) {
+            $datas[] = [
+                'name' => "Kamen Rider Build ($i)",
+                'img' => "Kamen Rider/Era Heisei/19. Build/2.9 BuildRiders ($i).jpg",
+                'category_id' => 32,
+            ];
+        }
+
+        for ($i = 1; $i <= 30; $i++) {
+            $datas[] = [
+                'name' => "Villain Kamen Rider Build ($i)",
+                'img' => "Kamen Rider/Era Heisei/19. Build/2.9.1 Smash ($i).jpg",
+                'category_id' => 32,
+            ];
+        }
+
+        for ($i = 1; $i <= 58; $i++) {
+            $datas[] = [
+                'name' => "Kamen Rider Zi-O ($i)",
+                'img' => "Kamen Rider/Era Heisei/20. Zi-O/2.10 Zi-ORiders ($i).jpg",
+                'category_id' => 33,
+            ];
+        }
+
+        for ($i = 1; $i <= 35; $i++) {
+            $datas[] = [
+                'name' => "Villain Kamen Rider Zi-O ($i)",
+                'img' => "Kamen Rider/Era Heisei/20. Zi-O/2.10.1 AnotherRiders ($i).jpg",
+                'category_id' => 33,
+            ];
+        }
+
+        for ($i = 1; $i <= 11; $i++) {
+            $datas[] = [
+                'name' => "Kamen Rider Shinobi ($i)",
+                'img' => "Kamen Rider/Era Heisei/20. Zi-O/2.10.2 ShinobiRiders ($i).jpg",
+                'category_id' => 33,
+            ];
+        }
+
         Data::query()->insert($datas);
     }
 }
