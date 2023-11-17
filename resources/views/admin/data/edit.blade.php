@@ -35,7 +35,38 @@
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label class="form-label">Images</label>
+                            <label class="form-label">Category</label>
+                            <select class="form-control @error('category_id') is-invalid @enderror" name="category_id"
+                                id="category_id" required>
+                                <option selected disabled>Select Category</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}"
+                                        {{ $category->id == $data->category_id ? 'selected' : '' }}>
+                                        {{ $category->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('category_id')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <div class="mb-3">
+                            <label class="form-label">Images</label><br>
+                            <img class="img-fluid rounded" width="500px" src="{{ asset('assets/img/' . $data->img) }}"
+                                alt="{{ $data->name }}">
+                            @error('images')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <div class="mb-3">
                             <input type="file" class="form-control @error('img') is-invalid @enderror" placeholder="img"
                                 name="img" id="img" value="{{ $data->img }}" required>
                             @error('img')

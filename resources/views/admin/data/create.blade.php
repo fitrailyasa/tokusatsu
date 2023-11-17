@@ -22,7 +22,7 @@
                 @endif
                 @csrf
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="mb-3">
                             <label class="form-label">Name</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror"
@@ -32,12 +32,27 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="mb-3">
                             <label class="form-label">Images</label>
                             <input type="file" class="form-control @error('img') is-invalid @enderror" placeholder="img"
                                 name="img" id="img" required>
                             @error('img')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="mb-3">
+                            <label class="form-label">Category</label>
+                            <select class="form-control @error('category_id') is-invalid @enderror" name="category_id"
+                                id="category_id" required>
+                                <option selected disabled>Select Category</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('category_id')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>

@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminDataController;
+use App\Http\Controllers\Client\ClientDataController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +22,7 @@ use App\Http\Controllers\Admin\AdminDataController;
 |
 */
 
-Route::get('/', [HomeController::class, 'index'])->name('beranda');
+Route::get('/', [ClientDataController::class, 'index'])->name('beranda');
 
 Auth::routes();
 
@@ -39,5 +40,5 @@ Route::middleware(['auth'])->group(function () {
       Route::resource('category', AdminCategoryController::class);
       Route::resource('data', AdminDataController::class);
     });
-  
+
 });
