@@ -11,12 +11,12 @@
                 <input class="form-control @error('email') is-invalid @enderror" name="email" value="admin@admin.com"
                     required autofocus type="text" name="email" id="email" placeholder="email">
                 @error('email')
-                    <div class="alert alert-danger">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
                 <input class="form-control @error('password') is-invalid @enderror" name="password" value="password"
                     required type="password" id="password" placeholder="password">
                 @error('password')
-                    <div class="alert alert-danger">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
                 <button type="submit" class="form-control btn mt-3 btn-warning">Masuk</button>
             </form>

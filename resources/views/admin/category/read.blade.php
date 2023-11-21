@@ -29,9 +29,6 @@
                             <label class="form-label">Name</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror"
                                 placeholder="name" name="name" id="name" value="{{ $category->name }}" disabled>
-                            @error('name')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
                         </div>
                     </div>
                 </div>

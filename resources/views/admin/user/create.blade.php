@@ -27,7 +27,7 @@
                         <input type="text" class="form-control @error('name') is-invalid @enderror" placeholder="name"
                             name="name" id="name" required>
                         @error('name')
-                            <div class="alert alert-danger">{{ $message }}</div>
+                            <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
@@ -37,7 +37,7 @@
                         <input type="text" class="form-control @error('email') is-invalid @enderror" placeholder="email"
                             name="email" id="email" required>
                         @error('email')
-                            <div class="alert alert-danger">{{ $message }}</div>
+                            <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
@@ -47,7 +47,7 @@
                         <input type="text" class="form-control @error('no_hp') is-invalid @enderror" placeholder="no_hp"
                             name="no_hp" id="no_hp" required>
                         @error('no_hp')
-                            <div class="alert alert-danger">{{ $message }}</div>
+                            <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                         <input type="password" class="form-control @error('password') is-invalid @enderror"
                             placeholder="password" name="password" id="password" required>
                         @error('password')
-                            <div class="alert alert-danger">{{ $message }}</div>
+                            <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>

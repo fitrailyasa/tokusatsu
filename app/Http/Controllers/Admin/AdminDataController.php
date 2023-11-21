@@ -29,7 +29,18 @@ class AdminDataController extends Controller
             'category_id' => 'required',
         ]);
 
-        Data::create($request->all());
+        $data = Data::create([
+            'name' => $request->name,
+            'category_id' => $request->category_id
+        ]);
+
+        if ($request->hasFile('img')) {
+            $img = $request->file('img');
+            $file_name = time() . '_' . $img->getClientOriginalName();
+            $data->img = $file_name;
+            $data->update();
+            $img->move(public_path('assets/img/'), $file_name);
+        }
 
         return redirect()->route('admin.data.index')->with('sukses', 'Berhasil Tambah Data!');
     }
@@ -49,14 +60,26 @@ class AdminDataController extends Controller
 
     public function update(Request $request, $id)
     {
+        $data = Data::findOrFail($id);
+
         $request->validate([
             'name' => 'required',
             'img' => 'required|max:2048',
             'category_id' => 'required',
         ]);
 
-        $data = Data::findOrFail($id);
-        $data->update($request->all());
+        $data->update([
+            'name' => $request->name,
+            'category_id' => $request->category_id,
+        ]);
+
+        if ($request->hasFile('img')) {
+            $img = $request->file('img');
+            $file_name = time() . '_' . $data->category->name;
+            $data->img = $file_name;
+            $data->update();
+            $img->move(public_path('assets/img/'), $file_name);
+        }
 
         return redirect()->route('admin.data.index')->with('sukses', 'Berhasil Edit Data!');
     }

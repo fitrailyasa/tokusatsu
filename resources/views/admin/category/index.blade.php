@@ -10,6 +10,11 @@
     <div class="card">
         <!-- /.card-header -->
         <div class="card-body">
+            @if (session('sukses'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('sukses') }}
+                </div>
+            @endif
             <div class="table-responsive">
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>

@@ -29,7 +29,7 @@
                             <input type="text" class="form-control @error('name') is-invalid @enderror"
                                 placeholder="name" name="name" id="name" value="{{ $data->name }}" required>
                             @error('name')
-                                <div class="alert alert-danger">{{ $message }}</div>
+                                <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                     </div>
@@ -47,7 +47,7 @@
                                 @endforeach
                             </select>
                             @error('category_id')
-                                <div class="alert alert-danger">{{ $message }}</div>
+                                <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                     </div>
@@ -59,7 +59,7 @@
                             <img class="img-fluid rounded" width="500px" src="{{ asset('assets/img/' . $data->img) }}"
                                 alt="{{ $data->name }}">
                             @error('images')
-                                <div class="alert alert-danger">{{ $message }}</div>
+                                <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                     </div>
@@ -68,9 +68,9 @@
                     <div class="col-md-12 text-center">
                         <div class="mb-3">
                             <input type="file" class="form-control @error('img') is-invalid @enderror" placeholder="img"
-                                name="img" id="img" value="{{ $data->img }}" required>
+                                name="img" id="img" value="{{ $data->img }}" enabled>
                             @error('img')
-                                <div class="alert alert-danger">{{ $message }}</div>
+                                <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                     </div>

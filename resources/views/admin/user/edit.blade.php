@@ -28,7 +28,7 @@
                         <input type="text" class="form-control @error('name') is-invalid @enderror" placeholder="name"
                             name="name" id="name" value="{{ $user->name }}" enabled>
                         @error('name')
-                            <div class="alert alert-danger">{{ $message }}</div>
+                            <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
@@ -38,7 +38,7 @@
                         <input type="email" class="form-control @error('email') is-invalid @enderror" placeholder="email"
                             name="email" id="email" value="{{ $user->email }}" enabled>
                         @error('email')
-                            <div class="alert alert-danger">{{ $message }}</div>
+                            <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
@@ -49,7 +49,7 @@
                             placeholder="gambar_user" name="gambar_user" id="gambar_user" value="{{ $user->gambar_user }}"
                             enabled>
                         @error('gambar_user')
-                            <div class="alert alert-danger">{{ $message }}</div>
+                            <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
@@ -59,7 +59,7 @@
                         <input type="text" class="form-control @error('no_hp') is-invalid @enderror" placeholder="no_hp"
                             name="no_hp" id="no_hp" value="{{ $user->no_hp }}" enabled>
                         @error('no_hp')
-                            <div class="alert alert-danger">{{ $message }}</div>
+                            <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
@@ -69,7 +69,7 @@
                         <input type="password" class="form-control @error('password') is-invalid @enderror"
                             placeholder="password" name="password" id="password" enabled>
                         @error('password')
-                            <div class="alert alert-danger">{{ $message }}</div>
+                            <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>

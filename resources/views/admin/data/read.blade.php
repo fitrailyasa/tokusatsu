@@ -28,9 +28,6 @@
                             <label class="form-label">Name</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror"
                                 placeholder="name" name="name" id="name" value="{{ $data->name }}" disabled>
-                            @error('name')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -40,7 +37,7 @@
                                 placeholder="category_id" name="category_id" id="category_id"
                                 value="{{ $data->category->name }}" disabled>
                             @error('category_id')
-                                <div class="alert alert-danger">{{ $message }}</div>
+                                <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                     </div>
@@ -52,7 +49,7 @@
                             <img class="img-fluid rounded" width="500px" src="{{ asset('assets/img/' . $data->img) }}"
                                 alt="{{ $data->name }}">
                             @error('images')
-                                <div class="alert alert-danger">{{ $message }}</div>
+                                <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                     </div>

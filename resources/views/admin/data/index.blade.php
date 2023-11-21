@@ -10,7 +10,12 @@
     <div class="card">
         <!-- /.card-header -->
         <div class="card-body">
-            <div class="table-responsive">
+            @if (session('sukses'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('sukses') }}
+                </div>
+            @endif
+            <div class="">
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                         <tr>
@@ -27,6 +32,7 @@
                                 <td>{{ $loop->iteration }}</td>
                                 {{-- <td>{{ $data->name }}</td> --}}
                                 <td>{{ $data->category->name }}</td>
+                                <td>{{ $data->img }}</td>
                                 <td><img src="{{ asset('assets/img/' . $data->img) }}" alt="" width="100px"></td>
                                 <td class="manage-row">
                                     @if (auth()->user()->roles_id == 1)
