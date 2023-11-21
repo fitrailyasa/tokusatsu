@@ -2,8 +2,7 @@
 
 @section('title', 'Edit Data')
 
-@section('datadata', 'active')
-@section('tabledata', 'active')
+@section('tableData', 'active')
 
 @section('backlink')
     @if (auth()->user()->roles_id == 1)

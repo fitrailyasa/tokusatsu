@@ -2,7 +2,6 @@
 
 @section('title', 'Detail User')
 
-@section('dataUser', 'active')
 @section('tableUser', 'active')
 
 @section('backlink')

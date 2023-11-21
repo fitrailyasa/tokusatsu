@@ -2,8 +2,7 @@
 
 @section('title', 'Create User')
 
-@section('dataUser', 'active')
-@section('createUser', 'active')
+@section('tableUser', 'active')
 
 @section('backlink')
     @if (auth()->user()->roles_id == 1)

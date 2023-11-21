@@ -2,7 +2,6 @@
 
 @section('title', 'Table Category')
 
-@section('dataCategory', 'active')
 @section('tableCategory', 'active')
 
 @section('content')
@@ -10,6 +9,10 @@
     <div class="card">
         <!-- /.card-header -->
         <div class="card-body">
+            <div class="d-flex justify-content-between mb-3">
+                <h3 class="card-title">Category Data Tables</h3>
+                <a href="{{ route('admin.category.create') }}" class="btn-sm btn-primary">Create</a>
+            </div>
             @if (session('sukses'))
                 <div class="alert alert-success" role="alert">
                     {{ session('sukses') }}

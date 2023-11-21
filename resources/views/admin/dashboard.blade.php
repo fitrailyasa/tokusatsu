@@ -10,9 +10,9 @@
             <!-- small box -->
             <div class="small-box bg-info">
                 <div class="inner">
-                    <h3></h3>
+                    <h3>{{ $datas }}</h3>
 
-                    <p></p>
+                    <p>Data</p>
                 </div>
                 <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -22,19 +22,19 @@
             <!-- small box -->
             <div class="small-box bg-success">
                 <div class="inner">
-                    <h3></h3>
+                    <h3>{{ $categories }}</h3>
 
-                    <p></p>
+                    <p>Category</p>
                 </div>
                 <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
         <!-- ./col -->
-        <div class="col-lg-3 col-6">
+        {{-- <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-warning">
                 <div class="inner">
-                    <h3></h3>
+                    <h3>{{}}</h3>
 
                     <p></p>
                 </div>
@@ -52,7 +52,7 @@
                 </div>
                 <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
-        </div>
+        </div> --}}
         <!-- ./col -->
     </div>
 @endsection

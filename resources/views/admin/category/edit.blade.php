@@ -2,7 +2,6 @@
 
 @section('title', 'Edit Category')
 
-@section('dataCategory', 'active')
 @section('tableCategory', 'active')
 
 @section('backlink')
