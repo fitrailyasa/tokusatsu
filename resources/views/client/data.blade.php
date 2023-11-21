@@ -6,7 +6,7 @@
 
 @section('content')
 
-    <div class="text-center mt-5 pt-5">
+    <div class="text-center my-5 py-5">
         <h2 class="text-white font-weight-bold">The newest Kamen Rider</h2>
         @foreach ($datas->take(12) as $data)
             <a href="{{ asset('assets/img') }}/{{ $data->img }}">

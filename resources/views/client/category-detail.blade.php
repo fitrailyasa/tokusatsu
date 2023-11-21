@@ -6,7 +6,7 @@
 
 @section('content')
 
-    <div class="text-center mt-5 pt-5">
+    <div class="text-center my-5 py-5">
         <h2 class="text-white font-weight-bold">{{ $category->name }}</h2>
         @foreach ($datas->where('category_id', $category->id) as $data)
             <a href="{{ asset('assets/img') }}/{{ $data->img }}">
