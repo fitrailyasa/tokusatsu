@@ -11,7 +11,7 @@ class AdminDataController extends Controller
 {
     public function index()
     {
-        $datas = Data::all();
+        $datas = Data::latest('id')->paginate(20);
         return view('admin.data.index', compact('datas'));
     }
 
@@ -36,7 +36,7 @@ class AdminDataController extends Controller
 
         if ($request->hasFile('img')) {
             $img = $request->file('img');
-            $file_name = time() . '_' . $img->getClientOriginalName();
+            $file_name = time() . '_' . $data->name . '_' . $data->category->name . '.' . $img->getClientOriginalExtension();
             $data->img = $file_name;
             $data->update();
             $img->move(public_path('assets/img/'), $file_name);
@@ -75,7 +75,7 @@ class AdminDataController extends Controller
 
         if ($request->hasFile('img')) {
             $img = $request->file('img');
-            $file_name = time() . '_' . $data->category->name;
+            $file_name = time() . '_' . $data->name . '_' . $data->category->name . '.' . $img->getClientOriginalExtension();
             $data->img = $file_name;
             $data->update();
             $img->move(public_path('assets/img/'), $file_name);

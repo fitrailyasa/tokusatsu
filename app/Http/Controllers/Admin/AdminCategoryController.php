@@ -10,7 +10,7 @@ class AdminCategoryController extends Controller
 {
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::latest('id')->get();
         return view('admin.category.index', compact('categories'));
     }
 
