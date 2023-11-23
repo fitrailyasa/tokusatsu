@@ -23,7 +23,7 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            {{-- <th>Name</th> --}}
+                            <th>Name</th>
                             <th>Category</th>
                             <th>Images</th>
                             <th>More</th>
@@ -33,9 +33,11 @@
                         @foreach ($datas as $data)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                {{-- <td>{{ $data->name }}</td> --}}
+                                <td>{{ $data->name }}</td>
                                 <td>{{ $data->category->name }}</td>
-                                <td><img src="{{ asset('assets/img/' . $data->img) }}" alt="" width="100px"></td>
+                                <td><a href="{{ asset('assets/img') }}/{{ $data->img }}"><img
+                                            src="{{ asset('assets/img/' . $data->img) }}" alt="" width="100px"></a>
+                                </td>
                                 <td class="manage-row">
                                     @if (auth()->user()->roles_id == 1)
                                         <a href="{{ route('admin.data.show', $data->id) }}"
@@ -80,7 +82,7 @@
                     <tfoot>
                         <tr>
                             <th>No</th>
-                            {{-- <th>Name</th> --}}
+                            <th>Name</th>
                             <th>Category</th>
                             <th>Images</th>
                             <th>More</th>

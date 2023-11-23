@@ -30,6 +30,16 @@
                                 placeholder="name" name="name" id="name" value="{{ $category->name }}" disabled>
                         </div>
                     </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label">Era</label>
+                            <input type="text" class="form-control @error('era_id') is-invalid @enderror"
+                                placeholder="era_id" name="era_id" id="era_id" value="{{ $data->era->name }}" disabled>
+                            @error('era_id')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
                 </div>
 
                 <div class="row">

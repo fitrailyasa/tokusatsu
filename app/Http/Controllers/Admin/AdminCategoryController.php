@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Era;
 use Illuminate\Http\Request;
 
 class AdminCategoryController extends Controller
@@ -16,12 +17,14 @@ class AdminCategoryController extends Controller
 
     public function create()
     {
-        return view('admin.category.create');
+        $eras = Era::all();
+        return view('admin.category.create', compact('eras'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
+            'era_id' => 'required',
             'name' => 'required|max:255',
         ]);
 
@@ -38,13 +41,15 @@ class AdminCategoryController extends Controller
 
     public function edit($id)
     {
+        $eras = Era::all();
         $category = Category::findOrFail($id);
-        return view('admin.category.edit', compact('category'));
+        return view('admin.category.edit', compact('category', 'eras'));
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
+            'era_id' => 'required',
             'name' => 'required|max:255',
         ]);
 

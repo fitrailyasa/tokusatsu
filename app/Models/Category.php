@@ -10,10 +10,15 @@ class Category extends Model
     use HasFactory;
 
     protected $table = 'category';
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'era_id'];
 
     public function data()
     {
         return $this->hasMany(Data::class);
+    }
+
+    public function era()
+    {
+        return $this->belongsTo(Era::class);
     }
 }

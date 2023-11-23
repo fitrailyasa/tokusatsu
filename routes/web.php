@@ -7,6 +7,7 @@ use App\Http\Middleware\Admin;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\Admin\AdminEraController;
 use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminDataController;
 use App\Http\Controllers\Client\ClientDataController;
@@ -42,6 +43,7 @@ Route::middleware(['auth'])->group(function () {
       Route::get('/', [HomeController::class, 'index'])->name('beranda');
       Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
       Route::resource('user', AdminUserController::class);
+      Route::resource('era', AdminEraController::class);
       Route::resource('category', AdminCategoryController::class);
       Route::resource('data', AdminDataController::class);
     });

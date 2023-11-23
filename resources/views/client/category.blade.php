@@ -6,10 +6,10 @@
 
 @section('content')
 
-    <div class="text-center mt-3 mb-5 py-5 d-flex flex-wrap">
+    <div class="text-center mt-3 mb-5 py-5 d-flex flex-wrap justify-content-center">
         @foreach ($categories as $category)
-            <div class="m-1"><a href="{{ route('category.show', $category->id) }}"
-                    class="btn btn-warning">{{ $category->name }}</a></div>
+            <div class="col-sm-6 col-md-2 p-2"><a href="{{ route('category.show', $category->id) }}"
+                    class="btn btn-warning col-12">{{ $category->name }}</a></div>
         @endforeach
     </div>
 

@@ -11,7 +11,7 @@ class ClientCategoryController extends Controller
 {
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::latest('id')->get();
         return view('client.category', compact('categories'));
     }
 

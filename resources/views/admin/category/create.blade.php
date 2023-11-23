@@ -21,12 +21,27 @@
                 @endif
                 @csrf
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <div class="mb-3">
                             <label class="form-label">Name</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror"
                                 placeholder="name" name="name" id="name" required>
                             @error('name')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label">Era</label>
+                            <select class="form-control @error('era_id') is-invalid @enderror" name="era_id" id="era_id"
+                                required>
+                                <option selected disabled>Select era</option>
+                                @foreach ($eras as $era)
+                                    <option value="{{ $era->id }}">{{ $era->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('era_id')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>

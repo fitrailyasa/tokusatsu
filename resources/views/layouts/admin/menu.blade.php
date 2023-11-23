@@ -43,6 +43,14 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a href="{{ route('admin.era.index') }}" class="nav-link text-white @yield('tableEra')">
+                    <i class="nav-icon fas fa-flag"></i>
+                    <p>
+                        Era
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" hidden>
                     @csrf
                 </form>

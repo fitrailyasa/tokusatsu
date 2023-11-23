@@ -60,8 +60,7 @@
 
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed"
-    style="background-image: url({{ asset('assets/img/bg.png') }}); background-size: 100%">
+<body class="hold-transition sidebar-mini layout-fixed" style="background-color: #161616">
 
     @include('layouts.client.header')
 
