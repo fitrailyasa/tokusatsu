@@ -6,8 +6,9 @@
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 mx-3 justify-content-center mb-md-0">
                     <li><a href="{{ route('beranda') }}"
                             class="nav-link py-3 px-3 text-white fw-bold fs-5 @yield('textHome')">Home</a></li>
-                    <li><a href="{{ route('data') }}"
-                            class="nav-link py-3 px-3 text-white fw-bold fs-5 @yield('textData')">Data</a></li>
+                    <li><a href="{{ route('era') }}"
+                            class="nav-link py-3 px-3 text-white fw-bold fs-5 @yield('textEra')">Era</a>
+                    </li>
                     <li><a href="{{ route('category') }}"
                             class="nav-link py-3 px-3 text-white fw-bold fs-5 @yield('textCategory')">Category</a>
                     </li>

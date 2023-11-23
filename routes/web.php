@@ -10,8 +10,9 @@ use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AdminEraController;
 use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminDataController;
-use App\Http\Controllers\Client\ClientDataController;
+use App\Http\Controllers\Client\ClientEraController;
 use App\Http\Controllers\Client\ClientCategoryController;
+use App\Http\Controllers\Client\ClientDataController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,8 @@ use App\Http\Controllers\Client\ClientCategoryController;
 
 Route::get('/', [HomeController::class, 'index'])->name('beranda');
 
+Route::get('/era', [ClientEraController::class, 'index'])->name('era');
+Route::get('/era/{id}', [ClientEraController::class, 'show'])->name('era.show');
 Route::get('/category', [ClientCategoryController::class, 'index'])->name('category');
 Route::get('/category/{id}', [ClientCategoryController::class, 'show'])->name('category.show');
 Route::get('/data', [ClientDataController::class, 'index'])->name('data');
