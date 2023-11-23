@@ -10,8 +10,8 @@
         <!-- /.card-header -->
         <div class="card-body">
             <div class="d-flex justify-content-between mb-3">
-                <h3 class="card-title">User Data Tables</h3>
-                <a href="{{ route('admin.user.create') }}" class="btn-sm btn-primary">Create</a>
+                <h3 class="card-title">Tabel Data User</h3>
+                <a href="{{ route('admin.user.create') }}" class="btn-sm btn-primary">Tambah</a>
             </div>
             @if (session('sukses'))
                 <div class="alert alert-success" role="alert">

@@ -1,6 +1,6 @@
 @extends('layouts.admin.app')
 
-@section('title', 'Create User')
+@section('title', 'Tambah User')
 
 @section('tableUser', 'active')
 

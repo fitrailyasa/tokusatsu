@@ -1,6 +1,6 @@
 @extends('layouts.admin.app')
 
-@section('title', 'Create Category')
+@section('title', 'Tambah Category')
 
 @section('tableCategory', 'active')
 
