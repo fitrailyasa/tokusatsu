@@ -2,7 +2,7 @@
 
 @section('title', 'Beranda')
 
-@section('textHome', 'text-success')
+@section('textCategory', 'bg-warning rounded')
 
 @section('content')
 

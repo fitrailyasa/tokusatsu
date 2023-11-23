@@ -15,6 +15,110 @@ class DataSeeder extends Seeder
     {
         $datas = [];
 
+        for ($i = 1; $i <= 12; $i++) {
+            $datas[] = [
+                'name' => "Kamen Rider ($i)",
+                'img' => "Kamen Rider/Era Showa/0.1 IchigoNigoRiders ($i).jpg",
+                'category_id' => 1,
+            ];
+        }
+
+        for ($i = 1; $i <= 9; $i++) {
+            $datas[] = [
+                'name' => "Kamen Rider V3 ($i)",
+                'img' => "Kamen Rider/Era Showa/0.2 V3RidermanRiders ($i).jpg",
+                'category_id' => 2,
+            ];
+        }
+
+        for ($i = 1; $i <= 1; $i++) {
+            $datas[] = [
+                'name' => "Kamen Rider X",
+                'img' => "Kamen Rider/Era Showa/0.3 XRider.jpg",
+                'category_id' => 3,
+            ];
+        }
+
+        for ($i = 1; $i <= 2; $i++) {
+            $datas[] = [
+                'name' => "Kamen Rider Amazon ($i)",
+                'img' => "Kamen Rider/Era Showa/0.4 AmazonRider ($i).jpg",
+                'category_id' => 4,
+            ];
+        }
+
+        for ($i = 1; $i <= 2; $i++) {
+            $datas[] = [
+                'name' => "Kamen Rider Stronger ($i)",
+                'img' => "Kamen Rider/Era Showa/0.5 StrongerRider ($i).jpg",
+                'category_id' => 5,
+            ];
+        }
+
+        for ($i = 1; $i <= 2; $i++) {
+            $datas[] = [
+                'name' => "Kamen Rider SkyRider ($i)",
+                'img' => "Kamen Rider/Era Showa/0.6 SkyRider ($i).jpg",
+                'category_id' => 6,
+            ];
+        }
+
+        for ($i = 1; $i <= 6; $i++) {
+            $datas[] = [
+                'name' => "Kamen Rider Super-1 ($i)",
+                'img' => "Kamen Rider/Era Showa/0.7 Super1Rider ($i).jpg",
+                'category_id' => 7,
+            ];
+        }
+
+        for ($i = 1; $i <= 1; $i++) {
+            $datas[] = [
+                'name' => "Kamen Rider ZX",
+                'img' => "Kamen Rider/Era Showa/0.7.Movie 10thKamenRider.jpg",
+                'category_id' => 8,
+            ];
+        }
+
+        for ($i = 1; $i <= 2; $i++) {
+            $datas[] = [
+                'name' => "Kamen Rider Black ($i)",
+                'img' => "Kamen Rider/Era Showa/0.8 BlackRiders ($i).jpg",
+                'category_id' => 9,
+            ];
+        }
+
+        for ($i = 1; $i <= 5; $i++) {
+            $datas[] = [
+                'name' => "Kamen Rider Black RX ($i)",
+                'img' => "Kamen Rider/Era Showa/0.9 BlackRXRiders ($i).jpg",
+                'category_id' => 10,
+            ];
+        }
+
+        for ($i = 1; $i <= 1; $i++) {
+            $datas[] = [
+                'name' => "Kamen Rider Shin",
+                'img' => "Kamen Rider/Era Showa/0.13 ShinRider.jpg",
+                'category_id' => 11,
+            ];
+        }
+
+        for ($i = 1; $i <= 1; $i++) {
+            $datas[] = [
+                'name' => "Kamen Rider ZO",
+                'img' => "Kamen Rider/Era Showa/0.14 ZORider.jpg",
+                'category_id' => 12,
+            ];
+        }
+
+        for ($i = 1; $i <= 1; $i++) {
+            $datas[] = [
+                'name' => "Kamen Rider J",
+                'img' => "Kamen Rider/Era Showa/0.15 JRider.jpg",
+                'category_id' => 13,
+            ];
+        }
+
         for ($i = 1; $i <= 23; $i++) {
             $datas[] = [
                 'name' => "Kamen Rider Kuuga ($i)",

@@ -11,7 +11,7 @@ class AdminDataController extends Controller
 {
     public function index()
     {
-        $datas = Data::latest('id')->paginate(20);
+        $datas = Data::first('id')->paginate(100);
         return view('admin.data.index', compact('datas'));
     }
 
