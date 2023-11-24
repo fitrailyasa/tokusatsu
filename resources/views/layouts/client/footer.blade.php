@@ -1,4 +1,4 @@
-<footer class="px-3 d-block d-lg-none border-top text-white mt-3 fixed-bottom" style="background-color: rgb(66, 0, 0)">
+<footer class="px-3 d-block d-lg-none border-top text-white mt-3 fixed-bottom" style="background-color: #111111">
     <div class="container">
         <div class="d-flex">
             <ul class="nav col-12 align-items-center justify-content-between">

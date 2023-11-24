@@ -1,4 +1,4 @@
-<header class="px-3 border-bottom text-white mb-3 fixed-top" style="background-color: maroon">
+<header class="px-3 border-bottom text-white mb-3 fixed-top" style="background-color: #111111">
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-between">
             <img class="img-fluid" width="60" src="{{ asset('assets/img/logo.png') }}" alt="Logo">

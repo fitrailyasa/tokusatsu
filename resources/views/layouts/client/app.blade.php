@@ -60,7 +60,7 @@
 
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed" style="background-color: #161616">
+<body class="hold-transition sidebar-mini layout-fixed bg-gradient" style="background-color: #111111">
 
     @include('layouts.client.header')
 
