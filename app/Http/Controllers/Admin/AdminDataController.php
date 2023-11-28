@@ -39,7 +39,7 @@ class AdminDataController extends Controller
             $file_name = time() . '_' . $data->name . '_' . $data->category->name . '.' . $img->getClientOriginalExtension();
             $data->img = $file_name;
             $data->update();
-            $img->move(public_path('assets/img/'), $file_name);
+            $img->move('../public/assets/img/', $file_name);
         }
 
         return redirect()->route('admin.data.index')->with('sukses', 'Berhasil Tambah Data!');
@@ -78,7 +78,7 @@ class AdminDataController extends Controller
             $file_name = time() . '_' . $data->name . '_' . $data->category->name . '.' . $img->getClientOriginalExtension();
             $data->img = $file_name;
             $data->update();
-            $img->move(public_path('assets/img/'), $file_name);
+            $img->move('../public/assets/img/', $file_name);
         }
 
         return redirect()->route('admin.data.index')->with('sukses', 'Berhasil Edit Data!');
