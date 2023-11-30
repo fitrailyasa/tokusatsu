@@ -10,7 +10,7 @@
         <h2 class="text-white font-weight-bold">Category</h2>
         <div class="text-center d-flex flex-wrap justify-content-center">
             @foreach ($categories as $category)
-                <div class="col-sm-6 col-md-2 p-3"><a href="{{ route('category.show', $category->id) }}"
+                <div class="col-sm-4 col-md-3 p-3"><a href="{{ route('category.show', $category->id) }}"
                         class="btn btn-warning col-12">{{ $category->name }}</a></div>
             @endforeach
         </div>

@@ -9,6 +9,9 @@
                     <li><a href="{{ route('era') }}"
                             class="nav-link py-3 px-3 text-white fw-bold fs-5 @yield('textEra')">Era</a>
                     </li>
+                    <li><a href="{{ route('franchise') }}"
+                            class="nav-link py-3 px-3 text-white fw-bold fs-5 @yield('textFranchise')">Franchise</a>
+                    </li>
                     <li><a href="{{ route('category') }}"
                             class="nav-link py-3 px-3 text-white fw-bold fs-5 @yield('textCategory')">Category</a>
                     </li>
