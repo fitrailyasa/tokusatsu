@@ -46,11 +46,11 @@ Route::middleware(['auth'])->group(function () {
   Route::middleware([Admin::class])->name('admin.')->prefix('admin')->group(function () {
       Route::get('/', [HomeController::class, 'index'])->name('beranda');
       Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
-      Route::resource('user', AdminUserController::class);
-      Route::resource('era', AdminEraController::class);
-      Route::resource('franchise', AdminFranchiseController::class);
-      Route::resource('category', AdminCategoryController::class);
-      Route::resource('data', AdminDataController::class);
+      Route::resource('user', AdminUserController::class, ['only', ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]);
+      Route::resource('era', AdminEraController::class, ['only', ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]);
+      Route::resource('franchise', AdminFranchiseController::class, ['only', ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]);
+      Route::resource('category', AdminCategoryController::class, ['only', ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]);
+      Route::resource('data', AdminDataController::class, ['only', ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]);
     });
 
 });

@@ -1,6 +1,6 @@
 @extends('layouts.admin.app')
 
-@section('title', 'Category')
+@section('title', 'Kelola Category')
 
 @section('tableCategory', 'active')
 
