@@ -1,6 +1,6 @@
 @extends('layouts.admin.app')
 
-@section('title', 'Table Era')
+@section('title', 'Era')
 
 @section('tableEra', 'active')
 

@@ -1,8 +1,8 @@
 @extends('layouts.admin.app')
 
-@section('title', 'Category')
+@section('title', 'Franchise')
 
-@section('tableCategory', 'active')
+@section('tableFranchise', 'active')
 
 @section('content')
 
@@ -10,8 +10,8 @@
         <!-- /.card-header -->
         <div class="card-body">
             <div class="d-flex justify-content-between mb-3">
-                <h3 class="card-title">Tabel Data Category</h3>
-                <a href="{{ route('admin.category.create') }}" class="btn-sm btn-primary">Tambah</a>
+                <h3 class="card-title">Tabel Data Franchise</h3>
+                <a href="{{ route('admin.franchise.create') }}" class="btn-sm btn-primary">Tambah</a>
             </div>
             @if (session('sukses'))
                 <div class="alert alert-success" role="alert">
@@ -23,32 +23,28 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Franchise</th>
                             <th>Name</th>
-                            <th>Era</th>
                             <th>More</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($categories as $category)
+                        @foreach ($franchises as $franchise)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $category->franchise->name }}</td>
-                                <td>{{ $category->name }}</td>
-                                <td>{{ $category->era->name }}</td>
+                                <td>{{ $franchise->name }}</td>
                                 <td class="manage-row">
                                     @if (auth()->user()->roles_id == 1)
-                                        <a href="{{ route('admin.category.show', $category->id) }}"
+                                        <a href="{{ route('admin.franchise.show', $franchise->id) }}"
                                             class="btn-sm btn-success">Detail</a>
-                                        <a href="{{ route('admin.category.edit', $category->id) }}"
+                                        <a href="{{ route('admin.franchise.edit', $franchise->id) }}"
                                             class="btn-sm btn-warning">Edit</a>
                                         <!-- Button trigger modal -->
                                         <a role="button" class="btn-sm btn-danger delete-button" data-bs-toggle="modal"
-                                            data-bs-target=".bd-example-modal-sm{{ $category->id }}">
+                                            data-bs-target=".bd-example-modal-sm{{ $franchise->id }}">
                                             Hapus
                                         </a>
                                         <!-- Modal -->
-                                        <div class="modal fade bd-example-modal-sm{{ $category->id }}" tabindex="-1"
+                                        <div class="modal fade bd-example-modal-sm{{ $franchise->id }}" tabindex="-1"
                                             role="dialog" aria-hidden="">
                                             <div class="modal-dialog ">
                                                 <div class="modal-content">
@@ -59,7 +55,8 @@
                                                     </div>
                                                     <div class="modal-body">Apakah anda yakin ingin menghapus data?</div>
                                                     <div class="modal-footer">
-                                                        <form action="{{ route('admin.category.destroy', $category->id) }}"
+                                                        <form
+                                                            action="{{ route('admin.franchise.destroy', $franchise->id) }}"
                                                             method="POST">
                                                             @method('DELETE')
                                                             @csrf
@@ -80,9 +77,7 @@
                     <tfoot>
                         <tr>
                             <th>No</th>
-                            <th>Franchise</th>
                             <th>Name</th>
-                            <th>Era</th>
                             <th>More</th>
                         </tr>
                     </tfoot>

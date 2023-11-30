@@ -23,18 +23,30 @@
                 @csrf
                 @method('PUT')
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-4">
                         <div class="mb-3">
                             <label class="form-label">Name</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror"
                                 placeholder="name" name="name" id="name" value="{{ $category->name }}" disabled>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
+                        <div class="mb-3">
+                            <label class="form-label">Franchise</label>
+                            <input type="text" class="form-control @error('franchise_id') is-invalid @enderror"
+                                placeholder="franchise_id" name="franchise_id" id="franchise_id"
+                                value="{{ $category->franchise->name }}" disabled>
+                            @error('franchise_id')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-4">
                         <div class="mb-3">
                             <label class="form-label">Era</label>
                             <input type="text" class="form-control @error('era_id') is-invalid @enderror"
-                                placeholder="era_id" name="era_id" id="era_id" value="{{ $data->era->name }}" disabled>
+                                placeholder="era_id" name="era_id" id="era_id" value="{{ $category->era->name }}"
+                                disabled>
                             @error('era_id')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror

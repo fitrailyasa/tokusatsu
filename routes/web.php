@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AdminEraController;
+use App\Http\Controllers\Admin\AdminFranchiseController;
 use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminDataController;
 use App\Http\Controllers\Client\ClientEraController;
@@ -47,6 +48,7 @@ Route::middleware(['auth'])->group(function () {
       Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
       Route::resource('user', AdminUserController::class);
       Route::resource('era', AdminEraController::class);
+      Route::resource('franchise', AdminFranchiseController::class);
       Route::resource('category', AdminCategoryController::class);
       Route::resource('data', AdminDataController::class);
     });

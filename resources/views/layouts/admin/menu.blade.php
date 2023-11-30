@@ -43,6 +43,14 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a href="{{ route('admin.franchise.index') }}" class="nav-link text-white @yield('tableFranchise')">
+                    <i class="nav-icon fas fa-tv"></i>
+                    <p>
+                        Franchise
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a href="{{ route('admin.era.index') }}" class="nav-link text-white @yield('tableEra')">
                     <i class="nav-icon fas fa-flag"></i>
                     <p>

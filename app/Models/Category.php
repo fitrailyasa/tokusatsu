@@ -10,7 +10,7 @@ class Category extends Model
     use HasFactory;
 
     protected $table = 'category';
-    protected $fillable = ['name', 'era_id'];
+    protected $fillable = ['name', 'era_id', 'franchise_id'];
 
     public function data()
     {
@@ -20,5 +20,10 @@ class Category extends Model
     public function era()
     {
         return $this->belongsTo(Era::class);
+    }
+
+    public function franchise()
+    {
+        return $this->belongsTo(Franchise::class);
     }
 }

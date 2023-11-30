@@ -7,7 +7,7 @@
 @section('content')
 
     <div class="text-center my-5 py-5">
-        <h2 class="text-white font-weight-bold">Kamen Rider Era</h2>
+        <h2 class="text-white font-weight-bold">Era</h2>
         <div class="text-center d-flex flex-wrap justify-content-center">
             @foreach ($eras as $era)
                 <div class="col-sm-6 col-md-2 p-3"><a href="{{ route('era.show', $era->id) }}"
