@@ -27,7 +27,8 @@ class ClientFranchiseController extends Controller
     {
         $datas = Data::where('category_id', $id)->get();
         $category = Category::findOrFail($id);
-        return view('client.franchise.category-detail', compact('datas', 'category'));
+        $franchise = Franchise::findOrFail($category->franchise_id);
+        return view('client.franchise.category-detail', compact('datas', 'category', 'franchise'));
     }
 
 }

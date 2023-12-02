@@ -27,6 +27,7 @@ class ClientEraController extends Controller
     {
         $datas = Data::where('category_id', $id)->get();
         $category = Category::findOrFail($id);
-        return view('client.era.category-detail', compact('datas', 'category'));
+        $era = Era::findOrFail($category->era_id);
+        return view('client.era.category-detail', compact('datas', 'category', 'era'));
     }
 }

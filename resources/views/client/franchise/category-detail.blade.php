@@ -10,7 +10,7 @@
         <div class="container">
             <div class="row px-3">
                 <div class="col-1">
-                    <a href="{{ route('franchise') }}">
+                    <a href="{{ route('franchise.show', $franchise->id) }}">
                         <p class="text-white"><i class="fa-solid fa-arrow-left fs-4"></i></p>
                     </a>
                 </div>
