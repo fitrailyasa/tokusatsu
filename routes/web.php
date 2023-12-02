@@ -31,8 +31,10 @@ Route::get('/', [HomeController::class, 'index'])->name('beranda');
 
 Route::get('/era', [ClientEraController::class, 'index'])->name('era');
 Route::get('/era/{id}', [ClientEraController::class, 'show'])->name('era.show');
+Route::get('/era/category/{id}', [ClientEraController::class, 'category'])->name('era.category');
 Route::get('/franchise', [ClientFranchiseController::class, 'index'])->name('franchise');
 Route::get('/franchise/{id}', [ClientFranchiseController::class, 'show'])->name('franchise.show');
+Route::get('/franchise/category/{id}', [ClientFranchiseController::class, 'category'])->name('franchise.category');
 Route::get('/category', [ClientCategoryController::class, 'index'])->name('category');
 Route::get('/category/{id}', [ClientCategoryController::class, 'show'])->name('category.show');
 Route::get('/data', [ClientDataController::class, 'index'])->name('data');

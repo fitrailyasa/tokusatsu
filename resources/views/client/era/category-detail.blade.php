@@ -15,17 +15,17 @@
                     </a>
                 </div>
                 <div class="col-10">
-                    <h2 class="text-white font-weight-bold">{{ $era->name }}</h2>
+                    <h2 class="text-white font-weight-bold">{{ $category->name }}</h2>
                 </div>
                 <div class="col-1"></div>
             </div>
         </div>
-        <div class="text-center d-flex flex-wrap justify-content-center">
-            @foreach ($categories as $category)
-                <div class="col-sm-6 col-md-2 p-3"><a href="{{ route('category.show', $category->id) }}"
-                        class="btn btn-warning col-12">{{ $category->name }}</a></div>
-            @endforeach
-        </div>
+        @foreach ($datas->where('category_id', $category->id) as $data)
+            <a href="{{ asset('assets/img') }}/{{ $data->img }}">
+                <img class="img-fluid p-3" style="border-radius: 30px" width="300px"
+                    src="{{ asset('assets/img/' . $data->img) }}" alt="{{ $data->img }}">
+            </a>
+        @endforeach
     </div>
 
 @endsection

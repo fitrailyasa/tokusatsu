@@ -585,7 +585,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 12; $i++) {
             $datas[] = [
-                'name' => "Kakuranger - Mighty Morphin Power Alien Rangers ($i)",
+                'name' => "Kakuranger - Mighty Morphin Power Alien Rangers 3 ($i)",
                 'img' => "Super Sentai/Era Heisei/18. Ninja Sentai Kakuranger (JPN) - Mighty Morphin Power Alien Rangers 3 (USA) - Ninja Ranger (INA) ($i).jpg",
                 'category_id' => 56,
             ];
