@@ -57,7 +57,7 @@ class AdminUserController extends Controller
         ]);
 
         if (auth()->user()->roles_id == 1) {
-            return redirect('admin/user')->with('sukses', 'Berhasil Tambah Data!');
+            return redirect('admin/user')->with('sukses', 'Berhasil Tambah User!');
         }
     }
 
@@ -103,17 +103,17 @@ class AdminUserController extends Controller
             ]
         );
         if (auth()->user()->roles_id == 1) {
-            return redirect('admin/user')->with('sukses', 'Berhasil Edit Data!');
+            return redirect('admin/user')->with('sukses', 'Berhasil Edit User!');
         }
     }
 
     public function destroy(string $id)
     {
-        $data = User::findOrFail($id);
-        $data->delete();
+        $user = User::findOrFail($id);
+        $user->delete();
 
         if (auth()->user()->roles_id == 1) {
-            return redirect('admin/user')->with('sukses', 'Berhasil Hapus Data!');
+            return redirect('admin/user')->with('sukses', 'Berhasil Hapus User!');
         }
     }
 }

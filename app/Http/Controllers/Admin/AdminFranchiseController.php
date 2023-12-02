@@ -27,7 +27,7 @@ class AdminFranchiseController extends Controller
 
         Franchise::create($request->all());
 
-        return redirect()->route('admin.franchise.index')->with('sukses', 'Berhasil Tambah Data!');
+        return redirect()->route('admin.franchise.index')->with('sukses', 'Berhasil Tambah Franchise!');
     }
 
     public function show($id)
@@ -51,7 +51,7 @@ class AdminFranchiseController extends Controller
         $franchise = Franchise::findOrFail($id);
         $franchise->update($request->all());
 
-        return redirect()->route('admin.franchise.index')->with('sukses', 'Berhasil Edit Data!');
+        return redirect()->route('admin.franchise.index')->with('sukses', 'Berhasil Edit Franchise!');
     }
 
     public function destroy($id)
@@ -59,6 +59,6 @@ class AdminFranchiseController extends Controller
         $franchise = Franchise::findOrFail($id);
         $franchise->delete();
 
-        return redirect()->route('admin.franchise.index')->with('sukses', 'Berhasil Hapus Data!');
+        return redirect()->route('admin.franchise.index')->with('sukses', 'Berhasil Hapus Franchise!');
     }
 }

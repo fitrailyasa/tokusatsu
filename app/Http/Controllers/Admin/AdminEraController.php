@@ -27,7 +27,7 @@ class AdminEraController extends Controller
 
         Era::create($request->all());
 
-        return redirect()->route('admin.era.index')->with('sukses', 'Berhasil Tambah Data!');
+        return redirect()->route('admin.era.index')->with('sukses', 'Berhasil Tambah Era!');
     }
 
     public function show($id)
@@ -51,7 +51,7 @@ class AdminEraController extends Controller
         $era = Era::findOrFail($id);
         $era->update($request->all());
 
-        return redirect()->route('admin.era.index')->with('sukses', 'Berhasil Edit Data!');
+        return redirect()->route('admin.era.index')->with('sukses', 'Berhasil Edit Era!');
     }
 
     public function destroy($id)
@@ -59,6 +59,6 @@ class AdminEraController extends Controller
         $era = Era::findOrFail($id);
         $era->delete();
 
-        return redirect()->route('admin.era.index')->with('sukses', 'Berhasil Hapus Data!');
+        return redirect()->route('admin.era.index')->with('sukses', 'Berhasil Hapus Era!');
     }
 }

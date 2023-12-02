@@ -12,7 +12,7 @@ class AdminCategoryController extends Controller
 {
     public function index()
     {
-        $categories = Category::latest('id')->get();
+        $categories = Category::all();
         return view('admin.category.index', compact('categories'));
     }
 
@@ -33,7 +33,7 @@ class AdminCategoryController extends Controller
 
         Category::create($request->all());
 
-        return redirect()->route('admin.category.index')->with('sukses', 'Berhasil Tambah Data!');
+        return redirect()->route('admin.category.index')->with('sukses', 'Berhasil Tambah Category!');
     }
 
     public function show($id)
@@ -61,7 +61,7 @@ class AdminCategoryController extends Controller
         $category = Category::findOrFail($id);
         $category->update($request->all());
 
-        return redirect()->route('admin.category.index')->with('sukses', 'Berhasil Edit Data!');
+        return redirect()->route('admin.category.index')->with('sukses', 'Berhasil Edit Category!');
     }
 
     public function destroy($id)
@@ -69,6 +69,6 @@ class AdminCategoryController extends Controller
         $category = Category::findOrFail($id);
         $category->delete();
 
-        return redirect()->route('admin.category.index')->with('sukses', 'Berhasil Hapus Data!');
+        return redirect()->route('admin.category.index')->with('sukses', 'Berhasil Hapus Category!');
     }
 }
