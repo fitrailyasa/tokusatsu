@@ -479,6 +479,118 @@ class DataSeeder extends Seeder
             ];
         }
 
+        for ($i = 1; $i <= 3; $i++) {
+            $datas[] = [
+                'name' => "Sun Vulcan ($i)",
+                'img' => "Super Sentai/Era Showa/5. Taiyo Sentai Sun Vulcan ($i).jpg",
+                'category_id' => 43,
+            ];
+        }
+
+        for ($i = 1; $i <= 5; $i++) {
+            $datas[] = [
+                'name' => "Goggle Five ($i)",
+                'img' => "Super Sentai/Era Showa/6. Dai Sentai Goggle Five ($i).jpg",
+                'category_id' => 44,
+            ];
+        }
+
+        for ($i = 1; $i <= 7; $i++) {
+            $datas[] = [
+                'name' => "Dynaman ($i)",
+                'img' => "Super Sentai/Era Showa/7. Kagaku Sentai Dynaman ($i).jpg",
+                'category_id' => 45,
+            ];
+        }
+
+        for ($i = 1; $i <= 6; $i++) {
+            $datas[] = [
+                'name' => "Bioman ($i)",
+                'img' => "Super Sentai/Era Showa/8. Choudenshi Bioman ($i).jpg",
+                'category_id' => 46,
+            ];
+        }
+
+        for ($i = 1; $i <= 5; $i++) {
+            $datas[] = [
+                'name' => "Changeman ($i)",
+                'img' => "Super Sentai/Era Showa/9. Dengeki Sentai Changeman ($i).jpg",
+                'category_id' => 47,
+            ];
+        }
+
+        for ($i = 1; $i <= 5; $i++) {
+            $datas[] = [
+                'name' => "Flashman ($i)",
+                'img' => "Super Sentai/Era Showa/10. Choushinsei Flashman ($i).jpg",
+                'category_id' => 48,
+            ];
+        }
+
+        for ($i = 1; $i <= 6; $i++) {
+            $datas[] = [
+                'name' => "Maskman ($i)",
+                'img' => "Super Sentai/Era Showa/11. Hikari Sentai Maskman ($i).jpg",
+                'category_id' => 49,
+            ];
+        }
+
+        for ($i = 1; $i <= 6; $i++) {
+            $datas[] = [
+                'name' => "Liveman ($i)",
+                'img' => "Super Sentai/Era Showa/12. Choujuu Sentai Liveman ($i).jpg",
+                'category_id' => 50,
+            ];
+        }
+
+        for ($i = 1; $i <= 5; $i++) {
+            $datas[] = [
+                'name' => "Turboranger ($i)",
+                'img' => "Super Sentai/Era Heisei/13. Kousoku Sentai Turboranger ($i).jpg",
+                'category_id' => 51,
+            ];
+        }
+
+        for ($i = 1; $i <= 10; $i++) {
+            $datas[] = [
+                'name' => "Fiveman ($i)",
+                'img' => "Super Sentai/Era Heisei/14. Chikyuu Sentai Fiveman ($i).jpg",
+                'category_id' => 52,
+            ];
+        }
+
+        for ($i = 1; $i <= 16; $i++) {
+            $datas[] = [
+                'name' => "Jetman ($i)",
+                'img' => "Super Sentai/Era Heisei/15. Choujin Sentai Jetman ($i).jpg",
+                'category_id' => 53,
+            ];
+        }
+        
+        for ($i = 1; $i <= 12; $i++) {
+            $datas[] = [
+                'name' => "Zyuranger - Mighty Morphin Power Rangers ($i)",
+                'img' => "Super Sentai/Era Heisei/16. Kyouryuu Sentai Zyuranger (JPN) - Mighty Morphin Power Rangers (USA) ($i).jpg",
+                'category_id' => 54,
+            ];
+        }
+
+        for ($i = 1; $i <= 7; $i++) {
+            $datas[] = [
+                'name' => "Dairanger - Mighty Morphin Power Rangers 2 ($i)",
+                'img' => "Super Sentai/Era Heisei/17. Gosei Sentai Dairanger (JPN) - Mighty Morphin Power Rangers 2 (USA) - Star Ranger (INA) ($i).jpg",
+                'category_id' => 55,
+            ];
+        }
+
+        for ($i = 1; $i <= 12; $i++) {
+            $datas[] = [
+                'name' => "Kakuranger - Mighty Morphin Power Alien Rangers ($i)",
+                'img' => "Super Sentai/Era Heisei/18. Ninja Sentai Kakuranger (JPN) - Mighty Morphin Power Alien Rangers 3 (USA) - Ninja Ranger (INA) ($i).jpg",
+                'category_id' => 56,
+            ];
+        }
+
         Data::query()->insert($datas);
     }
 }
