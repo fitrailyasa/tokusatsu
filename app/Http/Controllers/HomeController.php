@@ -29,4 +29,16 @@ class HomeController extends Controller
         $categories = Category::all();
         return view('client.index', compact('datas', 'categories'));
     }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        $datas = Data::where('name', 'like', "%$query%")
+            ->orWhere('img', 'like', "%$query%")
+            ->orWhere('category_id', 'like', "%$query%")
+            ->get();
+
+        return view('client.search', compact('datas'));
+    }
 }

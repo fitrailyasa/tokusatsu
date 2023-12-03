@@ -28,6 +28,7 @@ use App\Http\Controllers\Client\ClientDataController;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('beranda');
+Route::get('/search', [HomeController::class, 'search'])->name('search');
 
 Route::get('/era', [ClientEraController::class, 'index'])->name('era');
 Route::get('/era/{id}', [ClientEraController::class, 'show'])->name('era.show');

@@ -6,7 +6,7 @@
 
 @section('content')
 
-    <div class="text-center my-5 py-5">
+    <div class="container text-center my-5 py-5">
         <h2 class="text-white font-weight-bold">Franchise</h2>
         <div class="text-center d-flex flex-wrap justify-content-center">
             @foreach ($franchises as $franchise)

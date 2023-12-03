@@ -25,7 +25,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 9; $i++) {
             $datas[] = [
-                'name' => "V3 ($i)",
+                'name' => "Kamen Rider V3 ($i)",
                 'img' => "Kamen Rider/Era Showa/0.2 V3RidermanRiders ($i).jpg",
                 'category_id' => 2,
             ];
@@ -33,7 +33,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 1; $i++) {
             $datas[] = [
-                'name' => "X",
+                'name' => "Kamen Rider X",
                 'img' => "Kamen Rider/Era Showa/0.3 XRider.jpg",
                 'category_id' => 3,
             ];
@@ -41,7 +41,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 2; $i++) {
             $datas[] = [
-                'name' => "Amazon ($i)",
+                'name' => "Kamen Rider Amazon ($i)",
                 'img' => "Kamen Rider/Era Showa/0.4 AmazonRider ($i).jpg",
                 'category_id' => 4,
             ];
@@ -49,7 +49,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 2; $i++) {
             $datas[] = [
-                'name' => "Stronger ($i)",
+                'name' => "Kamen Rider Stronger ($i)",
                 'img' => "Kamen Rider/Era Showa/0.5 StrongerRider ($i).jpg",
                 'category_id' => 5,
             ];
@@ -57,7 +57,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 2; $i++) {
             $datas[] = [
-                'name' => "SkyRider ($i)",
+                'name' => "Kamen Rider SkyRider ($i)",
                 'img' => "Kamen Rider/Era Showa/0.6 SkyRider ($i).jpg",
                 'category_id' => 6,
             ];
@@ -65,7 +65,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 6; $i++) {
             $datas[] = [
-                'name' => "Super-1 ($i)",
+                'name' => "Kamen Rider Super-1 ($i)",
                 'img' => "Kamen Rider/Era Showa/0.7 Super1Rider ($i).jpg",
                 'category_id' => 7,
             ];
@@ -73,7 +73,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 1; $i++) {
             $datas[] = [
-                'name' => "ZX",
+                'name' => "Kamen Rider ZX",
                 'img' => "Kamen Rider/Era Showa/0.7.Movie 10thKamenRider.jpg",
                 'category_id' => 8,
             ];
@@ -81,7 +81,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 2; $i++) {
             $datas[] = [
-                'name' => "Black ($i)",
+                'name' => "Kamen Rider Black ($i)",
                 'img' => "Kamen Rider/Era Showa/0.8 BlackRiders ($i).jpg",
                 'category_id' => 9,
             ];
@@ -89,7 +89,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 5; $i++) {
             $datas[] = [
-                'name' => "Black RX ($i)",
+                'name' => "Kamen Rider Black RX ($i)",
                 'img' => "Kamen Rider/Era Showa/0.9 BlackRXRiders ($i).jpg",
                 'category_id' => 10,
             ];
@@ -97,7 +97,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 1; $i++) {
             $datas[] = [
-                'name' => "Shin",
+                'name' => "Kamen Rider Shin",
                 'img' => "Kamen Rider/Era Showa/0.13 ShinRider.jpg",
                 'category_id' => 11,
             ];
@@ -105,7 +105,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 1; $i++) {
             $datas[] = [
-                'name' => "ZO",
+                'name' => "Kamen Rider ZO",
                 'img' => "Kamen Rider/Era Showa/0.14 ZORider.jpg",
                 'category_id' => 12,
             ];
@@ -113,7 +113,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 1; $i++) {
             $datas[] = [
-                'name' => "J",
+                'name' => "Kamen Rider J",
                 'img' => "Kamen Rider/Era Showa/0.15 JRider.jpg",
                 'category_id' => 13,
             ];
@@ -121,7 +121,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 23; $i++) {
             $datas[] = [
-                'name' => "Kuuga ($i)",
+                'name' => "Kamen Rider Kuuga ($i)",
                 'img' => "Kamen Rider/Era Heisei/1. Kuuga/1.1 kuugaRider ($i).jpg",
                 'category_id' => 14,
             ];
@@ -129,7 +129,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 28; $i++) {
             $datas[] = [
-                'name' => "Villain Kuuga ($i)",
+                'name' => "Villain Kamen Rider Kuuga ($i)",
                 'img' => "Kamen Rider/Era Heisei/1. Kuuga/1.1.1 Grongi ($i).jpg",
                 'category_id' => 14,
             ];
@@ -137,7 +137,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 22; $i++) {
             $datas[] = [
-                'name' => "Agito ($i)",
+                'name' => "Kamen Rider Agito ($i)",
                 'img' => "Kamen Rider/Era Heisei/2. Agito/1.2 AgitoRiders ($i).jpg",
                 'category_id' => 15,
             ];
@@ -145,7 +145,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 30; $i++) {
             $datas[] = [
-                'name' => "Villain Agito ($i)",
+                'name' => "Villain Kamen Rider Agito ($i)",
                 'img' => "Kamen Rider/Era Heisei/2. Agito/1.2.1 Unknown ($i).jpg",
                 'category_id' => 15,
             ];
@@ -153,7 +153,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 21; $i++) {
             $datas[] = [
-                'name' => "Ryuki ($i)",
+                'name' => "Kamen Rider Ryuki ($i)",
                 'img' => "Kamen Rider/Era Heisei/3. Ryuki/1.3 RyukiRiders ($i).jpg",
                 'category_id' => 16,
             ];
@@ -161,7 +161,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 30; $i++) {
             $datas[] = [
-                'name' => "Villain Ryuki ($i)",
+                'name' => "Villain Kamen Rider Ryuki ($i)",
                 'img' => "Kamen Rider/Era Heisei/3. Ryuki/1.3.1 MirrorMonster ($i).jpg",
                 'category_id' => 16,
             ];
@@ -169,7 +169,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 19; $i++) {
             $datas[] = [
-                'name' => "Faiz ($i)",
+                'name' => "Kamen Rider Faiz ($i)",
                 'img' => "Kamen Rider/Era Heisei/4. Faiz/1.4 FaizRiders ($i).jpg",
                 'category_id' => 17,
             ];
@@ -177,7 +177,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 47; $i++) {
             $datas[] = [
-                'name' => "Villain Faiz ($i)",
+                'name' => "Villain Kamen Rider Faiz ($i)",
                 'img' => "Kamen Rider/Era Heisei/4. Faiz/1.4.1 Orphnoch ($i).jpg",
                 'category_id' => 17,
             ];
@@ -185,7 +185,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 23; $i++) {
             $datas[] = [
-                'name' => "Blade ($i)",
+                'name' => "Kamen Rider Blade ($i)",
                 'img' => "Kamen Rider/Era Heisei/5. Blade/1.5 BladeRiders ($i).jpg",
                 'category_id' => 18,
             ];
@@ -193,7 +193,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 49; $i++) {
             $datas[] = [
-                'name' => "Villain Blade ($i)",
+                'name' => "Villain Kamen Rider Blade ($i)",
                 'img' => "Kamen Rider/Era Heisei/5. Blade/1.5.1 Undead ($i).jpg",
                 'category_id' => 18,
             ];
@@ -201,7 +201,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 28; $i++) {
             $datas[] = [
-                'name' => "Hibiki ($i)",
+                'name' => "Kamen Rider Hibiki ($i)",
                 'img' => "Kamen Rider/Era Heisei/6. Hibiki/1.6 HibikiRiders ($i).jpg",
                 'category_id' => 19,
             ];
@@ -209,7 +209,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 30; $i++) {
             $datas[] = [
-                'name' => "Villain Hibiki ($i)",
+                'name' => "Villain Kamen Rider Hibiki ($i)",
                 'img' => "Kamen Rider/Era Heisei/6. Hibiki/1.6.1 Makamou ($i).jpg",
                 'category_id' => 19,
             ];
@@ -217,7 +217,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 28; $i++) {
             $datas[] = [
-                'name' => "Kabuto ($i)",
+                'name' => "Kamen Rider Kabuto ($i)",
                 'img' => "Kamen Rider/Era Heisei/7. Kabuto/1.7 KabutoRiders ($i).jpg",
                 'category_id' => 20,
             ];
@@ -225,7 +225,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 41; $i++) {
             $datas[] = [
-                'name' => "Villain Kabuto ($i)",
+                'name' => "Villain Kamen Rider Kabuto ($i)",
                 'img' => "Kamen Rider/Era Heisei/7. Kabuto/1.7.1 Worm ($i).jpg",
                 'category_id' => 20,
             ];
@@ -233,7 +233,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 60; $i++) {
             $datas[] = [
-                'name' => "Den-O ($i)",
+                'name' => "Kamen Rider Den-O ($i)",
                 'img' => "Kamen Rider/Era Heisei/8. Den-O/1.8 Den-ORiders ($i).jpg",
                 'category_id' => 21,
             ];
@@ -241,7 +241,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 54; $i++) {
             $datas[] = [
-                'name' => "Villain Den-O ($i)",
+                'name' => "Villain Kamen Rider Den-O ($i)",
                 'img' => "Kamen Rider/Era Heisei/8. Den-O/1.8.1 Imagin ($i).jpg",
                 'category_id' => 21,
             ];
@@ -249,7 +249,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 35; $i++) {
             $datas[] = [
-                'name' => "Kiva ($i)",
+                'name' => "Kamen Rider Kiva ($i)",
                 'img' => "Kamen Rider/Era Heisei/9. Kiva/1.9 KivaRiders ($i).jpg",
                 'category_id' => 22,
             ];
@@ -257,7 +257,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 45; $i++) {
             $datas[] = [
-                'name' => "Villain Kiva ($i)",
+                'name' => "Villain Kamen Rider Kiva ($i)",
                 'img' => "Kamen Rider/Era Heisei/9. Kiva/1.9.1 Fangire ($i).jpg",
                 'category_id' => 22,
             ];
@@ -265,7 +265,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 60; $i++) {
             $datas[] = [
-                'name' => "Decade ($i)",
+                'name' => "Kamen Rider Decade ($i)",
                 'img' => "Kamen Rider/Era Heisei/10. Decade/1.10 DecadeRiders ($i).jpg",
                 'category_id' => 23,
             ];
@@ -273,7 +273,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 30; $i++) {
             $datas[] = [
-                'name' => "Villain Decade ($i)",
+                'name' => "Villain Kamen Rider Decade ($i)",
                 'img' => "Kamen Rider/Era Heisei/10. Decade/1.10.1 DecadeVillain ($i).jpg",
                 'category_id' => 23,
             ];
@@ -281,7 +281,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 69; $i++) {
             $datas[] = [
-                'name' => "W ($i)",
+                'name' => "Kamen Rider W ($i)",
                 'img' => "Kamen Rider/Era Heisei/11. W/2.1 WRiders ($i).jpg",
                 'category_id' => 24,
             ];
@@ -289,7 +289,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 51; $i++) {
             $datas[] = [
-                'name' => "Villain W ($i)",
+                'name' => "Villain Kamen Rider W ($i)",
                 'img' => "Kamen Rider/Era Heisei/11. W/2.1.1 Dopant ($i).jpg",
                 'category_id' => 24,
             ];
@@ -297,7 +297,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 69; $i++) {
             $datas[] = [
-                'name' => "Ooo ($i)",
+                'name' => "Kamen Rider Ooo ($i)",
                 'img' => "Kamen Rider/Era Heisei/12. Ooo/2.2 OooRiders ($i).jpg",
                 'category_id' => 25,
             ];
@@ -305,7 +305,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 55; $i++) {
             $datas[] = [
-                'name' => "Villain Ooo ($i)",
+                'name' => "Villain Kamen Rider Ooo ($i)",
                 'img' => "Kamen Rider/Era Heisei/12. Ooo/2.2.1 Greed ($i).jpg",
                 'category_id' => 25,
             ];
@@ -313,7 +313,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 63; $i++) {
             $datas[] = [
-                'name' => "Fourze ($i)",
+                'name' => "Kamen Rider Fourze ($i)",
                 'img' => "Kamen Rider/Era Heisei/13. Fourze/2.3 FourzeRiders ($i).jpg",
                 'category_id' => 26,
             ];
@@ -321,7 +321,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 47; $i++) {
             $datas[] = [
-                'name' => "Villain Fourze ($i)",
+                'name' => "Villain Kamen Rider Fourze ($i)",
                 'img' => "Kamen Rider/Era Heisei/13. Fourze/2.3.1 Zodiarts ($i).jpg",
                 'category_id' => 26,
             ];
@@ -329,7 +329,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 50; $i++) {
             $datas[] = [
-                'name' => "Wizard ($i)",
+                'name' => "Kamen Rider Wizard ($i)",
                 'img' => "Kamen Rider/Era Heisei/14. Wizard/2.4 WizardRiders ($i).jpg",
                 'category_id' => 27,
             ];
@@ -337,7 +337,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 39; $i++) {
             $datas[] = [
-                'name' => "Villain Wizard ($i)",
+                'name' => "Villain Kamen Rider Wizard ($i)",
                 'img' => "Kamen Rider/Era Heisei/14. Wizard/2.4.1 Phantom ($i).jpg",
                 'category_id' => 27,
             ];
@@ -345,7 +345,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 84; $i++) {
             $datas[] = [
-                'name' => "Gaim ($i)",
+                'name' => "Kamen Rider Gaim ($i)",
                 'img' => "Kamen Rider/Era Heisei/15. Gaim/2.5 GaimRiders ($i).jpg",
                 'category_id' => 28,
             ];
@@ -353,7 +353,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 34; $i++) {
             $datas[] = [
-                'name' => "Villain Gaim ($i)",
+                'name' => "Villain Kamen Rider Gaim ($i)",
                 'img' => "Kamen Rider/Era Heisei/15. Gaim/2.5.1 Overlord ($i).jpg",
                 'category_id' => 28,
             ];
@@ -361,7 +361,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 76; $i++) {
             $datas[] = [
-                'name' => "Drive ($i)",
+                'name' => "Kamen Rider Drive ($i)",
                 'img' => "Kamen Rider/Era Heisei/16. Drive/2.6 DriveRiders ($i).jpg",
                 'category_id' => 29,
             ];
@@ -369,7 +369,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 55; $i++) {
             $datas[] = [
-                'name' => "Villain Drive ($i)",
+                'name' => "Villain Kamen Rider Drive ($i)",
                 'img' => "Kamen Rider/Era Heisei/16. Drive/2.6.1 Roidmude ($i).jpg",
                 'category_id' => 29,
             ];
@@ -377,7 +377,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 60; $i++) {
             $datas[] = [
-                'name' => "Ghost ($i)",
+                'name' => "Kamen Rider Ghost ($i)",
                 'img' => "Kamen Rider/Era Heisei/17. Ghost/2.7 GhostRiders ($i).jpg",
                 'category_id' => 30,
             ];
@@ -385,7 +385,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 49; $i++) {
             $datas[] = [
-                'name' => "Villain Ghost ($i)",
+                'name' => "Villain Kamen Rider Ghost ($i)",
                 'img' => "Kamen Rider/Era Heisei/17. Ghost/2.7.1 Gamma ($i).jpg",
                 'category_id' => 30,
             ];
@@ -393,7 +393,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 87; $i++) {
             $datas[] = [
-                'name' => "Ex-Aid ($i)",
+                'name' => "Kamen Rider Ex-Aid ($i)",
                 'img' => "Kamen Rider/Era Heisei/18. Ex-Aid/2.8 Ex-AidRiders ($i).jpg",
                 'category_id' => 31,
             ];
@@ -401,7 +401,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 42; $i++) {
             $datas[] = [
-                'name' => "Villain Ex-Aid ($i)",
+                'name' => "Villain Kamen Rider Ex-Aid ($i)",
                 'img' => "Kamen Rider/Era Heisei/18. Ex-Aid/2.8.1 Bugster ($i).jpg",
                 'category_id' => 31,
             ];
@@ -409,7 +409,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 146; $i++) {
             $datas[] = [
-                'name' => "Build ($i)",
+                'name' => "Kamen Rider Build ($i)",
                 'img' => "Kamen Rider/Era Heisei/19. Build/2.9 BuildRiders ($i).jpg",
                 'category_id' => 32,
             ];
@@ -417,7 +417,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 30; $i++) {
             $datas[] = [
-                'name' => "Villain Build ($i)",
+                'name' => "Villain Kamen Rider Build ($i)",
                 'img' => "Kamen Rider/Era Heisei/19. Build/2.9.1 Smash ($i).jpg",
                 'category_id' => 32,
             ];
@@ -425,7 +425,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 58; $i++) {
             $datas[] = [
-                'name' => "Zi-O ($i)",
+                'name' => "Kamen Rider Zi-O ($i)",
                 'img' => "Kamen Rider/Era Heisei/20. Zi-O/2.10 Zi-ORiders ($i).jpg",
                 'category_id' => 33,
             ];
@@ -433,7 +433,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 35; $i++) {
             $datas[] = [
-                'name' => "Villain Zi-O ($i)",
+                'name' => "Villain Kamen Rider Zi-O ($i)",
                 'img' => "Kamen Rider/Era Heisei/20. Zi-O/2.10.1 AnotherRiders ($i).jpg",
                 'category_id' => 33,
             ];
@@ -441,7 +441,7 @@ class DataSeeder extends Seeder
 
         for ($i = 1; $i <= 11; $i++) {
             $datas[] = [
-                'name' => "Shinobi ($i)",
+                'name' => "Kamen Rider Shinobi ($i)",
                 'img' => "Kamen Rider/Era Heisei/20. Zi-O/2.10.2 ShinobiRiders ($i).jpg",
                 'category_id' => 33,
             ];
