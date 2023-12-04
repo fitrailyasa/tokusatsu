@@ -8,13 +8,13 @@
         <div class="d-flex justify-content-center align-items-center mt-3">
             <form action="{{ route('login') }}" method="POST" class="">
                 @csrf
-                <input class="form-control @error('email') is-invalid @enderror" name="email" value="admin@admin.com"
-                    required autofocus type="text" name="email" id="email" placeholder="email">
+                <input class="form-control @error('email') is-invalid @enderror" name="email" required autofocus
+                    type="text" name="email" id="email" placeholder="email">
                 @error('email')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
-                <input class="form-control @error('password') is-invalid @enderror" name="password" value="password"
-                    required type="password" id="password" placeholder="password">
+                <input class="form-control @error('password') is-invalid @enderror" name="password" required type="password"
+                    id="password" placeholder="password">
                 @error('password')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
