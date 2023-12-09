@@ -11,8 +11,9 @@ class AdminDataController extends Controller
 {
     public function index()
     {
+        $categories = Category::all();
         $datas = Data::latest('id')->paginate(20);
-        return view('admin.data.index', compact('datas'));
+        return view('admin.data.index', compact('datas', 'categories'));
     }
 
     public function create()
@@ -43,12 +44,6 @@ class AdminDataController extends Controller
         }
 
         return redirect()->route('admin.data.index')->with('sukses', 'Berhasil Tambah Data!');
-    }
-
-    public function show($id)
-    {
-        $data = Data::findOrFail($id);
-        return view('admin.data.read', compact('data'));
     }
 
     public function edit($id)

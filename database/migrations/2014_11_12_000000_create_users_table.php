@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('gambar_user')->nullable();
+            $table->string('img')->nullable();
             $table->string('no_hp')->nullable();
             $table->string('password');
             $table->unsignedBigInteger('roles_id')->nullable()->default(99);

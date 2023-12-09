@@ -19,7 +19,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('admin.user.index') }}" class="nav-link text-white @yield('tableUser')">
+                <a href="{{ route('admin.user.index') }}" class="nav-link text-white @yield('table-user')">
                     <i class="nav-icon fas fa-users"></i>
                     <p>
                         User
@@ -27,7 +27,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('admin.data.index') }}" class="nav-link text-white @yield('tableData')">
+                <a href="{{ route('admin.data.index') }}" class="nav-link text-white @yield('table-data')">
                     <i class="nav-icon fas fa-database"></i>
                     <p>
                         Data
@@ -35,7 +35,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('admin.category.index') }}" class="nav-link text-white @yield('tableCategory')">
+                <a href="{{ route('admin.category.index') }}" class="nav-link text-white @yield('table-category')">
                     <i class="nav-icon fas fa-tag"></i>
                     <p>
                         Category
@@ -43,7 +43,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('admin.franchise.index') }}" class="nav-link text-white @yield('tableFranchise')">
+                <a href="{{ route('admin.franchise.index') }}" class="nav-link text-white @yield('table-franchise')">
                     <i class="nav-icon fas fa-tv"></i>
                     <p>
                         Franchise
@@ -51,7 +51,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('admin.era.index') }}" class="nav-link text-white @yield('tableEra')">
+                <a href="{{ route('admin.era.index') }}" class="nav-link text-white @yield('table-era')">
                     <i class="nav-icon fas fa-flag"></i>
                     <p>
                         Era

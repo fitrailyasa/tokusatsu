@@ -1,95 +1,86 @@
-@extends('layouts.admin.app')
-
-@section('title', 'Edit User')
-
-@section('tableUser', 'active')
-
-@section('backlink')
+<div class="modal-content">
     @if (auth()->user()->roles_id == 1)
-        <a href="{{ route('admin.user.index') }}"><i class="fa small pr-1 fa-arrow-left text-dark"></i></a>
+        <form method="POST" action="{{ route('admin.user.update', $user->id) }}" enctype="multipart/form-data">
     @endif
-@endsection
-
-@section('content')
-
-    <!--Edit user-->
-    <div class="col-lg-12 col-lg-12 form-wrapper" id="edit-user">
-        <div class="card">
-            <div class="card-body">
-                @if (auth()->user()->roles_id == 1)
-                    <form method="POST" action="{{ route('admin.user.update', $user->id) }}" enctype='multipart/form-data'>
-                @endif
-                @csrf
-                @method('PUT')
-                <div class="mb-3 row">
-                    <label class="col-sm-3 col-form-label">Name</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" placeholder="name"
-                            name="name" id="name" value="{{ $user->name }}" enabled>
-                        @error('name')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
+    @csrf
+    @method('PUT')
+    <div class="modal-header">
+        <h5 class="modal-title" id="modalFormLabel">Edit @yield('title')
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-2">
+                    <label class="form-label">Name</label>
+                    <input type="text" class="form-control @error('name') is-invalid @enderror" placeholder="name"
+                        name="name" id="name" value="{{ $user->name }}" required>
+                    @error('name')
+                        <div class="invalid-feedback">{{ $message }}
+                        </div>
+                    @enderror
                 </div>
-                <div class="mb-3 row">
-                    <label class="col-sm-3 col-form-label">Email</label>
-                    <div class="col-sm-9">
-                        <input type="email" class="form-control @error('email') is-invalid @enderror" placeholder="email"
-                            name="email" id="email" value="{{ $user->email }}" enabled>
-                        @error('email')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-2">
+                    <label class="form-label">No HP</label>
+                    <input type="text" class="form-control @error('no_hp') is-invalid @enderror" placeholder="no_hp"
+                        name="no_hp" id="no_hp" value="{{ $user->no_hp }}" required>
+                    @error('no_hp')
+                        <div class="invalid-feedback">{{ $message }}
+                        </div>
+                    @enderror
                 </div>
-                <div class="mb-3 row">
-                    <label class="col-sm-3 col-form-label">Gambar User</label>
-                    <div class="col-sm-9">
-                        <input type="file" class="form-control @error('gambar_user') is-invalid @enderror"
-                            placeholder="gambar_user" name="gambar_user" id="gambar_user" value="{{ $user->gambar_user }}"
-                            enabled>
-                        @error('gambar_user')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control @error('email') is-invalid @enderror" placeholder="email"
+                        name="email" id="email" value="{{ $user->email }}" required>
+                    @error('email')
+                        <div class="invalid-feedback">{{ $message }}
+                        </div>
+                    @enderror
                 </div>
-                <div class="mb-3 row">
-                    <label class="col-sm-3 col-form-label">No HP</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control @error('no_hp') is-invalid @enderror" placeholder="no_hp"
-                            name="no_hp" id="no_hp" value="{{ $user->no_hp }}" enabled>
-                        @error('no_hp')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-control @error('password') is-invalid @enderror"
+                        placeholder="password" name="password" id="password">
+                    @error('password')
+                        <div class="invalid-feedback">{{ $message }}
+                        </div>
+                    @enderror
                 </div>
-                <div class="mb-3 row">
-                    <label class="col-sm-3 col-form-label">Password Baru</label>
-                    <div class="col-sm-9">
-                        <input type="password" class="form-control @error('password') is-invalid @enderror"
-                            placeholder="password" name="password" id="password" enabled>
-                        @error('password')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <label class="form-label">Roles</label>
+                    <select class="form-select @error('roles_id') is-invalid @enderror" name="roles_id" id="roles_id"
+                        required>
+                        @foreach ($roles as $role)
+                            <option value="{{ $role->id }}" {{ $role->id == $user->roles_id ? 'selected' : '' }}>
+                                {{ $role->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @error('roles_id')
+                        <div class="invalid-feedback">{{ $message }}
+                        </div>
+                    @enderror
                 </div>
-                <div class="mb-3 row">
-                    <label class="col-sm-3 col-form-label">Roles ID</label>
-                    <div class="col-sm-9">
-                        <select class="col-sm-12 col-form-label rounded-2" name="roles_id" id="roles_id" enabled>
-                            <option value="{{ $user->roles_id }}">{{ $user->roles_id }}</option>
-                            <option value="1">Admin</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="text-right">
-                        <button type="submit" class="btn btn-primary">Simpan</button>
-                    </div>
-                </div>
-                </form>
             </div>
         </div>
     </div>
-    <!--./Edit user-->
-
-@endsection
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+        <button type="submit" class="btn btn-primary">Simpan</button>
+    </div>
+    </form>
+</div>

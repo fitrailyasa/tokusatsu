@@ -12,8 +12,10 @@ class AdminCategoryController extends Controller
 {
     public function index()
     {
+        $eras = Era::all();
+        $franchises = Franchise::all();
         $categories = Category::all();
-        return view('admin.category.index', compact('categories'));
+        return view('admin.category.index', compact('categories', 'eras', 'franchises'));
     }
 
     public function create()
@@ -34,12 +36,6 @@ class AdminCategoryController extends Controller
         Category::create($request->all());
 
         return redirect()->route('admin.category.index')->with('sukses', 'Berhasil Tambah Category!');
-    }
-
-    public function show($id)
-    {
-        $category = Category::findOrFail($id);
-        return view('admin.category.read', compact('category'));
     }
 
     public function edit($id)

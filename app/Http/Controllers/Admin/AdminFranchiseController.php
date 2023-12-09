@@ -30,12 +30,6 @@ class AdminFranchiseController extends Controller
         return redirect()->route('admin.franchise.index')->with('sukses', 'Berhasil Tambah Franchise!');
     }
 
-    public function show($id)
-    {
-        $franchise = Franchise::findOrFail($id);
-        return view('admin.franchise.read', compact('franchise'));
-    }
-
     public function edit($id)
     {
         $franchise = Franchise::findOrFail($id);

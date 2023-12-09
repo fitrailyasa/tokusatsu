@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
+use App\Models\Role;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -11,8 +12,9 @@ class AdminUserController extends Controller
 {
     public function index()
     {
+        $roles = Role::all();
         $users = User::all();
-        return view('admin.user.index', compact('users'));
+        return view('admin.user.index', compact('users', 'roles'));
     }
 
     public function verif()
@@ -23,7 +25,8 @@ class AdminUserController extends Controller
 
     public function create()
     {
-        return view('admin.user.create');
+        $roles = Role::all();
+        return view('admin.user.create', compact('roles'));
     }
 
     public function store(Request $request)
@@ -59,12 +62,6 @@ class AdminUserController extends Controller
         if (auth()->user()->roles_id == 1) {
             return redirect('admin/user')->with('sukses', 'Berhasil Tambah User!');
         }
-    }
-
-    public function show(string $id)
-    {
-        $user = User::where('id', $id)->first();
-        return view('admin.user.read', compact('user'));
     }
 
     public function edit(string $id)

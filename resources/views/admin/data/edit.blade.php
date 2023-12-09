@@ -1,89 +1,74 @@
-@extends('layouts.admin.app')
-
-@section('title', 'Edit Data')
-
-@section('tableData', 'active')
-
-@section('backlink')
+<div class="modal-content">
     @if (auth()->user()->roles_id == 1)
-        <a href="{{ route('admin.data.index') }}"><i class="fa small pr-1 fa-arrow-left text-dark"></i></a>
+        <form method="POST" action="{{ route('admin.data.update', $data->id) }}" enctype="multipart/form-data">
     @endif
-@endsection
-
-@section('content')
-
-    <!-- Edit data -->
-    <div class="col-lg-12 col-lg-12 form-wrapper" id="edit-data">
-        <div class="card">
-            <div class="card-body">
-                @if (auth()->user()->roles_id == 1)
-                    <form method="POST" action="{{ route('admin.data.update', $data->id) }}" enctype="multipart/form-data">
-                @endif
-                @csrf
-                @method('PUT')
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label class="form-label">Name</label>
-                            <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                placeholder="name" name="name" id="name" value="{{ $data->name }}" required>
-                            @error('name')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label class="form-label">Category</label>
-                            <select class="form-control @error('category_id') is-invalid @enderror" name="category_id"
-                                id="category_id" required>
-                                <option selected disabled>Select Category</option>
-                                @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}"
-                                        {{ $category->id == $data->category_id ? 'selected' : '' }}>
-                                        {{ $category->name }}
-                                    </option>
-                                @endforeach
-                            </select>
-                            @error('category_id')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    </div>
+    @csrf
+    @method('PUT')
+    <div class="modal-header">
+        <h5 class="modal-title" id="modalFormLabel">Edit @yield('title')
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label">Name</label>
+                    <input type="text" class="form-control @error('name') is-invalid @enderror" placeholder="name"
+                        name="name" id="name" value="{{ $data->name }}" required>
+                    @error('name')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        <div class="mb-3">
-                            <label class="form-label">Images</label><br>
-                            <img class="img-fluid rounded" width="500px" src="{{ asset('assets/img/' . $data->img) }}"
-                                alt="{{ $data->name }}">
-                            @error('images')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label">Category</label>
+                    <select class="form-control @error('category_id') is-invalid @enderror" name="category_id"
+                        id="category_id" required>
+                        <option selected disabled>Select Category</option>
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}"
+                                {{ $category->id == $data->category_id ? 'selected' : '' }}>
+                                {{ $category->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @error('category_id')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        <div class="mb-3">
-                            <input type="file" class="form-control @error('img') is-invalid @enderror" placeholder="img"
-                                name="img" id="img" value="{{ $data->img }}" enabled>
-                            @error('img')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <div class="mb-3">
+                    <label class="form-label">Images</label><br>
+                    <img class="img-fluid rounded" width="500px" src="{{ asset('assets/img/' . $data->img) }}"
+                        alt="{{ $data->name }}">
+                    @error('images')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
-
-                <div class="row">
-                    <div class="col-md-12 text-right">
-                        <button type="submit" class="btn btn-primary">Simpan</button>
-                    </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <div class="mb-3">
+                    <input type="file" class="form-control @error('img') is-invalid @enderror" placeholder="img"
+                        name="img" id="img" value="{{ $data->img }}" enabled>
+                    @error('img')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
-                </form>
             </div>
         </div>
     </div>
-    <!-- ./Edit data -->
-
-@endsection
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+        <button type="submit" class="btn btn-primary">Simpan</button>
+    </div>
+    </form>
+</div>

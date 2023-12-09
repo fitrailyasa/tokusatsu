@@ -30,12 +30,6 @@ class AdminEraController extends Controller
         return redirect()->route('admin.era.index')->with('sukses', 'Berhasil Tambah Era!');
     }
 
-    public function show($id)
-    {
-        $era = Era::findOrFail($id);
-        return view('admin.era.read', compact('era'));
-    }
-
     public function edit($id)
     {
         $era = Era::findOrFail($id);
