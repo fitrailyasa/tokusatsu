@@ -7,7 +7,7 @@
     <div class="modal-header">
         <h5 class="modal-title" id="modalFormLabel">Edit @yield('title')
         </h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
@@ -27,7 +27,7 @@
             <div class="col-md-4">
                 <div class="mb-3">
                     <label class="form-label">Franchise</label>
-                    <select class="form-control @error('franchise_id') is-invalid @enderror" name="franchise_id"
+                    <select class="form-select @error('franchise_id') is-invalid @enderror" name="franchise_id"
                         id="franchise_id" required>
                         <option selected disabled>Select Franchise</option>
                         @foreach ($franchises as $franchise)
@@ -46,7 +46,7 @@
             <div class="col-md-4">
                 <div class="mb-3">
                     <label class="form-label">Era</label>
-                    <select class="form-control @error('era_id') is-invalid @enderror" name="era_id" id="era_id"
+                    <select class="form-select @error('era_id') is-invalid @enderror" name="era_id" id="era_id"
                         required>
                         <option selected disabled>Select Era</option>
                         @foreach ($eras as $era)

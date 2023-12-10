@@ -7,7 +7,7 @@
 @section('content')
 
     <div class="text-center my-5 py-5">
-        <form action="{{ route('search') }}" method="GET">
+        {{-- <form action="{{ route('search') }}" method="GET">
             <div class="d-flex justify-content-center align-items-center px-3">
                 <div class="col-md-6 input-group mb-3">
                     <input type="text" class="form-control" name="query" placeholder="Cari..."
@@ -15,7 +15,7 @@
                     <button class="btn w-25 text-white bg-warning" type="submit">Cari</button>
                 </div>
             </div>
-        </form>
+        </form> --}}
         <h3 class="text-white font-weight-bold">Kamen Rider</h3>
         <div class="text-center d-flex flex-wrap justify-content-center border-bottom">
             @foreach ($datas->where('category_id', '1') as $data)

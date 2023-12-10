@@ -24,7 +24,7 @@
             <div class="col-md-4">
                 <div class="mb-3">
                     <label class="form-label">Franchise</label>
-                    <select class="form-control @error('franchise_id') is-invalid @enderror" name="franchise_id"
+                    <select class="form-select @error('franchise_id') is-invalid @enderror" name="franchise_id"
                         id="franchise_id" required>
                         <option selected disabled>Select franchise</option>
                         @foreach ($franchises as $franchise)
@@ -39,7 +39,7 @@
             <div class="col-md-4">
                 <div class="mb-3">
                     <label class="form-label">Era</label>
-                    <select class="form-control @error('era_id') is-invalid @enderror" name="era_id" id="era_id"
+                    <select class="form-select @error('era_id') is-invalid @enderror" name="era_id" id="era_id"
                         required>
                         <option selected disabled>Select era</option>
                         @foreach ($eras as $era)
