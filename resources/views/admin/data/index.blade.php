@@ -9,7 +9,7 @@
 @endsection
 
 @section('table')
-    <table id="example1" class="table table-bordered table-striped">
+    <table id="" class="table table-bordered table-striped">
         <thead>
             <tr>
                 <th>No</th>
@@ -86,6 +86,11 @@
                 <th>Category</th>
                 <th>Gambar</th>
                 <th>More</th>
+            </tr>
+            <tr>
+                <th colspan="5">
+                    {{ $datas->links() }}
+                </th>
             </tr>
         </tfoot>
     </table>

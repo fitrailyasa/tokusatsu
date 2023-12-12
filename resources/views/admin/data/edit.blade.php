@@ -46,7 +46,7 @@
             <div class="col-md-12 text-center">
                 <div class="mb-3">
                     <label class="form-label">Images</label><br>
-                    <img class="img-fluid rounded" width="500px" src="{{ asset('assets/img/' . $data->img) }}"
+                    <img class="img-fluid rounded" width="300px" src="{{ asset('assets/img/' . $data->img) }}"
                         alt="{{ $data->name }}">
                     @error('images')
                         <div class="invalid-feedback">{{ $message }}</div>

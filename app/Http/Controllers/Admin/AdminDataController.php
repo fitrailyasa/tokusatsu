@@ -7,12 +7,13 @@ use App\Models\Data;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
+
 class AdminDataController extends Controller
 {
     public function index()
     {
         $categories = Category::all();
-        $datas = Data::latest('id')->paginate(20);
+        $datas = Data::latest('id')->paginate(10);
         return view('admin.data.index', compact('datas', 'categories'));
     }
 
