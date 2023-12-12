@@ -1,6 +1,13 @@
 @extends('layouts.admin.app')
 
 @section('content')
+    <style>
+        .dataTables_filter {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+    </style>
     <div class="card">
         <!-- /.card-header -->
         <div class="card-body">
@@ -35,9 +42,9 @@
         $(function() {
             $("#example1").DataTable({
                 "responsive": true,
-                "lengthChange": false,
+                "lengthChange": true,
                 "autoWidth": false,
-                "buttons": ["excel", "pdf", "print"]
+                // "buttons": ["excel", "pdf", "print"]
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
             $('#example2').DataTable({
                 "paging": true,
