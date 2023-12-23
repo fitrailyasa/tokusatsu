@@ -15,7 +15,7 @@
                 <th>No</th>
                 <th>Name</th>
                 <th>Category</th>
-                <th>Gambar</th>
+                <th>Images</th>
                 <th>More</th>
             </tr>
         </thead>
@@ -84,7 +84,7 @@
                 <th>No</th>
                 <th>Name</th>
                 <th>Category</th>
-                <th>Gambar</th>
+                <th>Images</th>
                 <th>More</th>
             </tr>
             <tr>

@@ -14,7 +14,6 @@ use App\Http\Controllers\Admin\AdminDataController;
 use App\Http\Controllers\Client\ClientEraController;
 use App\Http\Controllers\Client\ClientFranchiseController;
 use App\Http\Controllers\Client\ClientCategoryController;
-use App\Http\Controllers\Client\ClientDataController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,7 +37,6 @@ Route::get('/franchise/{id}', [ClientFranchiseController::class, 'show'])->name(
 Route::get('/franchise/category/{id}', [ClientFranchiseController::class, 'category'])->name('franchise.category');
 Route::get('/category', [ClientCategoryController::class, 'index'])->name('category');
 Route::get('/category/{id}', [ClientCategoryController::class, 'show'])->name('category.show');
-Route::get('/data', [ClientDataController::class, 'index'])->name('data');
 
 Auth::routes();
 
@@ -46,7 +44,6 @@ Route::middleware(['auth'])->group(function () {
 
   Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
   Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-  Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
   // CMS ADMINITRASTOR
   Route::middleware([Admin::class])->name('admin.')->prefix('admin')->group(function () {
@@ -60,3 +57,7 @@ Route::middleware(['auth'])->group(function () {
     });
 
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
