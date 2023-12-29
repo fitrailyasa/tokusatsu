@@ -591,6 +591,207 @@ class DataSeeder extends Seeder
             ];
         }
 
+        for ($i = 1; $i <= 7; $i++) {
+            $datas[] = [
+                'name' => "Choriki Sentai Ohranger (JPN) - Power Rangers Zeo (USA) ($i)",
+                'img' => "Super Sentai/Era Heisei/19. Choriki Sentai Ohranger (JPN) - Power Rangers Zeo (USA) - Oh Ranger (INA) ($i).jpg",
+                'category_id' => 57,
+            ];
+        }
+
+        for ($i = 1; $i <= 12; $i++) {
+            $datas[] = [
+                'name' => "Gekisou Sentai Carranger (JPN) - Power Rangers Turbo (USA) ($i)",
+                'img' => "Super Sentai/Era Heisei/20. Gekisou Sentai Carranger (JPN) - Power Rangers Turbo (USA) ($i).jpg",
+                'category_id' => 58,
+            ];
+        }
+
+        for ($i = 1; $i <= 18; $i++) {
+            $datas[] = [
+                'name' => "Denji Sentai Megaranger (JPN) - Power Rangers In Space (USA) ($i)",
+                'img' => "Super Sentai/Era Heisei/21. Denji Sentai Megaranger (JPN) - Power Rangers In Space (USA) ($i).jpg",
+                'category_id' => 59,
+            ];
+        }
+
+        for ($i = 1; $i <= 13; $i++) {
+            $datas[] = [
+                'name' => "Seijuu Sentai Gingaman (JPN) - Power Rangers Lost Galaxy (USA) ($i)",
+                'img' => "Super Sentai/Era Heisei/22. Seijuu Sentai Gingaman (JPN) - Power Rangers Lost Galaxy (USA) ($i).jpg",
+                'category_id' => 60,
+            ];
+        }
+
+        for ($i = 1; $i <= 8; $i++) {
+            $datas[] = [
+                'name' => "KyuKyu Sentai GoGo V (JPN) - Power Rangers Lightspeed Rescue(USA) ($i)",
+                'img' => "Super Sentai/Era Heisei/23. KyuKyu Sentai GoGo V (JPN) - Power Rangers Lightspeed Rescue(USA) ($i).jpg",
+                'category_id' => 61,
+            ];
+        }
+
+        for ($i = 1; $i <= 7; $i++) {
+            $datas[] = [
+                'name' => "Mirai Sentai Timeranger (JPN) - Power Rangers Time Force (USA) ($i)",
+                'img' => "Super Sentai/Era Heisei/24. Mirai Sentai Timeranger (JPN) - Power Rangers Time Force (USA) ($i).jpg",
+                'category_id' => 62,
+            ];
+        }
+
+        for ($i = 1; $i <= 13; $i++) {
+            $datas[] = [
+                'name' => "Hyaku Juu Sentai Gaoranger (JPN) - Power Rangers Wild Force (USA) ($i)",
+                'img' => "Super Sentai/Era Heisei/25. Hyaku Juu Sentai Gaoranger (JPN) - Power Rangers Wild Force (USA) ($i).jpg",
+                'category_id' => 63,
+            ];
+        }
+
+        for ($i = 1; $i <= 12; $i++) {
+            $datas[] = [
+                'name' => "Ninpuu Sentai Hurricanger (JPN) - Power Rangers Ninja Storm (USA) ($i)",
+                'img' => "Super Sentai/Era Heisei/26. Ninpuu Sentai Hurricanger (JPN) - Power Rangers Ninja Storm (USA) ($i).jpg",
+                'category_id' => 64,
+            ];
+        }
+
+        for ($i = 1; $i <= 12; $i++) {
+            $datas[] = [
+                'name' => "BakuRyuu Sentai Abaranger (JPN) - Power Rangers Dino Thunder (USA) ($i)",
+                'img' => "Super Sentai/Era Heisei/27. BakuRyuu Sentai Abaranger (JPN) - Power Rangers Dino Thunder (USA) ($i).jpg",
+                'category_id' => 65,
+            ];
+        }
+
+        for ($i = 1; $i <= 17; $i++) {
+            $datas[] = [
+                'name' => "Tokusou Sentai Dekaranger (JPN) - Power Rangers S.P.D (USA) ($i)",
+                'img' => "Super Sentai/Era Heisei/28. Tokusou Sentai Dekaranger (JPN) - Power Rangers S.P.D (USA) ($i).jpg",
+                'category_id' => 66,
+            ];
+        }
+
+        for ($i = 1; $i <= 14; $i++) {
+            $datas[] = [
+                'name' => "Mahou Sentai Magiranger (JPN) - Power Rangers Mystic Force (USA) ($i)",
+                'img' => "Super Sentai/Era Heisei/29. Mahou Sentai Magiranger (JPN) - Power Rangers Mystic Force (USA) ($i).jpg",
+                'category_id' => 67,
+            ];
+        }
+
+        for ($i = 1; $i <= 13; $i++) {
+            $datas[] = [
+                'name' => "Gougou Sentai Boukenger (JPN) - Power Rangers Operation Overdrive (USA) ($i)",
+                'img' => "Super Sentai/Era Heisei/30. Gougou Sentai Boukenger (JPN) - Power Rangers Operation Overdrive (USA) ($i).jpg",
+                'category_id' => 68,
+            ];
+        }
+
+        for ($i = 1; $i <= 12; $i++) {
+            $datas[] = [
+                'name' => "Juken Sentai Gekiranger (JPN) - Power Rangers Jungle Fury (USA) ($i)",
+                'img' => "Super Sentai/Era Heisei/31. Juken Sentai Gekiranger (JPN) - Power Rangers Jungle Fury (USA) ($i).jpg",
+                'category_id' => 69,
+            ];
+        }
+
+        for ($i = 1; $i <= 8; $i++) {
+            $datas[] = [
+                'name' => "Engine Sentai Go-Onger (JPN) - Power Rangers RPM (USA) ($i)",
+                'img' => "Super Sentai/Era Heisei/32. Engine Sentai Go-Onger (JPN) - Power Rangers RPM (USA) ($i).jpg",
+                'category_id' => 70,
+            ];
+        }
+
+        for ($i = 1; $i <= 24; $i++) {
+            $datas[] = [
+                'name' => "Samurai Sentai Shinkenger (JPN) - Power Rangers Samurai (USA) ($i)",
+                'img' => "Super Sentai/Era Heisei/33. Samurai Sentai Shinkenger (JPN) - Power Rangers Samurai (USA) ($i).jpg",
+                'category_id' => 71,
+            ];
+        }
+
+        for ($i = 1; $i <= 13; $i++) {
+            $datas[] = [
+                'name' => "Tensou Sentai Goseiger (JPN) - Power Rangers Megaforce (USA) ($i)",
+                'img' => "Super Sentai/Era Heisei/34. Tensou Sentai Goseiger (JPN) - Power Rangers Megaforce (USA) ($i).jpg",
+                'category_id' => 72,
+            ];
+        }
+
+        for ($i = 1; $i <= 11; $i++) {
+            $datas[] = [
+                'name' => "Kaizoku Sentai Gokaiger (JPN) - Power Rangers Super Megaforce (USA) ($i)",
+                'img' => "Super Sentai/Era Heisei/35. Kaizoku Sentai Gokaiger (JPN) - Power Rangers Super Megaforce (USA) ($i).jpg",
+                'category_id' => 73,
+            ];
+        }
+
+        for ($i = 1; $i <= 15; $i++) {
+            $datas[] = [
+                'name' => "Tokumei Sentai Go-Busters  ($i)",
+                'img' => "Super Sentai/Era Heisei/36. Tokumei Sentai Go-Busters  ($i).jpg",
+                'category_id' => 74,
+            ];
+        }
+
+        for ($i = 1; $i <= 29; $i++) {
+            $datas[] = [
+                'name' => "Zyuden Sentai Kyoryuger ($i)",
+                'img' => "Super Sentai/Era Heisei/37. Zyuden Sentai Kyoryuger ($i).jpg",
+                'category_id' => 75,
+            ];
+        }
+
+        for ($i = 1; $i <= 15; $i++) {
+            $datas[] = [
+                'name' => "Ressha Sentai Tokkyuger ($i)",
+                'img' => "Super Sentai/Era Heisei/38. Ressha Sentai Tokkyuger ($i).jpg",
+                'category_id' => 76,
+            ];
+        }
+
+        for ($i = 1; $i <= 20; $i++) {
+            $datas[] = [
+                'name' => "Shuriken Sentai Ninninger ($i)",
+                'img' => "Super Sentai/Era Heisei/39. Shuriken Sentai Ninninger ($i).jpg",
+                'category_id' => 77,
+            ];
+        }
+
+        for ($i = 1; $i <= 22; $i++) {
+            $datas[] = [
+                'name' => "Doubutsu Sentai Zyouhger ($i)",
+                'img' => "Super Sentai/Era Heisei/40. Doubutsu Sentai Zyouhger ($i).jpg",
+                'category_id' => 78,
+            ];
+        }
+
+        for ($i = 1; $i <= 27; $i++) {
+            $datas[] = [
+                'name' => "Uchuu Sentai Kyuuranger ($i)",
+                'img' => "Super Sentai/Era Heisei/41. Uchuu Sentai Kyuuranger ($i).jpg",
+                'category_id' => 79,
+            ];
+        }
+
+        for ($i = 1; $i <= 30; $i++) {
+            $datas[] = [
+                'name' => "Kaitou Sentai Lupinranger _ Keisatsu Sentai Patranger (Lupat Rangers) ($i)",
+                'img' => "Super Sentai/Era Heisei/42. Kaitou Sentai Lupinranger _ Keisatsu Sentai Patranger (Lupat Rangers) ($i).jpg",
+                'category_id' => 80,
+            ];
+        }
+
+        for ($i = 1; $i <= 15; $i++) {
+            $datas[] = [
+                'name' => "Kishiryu Sentai Ryusoulger ($i)",
+                'img' => "Super Sentai/Era Heisei/43. Kishiryu Sentai Ryusoulger ($i).jpg",
+                'category_id' => 81,
+            ];
+        }
+
+
         Data::query()->insert($datas);
     }
 }
