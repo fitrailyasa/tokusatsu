@@ -17,7 +17,7 @@
         </form>
         <h3 class="text-dark font-weight-bold p-3 mx-3 text-white">Hasil Pencarian</h3>
         <div class="text-center d-flex flex-wrap justify-content-center border-bottom">
-            @foreach ($datas->take(100) as $data)
+            @foreach ($datas as $data)
                 <a href="#" data-toggle="modal" data-target="#myModal{{ $data->id }}">
                     <img class="img img-fluid p-3" style="border-radius: 30px" width="300px"
                         src="{{ asset('assets/img/' . $data->img) }}" alt="{{ $data->img }}">

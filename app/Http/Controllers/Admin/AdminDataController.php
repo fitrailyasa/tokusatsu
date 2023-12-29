@@ -17,17 +17,10 @@ class AdminDataController extends Controller
         return view('admin.data.index', compact('datas', 'categories'));
     }
 
-    public function create()
-    {
-        $categories = category::all();
-        return view('admin.data.create', compact('categories'));
-    }
-
     public function store(Request $request)
     {
         $request->validate([
             'name' => 'required',
-            'img' => 'required|max:2048',
             'category_id' => 'required',
         ]);
 
@@ -47,20 +40,12 @@ class AdminDataController extends Controller
         return redirect()->route('admin.data.index')->with('sukses', 'Berhasil Tambah Data!');
     }
 
-    public function edit($id)
-    {
-        $data = Data::findOrFail($id);
-        $categories = category::all();
-        return view('admin.data.edit', compact('data', 'categories'));
-    }
-
     public function update(Request $request, $id)
     {
         $data = Data::findOrFail($id);
 
         $request->validate([
             'name' => 'required',
-            'img' => 'required|max:2048',
             'category_id' => 'required',
         ]);
 

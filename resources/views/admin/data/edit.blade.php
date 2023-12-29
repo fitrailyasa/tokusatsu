@@ -46,8 +46,13 @@
             <div class="col-md-12 text-center">
                 <div class="mb-3">
                     <label class="form-label">Images</label><br>
-                    <img class="img-fluid rounded" width="300px" src="{{ asset('assets/img/' . $data->img) }}"
-                        alt="{{ $data->name }}">
+                    @if ($data->img == null)
+                        <img class="img-fluid rounded" width="300px" src="{{ asset('assets/profile/default.png') }}"
+                            alt="{{ $data->name }}">
+                    @else
+                        <img class="img-fluid rounded" width="300px" src="{{ asset('assets/img/' . $data->img) }}"
+                            alt="{{ $data->name }}">
+                    @endif
                     @error('images')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror

@@ -18,13 +18,6 @@ class AdminCategoryController extends Controller
         return view('admin.category.index', compact('categories', 'eras', 'franchises'));
     }
 
-    public function create()
-    {
-        $eras = Era::all();
-        $franchises = Franchise::all();
-        return view('admin.category.create', compact('eras', 'franchises'));
-    }
-
     public function store(Request $request)
     {
         $request->validate([
@@ -36,14 +29,6 @@ class AdminCategoryController extends Controller
         Category::create($request->all());
 
         return redirect()->route('admin.category.index')->with('sukses', 'Berhasil Tambah Category!');
-    }
-
-    public function edit($id)
-    {
-        $eras = Era::all();
-        $franchises = Franchise::all();
-        $category = Category::findOrFail($id);
-        return view('admin.category.edit', compact('category', 'eras', 'franchises'));
     }
 
     public function update(Request $request, $id)

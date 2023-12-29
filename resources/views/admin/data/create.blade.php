@@ -26,7 +26,7 @@
                     <label class="form-label">Images</label>
                     <input id="image-input" accept="image/*" type="file"
                         class="form-control @error('img') is-invalid @enderror" placeholder="img" name="img"
-                        id="img" required>
+                        id="img">
                     <img class="img-fluid py-3" id="image-preview" src="{{ asset('assets/profile/default.png') }}"
                         alt="Image Preview">
                     @error('img')

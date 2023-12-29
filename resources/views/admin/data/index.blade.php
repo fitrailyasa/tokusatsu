@@ -26,9 +26,15 @@
                     <td>{{ $data->name }}</td>
                     <td>{{ $data->category->name }}</td>
                     <td>
-                        <a href="{{ asset('assets/img/' . $data->img) }}">
-                            <img src="{{ asset('assets/img/' . $data->img) }}" alt="{{ $data->name }}" width="100">
-                        </a>
+                        @if ($data->img == null)
+                            <a href="{{ asset('assets/profile/default.png') }}">
+                                <img src="{{ asset('assets/profile/default.png') }}" alt="{{ $data->name }}" width="100">
+                            </a>
+                        @else
+                            <a href="{{ asset('assets/img/' . $data->img) }}">
+                                <img src="{{ asset('assets/img/' . $data->img) }}" alt="{{ $data->name }}" width="100">
+                            </a>
+                        @endif
                     </td>
                     <td class="manage-row">
                         @if (auth()->user()->roles_id == 1)

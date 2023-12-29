@@ -32,13 +32,18 @@ class HomeController extends Controller
 
     public function search(Request $request)
     {
-        $query = $request->input('query');
+        $validatedData = $request->validate([
+            'query' => 'required|string|max:255',
+        ]);
 
-        $datas = Data::where('name', 'like', "%$query%")
-            ->orWhere('img', 'like', "%$query%")
-            ->orWhere('category_id', 'like', "%$query%")
-            ->get();
+        $query = '%' . $validatedData['query'] . '%';
+
+        $datas = Data::where('name', 'like', $query)
+            ->orWhere('img', 'like', $query)
+            ->orWhere('category_id', 'like', $query)
+            ->paginate(10);
 
         return view('client.search', compact('datas'));
     }
+
 }

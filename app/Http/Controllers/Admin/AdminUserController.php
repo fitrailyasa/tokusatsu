@@ -17,18 +17,6 @@ class AdminUserController extends Controller
         return view('admin.user.index', compact('users', 'roles'));
     }
 
-    public function verif()
-    {
-        $users = User::where('roles_id', 99)->get();
-        return view('admin.user.verif', compact('users'));
-    }
-
-    public function create()
-    {
-        $roles = Role::all();
-        return view('admin.user.create', compact('roles'));
-    }
-
     public function store(Request $request)
     {
         $request->validate(
@@ -62,12 +50,6 @@ class AdminUserController extends Controller
         if (auth()->user()->roles_id == 1) {
             return redirect('admin/user')->with('sukses', 'Berhasil Tambah User!');
         }
-    }
-
-    public function edit(string $id)
-    {
-        $user = User::where('id', $id)->first();
-        return view('admin.user.edit', compact('user'));
     }
 
     public function update(Request $request, string $id)

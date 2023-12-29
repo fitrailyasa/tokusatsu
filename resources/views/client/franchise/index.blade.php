@@ -14,6 +14,9 @@
                         class="btn btn-warning col-12">{{ $franchise->name }}</a></div>
             @endforeach
         </div>
+        <div class="d-flex justify-content-center">
+            {{ $franchises->links() }}
+        </div>
     </div>
 
 @endsection

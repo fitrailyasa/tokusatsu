@@ -14,11 +14,6 @@ class AdminFranchiseController extends Controller
         return view('admin.franchise.index', compact('franchises'));
     }
 
-    public function create()
-    {
-        return view('admin.franchise.create');
-    }
-
     public function store(Request $request)
     {
         $request->validate([
@@ -28,12 +23,6 @@ class AdminFranchiseController extends Controller
         Franchise::create($request->all());
 
         return redirect()->route('admin.franchise.index')->with('sukses', 'Berhasil Tambah Franchise!');
-    }
-
-    public function edit($id)
-    {
-        $franchise = Franchise::findOrFail($id);
-        return view('admin.franchise.edit', compact('franchise'));
     }
 
     public function update(Request $request, $id)

@@ -11,7 +11,7 @@ class ClientCategoryController extends Controller
 {
     public function index()
     {
-        $categories = Category::latest('era_id')->get();
+        $categories = Category::first('franchise_id')->paginate(10);
         return view('client.category.index', compact('categories'));
     }
 

@@ -47,17 +47,35 @@ Route::middleware(['auth'])->group(function () {
 
   // CMS ADMINITRASTOR
   Route::middleware([Admin::class])->name('admin.')->prefix('admin')->group(function () {
-      Route::get('/', [HomeController::class, 'index'])->name('beranda');
-      Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
-      Route::resource('user', AdminUserController::class, ['only', ['index', 'create', 'store', 'edit', 'update', 'destroy']]);
-      Route::resource('era', AdminEraController::class, ['only', ['index', 'create', 'store', 'edit', 'update', 'destroy']]);
-      Route::resource('franchise', AdminFranchiseController::class, ['only', ['index', 'create', 'store', 'edit', 'update', 'destroy']]);
-      Route::resource('category', AdminCategoryController::class, ['only', ['index', 'create', 'store', 'edit', 'update', 'destroy']]);
-      Route::resource('data', AdminDataController::class, ['only', ['index', 'create', 'store', 'edit', 'update', 'destroy']]);
-    });
+    Route::get('/', [HomeController::class, 'index'])->name('beranda');
+    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+    // Route::resource('user', AdminUserController::class, ['only' => ['index', 'store', 'update', 'destroy']]);
+    // Route::resource('era', AdminEraController::class, ['only' => ['index', 'store', 'update', 'destroy']]);
+    // Route::resource('franchise', AdminFranchiseController::class, ['only' => ['index', 'store', 'update', 'destroy']]);
+    // Route::resource('category', AdminCategoryController::class, ['only' => ['index', 'store', 'update', 'destroy']]);
+    // Route::resource('data', AdminDataController::class, ['only' => ['index', 'store', 'update', 'destroy']]);
+    Route::get('/user', [AdminUserController::class, 'index'])->name('user.index');
+    Route::post('/user', [AdminUserController::class, 'store'])->name('user.store');
+    Route::put('/user/{id}/update', [AdminUserController::class, 'update'])->name('user.update');
+    Route::delete('/user/{id}/destroy', [AdminUserController::class, 'destroy'])->name('user.destroy');
+    Route::get('/era', [AdminEraController::class, 'index'])->name('era.index');
+    Route::post('/era', [AdminEraController::class, 'store'])->name('era.store');
+    Route::put('/era/{id}/update', [AdminEraController::class, 'update'])->name('era.update');
+    Route::delete('/era/{id}/destroy', [AdminEraController::class, 'destroy'])->name('era.destroy');
+    Route::get('/franchise', [AdminFranchiseController::class, 'index'])->name('franchise.index');
+    Route::post('/franchise', [AdminFranchiseController::class, 'store'])->name('franchise.store');
+    Route::put('/franchise/{id}/update', [AdminFranchiseController::class, 'update'])->name('franchise.update');
+    Route::delete('/franchise/{id}/destroy', [AdminFranchiseController::class, 'destroy'])->name('franchise.destroy');
+    Route::get('/category', [AdminCategoryController::class, 'index'])->name('category.index');
+    Route::post('/category', [AdminCategoryController::class, 'store'])->name('category.store');
+    Route::put('/category/{id}/update', [AdminCategoryController::class, 'update'])->name('category.update');
+    Route::delete('/category/{id}/destroy', [AdminCategoryController::class, 'destroy'])->name('category.destroy');
+    Route::get('/data', [AdminDataController::class, 'index'])->name('data.index');
+    Route::post('/data', [AdminDataController::class, 'store'])->name('data.store');
+    Route::put('/data/{id}/update', [AdminDataController::class, 'update'])->name('data.update');
+    Route::delete('/data/{id}/destroy', [AdminDataController::class, 'destroy'])->name('data.destroy');
+  });
 
 });
-
-Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

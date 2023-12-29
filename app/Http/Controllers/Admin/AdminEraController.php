@@ -14,11 +14,6 @@ class AdminEraController extends Controller
         return view('admin.era.index', compact('eras'));
     }
 
-    public function create()
-    {
-        return view('admin.era.create');
-    }
-
     public function store(Request $request)
     {
         $request->validate([
@@ -28,12 +23,6 @@ class AdminEraController extends Controller
         Era::create($request->all());
 
         return redirect()->route('admin.era.index')->with('sukses', 'Berhasil Tambah Era!');
-    }
-
-    public function edit($id)
-    {
-        $era = Era::findOrFail($id);
-        return view('admin.era.edit', compact('era'));
     }
 
     public function update(Request $request, $id)

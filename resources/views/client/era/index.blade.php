@@ -14,6 +14,9 @@
                         class="btn btn-warning col-12">{{ $era->name }}</a></div>
             @endforeach
         </div>
+        <div class="d-flex justify-content-center">
+            {{ $eras->links() }}
+        </div>
     </div>
 
 @endsection

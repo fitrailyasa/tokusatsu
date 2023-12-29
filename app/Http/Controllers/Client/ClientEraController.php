@@ -12,14 +12,14 @@ class ClientEraController extends Controller
 {
     public function index()
     {
-        $eras = Era::latest('id')->get();
+        $eras = Era::latest('id')->paginate(10);
         return view('client.era.index', compact('eras'));
     }
 
     public function show(string $id)
     {
         $era = Era::findOrFail($id);
-        $categories = Category::where('era_id', $id)->get();
+        $categories = Category::where('era_id', $id)->paginate(10);
         return view('client.era.show', compact('era', 'categories'));
     }
 
