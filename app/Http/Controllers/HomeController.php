@@ -41,7 +41,7 @@ class HomeController extends Controller
         $datas = Data::where('name', 'like', $query)
             ->orWhere('img', 'like', $query)
             ->orWhere('category_id', 'like', $query)
-            ->paginate(10);
+            ->paginate(50);
 
         return view('client.search', compact('datas'));
     }

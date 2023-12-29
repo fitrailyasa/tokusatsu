@@ -19,7 +19,7 @@ class ClientEraController extends Controller
     public function show(string $id)
     {
         $era = Era::findOrFail($id);
-        $categories = Category::where('era_id', $id)->paginate(10);
+        $categories = Category::latest('id')->where('era_id', $id)->paginate(10);
         return view('client.era.show', compact('era', 'categories'));
     }
 
