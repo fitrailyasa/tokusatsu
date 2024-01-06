@@ -791,6 +791,173 @@ class DataSeeder extends Seeder
             ];
         }
 
+        for ($i = 1; $i <= 8; $i++) {
+            $datas[] = [
+                'name' => "Ultraman ($i)",
+                'img' => "Ultraman/Era Showa/1. Ultraman/Ultraman ($i).jpg",
+                'category_id' => 82,
+            ];
+        }
+
+        for ($i = 1; $i <= 8; $i++) {
+            $datas[] = [
+                'name' => "Ultra Seven ($i)",
+                'img' => "Ultraman/Era Showa/2. Ultra Seven/Ultra Seven ($i).jpg",
+                'category_id' => 83,
+            ];
+        }
+
+        for ($i = 1; $i <= 7; $i++) {
+            $datas[] = [
+                'name' => "Ultraman Jack ($i)",
+                'img' => "Ultraman/Era Showa/3. Ultraman Jack/Ultraman Jack ($i).jpg",
+                'category_id' => 84,
+            ];
+        }
+
+        for ($i = 1; $i <= 9; $i++) {
+            $datas[] = [
+                'name' => "Ultraman Ace ($i)",
+                'img' => "Ultraman/Era Showa/4. Ultraman Ace/Ultraman Ace ($i).jpg",
+                'category_id' => 85,
+            ];
+        }
+
+        for ($i = 1; $i <= 7; $i++) {
+            $datas[] = [
+                'name' => "Ultraman Taro ($i)",
+                'img' => "Ultraman/Era Showa/5. Ultraman Taro/Ultraman Taro ($i).jpg",
+                'category_id' => 86,
+            ];
+        }
+
+        for ($i = 1; $i <= 11; $i++) {
+            $datas[] = [
+                'name' => "Ultraman Leo ($i)",
+                'img' => "Ultraman/Era Showa/6. Ultraman Leo/Ultraman Leo ($i).jpg",
+                'category_id' => 87,
+            ];
+        }
+
+        for ($i = 1; $i <= 11; $i++) {
+            $datas[] = [
+                'name' => "Ultraman 80 ($i)",
+                'img' => "Ultraman/Era Showa/7. Ultraman 80/Ultraman 80 ($i).jpg",
+                'category_id' => 88,
+            ];
+        }
+
+        for ($i = 1; $i <= 6; $i++) {
+            $datas[] = [
+                'name' => "Ultraman Zoffy ($i)",
+                'img' => "Ultraman/Era Showa/8. Ultraman Zoffy/Ultraman Zoffy ($i).jpg",
+                'category_id' => 89,
+            ];
+        }
+
+        for ($i = 1; $i <= 13; $i++) {
+            $datas[] = [
+                'name' => "Ultraman Tiga ($i)",
+                'img' => "Ultraman/Era Heisei/1. Ultraman Tiga/Ultraman Tiga ($i).jpg",
+                'category_id' => 90,
+            ];
+        }
+
+        for ($i = 1; $i <= 8; $i++) {
+            $datas[] = [
+                'name' => "Ultraman Dyna ($i)",
+                'img' => "Ultraman/Era Heisei/2. Ultraman Dyna/Ultraman Dyna ($i).jpg",
+                'category_id' => 91,
+            ];
+        }
+
+        for ($i = 1; $i <= 12; $i++) {
+            $datas[] = [
+                'name' => "Ultraman Gaia ($i)",
+                'img' => "Ultraman/Era Heisei/3. Ultraman Gaia/Ultraman Gaia ($i).jpg",
+                'category_id' => 92,
+            ];
+        }
+
+        for ($i = 1; $i <= 14; $i++) {
+            $datas[] = [
+                'name' => "Ultraman Cosmos ($i)",
+                'img' => "Ultraman/Era Heisei/4. Ultraman Cosmos/Ultraman Cosmos ($i).jpg",
+                'category_id' => 93,
+            ];
+        }
+
+        for ($i = 1; $i <= 11; $i++) {
+            $datas[] = [
+                'name' => "Ultraman Nexus ($i)",
+                'img' => "Ultraman/Era Heisei/5. Ultraman Nexus/Ultraman Nexus ($i).jpg",
+                'category_id' => 94,
+            ];
+        }
+
+        for ($i = 1; $i <= 35; $i++) {
+            $datas[] = [
+                'name' => "Ultraman Max ($i)",
+                'img' => "Ultraman/Era Heisei/6. Ultraman Max/Ultraman Max ($i).jpg",
+                'category_id' => 95,
+            ];
+        }
+
+        for ($i = 1; $i <= 30; $i++) {
+            $datas[] = [
+                'name' => "Ultraman Zero ($i)",
+                'img' => "Ultraman/Era Heisei/7. Ultraman Zero/Ultraman Zero ($i).jpg",
+                'category_id' => 96,
+            ];
+        }
+
+        for ($i = 1; $i <= 25; $i++) {
+            $datas[] = [
+                'name' => "Ultraman Ginga ($i)",
+                'img' => "Ultraman/Era Heisei/8. Ultraman Ginga/Ultraman Ginga ($i).jpg",
+                'category_id' => 97,
+            ];
+        }
+
+        for ($i = 1; $i <= 15; $i++) {
+            $datas[] = [
+                'name' => "Ultraman Ginga S ($i)",
+                'img' => "Ultraman/Era Heisei/9. Ultraman Ginga S/Ultraman Ginga S ($i).jpg",
+                'category_id' => 98,
+            ];
+        }
+
+        for ($i = 1; $i <= 29; $i++) {
+            $datas[] = [
+                'name' => "Ultraman X ($i)",
+                'img' => "Ultraman/Era Heisei/10. Ultraman X/Ultraman X ($i).jpg",
+                'category_id' => 99,
+            ];
+        }
+
+        for ($i = 1; $i <= 54; $i++) {
+            $datas[] = [
+                'name' => "Ultraman Orb ($i)",
+                'img' => "Ultraman/Era Heisei/11. Ultraman Orb/Ultraman Orb ($i).jpg",
+                'category_id' => 100,
+            ];
+        }
+
+        for ($i = 1; $i <= 35; $i++) {
+            $datas[] = [
+                'name' => "Ultraman Geed ($i)",
+                'img' => "Ultraman/Era Heisei/12. Ultraman Geed/Ultraman Geed ($i).jpg",
+                'category_id' => 101,
+            ];
+        }
+
+        for ($i = 1; $i <= 15; $i++) {
+            $datas[] = [
+                'name' => "Ultraman RB ($i)",
+                'img' => "Ultraman/Era Heisei/13. Ultraman RB/Ultraman RB ($i).jpg",
+                'category_id' => 102,
+            ];
+        }
 
         Data::query()->insert($datas);
     }

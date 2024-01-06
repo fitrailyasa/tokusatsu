@@ -419,6 +419,111 @@ class CategorySeeder extends Seeder
                 'franchise_id' => 3,
                 'name' => 'Kishiryu Sentai Ryusoulger (2019-2020)',
             ],
+            [
+                'era_id' => 1,
+                'franchise_id' => 1,
+                'name' => 'Ultraman',
+            ],
+            [
+                'era_id' => 1,
+                'franchise_id' => 1,
+                'name' => 'Ultraseven',
+            ],
+            [
+                'era_id' => 1,
+                'franchise_id' => 1,
+                'name' => 'Ultraman Jack',
+            ],
+            [
+                'era_id' => 1,
+                'franchise_id' => 1,
+                'name' => 'Ultraman Ace',
+            ],
+            [
+                'era_id' => 1,
+                'franchise_id' => 1,
+                'name' => 'Ultraman Taro',
+            ],
+            [
+                'era_id' => 1,
+                'franchise_id' => 1,
+                'name' => 'Ultraman Leo',
+            ],
+            [
+                'era_id' => 1,
+                'franchise_id' => 1,
+                'name' => 'Ultraman 80',
+            ],
+            [
+                'era_id' => 1,
+                'franchise_id' => 1,
+                'name' => 'Ultraman Zoffy',
+            ],
+            [
+                'era_id' => 2,
+                'franchise_id' => 1,
+                'name' => 'Ultraman Tiga',
+            ],
+            [
+                'era_id' => 2,
+                'franchise_id' => 1,
+                'name' => 'Ultraman Dyna',
+            ],
+            [
+                'era_id' => 2,
+                'franchise_id' => 1,
+                'name' => 'Ultraman Gaia',
+            ],
+            [
+                'era_id' => 2,
+                'franchise_id' => 1,
+                'name' => 'Ultraman Cosmos',
+            ],
+            [
+                'era_id' => 2,
+                'franchise_id' => 1,
+                'name' => 'Ultraman Nexus',
+            ],
+            [
+                'era_id' => 2,
+                'franchise_id' => 1,
+                'name' => 'Ultraman Max',
+            ],
+            [
+                'era_id' => 2,
+                'franchise_id' => 1,
+                'name' => 'Ultraman Zero',
+            ],
+            [
+                'era_id' => 2,
+                'franchise_id' => 1,
+                'name' => 'Ultraman Ginga',
+            ],
+            [
+                'era_id' => 2,
+                'franchise_id' => 1,
+                'name' => 'Ultraman Ginga S',
+            ],
+            [
+                'era_id' => 2,
+                'franchise_id' => 1,
+                'name' => 'Ultraman X',
+            ],
+            [
+                'era_id' => 2,
+                'franchise_id' => 1,
+                'name' => 'Ultraman Orb',
+            ],
+            [
+                'era_id' => 2,
+                'franchise_id' => 1,
+                'name' => 'Ultraman Geed',
+            ],
+            [
+                'era_id' => 2,
+                'franchise_id' => 1,
+                'name' => 'Ultraman R/B',
+            ],
         ];
         Category::query()->insert($categories);
     }
