@@ -959,6 +959,70 @@ class DataSeeder extends Seeder
             ];
         }
 
+        for ($i = 1; $i <= 113; $i++) {
+            $datas[] = [
+                'name' => "Kamen Rider Zero-One ($i)",
+                'img' => "Kamen Rider/Era Reiwa/1. Zero-One/Zero-One ($i).jpg",
+                'category_id' => 34,
+            ];
+        }
+
+        for ($i = 1; $i <= 59; $i++) {
+            $datas[] = [
+                'name' => "Humagear ($i)",
+                'img' => "Kamen Rider/Era Reiwa/1. Zero-One/Humagear ($i).jpg",
+                'category_id' => 34,
+            ];
+        }
+
+        for ($i = 1; $i <= 125; $i++) {
+            $datas[] = [
+                'name' => "Kamen Rider Saber ($i)",
+                'img' => "Kamen Rider/Era Reiwa/2. Saber/Saber ($i).jpg",
+                'category_id' => 35,
+            ];
+        }
+
+        for ($i = 1; $i <= 34; $i++) {
+            $datas[] = [
+                'name' => "Megid ($i)",
+                'img' => "Kamen Rider/Era Reiwa/2. Saber/Megid ($i).jpg",
+                'category_id' => 35,
+            ];
+        }
+
+        for ($i = 1; $i <= 137; $i++) {
+            $datas[] = [
+                'name' => "Kamen Rider Revice ($i)",
+                'img' => "Kamen Rider/Era Reiwa/3. Revice/Revice ($i).jpg",
+                'category_id' => 36,
+            ];
+        }
+
+        for ($i = 1; $i <= 58; $i++) {
+            $datas[] = [
+                'name' => "Deadman ($i)",
+                'img' => "Kamen Rider/Era Reiwa/3. Revice/Deadman ($i).jpg",
+                'category_id' => 36,
+            ];
+        }
+
+        for ($i = 1; $i <= 273; $i++) {
+            $datas[] = [
+                'name' => "Kamen Rider Geats ($i)",
+                'img' => "Kamen Rider/Era Reiwa/4. Geats/Geats ($i).jpg",
+                'category_id' => 37,
+            ];
+        }
+
+        for ($i = 1; $i <= 3; $i++) {
+            $datas[] = [
+                'name' => "Kamen Rider Gotchard ($i)",
+                'img' => "Kamen Rider/Era Reiwa/5. Gotchard/Gotchard ($i).jpg",
+                'category_id' => 38,
+            ];
+        }
+
         Data::query()->insert($datas);
     }
 }
