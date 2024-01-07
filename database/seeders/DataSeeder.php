@@ -447,6 +447,70 @@ class DataSeeder extends Seeder
             ];
         }
 
+        for ($i = 1; $i <= 113; $i++) {
+            $datas[] = [
+                'name' => "Kamen Rider Zero-One ($i)",
+                'img' => "Kamen Rider/Era Reiwa/1. Zero-One/Zero-One ($i).jpg",
+                'category_id' => 34,
+            ];
+        }
+
+        for ($i = 1; $i <= 59; $i++) {
+            $datas[] = [
+                'name' => "Humagear ($i)",
+                'img' => "Kamen Rider/Era Reiwa/1. Zero-One/Humagear ($i).jpg",
+                'category_id' => 34,
+            ];
+        }
+
+        for ($i = 1; $i <= 125; $i++) {
+            $datas[] = [
+                'name' => "Kamen Rider Saber ($i)",
+                'img' => "Kamen Rider/Era Reiwa/2. Saber/Saber ($i).jpg",
+                'category_id' => 35,
+            ];
+        }
+
+        for ($i = 1; $i <= 34; $i++) {
+            $datas[] = [
+                'name' => "Megid ($i)",
+                'img' => "Kamen Rider/Era Reiwa/2. Saber/Megid ($i).jpg",
+                'category_id' => 35,
+            ];
+        }
+
+        for ($i = 1; $i <= 137; $i++) {
+            $datas[] = [
+                'name' => "Kamen Rider Revice ($i)",
+                'img' => "Kamen Rider/Era Reiwa/3. Revice/Revice ($i).jpg",
+                'category_id' => 36,
+            ];
+        }
+
+        for ($i = 1; $i <= 58; $i++) {
+            $datas[] = [
+                'name' => "Deadman ($i)",
+                'img' => "Kamen Rider/Era Reiwa/3. Revice/Deadman ($i).jpg",
+                'category_id' => 36,
+            ];
+        }
+
+        for ($i = 1; $i <= 273; $i++) {
+            $datas[] = [
+                'name' => "Kamen Rider Geats ($i)",
+                'img' => "Kamen Rider/Era Reiwa/4. Geats/Geats ($i).jpg",
+                'category_id' => 37,
+            ];
+        }
+
+        for ($i = 1; $i <= 3; $i++) {
+            $datas[] = [
+                'name' => "Kamen Rider Gotchard ($i)",
+                'img' => "Kamen Rider/Era Reiwa/5. Gotchard/Gotchard ($i).jpg",
+                'category_id' => 38,
+            ];
+        }
+
         for ($i = 1; $i <= 5; $i++) {
             $datas[] = [
                 'name' => "Goranger ($i)",
@@ -959,67 +1023,83 @@ class DataSeeder extends Seeder
             ];
         }
 
-        for ($i = 1; $i <= 113; $i++) {
+        for ($i = 1; $i <= 60; $i++) {
             $datas[] = [
-                'name' => "Kamen Rider Zero-One ($i)",
-                'img' => "Kamen Rider/Era Reiwa/1. Zero-One/Zero-One ($i).jpg",
-                'category_id' => 34,
+                'name' => "Mashin Sentai Kiramager ($i)",
+                'img' => "Super Sentai/Era Reiwa/1. Mashin Sentai Kiramager/Mashin Sentai Kiramager ($i).jpg",
+                'category_id' => 103,
             ];
         }
 
-        for ($i = 1; $i <= 59; $i++) {
+        for ($i = 1; $i <= 62; $i++) {
             $datas[] = [
-                'name' => "Humagear ($i)",
-                'img' => "Kamen Rider/Era Reiwa/1. Zero-One/Humagear ($i).jpg",
-                'category_id' => 34,
+                'name' => "Kikai Sentai Zenkaiger ($i)",
+                'img' => "Super Sentai/Era Reiwa/2. Kikai Sentai Zenkaiger/Kikai Sentai Zenkaiger ($i).jpg",
+                'category_id' => 104,
             ];
         }
 
-        for ($i = 1; $i <= 125; $i++) {
+        for ($i = 1; $i <= 79; $i++) {
             $datas[] = [
-                'name' => "Kamen Rider Saber ($i)",
-                'img' => "Kamen Rider/Era Reiwa/2. Saber/Saber ($i).jpg",
-                'category_id' => 35,
+                'name' => "Avataro Sentai Donbrothers ($i)",
+                'img' => "Super Sentai/Era Reiwa/3. Avataro Sentai Donbrothers/Avataro Sentai Donbrothers ($i).jpg",
+                'category_id' => 105,
+            ];
+        }
+
+        for ($i = 1; $i <= 54; $i++) {
+            $datas[] = [
+                'name' => "Ohsama Sentai King-Ohger ($i)",
+                'img' => "Super Sentai/Era Reiwa/4. Ohsama Sentai King-Ohger/Ohsama Sentai King-Ohger ($i).jpg",
+                'category_id' => 106,
+            ];
+        }
+
+        for ($i = 1; $i <= 1; $i++) {
+            $datas[] = [
+                'name' => "Bakuage Sentai Boonboomger ($i)",
+                'img' => "Super Sentai/Era Reiwa/5. Bakuage Sentai Boonboomger/Bakuage Sentai Boonboomger ($i).jpg",
+                'category_id' => 107,
+            ];
+        }
+
+        for ($i = 1; $i <= 22; $i++) {
+            $datas[] = [
+                'name' => "Ultraman Taiga ($i)",
+                'img' => "Ultraman/Era Reiwa/1. Ultraman Taiga/Ultraman Taiga ($i).jpg",
+                'category_id' => 108,
+            ];
+        }
+
+        for ($i = 1; $i <= 37; $i++) {
+            $datas[] = [
+                'name' => "Ultraman Z ($i)",
+                'img' => "Ultraman/Era Reiwa/2. Ultraman Z/Ultraman Z ($i).jpg",
+                'category_id' => 109,
+            ];
+        }
+
+        for ($i = 1; $i <= 35; $i++) {
+            $datas[] = [
+                'name' => "Ultraman Trigger ($i)",
+                'img' => "Ultraman/Era Reiwa/3. Ultraman Trigger/Ultraman Trigger ($i).jpg",
+                'category_id' => 110,
             ];
         }
 
         for ($i = 1; $i <= 34; $i++) {
             $datas[] = [
-                'name' => "Megid ($i)",
-                'img' => "Kamen Rider/Era Reiwa/2. Saber/Megid ($i).jpg",
-                'category_id' => 35,
+                'name' => "Ultraman Decker ($i)",
+                'img' => "Ultraman/Era Reiwa/4. Ultraman Decker/Ultraman Decker ($i).jpg",
+                'category_id' => 111,
             ];
         }
 
-        for ($i = 1; $i <= 137; $i++) {
+        for ($i = 1; $i <= 1; $i++) {
             $datas[] = [
-                'name' => "Kamen Rider Revice ($i)",
-                'img' => "Kamen Rider/Era Reiwa/3. Revice/Revice ($i).jpg",
-                'category_id' => 36,
-            ];
-        }
-
-        for ($i = 1; $i <= 58; $i++) {
-            $datas[] = [
-                'name' => "Deadman ($i)",
-                'img' => "Kamen Rider/Era Reiwa/3. Revice/Deadman ($i).jpg",
-                'category_id' => 36,
-            ];
-        }
-
-        for ($i = 1; $i <= 273; $i++) {
-            $datas[] = [
-                'name' => "Kamen Rider Geats ($i)",
-                'img' => "Kamen Rider/Era Reiwa/4. Geats/Geats ($i).jpg",
-                'category_id' => 37,
-            ];
-        }
-
-        for ($i = 1; $i <= 3; $i++) {
-            $datas[] = [
-                'name' => "Kamen Rider Gotchard ($i)",
-                'img' => "Kamen Rider/Era Reiwa/5. Gotchard/Gotchard ($i).jpg",
-                'category_id' => 38,
+                'name' => "Ultraman Blazar ($i)",
+                'img' => "Ultraman/Era Reiwa/5. Ultraman Blazar/Ultraman Blazar ($i).jpg",
+                'category_id' => 112,
             ];
         }
 

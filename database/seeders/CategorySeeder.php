@@ -524,6 +524,57 @@ class CategorySeeder extends Seeder
                 'franchise_id' => 1,
                 'name' => 'Ultraman R/B',
             ],
+            [
+                'era_id' => 3,
+                'franchise_id' => 3,
+                'name' => 'Mashin Sentai Kiramager (2020-2021)',
+            ],
+            [
+                'era_id' => 3,
+                'franchise_id' => 3,
+                'name' => 'Kikai Sentai Zenkaiger (2021-2022)',
+            ],
+            [
+                'era_id' => 3,
+                'franchise_id' => 3,
+                'name' => 'Avataro Sentai Donbrothers (2022-2023)',
+            ],
+            [
+                'era_id' => 3,
+                'franchise_id' => 3,
+                'name' => 'Ohsama Sentai King-Ohger (2023-2024)',
+            ],
+            [
+                'era_id' => 3,
+                'franchise_id' => 3,
+                'name' => 'Bakuage Sentai Boonboomger (2024-2025)',
+            ],
+            [
+                'era_id' => 3,
+                'franchise_id' => 1,
+                'name' => 'Ultraman Taiga',
+            ],
+            [
+                'era_id' => 3,
+                'franchise_id' => 1,
+                'name' => 'Ultraman Z',
+            ],
+            [
+                'era_id' => 3,
+                'franchise_id' => 1,
+                'name' => 'Ultraman Trigger',
+            ],
+            [
+                'era_id' => 3,
+                'franchise_id' => 1,
+                'name' => 'Ultraman Decker',
+            ],
+            [
+                'era_id' => 3,
+                'franchise_id' => 1,
+                'name' => 'Ultraman Blazar',
+            ],
+
         ];
         Category::query()->insert($categories);
     }
