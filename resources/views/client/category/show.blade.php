@@ -1,6 +1,6 @@
 @extends('layouts.client.app')
 
-@section('title', 'Kamen Rider')
+@section('title', 'Category')
 
 @section('textCategory', 'bg-warning rounded')
 
