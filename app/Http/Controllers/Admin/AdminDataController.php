@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Data;
 use App\Models\Category;
 use Illuminate\Http\Request;
-
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\DataImport;
+use App\Exports\DataExport;
 
 class AdminDataController extends Controller
 {
@@ -15,6 +17,24 @@ class AdminDataController extends Controller
         $categories = Category::all();
         $datas = Data::latest('id')->paginate(10);
         return view('admin.data.index', compact('datas', 'categories'));
+    }
+
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xlsx,xls',
+        ]);
+
+        $file = $request->file('file');
+
+        Excel::import(new DataImport, $file);
+
+        return redirect()->route('admin.data.index')->with('sukses', 'Berhasil Import Data!');
+    }
+
+    public function export()
+    {
+        return Excel::download(new DataExport, 'Data.xlsx');
     }
 
     public function store(Request $request)
@@ -71,5 +91,12 @@ class AdminDataController extends Controller
         $data->delete();
 
         return redirect()->route('admin.data.index')->with('sukses', 'Berhasil Hapus Data!');
+    }
+
+    public function destroyAll()
+    {
+        Data::truncate();
+
+        return redirect()->route('admin.data.index')->with('sukses', 'Berhasil Hapus Semua Data!');
     }
 }

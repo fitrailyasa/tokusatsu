@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Franchise;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\FranchiseImport;
+use App\Exports\FranchiseExport;
 
 class AdminFranchiseController extends Controller
 {
@@ -12,6 +15,24 @@ class AdminFranchiseController extends Controller
     {
         $franchises = Franchise::all();
         return view('admin.franchise.index', compact('franchises'));
+    }
+
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xlsx,xls',
+        ]);
+
+        $file = $request->file('file');
+
+        Excel::import(new FranchiseImport, $file);
+
+        return redirect()->route('admin.franchise.index')->with('sukses', 'Berhasil Import Franchise!');
+    }
+
+    public function export()
+    {
+        return Excel::download(new FranchiseExport, 'Data Franchise.xlsx');
     }
 
     public function store(Request $request)

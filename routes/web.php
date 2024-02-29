@@ -15,17 +15,7 @@ use App\Http\Controllers\Client\ClientEraController;
 use App\Http\Controllers\Client\ClientFranchiseController;
 use App\Http\Controllers\Client\ClientCategoryController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
+// CLIENT SIDE
 Route::get('/', [HomeController::class, 'index'])->name('beranda');
 Route::get('/search', [HomeController::class, 'search'])->name('search');
 
@@ -49,31 +39,45 @@ Route::middleware(['auth'])->group(function () {
   Route::middleware([Admin::class])->name('admin.')->prefix('admin')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('beranda');
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
-    // Route::resource('user', AdminUserController::class, ['only' => ['index', 'store', 'update', 'destroy']]);
-    // Route::resource('era', AdminEraController::class, ['only' => ['index', 'store', 'update', 'destroy']]);
-    // Route::resource('franchise', AdminFranchiseController::class, ['only' => ['index', 'store', 'update', 'destroy']]);
-    // Route::resource('category', AdminCategoryController::class, ['only' => ['index', 'store', 'update', 'destroy']]);
-    // Route::resource('data', AdminDataController::class, ['only' => ['index', 'store', 'update', 'destroy']]);
+
+    // CRUD USER
     Route::get('/user', [AdminUserController::class, 'index'])->name('user.index');
     Route::post('/user', [AdminUserController::class, 'store'])->name('user.store');
     Route::put('/user/{id}/update', [AdminUserController::class, 'update'])->name('user.update');
     Route::delete('/user/{id}/destroy', [AdminUserController::class, 'destroy'])->name('user.destroy');
+    
+    // CRUD ERA
     Route::get('/era', [AdminEraController::class, 'index'])->name('era.index');
     Route::post('/era', [AdminEraController::class, 'store'])->name('era.store');
     Route::put('/era/{id}/update', [AdminEraController::class, 'update'])->name('era.update');
     Route::delete('/era/{id}/destroy', [AdminEraController::class, 'destroy'])->name('era.destroy');
+    Route::post('/era/import', [AdminEraController::class, 'import'])->name('era.import');
+    Route::get('/era/export', [AdminEraController::class, 'export'])->name('era.export');
+    
+    // CRUD FRANCHISE
     Route::get('/franchise', [AdminFranchiseController::class, 'index'])->name('franchise.index');
     Route::post('/franchise', [AdminFranchiseController::class, 'store'])->name('franchise.store');
     Route::put('/franchise/{id}/update', [AdminFranchiseController::class, 'update'])->name('franchise.update');
     Route::delete('/franchise/{id}/destroy', [AdminFranchiseController::class, 'destroy'])->name('franchise.destroy');
+    Route::post('/franchise/import', [AdminFranchiseController::class, 'import'])->name('franchise.import');
+    Route::get('/franchise/export', [AdminFranchiseController::class, 'export'])->name('franchise.export');
+    
+    // CRUD CATEGORY
     Route::get('/category', [AdminCategoryController::class, 'index'])->name('category.index');
     Route::post('/category', [AdminCategoryController::class, 'store'])->name('category.store');
     Route::put('/category/{id}/update', [AdminCategoryController::class, 'update'])->name('category.update');
     Route::delete('/category/{id}/destroy', [AdminCategoryController::class, 'destroy'])->name('category.destroy');
+    Route::post('/category/import', [AdminCategoryController::class, 'import'])->name('category.import');
+    Route::get('/category/export', [AdminCategoryController::class, 'export'])->name('category.export');
+    
+    // CRUD DATA
     Route::get('/data', [AdminDataController::class, 'index'])->name('data.index');
     Route::post('/data', [AdminDataController::class, 'store'])->name('data.store');
     Route::put('/data/{id}/update', [AdminDataController::class, 'update'])->name('data.update');
     Route::delete('/data/{id}/destroy', [AdminDataController::class, 'destroy'])->name('data.destroy');
+    Route::post('/data/import', [AdminDataController::class, 'import'])->name('data.import');
+    Route::get('/data/export', [AdminDataController::class, 'export'])->name('data.export');
+    Route::delete('/data/deleteAll', [AdminDataController::class, 'destroyAll'])->name('data.destroyAll');
   });
 
 });

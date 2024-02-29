@@ -8,6 +8,14 @@
     @include('admin.era.create')
 @endsection
 
+@section('import')
+    @include('admin.era.import')
+@endsection
+
+@section('export')
+    @include('admin.era.export')
+@endsection
+
 @section('table')
     <table id="example1" class="table table-bordered table-striped">
         <thead>
@@ -21,10 +29,10 @@
             @foreach ($eras as $era)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $era->name }}</td>
+                    <td>{{ $era->name ?? '-' }}</td>
                     <td class="manage-row">
                         @if (auth()->user()->roles_id == 1)
-                            <a role="button" class="btn-sm btn-success mr-2" data-bs-toggle="modal"
+                            <a role="button" class="btn-sm btn-warning mr-2" data-bs-toggle="modal"
                                 data-bs-target=".bd-example-modal-sm{{ $era->id }}">
                                 Edit
                             </a>

@@ -8,6 +8,18 @@
     @include('admin.data.create')
 @endsection
 
+@section('deleteAll')
+    @include('admin.data.deleteAll')
+@endsection
+
+@section('import')
+    @include('admin.data.import')
+@endsection
+
+@section('export')
+    @include('admin.data.export')
+@endsection
+
 @section('table')
     <table id="" class="table table-bordered table-striped">
         <thead>
@@ -23,8 +35,8 @@
             @foreach ($datas as $data)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $data->name }}</td>
-                    <td>{{ $data->category->name }}</td>
+                    <td>{{ $data->name ?? '-' }}</td>
+                    <td>{{ $data->category->name ?? '-' }}</td>
                     <td>
                         @if ($data->img == null)
                             <a href="{{ asset('assets/profile/default.png') }}">
@@ -38,7 +50,7 @@
                     </td>
                     <td class="manage-row">
                         @if (auth()->user()->roles_id == 1)
-                            <a role="button" class="btn-sm btn-success mr-2" data-bs-toggle="modal"
+                            <a role="button" class="btn-sm btn-warning mr-2" data-bs-toggle="modal"
                                 data-bs-target=".formEdit{{ $data->id }}">
                                 Edit
                             </a>

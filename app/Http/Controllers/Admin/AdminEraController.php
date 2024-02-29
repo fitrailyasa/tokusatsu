@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Era;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\EraImport;
+use App\Exports\EraExport;
 
 class AdminEraController extends Controller
 {
@@ -12,6 +15,24 @@ class AdminEraController extends Controller
     {
         $eras = Era::latest('id')->get();
         return view('admin.era.index', compact('eras'));
+    }
+
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xlsx,xls',
+        ]);
+
+        $file = $request->file('file');
+
+        Excel::import(new EraImport, $file);
+
+        return redirect()->route('admin.era.index')->with('sukses', 'Berhasil Import Era!');
+    }
+
+    public function export()
+    {
+        return Excel::download(new EraExport, 'Data Era.xlsx');
     }
 
     public function store(Request $request)

@@ -8,6 +8,14 @@
     @include('admin.category.create')
 @endsection
 
+@section('import')
+    @include('admin.category.import')
+@endsection
+
+@section('export')
+    @include('admin.category.export')
+@endsection
+
 @section('table')
     <table id="example1" class="table table-bordered table-striped">
         <thead>
@@ -23,12 +31,12 @@
             @foreach ($categories as $category)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $category->franchise->name }}</td>
-                    <td>{{ $category->name }}</td>
-                    <td>{{ $category->era->name }}</td>
+                    <td>{{ $category->franchise->name ?? '-' }}</td>
+                    <td>{{ $category->name ?? '-' }}</td>
+                    <td>{{ $category->era->name ?? '-' }}</td>
                     <td class="manage-row">
                         @if (auth()->user()->roles_id == 1)
-                            <a role="button" class="btn-sm btn-success mr-2" data-bs-toggle="modal"
+                            <a role="button" class="btn-sm btn-warning mr-2" data-bs-toggle="modal"
                                 data-bs-target=".formEdit{{ $category->id }}">
                                 Edit
                             </a>

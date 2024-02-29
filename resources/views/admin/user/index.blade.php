@@ -23,12 +23,12 @@
             @foreach ($users->where('email', '!=', 'super@admin.com') as $user)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $user->name }}</td>
-                    <td>{{ $user->email }}</td>
-                    <td>{{ $user->roles->name }}</td>
+                    <td>{{ $user->name ?? '-' }}</td>
+                    <td>{{ $user->email ?? '-' }}</td>
+                    <td>{{ $user->roles->name ?? '-' }}</td>
                     <td class="manage-row">
                         @if (auth()->user()->roles_id == 1)
-                            <a role="button" class="btn-sm btn-success mr-2" data-bs-toggle="modal"
+                            <a role="button" class="btn-sm btn-warning mr-2" data-bs-toggle="modal"
                                 data-bs-target=".formEdit{{ $user->id }}">
                                 Edit
                             </a>
