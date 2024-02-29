@@ -8,9 +8,9 @@
     @include('admin.data.create')
 @endsection
 
-@section('deleteAll')
+{{-- @section('deleteAll')
     @include('admin.data.deleteAll')
-@endsection
+@endsection --}}
 
 @section('import')
     @include('admin.data.import')
@@ -50,17 +50,8 @@
                     </td>
                     <td class="manage-row">
                         @if (auth()->user()->roles_id == 1)
-                            <a role="button" class="btn-sm btn-warning mr-2" data-bs-toggle="modal"
-                                data-bs-target=".formEdit{{ $data->id }}">
-                                Edit
-                            </a>
-                            <!-- Modal -->
-                            <div class="modal fade formEdit{{ $data->id }}" tabindex="-1" role="dialog"
-                                aria-hidden="">
-                                <div class="modal-dialog" role="document">
-                                    @include('admin.data.edit')
-                                </div>
-                            </div>
+                            @include('admin.data.edit')
+
                             <!-- Button trigger modal -->
                             <a role="button" class="btn-sm btn-danger delete-button" data-bs-toggle="modal"
                                 data-bs-target=".bd-example-modal-sm{{ $data->id }}">

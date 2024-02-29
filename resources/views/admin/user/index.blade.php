@@ -28,16 +28,8 @@
                     <td>{{ $user->roles->name ?? '-' }}</td>
                     <td class="manage-row">
                         @if (auth()->user()->roles_id == 1)
-                            <a role="button" class="btn-sm btn-warning mr-2" data-bs-toggle="modal"
-                                data-bs-target=".formEdit{{ $user->id }}">
-                                Edit
-                            </a>
-                            <!-- Modal -->
-                            <div class="modal fade formEdit{{ $user->id }}" tabindex="-1" role="dialog" aria-hidden="">
-                                <div class="modal-dialog" role="document">
-                                    @include('admin.user.edit')
-                                </div>
-                            </div>
+                            @include('admin.user.edit')
+
                             <!-- Button trigger modal -->
                             <a role="button" class="btn-sm btn-danger delete-button" data-bs-toggle="modal"
                                 data-bs-target=".bd-example-modal-sm{{ $user->id }}">

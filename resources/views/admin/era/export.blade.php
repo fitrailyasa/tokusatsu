@@ -1,3 +1,3 @@
 <form role="button" class="mx-1 bg-gray rounded" action="{{ route('admin.era.export') }}">
-    <button type="submit" class="btn btn-sm btn-succes">Export</button>
+    <button type="submit" class="btn btn-sm btn-succes text-white">Export</button>
 </form>

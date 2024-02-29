@@ -13,26 +13,16 @@
         <div class="card-body">
             <div class="d-flex justify-content-between">
                 <h3 class="card-title">Tabel @yield('title')</h3>
-                <div class="d-flex
-                    justify-content-end mb-3">
-                    <!-- Tombol untuk membuka modal -->
-                    <a role="button" class="btn-sm mx-1 btn-primary" data-toggle="modal"
-                        data-target="#modalFormCreate">Tambah</a>
+                <div class="d-flex justify-content-end mb-3">
 
-                    <!-- Modal -->
-                    <div class="modal fade" id="modalFormCreate" tabindex="-1" role="dialog"
-                        aria-labelledby="modalFormLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            @yield('formCreate')
-                        </div>
-                    </div>
+                    @yield('formCreate')
 
                     @yield('import')
 
                     @yield('export')
 
                     @yield('deleteAll')
-                        
+
                 </div>
             </div>
             @if (session('sukses'))

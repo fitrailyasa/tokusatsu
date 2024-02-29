@@ -1,42 +1,41 @@
-    <!-- Tombol untuk membuka modal -->
-    <a role="button" class="btn-sm mx-1 btn-success" data-toggle="modal" data-target="#modalImport">Upload</a>
+<!-- Tombol untuk membuka modal -->
+<a role="button" class="btn-sm mx-1 btn-success" data-toggle="modal" data-target="#modalImport">Upload</a>
 
-    <!-- Modal -->
-    <div class="modal fade" id="modalImport" tabindex="-1" role="dialog" aria-labelledby="modalFormLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                @if (auth()->user()->roles_id == 1)
-                    <form method="POST" action="{{ route('admin.data.import') }}" enctype="multipart/form-data">
-                @endif
-                @csrf
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalFormLabel">Upload Data</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="mb-1">
-                                <label class="form-label">Upload File</label>
-                                <input type="file" class="form-control @error('file') is-invalid @enderror"
-                                    placeholder="file" name="file" id="file" required>
-                                @error('file')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
+<!-- Modal -->
+<div class="modal fade" id="modalImport" tabindex="-1" role="dialog" aria-labelledby="modalFormLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            @if (auth()->user()->roles_id == 1)
+                <form method="POST" action="{{ route('admin.data.import') }}" enctype="multipart/form-data">
+            @endif
+            @csrf
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalFormLabel">Upload Data</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="mb-1">
+                            <label class="form-label">Upload File</label>
+                            <input type="file" class="form-control @error('file') is-invalid @enderror"
+                                placeholder="file" name="file" id="file" required>
+                            @error('file')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <a class="btn btn-success" href="{{ asset('assets/template/data-template.xlsx') }}"
-                        download="data-template.xlsx">Download
-                        Format</a>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                </div>
-                </form>
             </div>
+            <div class="modal-footer">
+                <a class="btn btn-success" href="{{ asset('assets/template/data-template.xlsx') }}"
+                    download="data-template.xlsx">Download
+                    Format</a>
+                <button type="submit" class="btn btn-primary">Simpan</button>
+            </div>
+            </form>
         </div>
     </div>
+</div>
