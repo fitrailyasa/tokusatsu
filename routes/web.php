@@ -17,8 +17,8 @@ use App\Http\Controllers\Client\ClientCategoryController;
 
 // CLIENT SIDE
 Route::get('/', [HomeController::class, 'index'])->name('beranda');
-Route::get('/search', [HomeController::class, 'search'])->name('search');
 
+Route::get('/search', [HomeController::class, 'search'])->name('search');
 Route::get('/era', [ClientEraController::class, 'index'])->name('era');
 Route::get('/era/{id}', [ClientEraController::class, 'show'])->name('era.show');
 Route::get('/era/category/{id}', [ClientEraController::class, 'category'])->name('era.category');
@@ -82,4 +82,4 @@ Route::middleware(['auth'])->group(function () {
 
 });
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');

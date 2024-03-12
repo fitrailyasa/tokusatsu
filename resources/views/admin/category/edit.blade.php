@@ -1,6 +1,6 @@
 <!-- Tombol untuk membuka modal -->
-<a role="button" class="btn-sm btn-warning mr-2" data-bs-toggle="modal"
-    data-bs-target=".formEdit{{ $category->id }}">Edit</a>
+<a role="button" class="btn-sm btn-warning mr-2" data-bs-toggle="modal" data-bs-target=".formEdit{{ $category->id }}"><i
+        class="fas fa-edit"></i></a>
 
 <!-- Modal -->
 <div class="modal fade formEdit{{ $category->id }}" tabindex="-1" role="dialog" aria-hidden="">
@@ -68,6 +68,35 @@
                                 <div class="invalid-feedback">{{ $message }}
                                 </div>
                             @enderror
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <div class="mb-3">
+                                <label class="form-label">Images</label><br>
+                                @if ($category->img == null)
+                                    <img class="img-fluid rounded" width="300px"
+                                        src="{{ asset('assets/profile/default.png') }}" alt="{{ $category->name }}">
+                                @else
+                                    <img class="img-fluid rounded" width="300px"
+                                        src="{{ asset('assets/img/' . $category->img) }}" alt="{{ $category->name }}">
+                                @endif
+                                @error('images')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <div class="mb-3">
+                                <input type="file" class="form-control @error('img') is-invalid @enderror"
+                                    placeholder="img" name="img" id="img" value="{{ $category->img }}"
+                                    enabled>
+                                @error('img')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
                         </div>
                     </div>
                 </div>

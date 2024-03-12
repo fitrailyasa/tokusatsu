@@ -24,6 +24,7 @@
                 <th>Franchise</th>
                 <th>Name</th>
                 <th>Era</th>
+                <th>Images</th>
                 <th>More</th>
             </tr>
         </thead>
@@ -34,6 +35,19 @@
                     <td>{{ $category->franchise->name ?? '-' }}</td>
                     <td>{{ $category->name ?? '-' }}</td>
                     <td>{{ $category->era->name ?? '-' }}</td>
+                    <td>
+                        @if ($category->img == null)
+                            <a href="{{ asset('assets/profile/default.png') }}">
+                                <img src="{{ asset('assets/profile/default.png') }}" alt="{{ $category->name }}"
+                                    width="100">
+                            </a>
+                        @else
+                            <a href="{{ asset('assets/img/' . $category->img) }}">
+                                <img src="{{ asset('assets/img/' . $category->img) }}" alt="{{ $category->name }}"
+                                    width="100">
+                            </a>
+                        @endif
+                    </td>
                     <td class="manage-row">
                         @if (auth()->user()->roles_id == 1)
                             @include('admin.category.edit')
@@ -41,7 +55,7 @@
                             <!-- Button trigger modal -->
                             <a role="button" class="btn-sm btn-danger delete-button" data-bs-toggle="modal"
                                 data-bs-target=".bd-example-modal-sm{{ $category->id }}">
-                                Hapus
+                                <i class="fas fa-trash"></i>
                             </a>
                             <!-- Modal -->
                             <div class="modal fade bd-example-modal-sm{{ $category->id }}" tabindex="-1" role="dialog"
@@ -81,6 +95,7 @@
                 <th>Franchise</th>
                 <th>Name</th>
                 <th>Era</th>
+                <th>Images</th>
                 <th>More</th>
             </tr>
         </tfoot>

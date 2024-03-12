@@ -1,5 +1,6 @@
 <!-- Tombol untuk membuka modal -->
-<a role="button" class="btn-sm mx-1 btn-primary" data-toggle="modal" data-target="#modalFormCreate">Tambah</a>
+<a role="button" class="btn-sm mx-1 btn-primary" data-toggle="modal" data-target="#modalFormCreate"><i
+        class="fas fa-plus"></i> Tambah</a>
 
 <!-- Modal -->
 <div class="modal fade" id="modalFormCreate" tabindex="-1" role="dialog" aria-labelledby="modalFormLabel"
@@ -24,6 +25,19 @@
                             <input type="text" class="form-control @error('name') is-invalid @enderror"
                                 placeholder="name" name="name" id="name" required>
                             @error('name')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="mb-3">
+                            <label class="form-label">Images</label>
+                            <input id="image-input" accept="image/*" type="file"
+                                class="form-control @error('img') is-invalid @enderror" placeholder="img" name="img"
+                                id="img">
+                            <img class="img-fluid py-3" id="image-preview"
+                                src="{{ asset('assets/profile/default.png') }}" alt="Image Preview">
+                            @error('img')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
@@ -68,3 +82,25 @@
         </div>
     </div>
 </div>
+
+<script>
+    function previewImage() {
+        var input = document.getElementById('image-input');
+        var preview = document.getElementById('image-preview');
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        } else {
+            preview.src = '{{ asset('assets/profile/default.png') }}';
+        }
+    }
+
+    document.getElementById('image-input').addEventListener('change', previewImage);
+    window.addEventListener('load', previewImage);
+</script>

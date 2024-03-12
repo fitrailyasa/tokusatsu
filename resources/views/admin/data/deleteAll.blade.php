@@ -1,8 +1,10 @@
 <!-- Tombol untuk membuka modal -->
-<a role="button" class="btn-sm mx-1 btn-danger" data-toggle="modal" data-target="#modalDeleteAll">HapusSemua</a>
+<a role="button" class="btn-sm mx-1 btn-danger" data-toggle="modal" data-target="#modalDeleteAll"><i
+        class="fas fa-trash"></i> Hapus Semua</a>
 
 <!-- Modal -->
-<div class="modal fade" id="modalDeleteAll" tabindex="-1" role="dialog" aria-labelledby="modalFormLabel" aria-hidden="true">
+<div class="modal fade" id="modalDeleteAll" tabindex="-1" role="dialog" aria-labelledby="modalFormLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <form method="POST" action="{{ route('admin.data.destroyAll') }}">

@@ -45,7 +45,11 @@
                 "responsive": true,
                 "lengthChange": true,
                 "autoWidth": false,
-                // "buttons": ["excel", "pdf", "print"]
+                "buttons": [
+                    { extend: 'excel', exportOptions: { columns: ':not(:last-child)' } },
+                    { extend: 'pdf', exportOptions: { columns: ':not(:last-child)' } },
+                    { extend: 'print', exportOptions: { columns: ':not(:last-child)' } }
+                ]
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
             $('#example2').DataTable({
                 "paging": true,

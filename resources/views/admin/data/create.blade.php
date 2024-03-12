@@ -1,5 +1,6 @@
 <!-- Tombol untuk membuka modal -->
-<a role="button" class="btn-sm mx-1 btn-primary" data-toggle="modal" data-target="#modalFormCreate">Tambah</a>
+<a role="button" class="btn-sm mx-1 btn-primary" data-toggle="modal" data-target="#modalFormCreate"><i
+        class="fas fa-plus"></i> Tambah</a>
 
 <!-- Modal -->
 <div class="modal fade" id="modalFormCreate" tabindex="-1" role="dialog" aria-labelledby="modalFormLabel"

@@ -47,21 +47,46 @@ class AdminCategoryController extends Controller
             'name' => 'required|max:255',
         ]);
 
-        Category::create($request->all());
+        $category = Category::create([
+            'era_id' => $request->era_id,
+            'franchise_id' => $request->franchise_id,
+            'name' => $request->name,
+        ]);
+
+        if ($request->hasFile('img')) {
+            $img = $request->file('img');
+            $file_name = time() . '_' . $category->name . '_' . $category->category->name . '.' . $img->getClientOriginalExtension();
+            $category->img = $file_name;
+            $category->update();
+            $img->move('../public/assets/img/', $file_name);
+        }
 
         return redirect()->route('admin.category.index')->with('sukses', 'Berhasil Tambah Category!');
     }
 
     public function update(Request $request, $id)
     {
+        $category = Category::findOrFail($id);
+        
         $request->validate([
             'era_id' => 'required',
             'franchise_id' => 'required',
             'name' => 'required|max:255',
         ]);
 
-        $category = Category::findOrFail($id);
-        $category->update($request->all());
+        $category->update([
+            'era_id' => $request->era_id,
+            'franchise_id' => $request->franchise_id,
+            'name' => $request->name,
+        ]);
+
+        if ($request->hasFile('img')) {
+            $img = $request->file('img');
+            $file_name = time() . '_' . $category->name . '_' . $category->category->name . '.' . $img->getClientOriginalExtension();
+            $category->img = $file_name;
+            $category->update();
+            $img->move('../public/assets/img/', $file_name);
+        }
 
         return redirect()->route('admin.category.index')->with('sukses', 'Berhasil Edit Category!');
     }

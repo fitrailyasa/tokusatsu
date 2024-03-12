@@ -1,6 +1,6 @@
 <!-- Tombol untuk membuka modal -->
 <a role="button" class="btn-sm btn-warning mr-2" data-bs-toggle="modal"
-    data-bs-target=".bd-example-modal-sm{{ $era->id }}">Edit</a>
+    data-bs-target=".bd-example-modal-sm{{ $era->id }}"><i class="fas fa-edit"></i></a>
 
 <!-- Modal -->
 <div class="modal fade bd-example-modal-sm{{ $era->id }}" tabindex="-1" role="dialog" aria-hidden="">

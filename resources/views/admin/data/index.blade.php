@@ -8,9 +8,9 @@
     @include('admin.data.create')
 @endsection
 
-{{-- @section('deleteAll')
+@section('deleteAll')
     @include('admin.data.deleteAll')
-@endsection --}}
+@endsection
 
 @section('import')
     @include('admin.data.import')
@@ -55,7 +55,7 @@
                             <!-- Button trigger modal -->
                             <a role="button" class="btn-sm btn-danger delete-button" data-bs-toggle="modal"
                                 data-bs-target=".bd-example-modal-sm{{ $data->id }}">
-                                Hapus
+                                <i class="fas fa-trash"></i>
                             </a>
                             <!-- Modal -->
                             <div class="modal fade bd-example-modal-sm{{ $data->id }}" tabindex="-1" role="dialog"
