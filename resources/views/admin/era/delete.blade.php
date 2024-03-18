@@ -1,6 +1,6 @@
-<!-- Button trigger modal -->
+<!-- Tombol untuk membuka modal -->
 <a role="button" class="btn-sm btn-danger delete-button" data-bs-toggle="modal"
-    data-bs-target=".formEdit{{ $era->id }}"><i class="fas fa-trash"></i> Hapus</a>
+    data-bs-target=".formEdit{{ $era->id }}"><i class="fas fa-trash"></i></a>
 
 <!-- Modal -->
 <div class="modal fade formEdit{{ $era->id }}" tabindex="-1" role="dialog" aria-hidden="">

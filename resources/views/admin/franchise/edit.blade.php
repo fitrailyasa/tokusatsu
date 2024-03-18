@@ -1,6 +1,6 @@
 <!-- Tombol untuk membuka modal -->
 <a role="button" class="btn-sm btn-warning mr-2" data-bs-toggle="modal" data-bs-target=".formEdit{{ $franchise->id }}"><i
-        class="fas fa-edit"></i> Edit</a>
+        class="fas fa-edit"></i></a>
 
 <!-- Modal -->
 <div class="modal fade formEdit{{ $franchise->id }}" tabindex="-1" role="dialog" aria-hidden="">
