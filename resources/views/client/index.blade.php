@@ -20,8 +20,8 @@
         <div class="text-center d-flex flex-wrap justify-content-center border-bottom">
             @foreach ($datas->where('category_id', '1') as $data)
                 <a href="#" data-toggle="modal" data-target="#myModal{{ $data->id }}">
-                    <img class="img img-fluid p-3 img-gallery" style="border-radius: 30px" width="300px"
-                        src="{{ asset('assets/img/' . $data->img) }}" alt="{{ $data->img }}">
+                    <img class="img img-fluid p-3 img-gallery" width="300px" src="{{ asset('assets/img/' . $data->img) }}"
+                        alt="{{ $data->img }}">
                 </a>
 
                 <!-- Modal -->
@@ -45,8 +45,8 @@
         <div class="text-center d-flex flex-wrap justify-content-center border-bottom">
             @foreach ($datas->where('category_id', '82') as $data)
                 <a href="#" data-toggle="modal" data-target="#myModal{{ $data->id }}">
-                    <img class="img img-fluid p-3 img-gallery" style="border-radius: 30px" width="300px"
-                        src="{{ asset('assets/img/' . $data->img) }}" alt="{{ $data->img }}">
+                    <img class="img img-fluid p-3 img-gallery" width="300px" src="{{ asset('assets/img/' . $data->img) }}"
+                        alt="{{ $data->img }}">
                 </a>
 
                 <!-- Modal -->
@@ -70,8 +70,8 @@
         <div class="text-center d-flex flex-wrap justify-content-center border-bottom">
             @foreach ($datas->where('category_id', '39') as $data)
                 <a href="#" data-toggle="modal" data-target="#myModal{{ $data->id }}">
-                    <img class="img img-fluid p-3 img-gallery" style="border-radius: 30px" width="300px"
-                        src="{{ asset('assets/img/' . $data->img) }}" alt="{{ $data->img }}">
+                    <img class="img img-fluid p-3 img-gallery" width="300px" src="{{ asset('assets/img/' . $data->img) }}"
+                        alt="{{ $data->img }}">
                 </a>
 
                 <!-- Modal -->
