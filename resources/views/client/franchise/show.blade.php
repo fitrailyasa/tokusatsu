@@ -15,7 +15,7 @@
                     </a>
                 </div>
                 <div class="col-10">
-                    <h2 class="text-white font-weight-bold">{{ $franchise->name }}</h2>
+                    <h4 class="text-white font-weight-bold">{{ $franchise->name }}</h4>
                 </div>
                 <div class="col-1"></div>
             </div>

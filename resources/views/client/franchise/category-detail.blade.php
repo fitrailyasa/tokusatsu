@@ -15,15 +15,15 @@
                     </a>
                 </div>
                 <div class="col-10">
-                    <h2 class="text-white font-weight-bold">{{ $category->name }}</h2>
+                    <h4 class="text-white font-weight-bold">{{ $category->name }}</h4>
                 </div>
                 <div class="col-1"></div>
             </div>
         </div>
         @foreach ($datas->where('category_id', $category->id) as $data)
             <a href="#" data-toggle="modal" data-target="#myModal{{ $data->id }}">
-                <img class="img img-fluid img-gallery"
-                    src="{{ asset('assets/img/' . $data->img) }}" alt="{{ $data->img }}">
+                <img class="img img-fluid img-gallery" src="{{ asset('assets/img/' . $data->img) }}"
+                    alt="{{ $data->img }}">
             </a>
 
             <!-- Modal -->
@@ -34,6 +34,9 @@
                         <div class="modal-body">
                             <img class="img img-fluid" src="{{ asset('assets/img/' . $data->img) }}"
                                 alt="{{ $data->img }}">
+                            <!-- Tombol Download -->
+                            <a href="{{ asset('assets/img/' . $data->img) }}" download="{{ $data->img }}"
+                                class="btn btn-success mt-2 col-12">Download Gambar</a>
                         </div>
                     </div>
                 </div>

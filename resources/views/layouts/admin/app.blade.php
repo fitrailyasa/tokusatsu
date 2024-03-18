@@ -65,11 +65,6 @@
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
 
-        <!-- Preloader -->
-        {{-- <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="{{ asset('assets/img/logo.png') }}" alt="AdminLTELogo" width="60">
-  </div> --}}
-
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
             <!-- Left navbar links -->
@@ -115,19 +110,6 @@
                     </div>
                     <div class="info">
                         <a href="#" class="d-block text-white">{{ auth()->user()->name }}</a>
-                    </div>
-                </div>
-
-                <!-- SidebarSearch Form -->
-                <div class="form-inline">
-                    <div class="input-group" data-widget="sidebar-search">
-                        <input class="form-control form-control-sidebar" type="search" placeholder="Search"
-                            aria-label="Search">
-                        <div class="input-group-append">
-                            <button class="btn btn-sidebar text-white">
-                                <i class="fas fa-search fa-fw"></i>
-                            </button>
-                        </div>
                     </div>
                 </div>
 

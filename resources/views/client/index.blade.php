@@ -16,11 +16,11 @@
                 </div>
             </div>
         </form>
-        <h3 class="text-white font-weight-bold">Kamen Rider</h3>
+        <h4 class="text-white font-weight-bold">Kamen Rider</h4>
         <div class="text-center d-flex flex-wrap justify-content-center border-bottom">
             @foreach ($datas->where('category_id', '1') as $data)
                 <a href="#" data-toggle="modal" data-target="#myModal{{ $data->id }}">
-                    <img class="img img-fluid p-3" style="border-radius: 30px" width="300px"
+                    <img class="img img-fluid p-3 img-gallery" style="border-radius: 30px" width="300px"
                         src="{{ asset('assets/img/' . $data->img) }}" alt="{{ $data->img }}">
                 </a>
 
@@ -32,17 +32,20 @@
                             <div class="modal-body">
                                 <img class="img img-fluid" src="{{ asset('assets/img/' . $data->img) }}"
                                     alt="{{ $data->img }}">
+                                <!-- Tombol Download -->
+                                <a href="{{ asset('assets/img/' . $data->img) }}" download="{{ $data->img }}"
+                                    class="btn btn-success mt-2 col-12">Download Gambar</a>
                             </div>
                         </div>
                     </div>
                 </div>
             @endforeach
         </div>
-        <h3 class="text-white font-weight-bold pt-4">Ultraman</h3>
+        <h4 class="text-white font-weight-bold pt-4">Ultraman</h4>
         <div class="text-center d-flex flex-wrap justify-content-center border-bottom">
             @foreach ($datas->where('category_id', '82') as $data)
                 <a href="#" data-toggle="modal" data-target="#myModal{{ $data->id }}">
-                    <img class="img img-fluid p-3" style="border-radius: 30px" width="300px"
+                    <img class="img img-fluid p-3 img-gallery" style="border-radius: 30px" width="300px"
                         src="{{ asset('assets/img/' . $data->img) }}" alt="{{ $data->img }}">
                 </a>
 
@@ -54,17 +57,20 @@
                             <div class="modal-body">
                                 <img class="img img-fluid" src="{{ asset('assets/img/' . $data->img) }}"
                                     alt="{{ $data->img }}">
+                                <!-- Tombol Download -->
+                                <a href="{{ asset('assets/img/' . $data->img) }}" download="{{ $data->img }}"
+                                    class="btn btn-success mt-2 col-12">Download Gambar</a>
                             </div>
                         </div>
                     </div>
                 </div>
             @endforeach
         </div>
-        <h3 class="text-white font-weight-bold pt-4">Super Sentai</h3>
+        <h4 class="text-white font-weight-bold pt-4">Super Sentai</h4>
         <div class="text-center d-flex flex-wrap justify-content-center border-bottom">
             @foreach ($datas->where('category_id', '39') as $data)
                 <a href="#" data-toggle="modal" data-target="#myModal{{ $data->id }}">
-                    <img class="img img-fluid p-3" style="border-radius: 30px" width="300px"
+                    <img class="img img-fluid p-3 img-gallery" style="border-radius: 30px" width="300px"
                         src="{{ asset('assets/img/' . $data->img) }}" alt="{{ $data->img }}">
                 </a>
 
@@ -76,6 +82,9 @@
                             <div class="modal-body">
                                 <img class="img img-fluid" src="{{ asset('assets/img/' . $data->img) }}"
                                     alt="{{ $data->img }}">
+                                <!-- Tombol Download -->
+                                <a href="{{ asset('assets/img/' . $data->img) }}" download="{{ $data->img }}"
+                                    class="btn btn-success mt-2 col-12">Download Gambar</a>
                             </div>
                         </div>
                     </div>
