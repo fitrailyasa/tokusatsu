@@ -48,7 +48,7 @@ class CategorySeeder extends Seeder
                 'era_id' => 1,
                 'franchise_id' => 2,
                 'name' => 'Skyrider',
-                'img' => "Kamen Rider/Era Showa/0.6 Skyrider (1).jpg"
+                'img' => "Kamen Rider/Era Showa/0.6 SkyRider (1).jpg"
             ],
             [
                 'era_id' => 1,
@@ -96,7 +96,7 @@ class CategorySeeder extends Seeder
                 'era_id' => 2,
                 'franchise_id' => 2,
                 'name' => 'Kuuga',
-                'img' => "Kamen Rider/Era Heisei/1. Kuuga/1.1 KuugaRider (5).jpg"
+                'img' => "Kamen Rider/Era Heisei/1. Kuuga/1.1 kuugaRider (5).jpg"
             ],
             [
                 'era_id' => 2,
