@@ -12,7 +12,7 @@
         <!-- /.card-header -->
         <div class="card-body">
             <div class="d-flex justify-content-between">
-                <h3 class="card-title">Tabel @yield('title')</h3>
+                <h3 class="card-title">Kelola Tabel @yield('title')</h3>
                 <div class="d-flex justify-content-end mb-3">
 
                     @yield('formCreate')
@@ -45,11 +45,11 @@
                 "responsive": true,
                 "lengthChange": true,
                 "autoWidth": false,
-                "buttons": [
-                    { extend: 'excel', exportOptions: { columns: ':not(:last-child)' } },
-                    { extend: 'pdf', exportOptions: { columns: ':not(:last-child)' } },
-                    { extend: 'print', exportOptions: { columns: ':not(:last-child)' } }
-                ]
+                // "buttons": [
+                //     { extend: 'excel', exportOptions: { columns: ':not(:last-child)' } },
+                //     { extend: 'pdf', exportOptions: { columns: ':not(:last-child)' } },
+                //     { extend: 'print', exportOptions: { columns: ':not(:last-child)' } }
+                // ]
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
             $('#example2').DataTable({
                 "paging": true,

@@ -22,8 +22,8 @@
         </div>
         @foreach ($datas->where('category_id', $category->id) as $data)
             <a href="#" data-toggle="modal" data-target="#myModal{{ $data->id }}">
-                <img class="img img-fluid img-gallery"
-                    src="{{ asset('assets/img/' . $data->img) }}" alt="{{ $data->img }}">
+                <img class="img img-fluid img-gallery" src="{{ asset('assets/img/' . $data->img) }}"
+                    alt="{{ $data->img }}">
             </a>
 
             <!-- Modal -->
