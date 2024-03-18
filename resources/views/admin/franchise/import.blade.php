@@ -1,6 +1,6 @@
 <!-- Tombol untuk membuka modal -->
-<a role="button" class="btn-sm mx-1 btn-success" data-toggle="modal" data-target="#modalImport"><i
-        class="fas fa-upload"></i> Upload</a>
+<button role="button" class="btn btn-sm mx-1 btn-success" data-toggle="modal" data-target="#modalImport"><i
+        class="fas fa-upload"></i> Upload</button>
 
 <!-- Modal -->
 <div class="modal fade" id="modalImport" tabindex="-1" role="dialog" aria-labelledby="modalFormLabel" aria-hidden="true">

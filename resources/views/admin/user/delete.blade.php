@@ -1,6 +1,6 @@
 <!-- Tombol untuk membuka modal -->
-<a role="button" class="btn-sm btn-danger delete-button" data-bs-toggle="modal"
-    data-bs-target=".bd-example-modal-sm{{ $user->id }}"><i class="fas fa-trash"></i></a>
+<button role="button" class="btn btn-sm btn-danger delete-button" data-bs-toggle="modal"
+    data-bs-target=".bd-example-modal-sm{{ $user->id }}"><i class="fas fa-trash"></i> Hapus</button>
 
 <!-- Modal -->
 <div class="modal fade bd-example-modal-sm{{ $user->id }}" tabindex="-1" role="dialog" aria-hidden="">

@@ -1,6 +1,6 @@
 <!-- Tombol untuk membuka modal -->
-<a role="button" class="btn-sm mx-1 btn-danger" data-toggle="modal" data-target="#modalDeleteAll"><i
-        class="fas fa-trash"></i> Hapus Semua</a>
+<button role="button" class="btn btn-sm mx-1 btn-danger" data-toggle="modal" data-target="#modalDeleteAll"><i
+        class="fas fa-trash"></i> Hapus Semua</button>
 
 <!-- Modal -->
 <div class="modal fade" id="modalDeleteAll" tabindex="-1" role="dialog" aria-labelledby="modalFormLabel"
