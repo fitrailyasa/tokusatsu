@@ -75,10 +75,10 @@
                             <div class="mb-3">
                                 <label class="form-label">Images</label><br>
                                 @if ($category->img == null)
-                                    <img class="img-fluid rounded" width="300px"
+                                    <img class="img-fluid rounded" width="200px" id="image-preview"
                                         src="{{ asset('assets/profile/default.png') }}" alt="{{ $category->name }}">
                                 @else
-                                    <img class="img-fluid rounded" width="300px"
+                                    <img class="img-fluid rounded" width="200px" id="image-preview"
                                         src="{{ asset('assets/img/' . $category->img) }}" alt="{{ $category->name }}">
                                 @endif
                                 @error('images')
@@ -90,9 +90,9 @@
                     <div class="row">
                         <div class="col-md-12 text-center">
                             <div class="mb-3">
-                                <input type="file" class="form-control @error('img') is-invalid @enderror"
-                                    placeholder="img" name="img" id="img" value="{{ $category->img }}"
-                                    enabled>
+                                <input type="file" accept="image/*" id="image-input"
+                                    class="form-control @error('img') is-invalid @enderror" placeholder="img"
+                                    name="img" id="img" value="{{ $category->img }}" enabled>
                                 @error('img')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror

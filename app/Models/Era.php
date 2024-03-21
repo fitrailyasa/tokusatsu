@@ -10,7 +10,9 @@ class Era extends Model
     use HasFactory;
 
     protected $table = 'era';
-    protected $fillable = ['name'];
+    protected $primaryKey = 'id';
+    public $incrementing = false;
+    protected $fillable = ['id', 'name', 'img'];
 
     public function category()
     {

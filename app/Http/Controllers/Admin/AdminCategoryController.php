@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Franchise;
 use App\Models\Era;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\CategoryImport;
 use App\Exports\CategoryExport;
@@ -17,7 +18,7 @@ class AdminCategoryController extends Controller
     {
         $eras = Era::all();
         $franchises = Franchise::all();
-        $categories = Category::latest('id')->get();
+        $categories = Category::all();
         return view('admin.category.index', compact('categories', 'eras', 'franchises'));
     }
 
@@ -48,6 +49,7 @@ class AdminCategoryController extends Controller
         ]);
 
         $category = Category::create([
+            'id' => Str::uuid(),
             'era_id' => $request->era_id,
             'franchise_id' => $request->franchise_id,
             'name' => $request->name,
@@ -75,6 +77,7 @@ class AdminCategoryController extends Controller
         ]);
 
         $category->update([
+            'id' => Str::uuid(),
             'era_id' => $request->era_id,
             'franchise_id' => $request->franchise_id,
             'name' => $request->name,

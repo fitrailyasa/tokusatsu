@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Data;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\DataImport;
 use App\Exports\DataExport;
@@ -15,7 +16,7 @@ class AdminDataController extends Controller
     public function index()
     {
         $categories = Category::all();
-        $datas = Data::latest('id')->paginate(10);
+        $datas = Data::paginate(10);
         return view('admin.data.index', compact('datas', 'categories'));
     }
 
@@ -45,6 +46,7 @@ class AdminDataController extends Controller
         ]);
 
         $data = Data::create([
+            'id' => Str::uuid(),
             'name' => $request->name,
             'category_id' => $request->category_id
         ]);
@@ -70,6 +72,7 @@ class AdminDataController extends Controller
         ]);
 
         $data->update([
+            'id' => Str::uuid(),
             'name' => $request->name,
             'category_id' => $request->category_id,
         ]);

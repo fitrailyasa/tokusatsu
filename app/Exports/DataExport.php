@@ -12,10 +12,9 @@ class DataExport implements FromCollection, WithHeadings
     {
         return Data::with('category')->get()->map(function ($data) {
             return [
-                'ID' => $data->id,
-                'Name' => $data->name,
-                'Img' => $data->img,
-                'Category' => $data->category->name,
+                'Name' => $data->name ?? '',
+                'Img' => $data->img ?? '',
+                'Category' => $data->category->name ?? '',
             ];
         });
     }
@@ -23,7 +22,6 @@ class DataExport implements FromCollection, WithHeadings
     public function headings(): array
     {
         return [
-            'ID',
             'Name',
             'Img',
             'Category',

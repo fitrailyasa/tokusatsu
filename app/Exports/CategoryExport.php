@@ -14,10 +14,10 @@ class CategoryExport implements FromCollection, WithHeadings
     {
         return Category::with(['franchise', 'era'])->get()->map(function ($category) {
             return [
-                'ID' => $category->id,
-                'Name' => $category->name,
-                'Era' => $category->era->name,
-                'Franchise' => $category->franchise->name,
+                'Name' => $category->name ?? '',
+                'Img' => $category->img ?? '',
+                'Era' => $category->era->name ?? '',
+                'Franchise' => $category->franchise->name ?? '',
             ];
         });
     }
@@ -25,8 +25,8 @@ class CategoryExport implements FromCollection, WithHeadings
     public function headings(): array
     {
         return [
-            'ID',
             'Name',
+            'Img',
             'Era',
             'Franchise',
         ];

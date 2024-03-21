@@ -12,14 +12,14 @@ class ClientFranchiseController extends Controller
 {
     public function index()
     {
-        $franchises = Franchise::first('id')->paginate(10);
+        $franchises = Franchise::paginate(10);
         return view('client.franchise.index', compact('franchises'));
     }
 
     public function show(string $id)
     {
         $franchise = Franchise::findOrFail($id);
-        $categories = Category::latest('id')->where('franchise_id', $id)->paginate(10);
+        $categories = Category::where('franchise_id', $id)->paginate(10);
         return view('client.franchise.show', compact('franchise', 'categories'));
     }
 

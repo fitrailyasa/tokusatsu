@@ -14,10 +14,10 @@ class CreateDataTable extends Migration
     public function up()
     {
         Schema::create('data', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('name');
             $table->string('img')->nullable();
-            $table->foreignId('category_id');
+            $table->foreignId('category_id')->nullable();
             $table->timestamps();
         });
     }

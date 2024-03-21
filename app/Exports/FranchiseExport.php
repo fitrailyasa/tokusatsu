@@ -10,14 +10,19 @@ class FranchiseExport implements FromCollection, WithHeadings
 {
     public function collection()
     {
-        return Franchise::all();
+        return Franchise::all()->map(function ($franchise) {
+            return [
+                'Name' => $franchise->name ?? '',
+                'Img' => $franchise->img ?? '',
+            ];
+        });
     }
 
     public function headings(): array
     {
         return [
-            'ID',
             'Name',
+            'Img',
         ];
     }
 }

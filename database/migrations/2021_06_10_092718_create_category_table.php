@@ -14,11 +14,11 @@ class CreateCategoryTable extends Migration
     public function up()
     {
         Schema::create('category', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('name');
             $table->string('img')->nullable();
-            $table->foreignId('era_id');
-            $table->foreignId('franchise_id');
+            $table->foreignId('era_id')->nullable();
+            $table->foreignId('franchise_id')->nullable();
             $table->timestamps();
         });
     }

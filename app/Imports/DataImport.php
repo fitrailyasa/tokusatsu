@@ -6,6 +6,7 @@ use App\Models\Data;
 use App\Models\Category;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Illuminate\Support\Str;
 
 class DataImport implements ToModel, WithHeadingRow
 {
@@ -15,14 +16,25 @@ class DataImport implements ToModel, WithHeadingRow
 
         if (!$category) {
             $category = Category::create([
+                'id' => Str::uuid(),
                 'name' => $row['category'],
+                'img' => null,
+                'franchise_id' => null,
+                'era_id' => null,
             ]);
         }
 
+        $existingData = Data::where('name', $row['name'])->first();
+
+        if ($existingData) {
+            return null;
+        }
+
         return new Data([
+            'id' => Str::uuid(),
             'name' => $row['name'],
-            'category_id' => $category->id,
-            'img' => $row['img'],
+            'category_id' => $category->id ?? null,
+            'img' => $row['img'] ?? null,
         ]);
     }
 }

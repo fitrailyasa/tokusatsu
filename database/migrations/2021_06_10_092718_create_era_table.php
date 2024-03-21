@@ -14,8 +14,9 @@ class CreateEraTable extends Migration
     public function up()
     {
         Schema::create('era', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('name');
+            $table->string('img')->nullable();
             $table->timestamps();
         });
     }

@@ -66,7 +66,7 @@
                                 <input id="image-input" accept="image/*" type="file"
                                     class="form-control @error('img') is-invalid @enderror" placeholder="img"
                                     name="img" id="img">
-                                <img class="img-fluid py-3" id="image-preview" width="300px"
+                                <img class="img-fluid py-3" id="image-preview" width="200px"
                                     src="{{ asset('assets/profile/default.png') }}" alt="Image Preview">
                                 @error('img')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -84,25 +84,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    function previewImage() {
-        var input = document.getElementById('image-input');
-        var preview = document.getElementById('image-preview');
-
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function(e) {
-                preview.src = e.target.result;
-            };
-
-            reader.readAsDataURL(input.files[0]);
-        } else {
-            preview.src = '{{ asset('assets/profile/default.png') }}';
-        }
-    }
-
-    document.getElementById('image-input').addEventListener('change', previewImage);
-    window.addEventListener('load', previewImage);
-</script>

@@ -19,14 +19,33 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="mb-1">
+                    <div class="col-md-6">
+                        <div class="mb-3">
                             <label class="form-label">Name</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror"
                                 placeholder="name" name="name" id="name" required>
                             @error('name')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label">Images</label>
+                            <input id="image-input" accept="image/*" type="file"
+                                class="form-control @error('img') is-invalid @enderror" placeholder="img" name="img"
+                                id="img">
+                            @error('img')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <div class="mb-3">
+                            <img class="img-fluid py-3" id="image-preview" width="200px"
+                                src="{{ asset('assets/profile/default.png') }}" alt="Image Preview">
                         </div>
                     </div>
                 </div>
