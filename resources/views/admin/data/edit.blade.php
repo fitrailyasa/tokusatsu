@@ -66,7 +66,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row border-bottom">
                     <div class="col-md-12 text-center">
                         <div class="mb-3">
                             <input type="file" class="form-control @error('img') is-invalid @enderror"
@@ -74,6 +74,23 @@
                             @error('img')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="form-group" id="tags">
+                        <label for="tag">{{ __('Tag') }}</label>
+                        <div class="tags-container">
+                            @foreach ($tags as $tag)
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="tags[]"
+                                        value="{{ $tag->id }}" id="tag{{ $tag->id }}"
+                                        {{ in_array($tag->id, json_decode($data->tags, true) ?? [], true) ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="tag{{ $tag->id }}">
+                                        {{ $tag->name }}
+                                    </label>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>

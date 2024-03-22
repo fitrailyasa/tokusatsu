@@ -88,7 +88,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/data/export', [AdminDataController::class, 'export'])->name('data.export');
     Route::delete('/data/deleteAll', [AdminDataController::class, 'destroyAll'])->name('data.destroyAll');
   });
-
+  
 });
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');

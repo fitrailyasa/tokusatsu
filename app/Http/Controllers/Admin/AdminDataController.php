@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Data;
 use App\Models\Category;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Maatwebsite\Excel\Facades\Excel;
@@ -15,9 +16,11 @@ class AdminDataController extends Controller
 {
     public function index()
     {
+        $tags = Tag::all();
         $categories = Category::all();
         $datas = Data::paginate(10);
-        return view('admin.data.index', compact('datas', 'categories'));
+        
+        return view('admin.data.index', compact('datas', 'categories', 'tags'));
     }
 
     public function import(Request $request)
@@ -43,12 +46,16 @@ class AdminDataController extends Controller
         $request->validate([
             'name' => 'required',
             'category_id' => 'required',
+            'tags' => 'required|array',
         ]);
+
+        $tags = json_encode($request->tags);
 
         $data = Data::create([
             'id' => Str::uuid(),
             'name' => $request->name,
-            'category_id' => $request->category_id
+            'category_id' => $request->category_id,
+            'tags' => $tags
         ]);
 
         if ($request->hasFile('img')) {
@@ -71,10 +78,13 @@ class AdminDataController extends Controller
             'category_id' => 'required',
         ]);
 
+        $tags = json_encode($request->tags);
+
         $data->update([
             'id' => Str::uuid(),
             'name' => $request->name,
             'category_id' => $request->category_id,
+            'tags' => $tags
         ]);
 
         if ($request->hasFile('img')) {

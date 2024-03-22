@@ -18,7 +18,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="row">
+                <div class="row border-bottom">
                     <div class="col-md-4">
                         <div class="mb-3">
                             <label class="form-label">{{ __('Name') }}</label>
@@ -55,6 +55,22 @@
                             @error('category_id')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="form-group" id="tags">
+                        <label for="tag">{{ __('Tag') }}</label>
+                        <div class="tags-container">
+                            @foreach ($tags as $tag)
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="tags[]"
+                                        value="{{ $tag->id }}" id="tag{{ $tag->id }}">
+                                    <label class="form-check-label" for="tag{{ $tag->id }}">
+                                        {{ $tag->name }}
+                                    </label>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>

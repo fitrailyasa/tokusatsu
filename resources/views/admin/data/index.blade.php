@@ -21,6 +21,18 @@
 @endsection
 
 @section('table')
+    <style>
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .form-check {
+            margin-right: 25px;
+            /* Jarak antar tag */
+        }
+    </style>
+
     <table id="" class="table table-bordered table-striped">
         <thead>
             <tr>
@@ -28,6 +40,7 @@
                 <th>{{ __('Name') }}</th>
                 <th>{{ __('Category') }}</th>
                 <th>{{ __('Images') }}</th>
+                <th>{{ __('Tags') }}</th>
                 <th>{{ __('More') }}</th>
             </tr>
         </thead>
@@ -40,12 +53,28 @@
                     <td>
                         @if ($data->img == null)
                             <a href="{{ asset('assets/profile/default.png') }}">
-                                <img src="{{ asset('assets/profile/default.png') }}" alt="{{ $data->name }}" width="100">
+                                <img src="{{ asset('assets/profile/default.png') }}" alt="{{ $data->name }}"
+                                    width="100">
                             </a>
                         @else
                             <a href="{{ asset('assets/img/' . $data->img) }}">
                                 <img src="{{ asset('assets/img/' . $data->img) }}" alt="{{ $data->name }}" width="100">
                             </a>
+                        @endif
+                    </td>
+                    {{-- Json Data Tags --}}
+                    <td>
+                        @if (!empty($data->tags))
+                            @foreach (json_decode($data->tags) as $tagId)
+                                @php
+                                    $tag = $tags->where('id', $tagId)->first();
+                                @endphp
+                                @if ($tag)
+                                    <span class="badge badge-primary">{{ $tag->name }}</span>
+                                @endif
+                            @endforeach
+                        @else
+                            <span class="badge badge-secondary">No tags</span>
                         @endif
                     </td>
                     <td class="manage-row">
@@ -63,6 +92,7 @@
                 <th>{{ __('Name') }}</th>
                 <th>{{ __('Category') }}</th>
                 <th>{{ __('Images') }}</th>
+                <th>{{ __('Tags') }}</th>
                 <th>{{ __('More') }}</th>
             </tr>
             <tr>
