@@ -35,8 +35,16 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('admin.category.index') }}" class="nav-link text-white @yield('table-category')">
+                <a href="{{ route('admin.tag.index') }}" class="nav-link text-white @yield('table-tag')">
                     <i class="nav-icon fas fa-tag"></i>
+                    <p>
+                        Tag
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('admin.category.index') }}" class="nav-link text-white @yield('table-category')">
+                    <i class="nav-icon fas fa-list-alt"></i>
                     <p>
                         Category
                     </p>

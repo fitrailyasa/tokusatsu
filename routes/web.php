@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AdminEraController;
 use App\Http\Controllers\Admin\AdminFranchiseController;
 use App\Http\Controllers\Admin\AdminCategoryController;
+use App\Http\Controllers\Admin\AdminTagController;
 use App\Http\Controllers\Admin\AdminDataController;
 use App\Http\Controllers\Client\ClientEraController;
 use App\Http\Controllers\Client\ClientFranchiseController;
@@ -69,6 +70,14 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/category/{id}/destroy', [AdminCategoryController::class, 'destroy'])->name('category.destroy');
     Route::post('/category/import', [AdminCategoryController::class, 'import'])->name('category.import');
     Route::get('/category/export', [AdminCategoryController::class, 'export'])->name('category.export');
+    
+    // CRUD TAG
+    Route::get('/tag', [AdminTagController::class, 'index'])->name('tag.index');
+    Route::post('/tag', [AdminTagController::class, 'store'])->name('tag.store');
+    Route::put('/tag/{id}/update', [AdminTagController::class, 'update'])->name('tag.update');
+    Route::delete('/tag/{id}/destroy', [AdminTagController::class, 'destroy'])->name('tag.destroy');
+    Route::post('/tag/import', [AdminTagController::class, 'import'])->name('tag.import');
+    Route::get('/tag/export', [AdminTagController::class, 'export'])->name('tag.export');
     
     // CRUD DATA
     Route::get('/data', [AdminDataController::class, 'index'])->name('data.index');

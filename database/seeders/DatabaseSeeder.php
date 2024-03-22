@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call(EraSeeder::class);
         $this->call(FranchiseSeeder::class);
         $this->call(CategorySeeder::class);
+        $this->call(TagSeeder::class);
         $this->call(DataSeeder::class);
     }
 }
