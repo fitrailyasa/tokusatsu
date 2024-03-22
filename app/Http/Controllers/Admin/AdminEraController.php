@@ -67,7 +67,6 @@ class AdminEraController extends Controller
         ]);
 
         $era->update([
-            'id' => Str::uuid(),
             'name' => $request->name,
         ]);
 

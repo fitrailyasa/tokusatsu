@@ -77,7 +77,6 @@ class AdminCategoryController extends Controller
         ]);
 
         $category->update([
-            'id' => Str::uuid(),
             'era_id' => $request->era_id,
             'franchise_id' => $request->franchise_id,
             'name' => $request->name,

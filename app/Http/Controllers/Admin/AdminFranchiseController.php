@@ -67,7 +67,6 @@ class AdminFranchiseController extends Controller
         ]);
 
         $franchise->update([
-            'id' => Str::uuid(),
             'name' => $request->name,
         ]);
 

@@ -59,7 +59,6 @@ class AdminTagController extends Controller
         ]);
 
         $tag->update([
-            'id' => Str::uuid(),
             'name' => $request->name,
         ]);
 

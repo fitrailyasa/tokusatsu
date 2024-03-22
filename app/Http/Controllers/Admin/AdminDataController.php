@@ -81,7 +81,6 @@ class AdminDataController extends Controller
         $tags = json_encode($request->tags);
 
         $data->update([
-            'id' => Str::uuid(),
             'name' => $request->name,
             'category_id' => $request->category_id,
             'tags' => $tags
