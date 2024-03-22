@@ -19,7 +19,7 @@ class CreateCategoryTable extends Migration
             $table->string('img')->nullable();
             $table->foreignId('era_id')->nullable();
             $table->foreignId('franchise_id')->nullable();
-            $table->timestamps();
+            // $table->timestamps();
         });
     }
 

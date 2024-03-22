@@ -19,7 +19,7 @@ class CreateDataTable extends Migration
             $table->string('img')->nullable();
             $table->foreignId('category_id')->nullable();
             $table->json('tags')->nullable();
-            $table->timestamps();
+            // $table->timestamps();
         });
     }
 

@@ -17,7 +17,7 @@ class CreateEraTable extends Migration
             $table->uuid('id')->primary();
             $table->string('name');
             $table->string('img')->nullable();
-            $table->timestamps();
+            // $table->timestamps();
         });
     }
 
