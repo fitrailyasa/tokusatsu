@@ -1,6 +1,6 @@
 <!-- Tombol untuk membuka modal -->
 <button role="button" class="btn btn-sm mx-1 btn-primary" data-toggle="modal" data-target="#modalFormCreate"><i
-        class="fas fa-plus"></i> Tambah</button>
+        class="fas fa-plus"></i> {{ __('Tambah') }}</button>
 
 <!-- Modal -->
 <div class="modal fade" id="modalFormCreate" tabindex="-1" role="dialog" aria-labelledby="modalFormLabel"
@@ -12,7 +12,7 @@
             @endif
             @csrf
             <div class="modal-header">
-                <h5 class="modal-title" id="modalFormLabel">Tambah @yield('title')</h5>
+                <h5 class="modal-title" id="modalFormLabel">{{ __('Tambah') }} @yield('title')</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -21,7 +21,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="mb-3">
-                            <label class="form-label">Name</label>
+                            <label class="form-label">{{ __('Name') }}</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror"
                                 placeholder="name" name="name" id="name" required>
                             @error('name')
@@ -32,8 +32,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                <button type="submit" class="btn btn-primary">Simpan</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Tutup') }}</button>
+                <button type="submit" class="btn btn-primary">{{ __('Simpan') }}</button>
             </div>
             </form>
         </div>

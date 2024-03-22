@@ -1,6 +1,6 @@
 <!-- Tombol untuk membuka modal -->
 <button role="button" class="btn btn-sm mx-1 btn-primary" data-toggle="modal" data-target="#modalFormCreate"><i
-        class="fas fa-plus"></i> Tambah</button>
+        class="fas fa-plus"></i> {{ __('Tambah') }}</button>
 
 <!-- Modal -->
 <div class="modal fade" id="modalFormCreate" tabindex="-1" role="dialog" aria-labelledby="modalFormLabel"
@@ -12,7 +12,7 @@
             @endif
             @csrf
             <div class="modal-header">
-                <h5 class="modal-title" id="modalFormLabel">Tambah @yield('title')</h5>
+                <h5 class="modal-title" id="modalFormLabel">{{ __('Tambah') }} @yield('title')</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -21,7 +21,7 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="mb-3">
-                            <label class="form-label">Name</label>
+                            <label class="form-label">{{ __('Name') }}</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror"
                                 placeholder="name" name="name" id="name" required>
                             @error('name')
@@ -31,10 +31,10 @@
                     </div>
                     <div class="col-md-4">
                         <div class="mb-3">
-                            <label class="form-label">Franchise</label>
+                            <label class="form-label">{{ __('Franchise') }}</label>
                             <select class="form-select @error('franchise_id') is-invalid @enderror" name="franchise_id"
                                 id="franchise_id" required>
-                                <option selected disabled>Select franchise</option>
+                                <option selected disabled>{{ __('Select Franchise') }}</option>
                                 @foreach ($franchises as $franchise)
                                     <option value="{{ $franchise->id }}">{{ $franchise->name }}</option>
                                 @endforeach
@@ -46,10 +46,10 @@
                     </div>
                     <div class="col-md-4">
                         <div class="mb-3">
-                            <label class="form-label">Era</label>
+                            <label class="form-label">{{ __('Era') }}</label>
                             <select class="form-select @error('era_id') is-invalid @enderror" name="era_id"
                                 id="era_id" required>
-                                <option selected disabled>Select era</option>
+                                <option selected disabled>{{ __('Select Era') }}</option>
                                 @foreach ($eras as $era)
                                     <option value="{{ $era->id }}">{{ $era->name }}</option>
                                 @endforeach
@@ -62,7 +62,7 @@
                     <div class="row">
                         <div class="col-md-12 text-center">
                             <div class="mb-3">
-                                <label class="form-label">Images</label>
+                                <label class="form-label">{{ __('Images') }}</label>
                                 <input id="image-input" accept="image/*" type="file"
                                     class="form-control @error('img') is-invalid @enderror" placeholder="img"
                                     name="img" id="img">
@@ -77,8 +77,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                <button type="submit" class="btn btn-primary">Simpan</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Tutup') }}</button>
+                <button type="submit" class="btn btn-primary">{{ __('Simpan') }}</button>
             </div>
             </form>
         </div>

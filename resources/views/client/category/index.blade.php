@@ -7,7 +7,7 @@
 @section('content')
 
     <div class="container text-center my-5 py-5">
-        <h4 class="text-white font-weight-bold">Category</h4>
+        <h4 class="text-white font-weight-bold">{{ __('Category') }}</h4>
         <div class="text-center d-flex flex-wrap justify-content-center">
             @foreach ($categories as $category)
                 <div class="p-3"><a href="{{ route('category.show', $category->id) }}"

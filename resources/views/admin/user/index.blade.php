@@ -12,11 +12,11 @@
     <table id="example1" class="table table-bordered table-striped">
         <thead>
             <tr>
-                <th>No</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Role</th>
-                <th>More</th>
+                <th>{{ __('No') }}</th>
+                <th>{{ __('Name') }}</th>
+                <th>{{ __('Email') }}</th>
+                <th>{{ __('Role') }}</th>
+                <th>{{ __('More') }}</th>
             </tr>
         </thead>
         <tbody>
@@ -37,11 +37,11 @@
         </tbody>
         <tfoot>
             <tr>
-                <th>No</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Role</th>
-                <th>More</th>
+                <th>{{ __('No') }}</th>
+                <th>{{ __('Name') }}</th>
+                <th>{{ __('Email') }}</th>
+                <th>{{ __('Role') }}</th>
+                <th>{{ __('More') }}</th>
             </tr>
         </tfoot>
     </table>

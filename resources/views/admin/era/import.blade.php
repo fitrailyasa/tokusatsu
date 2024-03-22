@@ -1,6 +1,6 @@
 <!-- Tombol untuk membuka modal -->
 <button role="button" class="btn btn-sm mx-1 btn-success" data-toggle="modal" data-target="#modalImport"><i
-        class="fas fa-upload"></i> Upload</button>
+        class="fas fa-upload"></i>{{ __(' Upload') }}</button>
 
 <!-- Modal -->
 <div class="modal fade" id="modalImport" tabindex="-1" role="dialog" aria-labelledby="modalFormLabel" aria-hidden="true">
@@ -11,7 +11,7 @@
             @endif
             @csrf
             <div class="modal-header">
-                <h5 class="modal-title" id="modalFormLabel">Upload Era</h5>
+                <h5 class="modal-title" id="modalFormLabel">{{ __('Upload Era') }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -20,7 +20,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="mb-1">
-                            <label class="form-label">Upload File</label>
+                            <label class="form-label">{{ __('Upload File') }}</label>
                             <input type="file" class="form-control @error('file') is-invalid @enderror"
                                 placeholder="file" name="file" id="file" required>
                             @error('file')
@@ -32,9 +32,8 @@
             </div>
             <div class="modal-footer">
                 <a class="btn btn-success" href="{{ asset('assets/template/era-template.xlsx') }}"
-                    download="era-template.xlsx">Download
-                    Format</a>
-                <button type="submit" class="btn btn-primary">Simpan</button>
+                    download="era-template.xlsx">{{ __('Download Format') }}</a>
+                <button type="submit" class="btn btn-primary">{{ __('Simpan') }}</button>
             </div>
             </form>
         </div>

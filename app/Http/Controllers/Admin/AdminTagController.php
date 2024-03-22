@@ -14,7 +14,7 @@ class AdminTagController extends Controller
 {
     public function index()
     {
-        $tags = Tag::all();
+        $tags = Tag::orderBy('name')->get();
         return view('admin.tag.index', compact('tags'));
     }
 
@@ -28,7 +28,7 @@ class AdminTagController extends Controller
 
         Excel::import(new TagImport, $file);
 
-        return redirect()->route('admin.tag.index')->with('sukses', 'Berhasil Import Tag!');
+        return redirect()->route('admin.tag.index')->with('sukses', 'Berhasil Import tag!');
     }
 
     public function export()
@@ -47,7 +47,7 @@ class AdminTagController extends Controller
             'name' => $request->name,
         ]);
 
-        return redirect()->route('admin.tag.index')->with('sukses', 'Berhasil Tambah Tag!');
+        return redirect()->route('admin.tag.index')->with('sukses', 'Berhasil Tambah tag!');
     }
 
     public function update(Request $request, $id)
@@ -63,7 +63,7 @@ class AdminTagController extends Controller
             'name' => $request->name,
         ]);
 
-        return redirect()->route('admin.tag.index')->with('sukses', 'Berhasil Edit Tag!');
+        return redirect()->route('admin.tag.index')->with('sukses', 'Berhasil Edit tag!');
     }
 
     public function destroy($id)
@@ -71,6 +71,6 @@ class AdminTagController extends Controller
         $tag = Tag::findOrFail($id);
         $tag->delete();
 
-        return redirect()->route('admin.tag.index')->with('sukses', 'Berhasil Hapus Tag!');
+        return redirect()->route('admin.tag.index')->with('sukses', 'Berhasil Hapus tag!');
     }
 }

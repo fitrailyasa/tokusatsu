@@ -24,11 +24,11 @@
     <table id="" class="table table-bordered table-striped">
         <thead>
             <tr>
-                <th>No</th>
-                <th>Name</th>
-                <th>Category</th>
-                <th>Images</th>
-                <th>More</th>
+                <th>{{ __('No') }}</th>
+                <th>{{ __('Name') }}</th>
+                <th>{{ __('Category') }}</th>
+                <th>{{ __('Images') }}</th>
+                <th>{{ __('More') }}</th>
             </tr>
         </thead>
         <tbody>
@@ -59,11 +59,11 @@
         </tbody>
         <tfoot>
             <tr>
-                <th>No</th>
-                <th>Name</th>
-                <th>Category</th>
-                <th>Images</th>
-                <th>More</th>
+                <th>{{ __('No') }}</th>
+                <th>{{ __('Name') }}</th>
+                <th>{{ __('Category') }}</th>
+                <th>{{ __('Images') }}</th>
+                <th>{{ __('More') }}</th>
             </tr>
             <tr>
                 <th colspan="5">

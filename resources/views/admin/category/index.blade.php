@@ -20,12 +20,12 @@
     <table id="example1" class="table table-bordered table-striped">
         <thead>
             <tr>
-                <th>No</th>
-                <th>Franchise</th>
-                <th>Name</th>
-                <th>Era</th>
-                <th>Images</th>
-                <th>More</th>
+                <th>{{ __('No') }}</th>
+                <th>{{ __('Franchise') }}</th>
+                <th>{{ __('Name') }}</th>
+                <th>{{ __('Era') }}</th>
+                <th>{{ __('Images') }}</th>
+                <th>{{ __('More') }}</th>
             </tr>
         </thead>
         <tbody>
@@ -59,12 +59,12 @@
         </tbody>
         <tfoot>
             <tr>
-                <th>No</th>
-                <th>Franchise</th>
-                <th>Name</th>
-                <th>Era</th>
-                <th>Images</th>
-                <th>More</th>
+                <th>{{ __('No') }}</th>
+                <th>{{ __('Franchise') }}</th>
+                <th>{{ __('Name') }}</th>
+                <th>{{ __('Era') }}</th>
+                <th>{{ __('Images') }}</th>
+                <th>{{ __('More') }}</th>
             </tr>
         </tfoot>
     </table>
