@@ -33,14 +33,31 @@
                     <td>{{ $era->name ?? '-' }}</td>
                     <td>
                         @if ($era->img == null)
-                            <a href="{{ asset('assets/profile/default.png') }}">
-                                <img src="{{ asset('assets/profile/default.png') }}" alt="{{ $era->name }}" width="100">
-                            </a>
+                            <img src="{{ asset('assets/profile/default.png') }}" alt="{{ $era->name }}" width="100">
                         @else
-                            <a href="{{ asset('assets/img/' . $era->img) ?? asset('assets/profile/default.png') }}">
-                                <img src="{{ asset('assets/img/' . $era->img) ?? asset('assets/profile/default.png') }}"
-                                    alt="{{ $era->name }}" width="100">
+                            <a href="#" data-toggle="modal" data-target="#myModal{{ $era->id }}">
+                                <img class="img img-fluid rounded" src="{{ asset('assets/img/' . $era->img) }}"
+                                    alt="{{ $era->img }}" width="100">
                             </a>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="myModal{{ $era->id }}" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <a href="{{ asset('assets/img/' . $era->img) }}">
+                                                <img class="img img-fluid" src="{{ asset('assets/img/' . $era->img) }}"
+                                                    alt="{{ $era->img }}">
+                                            </a>
+                                            <!-- Tombol Download -->
+                                            <a href="{{ asset('assets/img/' . $era->img) }}"
+                                                download="{{ $era->img }}" class="btn btn-success mt-2 col-12">Download
+                                                Gambar</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         @endif
                     </td>
                     <td class="manage-row">

@@ -19,8 +19,9 @@ class AdminDataController extends Controller
         $tags = Tag::all();
         $categories = Category::all();
         $datas = Data::paginate(10);
+        $counter = ($datas->currentPage() - 1) * $datas->perPage() + 1;
         
-        return view('admin.data.index', compact('datas', 'categories', 'tags'));
+        return view("admin.data.index", compact('datas', 'categories', 'tags', 'counter'));
     }
 
     public function import(Request $request)
@@ -33,7 +34,7 @@ class AdminDataController extends Controller
 
         Excel::import(new DataImport, $file);
 
-        return redirect()->route('admin.data.index')->with('sukses', 'Berhasil Import Data!');
+        return redirect()->route("admin.data.index")->with('sukses', 'Berhasil Import Data!');
     }
 
     public function export()
@@ -66,7 +67,7 @@ class AdminDataController extends Controller
             $img->move('../public/assets/img/', $file_name);
         }
 
-        return redirect()->route('admin.data.index')->with('sukses', 'Berhasil Tambah Data!');
+        return redirect()->route("admin.data.index")->with('sukses', 'Berhasil Tambah Data!');
     }
 
     public function update(Request $request, $id)
@@ -94,7 +95,7 @@ class AdminDataController extends Controller
             $img->move('../public/assets/img/', $file_name);
         }
 
-        return redirect()->route('admin.data.index')->with('sukses', 'Berhasil Edit Data!');
+        return redirect()->route("admin.data.index")->with('sukses', 'Berhasil Edit Data!');
     }
 
     public function destroy($id)
@@ -102,13 +103,13 @@ class AdminDataController extends Controller
         $data = Data::findOrFail($id);
         $data->delete();
 
-        return redirect()->route('admin.data.index')->with('sukses', 'Berhasil Hapus Data!');
+        return redirect()->route("admin.data.index")->with('sukses', 'Berhasil Hapus Data!');
     }
 
     public function destroyAll()
     {
         Data::truncate();
 
-        return redirect()->route('admin.data.index')->with('sukses', 'Berhasil Hapus Semua Data!');
+        return redirect()->route("admin.data.index")->with('sukses', 'Berhasil Hapus Semua Data!');
     }
 }
