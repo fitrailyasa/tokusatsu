@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Franchise extends Model
 {
     use HasFactory;
+    public $timestamps = false;
 
     protected $table = 'franchise';
     protected $primaryKey = 'id';
