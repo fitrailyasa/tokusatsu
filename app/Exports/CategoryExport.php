@@ -16,8 +16,8 @@ class CategoryExport implements FromCollection, WithHeadings
             return [
                 'Name' => $category->name ?? '',
                 'Img' => $category->img ?? '',
-                'Era' => $category->era->name ?? '',
-                'Franchise' => $category->franchise->name ?? '',
+                'Era' => $category->Era->name ?? '',
+                'Franchise' => $category->Franchise->name ?? '',
             ];
         });
     }

@@ -14,7 +14,7 @@ class Era extends Model
     public $incrementing = false;
     protected $fillable = ['id', 'name', 'img'];
 
-    public function category()
+    public function Category()
     {
         return $this->hasMany(Category::class);
     }

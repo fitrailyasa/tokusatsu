@@ -14,17 +14,17 @@ class Category extends Model
     public $incrementing = false;   
     protected $fillable = ['id', 'name', 'img', 'era_id', 'franchise_id'];
 
-    public function data()
+    public function Data()
     {
         return $this->hasMany(Data::class);
     }
 
-    public function era()
+    public function Era()
     {
         return $this->belongsTo(Era::class, 'era_id', 'id');
     }
 
-    public function franchise()
+    public function Franchise()
     {
         return $this->belongsTo(Franchise::class, 'franchise_id', 'id');
     }

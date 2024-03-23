@@ -32,9 +32,9 @@
             @foreach ($categories as $category)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $category->franchise->name ?? '-' }}</td>
+                    <td>{{ $category->Franchise->name ?? '-' }}</td>
                     <td>{{ $category->name ?? '-' }}</td>
-                    <td>{{ $category->era->name ?? '-' }}</td>
+                    <td>{{ $category->Era->name ?? '-' }}</td>
                     <td>
                         @if ($category->img == null)
                             <a href="{{ asset('assets/profile/default.png') }}">

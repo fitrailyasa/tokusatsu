@@ -49,7 +49,7 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $data->name ?? '-' }}</td>
-                    <td>{{ $data->category->name ?? '-' }}</td>
+                    <td>{{ $data->Category->name ?? '-' }}</td>
                     <td>
                         @if ($data->img == null)
                             <a href="{{ asset('assets/profile/default.png') }}">

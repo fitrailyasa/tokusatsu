@@ -14,7 +14,8 @@ class DataExport implements FromCollection, WithHeadings
             return [
                 'Name' => $data->name ?? '',
                 'Img' => $data->img ?? '',
-                'Category' => $data->category->name ?? '',
+                'Category' => $data->Category->name ?? '',
+                'Tags' => $data->tags ?? '',
             ];
         });
     }
@@ -25,6 +26,7 @@ class DataExport implements FromCollection, WithHeadings
             'Name',
             'Img',
             'Category',
+            'Tags',
         ];
     }
 }

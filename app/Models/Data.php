@@ -14,7 +14,7 @@ class Data extends Model
     public $incrementing = false;
     protected $fillable = ['id', 'name', 'img', 'category_id', 'tags'];
 
-    public function category()
+    public function Category()
     {
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }

@@ -25,7 +25,7 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $user->name ?? '-' }}</td>
                     <td>{{ $user->email ?? '-' }}</td>
-                    <td>{{ $user->roles->name ?? '-' }}</td>
+                    <td>{{ $user->Roles->name ?? '-' }}</td>
                     <td class="manage-row">
                         @if (auth()->user()->roles_id == 1)
                             @include('admin.user.edit')
