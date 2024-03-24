@@ -15,4 +15,8 @@ class Tag extends Model
     public $incrementing = false;
     protected $fillable = ['id', 'name'];
 
+    public function datas()
+    {
+        return $this->belongsToMany(Data::class, 'data_tags', 'tag_id', 'data_id');
+    }
 }

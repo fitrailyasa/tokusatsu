@@ -47,17 +47,15 @@ class AdminDataController extends Controller
         $request->validate([
             'name' => 'required',
             'category_id' => 'required',
-            'tags' => 'required|array',
         ]);
-
-        $tags = json_encode($request->tags);
 
         $data = Data::create([
             'id' => Str::uuid(),
             'name' => $request->name,
             'category_id' => $request->category_id,
-            'tags' => $tags
         ]);
+
+        $data->tags()->attach($request->tags);
 
         if ($request->hasFile('img')) {
             $img = $request->file('img');
@@ -79,13 +77,12 @@ class AdminDataController extends Controller
             'category_id' => 'required',
         ]);
 
-        $tags = json_encode($request->tags);
-
         $data->update([
             'name' => $request->name,
             'category_id' => $request->category_id,
-            'tags' => $tags
         ]);
+
+        $data->tags()->attach($request->tags);
 
         if ($request->hasFile('img')) {
             $img = $request->file('img');

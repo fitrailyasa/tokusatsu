@@ -81,18 +81,15 @@
                     </td>
                     {{-- Json Data Tags --}}
                     <td>
-                        @if (!empty($data->tags))
-                            @foreach (json_decode($data->tags) as $tagId)
-                                @php
-                                    $tag = $tags->where('id', $tagId)->first();
-                                @endphp
-                                @if ($tag)
-                                    <span class="badge badge-primary">{{ $tag->name }}</span>
-                                @endif
-                            @endforeach
-                        @else
-                            <span class="badge badge-secondary">No tags</span>
-                        @endif
+                        @php
+                            $tagNames = $data->tags->pluck('name')->toArray();
+                            $tagsString = implode(', ', $tagNames);
+                            $decodedTags = explode(', ', $tagsString);
+                        @endphp
+
+                        @foreach ($decodedTags as $tag)
+                            <span class="badge badge-primary">{{ $tag }}</span>
+                        @endforeach
                     </td>
                     <td class="manage-row">
                         @if (auth()->user()->roles_id == 1)

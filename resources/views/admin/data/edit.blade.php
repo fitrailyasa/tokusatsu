@@ -85,7 +85,7 @@
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="tags[]"
                                         value="{{ $tag->id }}" id="tag{{ $tag->id }}"
-                                        {{ in_array($tag->id, json_decode($data->tags, true) ?? [], true) ? 'checked' : '' }}>
+                                        {{ in_array($tag->id, $data->tags->pluck('id')->toArray()) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="tag{{ $tag->id }}">
                                         {{ $tag->name }}
                                     </label>

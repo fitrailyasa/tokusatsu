@@ -72,7 +72,7 @@
                 </form>
                 <a href="#" class="nav-link text-white @yield('')"
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    <i class="nav-icon fas fa-sign-out"></i>
+                    <i class="nav-icon fas fa-sign-out-alt"></i>
                     <p>
                         Logout
                     </p>

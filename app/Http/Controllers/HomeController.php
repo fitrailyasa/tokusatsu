@@ -8,21 +8,6 @@ use App\Models\Category;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index()
     {
         $datas = Data::all();
@@ -40,7 +25,9 @@ class HomeController extends Controller
 
         $datas = Data::where('name', 'like', $query)
             ->orWhere('img', 'like', $query)
-            ->orWhere('category_id', 'like', $query)
+            ->orWhereHas('tags', function($q) use ($query) {
+                $q->where('name', 'like', $query);
+            })
             ->paginate(50);
 
         return view('client.search', compact('datas'));

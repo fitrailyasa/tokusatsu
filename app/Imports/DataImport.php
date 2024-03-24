@@ -35,7 +35,6 @@ class DataImport implements ToModel, WithHeadingRow
             'name' => $row['name'],
             'category_id' => $category->id ?? null,
             'img' => $row['img'] ?? null,
-            'tags' => json_encode($row['tags'])
         ]);
     }
 }
