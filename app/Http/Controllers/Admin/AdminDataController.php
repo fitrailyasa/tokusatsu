@@ -82,7 +82,7 @@ class AdminDataController extends Controller
             'category_id' => $request->category_id,
         ]);
 
-        $data->tags()->attach($request->tags);
+        $data->tags()->sync($request->tags);
 
         if ($request->hasFile('img')) {
             $img = $request->file('img');
