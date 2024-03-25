@@ -17,6 +17,7 @@ class DataSeeder extends Seeder
     {
         $datas = [];
 
+        // Kamen Rider
         for ($i = 1; $i <= 12; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -26,6 +27,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Kamen Rider V3
         for ($i = 1; $i <= 9; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -35,6 +37,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Kamen Rider X
         for ($i = 1; $i <= 1; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -44,6 +47,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Kamen Rider Amazon
         for ($i = 1; $i <= 2; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -53,6 +57,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Kamen Rider Stronger
         for ($i = 1; $i <= 2; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -62,6 +67,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Kamen Rider SkyRider
         for ($i = 1; $i <= 2; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -71,6 +77,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Kamen Rider Super-1
         for ($i = 1; $i <= 6; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -80,6 +87,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Kamen Rider ZX
         for ($i = 1; $i <= 1; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -89,6 +97,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Kamen Rider Black
         for ($i = 1; $i <= 2; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -98,6 +107,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Kamen Rider Black RX
         for ($i = 1; $i <= 5; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -107,6 +117,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Kamen Rider Shin
         for ($i = 1; $i <= 1; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -116,6 +127,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Kamen Rider ZO
         for ($i = 1; $i <= 1; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -125,6 +137,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Kamen Rider J
         for ($i = 1; $i <= 1; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -134,6 +147,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Kamen Rider Kuuga
         for ($i = 1; $i <= 23; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -143,6 +157,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Kamen Rider Kuuga
         for ($i = 1; $i <= 28; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -152,6 +167,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Kamen Rider Agito
         for ($i = 1; $i <= 22; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -161,6 +177,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Villain Kamen Rider Agito
         for ($i = 1; $i <= 30; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -170,6 +187,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Kamen Rider Ryuki
         for ($i = 1; $i <= 21; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -179,6 +197,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Villain Kamen Rider Ryuki
         for ($i = 1; $i <= 30; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -188,24 +207,27 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Kamen Rider Faiz (555)
         for ($i = 1; $i <= 19; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
-                'name' => "Kamen Rider Faiz ($i)",
+                'name' => "Kamen Rider Faiz (555) ($i)",
                 'img' => "Kamen Rider/Era Heisei/4. Faiz/1.4 FaizRiders ($i).jpg",
                 'category_id' => $this->getOrCreateCategoryId('555'),
             ];
         }
 
+        // Villain Kamen Rider Faiz (555)
         for ($i = 1; $i <= 47; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
-                'name' => "Villain Kamen Rider Faiz ($i)",
+                'name' => "Villain Kamen Rider Faiz (555) ($i)",
                 'img' => "Kamen Rider/Era Heisei/4. Faiz/1.4.1 Orphnoch ($i).jpg",
                 'category_id' => $this->getOrCreateCategoryId('555'),
             ];
         }
 
+        // Kamen Rider Blade
         for ($i = 1; $i <= 23; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -215,6 +237,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Villain Kamen Rider Blade
         for ($i = 1; $i <= 49; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -224,6 +247,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Kamen Rider Hibiki
         for ($i = 1; $i <= 28; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -233,6 +257,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Villain Kamen Rider Hibiki
         for ($i = 1; $i <= 30; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -242,6 +267,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Kamen Rider Kabuto
         for ($i = 1; $i <= 28; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -251,6 +277,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Villain Kamen Rider Kabuto
         for ($i = 1; $i <= 41; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -260,6 +287,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Kamen Rider Den-O
         for ($i = 1; $i <= 60; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -269,6 +297,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Villain Kamen Rider Den-O
         for ($i = 1; $i <= 54; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -278,6 +307,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Kamen Rider Kiva
         for ($i = 1; $i <= 35; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -287,6 +317,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Villain Kamen Rider Kiva
         for ($i = 1; $i <= 45; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -296,6 +327,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Kamen Rider Decade
         for ($i = 1; $i <= 60; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -305,6 +337,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Villain Kamen Rider Decade
         for ($i = 1; $i <= 30; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -314,6 +347,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Kamen Rider W
         for ($i = 1; $i <= 69; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -323,6 +357,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Villain Kamen Rider W
         for ($i = 1; $i <= 51; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -332,6 +367,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Kamen Rider Ooo
         for ($i = 1; $i <= 69; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -341,6 +377,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Villain Kamen Rider Ooo
         for ($i = 1; $i <= 55; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -350,6 +387,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Kamen Rider Fourze
         for ($i = 1; $i <= 63; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -359,6 +397,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Villain Kamen Rider Fourze
         for ($i = 1; $i <= 47; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -368,6 +407,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Kamen Rider Wizard
         for ($i = 1; $i <= 50; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -377,6 +417,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Villain Kamen Rider Wizard
         for ($i = 1; $i <= 39; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -386,6 +427,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Kamen Rider Gaim
         for ($i = 1; $i <= 84; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -395,6 +437,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Villain Kamen Rider Gaim
         for ($i = 1; $i <= 34; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -404,6 +447,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Kamen Rider Drive
         for ($i = 1; $i <= 76; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -413,6 +457,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Villain Kamen Rider Drive
         for ($i = 1; $i <= 55; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -422,6 +467,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Kamen Rider Ghost
         for ($i = 1; $i <= 60; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -431,6 +477,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Villain Kamen Rider Ghost
         for ($i = 1; $i <= 49; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -440,6 +487,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Kamen Rider Ex-Aid
         for ($i = 1; $i <= 87; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -449,6 +497,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Villain Kamen Rider Ex-Aid
         for ($i = 1; $i <= 42; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -458,6 +507,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Kamen Rider Build
         for ($i = 1; $i <= 146; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -467,6 +517,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Villain Kamen Rider Build
         for ($i = 1; $i <= 30; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -476,6 +527,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Kamen Rider Zi-O
         for ($i = 1; $i <= 58; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -485,6 +537,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Villain Kamen Rider Zi-O
         for ($i = 1; $i <= 35; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -494,6 +547,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Kamen Rider Shinobi
         for ($i = 1; $i <= 11; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -503,6 +557,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Kamen Rider Zero-One
         for ($i = 1; $i <= 113; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -512,6 +567,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Humagear
         for ($i = 1; $i <= 59; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -521,6 +577,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Kamen Rider Saber
         for ($i = 1; $i <= 125; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -530,6 +587,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Megid
         for ($i = 1; $i <= 34; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -539,6 +597,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Kamen Rider Revice
         for ($i = 1; $i <= 137; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -548,6 +607,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Deadman
         for ($i = 1; $i <= 58; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -557,6 +617,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Geats
         for ($i = 1; $i <= 273; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -566,6 +627,7 @@ class DataSeeder extends Seeder
             ];
         }
 
+        // Gotchard
         for ($i = 1; $i <= 3; $i++) {
             $datas[] = [
                 'id' => Str::uuid(),
@@ -1248,11 +1310,12 @@ class DataSeeder extends Seeder
     {
         $category = Category::where('name', $name)->first();
         if (!$category) {
-            $category = category::create([
+            $category = Category::create([
                 'id' => Str::uuid(),
                 'name' => $name,
             ]);
         }
         return $category->id;
     }
+
 }

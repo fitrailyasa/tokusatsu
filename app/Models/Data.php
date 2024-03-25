@@ -13,7 +13,6 @@ class Data extends Model
     protected $table = 'data';
     protected $primaryKey = 'id';
     public $incrementing = false;
-    // protected $fillable = ['id', 'name', 'img', 'category_id', 'tags'];
     protected $fillable = ['id', 'name', 'img', 'category_id'];
 
     public function Category()
