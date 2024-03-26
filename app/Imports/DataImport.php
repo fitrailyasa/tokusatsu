@@ -27,6 +27,23 @@ class DataImport implements ToModel, WithStartRow
 
         $existingData = Data::where('name', $row[1])->first();
 
+        if (!empty($row[4])) {
+            $tags = explode(',', $row[4]);
+            foreach ($tags as $tagName) {
+                $tagName = trim($tagName);
+                $tag = Tag::where('name', $tagName)->first();
+        
+                if (!$tag) {
+                    $tag = new Tag();
+                    $tag->name = $tagName;
+                    $tag->id = Str::uuid();
+                    $tag->save();
+                }
+        
+                $existingData->tags()->syncWithoutDetaching([$tag->id]);
+            }
+        }
+
         if ($existingData) {
             return null;
         }
@@ -39,22 +56,6 @@ class DataImport implements ToModel, WithStartRow
         ]);
 
         $data->save();
-
-        if (!empty($row[4])) {
-            $tags = explode(',', $row[4]);
-            foreach ($tags as $tagName) {
-                $tag = Tag::firstOrNew([
-                    'name' => trim($tagName),
-                ]);
-
-                if (!$tag->exists) {
-                    $tag->id = Str::uuid();
-                    $tag->save();
-                }
-
-                $data->tags()->attach($tag->id);
-            }
-        }
 
         return $data;
     }
