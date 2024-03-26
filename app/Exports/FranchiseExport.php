@@ -19,6 +19,7 @@ class FranchiseExport implements FromCollection, WithHeadings
                 'ID' => '', 
                 'Name' => $franchise->name ?? '',
                 'Img' => $franchise->img ?? '',
+                'Desc' => $franchise->desc ?? '',
             ];
         }
 
@@ -35,6 +36,7 @@ class FranchiseExport implements FromCollection, WithHeadings
                 '',
                 'Name',
                 'Img',
+                'Desc',
             ]
         ];
     }

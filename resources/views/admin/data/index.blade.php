@@ -8,9 +8,9 @@
     @include('admin.data.create')
 @endsection
 
-@section('deleteAll')
+{{-- @section('deleteAll')
     @include('admin.data.deleteAll')
-@endsection
+@endsection --}}
 
 @section('import')
     @include('admin.data.import')

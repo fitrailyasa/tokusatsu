@@ -20,18 +20,20 @@
     <table id="example1" class="table table-bordered table-striped">
         <thead>
             <tr>
-                <th>{{ __('No') }}</th>
+                <th class="d-none d-sm-table-cell">{{ __('No') }}</th>
                 <th>{{ __('Name') }}</th>
-                <th>{{ __('Images') }}</th>
+                <th class="d-none d-lg-table-cell">{{ __('Desc') }}</th>
+                <th class="d-none d-lg-table-cell">{{ __('Images') }}</th>
                 <th>{{ __('More') }}</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($franchises as $franchise)
                 <tr>
-                    <td>{{ $loop->iteration }}</td>
+                    <td class="d-none d-sm-table-cell">{{ $loop->iteration }}</td>
                     <td>{{ $franchise->name ?? '-' }}</td>
-                    <td>
+                    <td class="d-none d-lg-table-cell">{{ $franchise->desc ?? '-' }}</td>
+                    <td class="d-none d-lg-table-cell">
                         @if ($franchise->img == null)
                             <img src="{{ asset('assets/profile/default.png') }}" alt="{{ $franchise->name }}" width="100">
                         @else
@@ -73,9 +75,10 @@
         </tbody>
         <tfoot>
             <tr>
-                <th>{{ __('No') }}</th>
+                <th class="d-none d-sm-table-cell">{{ __('No') }}</th>
                 <th>{{ __('Name') }}</th>
-                <th>{{ __('Images') }}</th>
+                <th class="d-none d-lg-table-cell">{{ __('Desc') }}</th>
+                <th class="d-none d-lg-table-cell">{{ __('Images') }}</th>
                 <th>{{ __('More') }}</th>
             </tr>
         </tfoot>

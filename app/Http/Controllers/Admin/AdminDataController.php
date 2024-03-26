@@ -47,6 +47,7 @@ class AdminDataController extends Controller
         $request->validate([
             'name' => 'required',
             'category_id' => 'required',
+            'img' => 'mimes:jpg,jpeg,png|max:2048',
         ]);
 
         $data = Data::create([
@@ -75,6 +76,7 @@ class AdminDataController extends Controller
         $request->validate([
             'name' => 'required',
             'category_id' => 'required',
+            'img' => 'mimes:jpg,jpeg,png|max:2048',
         ]);
 
         $data->update([

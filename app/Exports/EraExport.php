@@ -19,6 +19,7 @@ class EraExport implements FromCollection, WithHeadings
                 'ID' => '', 
                 'Name' => $era->name ?? '',
                 'Img' => $era->img ?? '',
+                'Desc' => $era->desc ?? '',
             ];
         }
 
@@ -35,6 +36,7 @@ class EraExport implements FromCollection, WithHeadings
                 '',
                 'Name',
                 'Img',
+                'Desc',
             ]
         ];
     }

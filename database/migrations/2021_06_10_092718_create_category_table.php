@@ -16,6 +16,7 @@ class CreateCategoryTable extends Migration
         Schema::create('category', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name');
+            $table->text('desc')->nullable();
             $table->string('img')->nullable();
             $table->foreignId('era_id')->nullable();
             $table->foreignId('franchise_id')->nullable();

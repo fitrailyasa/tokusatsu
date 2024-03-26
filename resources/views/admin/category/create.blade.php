@@ -1,6 +1,6 @@
 <!-- Tombol untuk membuka modal -->
 <button role="button" class="btn btn-sm mx-1 btn-primary" data-toggle="modal" data-target="#modalFormCreate"><i
-        class="fas fa-plus"></i> {{ __('Tambah') }}</button>
+        class="fas fa-plus"></i><span class="d-none d-sm-inline"> {{ __('Tambah') }}</span></button>
 
 <!-- Modal -->
 <div class="modal fade" id="modalFormCreate" tabindex="-1" role="dialog" aria-labelledby="modalFormLabel"
@@ -57,6 +57,18 @@
                             @error('era_id')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="mb-3">
+                                <label class="form-label">{{ __('Description') }}</label>
+                                <textarea class="form-control @error('desc') is-invalid @enderror" placeholder="description" name="desc"
+                                    id="desc" rows="3"></textarea>
+                                @error('desc')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
                         </div>
                     </div>
                     <div class="row">

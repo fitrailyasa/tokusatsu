@@ -13,7 +13,7 @@ class Era extends Model
     protected $table = 'era';
     protected $primaryKey = 'id';
     public $incrementing = false;
-    protected $fillable = ['id', 'name', 'img'];
+    protected $fillable = ['id', 'name', 'desc', 'img'];
 
     public function Category()
     {

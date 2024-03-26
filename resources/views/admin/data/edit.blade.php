@@ -1,6 +1,7 @@
 <!-- Tombol untuk membuka modal -->
 <button role="button" class="btn btn-sm btn-warning mr-2" data-bs-toggle="modal"
-    data-bs-target=".formEdit{{ $data->id }}"><i class="fas fa-edit"></i> {{ __('Edit') }}</button>
+    data-bs-target=".formEdit{{ $data->id }}"><i class="fas fa-edit"></i><span class="d-none d-sm-inline">
+        {{ __('Edit') }}</span></button>
 
 <!-- Modal -->
 <div class="modal fade formEdit{{ $data->id }}" tabindex="-1" role="dialog" aria-hidden="">

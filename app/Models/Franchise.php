@@ -13,7 +13,7 @@ class Franchise extends Model
     protected $table = 'franchise';
     protected $primaryKey = 'id';
     public $incrementing = false;
-    protected $fillable = ['id', 'name', 'img'];
+    protected $fillable = ['id', 'name', 'desc', 'img'];
 
     public function Category()
     {

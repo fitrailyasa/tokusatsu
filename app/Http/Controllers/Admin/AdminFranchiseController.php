@@ -40,11 +40,14 @@ class AdminFranchiseController extends Controller
     {
         $request->validate([
             'name' => 'required|max:255',
+            'desc' => 'max:255',
+            'img' => 'mimes:jpg,jpeg,png|max:2048',
         ]);
 
         $franchise = Franchise::create([
             'id' => Str::uuid(),
             'name' => $request->name,
+            'desc' => $request->desc,
         ]);
 
         if ($request->hasFile('img')) {
@@ -64,10 +67,13 @@ class AdminFranchiseController extends Controller
 
         $request->validate([
             'name' => 'required|max:255',
+            'desc' => 'max:255',
+            'img' => 'mimes:jpg,jpeg,png|max:2048',
         ]);
 
         $franchise->update([
             'name' => $request->name,
+            'desc' => $request->desc,
         ]);
 
         if ($request->hasFile('img')) {

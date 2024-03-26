@@ -3,8 +3,6 @@
 namespace App\Exports;
 
 use App\Models\Category;
-use App\Models\Era;
-use App\Models\Franchise;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
@@ -21,6 +19,7 @@ class CategoryExport implements FromCollection, WithHeadings
                 'ID' => '', 
                 'Name' => $category->name ?? '',
                 'Img' => $category->img ?? '',
+                'Desc' => $category->desc ?? '',
                 'Era' => $category->Era->name ?? '',
                 'Franchise' => $category->Franchise->name ?? '',
             ];
@@ -39,6 +38,7 @@ class CategoryExport implements FromCollection, WithHeadings
                 '',
                 'Name',
                 'Img',
+                'Desc',
                 'Era',
                 'Franchise',
             ],

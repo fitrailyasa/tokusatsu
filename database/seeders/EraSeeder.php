@@ -18,17 +18,14 @@ class EraSeeder extends Seeder
             [
                 'id' => Str::uuid(),
                 'name' => 'Showa',
-                'img' => null,
             ],
             [
                 'id' => Str::uuid(),
                 'name' => 'Heisei',
-                'img' => null,
             ],
             [
                 'id' => Str::uuid(),
                 'name' => 'Reiwa',
-                'img' => null,
             ],
         ];
         Era::query()->insert($eras);

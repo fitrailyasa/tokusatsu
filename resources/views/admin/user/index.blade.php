@@ -12,20 +12,20 @@
     <table id="example1" class="table table-bordered table-striped">
         <thead>
             <tr>
-                <th>{{ __('No') }}</th>
+                <th class="d-none d-sm-table-cell">{{ __('No') }}</th>
                 <th>{{ __('Name') }}</th>
-                <th>{{ __('Email') }}</th>
-                <th>{{ __('Role') }}</th>
+                <th class="d-none d-lg-table-cell">{{ __('Email') }}</th>
+                <th class="d-none d-lg-table-cell">{{ __('Role') }}</th>
                 <th>{{ __('More') }}</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($users->where('email', '!=', 'super@admin.com') as $user)
                 <tr>
-                    <td>{{ $loop->iteration }}</td>
+                    <td class="d-none d-sm-table-cell">{{ $loop->iteration }}</td>
                     <td>{{ $user->name ?? '-' }}</td>
-                    <td>{{ $user->email ?? '-' }}</td>
-                    <td>{{ $user->Roles->name ?? '-' }}</td>
+                    <td class="d-none d-lg-table-cell">{{ $user->email ?? '-' }}</td>
+                    <td class="d-none d-lg-table-cell">{{ $user->Roles->name ?? '-' }}</td>
                     <td class="manage-row">
                         @if (auth()->user()->roles_id == 1)
                             @include('admin.user.edit')
@@ -37,10 +37,10 @@
         </tbody>
         <tfoot>
             <tr>
-                <th>{{ __('No') }}</th>
+                <th class="d-none d-sm-table-cell">{{ __('No') }}</th>
                 <th>{{ __('Name') }}</th>
-                <th>{{ __('Email') }}</th>
-                <th>{{ __('Role') }}</th>
+                <th class="d-none d-lg-table-cell">{{ __('Email') }}</th>
+                <th class="d-none d-lg-table-cell">{{ __('Role') }}</th>
                 <th>{{ __('More') }}</th>
             </tr>
         </tfoot>

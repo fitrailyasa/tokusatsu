@@ -18,22 +18,18 @@ class FranchiseSeeder extends Seeder
             [
                 'id' => Str::uuid(),
                 'name' => 'Ultraman',
-                'img' => null,
             ],
             [
                 'id' => Str::uuid(),
                 'name' => 'Kamen Rider',
-                'img' => null,
             ],
             [
                 'id' => Str::uuid(),
                 'name' => 'Super Sentai',
-                'img' => null,
             ],
             [
                 'id' => Str::uuid(),
                 'name' => 'Garo',
-                'img' => null,
             ],
         ];
         Franchise::query()->insert($franchises);

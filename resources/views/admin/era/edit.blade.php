@@ -1,6 +1,7 @@
 <!-- Tombol untuk membuka modal -->
 <button role="button" class="btn btn-sm btn-warning mr-2" data-bs-toggle="modal"
-    data-bs-target=".bd-example-modal-sm{{ $era->id }}"><i class="fas fa-edit"></i> {{ __('Edit') }}</button>
+    data-bs-target=".bd-example-modal-sm{{ $era->id }}"><i class="fas fa-edit"></i><span class="d-none d-sm-inline">
+        {{ __('Edit') }}</span></button>
 
 <!-- Modal -->
 <div class="modal fade bd-example-modal-sm{{ $era->id }}" tabindex="-1" role="dialog" aria-hidden="">
@@ -37,6 +38,18 @@
                                 class="form-control @error('img') is-invalid @enderror" placeholder="img" name="img"
                                 id="img">
                             @error('img')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="mb-3">
+                            <label class="form-label">{{ __('Description') }}</label>
+                            <textarea class="form-control @error('desc') is-invalid @enderror" placeholder="description" name="desc"
+                                id="desc" rows="3">{{ $era->desc }}</textarea>
+                            @error('desc')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>

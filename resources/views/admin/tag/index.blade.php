@@ -20,7 +20,7 @@
     <table id="example1" class="table table-bordered table-striped">
         <thead>
             <tr>
-                <th>{{ __('No') }}</th>
+                <th class="d-none d-sm-table-cell">{{ __('No') }}</th>
                 <th>{{ __('Name') }}</th>
                 <th>{{ __('More') }}</th>
             </tr>
@@ -28,7 +28,7 @@
         <tbody>
             @foreach ($tags as $tag)
                 <tr>
-                    <td>{{ $loop->iteration }}</td>
+                    <td class="d-none d-sm-table-cell">{{ $loop->iteration }}</td>
                     <td>{{ $tag->name ?? '-' }}</td>
                     <td class="manage-row">
                         @if (auth()->user()->roles_id == 1)
@@ -41,7 +41,7 @@
         </tbody>
         <tfoot>
             <tr>
-                <th>{{ __('No') }}</th>
+                <th class="d-none d-sm-table-cell">{{ __('No') }}</th>
                 <th>{{ __('Name') }}</th>
                 <th>{{ __('More') }}</th>
             </tr>

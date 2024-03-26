@@ -43,6 +43,7 @@ class CategoryImport implements ToModel, WithStartRow
             'id' => Str::uuid(),
             'name' => $row[2],
             'img' => $row[4] ?? null,
+            'desc' => $row[5] ?? null,
             'era_id' => $era->id ?? null,
             'franchise_id' => $franchise->id ?? null,
         ]);

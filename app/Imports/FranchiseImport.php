@@ -13,6 +13,7 @@ class FranchiseImport implements ToModel, WithStartRow
     {
         $name = $row[1];
         $img = $row[2] ?? null;
+        $desc = $row[3] ?? null;
 
         $existingFranchise = Franchise::where('name', $name)->first();
 
@@ -21,6 +22,7 @@ class FranchiseImport implements ToModel, WithStartRow
                 'id' => Str::uuid(),
                 'name' => $name,
                 'img' => $img,
+                'desc' => $desc,
             ]);
         }
 

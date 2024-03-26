@@ -46,6 +46,8 @@ class AdminCategoryController extends Controller
             'era_id' => 'required',
             'franchise_id' => 'required',
             'name' => 'required|max:255',
+            'desc' => 'max:255',
+            'img' => 'mimes:jpg,jpeg,png|max:2048',
         ]);
 
         $category = Category::create([
@@ -53,6 +55,7 @@ class AdminCategoryController extends Controller
             'era_id' => $request->era_id,
             'franchise_id' => $request->franchise_id,
             'name' => $request->name,
+            'desc' => $request->desc,
         ]);
 
         if ($request->hasFile('img')) {
@@ -74,12 +77,15 @@ class AdminCategoryController extends Controller
             'era_id' => 'required',
             'franchise_id' => 'required',
             'name' => 'required|max:255',
+            'desc' => 'max:255',
+            'img' => 'mimes:jpg,jpeg,png|max:2048',
         ]);
 
         $category->update([
             'era_id' => $request->era_id,
             'franchise_id' => $request->franchise_id,
             'name' => $request->name,
+            'desc' => $request->desc,
         ]);
 
         if ($request->hasFile('img')) {

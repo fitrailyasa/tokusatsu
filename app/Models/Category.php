@@ -13,7 +13,7 @@ class Category extends Model
     protected $table = 'category';
     protected $primaryKey = 'id';
     public $incrementing = false;   
-    protected $fillable = ['id', 'name', 'img', 'era_id', 'franchise_id'];
+    protected $fillable = ['id', 'name', 'desc', 'img', 'era_id', 'franchise_id'];
 
     public function Data()
     {

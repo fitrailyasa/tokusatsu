@@ -1,6 +1,6 @@
 <!-- Tombol untuk membuka modal -->
 <button role="button" class="btn btn-sm mx-1 btn-success" data-toggle="modal" data-target="#modalImport"><i
-        class="text-center fas fa-upload"></i>{{ __(' Upload') }}</button>
+        class="text-center fas fa-upload"></i> <span class="d-none d-sm-inline">{{ __('Upload') }}</span></button>
 
 <!-- Modal -->
 <div class="modal fade" id="modalImport" tabindex="-1" role="dialog" aria-labelledby="modalFormLabel" aria-hidden="true">

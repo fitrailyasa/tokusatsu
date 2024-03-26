@@ -1,6 +1,6 @@
 <!-- Tombol untuk membuka modal -->
 <button role="button" class="btn btn-sm mx-1 btn-danger" data-toggle="modal" data-target="#modalDeleteAll"><i
-        class="fas fa-trash"></i>{{ __(' Hapus Semua') }}</button>
+        class="fas fa-trash"></i><span class="d-none d-sm-inline"> {{ __('Hapus Semua') }}</span></button>
 
 <!-- Modal -->
 <div class="modal fade" id="modalDeleteAll" tabindex="-1" role="dialog" aria-labelledby="modalFormLabel"
