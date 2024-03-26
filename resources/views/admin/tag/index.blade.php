@@ -12,9 +12,9 @@
     @include('admin.tag.import')
 @endsection
 
-@section('export')
+{{-- @section('export')
     @include('admin.tag.export')
-@endsection
+@endsection --}}
 
 @section('table')
     <table id="example1" class="table table-bordered table-striped">

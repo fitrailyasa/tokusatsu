@@ -12,23 +12,36 @@ class CategoryExport implements FromCollection, WithHeadings
 {
     public function collection()
     {
-        return Category::with(['franchise', 'era'])->get()->map(function ($category) {
-            return [
+        $collection = [];
+        
+        $categories = Category::with(['franchise', 'era'])->get();
+
+        foreach ($categories as $category) {
+            $collection[] = [
+                'ID' => '', 
                 'Name' => $category->name ?? '',
                 'Img' => $category->img ?? '',
                 'Era' => $category->Era->name ?? '',
                 'Franchise' => $category->Franchise->name ?? '',
             ];
-        });
+        }
+
+        array_unshift($collection, ['Data Category'], ['']);
+
+        return collect($collection);
     }
 
     public function headings(): array
     {
         return [
-            'Name',
-            'Img',
-            'Era',
-            'Franchise',
+            [''],
+            [
+                '',
+                'Name',
+                'Img',
+                'Era',
+                'Franchise',
+            ],
         ];
     }
 }

@@ -12,9 +12,9 @@
     @include('admin.franchise.import')
 @endsection
 
-@section('export')
+{{-- @section('export')
     @include('admin.franchise.export')
-@endsection
+@endsection --}}
 
 @section('table')
     <table id="example1" class="table table-bordered table-striped">

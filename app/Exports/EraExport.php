@@ -10,19 +10,33 @@ class EraExport implements FromCollection, WithHeadings
 {
     public function collection()
     {
-        return Era::all()->map(function ($era) {
-            return [
+        $collection = [];
+        
+        $eras = Era::all();
+
+        foreach ($eras as $era) {
+            $collection[] = [
+                'ID' => '', 
                 'Name' => $era->name ?? '',
                 'Img' => $era->img ?? '',
             ];
-        });
+        }
+
+        array_unshift($collection, ['Data Era'], ['']);
+
+        return collect($collection);
     }
 
     public function headings(): array
     {
         return [
-            'Name',
-            'Img',
+            [''],
+            [
+                '',
+                'Name',
+                'Img',
+            ]
         ];
     }
+
 }

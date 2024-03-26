@@ -12,9 +12,9 @@
     @include('admin.category.import')
 @endsection
 
-@section('export')
+{{-- @section('export')
     @include('admin.category.export')
-@endsection
+@endsection --}}
 
 @section('table')
     <table id="example1" class="table table-bordered table-striped">

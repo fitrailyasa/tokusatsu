@@ -10,23 +10,37 @@ class DataExport implements FromCollection, WithHeadings
 {
     public function collection()
     {
-        return Data::with('category')->get()->map(function ($data) {
-            return [
+
+        $collection = [];
+        
+        $datas = Data::with('category')->get();
+
+        foreach ($datas as $data) {
+            $collection[] = [
+                'ID' => '', 
                 'Name' => $data->name ?? '',
-                'Img' => $data->img ?? '',
                 'Category' => $data->Category->name ?? '',
+                'Img' => $data->img ?? '',
                 'Tags' => implode(', ', $data->tags->pluck('name')->toArray()),
             ];
-        });
+        }
+
+        array_unshift($collection, ['Data Category'], ['']);
+
+        return collect($collection);
     }
 
     public function headings(): array
     {
         return [
-            'Name',
-            'Img',
-            'Category',
-            'Tags',
+            [''],
+            [
+                '',
+                'Name',
+                'Category',
+                'Img',
+                'Tags',
+            ]
         ];
     }
 }

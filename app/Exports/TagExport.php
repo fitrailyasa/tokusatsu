@@ -10,17 +10,31 @@ class TagExport implements FromCollection, WithHeadings
 {
     public function collection()
     {
-        return Tag::all()->map(function ($tag) {
-            return [
+        $collection = [];
+        
+        $tags = Tag::all();
+
+        foreach ($tags as $tag) {
+            $collection[] = [
+                'ID' => '', 
                 'Name' => $tag->name ?? '',
             ];
-        });
+        }
+
+        array_unshift($collection, ['Data Tag'], ['']);
+
+        return collect($collection);
     }
 
     public function headings(): array
     {
         return [
-            'Name',
+            [''],
+            [
+                '',
+                'Name',
+            ]
         ];
     }
+
 }
