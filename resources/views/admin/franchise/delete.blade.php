@@ -13,7 +13,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal">
                 </button>
             </div>
-            <div class="modal-body">Apakah anda yakin ingin menghapus
+            <div class="modal-body">Apakah anda yakin ingin menghapus data
                 @yield('title')?</div>
             <div class="modal-footer">
                 <form action="{{ route('admin.franchise.destroy', $franchise->id) }}" method="POST">

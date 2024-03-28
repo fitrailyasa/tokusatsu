@@ -65,7 +65,7 @@
             padding: 30px;
             width: 300px;
         }
-    
+
         /* Tablet view: 768px and below */
         @media (max-width: 768px) {
             .img-gallery {
@@ -74,7 +74,7 @@
                 width: 200px;
             }
         }
-    
+
         /* Mobile view: 576px and below */
         @media (max-width: 576px) {
             .img-gallery {
@@ -82,6 +82,34 @@
                 padding: 10px;
                 width: 100px;
             }
+        }
+
+        /* Custom CSS for smoother carousel animation */
+        .carousel-inner .carousel-item {
+            transition: transform 0.6s ease;
+        }
+
+        .carousel-inner .carousel-item.active,
+        .carousel-inner .carousel-item-next,
+        .carousel-inner .carousel-item-prev {
+            display: block;
+        }
+
+        .carousel-inner .carousel-item-next:not(.carousel-item-left),
+        .carousel-inner .carousel-item-prev:not(.carousel-item-right),
+        .carousel-inner .carousel-item.active {
+            transform: translateX(0);
+        }
+
+        .carousel-inner .carousel-item-next,
+        .carousel-inner .carousel-item-prev {
+            position: relative;
+            transform: translateX(0);
+        }
+
+        .carousel-inner .carousel-item-right,
+        .carousel-inner .carousel-item-left {
+            transform: translateX(0);
         }
     </style>
 

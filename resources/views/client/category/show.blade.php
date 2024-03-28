@@ -32,11 +32,34 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-body">
-                            <img class="img img-fluid" src="{{ asset('assets/img/' . $data->img) }}"
-                                alt="{{ $data->img }}">
-                            <!-- Tombol Download -->
-                            <a href="{{ asset('assets/img/' . $data->img) }}" download="{{ $data->img }}"
-                                class="btn btn-success mt-2 col-12">Download Gambar</a>
+                            <div id="carouselExampleControls{{ $data->id }}" class="carousel slide"
+                                data-ride="carousel">
+                                <div class="carousel-inner">
+                                    @foreach ($datas as $index => $modalData)
+                                        @if ($modalData->category->name === $data->category->name)
+                                            <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                                                <img class="img img-fluid"
+                                                    src="{{ asset('assets/img/' . $modalData->img) }}"
+                                                    alt="{{ $modalData->img }}">
+                                                <!-- Tombol Download -->
+                                                <a href="{{ asset('assets/img/' . $modalData->img) }}"
+                                                    download="{{ $modalData->img }}"
+                                                    class="btn btn-success mt-2 col-12">Download Gambar</a>
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                </div>
+                                <a class="carousel-control-prev" href="#carouselExampleControls{{ $data->id }}"
+                                    role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carouselExampleControls{{ $data->id }}"
+                                    role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
