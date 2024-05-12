@@ -1,0 +1,124 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+use App\Models\Era;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\EraImport;
+use App\Exports\EraExport;
+
+class AdminEraController extends Controller
+{
+    public function index()
+    {
+        $eras = Era::latest('id')->get();
+        return view('admin.era.index', compact('eras'));
+    }
+
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xlsx,xls',
+        ]);
+
+        $file = $request->file('file');
+
+        Excel::import(new EraImport, $file);
+
+        if (auth()->user()->role == 'admin') {
+            return back()->with('alert', 'Berhasil Import Data Era!');
+        } else {
+            return back()->with('alert', 'Gagal Import Data Era!');
+        }
+    }
+
+    public function export()
+    {
+        return Excel::download(new EraExport, 'Data Era.xlsx');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|max:255',
+            'desc' => 'max:255',
+            'img' => 'mimes:jpg,jpeg,png|max:2048',
+        ]);
+
+        $era = Era::create([
+            'id' => Str::uuid(),
+            'name' => $request->name,
+            'desc' => $request->desc,
+        ]);
+
+        if ($request->hasFile('img')) {
+            $img = $request->file('img');
+            $file_name = $era->name . '_' . time() . '.' . $img->getClientOriginalExtension();
+            $era->img = $file_name;
+            $era->update();
+            $img->move('../public/assets/img/', $file_name);
+        }
+
+        if (auth()->user()->role == 'admin') {
+            return back()->with('alert', 'Berhasil Tambah Data Era!');
+        } else {
+            return back()->with('alert', 'Gagal Tambah Data Era!');
+        }
+    }
+
+    public function update(Request $request, $id)
+    {
+        $era = Era::findOrFail($id);
+
+        $request->validate([
+            'name' => 'required|max:255',
+            'desc' => 'max:255',
+            'img' => 'mimes:jpg,jpeg,png|max:2048',
+        ]);
+
+        $era->update([
+            'name' => $request->name,
+            'desc' => $request->desc,
+        ]);
+
+        if ($request->hasFile('img')) {
+            $img = $request->file('img');
+            $file_name = $era->name . '_' . time() . '.' . $img->getClientOriginalExtension();
+            $era->img = $file_name;
+            $era->update();
+            $img->move('../public/assets/img/', $file_name);
+        }
+
+        if (auth()->user()->role == 'admin') {
+            return back()->with('alert', 'Berhasil Edit Data Era!');
+        } else {
+            return back()->with('alert', 'Gagal Edit Data Era!');
+        }
+    }
+
+    public function destroy($id)
+    {
+        $era = Era::findOrFail($id);
+        $era->delete();
+
+        if (auth()->user()->role == 'admin') {
+            return back()->with('alert', 'Berhasil Hapus Data Era!');
+        } else {
+            return back()->with('alert', 'Gagal Hapus Data Era!');
+        }
+    }
+
+    public function destroyAll()
+    {
+        Era::truncate();
+
+        if (auth()->user()->role == 'admin') {
+            return back()->with('alert', 'Berhasil Hapus Semua Era!');
+        } else {
+            return back()->with('alert', 'Gagal Hapus Semua Era!');
+        }
+    }
+}
