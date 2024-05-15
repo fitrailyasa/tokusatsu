@@ -10,7 +10,7 @@
             <div class="row px-3">
                 <div class="col-3 text-left">
                     <a href="#" onclick="history.back();">
-                        <p class="text-white"><i class="fa-solid fa-arrow-left fs-4"></i></p>
+                        <p class="text-white"><i class="fas fa-arrow-left fs-4"></i></p>
                     </a>
                 </div>
                 <div class="col-6">
