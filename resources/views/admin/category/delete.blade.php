@@ -13,8 +13,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal">
                 </button>
             </div>
-            <div class="modal-body">Apakah anda yakin ingin menghapus data
-                Data?</div>
+            <div class="modal-body">Apakah anda yakin ingin menghapus data?</div>
             <div class="modal-footer">
                 <form action="{{ route('admin.category.destroy', $category->id) }}" method="POST">
                     @method('DELETE')

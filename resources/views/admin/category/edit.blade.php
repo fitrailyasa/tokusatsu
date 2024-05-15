@@ -26,7 +26,8 @@
                         <div class="mb-3">
                             <label class="form-label">{{ __('Name') }}</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                placeholder="name" name="name" id="name" value="{{ $category->name }}" required>
+                                placeholder="name" name="name" id="name"
+                                value="{{ old('name', $category->name) }}" required>
                             @error('name')
                                 <div class="invalid-feedback">{{ $message }}
                                 </div>
@@ -40,7 +41,7 @@
                                 id="franchise_id" required>
                                 <option selected disabled>{{ __('Select Franchise') }}</option>
                                 @foreach ($franchises as $franchise)
-                                    <option value="{{ $franchise->id }}"
+                                    <option value="{{ old('franchise_id', $franchise->id) }}"
                                         {{ $franchise->id == $category->franchise_id ? 'selected' : '' }}>
                                         {{ $franchise->name }}
                                     </option>
@@ -59,7 +60,7 @@
                                 id="era_id" required>
                                 <option selected disabled>{{ __('Select Era') }}</option>
                                 @foreach ($eras as $era)
-                                    <option value="{{ $era->id }}"
+                                    <option value="{{ old('era_id', $era->id) }}"
                                         {{ $era->id == $category->era_id ? 'selected' : '' }}>
                                         {{ $era->name }}
                                     </option>
@@ -75,7 +76,7 @@
                         <div class="mb-3">
                             <label class="form-label">{{ __('Description') }}</label>
                             <textarea class="form-control @error('desc') is-invalid @enderror" placeholder="description" name="desc"
-                                id="desc" rows="3">{{ $category->desc }}</textarea>
+                                id="desc" rows="3">{{ old('desc', $category->desc) }}</textarea>
                             @error('desc')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -100,7 +101,7 @@
                         <div class="mb-3">
                             <input type="file" accept="image/*" id="image-input"
                                 class="form-control @error('img') is-invalid @enderror" placeholder="img" name="img"
-                                id="img" value="{{ $category->img }}" enabled>
+                                id="img" value="{{ old('img', $category->img) }}" enabled>
                             @error('img')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror

@@ -25,7 +25,8 @@
                         <div class="mb-3">
                             <label class="form-label">{{ __('Name') }}</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                placeholder="name" name="name" id="name" value="{{ $tag->name }}" required>
+                                placeholder="name" name="name" id="name" value="{{ old('name', $tag->name) }}"
+                                required>
                             @error('name')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror

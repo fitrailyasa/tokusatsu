@@ -23,7 +23,7 @@
                         <div class="mb-3">
                             <label class="form-label">{{ __('Name') }}</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                placeholder="name" name="name" id="name" required>
+                                placeholder="name" name="name" id="name" value="{{ old('name') }}" required>
                             @error('name')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -34,7 +34,7 @@
                             <label class="form-label">{{ __('Images') }}</label>
                             <input id="image-input" accept="image/*" type="file"
                                 class="form-control @error('img') is-invalid @enderror" placeholder="img" name="img"
-                                id="img">
+                                id="img" value="{{ old('img') }}">
                             <img class="img-fluid py-3" id="image-preview"
                                 src="{{ asset('assets/profile/default.png') }}" alt="Image Preview">
                             @error('img')
@@ -49,7 +49,8 @@
                                 id="category_id" required>
                                 <option selected disabled>{{ __('Select Category') }}</option>
                                 @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    <option value="{{ old('category_id', $category->id) }}">{{ $category->name }}
+                                    </option>
                                 @endforeach
                             </select>
                             @error('category_id')
@@ -65,7 +66,7 @@
                             @foreach ($tags as $tag)
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="tags[]"
-                                        value="{{ $tag->id }}" id="tag{{ $tag->id }}">
+                                        value="{{ old('tags[]', $tag->id) }}" id="tag{{ $tag->id }}">
                                     <label class="form-check-label" for="tag{{ $tag->id }}">
                                         {{ $tag->name }}
                                     </label>

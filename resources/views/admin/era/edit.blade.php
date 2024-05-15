@@ -25,7 +25,8 @@
                         <div class="mb-3">
                             <label class="form-label">{{ __('Name') }}</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                placeholder="name" name="name" id="name" value="{{ $era->name }}" required>
+                                placeholder="name" name="name" id="name" value="{{ old('name', $era->name) }}"
+                                required>
                             @error('name')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -36,7 +37,7 @@
                             <label class="form-label">{{ __('Images') }}</label>
                             <input id="image-input" accept="image/*" type="file" id="image-input"
                                 class="form-control @error('img') is-invalid @enderror" placeholder="img" name="img"
-                                id="img">
+                                id="img" value="{{ old('img', $era->img) }}">
                             @error('img')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -46,7 +47,7 @@
                         <div class="mb-3">
                             <label class="form-label">{{ __('Description') }}</label>
                             <textarea class="form-control @error('desc') is-invalid @enderror" placeholder="description" name="desc"
-                                id="desc" rows="3">{{ $era->desc }}</textarea>
+                                id="desc" rows="3">{{ old('desc', $era->desc) }}</textarea>
                             @error('desc')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror

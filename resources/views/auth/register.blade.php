@@ -10,12 +10,12 @@
                 <form action="{{ route('register') }}" method="POST" class="">
                     @csrf
                     <input class="form-control @error('name') is-invalid @enderror" name="name" required autofocus
-                        type="text" name="name" id="name" placeholder="name">
+                        type="text" name="name" id="name" placeholder="name" value="{{ old('name') }}">
                     @error('name')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                     <input class="form-control @error('email') is-invalid @enderror" name="email" required autofocus
-                        type="text" name="email" id="email" placeholder="email">
+                        type="text" name="email" id="email" placeholder="email" value="{{ old('email') }}">
                     @error('email')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror

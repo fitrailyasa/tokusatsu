@@ -23,7 +23,7 @@
                         <div class="mb-2">
                             <label class="form-label">{{ __('Name') }}</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                placeholder="name" name="name" id="name" required>
+                                placeholder="name" name="name" id="name" value="{{ old('name') }}" required>
                             @error('name')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -33,7 +33,7 @@
                         <div class="mb-2">
                             <label class="form-label">{{ __('No HP') }}</label>
                             <input type="text" class="form-control @error('no_hp') is-invalid @enderror"
-                                placeholder="no_hp" name="no_hp" id="no_hp">
+                                placeholder="no_hp" name="no_hp" id="no_hp" value="{{ old('no_hp') }}">
                             @error('no_hp')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -45,7 +45,7 @@
                         <div class="mb-3">
                             <label class="form-label">{{ __('Email') }}</label>
                             <input type="email" class="form-control @error('email') is-invalid @enderror"
-                                placeholder="email" name="email" id="email" required>
+                                placeholder="email" name="email" id="email" value="{{ old('email') }}" required>
                             @error('email')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -67,7 +67,7 @@
                             <select class="form-select @error('role') is-invalid @enderror" name="role"
                                 id="role" required>
                                 @foreach ($roles as $role)
-                                    <option value="{{ $role['id'] }}">{{ $role['name'] }}</option>
+                                    <option value="{{ old('role', $role['id']) }}">{{ $role['name'] }}</option>
                                 @endforeach
                             </select>
                             @error('role')
