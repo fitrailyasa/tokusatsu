@@ -21,6 +21,7 @@ class UserSeeder extends Seeder
                 'name' => 'Super Administrator',
                 'email' => 'super@admin.com',
                 'role' => 'admin',
+                'status' => 'aktif',
                 'no_hp' => '081234567890',
                 'password' => Hash::make('password')
             ],
@@ -28,6 +29,7 @@ class UserSeeder extends Seeder
                 'name' => 'Administrator',
                 'email' => 'admin@admin.com',
                 'role' => 'admin',
+                'status' => 'aktif',
                 'no_hp' => '081234567890',
                 'password' => Hash::make('password')
             ],

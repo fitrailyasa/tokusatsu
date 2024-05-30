@@ -15,6 +15,7 @@ class AdminFranchiseController extends Controller
     public function index()
     {
         $franchises = Franchise::latest('id')->get();
+
         return view('admin.franchise.index', compact('franchises'));
     }
 
@@ -28,11 +29,7 @@ class AdminFranchiseController extends Controller
 
         Excel::import(new FranchiseImport, $file);
 
-        if (auth()->user()->role == 'admin') {
-            return back()->with('alert', 'Berhasil Import Data Franchise!');
-        } else {
-            return back()->with('alert', 'Gagal Import Data Franchise!');
-        }
+        return back()->with('alert', 'Berhasil Import Data Franchise!');
     }
 
     public function export()
@@ -62,11 +59,7 @@ class AdminFranchiseController extends Controller
             $img->move('../public/assets/img/', $file_name);
         }
 
-        if (auth()->user()->role == 'admin') {
-            return back()->with('alert', 'Berhasil Tambah Data Franchise!');
-        } else {
-            return back()->with('alert', 'Gagal Tambah Data Franchise!');
-        }
+        return back()->with('alert', 'Berhasil Tambah Data Franchise!');
     }
 
     public function update(Request $request, $id)
@@ -92,33 +85,20 @@ class AdminFranchiseController extends Controller
             $img->move('../public/assets/img/', $file_name);
         }
 
-        if (auth()->user()->role == 'admin') {
-            return back()->with('alert', 'Berhasil Edit Data Franchise!');
-        } else {
-            return back()->with('alert', 'Gagal Edit Data Franchise!');
-        }
+        return back()->with('alert', 'Berhasil Edit Data Franchise!');
     }
 
     public function destroy($id)
     {
-        $franchise = Franchise::findOrFail($id);
-        $franchise->delete();
+        Franchise::findOrFail($id)->delete();
 
-        if (auth()->user()->role == 'admin') {
-            return back()->with('alert', 'Berhasil Hapus Data Franchise!');
-        } else {
-            return back()->with('alert', 'Gagal Hapus Data Franchise!');
-        }
+        return back()->with('alert', 'Berhasil Hapus Data Franchise!');
     }
 
     public function destroyAll()
     {
         Franchise::truncate();
 
-        if (auth()->user()->role == 'admin') {
-            return back()->with('alert', 'Berhasil Hapus Semua Franchise!');
-        } else {
-            return back()->with('alert', 'Gagal Hapus Semua Franchise!');
-        }
+        return back()->with('alert', 'Berhasil Hapus Semua Franchise!');
     }
 }

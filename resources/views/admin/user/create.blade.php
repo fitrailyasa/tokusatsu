@@ -41,7 +41,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="mb-3">
                             <label class="form-label">{{ __('Email') }}</label>
                             <input type="email" class="form-control @error('email') is-invalid @enderror"
@@ -51,7 +51,7 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="mb-3">
                             <label class="form-label">{{ __('Password') }}</label>
                             <input type="password" class="form-control @error('password') is-invalid @enderror"
@@ -61,7 +61,9 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="col-md-4">
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
                         <div class="mb-3">
                             <label class="form-label">{{ __('Roles') }}</label>
                             <select class="form-select @error('role') is-invalid @enderror" name="role"
@@ -71,6 +73,19 @@
                                 @endforeach
                             </select>
                             @error('role')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label">{{ __('Status') }}</label>
+                            <select class="form-select @error('status') is-invalid @enderror" name="status"
+                                id="status" required>
+                                <option value="aktif">Aktif</option>
+                                <option value="tidak aktif">Tidak Aktif</option>
+                            </select>
+                            @error('status')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>

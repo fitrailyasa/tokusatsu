@@ -19,6 +19,7 @@ class AdminCategoryController extends Controller
         $eras = Era::all();
         $franchises = Franchise::all();
         $categories = Category::all();
+
         return view('admin.category.index', compact('categories', 'eras', 'franchises'));
     }
 
@@ -32,11 +33,7 @@ class AdminCategoryController extends Controller
 
         Excel::import(new CategoryImport, $file);
 
-        if (auth()->user()->role == 'admin') {
-            return back()->with('alert', 'Berhasil Import Data Category!');
-        } else {
-            return back()->with('alert', 'Gagal Import Data Category!');
-        }
+        return back()->with('alert', 'Berhasil Import Data Category!');
     }
 
     public function export()
@@ -70,11 +67,7 @@ class AdminCategoryController extends Controller
             $img->move('../public/assets/img/', $file_name);
         }
 
-        if (auth()->user()->role == 'admin') {
-            return back()->with('alert', 'Berhasil Tambah Data Category!');
-        } else {
-            return back()->with('alert', 'Gagal Tambah Data Category!');
-        }
+        return back()->with('alert', 'Berhasil Tambah Data Category!');
     }
 
     public function update(Request $request, $id)
@@ -104,33 +97,20 @@ class AdminCategoryController extends Controller
             $img->move('../public/assets/img/', $file_name);
         }
 
-        if (auth()->user()->role == 'admin') {
-            return back()->with('alert', 'Berhasil Edit Data Category!');
-        } else {
-            return back()->with('alert', 'Gagal Edit Data Category!');
-        }
+        return back()->with('alert', 'Berhasil Edit Data Category!');
     }
 
     public function destroy($id)
     {
-        $category = Category::findOrFail($id);
-        $category->delete();
+        Category::findOrFail($id)->delete();
 
-        if (auth()->user()->role == 'admin') {
-            return back()->with('alert', 'Berhasil Hapus Data Category!');
-        } else {
-            return back()->with('alert', 'Gagal Hapus Data Category!');
-        }
+        return back()->with('alert', 'Berhasil Hapus Data Category!');
     }
 
     public function destroyAll()
     {
         Category::truncate();
 
-        if (auth()->user()->role == 'admin') {
-            return back()->with('alert', 'Berhasil Hapus Semua Data Category!');
-        } else {
-            return back()->with('alert', 'Gagal Hapus Semua Data Category!');
-        }
+        return back()->with('alert', 'Berhasil Hapus Semua Data Category!');
     }
 }

@@ -15,6 +15,7 @@ class AdminTagController extends Controller
     public function index()
     {
         $tags = Tag::orderBy('name')->get();
+
         return view('admin.tag.index', compact('tags'));
     }
 
@@ -28,11 +29,7 @@ class AdminTagController extends Controller
 
         Excel::import(new TagImport, $file);
 
-        if(auth()->user()->role == 'admin') {
-            return back()->with('alert', 'Berhasil Import Data Tag!');
-        } else {
-            return back()->with('alert', 'Gagal Import Data Tag!');
-        }
+        return back()->with('alert', 'Berhasil Import Data Tag!');
     }
 
     public function export()
@@ -51,11 +48,7 @@ class AdminTagController extends Controller
             'name' => $request->name,
         ]);
 
-        if(auth()->user()->role == 'admin') {
-            return back()->with('alert', 'Berhasil Tambah Data Tag!');
-        } else {
-            return back()->with('alert', 'Gagal Tambah Data Tag!');
-        }
+        return back()->with('alert', 'Berhasil Tambah Data Tag!');
     }
 
     public function update(Request $request, $id)
@@ -70,33 +63,20 @@ class AdminTagController extends Controller
             'name' => $request->name,
         ]);
 
-        if(auth()->user()->role == 'admin') {
-            return back()->with('alert', 'Berhasil Edit Data Tag!');
-        } else {
-            return back()->with('alert', 'Gagal Edit Data Tag!');
-        }
+        return back()->with('alert', 'Berhasil Edit Data Tag!');
     }
 
     public function destroy($id)
     {
-        $tag = Tag::findOrFail($id);
-        $tag->delete();
+        Tag::findOrFail($id)->delete();
 
-        if(auth()->user()->role == 'admin') {
-            return back()->with('alert', 'Berhasil Hapus Data Tag!');
-        } else {
-            return back()->with('alert', 'Gagal Hapus Data Tag!');
-        }
+        return back()->with('alert', 'Berhasil Hapus Data Tag!');
     }
 
     public function destroyAll()
     {
         Tag::truncate();
 
-        if(auth()->user()->role == 'admin') {
-            return back()->with('alert', 'Berhasil Hapus Semua Data Tag!');
-        } else {
-            return back()->with('alert', 'Gagal Hapus Semua Data Tag!');
-        }
+        return back()->with('alert', 'Berhasil Hapus Semua Data Tag!');
     }
 }

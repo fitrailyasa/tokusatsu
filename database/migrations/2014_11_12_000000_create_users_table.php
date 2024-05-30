@@ -9,7 +9,7 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up():void
+    public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('no_hp')->nullable();
             $table->string('password');
             $table->string('role')->nullable();
+            $table->string('status')->nullable()->default('tidak aktif');
             // $table->rememberToken();
             // $table->timestamps();
         });
@@ -36,7 +37,7 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
-    public function down():void
+    public function down(): void
     {
         Schema::dropIfExists('users');
     }

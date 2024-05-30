@@ -18,6 +18,7 @@
                 <th>{{ __('Name') }}</th>
                 <th class="d-none d-lg-table-cell">{{ __('Email') }}</th>
                 <th class="d-none d-lg-table-cell">{{ __('Role') }}</th>
+                <th class="d-none d-lg-table-cell">{{ __('Status') }}</th>
                 <th>{{ __('More') }}</th>
             </tr>
         </thead>
@@ -27,7 +28,20 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $user->name ?? '-' }}</td>
                     <td class="d-none d-lg-table-cell">{{ $user->email ?? '-' }}</td>
-                    <td class="d-none d-lg-table-cell">{{ $user->role ?? '-' }}</td>
+                    <td class="d-none d-lg-table-cell">
+                        @if ($user->role == 'admin')
+                            <span class="badge badge-primary">{{ $user->role }}</span>
+                        @elseif ($user->role != 'admin')
+                            <span class="badge badge-secondary">{{ $user->role }}</span>
+                        @endif
+                    </td>
+                    <td class="d-none d-lg-table-cell">
+                        @if ($user->status == 'aktif')
+                            <span class="badge badge-success">{{ $user->status }}</span>
+                        @elseif ($user->status != 'aktif')
+                            <span class="badge badge-danger">{{ $user->status }}</span>
+                        @endif
+                    </td>
                     <td class="manage-row">
                         @if (auth()->user()->role == 'admin')
                             @include('admin.user.edit')
@@ -43,6 +57,7 @@
                 <th>{{ __('Name') }}</th>
                 <th class="d-none d-lg-table-cell">{{ __('Email') }}</th>
                 <th class="d-none d-lg-table-cell">{{ __('Role') }}</th>
+                <th class="d-none d-lg-table-cell">{{ __('Status') }}</th>
                 <th>{{ __('More') }}</th>
             </tr>
         </tfoot>

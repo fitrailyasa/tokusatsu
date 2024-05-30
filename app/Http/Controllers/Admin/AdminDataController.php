@@ -34,11 +34,7 @@ class AdminDataController extends Controller
 
         Excel::import(new DataImport, $file);
 
-        if (auth()->user()->role == 'admin') {
-            return back()->with('alert', 'Berhasil Import Data!');
-        } else {
-            return back()->with('alert', 'Gagal Import Data!');
-        }
+        return back()->with('alert', 'Berhasil Import Data!');
     }
 
     public function export()
@@ -70,11 +66,7 @@ class AdminDataController extends Controller
             $img->move('../public/assets/img/', $file_name);
         }
 
-        if (auth()->user()->role == 'admin') {
-            return back()->with('alert', 'Berhasil Tambah Data!');
-        } else {
-            return back()->with('alert', 'Gagal Tambah Data!');
-        }
+        return back()->with('alert', 'Berhasil Tambah Data!');
     }
 
     public function update(Request $request, $id)
@@ -102,33 +94,20 @@ class AdminDataController extends Controller
             $img->move('../public/assets/img/', $file_name);
         }
 
-        if (auth()->user()->role == 'admin') {
-            return back()->with('alert', 'Berhasil Edit Data!');
-        } else {
-            return back()->with('alert', 'Gagal Edit Data!');
-        }
+        return back()->with('alert', 'Berhasil Edit Data!');
     }
 
     public function destroy($id)
     {
-        $data = Data::findOrFail($id);
-        $data->delete();
+        Data::findOrFail($id)->delete();
 
-        if (auth()->user()->role == 'admin') {
-            return back()->with('alert', 'Berhasil Hapus Data!');
-        } else {
-            return back()->with('alert', 'Gagal Hapus Data!');
-        }
+        return back()->with('alert', 'Berhasil Hapus Data!');
     }
 
     public function destroyAll()
     {
         Data::truncate();
 
-        if (auth()->user()->role == 'admin') {
-            return back()->with('alert', 'Berhasil Hapus Semua Data!');
-        } else {
-            return back()->with('alert', 'Gagal Hapus Semua Data!');
-        }
+        return back()->with('alert', 'Berhasil Hapus Semua Data!');
     }
 }

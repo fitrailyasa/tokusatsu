@@ -33,7 +33,8 @@ class AdminUserController extends Controller
                 'email' => 'required|max:255|unique:users,email',
                 'no_hp' => 'max:255',
                 'password' => 'required',
-                'role' => 'required'
+                'role' => 'required',
+                'status' => 'required',
             ],
             [
                 'name.required' => 'name harus diisi!',
@@ -43,21 +44,21 @@ class AdminUserController extends Controller
                 'email.unique' => 'Email sudah terdaftar!',
                 'no_hp.max' => 'No HP maksimal 255 karakter!',
                 'password.required' => 'Password harus diisi!',
-                'role.required' => 'Roles harus diisi!'
+                'role.required' => 'Roles harus diisi!',
+                'status.required' => 'Status harus diisi!',
             ]
         );
-        
+
         User::create([
             'name' => $request->name,
             'email' => $request->email,
             'no_hp' => $request->no_hp,
             'password' => Hash::make($request->password),
-            'role' => $request->role
+            'role' => $request->role,
+            'status' => $request->status,
         ]);
 
-        if (auth()->user()->role == 'admin') {
-            return back()->with('alert', 'Berhasil Tambah User!');
-        }
+        return back()->with('alert', 'Berhasil Tambah User!');
     }
 
     public function update(Request $request, string $id)
@@ -66,14 +67,16 @@ class AdminUserController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|max:255',
             'no_hp' => 'max:255',
-            'role' => 'required'
+            'role' => 'required',
+            'status' => 'required',
         ], [
             'name.required' => 'name harus diisi!',
             'name.max' => 'name maksimal 255 karakter!',
             'email.required' => 'Email harus diisi!',
             'email.max' => 'Email maksimal 255 karakter!',
             'no_hp.max' => 'No HP maksimal 255 karakter!',
-            'role.required' => 'Roles harus diisi!'
+            'role.required' => 'Roles harus diisi!',
+            'status.required' => 'Status harus diisi!',
         ]);
 
         $user = User::where('id', $id)->first();
@@ -81,7 +84,8 @@ class AdminUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'no_hp' => $request->no_hp,
-            'role' => $request->role
+            'role' => $request->role,
+            'status' => $request->status,
         ];
 
         if ($request->has('password') && !empty($request->password)) {
@@ -90,18 +94,13 @@ class AdminUserController extends Controller
 
         $user->update($userData);
 
-        if (auth()->user()->role == 'admin') {
-            return back()->with('alert', 'Berhasil Edit User!');
-        }
+        return back()->with('alert', 'Berhasil Edit User!');
     }
 
     public function destroy(string $id)
     {
-        $user = User::findOrFail($id);
-        $user->delete();
+        User::findOrFail($id)->delete();
 
-        if (auth()->user()->role == 'admin') {
-            return back()->with('alert', 'Berhasil Hapus User!');
-        }
+        return back()->with('alert', 'Berhasil Hapus User!');
     }
 }

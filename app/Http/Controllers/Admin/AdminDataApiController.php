@@ -14,7 +14,6 @@ class AdminDataApiController extends Controller
 {
     public function index()
     {
-        $categories = Category::all();
         $datas = Data::paginate(10);
         return response()->json($datas);
     }

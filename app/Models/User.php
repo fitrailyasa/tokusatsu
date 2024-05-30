@@ -27,7 +27,8 @@ class User extends Authenticatable
         'img',
         'no_hp',
         'password',
-        'role'
+        'role',
+        'status',
     ];
 
     /**
@@ -47,7 +48,5 @@ class User extends Authenticatable
      *
      * @var array<string, string>
      */
-    protected $casts = [
-    ];
-
+    protected $casts = [];
 }

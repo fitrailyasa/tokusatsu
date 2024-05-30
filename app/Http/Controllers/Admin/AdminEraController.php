@@ -15,6 +15,7 @@ class AdminEraController extends Controller
     public function index()
     {
         $eras = Era::latest('id')->get();
+
         return view('admin.era.index', compact('eras'));
     }
 
@@ -28,11 +29,7 @@ class AdminEraController extends Controller
 
         Excel::import(new EraImport, $file);
 
-        if (auth()->user()->role == 'admin') {
-            return back()->with('alert', 'Berhasil Import Data Era!');
-        } else {
-            return back()->with('alert', 'Gagal Import Data Era!');
-        }
+        return back()->with('alert', 'Berhasil Import Data Era!');
     }
 
     public function export()
@@ -62,11 +59,7 @@ class AdminEraController extends Controller
             $img->move('../public/assets/img/', $file_name);
         }
 
-        if (auth()->user()->role == 'admin') {
-            return back()->with('alert', 'Berhasil Tambah Data Era!');
-        } else {
-            return back()->with('alert', 'Gagal Tambah Data Era!');
-        }
+        return back()->with('alert', 'Berhasil Tambah Data Era!');
     }
 
     public function update(Request $request, $id)
@@ -92,33 +85,20 @@ class AdminEraController extends Controller
             $img->move('../public/assets/img/', $file_name);
         }
 
-        if (auth()->user()->role == 'admin') {
-            return back()->with('alert', 'Berhasil Edit Data Era!');
-        } else {
-            return back()->with('alert', 'Gagal Edit Data Era!');
-        }
+        return back()->with('alert', 'Berhasil Edit Data Era!');
     }
 
     public function destroy($id)
     {
-        $era = Era::findOrFail($id);
-        $era->delete();
+        Era::findOrFail($id)->delete();
 
-        if (auth()->user()->role == 'admin') {
-            return back()->with('alert', 'Berhasil Hapus Data Era!');
-        } else {
-            return back()->with('alert', 'Gagal Hapus Data Era!');
-        }
+        return back()->with('alert', 'Berhasil Hapus Data Era!');
     }
 
     public function destroyAll()
     {
         Era::truncate();
 
-        if (auth()->user()->role == 'admin') {
-            return back()->with('alert', 'Berhasil Hapus Semua Era!');
-        } else {
-            return back()->with('alert', 'Gagal Hapus Semua Era!');
-        }
+        return back()->with('alert', 'Berhasil Hapus Semua Era!');
     }
 }
