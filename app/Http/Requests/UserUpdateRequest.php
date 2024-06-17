@@ -26,15 +26,15 @@ class UserUpdateRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'Nama tidak boleh kosong',
-            'name.max' => 'Nama maksimal 255 karakter',
-            'email.required' => 'Email tidak boleh kosong',
-            'email.max' => 'Email maksimal 255 karakter',
-            'email.unique' => 'Email sudah terdaftar',
-            'no_hp.max' => 'No. HP maksimal 255 karakter',
-            'password.min' => 'Kata sandi minimal 8 karakter',
-            'role.required' => 'Role tidak boleh kosong',
-            'status.required' => 'Status tidak boleh kosong',
+            'name.required' => 'Nama tidak boleh kosong!',
+            'name.max' => 'Nama maksimal 255 karakter!',
+            'email.required' => 'Email tidak boleh kosong!',
+            'email.max' => 'Email maksimal 255 karakter!',
+            'email.unique' => 'Email sudah terdaftar!',
+            'no_hp.max' => 'No. HP maksimal 255 karakter!',
+            'password.min' => 'Kata sandi minimal 8 karakter!',
+            'role.required' => 'Role tidak boleh kosong!',
+            'status.required' => 'Status tidak boleh kosong!',
         ];
     }
 }

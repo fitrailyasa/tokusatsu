@@ -21,8 +21,8 @@ class TagUpdateRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'Nama tidak boleh kosong',
-            'name.max' => 'Nama maksimal 255 karakter',
+            'name.required' => 'Nama tidak boleh kosong!',
+            'name.max' => 'Nama maksimal 255 karakter!',
         ];
     }
 }

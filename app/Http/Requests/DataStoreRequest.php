@@ -23,11 +23,11 @@ class DataStoreRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'Nama tidak boleh kosong',
-            'name.max' => 'Nama maksimal 255 karakter',
-            'category_id.required' => 'Kategori tidak boleh kosong',
-            'img.mimes' => 'Format gambar harus jpg, jpeg, png',
-            'img.max' => 'Ukuran gambar maksimal 2 MB',
+            'name.required' => 'Nama tidak boleh kosong!',
+            'name.max' => 'Nama maksimal 255 karakter!',
+            'category_id.required' => 'Kategori tidak boleh kosong!',
+            'img.mimes' => 'Format gambar harus jpg, jpeg, png!',
+            'img.max' => 'Ukuran gambar maksimal 2 MB!',
         ];
     }
 }

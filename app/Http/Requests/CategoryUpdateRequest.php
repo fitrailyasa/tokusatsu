@@ -25,13 +25,13 @@ class CategoryUpdateRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'era_id.required' => 'Era harus dipilih',
-            'franchise_id.required' => 'Franchise harus dipilih',
-            'name.required' => 'Kolom Nama harus diisi',
-            'name.max' => 'Kolom Nama tidak boleh lebih dari 255 karakter',
-            'desc.max' => 'Kolom Deskripsi tidak boleh lebih dari 255 karakter',
-            'img.mimes' => 'File harus berupa jpg, jpeg, atau png',
-            'img.max' => 'File tidak boleh lebih dari 2 MB',
+            'era_id.required' => 'Era harus dipilih!',
+            'franchise_id.required' => 'Franchise harus dipilih!',
+            'name.required' => 'Kolom Nama harus diisi!',
+            'name.max' => 'Kolom Nama tidak boleh lebih dari 255 karakter!',
+            'desc.max' => 'Kolom Deskripsi tidak boleh lebih dari 255 karakter!',
+            'img.mimes' => 'File harus berupa jpg, jpeg, atau png!',
+            'img.max' => 'File tidak boleh lebih dari 2 MB!',
         ];
     }
 }
