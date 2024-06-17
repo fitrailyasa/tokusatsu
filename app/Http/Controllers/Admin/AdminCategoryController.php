@@ -11,6 +11,8 @@ use Illuminate\Support\Str;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\CategoryImport;
 use App\Exports\CategoryExport;
+use App\Http\Requests\CategoryStoreRequest;
+use App\Http\Requests\CategoryUpdateRequest;
 
 class AdminCategoryController extends Controller
 {
@@ -41,23 +43,9 @@ class AdminCategoryController extends Controller
         return Excel::download(new CategoryExport, 'Data Category.xlsx');
     }
 
-    public function store(Request $request)
+    public function store(CategoryStoreRequest $request)
     {
-        $request->validate([
-            'era_id' => 'required',
-            'franchise_id' => 'required',
-            'name' => 'required|max:255',
-            'desc' => 'max:255',
-            'img' => 'mimes:jpg,jpeg,png|max:2048',
-        ]);
-
-        $category = Category::create([
-            'id' => Str::uuid(),
-            'era_id' => $request->era_id,
-            'franchise_id' => $request->franchise_id,
-            'name' => $request->name,
-            'desc' => $request->desc,
-        ]);
+        $category = Category::create($request->validated());
 
         if ($request->hasFile('img')) {
             $img = $request->file('img');
@@ -70,24 +58,10 @@ class AdminCategoryController extends Controller
         return back()->with('alert', 'Berhasil Tambah Data Category!');
     }
 
-    public function update(Request $request, $id)
+    public function update(CategoryUpdateRequest $request, $id)
     {
         $category = Category::findOrFail($id);
-
-        $request->validate([
-            'era_id' => 'required',
-            'franchise_id' => 'required',
-            'name' => 'required|max:255',
-            'desc' => 'max:255',
-            'img' => 'mimes:jpg,jpeg,png|max:2048',
-        ]);
-
-        $category->update([
-            'era_id' => $request->era_id,
-            'franchise_id' => $request->franchise_id,
-            'name' => $request->name,
-            'desc' => $request->desc,
-        ]);
+        $category->update($request->validated());
 
         if ($request->hasFile('img')) {
             $img = $request->file('img');
@@ -103,14 +77,12 @@ class AdminCategoryController extends Controller
     public function destroy($id)
     {
         Category::findOrFail($id)->delete();
-
         return back()->with('alert', 'Berhasil Hapus Data Category!');
     }
 
     public function destroyAll()
     {
         Category::truncate();
-
         return back()->with('alert', 'Berhasil Hapus Semua Data Category!');
     }
 }

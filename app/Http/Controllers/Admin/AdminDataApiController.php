@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\DataStoreRequest;
+use App\Http\Requests\DataUpdateRequest;
 use App\Models\Data;
 use App\Models\Category;
 use App\Models\Tag;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 
@@ -18,20 +19,9 @@ class AdminDataApiController extends Controller
         return response()->json($datas);
     }
 
-    public function store(Request $request)
+    public function store(DataStoreRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'img' => 'required|max:2048',
-            'category_id' => 'required',
-        ]);
-
-        $data = Data::create([
-            'id' => Str::uuid(),
-            'name' => $request->name,
-            'img' => $request->img,
-            'category_id' => $request->category_id,
-        ]);
+        $data = Data::create($request->validated());
 
         $data->tags()->attach($request->tags);
 
@@ -52,21 +42,11 @@ class AdminDataApiController extends Controller
         return response()->json($data);
     }
 
-    public function update(Request $request, $id)
+    public function update(DataUpdateRequest $request, $id)
     {
         $data = Data::findOrFail($id);
 
-        $request->validate([
-            'name' => 'required',
-            'img' => 'required|max:2048',
-            'category_id' => 'required',
-        ]);
-
-        $data->update([
-            'name' => $request->name,
-            'img' => $request->img,
-            'category_id' => $request->category_id,
-        ]);
+        $data->update($request->validated());
 
         $data->tags()->sync($request->tags);
 

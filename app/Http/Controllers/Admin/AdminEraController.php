@@ -9,13 +9,14 @@ use Illuminate\Support\Str;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\EraImport;
 use App\Exports\EraExport;
+use App\Http\Requests\EraStoreRequest;
+use App\Http\Requests\FranchiseUpdateRequest;
 
 class AdminEraController extends Controller
 {
     public function index()
     {
         $eras = Era::latest('id')->get();
-
         return view('admin.era.index', compact('eras'));
     }
 
@@ -26,7 +27,6 @@ class AdminEraController extends Controller
         ]);
 
         $file = $request->file('file');
-
         Excel::import(new EraImport, $file);
 
         return back()->with('alert', 'Berhasil Import Data Era!');
@@ -37,19 +37,9 @@ class AdminEraController extends Controller
         return Excel::download(new EraExport, 'Data Era.xlsx');
     }
 
-    public function store(Request $request)
+    public function store(EraStoreRequest $request)
     {
-        $request->validate([
-            'name' => 'required|max:255',
-            'desc' => 'max:255',
-            'img' => 'mimes:jpg,jpeg,png|max:2048',
-        ]);
-
-        $era = Era::create([
-            'id' => Str::uuid(),
-            'name' => $request->name,
-            'desc' => $request->desc,
-        ]);
+        $era = Era::create($request->validated());
 
         if ($request->hasFile('img')) {
             $img = $request->file('img');
@@ -62,20 +52,10 @@ class AdminEraController extends Controller
         return back()->with('alert', 'Berhasil Tambah Data Era!');
     }
 
-    public function update(Request $request, $id)
+    public function update(FranchiseUpdateRequest $request, $id)
     {
         $era = Era::findOrFail($id);
-
-        $request->validate([
-            'name' => 'required|max:255',
-            'desc' => 'max:255',
-            'img' => 'mimes:jpg,jpeg,png|max:2048',
-        ]);
-
-        $era->update([
-            'name' => $request->name,
-            'desc' => $request->desc,
-        ]);
+        $era->update($request->validated());
 
         if ($request->hasFile('img')) {
             $img = $request->file('img');
@@ -91,14 +71,12 @@ class AdminEraController extends Controller
     public function destroy($id)
     {
         Era::findOrFail($id)->delete();
-
         return back()->with('alert', 'Berhasil Hapus Data Era!');
     }
 
     public function destroyAll()
     {
         Era::truncate();
-
         return back()->with('alert', 'Berhasil Hapus Semua Era!');
     }
 }

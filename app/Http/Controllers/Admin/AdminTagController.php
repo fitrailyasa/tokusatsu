@@ -9,13 +9,14 @@ use Illuminate\Support\Str;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\TagImport;
 use App\Exports\TagExport;
+use App\Http\Requests\TagStoreRequest;
+use App\Http\Requests\TagUpdateRequest;
 
 class AdminTagController extends Controller
 {
     public function index()
     {
         $tags = Tag::orderBy('name')->get();
-
         return view('admin.tag.index', compact('tags'));
     }
 
@@ -26,9 +27,7 @@ class AdminTagController extends Controller
         ]);
 
         $file = $request->file('file');
-
         Excel::import(new TagImport, $file);
-
         return back()->with('alert', 'Berhasil Import Data Tag!');
     }
 
@@ -37,46 +36,28 @@ class AdminTagController extends Controller
         return Excel::download(new TagExport, 'Data Tag.xlsx');
     }
 
-    public function store(Request $request)
+    public function store(TagStoreRequest $request)
     {
-        $request->validate([
-            'name' => 'required|max:255',
-        ]);
-
-        $tag = Tag::create([
-            'id' => Str::uuid(),
-            'name' => $request->name,
-        ]);
-
+        $tag = Tag::create($request->validated());
         return back()->with('alert', 'Berhasil Tambah Data Tag!');
     }
 
-    public function update(Request $request, $id)
+    public function update(TagUpdateRequest $request, $id)
     {
         $tag = Tag::findOrFail($id);
-
-        $request->validate([
-            'name' => 'required|max:255',
-        ]);
-
-        $tag->update([
-            'name' => $request->name,
-        ]);
-
+        $tag->update($request->validated());
         return back()->with('alert', 'Berhasil Edit Data Tag!');
     }
 
     public function destroy($id)
     {
         Tag::findOrFail($id)->delete();
-
         return back()->with('alert', 'Berhasil Hapus Data Tag!');
     }
 
     public function destroyAll()
     {
         Tag::truncate();
-
         return back()->with('alert', 'Berhasil Hapus Semua Data Tag!');
     }
 }

@@ -11,6 +11,8 @@ use Illuminate\Support\Str;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\DataImport;
 use App\Exports\DataExport;
+use App\Http\Requests\DataStoreRequest;
+use App\Http\Requests\DataUpdateRequest;
 
 class AdminDataController extends Controller
 {
@@ -42,19 +44,9 @@ class AdminDataController extends Controller
         return Excel::download(new DataExport, 'Data.xlsx');
     }
 
-    public function store(Request $request)
+    public function store(DataStoreRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'category_id' => 'required',
-            'img' => 'mimes:jpg,jpeg,png|max:2048',
-        ]);
-
-        $data = Data::create([
-            'id' => Str::uuid(),
-            'name' => $request->name,
-            'category_id' => $request->category_id,
-        ]);
+        $data = Data::create($request->validated());
 
         $data->tags()->attach($request->tags);
 
@@ -69,20 +61,11 @@ class AdminDataController extends Controller
         return back()->with('alert', 'Berhasil Tambah Data!');
     }
 
-    public function update(Request $request, $id)
+    public function update(DataUpdateRequest $request, $id)
     {
         $data = Data::findOrFail($id);
 
-        $request->validate([
-            'name' => 'required',
-            'category_id' => 'required',
-            'img' => 'mimes:jpg,jpeg,png|max:2048',
-        ]);
-
-        $data->update([
-            'name' => $request->name,
-            'category_id' => $request->category_id,
-        ]);
+        $data->update($request->validated());
 
         $data->tags()->sync($request->tags);
 
