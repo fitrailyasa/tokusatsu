@@ -11,17 +11,17 @@ class CategoryExport implements FromCollection, WithHeadings
     public function collection()
     {
         $collection = [];
-        
+
         $categories = Category::with(['franchise', 'era'])->get();
 
         foreach ($categories as $category) {
             $collection[] = [
-                'ID' => '', 
+                'ID' => '',
                 'Name' => $category->name ?? '',
                 'Img' => $category->img ?? '',
                 'Desc' => $category->desc ?? '',
-                'Era' => $category->Era->name ?? '',
-                'Franchise' => $category->Franchise->name ?? '',
+                'Era' => $category->era->name ?? '',
+                'Franchise' => $category->franchise->name ?? '',
             ];
         }
 

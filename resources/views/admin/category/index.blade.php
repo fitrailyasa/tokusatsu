@@ -42,9 +42,9 @@
             @foreach ($categories as $category)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    {{-- <td class="d-none d-lg-table-cell">{{ $category->Franchise->name ?? '-' }}</td> --}}
+                    {{-- <td class="d-none d-lg-table-cell">{{ $category->franchise->name ?? '-' }}</td> --}}
                     <td>{{ $category->name ?? '-' }}</td>
-                    <td class="d-none d-lg-table-cell">{{ $category->Era->name ?? '-' }}</td>
+                    <td class="d-none d-lg-table-cell">{{ $category->era->name ?? '-' }}</td>
                     {{-- <td class="d-none d-lg-table-cell">{{ $category->desc ?? '-' }}</td> --}}
                     <td class="d-none d-lg-table-cell">
                         @if ($category->img == null)

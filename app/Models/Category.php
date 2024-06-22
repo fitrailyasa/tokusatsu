@@ -27,17 +27,17 @@ class Category extends Model
         });
     }
 
-    public function Data()
+    public function data()
     {
         return $this->hasMany(Data::class);
     }
 
-    public function Era()
+    public function era()
     {
         return $this->belongsTo(Era::class, 'era_id', 'id');
     }
 
-    public function Franchise()
+    public function franchise()
     {
         return $this->belongsTo(Franchise::class, 'franchise_id', 'id');
     }

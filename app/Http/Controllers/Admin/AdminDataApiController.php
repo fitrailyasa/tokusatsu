@@ -27,7 +27,7 @@ class AdminDataApiController extends Controller
 
         // if ($request->hasFile('img')) {
         //     $img = $request->file('img');
-        //     $file_name = $data->name . '_' . $data->Category->name . '_' . time() . '.' . $img->getClientOriginalExtension();
+        //     $file_name = $data->name . '_' . $data->category->name . '_' . time() . '.' . $img->getClientOriginalExtension();
         //     $data->img = $file_name;
         //     $data->update();
         //     $img->move('../public/assets/img/', $file_name);
@@ -52,7 +52,7 @@ class AdminDataApiController extends Controller
 
         // if ($request->hasFile('img')) {
         //     $img = $request->file('img');
-        //     $file_name = $data->name . '_' . $data->Category->name . '_' . time() . '.' . $img->getClientOriginalExtension();
+        //     $file_name = $data->name . '_' . $data->category->name . '_' . time() . '.' . $img->getClientOriginalExtension();
         //     $data->img = $file_name;
         //     $data->update();
         //     $img->move('../public/assets/img/', $file_name);

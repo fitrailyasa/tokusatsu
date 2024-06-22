@@ -27,7 +27,7 @@ class Franchise extends Model
         });
     }
 
-    public function Category()
+    public function category()
     {
         return $this->hasMany(Category::class);
     }

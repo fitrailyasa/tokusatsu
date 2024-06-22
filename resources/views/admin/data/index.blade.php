@@ -55,7 +55,7 @@
                 <tr>
                     <td>{{ $counter++ }}</td>
                     <td>{{ $data->name ?? '-' }}</td>
-                    <td>{{ $data->Category->name ?? '-' }}</td>
+                    <td>{{ $data->category->name ?? '-' }}</td>
                     <td>
                         @if ($data->img == null)
                             <img src="{{ asset('assets/profile/default.png') }}" alt="{{ $data->name }}" width="100">
@@ -137,4 +137,3 @@
 
     @section('activeData', 'aktif')
 </x-admin-table>
-

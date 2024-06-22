@@ -12,14 +12,14 @@ class DataExport implements FromCollection, WithHeadings
     {
 
         $collection = [];
-        
+
         $datas = Data::with('category')->get();
 
         foreach ($datas as $data) {
             $collection[] = [
-                'ID' => '', 
+                'ID' => '',
                 'Name' => $data->name ?? '',
-                'Category' => $data->Category->name ?? '',
+                'Category' => $data->category->name ?? '',
                 'Img' => $data->img ?? '',
                 'Tags' => implode(', ', $data->tags->pluck('name')->toArray()),
             ];
