@@ -11,8 +11,7 @@ use Illuminate\Support\Str;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\CategoryImport;
 use App\Exports\CategoryExport;
-use App\Http\Requests\CategoryStoreRequest;
-use App\Http\Requests\CategoryUpdateRequest;
+use App\Http\Requests\CategoryRequest;
 
 class AdminCategoryController extends Controller
 {
@@ -43,7 +42,7 @@ class AdminCategoryController extends Controller
         return Excel::download(new CategoryExport, 'Data Category.xlsx');
     }
 
-    public function store(CategoryStoreRequest $request)
+    public function store(CategoryRequest $request)
     {
         $category = Category::create($request->validated());
 
@@ -58,7 +57,7 @@ class AdminCategoryController extends Controller
         return back()->with('alert', 'Berhasil Tambah Data Category!');
     }
 
-    public function update(CategoryUpdateRequest $request, $id)
+    public function update(CategoryRequest $request, $id)
     {
         $category = Category::findOrFail($id);
         $category->update($request->validated());

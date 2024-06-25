@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class FranchiseStoreRequest extends FormRequest
+class TagRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -15,8 +15,6 @@ class FranchiseStoreRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255',
-            'desc' => 'max:255',
-            'img' => 'mimes:jpg,jpeg,png|max:2048',
         ];
     }
 
@@ -25,9 +23,6 @@ class FranchiseStoreRequest extends FormRequest
         return [
             'name.required' => 'Nama tidak boleh kosong!',
             'name.max' => 'Nama maksimal 255 karakter!',
-            'desc.max' => 'Deskripsi maksimal 255 karakter!',
-            'img.mimes' => 'Format gambar harus jpg, jpeg, png!',
-            'img.max' => 'Ukuran gambar maksimal 2 MB!',
         ];
     }
 }

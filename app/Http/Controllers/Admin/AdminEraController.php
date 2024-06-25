@@ -9,8 +9,7 @@ use Illuminate\Support\Str;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\EraImport;
 use App\Exports\EraExport;
-use App\Http\Requests\EraStoreRequest;
-use App\Http\Requests\FranchiseUpdateRequest;
+use App\Http\Requests\EraRequest;
 
 class AdminEraController extends Controller
 {
@@ -37,7 +36,7 @@ class AdminEraController extends Controller
         return Excel::download(new EraExport, 'Data Era.xlsx');
     }
 
-    public function store(EraStoreRequest $request)
+    public function store(EraRequest $request)
     {
         $era = Era::create($request->validated());
 
@@ -52,7 +51,7 @@ class AdminEraController extends Controller
         return back()->with('alert', 'Berhasil Tambah Data Era!');
     }
 
-    public function update(FranchiseUpdateRequest $request, $id)
+    public function update(EraRequest $request, $id)
     {
         $era = Era::findOrFail($id);
         $era->update($request->validated());

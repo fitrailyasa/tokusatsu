@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class EraUpdateRequest extends FormRequest
+class EraRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -23,7 +23,7 @@ class EraUpdateRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'Nama tidak boleh !kosong',
+            'name.required' => 'Nama tidak boleh kosong!',
             'name.max' => 'Nama maksimal 255 karakter!',
             'desc.max' => 'Deskripsi maksimal 255 karakter!',
             'img.mimes' => 'Format gambar harus jpg, jpeg, png!',

@@ -9,8 +9,7 @@ use Illuminate\Support\Str;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\FranchiseImport;
 use App\Exports\FranchiseExport;
-use App\Http\Requests\FranchiseStoreRequest;
-use App\Http\Requests\FranchiseUpdateRequest;
+use App\Http\Requests\FranchiseRequest;
 
 class AdminFranchiseController extends Controller
 {
@@ -37,7 +36,7 @@ class AdminFranchiseController extends Controller
         return Excel::download(new FranchiseExport, 'Data Franchise.xlsx');
     }
 
-    public function store(FranchiseStoreRequest $request)
+    public function store(FranchiseRequest $request)
     {
         $franchise = Franchise::create($request->validated());
 
@@ -52,7 +51,7 @@ class AdminFranchiseController extends Controller
         return back()->with('alert', 'Berhasil Tambah Data Franchise!');
     }
 
-    public function update(FranchiseUpdateRequest $request, $id)
+    public function update(FranchiseRequest $request, $id)
     {
         $franchise = Franchise::findOrFail($id);
         $franchise->update($request->validated());
