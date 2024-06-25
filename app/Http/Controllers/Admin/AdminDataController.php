@@ -7,12 +7,10 @@ use App\Models\Data;
 use App\Models\Category;
 use App\Models\Tag;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\DataImport;
 use App\Exports\DataExport;
-use App\Http\Requests\DataStoreRequest;
-use App\Http\Requests\DataUpdateRequest;
+use App\Http\Requests\DataRequest;
 
 class AdminDataController extends Controller
 {
@@ -44,7 +42,7 @@ class AdminDataController extends Controller
         return Excel::download(new DataExport, 'Data.xlsx');
     }
 
-    public function store(DataStoreRequest $request)
+    public function store(DataRequest $request)
     {
         $data = Data::create($request->validated());
 
@@ -61,7 +59,7 @@ class AdminDataController extends Controller
         return back()->with('alert', 'Berhasil Tambah Data!');
     }
 
-    public function update(DataUpdateRequest $request, $id)
+    public function update(DataRequest $request, $id)
     {
         $data = Data::findOrFail($id);
 

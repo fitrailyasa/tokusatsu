@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\DataStoreRequest;
-use App\Http\Requests\DataUpdateRequest;
+use App\Http\Requests\DataRequest;
+use App\Http\Resources\DataResource;
 use App\Models\Data;
 use App\Models\Category;
 use App\Models\Tag;
-use Illuminate\Support\Str;
 
 
 class AdminDataApiController extends Controller
@@ -16,10 +15,12 @@ class AdminDataApiController extends Controller
     public function index()
     {
         $datas = Data::paginate(10);
-        return response()->json($datas);
+        $categories = Category::all();
+        $tags = Tag::all();
+        return DataResource::collection($datas);
     }
 
-    public function store(DataStoreRequest $request)
+    public function store(DataRequest $request)
     {
         $data = Data::create($request->validated());
 
@@ -42,7 +43,7 @@ class AdminDataApiController extends Controller
         return response()->json($data);
     }
 
-    public function update(DataUpdateRequest $request, $id)
+    public function update(DataRequest $request, $id)
     {
         $data = Data::findOrFail($id);
 

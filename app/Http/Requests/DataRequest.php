@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class DataUpdateRequest extends FormRequest
+class DataRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -16,7 +16,7 @@ class DataUpdateRequest extends FormRequest
         return [
             'name' => 'required|max:255',
             'category_id' => 'required',
-            'img' => 'mimes:jpg,jpeg,png|max:2048',
+            // 'img' => 'mimes:jpg,jpeg,png|max:2048',
         ];
     }
 
@@ -26,8 +26,8 @@ class DataUpdateRequest extends FormRequest
             'name.required' => 'Nama tidak boleh kosong!',
             'name.max' => 'Nama maksimal 255 karakter!',
             'category_id.required' => 'Kategori tidak boleh kosong!',
-            'img.mimes' => 'Format gambar harus jpg, jpeg, png!',
-            'img.max' => 'Ukuran gambar maksimal 2 MB!',
+            // 'img.mimes' => 'Format gambar harus jpg, jpeg, png!',
+            // 'img.max' => 'Ukuran gambar maksimal 2 MB!',
         ];
     }
 }
