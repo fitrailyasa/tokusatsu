@@ -30,11 +30,11 @@
         <thead>
             <tr>
                 <th>{{ __('No') }}</th>
-                {{-- <th class="d-none d-lg-table-cell">{{ __('Franchise') }}</th> --}}
                 <th>{{ __('Name') }}</th>
-                <th class="d-none d-lg-table-cell">{{ __('Era') }}</th>
-                {{-- <th class="d-none d-lg-table-cell">{{ __('Desc') }}</th> --}}
                 <th class="d-none d-lg-table-cell">{{ __('Images') }}</th>
+                <th class="d-none d-lg-table-cell">{{ __('Desc') }}</th>
+                <th class="d-none d-lg-table-cell">{{ __('Era') }}</th>
+                <th class="d-none d-lg-table-cell">{{ __('Franchise') }}</th>
                 <th>{{ __('More') }}</th>
             </tr>
         </thead>
@@ -42,10 +42,7 @@
             @foreach ($categories as $category)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    {{-- <td class="d-none d-lg-table-cell">{{ $category->franchise->name ?? '-' }}</td> --}}
                     <td>{{ $category->name ?? '-' }}</td>
-                    <td class="d-none d-lg-table-cell">{{ $category->era->name ?? '-' }}</td>
-                    {{-- <td class="d-none d-lg-table-cell">{{ $category->desc ?? '-' }}</td> --}}
                     <td class="d-none d-lg-table-cell">
                         @if ($category->img == null)
                             <img src="{{ asset('assets/profile/default.png') }}" alt="{{ $category->name }}"
@@ -88,6 +85,9 @@
                             </div>
                         @endif
                     </td>
+                    <td class="d-none d-lg-table-cell">{{ $category->desc ?? '-' }}</td>
+                    <td class="d-none d-lg-table-cell">{{ $category->era->name ?? '-' }}</td>
+                    <td class="d-none d-lg-table-cell">{{ $category->franchise->name ?? '-' }}</td>
                     <td class="manage-row">
                         @if (auth()->user()->role == 'admin')
                             @include('admin.category.edit')
@@ -100,11 +100,11 @@
         <tfoot>
             <tr>
                 <th>{{ __('No') }}</th>
-                {{-- <th class="d-none d-lg-table-cell">{{ __('Franchise') }}</th> --}}
                 <th>{{ __('Name') }}</th>
-                <th class="d-none d-lg-table-cell">{{ __('Era') }}</th>
-                {{-- <th class="d-none d-lg-table-cell">{{ __('Desc') }}</th> --}}
                 <th class="d-none d-lg-table-cell">{{ __('Images') }}</th>
+                <th class="d-none d-lg-table-cell">{{ __('Desc') }}</th>
+                <th class="d-none d-lg-table-cell">{{ __('Era') }}</th>
+                <th class="d-none d-lg-table-cell">{{ __('Franchise') }}</th>
                 <th>{{ __('More') }}</th>
             </tr>
         </tfoot>

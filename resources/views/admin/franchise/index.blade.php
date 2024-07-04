@@ -31,8 +31,8 @@
             <tr>
                 <th>{{ __('No') }}</th>
                 <th>{{ __('Name') }}</th>
-                <th class="d-none d-lg-table-cell">{{ __('Desc') }}</th>
                 <th class="d-none d-lg-table-cell">{{ __('Images') }}</th>
+                <th class="d-none d-lg-table-cell">{{ __('Desc') }}</th>
                 <th>{{ __('More') }}</th>
             </tr>
         </thead>
@@ -41,7 +41,6 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $franchise->name ?? '-' }}</td>
-                    <td class="d-none d-lg-table-cell">{{ $franchise->desc ?? '-' }}</td>
                     <td class="d-none d-lg-table-cell">
                         @if ($franchise->img == null)
                             <img src="{{ asset('assets/profile/default.png') }}" alt="{{ $franchise->name }}"
@@ -84,6 +83,7 @@
                             </div>
                         @endif
                     </td>
+                    <td class="d-none d-lg-table-cell">{{ $franchise->desc ?? '-' }}</td>
                     <td class="manage-row">
                         @if (auth()->user()->role == 'admin')
                             @include('admin.franchise.edit')
@@ -97,8 +97,8 @@
             <tr>
                 <th>{{ __('No') }}</th>
                 <th>{{ __('Name') }}</th>
-                <th class="d-none d-lg-table-cell">{{ __('Desc') }}</th>
                 <th class="d-none d-lg-table-cell">{{ __('Images') }}</th>
+                <th class="d-none d-lg-table-cell">{{ __('Desc') }}</th>
                 <th>{{ __('More') }}</th>
             </tr>
         </tfoot>
