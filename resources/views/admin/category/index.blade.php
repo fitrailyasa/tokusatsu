@@ -35,7 +35,7 @@
                 <th class="d-none d-lg-table-cell">{{ __('Desc') }}</th>
                 <th class="d-none d-lg-table-cell">{{ __('Era') }}</th>
                 <th class="d-none d-lg-table-cell">{{ __('Franchise') }}</th>
-                <th>{{ __('More') }}</th>
+                <th>{{ __('Action') }}</th>
             </tr>
         </thead>
         <tbody>
@@ -105,7 +105,7 @@
                 <th class="d-none d-lg-table-cell">{{ __('Desc') }}</th>
                 <th class="d-none d-lg-table-cell">{{ __('Era') }}</th>
                 <th class="d-none d-lg-table-cell">{{ __('Franchise') }}</th>
-                <th>{{ __('More') }}</th>
+                <th>{{ __('Action') }}</th>
             </tr>
         </tfoot>
     </table>

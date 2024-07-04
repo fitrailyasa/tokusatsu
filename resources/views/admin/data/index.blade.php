@@ -47,7 +47,7 @@
                 <th>{{ __('Category') }}</th>
                 <th>{{ __('Images') }}</th>
                 <th>{{ __('Tags') }}</th>
-                <th>{{ __('More') }}</th>
+                <th>{{ __('Action') }}</th>
             </tr>
         </thead>
         <tbody>
@@ -58,7 +58,8 @@
                     <td>{{ $data->category->name ?? '-' }}</td>
                     <td>
                         @if ($data->img == null)
-                            <img src="{{ asset('assets/profile/default.png') }}" alt="{{ $data->name }}" width="100">
+                            <img src="{{ asset('assets/profile/default.png') }}" alt="{{ $data->name }}"
+                                width="100">
                         @else
                             <a href="#" data-toggle="modal" data-target="#myModal{{ $data->id }}">
                                 <img class="img img-fluid rounded" src="{{ asset('assets/img/' . $data->img) }}"
@@ -125,7 +126,7 @@
                 <th>{{ __('Category') }}</th>
                 <th>{{ __('Images') }}</th>
                 <th>{{ __('Tags') }}</th>
-                <th>{{ __('More') }}</th>
+                <th>{{ __('Action') }}</th>
             </tr>
             <tr>
                 <th colspan="5">

@@ -19,7 +19,7 @@
                 <th class="d-none d-lg-table-cell">{{ __('Email') }}</th>
                 <th class="d-none d-lg-table-cell">{{ __('Role') }}</th>
                 <th class="d-none d-lg-table-cell">{{ __('Status') }}</th>
-                <th>{{ __('More') }}</th>
+                <th>{{ __('Action') }}</th>
             </tr>
         </thead>
         <tbody>
@@ -58,7 +58,7 @@
                 <th class="d-none d-lg-table-cell">{{ __('Email') }}</th>
                 <th class="d-none d-lg-table-cell">{{ __('Role') }}</th>
                 <th class="d-none d-lg-table-cell">{{ __('Status') }}</th>
-                <th>{{ __('More') }}</th>
+                <th>{{ __('Action') }}</th>
             </tr>
         </tfoot>
     </table>

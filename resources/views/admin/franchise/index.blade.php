@@ -33,7 +33,7 @@
                 <th>{{ __('Name') }}</th>
                 <th class="d-none d-lg-table-cell">{{ __('Images') }}</th>
                 <th class="d-none d-lg-table-cell">{{ __('Desc') }}</th>
-                <th>{{ __('More') }}</th>
+                <th>{{ __('Action') }}</th>
             </tr>
         </thead>
         <tbody>
@@ -99,7 +99,7 @@
                 <th>{{ __('Name') }}</th>
                 <th class="d-none d-lg-table-cell">{{ __('Images') }}</th>
                 <th class="d-none d-lg-table-cell">{{ __('Desc') }}</th>
-                <th>{{ __('More') }}</th>
+                <th>{{ __('Action') }}</th>
             </tr>
         </tfoot>
     </table>
