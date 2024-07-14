@@ -109,18 +109,17 @@
             document.getElementById('image-input').addEventListener('change', previewImage);
             window.addEventListener('load', previewImage);
         </script>
-        <!-- DataTables  & Plugins -->
-        <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/jszip/jszip.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/pdfmake/pdfmake.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/pdfmake/vfs_fonts.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+        <!-- DataTables -->
+        <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>
+        <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+        <script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap4.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.bootstrap4.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.2.2/jszip.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.70/pdfmake.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.70/vfs_fonts.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script>
     </x-slot>
 </x-admin-layout>

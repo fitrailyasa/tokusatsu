@@ -6,18 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Tokusatsu - @yield('title')</title>
 
-    <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome-free/css/all.min.css') }}">
-    <!-- Tempusdominus Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="{{ asset('assets/dist/css/adminlte.min.css') }}">
-    <!-- overlayScrollbars -->
-    <link rel="stylesheet" href="{{ asset('assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;400i;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/css/adminlte.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.13.0/css/OverlayScrollbars.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
     @yield('style')
 
@@ -50,81 +47,6 @@
     <meta name="msapplication-square310x310logo" content="{{ asset('assets/favicon/mstile-310x310.png') }}" />
     <link rel="icon" href="{{ asset('assets/favicon/favicon.ico') }}">
 
-    <style>
-        @media print {
-
-            i,
-            .page,
-            .header,
-            .footer,
-            .aktif {
-                display: none !important;
-            }
-        }
-
-        .header,
-        .content,
-        .modal-body,
-        .img-gallery,
-        .aktif,
-        .footer {
-            color: white;
-            background-color: #000000;
-            background-image: linear-gradient(225deg, #000000 0%, #12085f 50%, #000000 100%) !important;
-        }
-
-        .modal-content {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-        }
-
-        .btn-search {
-            background-color: rgba(255, 255, 255, 0.5);
-            border-color: transparent;
-            color: #fff;
-        }
-
-        .img-gallery {
-            border-radius: 10px;
-            transition: all 0.3s ease;
-        }
-
-        .img-gallery:hover {
-            transform: scale(1.1);
-            filter: brightness(0.8);
-        }
-
-        .text-title {
-            color: #fff;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        /* Default image size for desktop */
-        .img-gallery {
-            border-radius: 50px;
-            padding: 30px;
-            width: 300px;
-        }
-
-        /* Tablet view: 768px and below */
-        @media (max-width: 768px) {
-            .img-gallery {
-                border-radius: 30px;
-                padding: 20px;
-                width: 200px;
-            }
-        }
-
-        /* Mobile view: 576px and below */
-        @media (max-width: 576px) {
-            .img-gallery {
-                border-radius: 20px;
-                padding: 10px;
-                width: 100px;
-            }
-        }
-    </style>
-
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed content">
@@ -135,7 +57,6 @@
 
     @include('layouts.client.footer')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- Bootstrap JS and Popper.js -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
     </script>
