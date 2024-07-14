@@ -7,7 +7,6 @@ use App\Models\Category;
 use App\Models\Franchise;
 use App\Models\Era;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\CategoryImport;
 use App\Exports\CategoryExport;

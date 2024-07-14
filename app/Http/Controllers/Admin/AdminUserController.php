@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
-use Illuminate\Http\Request;
 
 class AdminUserController extends Controller
 {

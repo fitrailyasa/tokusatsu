@@ -13,9 +13,9 @@ class TagImport implements ToModel, WithStartRow
     {
         $name = $row[1];
 
-        $existingTag = Tag::where('name', $name)->first();
+        $checkTag = Tag::where('name', $name)->first();
 
-        if (!$existingTag) {
+        if (!$checkTag) {
             return new Tag([
                 'id' => Str::uuid(),
                 'name' => $name,
@@ -29,5 +29,4 @@ class TagImport implements ToModel, WithStartRow
     {
         return 3;
     }
-    
 }

@@ -15,12 +15,20 @@ class DataResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->id,
-            'name' => $this->name,
-            'img' => $this->img,
-            'description' => $this->description,
-            'category' => new CategoryResource($this->category),
-            'tags' => TagResource::collection($this->tags),
+            'status' => 'success',
+            'message' => 'Data retrieved successfully',
+            'data' => [
+                'id' => $this->id,
+                'name' => $this->name,
+                'img' => $this->img,
+                'description' => $this->description ?? '', // Ensure description is not null
+                'category' => $this->whenLoaded('category', function () {
+                    return new CategoryResource($this->category);
+                }), // Load category only when it is loaded
+                'tags' => $this->whenLoaded('tags', function () {
+                    return TagResource::collection($this->tags);
+                }), // Load tags only when they are loaded
+            ],
         ];
     }
 }

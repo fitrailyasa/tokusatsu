@@ -45,7 +45,6 @@ class AdminDataController extends Controller
     public function store(DataRequest $request)
     {
         $data = Data::create($request->validated());
-
         $data->tags()->attach($request->tags);
 
         if ($request->hasFile('img')) {
@@ -61,10 +60,7 @@ class AdminDataController extends Controller
 
     public function update(DataRequest $request, $id)
     {
-        $data = Data::findOrFail($id);
-
-        $data->update($request->validated());
-
+        $data = Data::findOrFail($id)->update($request->validated());
         $data->tags()->sync($request->tags);
 
         if ($request->hasFile('img')) {
@@ -90,5 +86,27 @@ class AdminDataController extends Controller
         Data::truncate();
 
         return back()->with('alert', 'Berhasil Hapus Semua Data!');
+    }
+
+    public function search(Request $request)
+    {
+        $tags = Tag::all();
+        $categories = Category::all();
+        $datas = Data::all();
+
+        $validatedData = $request->validate([
+            'query' => 'required|string|max:255',
+        ]);
+
+        $query = '%' . $validatedData['query'] . '%';
+
+        $datas = Data::where('name', 'like', $query)
+            ->orWhere('img', 'like', $query)
+            ->orWhereHas('tags', function ($q) use ($query) {
+                $q->where('name', 'like', $query);
+            })
+            ->paginate(50);
+
+        return view('admin.data.search', compact('datas', 'categories', 'tags'));
     }
 }

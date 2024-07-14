@@ -7,9 +7,7 @@ use App\Models\Era;
 use App\Models\Franchise;
 use App\Models\Category;
 use App\Models\Data;
-use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class AdminDashboardController extends Controller
 {

@@ -33,9 +33,9 @@ class CategoryImport implements ToModel, WithStartRow
             ]);
         }
 
-        $existingCategory = Category::where('name', $row[2])->first();
+        $checkCategory = Category::where('name', $row[2])->first();
 
-        if ($existingCategory) {
+        if ($checkCategory) {
             return null;
         }
 
