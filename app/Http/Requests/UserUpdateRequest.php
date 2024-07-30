@@ -14,7 +14,7 @@ class UserUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|max:255',
+            'name' => 'required|max:100',
             'email' => 'required|max:255|unique:users,email',
             'no_hp' => 'max:255',
             'password' => 'min:8',
@@ -27,7 +27,7 @@ class UserUpdateRequest extends FormRequest
     {
         return [
             'name.required' => 'Nama tidak boleh kosong!',
-            'name.max' => 'Nama maksimal 255 karakter!',
+            'name.max' => 'Nama maksimal 100 karakter!',
             'email.required' => 'Email tidak boleh kosong!',
             'email.max' => 'Email maksimal 255 karakter!',
             'email.unique' => 'Email sudah terdaftar!',

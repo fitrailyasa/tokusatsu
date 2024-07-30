@@ -14,7 +14,7 @@ class TagRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|max:255',
+            'name' => 'required|max:100',
         ];
     }
 
@@ -22,7 +22,7 @@ class TagRequest extends FormRequest
     {
         return [
             'name.required' => 'Nama tidak boleh kosong!',
-            'name.max' => 'Nama maksimal 255 karakter!',
+            'name.max' => 'Nama maksimal 100 karakter!',
         ];
     }
 }

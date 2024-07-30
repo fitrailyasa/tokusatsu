@@ -14,7 +14,7 @@ class DataRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|max:255',
+            'name' => 'required|max:100',
             'category_id' => 'required',
             // 'img' => 'mimes:jpg,jpeg,png|max:2048',
         ];
@@ -24,7 +24,7 @@ class DataRequest extends FormRequest
     {
         return [
             'name.required' => 'Nama tidak boleh kosong!',
-            'name.max' => 'Nama maksimal 255 karakter!',
+            'name.max' => 'Nama maksimal 100 karakter!',
             'category_id.required' => 'Kategori tidak boleh kosong!',
             // 'img.mimes' => 'Format gambar harus jpg, jpeg, png!',
             // 'img.max' => 'Ukuran gambar maksimal 2 MB!',
