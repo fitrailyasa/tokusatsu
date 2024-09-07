@@ -2,7 +2,7 @@
 <aside class="main-sidebar elevation-4">
     <!-- Brand Logo -->
     <a href="#" class="brand-link border-bottom">
-        <img src="{{ asset('logo.png') }}" alt="Logo"
+        <img src="{{ asset('storage/logo.png') }}" alt="Logo"
             class="brand-image img-circle elevation-3 bg-white" style="opacity: .8">
         <span class="brand-text font-weight-bold text-white">TOKUSATSU</span>
     </a>

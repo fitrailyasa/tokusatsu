@@ -17,7 +17,7 @@ class DataImport implements ToModel, WithStartRow
 
         if (!$category) {
             $category = Category::create([
-                'id' => Str::uuid(),
+                // 'id' => Str::uuid(),
                 'name' => $row[2],
                 'img' => null,
                 'franchise_id' => null,
@@ -50,7 +50,7 @@ class DataImport implements ToModel, WithStartRow
         }
 
         $data = new Data([
-            'id' => Str::uuid(),
+            // 'id' => Str::uuid(),
             'name' => $row[1],
             'category_id' => $category->id ?? null,
             'img' => $row[3] ?? null,

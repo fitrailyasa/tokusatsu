@@ -18,7 +18,7 @@ class Data extends Model
     protected $connection;
     protected $table = 'data';
     protected $primaryKey = 'id';
-    public $incrementing = false;
+    // public $incrementing = false;
     protected $fillable = ['id', 'name', 'img', 'category_id'];
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 
@@ -28,16 +28,16 @@ class Data extends Model
         // DB::setDefaultConnection(env('DB2_CONNECTION'));
     }
 
-    protected static function boot()
-    {
-        parent::boot();
+    // protected static function boot()
+    // {
+    //     parent::boot();
 
-        static::creating(function ($model) {
-            if (empty($model->id)) {
-                $model->id = (string) Str::uuid();
-            }
-        });
-    }
+    //     static::creating(function ($model) {
+    //         if (empty($model->id)) {
+    //             $model->id = (string) Str::uuid();
+    //         }
+    //     });
+    // }
 
     public function category()
     {

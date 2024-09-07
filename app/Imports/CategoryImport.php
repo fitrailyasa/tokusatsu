@@ -26,7 +26,6 @@ class CategoryImport implements ToModel, WithStartRow
 
         if (!$franchise) {
             $franchise = Franchise::create([
-                'id' => Str::uuid(),
                 'name' => $row[5],
                 'img' => null,
             ]);
@@ -46,7 +45,7 @@ class CategoryImport implements ToModel, WithStartRow
         }
 
         return new Category([
-            'id' => Str::uuid(),
+            // 'id' => Str::uuid(),
             'name' => $row[2],
             'img' => $row[3] ?? null,
             'desc' => $row[4] ?? null,

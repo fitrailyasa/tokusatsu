@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('data_tags', function (Blueprint $table) {
             $table->id('id');
-            $table->uuid('data_id')->nullable();
+            $table->foreignId('data_id')->nullable();
             $table->foreignId('tag_id')->nullable();
             $table->timestamps();
         });
