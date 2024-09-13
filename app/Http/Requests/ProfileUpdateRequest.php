@@ -16,7 +16,6 @@ class ProfileUpdateRequest extends FormRequest
     public function rules(): array
     {
         $db = new User();
-        $db->setDynamicConnection();
 
         // dd($db->getConnection()->getDatabaseName());
 

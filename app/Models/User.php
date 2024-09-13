@@ -58,9 +58,12 @@ class User extends Authenticatable
         'provider_token' => 'array',
     ];
 
-    public static function setDynamicConnection()
+    protected static function boot()
     {
+        parent::boot();
+
         DB::setDefaultConnection(env('DB_CONNECTION'));
         // DB::setDefaultConnection(env('DB2_CONNECTION'));
+
     }
 }

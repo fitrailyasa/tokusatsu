@@ -16,7 +16,6 @@ class TagRequest extends FormRequest
     public function rules(): array
     {
         $db = new Tag();
-        $db->setDynamicConnection();
 
         // dd($db->getConnection()->getDatabaseName());
 

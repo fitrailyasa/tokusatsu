@@ -22,22 +22,19 @@ class Data extends Model
     protected $fillable = ['id', 'name', 'img', 'category_id'];
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 
-    public static function setDynamicConnection()
+    protected static function boot()
     {
+        parent::boot();
+
         DB::setDefaultConnection(env('DB_CONNECTION'));
         // DB::setDefaultConnection(env('DB2_CONNECTION'));
+
+        // static::creating(function ($model) {
+        //     if (empty($model->id)) {
+        //         $model->id = (string) Str::uuid();
+        //     }
+        // });
     }
-
-    // protected static function boot()
-    // {
-    //     parent::boot();
-
-    //     static::creating(function ($model) {
-    //         if (empty($model->id)) {
-    //             $model->id = (string) Str::uuid();
-    //         }
-    //     });
-    // }
 
     public function category()
     {

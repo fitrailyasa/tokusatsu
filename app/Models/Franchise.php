@@ -19,15 +19,12 @@ class Franchise extends Model
     protected $fillable = ['name', 'slug', 'desc', 'img'];
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 
-    public static function setDynamicConnection()
-    {
-        DB::setDefaultConnection(env('DB_CONNECTION'));
-        // DB::setDefaultConnection(env('DB2_CONNECTION'));
-    }
-
     protected static function boot()
     {
         parent::boot();
+
+        DB::setDefaultConnection(env('DB_CONNECTION'));
+        // DB::setDefaultConnection(env('DB2_CONNECTION'));
 
         static::creating(function ($model) {
             if (empty($model->slug) && !empty($model->name)) {

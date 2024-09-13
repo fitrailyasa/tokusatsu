@@ -16,7 +16,6 @@ class FranchiseRequest extends FormRequest
     public function rules(): array
     {
         $db = new Franchise();
-        $db->setDynamicConnection();
 
         // dd($db->getConnection()->getDatabaseName());
         

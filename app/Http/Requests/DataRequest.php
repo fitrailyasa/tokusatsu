@@ -15,7 +15,6 @@ class DataRequest extends FormRequest
     public function rules(): array
     {
         $db = new Data();
-        $db->setDynamicConnection();
 
         // dd($db->getConnection()->getDatabaseName());
 

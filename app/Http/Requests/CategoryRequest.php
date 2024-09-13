@@ -16,7 +16,6 @@ class CategoryRequest extends FormRequest
     public function rules(): array
     {
         $db = new Category();
-        $db->setDynamicConnection();
 
         // dd($db->getConnection()->getDatabaseName());
 

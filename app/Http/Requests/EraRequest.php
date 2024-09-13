@@ -16,7 +16,6 @@ class EraRequest extends FormRequest
     public function rules(): array
     {
         $db = new Era();
-        $db->setDynamicConnection();
 
         // dd($db->getConnection()->getDatabaseName());
 
