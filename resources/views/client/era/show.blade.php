@@ -6,7 +6,7 @@
 
 @section('content')
 
-    <div class="text-center my-5 py-5">
+    <div class="text-center my-5 py-4">
         <div class="container">
             <div class="row px-3">
                 <div class="col-3 text-left">
