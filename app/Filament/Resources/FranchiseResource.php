@@ -23,8 +23,8 @@ class FranchiseResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')->columnSpanFull()->required()->label('Nama'),
-                Forms\Components\TextInput::make('desc')->columnSpanFull()->required()->label('Deskripsi'),
+                Forms\Components\TextInput::make('name')->columnSpanFull()->unique('franchises', 'name')->required()->label('Nama'),
+                Forms\Components\TextInput::make('desc')->columnSpanFull()->label('Deskripsi'),
                 Forms\Components\FileUpload::make('img')->columnSpanFull()->label('Gambar')->image(),
             ]);
     }
