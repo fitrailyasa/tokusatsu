@@ -12,6 +12,7 @@
 .content,
 .modal-body,
 .img-gallery,
+.dropdown-menu,
 .footer {
     color: white;
     background-color: #000000;
@@ -21,6 +22,15 @@
         #12085f 50%,
         #000000 100%
     ) !important;
+}
+
+.dropdown-item {
+    color: #fff;
+}
+
+.custom-dropdown {
+    max-height: 60vh;
+    overflow-y: auto;
 }
 
 .border-top {

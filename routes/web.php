@@ -26,11 +26,6 @@ use App\Livewire\Admin\FranchiseLivewire;
 use App\Livewire\Admin\TagLivewire;
 use App\Livewire\Admin\UserLivewire;
 
-use App\Http\Controllers\MessageController;
-
-Route::get('/messages', [MessageController::class, 'index']);
-Route::post('/messages', [MessageController::class, 'store']);
-
 // CLIENT SIDE
 Route::get('/', [HomeController::class, 'index'])->name('beranda');
 
