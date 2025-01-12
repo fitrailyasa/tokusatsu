@@ -15,7 +15,7 @@ class ClientCategoryController extends Controller
         $eras = Era::withoutTrashed()->get()->reverse();
         $franchises = Franchise::withoutTrashed()->get()->reverse();
         $categories = Category::withoutTrashed()->latest('id')->paginate(12);
-        return view('client.category.index', compact('categories'));
+        return view('client.category.index', compact('categories', 'eras', 'franchises'));
     }
 
     public function show(string $id)
