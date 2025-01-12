@@ -5,7 +5,7 @@
 @section('textHome', 'rounded aktif')
 
 @section('content')
-    <div class="text-center my-5 py-4">
+    <div class="text-center my-5 py-5">
         @include('client.buttonSearch')
         <h4 class="text-white font-weight-bold">Hasil Pencarian</h4>
         <div class="text-center d-flex flex-wrap justify-content-center pb-3">

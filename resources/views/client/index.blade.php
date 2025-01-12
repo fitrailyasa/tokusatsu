@@ -6,7 +6,7 @@
 
 @section('content')
 
-    <div class="text-center my-5 py-4">
+    <div class="text-center my-5 py-5">
         @include('client.buttonSearch')
         <h4 class="text-white font-weight-bold">Kamen Rider</h4>
         <div class="text-center d-flex flex-wrap justify-content-center border-bottom pb-3">
