@@ -29,7 +29,7 @@ class AdminUserController extends Controller
     public function store(UserStoreRequest $request)
     {
         User::create($request->validated());
-        return back()->with('alert', 'Berhasil Tambah User!');
+        return back()->with('message', 'Berhasil Tambah User!');
     }
 
     public function update(UserUpdateRequest $request, string $id)
@@ -42,12 +42,12 @@ class AdminUserController extends Controller
         }
 
         $user->update($userData);
-        return back()->with('alert', 'Berhasil Edit User!');
+        return back()->with('message', 'Berhasil Edit User!');
     }
 
     public function destroy(string $id)
     {
         User::findOrFail($id)->delete();
-        return back()->with('alert', 'Berhasil Hapus User!');
+        return back()->with('message', 'Berhasil Hapus User!');
     }
 }

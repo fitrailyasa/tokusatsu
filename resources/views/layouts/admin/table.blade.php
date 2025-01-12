@@ -43,9 +43,9 @@
                     </ul>
                 </div>
             @endif
-            @if (session('alert'))
+            @if (session('message'))
                 <div class="alert alert-success" role="alert">
-                    {{ session('alert') }}
+                    {{ session('message') }}
                 </div>
             @endif
             <div class="table-responsive">

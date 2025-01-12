@@ -11,21 +11,8 @@
                 @include('admin.franchise.restoreAll')
             </div>
         </div>
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-        @if (session('alert'))
-            <div class="alert alert-success" role="alert">
-                {{ session('alert') }}
-            </div>
-        @endif
-        @include('components.layouts.search')
+        @include('components.alert')
+        @include('components.search')
 
         <form wire:submit.prevent="{{ $isUpdate ? 'update' : 'store' }}">
             <div class="row">

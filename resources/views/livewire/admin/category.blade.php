@@ -11,21 +11,8 @@
                 @include('admin.category.restoreAll')
             </div>
         </div>
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-        @if (session('alert'))
-            <div class="alert alert-success" role="alert">
-                {{ session('alert') }}
-            </div>
-        @endif
-        @include('components.layouts.search')
+        @include('components.alert')
+        @include('components.search')
 
         <form wire:submit.prevent="{{ $isUpdate ? 'update' : 'store' }}">
             <div class="row">
@@ -44,7 +31,7 @@
                         <label class="form-label">{{ __('Franchise') }}</label>
                         <select class="form-select @error('franchise_id') is-invalid @enderror"
                             wire:model="franchise_id" id="franchise_id" required>
-                            <option value="" disabled>{{ __('Select Franchise') }}</option>
+                            <option value="">{{ __('Select Franchise') }}</option>
                             @foreach ($franchises as $franchise)
                                 <option value="{{ $franchise->id }}" @selected($franchise->id == old('franchise_id', $franchise_id))>
                                     {{ $franchise->name }}
@@ -61,7 +48,7 @@
                         <label class="form-label">{{ __('Era') }}</label>
                         <select class="form-select @error('era_id') is-invalid @enderror" wire:model="era_id"
                             id="era_id" required>
-                            <option value="" disabled>{{ __('Select Era') }}</option>
+                            <option value="">{{ __('Select Era') }}</option>
                             @foreach ($eras as $era)
                                 <option value="{{ $era->id }}" @selected($era->id == old('era_id', $era_id))>
                                     {{ $era->name }}

@@ -43,7 +43,7 @@ class AdminTagController extends Controller
 
         $file = $request->file('file');
         Excel::import(new TagImport, $file);
-        return back()->with('alert', 'Berhasil Import Data Tag!');
+        return back()->with('message', 'Berhasil Import Data Tag!');
     }
 
     public function export()
@@ -54,49 +54,49 @@ class AdminTagController extends Controller
     public function store(TagRequest $request)
     {
         $tag = Tag::create($request->validated());
-        return back()->with('alert', 'Berhasil Tambah Data Tag!');
+        return back()->with('message', 'Berhasil Tambah Data Tag!');
     }
 
     public function update(TagRequest $request, $id)
     {
         $tag = Tag::findOrFail($id);
         $tag->update($request->validated());
-        return back()->with('alert', 'Berhasil Edit Data Tag!');
+        return back()->with('message', 'Berhasil Edit Data Tag!');
     }
 
     public function destroy($id)
     {
         Tag::withTrashed()->findOrFail($id)->forceDelete();
-        return back()->with('alert', 'Berhasil Hapus Data Tag!');
+        return back()->with('message', 'Berhasil Hapus Data Tag!');
     }
 
     public function destroyAll()
     {
         Tag::truncate();
-        return back()->with('alert', 'Berhasil Hapus Semua Tag!');
+        return back()->with('message', 'Berhasil Hapus Semua Tag!');
     }
 
     public function softDelete($id)
     {
         Tag::findOrFail($id)->delete();
-        return back()->with('alert', 'Berhasil Hapus Data Tag!');
+        return back()->with('message', 'Berhasil Hapus Data Tag!');
     }
 
     public function softDeleteAll()
     {
         Tag::query()->delete();
-        return back()->with('alert', 'Berhasil Hapus Semua Tag!');
+        return back()->with('message', 'Berhasil Hapus Semua Tag!');
     }
 
     public function restore($id)
     {
         Tag::withTrashed()->findOrFail($id)->restore();
-        return back()->with('alert', 'Berhasil Restore Tag!');
+        return back()->with('message', 'Berhasil Restore Tag!');
     }
 
     public function restoreAll()
     {
         Tag::onlyTrashed()->restore();
-        return back()->with('alert', 'Berhasil Restore Semua Tag!');
+        return back()->with('message', 'Berhasil Restore Semua Tag!');
     }
 }
