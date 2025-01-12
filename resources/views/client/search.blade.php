@@ -36,7 +36,9 @@
             @endforeach
         </div>
         <div class="d-flex justify-content-center mt-3">
-            {{ $datas->appends(request()->query())->links() }}
+            <div class="d-flex justify-content-center w-100 overflow-auto">
+                {{ $datas->onEachSide(0)->links() }}
+            </div>
         </div>
     </div>
 
