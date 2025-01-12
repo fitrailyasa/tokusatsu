@@ -46,7 +46,7 @@ class HomeController extends Controller
                 $q->where('name', 'like', $query);
             })
             ->withoutTrashed()
-            ->paginate(12);
+            ->paginate(30);
 
         $eras = Era::withoutTrashed()->get()->reverse();
         $franchises = Franchise::withoutTrashed()->get()->reverse();
