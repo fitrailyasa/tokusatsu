@@ -8,16 +8,16 @@
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-between">
             <div class="d-flex align-items-center justify-content-center">
-                <img class="img-fluid" width="60" src="{{ asset('storage/logo.png') }}" alt="Logo">
-                <h2 class="mb-0 font-weight-bold">TOKUSATSU</h2>
+                <img class="img-fluid" width="50" src="{{ asset('storage/logo.png') }}" alt="Logo">
+                <h4 class="mb-0 font-weight-bold">TOKUSATSU</h4>
             </div>
             <div class="d-none d-lg-block">
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 mx-3 justify-content-center mb-md-0">
                     <li><a href="{{ route('beranda') }}"
-                            class="nav-link py-3 px-3 text-white fw-bold fs-5 @yield('textHome')">{{ __('Home') }}</a>
+                            class="nav-link py-3 px-3 text-white fw-bold @yield('textHome')">{{ __('Home') }}</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle py-3 px-3 text-white fw-bold fs-5 @yield('textEra')"
+                        <a class="nav-link dropdown-toggle py-3 px-3 text-white fw-bold @yield('textEra')"
                             href="#" id="eraDropdown" role="button">
                             {{ __('Era') }}
                         </a>
@@ -37,7 +37,7 @@
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle py-3 px-3 text-white fw-bold fs-5 @yield('textFranchise')"
+                        <a class="nav-link dropdown-toggle py-3 px-3 text-white fw-bold @yield('textFranchise')"
                             href="#" id="franchiseDropdown" role="button">
                             {{ __('Franchise') }}
                         </a>
@@ -57,7 +57,7 @@
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle py-3 px-3 text-white fw-bold fs-5 @yield('textCategory')"
+                        <a class="nav-link dropdown-toggle py-3 px-3 text-white fw-bold @yield('textCategory')"
                             href="#" id="dropdownMenuLink" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
                             {{ __('Category') }}
