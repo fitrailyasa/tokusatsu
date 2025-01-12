@@ -1,9 +1,9 @@
 <div class="text-center my-5 py-4">
     <div class="container">
-        <div class="row px-3">
-            <div class="col-3 text-left">
+        <div class="row px-3 mb-3">
+            <div class="col-3 text-left d-flex align-items-center">
                 <a href="#" onclick="history.back();">
-                    <p class="text-white"><i class="fas fa-arrow-left fs-4"></i></p>
+                    <p class="text-white m-0"><i class="fas fa-arrow-left fs-4"></i></p>
                 </a>
             </div>
             <div class="col-6">
