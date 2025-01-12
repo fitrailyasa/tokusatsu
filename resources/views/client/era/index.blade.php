@@ -6,7 +6,7 @@
 
 @section('content')
 
-    <div class="container text-center my-5 py-5">
+    <div class="container text-center my-5 py-4">
         <h4 class="text-white font-weight-bold">@yield('title')</h4>
         <div class="text-center d-flex flex-wrap justify-content-center">
             @foreach ($eras as $era)
