@@ -1,3 +1,9 @@
+<style>
+    .custom-dropdown {
+        max-height: 60vh;
+        overflow-y: auto;
+    }
+</style>
 <header class="header px-3 border-bottom text-white mb-3 fixed-top" style="background-color: #111111">
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-between">
@@ -11,8 +17,8 @@
                             class="nav-link py-3 px-3 text-white fw-bold fs-5 @yield('textHome')">{{ __('Home') }}</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle py-3 px-3 text-white fw-bold fs-5 @yield('textEra')" href="#"
-                            id="eraDropdown" role="button">
+                        <a class="nav-link dropdown-toggle py-3 px-3 text-white fw-bold fs-5 @yield('textEra')"
+                            href="#" id="eraDropdown" role="button">
                             {{ __('Era') }}
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="eraDropdown">
@@ -31,8 +37,8 @@
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle py-3 px-3 text-white fw-bold fs-5 @yield('textFranchise')" href="#"
-                            id="franchiseDropdown" role="button">
+                        <a class="nav-link dropdown-toggle py-3 px-3 text-white fw-bold fs-5 @yield('textFranchise')"
+                            href="#" id="franchiseDropdown" role="button">
                             {{ __('Franchise') }}
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="franchiseDropdown">
@@ -51,8 +57,9 @@
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle py-3 px-3 text-white fw-bold fs-5 @yield('textCategory')" href="#"
-                            id="dropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle py-3 px-3 text-white fw-bold fs-5 @yield('textCategory')"
+                            href="#" id="dropdownMenuLink" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
                             {{ __('Category') }}
                         </a>
                         <ul class="dropdown-menu custom-dropdown" aria-labelledby="dropdownMenuLink">

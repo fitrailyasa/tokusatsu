@@ -28,11 +28,6 @@
     color: #fff;
 }
 
-.custom-dropdown {
-    max-height: 60vh;
-    overflow-y: auto;
-}
-
 .border-top {
     border-top: 0.2px solid rgba(255, 255, 255, 0.2) !important;
 }
