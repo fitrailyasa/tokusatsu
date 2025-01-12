@@ -23,7 +23,7 @@ class EraLivewire extends Component
             'name' => [
                 'required',
                 'max:100',
-                Rule::unique('era', 'name')->ignore($this->id),
+                Rule::unique('eras', 'name')->ignore($this->id),
             ],
             'desc' => 'nullable|max:1024',
             'img' => 'nullable|mimes:jpg,jpeg,png|max:2048',

@@ -23,9 +23,9 @@ class EraResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')->required()->label('Nama'),
-                Forms\Components\TextInput::make('desc')->required()->label('Deskripsi'),
-                Forms\Components\FileUpload::make('img')->label('Gambar')->image(),
+                Forms\Components\TextInput::make('name')->columnSpanFull()->required()->label('Nama'),
+                Forms\Components\TextInput::make('desc')->columnSpanFull()->required()->label('Deskripsi'),
+                Forms\Components\FileUpload::make('img')->columnSpanFull()->label('Gambar')->image(),
             ]);
     }
 
@@ -73,8 +73,8 @@ class EraResource extends Resource
     {
         return [
             'index' => Pages\ListEras::route('/'),
-            'create' => Pages\CreateEra::route('/create'),
-            'edit' => Pages\EditEra::route('/{record}/edit'),
+            // 'create' => Pages\CreateEra::route('/create'),
+            // 'edit' => Pages\EditEra::route('/{record}/edit'),
         ];
     }
 }

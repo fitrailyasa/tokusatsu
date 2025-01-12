@@ -13,7 +13,7 @@ class CreateDataTable extends Migration
      */
     public function up()
     {
-        Schema::create('data', function (Blueprint $table) {
+        Schema::create('datas', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('img')->nullable();
@@ -30,6 +30,6 @@ class CreateDataTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('data');
+        Schema::dropIfExists('datas');
     }
 }

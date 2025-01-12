@@ -13,7 +13,7 @@ class CreateEraTable extends Migration
      */
     public function up()
     {
-        Schema::create('era', function (Blueprint $table) {
+        Schema::create('eras', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
             $table->string('slug')->unique();
@@ -31,6 +31,6 @@ class CreateEraTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('era');
+        Schema::dropIfExists('eras');
     }
 }

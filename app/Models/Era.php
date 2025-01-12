@@ -14,7 +14,7 @@ class Era extends Model
     use SoftDeletes;
 
     protected $connection;
-    protected $table = 'era';
+    protected $table = 'eras';
     protected $primaryKey = 'id';
     protected $fillable = ['name', 'slug', 'desc', 'img'];
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];

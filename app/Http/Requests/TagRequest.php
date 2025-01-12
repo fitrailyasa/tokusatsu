@@ -25,7 +25,7 @@ class TagRequest extends FormRequest
             'name' => [
                 'required',
                 'max:100',
-                Rule::unique('tag', 'name')->ignore($id),
+                Rule::unique('tags', 'name')->ignore($id),
             ],
         ];
     }

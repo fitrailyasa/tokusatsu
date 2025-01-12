@@ -27,7 +27,6 @@ class DataResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')->required()->label('Data'),
-                Forms\Components\FileUpload::make('img')->label('Gambar')->image()->directory('img'),
                 Forms\Components\Select::make('category_id')
                     ->label('Kategori')
                     ->options(
@@ -35,7 +34,8 @@ class DataResource extends Resource
                             return [$franchiseName => $categories->pluck('name', 'id')];
                         })->toArray()
                     )
-                    ->required()
+                    ->required(),
+                Forms\Components\FileUpload::make('img')->columnSpanFull()->label('Gambar')->image()->directory('img'),
             ]);
     }
 
@@ -76,8 +76,8 @@ class DataResource extends Resource
     {
         return [
             'index' => Pages\ListData::route('/'),
-            'create' => Pages\CreateData::route('/create'),
-            'edit' => Pages\EditData::route('/{record}/edit'),
+            // 'create' => Pages\CreateData::route('/create'),
+            // 'edit' => Pages\EditData::route('/{record}/edit'),
         ];
     }
 }

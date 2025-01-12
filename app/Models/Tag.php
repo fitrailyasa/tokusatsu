@@ -14,7 +14,7 @@ class Tag extends Model
     use SoftDeletes;
 
     protected $connection;
-    protected $table = 'tag';
+    protected $table = 'tags';
     protected $primaryKey = 'id';
     protected $fillable = ['name', 'slug'];
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];

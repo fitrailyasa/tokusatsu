@@ -9,6 +9,7 @@ use App\Models\Franchise;
 use App\Models\Era;
 use Illuminate\Http\Request;
 use App\Http\Requests\CategoryRequest;
+use Illuminate\Validation\Rule;
 
 class CategoryLivewire extends Component
 {
@@ -18,16 +19,20 @@ class CategoryLivewire extends Component
     public $name, $desc, $img, $categoryId, $era_id, $franchise_id;
     public $isUpdate = false;
 
-    protected $rules = [
-        'era_id' => 'required',
-        'franchise_id' => 'required',
-        'name' => [
-            'required',
-            'max:100',
-        ],
-        'desc' => 'nullable|max:1024',
-        'img' => 'nullable|mimes:jpg,jpeg,png|max:2048',
-    ];
+    public function rules(): array
+    {
+        return [
+            'era_id' => 'required',
+            'franchise_id' => 'required',
+            'name' => [
+                'required',
+                'max:100',
+                Rule::unique('categories', 'name')->ignore($this->id),
+            ],
+            'desc' => 'nullable|max:1024',
+            'img' => 'nullable|mimes:jpg,jpeg,png|max:2048',
+        ];
+    }
 
     public function render(Request $request)
     {
@@ -52,7 +57,7 @@ class CategoryLivewire extends Component
         } else {
             $categories = Category::withTrashed()->paginate($validPerPage);
         }
-        
+
         return view('livewire.admin.category', compact('categories', 'eras', 'franchises', 'search', 'perPage'));
     }
 

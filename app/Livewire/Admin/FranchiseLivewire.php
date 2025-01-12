@@ -23,7 +23,7 @@ class FranchiseLivewire extends Component
             'name' => [
                 'required',
                 'max:100',
-                Rule::unique('franchise', 'name')->ignore($this->id),
+                Rule::unique('franchises', 'name')->ignore($this->id),
             ],
             'desc' => 'nullable|max:1024',
             'img' => 'nullable|mimes:jpg,jpeg,png|max:2048',

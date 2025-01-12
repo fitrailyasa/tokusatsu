@@ -27,7 +27,7 @@ class CategoryRequest extends FormRequest
             'name' => [
                 'required',
                 'max:100',
-                Rule::unique('category', 'name')->ignore($id),
+                Rule::unique('categories', 'name')->ignore($id),
             ],
             'desc' => 'nullable|max:1024',
             'img' => 'nullable|mimes:jpg,jpeg,png|max:2048',

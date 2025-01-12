@@ -14,7 +14,7 @@ class Category extends Model
     use SoftDeletes;
 
     protected $connection;
-    protected $table = 'category';
+    protected $table = 'categories';
     protected $primaryKey = 'id';
     protected $fillable = ['name', 'slug', 'desc', 'img', 'era_id', 'franchise_id'];
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];

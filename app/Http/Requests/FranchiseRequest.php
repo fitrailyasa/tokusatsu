@@ -25,7 +25,7 @@ class FranchiseRequest extends FormRequest
             'name' => [
                 'required',
                 'max:100',
-                Rule::unique('franchise', 'name')->ignore($id),
+                Rule::unique('franchises', 'name')->ignore($id),
             ],
             'desc' => 'max:1024',
             'img' => 'mimes:jpg,jpeg,png|max:2048',

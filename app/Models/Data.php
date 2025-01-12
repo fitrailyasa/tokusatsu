@@ -16,7 +16,7 @@ class Data extends Model
     use SoftDeletes;
 
     protected $connection;
-    protected $table = 'data';
+    protected $table = 'datas';
     protected $primaryKey = 'id';
     // public $incrementing = false;
     protected $fillable = ['id', 'name', 'img', 'category_id'];

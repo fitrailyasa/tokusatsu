@@ -14,7 +14,7 @@ class Franchise extends Model
     use SoftDeletes;
 
     protected $connection;
-    protected $table = 'franchise';
+    protected $table = 'franchises';
     protected $primaryKey = 'id';
     protected $fillable = ['name', 'slug', 'desc', 'img'];
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];

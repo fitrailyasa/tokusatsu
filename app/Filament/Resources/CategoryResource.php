@@ -19,17 +19,17 @@ class CategoryResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-list-bullet';
 
-    protected static ?string $navigationLabel = 'Kategori';
+    protected static ?string $navigationLabel = 'Category';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')->required()->label('Nama'),
-                Forms\Components\TextInput::make('desc')->required()->label('Deskripsi'),
-                Forms\Components\FileUpload::make('img')->label('Gambar')->image()->directory('img'),
+                Forms\Components\TextInput::make('name')->columnSpanFull()->unique('categories', 'name')->required()->label('Nama'),
                 Forms\Components\Select::make('era_id')->relationship('era', 'name')->required()->label('Era'),
                 Forms\Components\Select::make('franchise_id')->relationship('franchise', 'name')->required()->label('Franchise'),
+                Forms\Components\TextInput::make('desc')->columnSpanFull()->required()->label('Deskripsi'),
+                Forms\Components\FileUpload::make('img')->columnSpanFull()->label('Gambar')->image()->directory('img'),
             ]);
     }
 
@@ -81,8 +81,8 @@ class CategoryResource extends Resource
     {
         return [
             'index' => Pages\ListCategories::route('/'),
-            'create' => Pages\CreateCategory::route('/create'),
-            'edit' => Pages\EditCategory::route('/{record}/edit'),
+            // 'create' => Pages\CreateCategory::route('/create'),
+            // 'edit' => Pages\EditCategory::route('/{record}/edit'),
         ];
     }
 }
