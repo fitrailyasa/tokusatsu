@@ -1,3 +1,11 @@
+<?php
+use App\Models\Category;
+use App\Models\Era;
+use App\Models\Franchise;
+$eras = Era::withoutTrashed()->get()->reverse();
+$franchises = Franchise::withoutTrashed()->get()->reverse();
+$categories = Category::withoutTrashed()->get()->reverse();
+?>
 <style>
     .custom-dropdown {
         max-height: 60vh;
@@ -22,18 +30,20 @@
                             {{ __('Era') }}
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="eraDropdown">
-                            @foreach ($eras as $era)
-                                <li class="dropdown-submenu">
-                                    <a class="dropdown-item dropdown-toggle" href="#">{{ $era->name }}</a>
-                                    <ul class="dropdown-menu custom-dropdown">
-                                        @foreach ($era->categories as $category)
-                                            <li><a class="dropdown-item"
-                                                    href="{{ route('era.category', [$category->era->slug, $category->slug]) }}">{{ $category->name }}</a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </li>
-                            @endforeach
+                            @if ($eras != null)
+                                @foreach ($eras as $era)
+                                    <li class="dropdown-submenu">
+                                        <a class="dropdown-item dropdown-toggle" href="#">{{ $era->name }}</a>
+                                        <ul class="dropdown-menu custom-dropdown">
+                                            @foreach ($era->categories as $category)
+                                                <li><a class="dropdown-item"
+                                                        href="{{ route('era.category', [$category->era->slug, $category->slug]) }}">{{ $category->name }}</a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </li>
+                                @endforeach
+                            @endif
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -42,18 +52,21 @@
                             {{ __('Franchise') }}
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="franchiseDropdown">
-                            @foreach ($franchises as $franchise)
-                                <li class="dropdown-submenu">
-                                    <a class="dropdown-item dropdown-toggle" href="#">{{ $franchise->name }}</a>
-                                    <ul class="dropdown-menu custom-dropdown">
-                                        @foreach ($franchise->categories as $category)
-                                            <li><a class="dropdown-item"
-                                                    href="{{ route('franchise.category', [$category->franchise->slug, $category->slug]) }}">{{ $category->name }}</a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </li>
-                            @endforeach
+                            @if ($franchises != null)
+                                @foreach ($franchises as $franchise)
+                                    <li class="dropdown-submenu">
+                                        <a class="dropdown-item dropdown-toggle"
+                                            href="#">{{ $franchise->name }}</a>
+                                        <ul class="dropdown-menu custom-dropdown">
+                                            @foreach ($franchise->categories as $category)
+                                                <li><a class="dropdown-item"
+                                                        href="{{ route('franchise.category', [$category->franchise->slug, $category->slug]) }}">{{ $category->name }}</a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </li>
+                                @endforeach
+                            @endif
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -63,11 +76,13 @@
                             {{ __('Category') }}
                         </a>
                         <ul class="dropdown-menu custom-dropdown" aria-labelledby="dropdownMenuLink">
-                            @foreach ($categories as $category)
-                                <li><a class="dropdown-item"
-                                        href="{{ route('category.show', $category->id) }}">{{ $category->name }}</a>
-                                </li>
-                            @endforeach
+                            @if ($categories != null)
+                                @foreach ($categories as $category)
+                                    <li><a class="dropdown-item"
+                                            href="{{ route('category.show', $category->id) }}">{{ $category->name }}</a>
+                                    </li>
+                                @endforeach
+                            @endif
                         </ul>
                     </li>
                 </ul>

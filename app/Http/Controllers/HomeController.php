@@ -5,17 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Data;
 use App\Models\Category;
-use App\Models\Era;
-use App\Models\Franchise;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        $eras = Era::withoutTrashed()->get()->reverse();
-        $franchises = Franchise::withoutTrashed()->get()->reverse();
         $categories = Category::withoutTrashed()->get()->reverse();
-        return view('client.index', compact('eras', 'franchises', 'categories'));
+        return view('client.index', compact('categories'));
     }
 
     public function show(string $franchiseSlug, string $categorySlug)
@@ -26,10 +22,8 @@ class HomeController extends Controller
         $datas = $category->datas()
             ->withoutTrashed()
             ->paginate(30);
-        $eras = Era::withoutTrashed()->get()->reverse();
-        $franchises = Franchise::withoutTrashed()->get()->reverse();
-        $categories = Category::withoutTrashed()->get()->reverse();
-        return view('client.show', compact('category', 'datas', 'eras', 'franchises', 'categories'));
+
+        return view('client.show', compact('category', 'datas'));
     }
 
     public function search(Request $request)
@@ -48,10 +42,6 @@ class HomeController extends Controller
             ->withoutTrashed()
             ->paginate(30);
 
-        $eras = Era::withoutTrashed()->get()->reverse();
-        $franchises = Franchise::withoutTrashed()->get()->reverse();
-        $categories = Category::withoutTrashed()->get()->reverse();
-
-        return view('client.search', compact('datas', 'eras', 'franchises', 'categories'));
+        return view('client.search', compact('datas'));
     }
 }
