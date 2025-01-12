@@ -35,10 +35,10 @@ class HomeController extends Controller
     public function search(Request $request)
     {
         $validatedData = $request->validate([
-            'query' => 'required|string|max:255',
+            'query' => 'nullable|string|max:255',
         ]);
 
-        $query = '%' . $validatedData['query'] . '%';
+        $query = '%' . ($validatedData['query'] ?? '') . '%';
 
         $datas = Data::where('name', 'like', $query)
             ->orWhere('img', 'like', $query)
@@ -46,7 +46,7 @@ class HomeController extends Controller
                 $q->where('name', 'like', $query);
             })
             ->withoutTrashed()
-            ->paginate(50);
+            ->paginate(12);
 
         $eras = Era::withoutTrashed()->get()->reverse();
         $franchises = Franchise::withoutTrashed()->get()->reverse();
