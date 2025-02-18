@@ -6,18 +6,26 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\DataRequest;
 use App\Http\Resources\DataResource;
 use App\Models\Data;
-use App\Models\Category;
-use App\Models\Tag;
 
 
 class AdminDataApiController extends Controller
 {
     public function index()
     {
-        $datas = Data::paginate(12);
-        $categories = Category::all();
-        $tags = Tag::all();
-        return DataResource::collection($datas);
+        $datas = Data::with(['category', 'tags'])->paginate(12);
+
+        return response()->json([
+            'message' => 'Data retrieved successfully',
+            'data' => DataResource::collection($datas),
+            'pagination' => [
+                'current_page' => $datas->currentPage(),
+                'total' => $datas->total(),
+                'per_page' => $datas->perPage(),
+                'last_page' => $datas->lastPage(),
+                'next_page_url' => $datas->nextPageUrl(),
+                'prev_page_url' => $datas->previousPageUrl(),
+            ]
+        ], 200);
     }
 
     public function store(DataRequest $request)
@@ -35,6 +43,12 @@ class AdminDataApiController extends Controller
         }
 
         return response()->json(['alert' => 'Berhasil Tambah Data!']);
+    }
+
+    public function show($id)
+    {
+        $data = Data::findOrFail($id);
+        return response()->json($data);
     }
 
     public function edit($id)
