@@ -10,6 +10,7 @@ $categories = Category::withoutTrashed()->get()->reverse();
     .custom-dropdown {
         max-height: 60vh;
         overflow-y: auto;
+        overflow-x: hidden;
     }
 </style>
 <header class="header px-3 border-bottom text-white mb-3 fixed-top" style="background-color: #111111">
@@ -29,7 +30,7 @@ $categories = Category::withoutTrashed()->get()->reverse();
                             href="#" id="eraDropdown" role="button">
                             {{ __('Era') }}
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="eraDropdown">
+                        <ul class="dropdown-menu m-0" aria-labelledby="eraDropdown">
                             @if ($eras != null)
                                 @foreach ($eras as $era)
                                     <li class="dropdown-submenu">
@@ -51,7 +52,7 @@ $categories = Category::withoutTrashed()->get()->reverse();
                             href="#" id="franchiseDropdown" role="button">
                             {{ __('Franchise') }}
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="franchiseDropdown">
+                        <ul class="dropdown-menu m-0" aria-labelledby="franchiseDropdown">
                             @if ($franchises != null)
                                 @foreach ($franchises as $franchise)
                                     <li class="dropdown-submenu">
@@ -75,11 +76,11 @@ $categories = Category::withoutTrashed()->get()->reverse();
                             aria-expanded="false">
                             {{ __('Category') }}
                         </a>
-                        <ul class="dropdown-menu custom-dropdown" aria-labelledby="dropdownMenuLink">
+                        <ul class="dropdown-menu m-0 custom-dropdown" aria-labelledby="dropdownMenuLink">
                             @if ($categories != null)
                                 @foreach ($categories as $category)
                                     <li><a class="dropdown-item"
-                                            href="{{ route('category.show', $category->id) }}">{{ $category->name }}</a>
+                                            href="{{ route('category.show', $category->slug) }}">{{ $category->name }}</a>
                                     </li>
                                 @endforeach
                             @endif
