@@ -3,29 +3,43 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\Http\Requests\EraRequest;
 use App\Http\Resources\EraResource;
 use App\Models\Era;
 
-
 class EraApiController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $eras = Era::paginate(10);
 
-        return response()->json([
-            'message' => 'Era retrieved successfully',
-            'data' => EraResource::collection($eras),
-            'pagination' => [
-                'current_page' => $eras->currentPage(),
-                'total' => $eras->total(),
-                'per_page' => $eras->perPage(),
-                'last_page' => $eras->lastPage(),
-                'next_page_url' => $eras->nextPageUrl(),
-                'prev_page_url' => $eras->previousPageUrl(),
-            ]
-        ], 200);
+        $search = $request->query('search');
+
+        $query = Era::query();
+
+        if ($search) {
+            $query->where('name', 'LIKE', "%{$search}%");
+        }
+
+        $perPage = $request->query('per_page', 10);
+        $eras = $query->paginate($perPage);
+
+        if ($eras->isEmpty()) {
+            return response()->json(['message' => 'No eras found'], 404);
+        } else {
+            return response()->json([
+                'message' => 'Era retrieved successfully',
+                'data' => EraResource::collection($eras),
+                'pagination' => [
+                    'current_page' => $eras->currentPage(),
+                    'total' => $eras->total(),
+                    'per_page' => $eras->perPage(),
+                    'last_page' => $eras->lastPage(),
+                    'next_page_url' => $eras->nextPageUrl(),
+                    'prev_page_url' => $eras->previousPageUrl(),
+                ]
+            ], 200);
+        }
     }
 
     public function store(EraRequest $request)

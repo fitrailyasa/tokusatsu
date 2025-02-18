@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\Http\Requests\FranchiseRequest;
 use App\Http\Resources\FranchiseResource;
 use App\Models\Franchise;
@@ -10,22 +11,35 @@ use App\Models\Franchise;
 
 class FranchiseApiController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $franchises = Franchise::paginate(10);
+        $search = $request->query('search');
 
-        return response()->json([
-            'message' => 'Franchise retrieved successfully',
-            'data' => FranchiseResource::collection($franchises),
-            'pagination' => [
-                'current_page' => $franchises->currentPage(),
-                'total' => $franchises->total(),
-                'per_page' => $franchises->perPage(),
-                'last_page' => $franchises->lastPage(),
-                'next_page_url' => $franchises->nextPageUrl(),
-                'prev_page_url' => $franchises->previousPageUrl(),
-            ]
-        ], 200);
+        $query = Franchise::query();
+
+        if ($search) {
+            $query->where('name', 'LIKE', "%{$search}%");
+        }
+
+        $perPage = $request->query('per_page', 10);
+        $franchises = $query->paginate($perPage);
+
+        if ($franchises->isEmpty()) {
+            return response()->json(['message' => 'No franchises found'], 404);
+        } else {
+            return response()->json([
+                'message' => 'Franchise retrieved successfully',
+                'data' => FranchiseResource::collection($franchises),
+                'pagination' => [
+                    'current_page' => $franchises->currentPage(),
+                    'total' => $franchises->total(),
+                    'per_page' => $franchises->perPage(),
+                    'last_page' => $franchises->lastPage(),
+                    'next_page_url' => $franchises->nextPageUrl(),
+                    'prev_page_url' => $franchises->previousPageUrl(),
+                ]
+            ], 200);
+        }
     }
 
     public function store(FranchiseRequest $request)

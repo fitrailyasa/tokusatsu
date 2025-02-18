@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\Http\Requests\TagRequest;
 use App\Http\Resources\TagResource;
 use App\Models\Tag;
@@ -10,22 +11,35 @@ use App\Models\Tag;
 
 class TagApiController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $tags = Tag::paginate(10);
+        $search = $request->query('search');
 
-        return response()->json([
-            'message' => 'Tag retrieved successfully',
-            'data' => TagResource::collection($tags),
-            'pagination' => [
-                'current_page' => $tags->currentPage(),
-                'total' => $tags->total(),
-                'per_page' => $tags->perPage(),
-                'last_page' => $tags->lastPage(),
-                'next_page_url' => $tags->nextPageUrl(),
-                'prev_page_url' => $tags->previousPageUrl(),
-            ]
-        ], 200);
+        $query = Tag::query();
+
+        if ($search) {
+            $query->where('name', 'LIKE', "%{$search}%");
+        }
+
+        $perPage = $request->query('per_page', 10);
+        $tags = $query->paginate($perPage);
+
+        if ($tags->isEmpty()) {
+            return response()->json(['message' => 'No tags found'], 404);
+        } else {
+            return response()->json([
+                'message' => 'Tag retrieved successfully',
+                'data' => TagResource::collection($tags),
+                'pagination' => [
+                    'current_page' => $tags->currentPage(),
+                    'total' => $tags->total(),
+                    'per_page' => $tags->perPage(),
+                    'last_page' => $tags->lastPage(),
+                    'next_page_url' => $tags->nextPageUrl(),
+                    'prev_page_url' => $tags->previousPageUrl(),
+                ]
+            ], 200);
+        }
     }
 
     public function store(TagRequest $request)

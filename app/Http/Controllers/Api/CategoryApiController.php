@@ -3,28 +3,42 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\Http\Requests\CategoryRequest;
 use App\Http\Resources\CategoryResource;
 use App\Models\Category;
 
 class CategoryApiController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Category::with('franchise', 'era')->paginate(10);
+        $search = $request->query('search');
 
-        return response()->json([
-            'message' => 'Category retrieved successfully',
-            'data' => CategoryResource::collection($categories),
-            'pagination' => [
-                'current_page' => $categories->currentPage(),
-                'total' => $categories->total(),
-                'per_page' => $categories->perPage(),
-                'last_page' => $categories->lastPage(),
-                'next_page_url' => $categories->nextPageUrl(),
-                'prev_page_url' => $categories->previousPageUrl(),
-            ]
-        ], 200);
+        $query = Category::with('franchise', 'era');
+
+        if ($search) {
+            $query->where('name', 'LIKE', "%{$search}%");
+        }
+
+        $perPage = $request->query('per_page', 10);
+        $categories = $query->paginate($perPage);
+
+        if ($categories->isEmpty()) {
+            return response()->json(['message' => 'No categories found'], 404);
+        } else {
+            return response()->json([
+                'message' => 'Category retrieved successfully',
+                'data' => CategoryResource::collection($categories),
+                'pagination' => [
+                    'current_page' => $categories->currentPage(),
+                    'total' => $categories->total(),
+                    'per_page' => $categories->perPage(),
+                    'last_page' => $categories->lastPage(),
+                    'next_page_url' => $categories->nextPageUrl(),
+                    'prev_page_url' => $categories->previousPageUrl(),
+                ]
+            ], 200);
+        }
     }
 
     public function store(CategoryRequest $request)
