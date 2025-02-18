@@ -3,17 +3,33 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\DataRequest;
+use Illuminate\Http\Request;
 use App\Http\Resources\DataResource;
 use App\Models\Data;
-use App\Models\Category;
-
 
 class DataApiController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $datas = Data::with(['category.era', 'category.franchise', 'tags'])->paginate(10);
+        $search = $request->query('search');
+
+        $query = Data::with(['category.era', 'category.franchise', 'tags']);
+
+        if (!empty($search)) {
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'LIKE', "%{$search}%")
+                  ->orWhere('description', 'LIKE', "%{$search}%")
+                  ->orWhereHas('category', function ($q) use ($search) {
+                      $q->where('name', 'LIKE', "%{$search}%");
+                  })
+                  ->orWhereHas('tags', function ($q) use ($search) {
+                      $q->where('name', 'LIKE', "%{$search}%");
+                  });
+            });
+        }
+
+        $perPage = $request->query('per_page', 10);
+        $datas = $query->paginate($perPage);
 
         return response()->json([
             'message' => 'Data retrieved successfully',
@@ -28,5 +44,4 @@ class DataApiController extends Controller
             ]
         ], 200);
     }
-
 }
