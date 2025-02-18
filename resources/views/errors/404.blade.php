@@ -9,7 +9,7 @@
         integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 </head>
 
-<body style="background-image: url({{ asset('storage/img/bg.png') }}); background-size: cover">
+<body style="background-image: url({{ asset('assets/bg.png') }}); background-size: cover">
     <div class="d-flex justify-content-center align-items-center" style="height: 100vh">
         <a class="d-flex justify-content-center w-100 h-100" href="/">
         </a>
