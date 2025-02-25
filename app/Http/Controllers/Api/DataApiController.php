@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\DataRequest;
 use App\Http\Resources\DataResource;
 use App\Models\Data;
 
@@ -47,5 +48,56 @@ class DataApiController extends Controller
                 ]
             ], 200);
         }
+    }
+
+    public function store(DataRequest $request)
+    {
+        $data = Data::create($request->validated());
+
+        if ($request->hasFile('img')) {
+            $img = $request->file('img');
+            $file_name = $data->name . '.' . $img->getClientOriginalExtension();
+            $data->img = $file_name;
+            $data->update();
+            $img->storeAs('public', $file_name);
+        }
+
+        return response()->json(['alert' => 'Berhasil Tambah Data!']);
+    }
+
+    public function show($id)
+    {
+        $data = Data::findOrFail($id);
+        return response()->json($data);
+    }
+
+    public function edit($id)
+    {
+        $data = Data::findOrFail($id);
+        return response()->json($data);
+    }
+
+    public function update(DataRequest $request, $id)
+    {
+        $data = Data::findOrFail($id);
+        $data->update($request->validated());
+
+        if ($request->hasFile('img')) {
+            $img = $request->file('img');
+            $file_name = $data->name . '.' . $img->getClientOriginalExtension();
+            $data->img = $file_name;
+            $data->update();
+            $img->storeAs('public', $file_name);
+        }
+
+        return response()->json(['alert' => 'Berhasil Edit Data!']);
+    }
+
+    public function destroy($id)
+    {
+        $data = Data::findOrFail($id);
+        $data->delete();
+
+        return response()->json(['alert' => 'Berhasil Hapus Data!']);
     }
 }
