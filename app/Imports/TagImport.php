@@ -13,7 +13,7 @@ class TagImport implements ToModel, WithStartRow
     {
         $name = $row[1];
 
-        $checkTag = Tag::where('name', $name)->first();
+        $checkTag = Tag::withTrashed()->where('name', $name)->first();
 
         if (!$checkTag) {
             return new Tag([

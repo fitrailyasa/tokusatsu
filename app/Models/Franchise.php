@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use App\Helpers\TelegramHelper;
 
 class Franchise extends Model
 {
@@ -36,6 +37,18 @@ class Franchise extends Model
             if ($model->isDirty('name')) {
                 $model->slug = Str::slug($model->name, '-');
             }
+        });
+
+        static::created(function ($model) {
+            TelegramHelper::sendMessage("📦 <b>Franchise Created</b>\nID: {$model->id}\nName: {$model->name}");
+        });
+
+        static::updated(function ($model) {
+            TelegramHelper::sendMessage("✏️ <b>Franchise Updated</b>\nID: {$model->id}\nName: {$model->name}");
+        });
+
+        static::deleted(function ($model) {
+            TelegramHelper::sendMessage("🗑 <b>Franchise Deleted</b>\nID: {$model->id}\nName: {$model->name}");
         });
     }
 

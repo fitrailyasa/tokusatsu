@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use App\Helpers\TelegramHelper;
 
 class Tag extends Model
 {
@@ -37,6 +38,28 @@ class Tag extends Model
                 $model->slug = Str::slug($model->name, '-');
             }
         });
+
+        static::created(function ($model) {
+            $message = "<b>📦 Tag Created</b>\n<pre>" .
+                "id    : {$model->id}\n" .
+                "nama  : {$model->name}</pre>";
+            TelegramHelper::sendMessage($message);
+        });
+        
+        static::updated(function ($model) {
+            $message = "<b>✏️ Tag Updated</b>\n<pre>" .
+                "id    : {$model->id}\n" .
+                "nama  : {$model->name}</pre>";
+            TelegramHelper::sendMessage($message);
+        });
+        
+        static::deleted(function ($model) {
+            $message = "<b>🗑 Tag Deleted</b>\n<pre>" .
+                "id    : {$model->id}\n" .
+                "nama  : {$model->name}</pre>";
+            TelegramHelper::sendMessage($message);
+        });
+        
     }
 
     public function datas()

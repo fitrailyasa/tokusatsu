@@ -13,7 +13,7 @@ class DataImport implements ToModel, WithStartRow
 {
     public function model(array $row)
     {
-        $category = Category::where('name', $row[2])->first();
+        $category = Category::withTrashed()->where('name', $row[2])->first();
 
         if (!$category) {
             $category = Category::create([
@@ -25,13 +25,13 @@ class DataImport implements ToModel, WithStartRow
             ]);
         }
 
-        $checkData = Data::where('name', $row[1])->first();
+        $checkData = Data::withTrashed()->where('name', $row[1])->first();
 
         if (!empty($row[4])) {
             $tags = explode(',', $row[4]);
             foreach ($tags as $tagName) {
                 $tagName = trim($tagName);
-                $tag = Tag::where('name', $tagName)->first();
+                $tag = Tag::withTrashed()->where('name', $tagName)->first();
 
                 if (!$tag) {
                     $tag = new Tag();

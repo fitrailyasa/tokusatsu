@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Helpers\TelegramHelper;
 
 class User extends Authenticatable
 {
@@ -65,5 +66,16 @@ class User extends Authenticatable
         DB::setDefaultConnection(env('DB_CONNECTION'));
         // DB::setDefaultConnection(env('DB2_CONNECTION'));
 
+        // static::created(function ($model) {
+        //     TelegramHelper::sendMessage("📦 <b>User Created</b>\nID: {$model->id}\nName: {$model->name}\nEmail: {$model->email}");
+        // });
+
+        // static::updated(function ($model) {
+        //     TelegramHelper::sendMessage("✏️ <b>User Updated</b>\nID: {$model->id}\nName: {$model->name}\nEmail: {$model->email}");
+        // });
+
+        // static::deleted(function ($model) {
+        //     TelegramHelper::sendMessage("🗑 <b>User Deleted</b>\nID: {$model->id}\nName: {$model->name}\nEmail: {$model->email}");
+        // });
     }
 }

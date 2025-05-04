@@ -15,7 +15,7 @@ class EraImport implements ToModel, WithStartRow
         $img = $row[2] ?? null;
         $desc = $row[3] ?? null;
 
-        $checkEra = Era::where('name', $name)->first();
+        $checkEra = Era::withTrashed()->where('name', $name)->first();
 
         if ($checkEra) {
             $checkEra->update([

@@ -13,7 +13,7 @@ class CategoryImport implements ToModel, WithStartRow
 {
     public function model(array $row)
     {
-        $era = Era::where('name', $row[4])->first();
+        $era = Era::withTrashed()->where('name', $row[4])->first();
 
         if (!$era) {
             $era = Era::create([
@@ -22,7 +22,7 @@ class CategoryImport implements ToModel, WithStartRow
             ]);
         }
 
-        $franchise = Franchise::where('name', $row[5])->first();
+        $franchise = Franchise::withTrashed()->where('name', $row[5])->first();
 
         if (!$franchise) {
             $franchise = Franchise::create([
@@ -31,7 +31,7 @@ class CategoryImport implements ToModel, WithStartRow
             ]);
         }
 
-        $checkCategory = Category::where('name', $row[2])->first();
+        $checkCategory = Category::withTrashed()->where('name', $row[2])->first();
 
         if ($checkCategory) {
             $checkCategory->update([

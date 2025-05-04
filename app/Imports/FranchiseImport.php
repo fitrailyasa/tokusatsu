@@ -15,7 +15,7 @@ class FranchiseImport implements ToModel, WithStartRow
         $img = $row[2] ?? null;
         $desc = $row[3] ?? null;
 
-        $checkFranchise = Franchise::where('name', $name)->first();
+        $checkFranchise = Franchise::withTrashed()->where('name', $name)->first();
 
         if ($checkFranchise) {
             $checkFranchise->update([

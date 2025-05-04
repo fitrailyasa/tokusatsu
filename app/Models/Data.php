@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use App\Helpers\TelegramHelper;
 
 class Data extends Model
 {
@@ -33,6 +34,18 @@ class Data extends Model
         //     if (empty($model->id)) {
         //         $model->id = (string) Str::uuid();
         //     }
+        // });
+
+        // static::created(function ($model) {
+        //     TelegramHelper::sendMessage("📦 <b>Data Created</b>\nID: {$model->id}\nName: {$model->name}\nCategory: {$model->category->name}\nEra: {$model->category->era->name}\nFranchise: {$model->category->franchise->name}");
+        // });
+
+        // static::updated(function ($model) {
+        //     TelegramHelper::sendMessage("✏️ <b>Data Updated</b>\nID: {$model->id}\nName: {$model->name}\nCategory: {$model->category->name}\nEra: {$model->category->era->name}\nFranchise: {$model->category->franchise->name}");
+        // });
+
+        // static::deleted(function ($model) {
+        //     TelegramHelper::sendMessage("🗑 <b>Data Deleted</b>\nID: {$model->id}\nName: {$model->name}\nCategory: {$model->category->name}\nEra: {$model->category->era->name}\nFranchise: {$model->category->franchise->name}");
         // });
     }
 
