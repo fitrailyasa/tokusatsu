@@ -17,7 +17,7 @@ $categories = Category::withoutTrashed()->get()->reverse();
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-between">
             <div class="d-flex align-items-center justify-content-center">
-                <img class="img-fluid" width="50" src="{{ asset('storage/logo.png') }}" alt="Logo">
+                <img class="img-fluid" width="50" src="{{ asset('logo.png') }}" alt="Logo">
                 <h4 class="mb-0 font-weight-bold">TOKUSATSU</h4>
             </div>
             <div class="d-none d-lg-block">

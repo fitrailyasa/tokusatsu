@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Client;
 use App\Http\Controllers\Controller;
 use App\Models\Data;
 use App\Models\Category;
-use App\Models\Era;
-use App\Models\Franchise;
 
 class ClientCategoryController extends Controller
 {

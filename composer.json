@@ -18,7 +18,8 @@
         "midtrans/midtrans-php": "^2.5",
         "socialiteproviders/discord": "^4.2",
         "socialiteproviders/twitch": "^5.4",
-        "srmklive/paypal": "^3.0"
+        "srmklive/paypal": "^3.0",
+        "xendit/xendit-php": "^6.2"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
