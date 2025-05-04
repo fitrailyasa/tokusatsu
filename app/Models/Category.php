@@ -66,4 +66,26 @@ class Category extends Model
     {
         return $this->belongsTo(Franchise::class, 'franchise_id', 'id');
     }
+
+    public function getEraColor(): string
+    {
+        $colors = ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'dark'];
+
+        $name = $this->era->name ?? null;
+        if (!$name) return 'secondary';
+
+        $hash = crc32($name);
+        return $colors[$hash % count($colors)];
+    }
+
+    public function getFranchiseColor(): string
+    {
+        $colors = ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'dark'];
+
+        $name = $this->franchise->name ?? null;
+        if (!$name) return 'secondary';
+
+        $hash = crc32($name);
+        return $colors[$hash % count($colors)];
+    }
 }

@@ -101,8 +101,16 @@
                         @endif
                     </td>
                     <td>{{ Illuminate\Support\Str::words($category->desc ?? '-', 10, '...') }}</td>
-                    <td>{{ $category->era->name ?? '-' }}</td>
-                    <td>{{ $category->franchise->name ?? '-' }}</td>
+                    <td>
+                        <span class="badge bg-{{ $category->getEraColor() }}">
+                            {{ $category->era->name ?? '-' }}
+                        </span>
+                    </td>
+                    <td>
+                        <span class="badge bg-{{ $category->getFranchiseColor() }}">
+                            {{ $category->franchise->name ?? '-' }}
+                        </span>
+                    </td>
                     <td class="manage-row">
                         @if (auth()->user()->role == 'admin')
                             @if ($category->trashed())

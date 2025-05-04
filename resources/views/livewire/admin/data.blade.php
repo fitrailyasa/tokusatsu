@@ -100,7 +100,11 @@
                     <tr>
                         <td>{{ $datas->firstItem() + $loop->index }}</td>
                         <td>{{ $data->name }}</td>
-                        <td>{{ $data->category->name ?? '-' }}</td>
+                        <td>
+                            <span class="badge bg-{{ $data->getCategoryColor() }}">
+                                {{ $data->category->name ?? '-' }}
+                            </span>
+                        </td>
                         <td>
                             @if ($data->img == null)
                                 <img src="{{ asset('assets/profile/default.png') }}" alt="{{ $data->name }}"
