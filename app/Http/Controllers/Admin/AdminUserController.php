@@ -28,7 +28,14 @@ class AdminUserController extends Controller
 
     public function store(UserStoreRequest $request)
     {
-        User::create($request->validated());
+        $userData = $request->validated();
+
+        if (!empty($userData['password'])) {
+            $userData['password'] = Hash::make($userData['password']);
+        }
+
+        User::create($userData);
+
         return back()->with('message', 'Berhasil Tambah User!');
     }
 
@@ -37,8 +44,10 @@ class AdminUserController extends Controller
         $user = User::where('id', $id)->first();
         $userData = $request->validated();
 
-        if ($request->has('password') && !empty($request->password)) {
-            $userData['password'] = Hash::make($request->password);
+        if (!empty($userData['password'])) {
+            $userData['password'] = Hash::make($userData['password']);
+        } else {
+            unset($userData['password']);
         }
 
         $user->update($userData);
@@ -47,7 +56,7 @@ class AdminUserController extends Controller
 
     public function destroy(string $id)
     {
-        User::findOrFail($id)->delete();
+        User::findOrFail($id)->forceDelete();
         return back()->with('message', 'Berhasil Hapus User!');
     }
 }
