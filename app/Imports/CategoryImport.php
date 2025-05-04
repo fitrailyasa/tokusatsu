@@ -13,30 +13,36 @@ class CategoryImport implements ToModel, WithStartRow
 {
     public function model(array $row)
     {
-        $era = Era::withTrashed()->where('name', $row[4])->first();
+        $name = $row[1];
+        $img = $row[2] ?? null;
+        $desc = $row[3] ?? null;
+        $eraName = $row[4] ?? null;
+        $franchiseName = $row[5] ?? null;
+
+        $era = Era::withTrashed()->where('name', $eraName)->first();
 
         if (!$era) {
             $era = Era::create([
-                'name' => $row[4],
+                'name' => $eraName,
                 'img' => null,
             ]);
         }
 
-        $franchise = Franchise::withTrashed()->where('name', $row[5])->first();
+        $franchise = Franchise::withTrashed()->where('name', $franchiseName)->first();
 
         if (!$franchise) {
             $franchise = Franchise::create([
-                'name' => $row[5],
+                'name' => $franchiseName,
                 'img' => null,
             ]);
         }
 
-        $checkCategory = Category::withTrashed()->where('name', $row[2])->first();
+        $checkCategory = Category::withTrashed()->where('name', $name)->first();
 
         if ($checkCategory) {
             $checkCategory->update([
-                'img' => $row[4] ?? $checkCategory->img,
-                'desc' => $row[5] ?? $checkCategory->desc,
+                'img' => $img ?? $checkCategory->img,
+                'desc' => $desc ?? $checkCategory->desc,
                 'era_id' => $era->id,
                 'franchise_id' => $franchise->id,
             ]);
@@ -46,9 +52,9 @@ class CategoryImport implements ToModel, WithStartRow
 
         return new Category([
             // 'id' => Str::uuid(),
-            'name' => $row[2],
-            'img' => $row[3] ?? null,
-            'desc' => $row[4] ?? null,
+            'name' => $name,
+            'img' => $img ?? null,
+            'desc' => $desc ?? null,
             'era_id' => $era->id ?? null,
             'franchise_id' => $franchise->id ?? null,
         ]);

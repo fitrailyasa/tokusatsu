@@ -13,22 +13,38 @@ class DataImport implements ToModel, WithStartRow
 {
     public function model(array $row)
     {
-        $category = Category::withTrashed()->where('name', $row[2])->first();
+        $name = $row[1];
+        $categoryName = $row[2] ?? null;
+        $img = $row[3] ?? null;
+        $tagsName = $row[4] ?? null;
+
+        $category = Category::withTrashed()->where('name', $categoryName)->first();
 
         if (!$category) {
             $category = Category::create([
-                // 'id' => Str::uuid(),
-                'name' => $row[2],
+                'name' => $categoryName,
                 'img' => null,
                 'franchise_id' => null,
                 'era_id' => null,
             ]);
         }
 
-        $checkData = Data::withTrashed()->where('name', $row[1])->first();
+        $checkData = Data::withTrashed()->where('name', $name)->first();
+        if ($checkData) {
+            return null;
+        }
 
-        if (!empty($row[4])) {
-            $tags = explode(',', $row[4]);
+        $data = new Data([
+            'name' => $name,
+            'category_id' => $category->id ?? null,
+            'img' => $img,
+        ]);
+        $data->save();
+
+        if (!empty($tagsName)) {
+            $tags = explode(',', $tagsName);
+            $tagIds = [];
+
             foreach ($tags as $tagName) {
                 $tagName = trim($tagName);
                 $tag = Tag::withTrashed()->where('name', $tagName)->first();
@@ -38,25 +54,13 @@ class DataImport implements ToModel, WithStartRow
                     $tag->name = $tagName;
                     $tag->id = Str::uuid();
                     $tag->save();
-                    $checkData->tags()->attach([$tag->id]);
-                } else {
-                    $checkData->tags()->sync([$tag->id]);
                 }
+
+                $tagIds[] = $tag->id;
             }
+
+            $data->tags()->sync($tagIds);
         }
-
-        if ($checkData) {
-            return null;
-        }
-
-        $data = new Data([
-            // 'id' => Str::uuid(),
-            'name' => $row[1],
-            'category_id' => $category->id ?? null,
-            'img' => $row[3] ?? null,
-        ]);
-
-        $data->save();
 
         return $data;
     }
