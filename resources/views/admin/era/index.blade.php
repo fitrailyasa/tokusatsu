@@ -100,16 +100,14 @@
                     </td>
                     <td>{{ Illuminate\Support\Str::words($era->desc ?? '-', 10, '...') }}</td>
                     <td class="manage-row">
-                        @if (auth()->user()->role == 'admin')
-                            @if ($era->trashed())
-                                <!-- Restore and Delete Button -->
-                                @include('admin.era.restore')
-                                @include('admin.era.delete')
-                            @else
-                                <!-- Edit and Soft Delete Buttons -->
-                                @include('admin.era.edit')
-                                @include('admin.era.softDelete')
-                            @endif
+                        @if ($era->trashed())
+                            <!-- Restore and Delete Button -->
+                            @include('admin.era.restore')
+                            @include('admin.era.delete')
+                        @else
+                            <!-- Edit and Soft Delete Buttons -->
+                            @include('admin.era.edit')
+                            @include('admin.era.softDelete')
                         @endif
                     </td>
                 </tr>

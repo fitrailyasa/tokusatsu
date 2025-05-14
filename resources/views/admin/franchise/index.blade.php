@@ -100,16 +100,14 @@
                     </td>
                     <td>{{ Illuminate\Support\Str::words($franchise->desc ?? '-', 10, '...') }}</td>
                     <td class="manage-row">
-                        @if (auth()->user()->role == 'admin')
-                            @if ($franchise->trashed())
-                                <!-- Restore and Delete Button -->
-                                @include('admin.franchise.restore')
-                                @include('admin.franchise.delete')
-                            @else
-                                <!-- Edit and Soft Delete Buttons -->
-                                @include('admin.franchise.edit')
-                                @include('admin.franchise.softDelete')
-                            @endif
+                        @if ($franchise->trashed())
+                            <!-- Restore and Delete Button -->
+                            @include('admin.franchise.restore')
+                            @include('admin.franchise.delete')
+                        @else
+                            <!-- Edit and Soft Delete Buttons -->
+                            @include('admin.franchise.edit')
+                            @include('admin.franchise.softDelete')
                         @endif
                     </td>
                 </tr>

@@ -43,12 +43,11 @@
                         @endif
                     </td>
                     <td class="manage-row">
-                        @if (auth()->user()->role == 'admin')
-                            @include('admin.user.edit')
-                            @include('admin.user.delete')
-                        @endif
-                    </td>
-                </tr>
+                        @include('admin.user.edit')
+                        @include('admin.user.delete')
+            @endif
+            </td>
+            </tr>
             @endforeach
         </tbody>
         <tfoot>

@@ -55,16 +55,14 @@
                     <td>{{ $tags->firstItem() + $loop->index }}</td>
                     <td>{{ $tag->name ?? '-' }}</td>
                     <td class="manage-row">
-                        @if (auth()->user()->role == 'admin')
-                            @if ($tag->trashed())
-                                <!-- Restore and Delete Button -->
-                                @include('admin.tag.restore')
-                                @include('admin.tag.delete')
-                            @else
-                                <!-- Edit and Soft Delete Buttons -->
-                                @include('admin.tag.edit')
-                                @include('admin.tag.softDelete')
-                            @endif
+                        @if ($tag->trashed())
+                            <!-- Restore and Delete Button -->
+                            @include('admin.tag.restore')
+                            @include('admin.tag.delete')
+                        @else
+                            <!-- Edit and Soft Delete Buttons -->
+                            @include('admin.tag.edit')
+                            @include('admin.tag.softDelete')
                         @endif
                     </td>
                 </tr>

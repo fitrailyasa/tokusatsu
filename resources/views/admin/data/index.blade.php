@@ -117,16 +117,14 @@
                         @endforeach
                     </td>
                     <td class="manage-row">
-                        @if (auth()->user()->role == 'admin')
-                            @if ($data->trashed())
-                                <!-- Restore and Delete Button -->
-                                @include('admin.data.restore')
-                                @include('admin.data.delete')
-                            @else
-                                <!-- Edit and Soft Delete Buttons -->
-                                @include('admin.data.edit')
-                                @include('admin.data.softDelete')
-                            @endif
+                        @if ($data->trashed())
+                            <!-- Restore and Delete Button -->
+                            @include('admin.data.restore')
+                            @include('admin.data.delete')
+                        @else
+                            <!-- Edit and Soft Delete Buttons -->
+                            @include('admin.data.edit')
+                            @include('admin.data.softDelete')
                         @endif
                     </td>
                 </tr>

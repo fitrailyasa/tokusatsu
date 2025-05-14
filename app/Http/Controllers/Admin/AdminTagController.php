@@ -12,6 +12,21 @@ use App\Http\Requests\TagRequest;
 
 class AdminTagController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:view-tag')->only(['index']);
+        $this->middleware('permission:create-tag')->only(['store']);
+        $this->middleware('permission:edit-tag')->only(['update']);
+        $this->middleware('permission:delete-tag')->only(['destroy']);
+        $this->middleware('permission:delete-all-tag')->only(['destroyAll']);
+        $this->middleware('permission:soft-delete-tag')->only(['softDelete']);
+        $this->middleware('permission:soft-delete-all-tag')->only(['softDeleteAll']);
+        $this->middleware('permission:restore-tag')->only(['restore']);
+        $this->middleware('permission:restore-all-tag')->only(['restoreAll']);
+        $this->middleware('permission:import-tag')->only(['import']);
+        $this->middleware('permission:export-tag')->only(['export']);
+    }
+
     public function index(Request $request)
     {
         $request->validate([

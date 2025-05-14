@@ -18,6 +18,7 @@
         "midtrans/midtrans-php": "^2.5",
         "socialiteproviders/discord": "^4.2",
         "socialiteproviders/twitch": "^5.4",
+        "spatie/laravel-permission": "^6.17",
         "srmklive/paypal": "^3.0",
         "xendit/xendit-php": "^6.2"
     },

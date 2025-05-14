@@ -112,16 +112,14 @@
                         </span>
                     </td>
                     <td class="manage-row">
-                        @if (auth()->user()->role == 'admin')
-                            @if ($category->trashed())
-                                <!-- Restore and Delete Button -->
-                                @include('admin.category.restore')
-                                @include('admin.category.delete')
-                            @else
-                                <!-- Edit and Soft Delete Buttons -->
-                                @include('admin.category.edit')
-                                @include('admin.category.softDelete')
-                            @endif
+                        @if ($category->trashed())
+                            <!-- Restore and Delete Button -->
+                            @include('admin.category.restore')
+                            @include('admin.category.delete')
+                        @else
+                            <!-- Edit and Soft Delete Buttons -->
+                            @include('admin.category.edit')
+                            @include('admin.category.softDelete')
                         @endif
                     </td>
                 </tr>

@@ -14,6 +14,21 @@ use App\Http\Requests\CategoryRequest;
 
 class AdminCategoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:view-category')->only(['index']);
+        $this->middleware('permission:create-category')->only(['store']);
+        $this->middleware('permission:edit-category')->only(['update']);
+        $this->middleware('permission:delete-category')->only(['destroy']);
+        $this->middleware('permission:delete-all-category')->only(['destroyAll']);
+        $this->middleware('permission:soft-delete-category')->only(['softDelete']);
+        $this->middleware('permission:soft-delete-all-category')->only(['softDeleteAll']);
+        $this->middleware('permission:restore-category')->only(['restore']);
+        $this->middleware('permission:restore-all-category')->only(['restoreAll']);
+        $this->middleware('permission:import-category')->only(['import']);
+        $this->middleware('permission:export-category')->only(['export']);
+    }
+
     public function index(Request $request)
     {
         $request->validate([

@@ -12,6 +12,21 @@ use App\Http\Requests\EraRequest;
 
 class AdminEraController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:view-era')->only(['index']);
+        $this->middleware('permission:create-era')->only(['store']);
+        $this->middleware('permission:edit-era')->only(['update']);
+        $this->middleware('permission:delete-era')->only(['destroy']);
+        $this->middleware('permission:delete-all-era')->only(['destroyAll']);
+        $this->middleware('permission:soft-delete-era')->only(['softDelete']);
+        $this->middleware('permission:soft-delete-all-era')->only(['softDeleteAll']);
+        $this->middleware('permission:restore-era')->only(['restore']);
+        $this->middleware('permission:restore-all-era')->only(['restoreAll']);
+        $this->middleware('permission:import-era')->only(['import']);
+        $this->middleware('permission:export-era')->only(['export']);
+    }
+
     public function index(Request $request)
     {
         $request->validate([
