@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
+use Spatie\Permission\Models\Role;
 
 class AdminUserController extends Controller
 {
@@ -20,16 +21,7 @@ class AdminUserController extends Controller
 
     public function index()
     {
-        $roles = [
-            [
-                'id' => 'admin',
-                'name' => 'Admin',
-            ],
-            [
-                'id' => 'user',
-                'name' => 'User',
-            ]
-        ];
+        $roles = Role::all();
         $users = User::all();
         return view('admin.user.index', compact('users', 'roles'));
     }

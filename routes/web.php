@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\Admin\AdminRoleController;
 use App\Http\Controllers\Admin\AdminEraController;
 use App\Http\Controllers\Admin\AdminFranchiseController;
 use App\Http\Controllers\Admin\AdminCategoryController;
@@ -73,6 +74,7 @@ Route::middleware(['auth'])->group(function () {
 
     // CRUD USER
     Route::resource('user', AdminUserController::class)->only(['index', 'store', 'update', 'destroy']);
+    Route::resource('role', AdminRoleController::class)->only(['index', 'store', 'update', 'destroy']);
 
     // CRUD ERA
     Route::get('/era', [AdminEraController::class, 'index'])->name('era.index');
