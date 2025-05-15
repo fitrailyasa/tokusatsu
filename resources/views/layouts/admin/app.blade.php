@@ -16,6 +16,7 @@
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.13.0/css/OverlayScrollbars.min.css">
     <script src="https://kit.fontawesome.com/2a99f4df77.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!--Favicon-->
     <link rel="apple-touch-icon-precomposed" sizes="57x57"
