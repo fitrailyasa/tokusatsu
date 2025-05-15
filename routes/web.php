@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
-use App\Http\Middleware\Admin;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminUserController;
@@ -59,7 +58,7 @@ Route::middleware(['auth'])->group(function () {
   Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
   // CMS ADMINITRASTOR
-  Route::middleware([Admin::class])->name('admin.')->prefix('admin')->group(function () {
+  Route::name('admin.')->prefix('admin')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('beranda');
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
 
