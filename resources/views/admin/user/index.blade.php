@@ -29,11 +29,7 @@
                     <td>{{ $user->name ?? '-' }}</td>
                     <td class="d-none d-lg-table-cell">{{ $user->email ?? '-' }}</td>
                     <td class="d-none d-lg-table-cell">
-                        @if ($user->role == 'admin')
-                            <span class="badge badge-primary">{{ $user->role }}</span>
-                        @elseif ($user->role != 'admin')
-                            <span class="badge badge-secondary">{{ $user->role }}</span>
-                        @endif
+                        {{ $user->getRoleNames()->implode(', ') }}
                     </td>
                     <td class="d-none d-lg-table-cell">
                         @if ($user->status == 'aktif')
@@ -45,9 +41,8 @@
                     <td class="manage-row">
                         @include('admin.user.edit')
                         @include('admin.user.delete')
-            @endif
-            </td>
-            </tr>
+                    </td>
+                </tr>
             @endforeach
         </tbody>
         <tfoot>

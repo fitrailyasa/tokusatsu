@@ -22,7 +22,7 @@
                 {{ session('alert') }}
             </div>
         @endif 
-        @include('components.layouts.search')
+        @include('components.search')
 
         <form wire:submit.prevent="{{ $isUpdate ? 'update' : 'store' }}">
             <div class="row">

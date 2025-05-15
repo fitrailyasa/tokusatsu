@@ -4,8 +4,8 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
 
 class UserSeeder extends Seeder
 {
@@ -14,26 +14,37 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        // Buat roles jika belum ada
+        $superAdminRole = Role::firstOrCreate(['name' => 'super-admin']);
+        $adminRole = Role::firstOrCreate(['name' => 'admin']);
 
+        // Daftar user
         $users = [
             [
                 'name' => 'Super Administrator',
                 'email' => 'super@admin.com',
-                'role' => 'admin',
                 'status' => 'aktif',
                 'no_hp' => '081234567890',
-                'password' => Hash::make('password')
+                'password' => Hash::make('password'),
+                'role' => 'super-admin'
             ],
             [
                 'name' => 'Administrator',
                 'email' => 'admin@admin.com',
-                'role' => 'admin',
                 'status' => 'aktif',
                 'no_hp' => '081234567890',
-                'password' => Hash::make('password')
+                'password' => Hash::make('password'),
+                'role' => 'admin'
             ],
         ];
-        User::query()->insert($users);
+
+        // Insert user satu per satu dan assign role
+        foreach ($users as $userData) {
+            $role = $userData['role'];
+            unset($userData['role']); // buang field role sebelum insert
+
+            $user = User::create($userData);
+            $user->assignRole($role);
+        }
     }
 }
