@@ -35,13 +35,34 @@
                     <td>{{ $role->name ?? '-' }}</td>
                     <td>
                         @forelse ($role->permissions as $permission)
-                            <span class="badge badge-info">{{ $permission->name }}</span>
+                            @php
+                                $name = strtolower($permission->name);
+                                if (str_contains($name, 'view')) {
+                                    $badgeClass = 'badge-dark';
+                                } else if (str_contains($name, 'create')) {
+                                    $badgeClass = 'badge-primary';
+                                } elseif (str_contains($name, 'edit')) {
+                                    $badgeClass = 'badge-warning';
+                                } elseif (str_contains($name, 'delete')) {
+                                    $badgeClass = 'badge-danger';
+                                } elseif (str_contains($name, 'restore')) {
+                                    $badgeClass = 'badge-info';
+                                } elseif (str_contains($name, 'import')) {
+                                    $badgeClass = 'badge-secondary';
+                                } elseif (str_contains($name, 'export')) {
+                                    $badgeClass = 'badge-success';
+                                } else {
+                                    $badgeClass = 'badge-gray';
+                                }
+                            @endphp
+
+                            <span class="badge {{ $badgeClass }}">{{ $permission->name }}</span>
                         @empty
                             <span class="text-muted">No permissions</span>
                         @endforelse
                     </td>
 
-                    <td class="manage-row">
+                    <td class="manage-row text-center">
                         @can('edit-role')
                             @include('admin.role.edit')
                         @endcan
