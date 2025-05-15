@@ -19,7 +19,7 @@ class UserUpdateRequest extends FormRequest
 
         // dd($db->getConnection()->getDatabaseName());
 
-        $id = $this->user()->id ?? null;
+        $id = $this->route('user');
 
         return [
             'name' => 'required|max:100',

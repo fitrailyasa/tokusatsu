@@ -34,14 +34,19 @@ class AdminUserController extends Controller
             $userData['password'] = Hash::make($userData['password']);
         }
 
-        User::create($userData);
+        $role = $userData['role'];
+        unset($userData['role']);
+
+        $user = User::create($userData);
+
+        $user->assignRole($role);
 
         return back()->with('message', 'Berhasil Tambah User!');
     }
 
     public function update(UserUpdateRequest $request, string $id)
     {
-        $user = User::where('id', $id)->first();
+        $user = User::findOrFail($id);
         $userData = $request->validated();
 
         if (!empty($userData['password'])) {
@@ -50,9 +55,16 @@ class AdminUserController extends Controller
             unset($userData['password']);
         }
 
+        $role = $userData['role'];
+        unset($userData['role']);
+
         $user->update($userData);
+
+        $user->syncRoles($role);
+
         return back()->with('message', 'Berhasil Edit User!');
     }
+
 
     public function destroy(string $id)
     {
