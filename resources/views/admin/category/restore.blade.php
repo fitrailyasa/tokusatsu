@@ -14,7 +14,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">Apakah anda yakin ingin mengembalikan data ini?</div>
+            <div class="modal-body text-left">Apakah anda yakin ingin mengembalikan data ini?</div>
             <div class="modal-footer">
                 <form action="{{ route('admin.category.restore', $category->id) }}" method="POST">
                     @method('PUT')

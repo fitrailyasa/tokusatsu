@@ -14,7 +14,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">Apakah anda yakin ingin menghapus data secara permanen?</div>
+            <div class="modal-body text-left">Apakah anda yakin ingin menghapus data secara permanen?</div>
             <div class="modal-footer">
                 <form action="{{ route('admin.era.destroy', $era->id) }}" method="POST">
                     @csrf

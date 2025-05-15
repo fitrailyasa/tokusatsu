@@ -14,7 +14,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body text-left">
                     <div class="row">
                         <div class="col-md-4">
                             <div class="mb-3">
