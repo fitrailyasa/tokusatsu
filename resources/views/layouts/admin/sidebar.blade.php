@@ -22,6 +22,7 @@
                         </p>
                     </a>
                 </li>
+
                 <li class="nav-item">
                     <a href="{{ route('beranda') }}" class="nav-link text-white">
                         <i class="nav-icon fas fa-home"></i>
@@ -30,15 +31,18 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ route('admin.user.index') }}"
-                        class="nav-link text-white {{ Request::routeIs('admin.user.index') ? 'aktif' : '' }}">
-                        <i class="nav-icon fas fa-users"></i>
-                        <p>
-                            User
-                        </p>
-                    </a>
-                </li>
+
+                @can('view-user')
+                    <li class="nav-item">
+                        <a href="{{ route('admin.user.index') }}"
+                            class="nav-link text-white {{ Request::routeIs('admin.user.index') ? 'aktif' : '' }}">
+                            <i class="nav-icon fas fa-users"></i>
+                            <p>User</p>
+                        </a>
+                    </li>
+                @endcan
+
+                @can('view-role')
                 <li class="nav-item">
                     <a href="{{ route('admin.role.index') }}"
                         class="nav-link text-white {{ Request::routeIs('admin.role.index') ? 'aktif' : '' }}">
@@ -48,6 +52,9 @@
                         </p>
                     </a>
                 </li>
+                @endcan
+
+                @can('view-data')
                 <li class="nav-item">
                     <a href="{{ route('admin.data.index') }}"
                         class="nav-link text-white {{ Request::routeIs('admin.data.index') ? 'aktif' : '' }}">
@@ -57,6 +64,9 @@
                         </p>
                     </a>
                 </li>
+                @endcan
+
+                @can('view-tag')
                 <li class="nav-item">
                     <a href="{{ route('admin.tag.index') }}"
                         class="nav-link text-white {{ Request::routeIs('admin.tag.index') ? 'aktif' : '' }}">
@@ -66,6 +76,9 @@
                         </p>
                     </a>
                 </li>
+                @endcan
+
+                @can('view-category')
                 <li class="nav-item">
                     <a href="{{ route('admin.category.index') }}"
                         class="nav-link text-white {{ Request::routeIs('admin.category.index') ? 'aktif' : '' }}">
@@ -75,6 +88,9 @@
                         </p>
                     </a>
                 </li>
+                @endcan
+
+                @can('view-franchise')
                 <li class="nav-item">
                     <a href="{{ route('admin.franchise.index') }}"
                         class="nav-link text-white {{ Request::routeIs('admin.franchise.index') ? 'aktif' : '' }}">
@@ -84,6 +100,9 @@
                         </p>
                     </a>
                 </li>
+                @endcan
+
+                @can('view-era')
                 <li class="nav-item">
                     <a href="{{ route('admin.era.index') }}"
                         class="nav-link text-white {{ Request::routeIs('admin.era.index') ? 'aktif' : '' }}">
@@ -93,6 +112,8 @@
                         </p>
                     </a>
                 </li>
+                @endcan
+
                 <li class="nav-item">
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" hidden>
                         @csrf
