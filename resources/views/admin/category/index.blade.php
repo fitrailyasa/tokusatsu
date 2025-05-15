@@ -62,7 +62,7 @@
                 <th>{{ __('Desc') }}</th>
                 <th>{{ __('Era') }}</th>
                 <th>{{ __('Franchise') }}</th>
-                <th>{{ __('Action') }}</th>
+                <th class="text-center">{{ __('Action') }}</th>
             </tr>
         </thead>
         <tbody>
@@ -123,7 +123,7 @@
                             {{ $category->franchise->name ?? '-' }}
                         </span>
                     </td>
-                    <td class="manage-row">
+                    <td class="manage-row text-center">
                         @if ($category->trashed())
                             <!-- Restore and Delete Button -->
                             @can('restore-category')
@@ -153,7 +153,7 @@
                 <th>{{ __('Desc') }}</th>
                 <th>{{ __('Era') }}</th>
                 <th>{{ __('Franchise') }}</th>
-                <th>{{ __('Action') }}</th>
+                <th class="text-center">{{ __('Action') }}</th>
             </tr>
         </tfoot>
     </table>

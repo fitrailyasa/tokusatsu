@@ -61,7 +61,7 @@
                 <th>{{ __('Category') }}</th>
                 <th>{{ __('Images') }}</th>
                 <th>{{ __('Tags') }}</th>
-                <th>{{ __('Action') }}</th>
+                <th class="text-center">{{ __('Action') }}</th>
             </tr>
         </thead>
         <tbody>
@@ -128,7 +128,7 @@
                             <span class="badge badge-primary">{{ $tag }}</span>
                         @endforeach
                     </td>
-                    <td class="manage-row">
+                    <td class="manage-row text-center">
                         @if ($data->trashed())
                             <!-- Restore and Delete Button -->
                             @can('restore-data')
@@ -157,7 +157,7 @@
                 <th>{{ __('Category') }}</th>
                 <th>{{ __('Images') }}</th>
                 <th>{{ __('Tags') }}</th>
-                <th>{{ __('Action') }}</th>
+                <th class="text-center">{{ __('Action') }}</th>
             </tr>
         </tfoot>
     </table>

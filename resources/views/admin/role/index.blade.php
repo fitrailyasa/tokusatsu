@@ -25,7 +25,7 @@
                 <th>{{ __('No') }}</th>
                 <th>{{ __('Name') }}</th>
                 <th>{{ __('Permissions') }}</th>
-                <th>{{ __('Action') }}</th>
+                <th class="text-center">{{ __('Action') }}</th>
             </tr>
         </thead>
         <tbody>
@@ -39,7 +39,7 @@
                                 $name = strtolower($permission->name);
                                 if (str_contains($name, 'view')) {
                                     $badgeClass = 'badge-dark';
-                                } else if (str_contains($name, 'create')) {
+                                } elseif (str_contains($name, 'create')) {
                                     $badgeClass = 'badge-primary';
                                 } elseif (str_contains($name, 'edit')) {
                                     $badgeClass = 'badge-warning';
@@ -78,7 +78,7 @@
                 <th>{{ __('No') }}</th>
                 <th>{{ __('Name') }}</th>
                 <th>{{ __('Permissions') }}</th>
-                <th>{{ __('Action') }}</th>
+                <th class="text-center">{{ __('Action') }}</th>
             </tr>
         </tfoot>
     </table>

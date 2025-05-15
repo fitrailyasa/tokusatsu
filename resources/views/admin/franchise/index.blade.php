@@ -60,7 +60,7 @@
                 <th>{{ __('Name') }}</th>
                 <th>{{ __('Img') }}</th>
                 <th>{{ __('Desc') }}</th>
-                <th>{{ __('Action') }}</th>
+                <th class="text-center">{{ __('Action') }}</th>
             </tr>
         </thead>
         <tbody>
@@ -111,7 +111,7 @@
                         @endif
                     </td>
                     <td>{{ Illuminate\Support\Str::words($franchise->desc ?? '-', 10, '...') }}</td>
-                    <td class="manage-row">
+                    <td class="manage-row text-center">
                         @if ($franchise->trashed())
                             <!-- Restore and Delete Button -->
                             @can('restore-franchise')
@@ -139,7 +139,7 @@
                 <th>{{ __('Name') }}</th>
                 <th>{{ __('Img') }}</th>
                 <th>{{ __('Desc') }}</th>
-                <th>{{ __('Action') }}</th>
+                <th class="text-center">{{ __('Action') }}</th>
             </tr>
         </tfoot>
     </table>

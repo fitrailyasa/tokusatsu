@@ -31,7 +31,7 @@
                 <tr>
                     <th>{{ __('No') }}</th>
                     <th>{{ __('Name') }}</th>
-                    <th>{{ __('Action') }}</th>
+                    <th class="text-center">{{ __('Action') }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -39,10 +39,10 @@
                     <tr>
                         <td>{{ $tags->firstItem() + $loop->index }}</td>
                         <td>{{ $tag->name }}</td>
-                        <td>
+                        <td class="manage-row text-center">
                             <button wire:click="edit({{ $tag->id }})" class="btn btn-sm btn-warning">Edit</button>
                             <button wire:click="delete({{ $tag->id }})"
-                                class="btn btn-sm btn-danger">Delete</button>
+                                class="btn btn-sm m-1 btn-danger">Delete</button>
                         </td>
                     </tr>
                 @empty

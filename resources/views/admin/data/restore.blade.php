@@ -1,5 +1,5 @@
 <!-- Tombol untuk membuka modal Restore -->
-<button role="button" class="btn btn-sm btn-info" data-bs-toggle="modal"
+<button role="button" class="btn btn-sm m-1 btn-info" data-bs-toggle="modal"
     data-bs-target=".formRestore{{ $data->id }}"><i class="fas fa-undo"></i><span class="d-none d-sm-inline">
         {{ __('Restore') }}</span></button>
 

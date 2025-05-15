@@ -1,5 +1,5 @@
 <!-- Tombol untuk membuka modal restoreAll -->
-<button role="button" class="btn btn-sm mx-1 btn-info" data-bs-toggle="modal" data-bs-target=".restoreAll"><i
+<button role="button" class="btn btn-sm m-1 btn-info" data-bs-toggle="modal" data-bs-target=".restoreAll"><i
         class="fas fa-undo"></i><span class="d-none d-sm-inline"> {{ __('Restore Semua') }}</span></button>
 
 <!-- Modal Restore All -->

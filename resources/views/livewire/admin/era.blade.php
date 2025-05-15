@@ -65,7 +65,7 @@
                     <th>{{ __('Name') }}</th>
                     <th>{{ __('Img') }}</th>
                     <th>{{ __('Desc') }}</th>
-                    <th>{{ __('Action') }}</th>
+                    <th class="text-center">{{ __('Action') }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -116,10 +116,10 @@
                             @endif
                         </td>
                         <td>{{ Illuminate\Support\Str::words($era->desc ?? '-', 10, '...') }}</td>
-                        <td>
+                        <td class="manage-row text-center">
                             <button wire:click="edit({{ $era->id }})" class="btn btn-sm btn-warning">Edit</button>
                             <button wire:click="delete({{ $era->id }})"
-                                class="btn btn-sm btn-danger">Delete</button>
+                                class="btn btn-sm m-1 btn-danger">Delete</button>
                         </td>
                     </tr>
                 @empty

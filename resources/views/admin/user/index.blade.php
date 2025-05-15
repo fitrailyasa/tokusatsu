@@ -21,7 +21,7 @@
                 <th class="d-none d-lg-table-cell">{{ __('Email') }}</th>
                 <th class="d-none d-lg-table-cell">{{ __('Role') }}</th>
                 <th class="d-none d-lg-table-cell">{{ __('Status') }}</th>
-                <th>{{ __('Action') }}</th>
+                <th class="text-center">{{ __('Action') }}</th>
             </tr>
         </thead>
         <tbody>
@@ -40,7 +40,7 @@
                             <span class="badge badge-danger">{{ $user->status }}</span>
                         @endif
                     </td>
-                    <td class="manage-row">
+                    <td class="manage-row text-center">
                         @can('edit-user')
                             @include('admin.user.edit')
                         @endcan
@@ -58,7 +58,7 @@
                 <th class="d-none d-lg-table-cell">{{ __('Email') }}</th>
                 <th class="d-none d-lg-table-cell">{{ __('Role') }}</th>
                 <th class="d-none d-lg-table-cell">{{ __('Status') }}</th>
-                <th>{{ __('Action') }}</th>
+                <th class="text-center">{{ __('Action') }}</th>
             </tr>
         </tfoot>
     </table>

@@ -21,7 +21,7 @@
             <div class="alert alert-success" role="alert">
                 {{ session('alert') }}
             </div>
-        @endif 
+        @endif
         @include('components.search')
 
         <form wire:submit.prevent="{{ $isUpdate ? 'update' : 'store' }}">
@@ -63,7 +63,7 @@
                     <div class="mb-3">
                         <label class="form-label">{{ $isUpdate ? __('New Password') : __('Password') }}</label>
                         <input type="password" class="form-control @error('password') is-invalid @enderror"
-                            placeholder="{{ $isUpdate ? 'Leave blank to keep current password' : 'password' }}" 
+                            placeholder="{{ $isUpdate ? 'Leave blank to keep current password' : 'password' }}"
                             wire:model="password" id="password" {{ $isUpdate ? '' : 'required' }}>
                         @error('password')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -78,7 +78,8 @@
                             required>
                             <option value="" disabled selected>{{ __('Select Role') }}</option>
                             @foreach ($roles as $role)
-                                <option value="{{ $role['id'] }}" @if(old('role') == $role['id'] || $role['id'] == $role) selected @endif>{{ $role['name'] }}</option>
+                                <option value="{{ $role['id'] }}" @if (old('role') == $role['id'] || $role['id'] == $role) selected @endif>
+                                    {{ $role['name'] }}</option>
                             @endforeach
                         </select>
                         @error('role')
@@ -93,8 +94,10 @@
                         <select class="form-select @error('status') is-invalid @enderror" wire:model="status"
                             id="status" required>
                             <option value="" disabled selected>{{ __('Select Status') }}</option>
-                            <option value="aktif" @if(old('status') == 'aktif' || $status == 'aktif') selected @endif>{{ __('Aktif') }}</option>
-                            <option value="tidak aktif" @if(old('status') == 'tidak aktif' || $status == 'tidak aktif') selected @endif>{{ __('Tidak Aktif') }}</option>
+                            <option value="aktif" @if (old('status') == 'aktif' || $status == 'aktif') selected @endif>
+                                {{ __('Aktif') }}</option>
+                            <option value="tidak aktif" @if (old('status') == 'tidak aktif' || $status == 'tidak aktif') selected @endif>
+                                {{ __('Tidak Aktif') }}</option>
                         </select>
                         @error('status')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -114,13 +117,13 @@
                     <th>{{ __('Email') }}</th>
                     <th>{{ __('Role') }}</th>
                     <th>{{ __('Status') }}</th>
-                    <th>{{ __('Action') }}</th>
+                    <th class="text-center">{{ __('Action') }}</th>
                 </tr>
             </thead>
             <tbody>
                 @forelse ($users as $user)
                     <tr>
-                        <td>{{ $users->firstItem() + $loop->index  }}</td>
+                        <td>{{ $users->firstItem() + $loop->index }}</td>
                         <td>{{ $user->name ?? '-' }}</td>
                         <td>{{ $user->email ?? '-' }}</td>
                         <td>
@@ -137,9 +140,10 @@
                                 <span class="badge badge-danger">{{ $user->status }}</span>
                             @endif
                         </td>
-                        <td>
+                        <td class="manage-row text-center">
                             <button wire:click="edit({{ $user->id }})" class="btn btn-sm btn-warning">Edit</button>
-                            <button wire:click="delete({{ $user->id }})" class="btn btn-sm btn-danger">Delete</button>
+                            <button wire:click="delete({{ $user->id }})"
+                                class="btn btn-sm m-1 btn-danger">Delete</button>
                         </td>
                     </tr>
                 @empty

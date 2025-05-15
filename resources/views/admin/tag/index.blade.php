@@ -58,7 +58,7 @@
             <tr>
                 <th>{{ __('No') }}</th>
                 <th>{{ __('Name') }}</th>
-                <th>{{ __('Action') }}</th>
+                <th class="text-center">{{ __('Action') }}</th>
             </tr>
         </thead>
         <tbody>
@@ -66,7 +66,7 @@
                 <tr @if ($tag->trashed()) class="text-muted" @endif>
                     <td>{{ $tags->firstItem() + $loop->index }}</td>
                     <td>{{ $tag->name ?? '-' }}</td>
-                    <td class="manage-row">
+                    <td class="manage-row text-center">
                         @if ($tag->trashed())
                             <!-- Restore and Delete Button -->
                             @can('restore-tag')
@@ -92,7 +92,7 @@
             <tr>
                 <th>{{ __('No') }}</th>
                 <th>{{ __('Name') }}</th>
-                <th>{{ __('Action') }}</th>
+                <th class="text-center">{{ __('Action') }}</th>
             </tr>
         </tfoot>
     </table>

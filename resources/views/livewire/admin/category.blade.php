@@ -97,7 +97,7 @@
                     <th>{{ __('Desc') }}</th>
                     <th>{{ __('Era') }}</th>
                     <th>{{ __('Franchise') }}</th>
-                    <th>{{ __('Action') }}</th>
+                    <th class="text-center">{{ __('Action') }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -158,11 +158,11 @@
                                 {{ $category->franchise->name ?? '-' }}
                             </span>
                         </td>
-                        <td>
+                        <td class="manage-row text-center">
                             <button wire:click="edit({{ $category->id }})"
                                 class="btn btn-sm btn-warning">Edit</button>
                             <button wire:click="delete({{ $category->id }})"
-                                class="btn btn-sm btn-danger">Delete</button>
+                                class="btn btn-sm m-1 btn-danger">Delete</button>
                         </td>
                     </tr>
                 @empty

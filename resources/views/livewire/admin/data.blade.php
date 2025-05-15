@@ -92,7 +92,7 @@
                     <th>{{ __('Category') }}</th>
                     <th>{{ __('Images') }}</th>
                     <th>{{ __('Tags') }}</th>
-                    <th>{{ __('Action') }}</th>
+                    <th class="text-center">{{ __('Action') }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -159,10 +159,10 @@
                                 <span class="badge badge-primary">{{ $tag }}</span>
                             @endforeach
                         </td>
-                        <td>
+                        <td class="manage-row text-center">
                             <button wire:click="edit({{ $data->id }})" class="btn btn-sm btn-warning">Edit</button>
                             <button wire:click="delete({{ $data->id }})"
-                                class="btn btn-sm btn-danger">Delete</button>
+                                class="btn btn-sm m-1 btn-danger">Delete</button>
                         </td>
                     </tr>
                 @empty
