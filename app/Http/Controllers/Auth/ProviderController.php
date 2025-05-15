@@ -42,8 +42,9 @@ class ProviderController extends Controller
                 'provider_id' => [$socialUser->getId()],
                 'provider_tokens' => [$provider => $socialUser->token],
                 'status' => 'aktif',
-                'role' => 'user',
             ]);
+
+            $user->assignRole('user'); 
         }
 
         auth()->login($user);
