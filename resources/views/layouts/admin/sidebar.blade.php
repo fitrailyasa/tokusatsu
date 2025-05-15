@@ -40,6 +40,15 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ route('admin.role.index') }}"
+                        class="nav-link text-white {{ Request::routeIs('admin.role.index') ? 'aktif' : '' }}">
+                        <i class="nav-icon fas fa-user-tag"></i>
+                        <p>
+                            Role
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ route('admin.data.index') }}"
                         class="nav-link text-white {{ Request::routeIs('admin.data.index') ? 'aktif' : '' }}">
                         <i class="nav-icon fas fa-database"></i>

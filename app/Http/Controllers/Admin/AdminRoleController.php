@@ -9,6 +9,14 @@ use Illuminate\Http\Request;
 
 class AdminRoleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:view-role')->only(['index']);
+        $this->middleware('permission:create-role')->only(['store']);
+        $this->middleware('permission:edit-role')->only(['update']);
+        $this->middleware('permission:delete-role')->only(['destroy']);
+    }
+
     public function index(Request $request)
     {
         $request->validate([
@@ -36,11 +44,41 @@ class AdminRoleController extends Controller
 
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255|unique:roles,name',
+            'permissions' => 'nullable|array',
+            'permissions.*' => 'exists:permissions,id',
+        ]);
+
+        $role = Role::create(['name' => $validated['name']]);
+
+        if (!empty($validated['permissions'])) {
+            $permissions = Permission::whereIn('id', $validated['permissions'])->pluck('name')->toArray();
+            $role->syncPermissions($permissions);
+        }
+
         return back()->with('message', 'Berhasil Tambah Data Role!');
     }
 
     public function update(Request $request, $id)
     {
+        $role = Role::findOrFail($id);
+
+        $validated = $request->validate([
+            'name' => 'required|string|max:255|unique:roles,name,' . $role->id,
+            'permissions' => 'nullable|array',
+            'permissions.*' => 'exists:permissions,id',
+        ]);
+
+        $role->update(['name' => $validated['name']]);
+
+        if (isset($validated['permissions'])) {
+            $permissions = Permission::whereIn('id', $validated['permissions'])->pluck('name')->toArray();
+            $role->syncPermissions($permissions);
+        } else {
+            $role->syncPermissions([]);
+        }
+
         return back()->with('message', 'Berhasil Edit Data Role!');
     }
 

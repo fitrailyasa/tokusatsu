@@ -12,6 +12,7 @@ class RoleAndPermissionSeeder extends Seeder
     {
         $entities = [
             'user' => ['view', 'create', 'edit', 'delete'],
+            'role' => ['view', 'create', 'edit', 'delete'],
             'era' => ['view', 'create', 'edit', 'delete', 'delete-all', 'soft-delete', 'soft-delete-all', 'restore', 'restore-all', 'import', 'export'],
             'franchise' => ['view', 'create', 'edit', 'delete', 'delete-all', 'soft-delete', 'soft-delete-all', 'restore', 'restore-all', 'import', 'export'],
             'category' => ['view', 'create', 'edit', 'delete', 'delete-all', 'soft-delete', 'soft-delete-all', 'restore', 'restore-all', 'import', 'export'],

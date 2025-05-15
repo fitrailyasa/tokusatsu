@@ -16,7 +16,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="form-label">{{ __('Name') }}</label>
                                 <input type="text" class="form-control @error('name') is-invalid @enderror"
@@ -24,6 +24,29 @@
                                     required>
                                 @error('name')
                                     <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="mb-3">
+                                <label class="form-label">{{ __('Permissions') }}</label>
+                                <div class="row">
+                                    @foreach ($permissions as $permission)
+                                        <div class="col-md-6">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="permissions[]"
+                                                    value="{{ $permission->id }}" id="create-perm-{{ $permission->id }}"
+                                                    {{ is_array(old('permissions')) && in_array($permission->id, old('permissions')) ? 'checked' : '' }}>
+                                                <label class="form-check-label"
+                                                    for="create-perm-{{ $permission->id }}">
+                                                    {{ $permission->name }}
+                                                </label>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                                @error('permissions')
+                                    <div class="text-danger small">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
