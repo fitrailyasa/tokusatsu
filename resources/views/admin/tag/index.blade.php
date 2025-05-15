@@ -7,32 +7,44 @@
 
     <!-- Button Form Create -->
     <x-slot name="formCreate">
-        @include('admin.tag.create')
+        @can('create-tag')
+            @include('admin.tag.create')
+        @endcan
     </x-slot>
 
     <!-- Button Import -->
     <x-slot name="import">
-        @include('admin.tag.import')
+        @can('import-tag')
+            @include('admin.tag.import')
+        @endcan
     </x-slot>
 
     <!-- Button Export -->
     <x-slot name="export">
-        @include('admin.tag.export')
+        @can('export-tag')
+            @include('admin.tag.export')
+        @endcan
     </x-slot>
 
     <!-- Button Soft Delete All -->
     <x-slot name="softDeleteAll">
-        @include('admin.tag.softDeleteAll')
+        @can('soft-delete-all-tag')
+            @include('admin.tag.softDeleteAll')
+        @endcan
     </x-slot>
 
     <!-- Button Restore All -->
     <x-slot name="restoreAll">
-        @include('admin.tag.restoreAll')
+        @can('restore-all-tag')
+            @include('admin.tag.restoreAll')
+        @endcan
     </x-slot>
 
     <!-- Button Permanent Delete All -->
     <x-slot name="deleteAll">
-        {{-- @include('admin.tag.deleteAll') --}}
+        @can('delete-all-tag')
+            @include('admin.tag.deleteAll')
+        @endcan
     </x-slot>
 
     <!-- Search & Pagination -->
@@ -57,12 +69,20 @@
                     <td class="manage-row">
                         @if ($tag->trashed())
                             <!-- Restore and Delete Button -->
-                            @include('admin.tag.restore')
-                            @include('admin.tag.delete')
+                            @can('restore-tag')
+                                @include('admin.tag.restore')
+                            @endcan
+                            @can('delete-tag')
+                                @include('admin.tag.delete')
+                            @endcan
                         @else
                             <!-- Edit and Soft Delete Buttons -->
-                            @include('admin.tag.edit')
-                            @include('admin.tag.softDelete')
+                            @can('edit-tag')
+                                @include('admin.tag.edit')
+                            @endcan
+                            @can('soft-delete-tag')
+                                @include('admin.tag.softDelete')
+                            @endcan
                         @endif
                     </td>
                 </tr>

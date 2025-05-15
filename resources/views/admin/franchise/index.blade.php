@@ -7,32 +7,44 @@
 
     <!-- Button Form Create -->
     <x-slot name="formCreate">
-        @include('admin.franchise.create')
+        @can('create-franchise')
+            @include('admin.franchise.create')
+        @endcan
     </x-slot>
 
     <!-- Button Import -->
     <x-slot name="import">
-        @include('admin.franchise.import')
+        @can('import-franchise')
+            @include('admin.franchise.import')
+        @endcan
     </x-slot>
 
     <!-- Button Export -->
     <x-slot name="export">
-        @include('admin.franchise.export')
+        @can('export-franchise')
+            @include('admin.franchise.export')
+        @endcan
     </x-slot>
 
     <!-- Button Soft Delete All -->
     <x-slot name="softDeleteAll">
-        @include('admin.franchise.softDeleteAll')
+        @can('soft-delete-all-franchise')
+            @include('admin.franchise.softDeleteAll')
+        @endcan
     </x-slot>
 
     <!-- Button Restore All -->
     <x-slot name="restoreAll">
-        @include('admin.franchise.restoreAll')
+        @can('restore-all-franchise')
+            @include('admin.franchise.restoreAll')
+        @endcan
     </x-slot>
 
     <!-- Button Permanent Delete All -->
     <x-slot name="deleteAll">
-        {{-- @include('admin.franchise.deleteAll') --}}
+        @can('delete-all-franchise')
+            @include('admin.franchise.deleteAll')
+        @endcan
     </x-slot>
 
     <!-- Search & Pagination -->
@@ -102,12 +114,20 @@
                     <td class="manage-row">
                         @if ($franchise->trashed())
                             <!-- Restore and Delete Button -->
-                            @include('admin.franchise.restore')
-                            @include('admin.franchise.delete')
+                            @can('restore-franchise')
+                                @include('admin.franchise.restore')
+                            @endcan
+                            @can('delete-franchise')
+                                @include('admin.franchise.delete')
+                            @endcan
                         @else
                             <!-- Edit and Soft Delete Buttons -->
-                            @include('admin.franchise.edit')
-                            @include('admin.franchise.softDelete')
+                            @can('edit-franchise')
+                                @include('admin.franchise.edit')
+                            @endcan
+                            @can('soft-delete-franchise')
+                                @include('admin.franchise.softDelete')
+                            @endcan
                         @endif
                     </td>
                 </tr>

@@ -7,32 +7,44 @@
 
     <!-- Button Form Create -->
     <x-slot name="formCreate">
-        @include('admin.category.create')
+        @can('create-category')
+            @include('admin.category.create')
+        @endcan
     </x-slot>
 
     <!-- Button Import -->
     <x-slot name="import">
-        @include('admin.category.import')
+        @can('import-category')
+            @include('admin.category.import')
+        @endcan
     </x-slot>
 
     <!-- Button Export -->
     <x-slot name="export">
-        @include('admin.category.export')
+        @can('export-category')
+            @include('admin.category.export')
+        @endcan
     </x-slot>
 
     <!-- Button Soft Delete All -->
     <x-slot name="softDeleteAll">
-        @include('admin.category.softDeleteAll')
+        @can('soft-delete-all-category')
+            @include('admin.category.softDeleteAll')
+        @endcan
     </x-slot>
 
     <!-- Button Restore All -->
     <x-slot name="restoreAll">
-        @include('admin.category.restoreAll')
+        @can('restore-all-category')
+            @include('admin.category.restoreAll')
+        @endcan
     </x-slot>
 
     <!-- Button Permanent Delete All -->
     <x-slot name="deleteAll">
-        {{-- @include('admin.category.deleteAll') --}}
+        @can('delete-all-category')
+            @include('admin.category.deleteAll')
+        @endcan
     </x-slot>
 
     <!-- Search & Pagination -->
@@ -114,12 +126,20 @@
                     <td class="manage-row">
                         @if ($category->trashed())
                             <!-- Restore and Delete Button -->
-                            @include('admin.category.restore')
-                            @include('admin.category.delete')
+                            @can('restore-category')
+                                @include('admin.category.restore')
+                            @endcan
+                            @can('delete-category')
+                                @include('admin.category.delete')
+                            @endcan
                         @else
                             <!-- Edit and Soft Delete Buttons -->
-                            @include('admin.category.edit')
-                            @include('admin.category.softDelete')
+                            @can('edit-category')
+                                @include('admin.category.edit')
+                            @endcan
+                            @can('soft-delete-category')
+                                @include('admin.category.softDelete')
+                            @endcan
                         @endif
                     </td>
                 </tr>

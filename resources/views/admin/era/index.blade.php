@@ -7,32 +7,44 @@
 
     <!-- Button Form Create -->
     <x-slot name="formCreate">
-        @include('admin.era.create')
+        @can('create-era')
+            @include('admin.era.create')
+        @endcan
     </x-slot>
 
     <!-- Button Import -->
     <x-slot name="import">
-        @include('admin.era.import')
+        @can('import-era')
+            @include('admin.era.import')
+        @endcan
     </x-slot>
 
     <!-- Button Export -->
     <x-slot name="export">
-        @include('admin.era.export')
+        @can('export-era')
+            @include('admin.era.export')
+        @endcan
     </x-slot>
 
     <!-- Button Soft Delete All -->
     <x-slot name="softDeleteAll">
-        @include('admin.era.softDeleteAll')
+        @can('soft-delete-all-era')
+            @include('admin.era.softDeleteAll')
+        @endcan
     </x-slot>
 
     <!-- Button Restore All -->
     <x-slot name="restoreAll">
-        @include('admin.era.restoreAll')
+        @can('restore-all-era')
+            @include('admin.era.restoreAll')
+        @endcan
     </x-slot>
 
     <!-- Button Permanent Delete All -->
     <x-slot name="deleteAll">
-        {{-- @include('admin.era.deleteAll') --}}
+        @can('delete-all-era')
+            @include('admin.era.deleteAll')
+        @endcan
     </x-slot>
 
     <!-- Search & Pagination -->
@@ -102,12 +114,20 @@
                     <td class="manage-row">
                         @if ($era->trashed())
                             <!-- Restore and Delete Button -->
-                            @include('admin.era.restore')
-                            @include('admin.era.delete')
+                            @can('restore-era')
+                                @include('admin.era.restore')
+                            @endcan
+                            @can('delete-era')
+                                @include('admin.era.delete')
+                            @endcan
                         @else
                             <!-- Edit and Soft Delete Buttons -->
-                            @include('admin.era.edit')
-                            @include('admin.era.softDelete')
+                            @can('edit-era')
+                                @include('admin.era.edit')
+                            @endcan
+                            @can('soft-delete-era')
+                                @include('admin.era.softDelete')
+                            @endcan
                         @endif
                     </td>
                 </tr>

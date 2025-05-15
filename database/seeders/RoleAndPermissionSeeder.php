@@ -27,7 +27,8 @@ class RoleAndPermissionSeeder extends Seeder
         }
 
         $roles = [
-            'admin' => Permission::all()->pluck('name')->toArray(),
+            'super-admin' => Permission::all()->pluck('name')->toArray(),
+            'admin' => Permission::where('name', 'not like', '%-role')->where('name', 'not like', '%-all-%')->pluck('name')->toArray(),
             'user' => [
                 'view-era',
                 'view-franchise',

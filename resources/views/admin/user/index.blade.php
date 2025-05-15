@@ -7,7 +7,9 @@
 
     <!-- Button Form Create -->
     <x-slot name="formCreate">
-        @include('admin.user.create')
+        @can('create-user')
+            @include('admin.user.create')
+        @endcan
     </x-slot>
 
     <!-- Table -->
@@ -39,8 +41,12 @@
                         @endif
                     </td>
                     <td class="manage-row">
-                        @include('admin.user.edit')
-                        @include('admin.user.delete')
+                        @can('edit-user')
+                            @include('admin.user.edit')
+                        @endcan
+                        @can('delete-user')
+                            @include('admin.user.delete')
+                        @endcan
                     </td>
                 </tr>
             @endforeach

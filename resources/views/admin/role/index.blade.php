@@ -7,7 +7,9 @@
 
     <!-- Button Form Create -->
     <x-slot name="formCreate">
-        @include('admin.role.create')
+        @can('create-role')
+            @include('admin.role.create')
+        @endcan
     </x-slot>
 
     <!-- Search & Pagination -->
@@ -40,8 +42,12 @@
                     </td>
 
                     <td class="manage-row">
-                        @include('admin.role.edit')
-                        @include('admin.role.delete')
+                        @can('edit-role')
+                            @include('admin.role.edit')
+                        @endcan
+                        @can('delete-role')
+                            @include('admin.role.delete')
+                        @endcan
                     </td>
                 </tr>
             @endforeach
