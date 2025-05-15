@@ -36,23 +36,23 @@ class Data extends Model
 
         DB::setDefaultConnection(env('DB_CONNECTION'));
 
-        static::created(function ($model) {
-            TelegramHelper::sendMessage(
-                "<b>📦 Data Created</b>\n" . self::formatMessage($model)
-            );
-        });
+        // static::created(function ($model) {
+        //     TelegramHelper::sendMessage(
+        //         "<b>📦 Data Created</b>\n" . self::formatMessage($model)
+        //     );
+        // });
 
-        static::updated(function ($model) {
-            TelegramHelper::sendMessage(
-                "<b>✏️ Data Updated</b>\n" . self::formatMessage($model)
-            );
-        });
+        // static::updated(function ($model) {
+        //     TelegramHelper::sendMessage(
+        //         "<b>✏️ Data Updated</b>\n" . self::formatMessage($model)
+        //     );
+        // });
 
-        static::deleted(function ($model) {
-            TelegramHelper::sendMessage(
-                "<b>🗑 Data Deleted</b>\n" . self::formatMessage($model)
-            );
-        });
+        // static::deleted(function ($model) {
+        //     TelegramHelper::sendMessage(
+        //         "<b>🗑 Data Deleted</b>\n" . self::formatMessage($model)
+        //     );
+        // });
     }
 
     protected static function formatMessage($model): string
