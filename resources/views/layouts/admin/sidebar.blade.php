@@ -90,6 +90,18 @@
                 </li>
                 @endcan
 
+                @can('view-film')
+                <li class="nav-item">
+                    <a href="{{ route('admin.film.index') }}"
+                        class="nav-link text-white {{ Request::routeIs('admin.film.index') ? 'aktif' : '' }}">
+                        <i class="nav-icon fas fa-film"></i>
+                        <p>
+                            Film
+                        </p>
+                    </a>
+                </li>
+                @endcan
+
                 @can('view-franchise')
                 <li class="nav-item">
                     <a href="{{ route('admin.franchise.index') }}"

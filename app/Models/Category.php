@@ -75,6 +75,11 @@ class Category extends Model
         return $this->hasMany(Data::class);
     }
 
+    public function films()
+    {
+        return $this->hasMany(Film::class);
+    }
+
     public function era()
     {
         return $this->belongsTo(Era::class, 'era_id', 'id');

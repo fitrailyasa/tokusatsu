@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\AdminFranchiseController;
 use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminTagController;
 use App\Http\Controllers\Admin\AdminDataController;
+use App\Http\Controllers\Admin\AdminFilmController;
 use App\Http\Controllers\Auth\ProviderController;
 use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\MidtransController;
@@ -140,6 +141,19 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/data/softDeleteAll', [AdminDataController::class, 'softDeleteAll'])->name('data.softDeleteAll');
     Route::put('/data/{id}/restore', [AdminDataController::class, 'restore'])->name('data.restore');
     Route::put('/data/restoreAll', [AdminDataController::class, 'restoreAll'])->name('data.restoreAll');
+    
+    // CRUD FILM
+    Route::get('/film', [AdminFilmController::class, 'index'])->name('film.index');
+    Route::post('/film', [AdminFilmController::class, 'store'])->name('film.store');
+    Route::put('/film/{id}/update', [AdminFilmController::class, 'update'])->name('film.update');
+    Route::delete('/film/{id}/destroy', [AdminFilmController::class, 'destroy'])->name('film.destroy');
+    Route::post('/film/import', [AdminFilmController::class, 'import'])->name('film.import');
+    Route::get('/film/export', [AdminFilmController::class, 'export'])->name('film.export');
+    Route::delete('/film/destroyAll', [AdminFilmController::class, 'destroyAll'])->name('film.destroyAll');
+    Route::delete('/film/{id}/softDelete', [AdminFilmController::class, 'softDelete'])->name('film.softDelete');
+    Route::delete('/film/softDeleteAll', [AdminFilmController::class, 'softDeleteAll'])->name('film.softDeleteAll');
+    Route::put('/film/{id}/restore', [AdminFilmController::class, 'restore'])->name('film.restore');
+    Route::put('/film/restoreAll', [AdminFilmController::class, 'restoreAll'])->name('film.restoreAll');
   });
 });
 
