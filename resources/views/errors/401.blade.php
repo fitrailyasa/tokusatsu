@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>404 - Not Found</title>
+    <title>401 - Unauthorized</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
 
         body {
             margin: 0;
             background: #121212;
-            color: #00adb5;
+            color: #b5a300;
             font-family: 'Poppins', sans-serif;
             display: flex;
             justify-content: center;
@@ -45,18 +45,18 @@
 
         a {
             text-decoration: none;
-            background: #00adb5;
+            background: #fbc531;
             color: #121212;
             padding: 12px 30px;
             border-radius: 50px;
             font-weight: 600;
             transition: background 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 173, 181, 0.5);
+            box-shadow: 0 5px 15px rgba(251, 197, 49, 0.5);
         }
 
         a:hover {
-            background: #019ca1;
-            box-shadow: 0 8px 25px rgba(1, 156, 161, 0.8);
+            background: #e1b12c;
+            box-shadow: 0 8px 25px rgba(225, 177, 44, 0.8);
         }
 
         @keyframes flicker {
@@ -71,10 +71,10 @@
             100% {
                 opacity: 1;
                 text-shadow:
-                    0 0 5px #00fff7,
-                    0 0 10px #00fff7,
-                    0 0 20px #00fff7,
-                    0 0 40px #00fff7;
+                    0 0 5px #fbc531,
+                    0 0 10px #fbc531,
+                    0 0 20px #fbc531,
+                    0 0 40px #fbc531;
                 transform: scale(1);
             }
 
@@ -92,8 +92,8 @@
 
 <body>
     <div class="container">
-        <h1>404</h1>
-        <h2>Not Found</h2>
+        <h1>401</h1>
+        <h2>Unauthorized</h2>
         <a href="/">Back to Home</a>
     </div>
 </body>

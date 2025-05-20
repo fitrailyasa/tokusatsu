@@ -9,17 +9,22 @@
             <div class="d-flex justify-content-center align-items-center mt-3">
                 <form action="{{ route('login') }}" method="POST" class="px-3">
                     @csrf
-                    <input class="form-control @error('email') is-invalid @enderror" name="email" required autofocus
-                        type="text" name="email" id="email" placeholder="email" value="{{ old('email') }}">
+                    <input class="form-control mb-3 @error('email') is-invalid @enderror" name="email" required autofocus
+                        type="text" id="email" placeholder="email" value="{{ old('email') }}">
                     @error('email')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                        <div class="invalid-feedback d-block">{{ $message }}</div>
                     @enderror
-                    <input class="form-control @error('password') is-invalid @enderror" name="password" required
-                        type="password" id="password" placeholder="password">
+                    <div class="input-group mb-3">
+                        <input class="form-control @error('password') is-invalid @enderror" name="password" required
+                            type="password" id="password" placeholder="password">
+                        <span class="input-group-text" id="togglePassword" style="cursor: pointer;">
+                            <i class="fas fa-eye" id="eyeIcon"></i>
+                        </span>
+                    </div>
                     @error('password')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                        <div class="invalid-feedback d-block">{{ $message }}</div>
                     @enderror
-                    <button type="submit" class="form-control btn mt-3 text-white aktif">Masuk</button>
+                    <button type="submit" class="form-control btn text-white aktif">Masuk</button>
                     <div class="row">
                         <div class="col-md-2 col-4 text-center my-2 mx-auto">
                             <a href="{{ route('auth.redirect', 'google') }}" class="btn text-white"
@@ -63,7 +68,16 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
+    <script>
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('password');
+        const eyeIcon = document.getElementById('eyeIcon');
+
+        togglePassword.addEventListener('click', function () {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            eyeIcon.classList.toggle('fa-eye');
+            eyeIcon.classList.toggle('fa-eye-slash');
+        });
     </script>
 @endsection

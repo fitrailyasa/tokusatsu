@@ -32,7 +32,10 @@
                         <img class="img img-fluid" src="{{ asset('storage/' . $data->img) }}" alt="{{ $data->img }}">
                         <!-- Tombol Download -->
                         <a href="{{ asset('storage/' . $data->img) }}" download="{{ $data->img }}"
-                            class="btn aktif text-white border mt-2 col-12">Download Gambar</a>
+                            class="btn aktif text-white border my-3 col-12">Download Gambar</a>
+                        <div>
+                            <p>{{ $data->category->desc ?? '---------------' }}</p>
+                        </div>
                     </div>
                 </div>
             </div>

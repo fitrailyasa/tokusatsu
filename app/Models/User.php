@@ -68,15 +68,18 @@ class User extends Authenticatable
         // DB::setDefaultConnection(env('DB2_CONNECTION'));
 
         static::created(function ($model) {
-            TelegramHelper::sendMessage("📦 <b>User Created</b>\nID: {$model->id}\nName: {$model->name}\nEmail: {$model->email}\nRole: {$model->role}\nStatus: {$model->status}");
+            $roles = $model->getRoleNames()->implode(', ');
+            TelegramHelper::sendMessage("📦 <b>User Created</b>\nID: {$model->id}\nName: {$model->name}\nEmail: {$model->email}\nRole: {$roles}\nStatus: {$model->status}");
         });
 
         static::updated(function ($model) {
-            TelegramHelper::sendMessage("✏️ <b>User Updated</b>\nID: {$model->id}\nName: {$model->name}\nEmail: {$model->email}\nRole: {$model->role}\nStatus: {$model->status}");
+            $roles = $model->getRoleNames()->implode(', ');
+            TelegramHelper::sendMessage("✏️ <b>User Updated</b>\nID: {$model->id}\nName: {$model->name}\nEmail: {$model->email}\nRole: {$roles}\nStatus: {$model->status}");
         });
 
         static::deleted(function ($model) {
-            TelegramHelper::sendMessage("🗑 <b>User Deleted</b>\nID: {$model->id}\nName: {$model->name}\nEmail: {$model->email}\nRole: {$model->role}\nStatus: {$model->status}");
+            $roles = $model->getRoleNames()->implode(', ');
+            TelegramHelper::sendMessage("🗑 <b>User Deleted</b>\nID: {$model->id}\nName: {$model->name}\nEmail: {$model->email}\nRole: {$roles}\nStatus: {$model->status}");
         });
     }
 }
