@@ -41,7 +41,6 @@ class AdminFilmController extends Controller
 
         $validPerPage = in_array($perPage, [10, 50, 100]) ? $perPage : 10;
 
-        $tags = Tag::all();
         $categories = Category::all();
         $types = [
             [
@@ -111,7 +110,7 @@ class AdminFilmController extends Controller
             $films = Film::withTrashed()->paginate($validPerPage);
         }
 
-        return view("admin.film.index", compact('films', 'categories', 'tags', 'types', 'search', 'perPage'));
+        return view("admin.film.index", compact('films', 'categories', 'types', 'search', 'perPage'));
     }
 
     public function import(Request $request)
