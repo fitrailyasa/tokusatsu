@@ -46,8 +46,16 @@ class AdminDataController extends Controller
 
         if ($search) {
             $datas = Data::withTrashed()
-                ->where('name', 'like', "%{$search}%")
-                ->orWhere('img', 'like', "%{$search}%")
+                ->with('category')
+                ->when($search, function ($query, $search) {
+                    $query->where(function ($query) use ($search) {
+                        $query->where('name', 'like', "%{$search}%")
+                            ->orWhere('img', 'like', "%{$search}%")
+                            ->orWhereHas('category', function ($q) use ($search) {
+                                $q->where('name', 'like', "%{$search}%");
+                            });
+                    });
+                })
                 ->paginate($validPerPage);
         } else {
             $datas = Data::withTrashed()->paginate($validPerPage);

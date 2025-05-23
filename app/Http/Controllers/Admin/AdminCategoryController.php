@@ -46,8 +46,19 @@ class AdminCategoryController extends Controller
 
         if ($search) {
             $categories = Category::withTrashed()
-                ->where('name', 'like', "%{$search}%")
-                ->orWhere('desc', 'like', "%{$search}%")
+                ->with(['era', 'franchise'])
+                ->when($search, function ($query, $search) {
+                    $query->where(function ($query) use ($search) {
+                        $query->where('name', 'like', "%{$search}%")
+                            ->orWhere('desc', 'like', "%{$search}%")
+                            ->orWhereHas('era', function ($q) use ($search) {
+                                $q->where('name', 'like', "%{$search}%");
+                            })
+                            ->orWhereHas('franchise', function ($q) use ($search) {
+                                $q->where('name', 'like', "%{$search}%");
+                            });
+                    });
+                })
                 ->paginate($validPerPage);
         } else {
             $categories = Category::withTrashed()->paginate($validPerPage);
