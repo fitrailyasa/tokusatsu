@@ -1104,7 +1104,7 @@ class DataSeeder extends Seeder
                 // 'id' => Str::uuid(),
                 'name' => "Engine Sentai Go-Onger (JPN) - Power Rangers RPM (USA) ($i)",
                 'img' => "Super Sentai/Era Heisei/32. Engine Sentai Go-Onger (JPN) - Power Rangers RPM (USA) ($i).jpg",
-                'category_id' => $this->Category('Go-onger'),
+                'category_id' => $this->Category('Go-Onger'),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ];

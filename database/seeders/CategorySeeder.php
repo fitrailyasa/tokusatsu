@@ -714,8 +714,8 @@ class CategorySeeder extends Seeder
             [
                 'era_id' => $heisei,
                 'franchise_id' => $supersentai,
-                'name' => 'Go-onger',
-                'slug' => Str::slug('Go-onger', '-'),
+                'name' => 'Go-Onger',
+                'slug' => Str::slug('Go-Onger', '-'),
                 'desc' => null,
                 'img' => "Super Sentai/Era Heisei/32. Engine Sentai Go-Onger (JPN) - Power Rangers RPM (USA) (1).jpg",
                 'created_at' => Carbon::now(),
