@@ -22,7 +22,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="mb-3">
-                                <label class="form-label">{{ __('Name') }}</label>
+                                <label class="form-label">{{ __('Name') }}<span class="text-danger">*</span></label>
                                 <input type="text" class="form-control @error('name') is-invalid @enderror"
                                     placeholder="name" name="name" id="name"
                                     value="{{ old('name', $category->name) }}" required>
@@ -34,7 +34,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="mb-3">
-                                <label class="form-label">{{ __('Franchise') }}</label>
+                                <label class="form-label">{{ __('Franchise') }}<span class="text-danger">*</span></label>
                                 <select class="form-select @error('franchise_id') is-invalid @enderror"
                                     name="franchise_id" id="franchise_id" required>
                                     <option selected disabled>{{ __('Select Franchise') }}</option>
@@ -53,7 +53,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="mb-3">
-                                <label class="form-label">{{ __('Era') }}</label>
+                                <label class="form-label">{{ __('Era') }}<span class="text-danger">*</span></label>
                                 <select class="form-select @error('era_id') is-invalid @enderror" name="era_id"
                                     id="era_id" required>
                                     <option selected disabled>{{ __('Select Era') }}</option>

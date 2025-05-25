@@ -18,7 +18,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-2">
-                                <label class="form-label">{{ __('Name') }}</label>
+                                <label class="form-label">{{ __('Name') }}<span class="text-danger">*</span></label>
                                 <input type="text" class="form-control @error('name') is-invalid @enderror"
                                     placeholder="name" name="name" id="name" value="{{ old('name') }}"
                                     required>
@@ -41,7 +41,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label class="form-label">{{ __('Email') }}</label>
+                                <label class="form-label">{{ __('Email') }}<span class="text-danger">*</span></label>
                                 <input type="email" class="form-control @error('email') is-invalid @enderror"
                                     placeholder="email" name="email" id="email" value="{{ old('email') }}"
                                     required>
@@ -52,7 +52,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label class="form-label">{{ __('Password') }}</label>
+                                <label class="form-label">{{ __('Password') }}<span class="text-danger">*</span></label>
                                 <input type="password" class="form-control @error('password') is-invalid @enderror"
                                     placeholder="password" name="password" id="password" required>
                                 @error('password')
@@ -64,7 +64,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label class="form-label">{{ __('Roles') }}</label>
+                                <label class="form-label">{{ __('Roles') }}<span class="text-danger">*</span></label>
                                 <select class="form-select @error('role') is-invalid @enderror" name="role"
                                     id="role" required>
                                     @foreach ($roles as $role)
@@ -80,7 +80,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label class="form-label">{{ __('Status') }}</label>
+                                <label class="form-label">{{ __('Status') }}<span class="text-danger">*</span></label>
                                 <select class="form-select @error('status') is-invalid @enderror" name="status"
                                     id="status" required>
                                     <option value="aktif">Aktif</option>

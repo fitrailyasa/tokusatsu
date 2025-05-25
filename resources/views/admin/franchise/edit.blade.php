@@ -22,7 +22,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label class="form-label">{{ __('Name') }}</label>
+                                <label class="form-label">{{ __('Name') }}<span class="text-danger">*</span></label>
                                 <input type="text" class="form-control @error('name') is-invalid @enderror"
                                     placeholder="name" name="name" id="name"
                                     value="{{ old('name', $franchise->name) }}" required>

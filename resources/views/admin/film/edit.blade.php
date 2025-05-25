@@ -21,7 +21,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="mb-3">
-                                <label class="form-label">{{ __('Name') }}</label>
+                                <label class="form-label">{{ __('Name') }}<span class="text-danger">*</span></label>
                                 <input type="text" class="form-control @error('name') is-invalid @enderror"
                                     placeholder="name" name="name" id="name"
                                     value="{{ old('name', $film->name) }}" required>
@@ -61,8 +61,10 @@
                                 <select class="form-select @error('type') is-invalid @enderror" name="type"
                                     id="type" required>
                                     <option selected disabled>{{ __('Select Type') }}</option>
-                                     @foreach ($types as $type)
-                                        <option value="{{ old('type', $type['id']) }}" {{ $type['id'] == $film->type ? 'selected' : '' }}>{{ $type['name'] }}</option>
+                                    @foreach ($types as $type)
+                                        <option value="{{ old('type', $type['id']) }}"
+                                            {{ $type['id'] == $film->type ? 'selected' : '' }}>{{ $type['name'] }}
+                                        </option>
                                     @endforeach
                                 </select>
                                 @error('type')
