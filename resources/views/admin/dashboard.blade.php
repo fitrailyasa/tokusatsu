@@ -5,18 +5,7 @@
         Dashboard
     </x-slot>
 
-    @if (session('message'))
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Berhasil!',
-                    text: '{{ session('message') }}',
-                    confirmButtonColor: '#28a745',
-                });
-            });
-        </script>
-    @endif
+    @include('components.alert')
 
     <!-- Content -->
     <div class="row">
