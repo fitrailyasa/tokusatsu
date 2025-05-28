@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Models\Category;
 use App\Helpers\TelegramHelper;
+use App\Helpers\WhatsappHelper;
 use App\Mail\NotificationMail;
 use Illuminate\Support\Facades\Mail;
 
@@ -19,6 +20,7 @@ class CategoryObserver
             "Created At : {$model->created_at}</pre>";
 
         TelegramHelper::sendMessage($message);
+        WhatsappHelper::sendMessage($message);
         Mail::to(env('MAIL_FROM_ADDRESS'))->send(new NotificationMail('Category Created', $message));
     }
 
@@ -32,7 +34,8 @@ class CategoryObserver
             "Updated At : {$model->updated_at}</pre>";
 
         TelegramHelper::sendMessage($message);
-        Mail::to(env('MAIL_FROM_ADDRESS'))->send(new NotificationMail('Category Updated', $message));    
+        WhatsappHelper::sendMessage($message);
+        Mail::to(env('MAIL_FROM_ADDRESS'))->send(new NotificationMail('Category Updated', $message));
     }
 
     public function deleted(Category $model)
@@ -45,6 +48,7 @@ class CategoryObserver
             "Deleted At : {$model->deleted_at}</pre>";
 
         TelegramHelper::sendMessage($message);
+        WhatsappHelper::sendMessage($message);
         Mail::to(env('MAIL_FROM_ADDRESS'))->send(new NotificationMail('Category Deleted', $message));
     }
 }
