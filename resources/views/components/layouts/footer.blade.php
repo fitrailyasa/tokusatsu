@@ -1,6 +1,13 @@
 <!-- Footer -->
 <footer class="main-footer d-none d-sm-block">
-    <strong>Copyright &copy; 2024 <a href="#">TOKUSATSU</a>.</strong>
-    All rights reserved.
+  <strong>
+    Copyright &copy; <span id="year"></span>
+    <a href="#">{{ config('app.name') }}</a>.
+  </strong>
+  All rights reserved.
 </footer>
 <!-- /.footer -->
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
