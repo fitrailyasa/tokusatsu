@@ -5,6 +5,7 @@ namespace App\Livewire\Admin;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\User;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
@@ -29,16 +30,7 @@ class UserLivewire extends Component
 
     public function render(Request $request)
     {
-        $roles = [
-            [
-                'id' => 'admin',
-                'name' => 'Admin',
-            ],
-            [
-                'id' => 'user',
-                'name' => 'User',
-            ]
-        ];
+        $roles = Role::all();
 
         $request->validate([
             'search' => 'nullable|string|max:255',
@@ -76,16 +68,17 @@ class UserLivewire extends Component
     {
         $this->validate([
             'password' => 'required|min:8',
-        ]);
+        ] + $this->rules());
 
-        User::create([
+        $user = User::create([
             'name' => $this->name,
             'email' => $this->email,
             'no_hp' => $this->no_hp,
             'password' => Hash::make($this->password),
-            'role' => $this->role,
-            'status' => $this->status
+            'status' => $this->status,
         ]);
+
+        $user->assignRole($this->role);
 
         session()->flash('message', 'User Created Successfully.');
 
@@ -100,7 +93,7 @@ class UserLivewire extends Component
         $this->email = $user->email;
         $this->no_hp = $user->no_hp;
         $this->password = '';
-        $this->role = $user->role;
+        $this->role = $user->getRoleNames()->first();
         $this->status = $user->status;
         $this->isUpdate = true;
     }
@@ -109,27 +102,31 @@ class UserLivewire extends Component
     {
         $this->validate([
             'password' => 'nullable|min:8',
-        ]);
+        ] + $this->rules());
 
         $user = User::findOrFail($this->userId);
 
-        if ($this->password) {
-            $user->password = Hash::make($this->password);
-        }
-
-        $user->update([
+        $data = [
             'name' => $this->name,
             'email' => $this->email,
             'no_hp' => $this->no_hp,
-            'role' => $this->role,
             'status' => $this->status,
-        ]);
+        ];
+
+        if ($this->password) {
+            $data['password'] = Hash::make($this->password);
+        }
+
+        $user->update($data);
+
+        $user->syncRoles($this->role);
 
         session()->flash('message', 'User Updated Successfully.');
 
         $this->resetInputFields();
         $this->isUpdate = false;
     }
+
 
     public function delete($id)
     {

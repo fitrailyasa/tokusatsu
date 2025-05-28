@@ -78,8 +78,10 @@
                             required>
                             <option value="" disabled selected>{{ __('Select Role') }}</option>
                             @foreach ($roles as $role)
-                                <option value="{{ $role['id'] }}" @if (old('role') == $role['id'] || $role['id'] == $role) selected @endif>
-                                    {{ $role['name'] }}</option>
+                                <option value="{{ $role->name }}"
+                                    {{ (old('role') ?? $role) == $role->name ? 'selected' : '' }}>
+                                    {{ ucfirst($role->name) }}
+                                </option>
                             @endforeach
                         </select>
                         @error('role')
@@ -126,12 +128,8 @@
                         <td>{{ $users->firstItem() + $loop->index }}</td>
                         <td>{{ $user->name ?? '-' }}</td>
                         <td>{{ $user->email ?? '-' }}</td>
-                        <td>
-                            @if ($user->role == 'admin')
-                                <span class="badge badge-primary">{{ $user->role }}</span>
-                            @else
-                                <span class="badge badge-secondary">{{ $user->role }}</span>
-                            @endif
+                        <td class="d-none d-lg-table-cell">
+                            {{ $user->getRoleNames()->implode(', ') }}
                         </td>
                         <td>
                             @if ($user->status == 'aktif')
