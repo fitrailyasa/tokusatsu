@@ -78,7 +78,7 @@
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
     <div class="wrapper">
 
-        @include('components.layouts.navbar')
+        @include('components.navbar')
         @include('layouts.admin.sidebar')
 
         <div class="content-wrapper mt-5 py-3">
@@ -106,7 +106,7 @@
             </section>
         </div>
 
-        @include('components.layouts.footer')
+        @include('components.footer')
 
     </div>
 

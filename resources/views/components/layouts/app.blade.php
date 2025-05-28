@@ -115,7 +115,7 @@
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
     <div class="wrapper">
 
-        @include('components.layouts.navbar')
+        @include('components.navbar')
         @include('components.layouts.sidebar')
 
         <div class="content-wrapper">
@@ -143,7 +143,7 @@
             </section>
         </div>
 
-        @include('components.layouts.footer')
+        @include('components.footer')
 
     </div>
 
