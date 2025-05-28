@@ -38,30 +38,6 @@ class Tag extends Model
                 $model->slug = Str::slug($model->name, '-');
             }
         });
-
-        // static::created(function ($model) {
-        //     $message = "<b>📦 Tag Created</b>\n<pre>" .
-        //         "ID         : {$model->id}\n" .
-        //         "Name       : {$model->name}\n" .
-        //         "Created At : {$model->created_at}</pre>";
-        //     TelegramHelper::sendMessage($message);
-        // });
-
-        // static::updated(function ($model) {
-        //     $message = "<b>✏️ Tag Updated</b>\n<pre>" .
-        //         "ID         : {$model->id}\n" .
-        //         "Name       : {$model->name}\n" .
-        //         "Updated At : {$model->updated_at}</pre>";
-        //     TelegramHelper::sendMessage($message);
-        // });
-
-        // static::deleted(function ($model) {
-        //     $message = "<b>🗑 Tag Deleted</b>\n<pre>" .
-        //         "ID         : {$model->id}\n" .
-        //         "Name       : {$model->name}\n" .
-        //         "Deleted At : {$model->deleted_at}</pre>";
-        //     TelegramHelper::sendMessage($message);
-        // });
     }
 
     public function datas()

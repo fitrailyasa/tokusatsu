@@ -38,30 +38,6 @@ class Franchise extends Model
                 $model->slug = Str::slug($model->name, '-');
             }
         });
-
-        // static::created(function ($model) {
-        //     $message = "<b>📦 Franchise Created</b>\n<pre>" .
-        //         "ID         : {$model->id}\n" .
-        //         "Name       : {$model->name}\n" .
-        //         "Created At : {$model->created_at}</pre>";
-        //     TelegramHelper::sendMessage($message);
-        // });
-
-        // static::updated(function ($model) {
-        //     $message = "<b>✏️ Franchise Updated</b>\n<pre>" .
-        //         "ID         : {$model->id}\n" .
-        //         "Name       : {$model->name}\n" .
-        //         "Updated At : {$model->updated_at}</pre>";
-        //     TelegramHelper::sendMessage($message);
-        // });
-
-        // static::deleted(function ($model) {
-        //     $message = "<b>🗑 Franchise Deleted</b>\n<pre>" .
-        //         "ID         : {$model->id}\n" .
-        //         "Name       : {$model->name}\n" .
-        //         "Deleted At : {$model->deleted_at}</pre>";
-        //     TelegramHelper::sendMessage($message);
-        // });
     }
 
     public function categories()
