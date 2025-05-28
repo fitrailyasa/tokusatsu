@@ -16,7 +16,7 @@
 
         <form wire:submit.prevent="{{ $isUpdate ? 'update' : 'store' }}">
             <div class="form-group">
-                <label for="name">Name:</label>
+                <label for="name">Name<span class="text-danger">*</span></label>
                 <input type="text" id="name" class="form-control" wire:model="name">
                 @error('name')
                     <span class="text-danger">{{ $message }}</span>

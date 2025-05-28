@@ -50,7 +50,7 @@
 
                 <div class="col-md-6">
                     <div class="mb-3">
-                        <label class="form-label">{{ __('Email') }}</label>
+                        <label class="form-label">{{ __('Email') }}<span class="text-danger">*</span></label>
                         <input type="email" class="form-control @error('email') is-invalid @enderror"
                             placeholder="email" wire:model="email" id="email" value="{{ old('email') }}" required>
                         @error('email')
@@ -73,7 +73,7 @@
 
                 <div class="col-md-6">
                     <div class="mb-3">
-                        <label class="form-label">{{ __('Roles') }}</label>
+                        <label class="form-label">{{ __('Roles') }}<span class="text-danger">*</span></label>
                         <select class="form-select @error('role') is-invalid @enderror" wire:model="role" id="role"
                             required>
                             <option value="" disabled selected>{{ __('Select Role') }}</option>
@@ -92,7 +92,7 @@
 
                 <div class="col-md-6">
                     <div class="mb-3">
-                        <label class="form-label">{{ __('Status') }}</label>
+                        <label class="form-label">{{ __('Status') }}<span class="text-danger">*</span></label>
                         <select class="form-select @error('status') is-invalid @enderror" wire:model="status"
                             id="status" required>
                             <option value="" disabled selected>{{ __('Select Status') }}</option>
@@ -110,6 +110,14 @@
 
             <button type="submit" class="btn btn-primary">{{ $isUpdate ? 'Update' : 'Create' }}</button>
         </form>
+
+        <script>
+            document.addEventListener('livewire:load', function() {
+                Livewire.on('success', data => {
+                    alert(data.message); // atau tampilkan div alert dengan innerText
+                });
+            });
+        </script>
 
         <table class="table table-bordered table-striped mt-3">
             <thead>

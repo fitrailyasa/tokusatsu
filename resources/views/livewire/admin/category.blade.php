@@ -28,7 +28,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="mb-3">
-                        <label class="form-label">{{ __('Franchise') }}</label>
+                        <label class="form-label">{{ __('Franchise') }}<span class="text-danger">*</span></label>
                         <select class="form-select @error('franchise_id') is-invalid @enderror"
                             wire:model="franchise_id" id="franchise_id" required>
                             <option value="">{{ __('Select Franchise') }}</option>
@@ -45,7 +45,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="mb-3">
-                        <label class="form-label">{{ __('Era') }}</label>
+                        <label class="form-label">{{ __('Era') }}<span class="text-danger">*</span></label>
                         <select class="form-select @error('era_id') is-invalid @enderror" wire:model="era_id"
                             id="era_id" required>
                             <option value="">{{ __('Select Era') }}</option>
