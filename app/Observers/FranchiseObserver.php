@@ -4,6 +4,8 @@ namespace App\Observers;
 
 use App\Models\Franchise;
 use App\Helpers\TelegramHelper;
+use App\Mail\NotificationMail;
+use Illuminate\Support\Facades\Mail;
 
 class FranchiseObserver
 {
@@ -15,6 +17,7 @@ class FranchiseObserver
             "Created At : {$model->created_at}</pre>";
 
         TelegramHelper::sendMessage($message);
+        Mail::to(env('MAIL_FROM_ADDRESS'))->send(new NotificationMail('Franchise Created', $message));
     }
 
     public function updated(Franchise $model)
@@ -25,6 +28,7 @@ class FranchiseObserver
             "Updated At : {$model->updated_at}</pre>";
 
         TelegramHelper::sendMessage($message);
+        Mail::to(env('MAIL_FROM_ADDRESS'))->send(new NotificationMail('Franchise Updated', $message));
     }
 
     public function deleted(Franchise $model)
@@ -35,5 +39,6 @@ class FranchiseObserver
             "Deleted At : {$model->deleted_at}</pre>";
 
         TelegramHelper::sendMessage($message);
+        Mail::to(env('MAIL_FROM_ADDRESS'))->send(new NotificationMail('Franchise Deleted', $message));
     }
 }

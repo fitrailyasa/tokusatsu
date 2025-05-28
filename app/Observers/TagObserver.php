@@ -4,6 +4,8 @@ namespace App\Observers;
 
 use App\Models\Tag;
 use App\Helpers\TelegramHelper;
+use App\Mail\NotificationMail;
+use Illuminate\Support\Facades\Mail;
 
 class TagObserver
 {
@@ -15,6 +17,7 @@ class TagObserver
             "Created At : {$model->created_at}</pre>";
 
         TelegramHelper::sendMessage($message);
+        Mail::to(env('MAIL_FROM_ADDRESS'))->send(new NotificationMail('Tag Created', $message));
     }
 
     public function updated(Tag $model)
@@ -25,6 +28,7 @@ class TagObserver
             "Updated At : {$model->updated_at}</pre>";
 
         TelegramHelper::sendMessage($message);
+        Mail::to(env('MAIL_FROM_ADDRESS'))->send(new NotificationMail('Tag Updated', $message));
     }
 
     public function deleted(Tag $model)
@@ -35,5 +39,6 @@ class TagObserver
             "Deleted At : {$model->deleted_at}</pre>";
 
         TelegramHelper::sendMessage($message);
+        Mail::to(env('MAIL_FROM_ADDRESS'))->send(new NotificationMail('Tag Deleted', $message));
     }
 }
