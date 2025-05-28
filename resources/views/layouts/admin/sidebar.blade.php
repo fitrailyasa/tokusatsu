@@ -46,7 +46,7 @@
                 <li class="nav-item">
                     <a href="{{ route('admin.role.index') }}"
                         class="nav-link text-white {{ Request::routeIs('admin.role.index') ? 'aktif' : '' }}">
-                        <i class="nav-icon fas fa-user-tag"></i>
+                        <i class="nav-icon fas fa-key"></i>
                         <p>
                             Role
                         </p>
