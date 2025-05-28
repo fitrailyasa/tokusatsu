@@ -30,6 +30,8 @@
                         </p>
                     </a>
                 </li>
+                
+                @can('view-user')
                 <li class="nav-item">
                     <a href="{{ route('admin.user') }}"
                         class="nav-link text-white {{ Request::routeIs('admin.user') ? 'aktif' : '' }}">
@@ -39,6 +41,9 @@
                         </p>
                     </a>
                 </li>
+                @endcan
+
+                @can('view-data')
                 <li class="nav-item">
                     <a href="{{ route('admin.data') }}"
                         class="nav-link text-white {{ Request::routeIs('admin.data') ? 'aktif' : '' }}">
@@ -48,6 +53,9 @@
                         </p>
                     </a>
                 </li>
+                @endcan
+
+                @can('view-tag')
                 <li class="nav-item">
                     <a href="{{ route('admin.tag') }}"
                         class="nav-link text-white {{ Request::routeIs('admin.tag') ? 'aktif' : '' }}">
@@ -57,6 +65,9 @@
                         </p>
                     </a>
                 </li>
+                @endcan
+
+                @can('view-category')
                 <li class="nav-item">
                     <a href="{{ route('admin.category') }}"
                         class="nav-link text-white {{ Request::routeIs('admin.category') ? 'aktif' : '' }}">
@@ -66,6 +77,9 @@
                         </p>
                     </a>
                 </li>
+                @endcan
+
+                @can('view-franchise')
                 <li class="nav-item">
                     <a href="{{ route('admin.franchise') }}"
                         class="nav-link text-white {{ Request::routeIs('admin.franchise') ? 'aktif' : '' }}">
@@ -75,6 +89,9 @@
                         </p>
                     </a>
                 </li>
+                @endcan
+
+                @can('view-era')
                 <li class="nav-item">
                     <a href="{{ route('admin.era') }}"
                         class="nav-link text-white {{ Request::routeIs('admin.era') ? 'aktif' : '' }}">
@@ -84,6 +101,8 @@
                         </p>
                     </a>
                 </li>
+                @endcan
+
                 <li class="nav-item">
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" hidden>
                         @csrf

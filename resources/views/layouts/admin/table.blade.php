@@ -47,7 +47,7 @@
     </div>
 
     <x-slot name="script">
-        @include('layouts.admin.datatables')
+        @include('components.datatables')
         <script>
             function previewImage() {
                 var input = document.getElementById('image-input');
