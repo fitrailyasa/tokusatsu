@@ -49,7 +49,7 @@
 
     <!-- Search & Pagination -->
     <x-slot name="search">
-        @include('layouts.admin.search')
+        @include('components.search')
     </x-slot>
 
     <!-- Table -->

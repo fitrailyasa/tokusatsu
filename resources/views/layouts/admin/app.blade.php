@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin - {{ $title ?? '' }}</title>
+    <title>{{ config('app.name') }} {{ $title ?? '' }}</title>
 
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;400i;700&display=swap">
@@ -58,6 +58,16 @@
 
         .aktif {
             background-color: rgb(200, 0, 0);
+        }
+
+        .btn-check:checked+.btn-tag {
+            background-color: #0d6efd;
+            color: white;
+            border-color: #0d6efd;
+        }
+
+        .btn-tag {
+            margin: 2px;
         }
     </style>
 
