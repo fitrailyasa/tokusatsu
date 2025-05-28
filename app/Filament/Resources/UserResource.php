@@ -3,44 +3,54 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\UserResource\Pages;
-use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
     protected static ?string $navigationIcon = 'heroicon-m-user-group';
+    protected static ?string $navigationGroup = 'User Management';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')->required()->label('Nama'),
-                Forms\Components\TextInput::make('email')->email()->required()->label('Email'),
-                Forms\Components\TextInput::make('password')->password()->same('password_confirmation')->required()->label('Password'),
-                Forms\Components\TextInput::make('password_confirmation')->password()->required()->label('Konfirmasi Password'),
-                Forms\Components\Select::make('role')
-                    ->label('Role')
+                Forms\Components\TextInput::make('name')
                     ->required()
-                    ->options([
-                        'admin' => 'Admin',
-                        'user' => 'User',
-                    ]),
+                    ->label('Nama'),
+
+                Forms\Components\TextInput::make('email')
+                    ->email()
+                    ->required()
+                    ->label('Email'),
+
+                Forms\Components\TextInput::make('password')
+                    ->password()
+                    ->label('Password')
+                    ->dehydrateStateUsing(fn ($state) => filled($state) ? bcrypt($state) : null)
+                    ->required(fn (string $context) => $context === 'create')
+                    ->dehydrated(fn ($state) => filled($state)),
+
+                Forms\Components\Select::make('roles')
+                    ->label('Roles')
+                    ->multiple()
+                    ->relationship('roles', 'name')
+                    ->preload()
+                    ->searchable(),
+
                 Forms\Components\Select::make('status')
                     ->label('Status')
                     ->required()
                     ->options([
                         'aktif' => 'Aktif',
                         'tidak aktif' => 'Tidak Aktif',
-                    ])
+                    ]),
             ]);
     }
 
@@ -48,17 +58,24 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')->searchable()->sortable()->label('Nama'),
-                Tables\Columns\TextColumn::make('email')->searchable()->sortable()->label('Email'),
-                Tables\Columns\TextColumn::make('role')
+                Tables\Columns\TextColumn::make('name')
                     ->searchable()
                     ->sortable()
-                    ->label('Role')
+                    ->label('Nama'),
+
+                Tables\Columns\TextColumn::make('email')
+                    ->searchable()
+                    ->sortable()
+                    ->label('Email'),
+
+                Tables\Columns\BadgeColumn::make('roles.name')
+                    ->label('Roles')
                     ->colors([
                         'primary' => 'admin',
                         'success' => 'user',
                     ]),
-                Tables\Columns\TextColumn::make('status')
+
+                Tables\Columns\BadgeColumn::make('status')
                     ->searchable()
                     ->sortable()
                     ->label('Status')
@@ -80,9 +97,7 @@ class UserResource extends Resource
 
     public static function getRelations(): array
     {
-        return [
-            //
-        ];
+        return [];
     }
 
     public static function getPages(): array
