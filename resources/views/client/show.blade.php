@@ -5,6 +5,7 @@
 @section('textHome', 'rounded aktif')
 
 @section('content')
+
     @include('client.data')
 
 @endsection
