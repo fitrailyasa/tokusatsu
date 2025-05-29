@@ -90,7 +90,7 @@
     <div class="wrapper">
 
         <x-navbar />
-        @include('components.layouts.sidebar')
+        <x-layouts.sidebar />
 
         <div class="content-wrapper">
             <div class="content-header">
