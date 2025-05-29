@@ -89,7 +89,7 @@
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
     <div class="wrapper">
 
-        @include('components.navbar')
+        <x-navbar />
         @include('components.layouts.sidebar')
 
         <div class="content-wrapper">
@@ -117,7 +117,7 @@
             </section>
         </div>
 
-        @include('components.footer')
+        <x-footer />
 
     </div>
 
