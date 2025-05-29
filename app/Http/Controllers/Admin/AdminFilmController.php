@@ -95,19 +95,34 @@ class AdminFilmController extends Controller
 
         if ($search) {
             $films = Film::withTrashed()
-                ->with('category')
+                ->with(['category', 'category.era', 'category.franchise'])
                 ->when($search, function ($query, $search) {
                     $query->where(function ($query) use ($search) {
-                        $query->where('name', 'like', "%{$search}%")
-                            ->orWhere('img', 'like', "%{$search}%")
-                            ->orWhereHas('category', function ($q) use ($search) {
-                                $q->where('name', 'like', "%{$search}%");
+                        $searchTerms = preg_split('/\s+/', $search, -1, PREG_SPLIT_NO_EMPTY);
+
+                        foreach ($searchTerms as $term) {
+                            $query->where(function ($q) use ($term) {
+                                $q->where('name', 'like', "%{$term}%")
+                                    ->orWhere('type', 'like', "%{$term}%")
+                                    ->orWhere('number', 'like', "%{$term}%")
+                                    ->orWhereHas('category', function ($q) use ($term) {
+                                        $q->where('name', 'like', "%{$term}%")
+                                            ->orWhereHas('era', function ($q) use ($term) {
+                                                $q->where('name', 'like', "%{$term}%");
+                                            })
+                                            ->orWhereHas('franchise', function ($q) use ($term) {
+                                                $q->where('name', 'like', "%{$term}%");
+                                            });
+                                    });
                             });
+                        }
                     });
                 })
                 ->paginate($validPerPage);
         } else {
-            $films = Film::withTrashed()->paginate($validPerPage);
+            $films = Film::withTrashed()
+                ->with(['category', 'category.era', 'category.franchise'])
+                ->paginate($validPerPage);
         }
 
         return view("admin.film.index", compact('films', 'categories', 'types', 'search', 'perPage'));
