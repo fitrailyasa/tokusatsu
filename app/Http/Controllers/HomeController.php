@@ -32,44 +32,16 @@ class HomeController extends Controller
             'query' => 'nullable|string|max:255',
         ]);
 
-        $searchQuery = trim($validatedData['query'] ?? '');
+        $query = '%' . ($validatedData['query'] ?? '') . '%';
 
-        if (empty($searchQuery)) {
-            return redirect()->back()->with('error', 'Search query cannot be empty');
-        }
-
-        $datas = Data::with(['category', 'category.era', 'category.franchise', 'tags'])
-            ->where(function ($q) use ($searchQuery) {
-                $terms = explode(' ', $searchQuery);
-
-                foreach ($terms as $term) {
-                    $term = '%' . $term . '%';
-                    $q->where(function ($query) use ($term) {
-                        $query->where('name', 'like', $term)
-                            ->orWhere('img', 'like', $term)
-                            ->orWhereHas('category', function ($q) use ($term) {
-                                $q->where('name', 'like', $term)
-                                    ->orWhereHas('era', function ($q) use ($term) {
-                                        $q->where('name', 'like', $term);
-                                    })
-                                    ->orWhereHas('franchise', function ($q) use ($term) {
-                                        $q->where('name', 'like', $term)
-                                            ->orWhere('slug', 'like', $term);
-                                    });
-                            })
-                            ->orWhereHas('tags', function ($q) use ($term) {
-                                $q->where('name', 'like', $term);
-                            });
-                    });
-                }
+        $datas = Data::where('name', 'like', $query)
+            ->orWhere('img', 'like', $query)
+            ->orWhereHas('tags', function ($q) use ($query) {
+                $q->where('name', 'like', $query);
             })
             ->withoutTrashed()
-            ->orderBy('name')
             ->paginate(30);
 
-        return view('client.search', [
-            'datas' => $datas,
-            'searchQuery' => $searchQuery
-        ]);
+        return view('client.search', compact('datas'));
     }
 }
