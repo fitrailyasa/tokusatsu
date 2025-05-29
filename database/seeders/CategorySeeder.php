@@ -46,7 +46,7 @@ class CategorySeeder extends Seeder
                 'franchise_id' => $kamenrider,
                 'name' => 'Rider X',
                 'slug' => Str::slug('Rider X', '-'),
-                'desc' => 'Kamen Rider V3 (仮面ライダーV3ブイスリー, Kamen Raidā Bui Surī, "Masked Rider V3" in English), is a Japanese tokusatsu drama in Toei Company\'s Kamen Rider Series. It is the second series to debut in the Showa Era, serving as a direct sequel to the original Kamen Rider. A joint collaboration between Ishimori Productions and Toei, the series aired from February 17, 1973 to February 9, 1974 on the Mainichi Broadcasting System and NET TV (now TV Asahi), with a total of 52 episodes.',
+                'desc' => 'Kamen Rider X (仮面ライダーＸエックス, Kamen Raidā Ekkusu, translated as "Masked Rider X") is a Japanese tokusatsu drama and the third installment of the Kamen Rider Series. It is the third series to debut during the Showa Era and aired from February 16, 1974 to October 12, 1974 for 35 episodes on NET (now known as TV Asahi).',
                 'img' => "Kamen Rider/Era Showa/0.3 XRider.jpg",
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
