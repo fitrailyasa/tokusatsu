@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('category_id')->nullable();
             $table->string('name')->nullable();
             $table->string('type')->nullable()->default('episode');
+            $table->integer('number')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

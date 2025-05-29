@@ -73,7 +73,7 @@
                             {{ $film->category->name ?? '-' }}
                         </span>
                     </td>
-                    <td>{{ $film->type ?? '-' }}</td>
+                    <td>{{ $film->type ?? '-' }} {{ $film->number ?? 0 }}</td>
                     <td class="manage-row text-center">
                         @if ($film->trashed())
                             <!-- Restore and Delete Button -->

@@ -21,6 +21,7 @@ class FilmRequest extends FormRequest
         return [
             'name' => 'required|max:100',
             'type' => 'required|max:100',
+            'number' => 'nullable|numeric|max:100',
             'category_id' => 'required',
         ];
     }
@@ -32,6 +33,8 @@ class FilmRequest extends FormRequest
             'name.max' => 'Nama maksimal 100 karakter!',
             'type.required' => 'Tipe tidak boleh kosong!',
             'type.max' => 'Tipe maksimal 100 karakter!',
+            'number.numeric' => 'Nomor harus berupa angka!',
+            'number.max' => 'Nomor maksimal 100 karakter!',
             'category_id.required' => 'Kategori tidak boleh kosong!',
         ];
     }

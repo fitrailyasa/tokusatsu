@@ -19,6 +19,7 @@ class Film extends Model
         'id',
         'name',
         'type',
+        'number',
         'category_id',
     ];
 

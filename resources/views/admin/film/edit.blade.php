@@ -19,7 +19,7 @@
                 </div>
                 <div class="modal-body text-left">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">{{ __('Name') }}<span class="text-danger">*</span></label>
                                 <input type="text" class="form-control @error('name') is-invalid @enderror"
@@ -32,7 +32,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label class="form-label">{{ __('Category') }}</label>
+                                <label class="form-label">{{ __('Category') }}<span class="text-danger">*</span></label>
                                 <select class="form-select @error('category_id') is-invalid @enderror"
                                     name="category_id" id="category_id" required>
                                     <option selected disabled>{{ __('Select Category') }}</option>
@@ -57,7 +57,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label class="form-label">{{ __('Type') }}</label>
+                                <label class="form-label">{{ __('Type') }}<span class="text-danger">*</span></label>
                                 <select class="form-select @error('type') is-invalid @enderror" name="type"
                                     id="type" required>
                                     <option selected disabled>{{ __('Select Type') }}</option>
@@ -68,6 +68,17 @@
                                     @endforeach
                                 </select>
                                 @error('type')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">{{ __('Number of Episodes') }}<span class="text-danger">*</span></label>
+                                <input type="number" class="form-control @error('number') is-invalid @enderror"
+                                    placeholder="1" name="number" id="number"
+                                    value="{{ old('number', $film->number) }}" required>
+                                @error('number')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
