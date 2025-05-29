@@ -18,6 +18,7 @@ use App\Http\Controllers\MidtransController;
 use App\Http\Controllers\Client\ClientFranchiseController;
 use App\Http\Controllers\Client\ClientEraController;
 use App\Http\Controllers\Client\ClientCategoryController;
+use App\Http\Controllers\Client\ClientFilmController;
 
 use App\Livewire\Admin\DashboardLivewire;
 use App\Livewire\Admin\CategoryLivewire;
@@ -159,3 +160,5 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/{franchise}/{category}', [HomeController::class, 'show'])->name('beranda.show');
+Route::get('/film/{franchise}/{category}', [ClientFilmController::class, 'show'])->name('film.show');
+Route::get('/film/{franchise}/{category}/{type}/{number}', [ClientFilmController::class, 'watch'])->name('film.watch');
