@@ -17,7 +17,6 @@ class FilmSeeder extends Seeder
         ];
 
         $data = collect([
-
             // KAMEN RIDER
             ['name' => "The Eerie Man Spider (怪奇蜘蛛男, Kaiki Kumo Otoko)", 'category_id' => $this->Category('Kamen Rider'), 'type' => 'episode'],
             ['name' => "The Terrifying Bat Man (恐怖蝙蝠男, Kyōfu Kōmori Otoko)", 'category_id' => $this->Category('Kamen Rider'), 'type' => 'episode'],
@@ -1672,7 +1671,6 @@ class FilmSeeder extends Seeder
             ['name' => "Say Goodbye at Twilight (黄昏トワイライトにさよならを, Towairaito ni Sayonara o)", 'category_id' => $this->Category('Gotchard'), 'type' => 'episode'],
             ['name' => "Metal Warrior! The Silver Valvarad (メタルウォリアー！白銀のヴァルバラド, Metaru Woriā! Shirogane no Varubarado)", 'category_id' => $this->Category('Gotchard'), 'type' => 'episode'],
             ['name' => "This Is My and Your CHEMY×STORY (キミと僕のCHEMY×STORYケミストリー, Kimi to Boku no Kemisutorī)", 'category_id' => $this->Category('Gotchard'), 'type' => 'episode'],
-            
             
             // SUPER SENTAI 
             ['name' => "Ep. 1: The Crimson Sun! The Invincible Gorengers (真っ赤な太陽! 無敵のゴレンジャー Makka na Taiyō! Muteki no Gorenjā)", 'category_id' => $this->Category('Gorenger'), 'type' => 'episode'],
@@ -4082,7 +4080,6 @@ class FilmSeeder extends Seeder
             ['name' => "Bakuage 47: There is More Than One Deliverer (届け屋はひとりじゃな い Todoke-ya wa Hitori Janai)", 'category_id' => $this->Category('Boonboomger'), 'type' => 'episode'],
             ['name' => "Bakuage Final: Your Handle (君のハンドル Kimi no Handoru)", 'category_id' => $this->Category('Boonboomger'), 'type' => 'episode'],
             
-            
             // ULTRAMAN
             ['name' => "Ultra Operation No. 1 (ウルトラ作戦第一号 - Urutora Sakusen Dai Ichigō)", 'category_id' => $this->Category('Ultraman'), 'type' => 'episode'],
             ['name' => "Shoot the Invaders! (侵略者を撃て - Shinryakusha o Ute)", 'category_id' => $this->Category('Ultraman'), 'type' => 'episode'],
@@ -4989,6 +4986,7 @@ class FilmSeeder extends Seeder
             ['name' => "Visitor 99 (ヴィジター99, Vuijitā 99)", 'category_id' => $this->Category('Blazar'), 'type' => 'episode'],
             ['name' => "The Approaching Third Wave (第３波接近襲来, Dai 3 Nami Sekkin Shūrai)", 'category_id' => $this->Category('Blazar'), 'type' => 'episode'],
             ['name' => "The Ones Who Embrace the Earth (地球を抱くものたち, Chikyū o Daku Mono-tachi)", 'category_id' => $this->Category('Blazar'), 'type' => 'episode'],
+
         ])->map(function ($item) use ($defaultTimestamps) {
             return array_merge($item, $defaultTimestamps);
         });
