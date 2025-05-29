@@ -26,6 +26,7 @@ class FilmExport implements FromCollection, WithHeadings, WithStyles, ShouldAuto
                 'Name' => $film->name ?? '',
                 'Category' => $film->category->name ?? 'null',
                 'Type' => $film->type ?? '',
+                'Number' => $film->number ?? 0,
             ];
         }
 
@@ -43,13 +44,14 @@ class FilmExport implements FromCollection, WithHeadings, WithStyles, ShouldAuto
                 'Name',
                 'Category',
                 'Type',
+                'Number',
             ]
         ];
     }
 
     public function styles(Worksheet $sheet)
     {
-        $sheet->mergeCells('A1:D1');
+        $sheet->mergeCells('A1:E1');
 
         $borderStyle = [
             'borders' => [
@@ -60,7 +62,7 @@ class FilmExport implements FromCollection, WithHeadings, WithStyles, ShouldAuto
             ],
         ];
 
-        $sheet->getStyle('A1:D' . $sheet->getHighestRow())
+        $sheet->getStyle('A1:E' . $sheet->getHighestRow())
             ->applyFromArray($borderStyle);
 
         return [

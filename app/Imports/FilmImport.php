@@ -14,6 +14,7 @@ class FilmImport implements ToModel, WithStartRow
         $name = $row[1];
         $categoryName = $row[2] ?? null;
         $type = $row[3] ?? null;
+        $number = $row[4] ?? 0;
 
         $category = Category::withTrashed()->where('name', $categoryName)->first();
 
@@ -35,6 +36,7 @@ class FilmImport implements ToModel, WithStartRow
             'name' => $name,
             'category_id' => $category->id ?? null,
             'type' => $type,
+            'number' => $number,
         ]);
 
         $film->save();
