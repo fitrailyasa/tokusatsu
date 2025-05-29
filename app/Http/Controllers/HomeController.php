@@ -49,7 +49,6 @@ class HomeController extends Controller
                             ->orWhere('img', 'like', $term)
                             ->orWhereHas('category', function ($q) use ($term) {
                                 $q->where('name', 'like', $term)
-                                    ->orWhere('desc', 'like', $term)
                                     ->orWhereHas('era', function ($q) use ($term) {
                                         $q->where('name', 'like', $term);
                                     })
