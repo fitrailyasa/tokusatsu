@@ -4,7 +4,7 @@
     <a href="#" class="brand-link border-bottom">
         <img src="{{ asset('storage/logo.png') }}" alt="Logo" class="brand-image img-circle elevation-3 bg-white"
             style="opacity: .8">
-        <span class="brand-text font-weight-bold text-white">TOKUSATSU</span>
+        <span class="brand-text font-weight-bold text-white">{{ strtoupper(config('app.name')) }}</span>
     </a>
 
     <!-- Sidebar -->
@@ -13,95 +13,15 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
-                <li class="nav-item">
-                    <a href="{{ route('admin.dashboards') }}"
-                        class="nav-link text-white {{ Request::routeIs('admin.dashboards') ? 'aktif' : '' }}">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Dashboard
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('beranda') }}" class="nav-link text-white">
-                        <i class="nav-icon fas fa-home"></i>
-                        <p>
-                            Home
-                        </p>
-                    </a>
-                </li>
-                
-                @can('view-user')
-                <li class="nav-item">
-                    <a href="{{ route('admin.user') }}"
-                        class="nav-link text-white {{ Request::routeIs('admin.user') ? 'aktif' : '' }}">
-                        <i class="nav-icon fas fa-users"></i>
-                        <p>
-                            User
-                        </p>
-                    </a>
-                </li>
-                @endcan
+                <x-sidebar-link route="admin.dashboards" icon="tachometer-alt" label="Dashboard" />
+                <x-sidebar-link route="beranda" icon="home" label="Home" />
 
-                @can('view-data')
-                <li class="nav-item">
-                    <a href="{{ route('admin.data') }}"
-                        class="nav-link text-white {{ Request::routeIs('admin.data') ? 'aktif' : '' }}">
-                        <i class="nav-icon fas fa-database"></i>
-                        <p>
-                            Data
-                        </p>
-                    </a>
-                </li>
-                @endcan
-
-                @can('view-tag')
-                <li class="nav-item">
-                    <a href="{{ route('admin.tag') }}"
-                        class="nav-link text-white {{ Request::routeIs('admin.tag') ? 'aktif' : '' }}">
-                        <i class="nav-icon fas fa-tag"></i>
-                        <p>
-                            Tag
-                        </p>
-                    </a>
-                </li>
-                @endcan
-
-                @can('view-category')
-                <li class="nav-item">
-                    <a href="{{ route('admin.category') }}"
-                        class="nav-link text-white {{ Request::routeIs('admin.category') ? 'aktif' : '' }}">
-                        <i class="nav-icon fas fa-list-alt"></i>
-                        <p>
-                            Category
-                        </p>
-                    </a>
-                </li>
-                @endcan
-
-                @can('view-franchise')
-                <li class="nav-item">
-                    <a href="{{ route('admin.franchise') }}"
-                        class="nav-link text-white {{ Request::routeIs('admin.franchise') ? 'aktif' : '' }}">
-                        <i class="nav-icon fas fa-tv"></i>
-                        <p>
-                            Franchise
-                        </p>
-                    </a>
-                </li>
-                @endcan
-
-                @can('view-era')
-                <li class="nav-item">
-                    <a href="{{ route('admin.era') }}"
-                        class="nav-link text-white {{ Request::routeIs('admin.era') ? 'aktif' : '' }}">
-                        <i class="nav-icon fas fa-flag"></i>
-                        <p>
-                            Era
-                        </p>
-                    </a>
-                </li>
-                @endcan
+                <x-sidebar-link route="admin.user" icon="users" label="User" can="view-user" />
+                <x-sidebar-link route="admin.data" icon="database" label="Data" can="view-data" />
+                <x-sidebar-link route="admin.tag" icon="tag" label="Tag" can="view-tag" />
+                <x-sidebar-link route="admin.category" icon="list-alt" label="Category" can="view-category" />
+                <x-sidebar-link route="admin.franchise" icon="tv" label="Franchise" can="view-franchise" />
+                <x-sidebar-link route="admin.era" icon="flag" label="Era" can="view-era" />
 
                 <li class="nav-item">
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" hidden>

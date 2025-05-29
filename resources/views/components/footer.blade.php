@@ -2,7 +2,7 @@
 <footer class="main-footer d-none d-sm-block">
   <strong>
     Copyright &copy; <span id="year"></span>
-    <a href="#">{{ config('app.name') }}</a>.
+    <a href="#">{{ strtoupper(config('app.name')) }}</a>.
   </strong>
   All rights reserved.
 </footer>
