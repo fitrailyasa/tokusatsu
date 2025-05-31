@@ -145,4 +145,7 @@
     </table>
     {{ $eras->appends(['perPage' => $perPage, 'search' => $search])->links() }}
 
+    <x-slot name="script">
+        <x-preview-image />
+    </x-slot>
 </x-admin-table>
