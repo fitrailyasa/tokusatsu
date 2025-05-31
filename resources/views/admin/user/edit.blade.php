@@ -26,8 +26,7 @@
                                     placeholder="name" name="name" id="name"
                                     value="{{ old('name', $user->name) }}" required>
                                 @error('name')
-                                    <div class="invalid-feedback">{{ $message }}
-                                    </div>
+                                    <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
@@ -38,8 +37,7 @@
                                     placeholder="no_hp" name="no_hp" id="no_hp"
                                     value="{{ old('no_hp', $user->no_hp) }}">
                                 @error('no_hp')
-                                    <div class="invalid-feedback">{{ $message }}
-                                    </div>
+                                    <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
@@ -52,8 +50,7 @@
                                     placeholder="email" name="email" id="email"
                                     value="{{ old('email', $user->email) }}" required>
                                 @error('email')
-                                    <div class="invalid-feedback">{{ $message }}
-                                    </div>
+                                    <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
@@ -63,8 +60,7 @@
                                 <input type="password" class="form-control @error('password') is-invalid @enderror"
                                     placeholder="password" name="password" id="password">
                                 @error('password')
-                                    <div class="invalid-feedback">{{ $message }}
-                                    </div>
+                                    <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
@@ -83,8 +79,7 @@
                                     @endforeach
                                 </select>
                                 @error('role')
-                                    <div class="invalid-feedback">{{ $message }}
-                                    </div>
+                                    <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
@@ -102,8 +97,7 @@
                                     </option>
                                 </select>
                                 @error('status')
-                                    <div class="invalid-feedback">{{ $message }}
-                                    </div>
+                                    <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
