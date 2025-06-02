@@ -8,7 +8,6 @@ use App\Http\Requests\TagRequest;
 use App\Http\Resources\TagResource;
 use App\Models\Tag;
 
-
 class TagApiController extends Controller
 {
     public function index(Request $request)
@@ -46,14 +45,6 @@ class TagApiController extends Controller
     {
         $tag = Tag::create($request->validated());
 
-        if ($request->hasFile('img')) {
-            $img = $request->file('img');
-            $file_name = $tag->name . '_' . $img->getClientOriginalExtension();
-            $tag->img = $file_name;
-            $tag->update();
-            $img->storeAs('public', $file_name);
-        }
-
         return response()->json(['alert' => 'Berhasil Tambah Tag!']);
     }
 
@@ -73,14 +64,6 @@ class TagApiController extends Controller
     {
         $tag = Tag::findOrFail($id);
         $tag->update($request->validated());
-
-        if ($request->hasFile('img')) {
-            $img = $request->file('img');
-            $file_name = $tag->name . '_' . $img->getClientOriginalExtension();
-            $tag->img = $file_name;
-            $tag->update();
-            $img->storeAs('public', $file_name);
-        }
 
         return response()->json(['alert' => 'Berhasil Edit Tag!']);
     }
