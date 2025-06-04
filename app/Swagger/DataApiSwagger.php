@@ -31,6 +31,7 @@ class DataApiSwagger
      *     path="/api/datas",
      *     summary="Daftar Data dengan pagination dan search",
      *     tags={"Data"},
+     *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
      *         name="search",
      *         in="query",
@@ -78,6 +79,7 @@ class DataApiSwagger
      *     path="/api/datas",
      *     summary="Tambah Data baru",
      *     tags={"Data"},
+     *     security={{"bearerAuth":{}}},
      *     @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(ref="#/components/schemas/DataRequest")
@@ -98,6 +100,7 @@ class DataApiSwagger
      *     path="/api/datas/{id}",
      *     summary="Ambil detail Data berdasarkan ID",
      *     tags={"Data"},
+     *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -115,6 +118,7 @@ class DataApiSwagger
      *     path="/api/datas/{id}",
      *     summary="Update Data berdasarkan ID",
      *     tags={"Data"},
+     *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -140,6 +144,7 @@ class DataApiSwagger
      *     path="/api/datas/{id}",
      *     summary="Hapus Data berdasarkan ID",
      *     tags={"Data"},
+     *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",

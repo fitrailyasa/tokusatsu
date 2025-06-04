@@ -35,6 +35,7 @@ class CategoryApiSwagger
      *     path="/api/categories",
      *     summary="Daftar Category dengan pagination dan search",
      *     tags={"Category"},
+     *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
      *         name="search",
      *         in="query",
@@ -82,6 +83,7 @@ class CategoryApiSwagger
      *     path="/api/categories",
      *     summary="Tambah Category baru",
      *     tags={"Category"},
+     *     security={{"bearerAuth":{}}},
      *     @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(ref="#/components/schemas/CategoryRequest")
@@ -102,6 +104,7 @@ class CategoryApiSwagger
      *     path="/api/categories/{id}",
      *     summary="Ambil detail Category berdasarkan ID",
      *     tags={"Category"},
+     *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -119,6 +122,7 @@ class CategoryApiSwagger
      *     path="/api/categories/{id}",
      *     summary="Update Category berdasarkan ID",
      *     tags={"Category"},
+     *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -144,6 +148,7 @@ class CategoryApiSwagger
      *     path="/api/categories/{id}",
      *     summary="Hapus Category berdasarkan ID",
      *     tags={"Category"},
+     *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",

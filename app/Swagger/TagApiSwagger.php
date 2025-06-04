@@ -29,6 +29,7 @@ class TagApiSwagger
      *     path="/api/tags",
      *     summary="Daftar Tag dengan pagination dan search",
      *     tags={"Tag"},
+     *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
      *         name="search",
      *         in="query",
@@ -76,6 +77,7 @@ class TagApiSwagger
      *     path="/api/tags",
      *     summary="Tambah Tag baru",
      *     tags={"Tag"},
+     *     security={{"bearerAuth":{}}},
      *     @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(ref="#/components/schemas/TagRequest")
@@ -96,6 +98,7 @@ class TagApiSwagger
      *     path="/api/tags/{id}",
      *     summary="Ambil detail Tag berdasarkan ID",
      *     tags={"Tag"},
+     *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -113,6 +116,7 @@ class TagApiSwagger
      *     path="/api/tags/{id}",
      *     summary="Update Tag berdasarkan ID",
      *     tags={"Tag"},
+     *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -138,6 +142,7 @@ class TagApiSwagger
      *     path="/api/tags/{id}",
      *     summary="Hapus Tag berdasarkan ID",
      *     tags={"Tag"},
+     *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",

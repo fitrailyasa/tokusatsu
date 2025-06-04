@@ -154,9 +154,9 @@
             ],
 
             layout: "StandaloneLayout",
-            docExpansion : "{!! config('l5-swagger.defaults.ui.display.doc_expansion', 'none') !!}",
+            docExpansion : "list",
             deepLinking: true,
-            filter: {!! config('l5-swagger.defaults.ui.display.filter') ? 'true' : 'false' !!},
+            filter: false,
             persistAuthorization: "{!! config('l5-swagger.defaults.ui.authorization.persist_authorization') ? 'true' : 'false' !!}",
 
         })

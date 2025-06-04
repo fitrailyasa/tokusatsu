@@ -31,6 +31,7 @@ class EraApiSwagger
      *     path="/api/eras",
      *     summary="Daftar Era dengan pagination dan search",
      *     tags={"Era"},
+     *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
      *         name="search",
      *         in="query",
@@ -78,6 +79,7 @@ class EraApiSwagger
      *     path="/api/eras",
      *     summary="Tambah Era baru",
      *     tags={"Era"},
+     *     security={{"bearerAuth":{}}},
      *     @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(ref="#/components/schemas/EraRequest")
@@ -98,6 +100,7 @@ class EraApiSwagger
      *     path="/api/eras/{id}",
      *     summary="Ambil detail Era berdasarkan ID",
      *     tags={"Era"},
+     *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -115,6 +118,7 @@ class EraApiSwagger
      *     path="/api/eras/{id}",
      *     summary="Update Era berdasarkan ID",
      *     tags={"Era"},
+     *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -140,6 +144,7 @@ class EraApiSwagger
      *     path="/api/eras/{id}",
      *     summary="Hapus Era berdasarkan ID",
      *     tags={"Era"},
+     *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",

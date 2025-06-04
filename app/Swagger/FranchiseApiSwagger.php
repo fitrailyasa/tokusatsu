@@ -31,6 +31,7 @@ class FranchiseApiSwagger
      *     path="/api/franchises",
      *     summary="Daftar Franchise dengan pagination dan search",
      *     tags={"Franchise"},
+     *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
      *         name="search",
      *         in="query",
@@ -78,6 +79,7 @@ class FranchiseApiSwagger
      *     path="/api/franchises",
      *     summary="Tambah Franchise baru",
      *     tags={"Franchise"},
+     *     security={{"bearerAuth":{}}},
      *     @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(ref="#/components/schemas/FranchiseRequest")
@@ -98,6 +100,7 @@ class FranchiseApiSwagger
      *     path="/api/franchises/{id}",
      *     summary="Ambil detail Franchise berdasarkan ID",
      *     tags={"Franchise"},
+     *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -115,6 +118,7 @@ class FranchiseApiSwagger
      *     path="/api/franchises/{id}",
      *     summary="Update Franchise berdasarkan ID",
      *     tags={"Franchise"},
+     *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -140,6 +144,7 @@ class FranchiseApiSwagger
      *     path="/api/franchises/{id}",
      *     summary="Hapus Franchise berdasarkan ID",
      *     tags={"Franchise"},
+     *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
