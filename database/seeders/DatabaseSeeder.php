@@ -14,18 +14,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call(UserSeeder::class);
         $this->call(RoleAndPermissionSeeder::class);
+        $this->call(UserSeeder::class);
         $this->call(EraSeeder::class);
         $this->call(FranchiseSeeder::class);
         $this->call(CategorySeeder::class);
         $this->call(TagSeeder::class);
         $this->call(DataSeeder::class);
         $this->call(FilmSeeder::class);
-        $this->call(AddressProvinceSeeder::class);
-        $this->call(AddressRegencySeeder::class);
-        $this->call(AddressDistrictSeeder::class);
-        $this->call(AddressVillageSeeder::class);
-        $this->call(AddressDetailSeeder::class);
+        // $this->call(AddressProvinceSeeder::class);
+        // $this->call(AddressRegencySeeder::class);
+        // $this->call(AddressDistrictSeeder::class);
+        // $this->call(AddressVillageSeeder::class);
+        // $this->call(AddressDetailSeeder::class);
     }
 }
