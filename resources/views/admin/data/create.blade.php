@@ -16,7 +16,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="row border-bottom">
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">{{ __('Name') }}<span class="text-danger">*</span></label>
                                 <input type="text" class="form-control @error('name') is-invalid @enderror"
@@ -27,20 +27,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="mb-3">
-                                <label class="form-label">{{ __('Images') }}</label>
-                                <input id="image-input" accept="image/*" type="file"
-                                    class="form-control @error('img') is-invalid @enderror" placeholder="img"
-                                    name="img" id="img">
-                                <img class="img-fluid py-3" id="image-preview"
-                                    src="{{ asset('assets/profile/default.png') }}" alt="Image Preview">
-                                @error('img')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">{{ __('Category') }}<span class="text-danger">*</span></label>
                                 <select class="form-select @error('category_id') is-invalid @enderror"
@@ -60,6 +47,27 @@
                                     @endforeach
                                 </select>
                                 @error('category_id')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <div class="mb-3">
+                                <label class="form-label">{{ __('Images') }}</label><br>
+                                <img class="img-fluid rounded" id="image-preview" width="200px"
+                                    src="{{ asset('assets/profile/default.png') }}" alt="Image Preview">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row border-bottom">
+                        <div class="col-md-12 text-center">
+                            <div class="mb-3">
+                                <input id="image-input" accept="image/*" type="file"
+                                    class="form-control @error('img') is-invalid @enderror" placeholder="img"
+                                    name="img" id="img">
+                                @error('img')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>

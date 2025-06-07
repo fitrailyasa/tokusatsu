@@ -14,8 +14,6 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
                 <x-sidebar-link route="admin.dashboard" icon="tachometer-alt" label="Dashboard" />
-                <x-sidebar-link route="beranda" icon="home" label="Home" />
-
                 <x-sidebar-link route="admin.user.index" icon="users" label="User" can="view-user" />
                 <x-sidebar-link route="admin.role.index" icon="key" label="Role" can="view-role" />
                 <x-sidebar-link route="admin.data.index" icon="database" label="Data" can="view-data" />
@@ -24,7 +22,6 @@
                 <x-sidebar-link route="admin.film.index" icon="film" label="Film" can="view-film" />
                 <x-sidebar-link route="admin.franchise.index" icon="tv" label="Franchise" can="view-franchise" />
                 <x-sidebar-link route="admin.era.index" icon="flag" label="Era" can="view-era" />
-
                 <li class="nav-item">
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" hidden>
                         @csrf

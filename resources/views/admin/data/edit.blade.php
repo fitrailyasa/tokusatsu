@@ -61,15 +61,12 @@
                             <div class="mb-3">
                                 <label class="form-label">{{ __('Images') }}</label><br>
                                 @if ($data->img == null)
-                                    <img class="img-fluid rounded" width="300px"
+                                    <img class="img-fluid rounded" width="200px"
                                         src="{{ asset('assets/profile/default.png') }}" alt="{{ $data->name }}">
                                 @else
-                                    <img class="img-fluid rounded" width="300px"
+                                    <img class="img-fluid rounded" width="200px"
                                         src="{{ asset('storage/' . $data->img) }}" alt="{{ $data->name }}">
                                 @endif
-                                @error('images')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
                             </div>
                         </div>
                     </div>
