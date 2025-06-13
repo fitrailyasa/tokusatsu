@@ -42,6 +42,7 @@ class AdminFilmController extends Controller
         $validPerPage = in_array($perPage, [10, 50, 100]) ? $perPage : 10;
 
         $categories = Category::all();
+        $groupedCategories = $categories->groupBy('franchise.name');
         $types = [
             [
                 'id' => 'episode',
@@ -125,7 +126,7 @@ class AdminFilmController extends Controller
                 ->paginate($validPerPage);
         }
 
-        return view("admin.film.index", compact('films', 'categories', 'types', 'search', 'perPage'));
+        return view("admin.film.index", compact('films', 'groupedCategories', 'categories', 'types', 'search', 'perPage'));
     }
 
     public function import(Request $request)

@@ -43,6 +43,7 @@ class AdminDataController extends Controller
 
         $tags = Tag::all();
         $categories = Category::all();
+        $groupedCategories = $categories->groupBy('franchise.name');
 
         if ($search) {
             $datas = Data::withTrashed()
@@ -75,7 +76,7 @@ class AdminDataController extends Controller
                 ->paginate($validPerPage);
         }
 
-        return view("admin.data.index", compact('datas', 'categories', 'tags', 'search', 'perPage'));
+        return view("admin.data.index", compact('datas', 'groupedCategories', 'categories', 'tags', 'search', 'perPage'));
     }
 
     public function import(Request $request)

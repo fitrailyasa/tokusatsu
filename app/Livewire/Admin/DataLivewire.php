@@ -46,6 +46,7 @@ class DataLivewire extends Component
 
         $tags = Tag::all();
         $categories = Category::all();
+        $groupedCategories = $categories->groupBy('franchise.name');
 
         if ($search) {
             $datas = Data::withTrashed()
@@ -56,7 +57,7 @@ class DataLivewire extends Component
             $datas = Data::withTrashed()->paginate($validPerPage);
         }
 
-        return view('livewire.admin.data', compact('datas', 'categories', 'tags', 'search', 'perPage'));
+        return view('livewire.admin.data', compact('datas', 'groupedCategories', 'categories', 'tags', 'search', 'perPage'));
     }
 
     public function resetInputFields()

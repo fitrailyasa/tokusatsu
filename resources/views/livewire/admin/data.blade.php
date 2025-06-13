@@ -45,9 +45,6 @@
                         <select class="form-select @error('category_id') is-invalid @enderror" wire:model="category_id"
                             id="category_id" required>
                             <option selected disabled>{{ __('Select Category') }}</option>
-                            @php
-                                $groupedCategories = $categories->groupBy('franchise.name');
-                            @endphp
                             @foreach ($groupedCategories as $franchiseName => $categoriesGroup)
                                 <optgroup label="{{ $franchiseName }}">
                                     @foreach ($categoriesGroup as $category)
