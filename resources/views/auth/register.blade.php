@@ -3,40 +3,136 @@
 @section('title', 'Register')
 
 @section('content')
-    <div class="col-md-6 col-sm-10 col-12 mx-auto my-5 p-5">
-        <div class="card aktif mt-5 py-5">
-            <h3 class="text-center text-white font-weight-bold">REGISTRASI</h3>
-            <div class="d-flex justify-content-center align-items-center mt-3">
-                <form action="{{ route('register') }}" method="POST" class="">
-                    @csrf
-                    <input class="form-control @error('name') is-invalid @enderror" name="name" required autofocus
-                        type="text" name="name" id="name" placeholder="name" value="{{ old('name') }}">
+    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+        <div class="card shadow-lg rounded-4 p-4" style="max-width: 420px; width: 100%;">
+            <h4 class="text-center fw-bold">Registrasi</h4>
+
+            <form action="{{ route('register') }}" method="POST" novalidate>
+                @csrf
+
+                {{-- Name --}}
+                <div class="mb-2">
+                    <label for="name" class="form-label fw-semibold">Nama</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        <input class="form-control @error('name') is-invalid @enderror" name="name" type="text"
+                            id="name" placeholder="Nama lengkap" value="{{ old('name') }}" required autofocus>
+                    </div>
                     @error('name')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                        <div class="invalid-feedback d-block">{{ $message }}</div>
                     @enderror
-                    <input class="form-control @error('email') is-invalid @enderror" name="email" required autofocus
-                        type="text" name="email" id="email" placeholder="email" value="{{ old('email') }}">
+                </div>
+
+                {{-- Email --}}
+                <div class="mb-2">
+                    <label for="email" class="form-label fw-semibold">Email</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                        <input class="form-control @error('email') is-invalid @enderror" name="email" type="email"
+                            id="email" placeholder="email@example.com" value="{{ old('email') }}" required>
+                    </div>
                     @error('email')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                        <div class="invalid-feedback d-block">{{ $message }}</div>
                     @enderror
-                    <input class="form-control @error('password') is-invalid @enderror" name="password" required
-                        type="password" id="password" placeholder="password">
+                </div>
+
+                {{-- Password --}}
+                <div class="mb-2">
+                    <label for="password" class="form-label fw-semibold">Password</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                        <input class="form-control @error('password') is-invalid @enderror" name="password" type="password"
+                            id="password" placeholder="******" required>
+                        <span class="input-group-text" style="cursor: pointer;" id="togglePassword">
+                            <i class="fas fa-eye" id="eyePassword"></i>
+                        </span>
+                    </div>
                     @error('password')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                        <div class="invalid-feedback d-block">{{ $message }}</div>
                     @enderror
-                    <input class="form-control @error('password_confirmation') is-invalid @enderror"
-                        name="password_confirmation" required type="password" id="password_confirmation"
-                        placeholder="password_confirmation">
+                </div>
+
+                {{-- Password Confirmation --}}
+                <div class="mb-2">
+                    <label for="password_confirmation" class="form-label fw-semibold">Konfirmasi Password</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                        <input class="form-control @error('password_confirmation') is-invalid @enderror" name="******"
+                            type="password" id="password_confirmation" placeholder="Ulangi password" required>
+                        <span class="input-group-text" style="cursor: pointer;" id="togglePasswordConfirm">
+                            <i class="fas fa-eye" id="eyePasswordConfirm"></i>
+                        </span>
+                    </div>
                     @error('password_confirmation')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                        <div class="invalid-feedback d-block">{{ $message }}</div>
                     @enderror
-                    <button type="submit" class="form-control btn mt-3 text-white aktif">Masuk</button>
-                </form>
-            </div>
+                </div>
+
+                {{-- Submit --}}
+                <div class="d-grid mb-2">
+                    <button type="submit" class="btn btn-primary fw-semibold" id="authButton">
+                        <span id="authText">Daftar</span>
+                        <span class="spinner-border spinner-border-sm d-none" id="authSpinner" role="status"
+                            aria-hidden="true"></span>
+                    </button>
+                </div>
+
+                {{-- Login --}}
+                <div class="text-center">
+                    <small class="text-muted">Sudah punya akun? <a href="{{ route('login') }}">Masuk</a></small>
+                </div>
+
+                {{-- Social Auth --}}
+                <div class="text-center mb-2">
+                    <small class="text-muted">Atau daftar dengan</small>
+                    <div class="d-flex justify-content-center gap-3 mt-2">
+                        @foreach ($providers as $provider)
+                            <a href="{{ route('auth.redirect', $provider['name']) }}"
+                                class="d-flex align-items-center justify-content-center rounded-circle text-white"
+                                style="background-color: {{ $provider['color'] }}; width: 45px; height: 45px;">
+                                <i class="{{ $provider['icon'] }}"></i>
+                            </a>
+                        @endforeach
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
+    {{-- JS --}}
+    <script>
+        // Password toggle
+        const passwordInput = document.getElementById('password');
+        const passwordToggle = document.getElementById('togglePassword');
+        const passwordIcon = document.getElementById('eyePassword');
+
+        passwordToggle.addEventListener('click', () => {
+            const type = passwordInput.type === 'password' ? 'text' : 'password';
+            passwordInput.type = type;
+            passwordIcon.classList.toggle('fa-eye');
+            passwordIcon.classList.toggle('fa-eye-slash');
+        });
+
+        // Confirm password toggle
+        const confirmInput = document.getElementById('password_confirmation');
+        const confirmToggle = document.getElementById('togglePasswordConfirm');
+        const confirmIcon = document.getElementById('eyePasswordConfirm');
+
+        confirmToggle.addEventListener('click', () => {
+            const type = confirmInput.type === 'password' ? 'text' : 'password';
+            confirmInput.type = type;
+            confirmIcon.classList.toggle('fa-eye');
+            confirmIcon.classList.toggle('fa-eye-slash');
+        });
+
+        // Button loading spinner
+        const authButton = document.getElementById('authButton');
+        const authText = document.getElementById('authText');
+        const authSpinner = document.getElementById('authSpinner');
+
+        authButton.addEventListener('click', function() {
+            authText.classList.add('d-none');
+            authSpinner.classList.remove('d-none');
+        });
     </script>
 @endsection

@@ -19,7 +19,16 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth.register');
+        $providers = [
+            ['name' => 'google', 'color' => '#ea4335', 'icon' => 'fab fa-google'],
+            ['name' => 'github', 'color' => '#24292e', 'icon' => 'fab fa-github'],
+            ['name' => 'linkedin', 'color' => '#0077b5', 'icon' => 'fab fa-linkedin'],
+            ['name' => 'discord', 'color' => '#7289da', 'icon' => 'fab fa-discord'],
+            ['name' => 'twitter', 'color' => '#1da1f2', 'icon' => 'fab fa-twitter'],
+            ['name' => 'twitch', 'color' => '#6441a5', 'icon' => 'fab fa-twitch'],
+        ];
+
+        return view('auth.register', compact('providers'));
     }
 
     /**

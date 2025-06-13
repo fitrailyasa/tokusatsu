@@ -3,20 +3,33 @@
 @section('title', 'Login')
 
 @section('content')
-    <div class="col-md-6 col-sm-10 col-12 mx-auto my-5 p-5">
-        <div class="card mt-5 py-5">
-            <h3 class="text-center font-weight-bold">MASUK</h3>
-            <div class="d-flex justify-content-center align-items-center mt-3">
-                <form action="{{ route('login') }}" method="POST" class="px-3">
-                    @csrf
-                    <input class="form-control mb-3 @error('email') is-invalid @enderror" name="email" required autofocus
-                        type="text" id="email" placeholder="email" value="{{ old('email') }}">
+    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+        <div class="card shadow-lg rounded-4 p-4" style="max-width: 420px; width: 100%;">
+            <h4 class="text-center fw-bold">Login</h4>
+
+            <form action="{{ route('login') }}" method="POST" novalidate>
+                @csrf
+
+                {{-- Email --}}
+                <div class="mb-2">
+                    <label for="email" class="form-label fw-semibold">Email</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                        <input class="form-control @error('email') is-invalid @enderror" name="email" type="email"
+                            id="email" placeholder="example@mail.com" value="{{ old('email') }}" required autofocus>
+                    </div>
                     @error('email')
                         <div class="invalid-feedback d-block">{{ $message }}</div>
                     @enderror
-                    <div class="input-group mb-3">
-                        <input class="form-control @error('password') is-invalid @enderror" name="password" required
-                            type="password" id="password" placeholder="password">
+                </div>
+
+                {{-- Password --}}
+                <div class="mb-2">
+                    <label for="password" class="form-label fw-semibold">Password</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                        <input class="form-control @error('password') is-invalid @enderror" type="password" id="password"
+                            name="password" placeholder="******" required>
                         <span class="input-group-text" id="togglePassword" style="cursor: pointer;">
                             <i class="fas fa-eye" id="eyeIcon"></i>
                         </span>
@@ -24,24 +37,42 @@
                     @error('password')
                         <div class="invalid-feedback d-block">{{ $message }}</div>
                     @enderror
-                    <button type="submit" class="form-control btn text-white aktif">Masuk</button>
-                    <div class="row">
-                        <div class="d-flex flex-wrap justify-content-center gap-3 my-3">
-                            @foreach ($providers as $provider)
-                                <a href="{{ route('auth.redirect', $provider['name']) }}"
-                                    class="d-flex align-items-center justify-content-center rounded-circle text-white"
-                                    style="background-color: {{ $provider['color'] }}; width: 45px; height: 45px; text-decoration: none; transition: transform 0.2s;">
-                                    <i class="{{ $provider['icon'] }}"></i>
-                                </a>
-                            @endforeach
-                        </div>
+                </div>
+
+                {{-- Submit --}}
+                <div class="d-grid mb-2">
+                    <button type="submit" class="btn btn-primary fw-semibold" id="authButton">
+                        <span id="authText">Masuk</span>
+                        <span class="spinner-border spinner-border-sm d-none" id="authSpinner" role="status"
+                            aria-hidden="true"></span>
+                    </button>
+                </div>
+
+                {{-- Register --}}
+                <div class="text-center">
+                    <small class="text-muted">Belum punya akun? <a href="{{ route('register') }}">Daftar</a></small>
+                </div>
+
+                {{-- Social Auth --}}
+                <div class="text-center mb-2">
+                    <small class="text-muted">Atau masuk dengan</small>
+                    <div class="d-flex justify-content-center gap-3 mt-2">
+                        @foreach ($providers as $provider)
+                            <a href="{{ route('auth.redirect', $provider['name']) }}"
+                                class="d-flex align-items-center justify-content-center rounded-circle text-white"
+                                style="background-color: {{ $provider['color'] }}; width: 45px; height: 45px;">
+                                <i class="{{ $provider['icon'] }}"></i>
+                            </a>
+                        @endforeach
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
 
+    {{-- JS --}}
     <script>
+        // Password toggle
         const togglePassword = document.getElementById('togglePassword');
         const passwordInput = document.getElementById('password');
         const eyeIcon = document.getElementById('eyeIcon');
@@ -51,6 +82,16 @@
             passwordInput.setAttribute('type', type);
             eyeIcon.classList.toggle('fa-eye');
             eyeIcon.classList.toggle('fa-eye-slash');
+        });
+
+        // Button loading spinner
+        const authButton = document.getElementById('authButton');
+        const authText = document.getElementById('authText');
+        const authSpinner = document.getElementById('authSpinner');
+
+        authButton.addEventListener('click', function() {
+            authText.classList.add('d-none');
+            authSpinner.classList.remove('d-none');
         });
     </script>
 @endsection
