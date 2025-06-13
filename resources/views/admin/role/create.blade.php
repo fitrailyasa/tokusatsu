@@ -32,28 +32,6 @@
                                 <label class="form-label">{{ __('Permissions') }}</label>
                                 <div class="row">
                                     @foreach ($permissions as $permission)
-                                        @php
-                                            $name = strtolower($permission->name);
-                                            if (str_contains($name, 'view')) {
-                                                $badgeClass = 'badge-dark';
-                                            } elseif (str_contains($name, 'create')) {
-                                                $badgeClass = 'badge-primary';
-                                            } elseif (str_contains($name, 'edit')) {
-                                                $badgeClass = 'badge-warning';
-                                            } elseif (str_contains($name, 'delete')) {
-                                                $badgeClass = 'badge-danger';
-                                            } elseif (str_contains($name, 'restore')) {
-                                                $badgeClass = 'badge-info';
-                                            } elseif (str_contains($name, 'import')) {
-                                                $badgeClass = 'badge-secondary';
-                                            } elseif (str_contains($name, 'export')) {
-                                                $badgeClass = 'badge-success';
-                                            } else {
-                                                $badgeClass = 'badge-gray';
-                                            }
-
-                                            $type = ucfirst(explode('-', $name)[0]);
-                                        @endphp
                                         <div class="col-sm-6 mb-2">
                                             <div
                                                 class="form-check border rounded px-3 py-2 d-flex align-items-center gap-2">
@@ -65,8 +43,8 @@
                                                     for="create-perm-{{ $permission->id }}" style="cursor:pointer;">
                                                     {{ $permission->name }}
                                                 </label>
-                                                <span class="badge {{ $badgeClass }}"
-                                                    style="white-space: nowrap;">{{ $type }}</span>
+                                                <span
+                                                    class="badge {{ $permission->badgeClass }}">{{ $permission->type }}</span>
                                             </div>
                                         </div>
                                     @endforeach

@@ -37,6 +37,7 @@ class AdminRoleController extends Controller
         }
 
         $permissions = Permission::all();
+        $permissions = $this->mapPermissionBadgeAndType($permissions);
 
         return view("admin.role.index", compact('roles', 'permissions', 'search', 'perPage'));
     }
@@ -86,5 +87,39 @@ class AdminRoleController extends Controller
     {
         Role::findOrFail($id)->forceDelete();
         return back()->with('message', 'Berhasil Hapus Data Role!');
+    }
+
+    private function mapPermissionBadgeAndType($permissions)
+    {
+        return $permissions->map(function ($permission) {
+            $name = strtolower($permission->name);
+
+            if (str_contains($name, 'view')) {
+                $badgeClass = 'badge-dark';
+            } elseif (str_contains($name, 'create')) {
+                $badgeClass = 'badge-primary';
+            } elseif (str_contains($name, 'edit')) {
+                $badgeClass = 'badge-warning';
+            } elseif (str_contains($name, 'delete')) {
+                $badgeClass = 'badge-danger';
+            } elseif (str_contains($name, 'restore')) {
+                $badgeClass = 'badge-info';
+            } elseif (str_contains($name, 'import')) {
+                $badgeClass = 'badge-secondary';
+            } elseif (str_contains($name, 'export')) {
+                $badgeClass = 'badge-success';
+            } else {
+                $badgeClass = 'badge-gray';
+            }
+
+            $type = ucfirst(explode('-', $name)[0]);
+
+            return (object)[
+                'id' => $permission->id,
+                'name' => $permission->name,
+                'badgeClass' => $badgeClass,
+                'type' => $type,
+            ];
+        });
     }
 }
