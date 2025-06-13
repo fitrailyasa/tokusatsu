@@ -26,41 +26,14 @@
                     @enderror
                     <button type="submit" class="form-control btn text-white aktif">Masuk</button>
                     <div class="row">
-                        <div class="col-md-2 col-4 text-center my-2 mx-auto">
-                            <a href="{{ route('auth.redirect', 'google') }}" class="btn text-white"
-                                style="background-color: #ea4335">
-                                <i class="fab fa-google"></i>
-                            </a>
-                        </div>
-                        <div class="col-md-2 col-4 text-center my-2 mx-auto">
-                            <a href="{{ route('auth.redirect', 'github') }}" class="btn text-white"
-                                style="background-color: #24292e">
-                                <i class="fab fa-github"></i>
-                            </a>
-                        </div>
-                        <div class="col-md-2 col-4 text-center my-2 mx-auto">
-                            <a href="{{ route('auth.redirect', 'linkedin') }}" class="btn text-white"
-                                style="background-color: #0077b5">
-                                <i class="fab fa-linkedin"></i>
-                            </a>
-                        </div>
-                        <div class="col-md-2 col-4 text-center my-2 mx-auto">
-                            <a href="{{ route('auth.redirect', 'discord') }}" class="btn text-white"
-                                style="background-color: #7289da">
-                                <i class="fab fa-discord"></i>
-                            </a>
-                        </div>
-                        <div class="col-md-2 col-4 text-center my-2 mx-auto">
-                            <a href="{{ route('auth.redirect', 'twitter') }}" class="btn text-white"
-                                style="background-color: #1da1f2">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                        </div>
-                        <div class="col-md-2 col-4 text-center my-2 mx-auto">
-                            <a href="{{ route('auth.redirect', 'twitch') }}" class="btn text-white"
-                                style="background-color: #6441a5">
-                                <i class="fab fa-twitch"></i>
-                            </a>
+                        <div class="d-flex flex-wrap justify-content-center gap-3 my-3">
+                            @foreach ($providers as $provider)
+                                <a href="{{ route('auth.redirect', $provider['name']) }}"
+                                    class="d-flex align-items-center justify-content-center rounded-circle text-white"
+                                    style="background-color: {{ $provider['color'] }}; width: 45px; height: 45px; text-decoration: none; transition: transform 0.2s;">
+                                    <i class="{{ $provider['icon'] }}"></i>
+                                </a>
+                            @endforeach
                         </div>
                     </div>
                 </form>
@@ -73,7 +46,7 @@
         const passwordInput = document.getElementById('password');
         const eyeIcon = document.getElementById('eyeIcon');
 
-        togglePassword.addEventListener('click', function () {
+        togglePassword.addEventListener('click', function() {
             const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
             passwordInput.setAttribute('type', type);
             eyeIcon.classList.toggle('fa-eye');
