@@ -82,6 +82,39 @@ class FilmApiController extends Controller
         return response()->json(['alert' => 'Berhasil Hapus Film!']);
     }
 
+    public function findByFranchiseCategory(Request $request, $franchise, $category)
+    {
+        $perPage = $request->query('per_page', 10);
+        
+        $films = Film::with(['category.franchise'])
+            ->whereHas('category', function ($q) use ($category, $franchise) {
+                $q->where('slug', 'LIKE', "%{$category}%")
+                    ->whereHas('franchise', function ($q2) use ($franchise) {
+                        $q2->where('slug', 'LIKE', "%{$franchise}%");
+                    });
+            })
+            ->paginate($perPage);
+
+        if ($films->isEmpty()) {
+            return response()->json([
+                'message' => 'No film found for the specified franchise and category'
+            ], 404);
+        }
+
+        return response()->json([
+            'message' => 'Film retrieved successfully',
+            'data' => FilmResource::collection($films),
+            'pagination' => [
+                'current_page' => $films->currentPage(),
+                'total' => $films->total(),
+                'per_page' => $films->perPage(),
+                'last_page' => $films->lastPage(),
+                'next_page_url' => $films->nextPageUrl(),
+                'prev_page_url' => $films->previousPageUrl(),
+            ]
+        ], 200);
+    }
+
     public function findByFranchiseCategoryNumber($franchise, $category, $number)
     {
         $film = Film::with(['category.franchise'])

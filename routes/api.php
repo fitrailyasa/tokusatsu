@@ -36,6 +36,7 @@ Route::get('/datas/{franchise}/{category}', [DataApiController::class, 'findByFr
 
 // FILM API
 Route::resource('/films', FilmApiController::class, ['only', ['index', 'store', 'show', 'edit', 'update', 'destroy']]);
+Route::get('/films/{franchise}/{category}', [FilmApiController::class, 'findByFranchiseCategory']);
 Route::get('/films/{franchise}/{category}/{number}', [FilmApiController::class, 'findByFranchiseCategoryNumber']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {

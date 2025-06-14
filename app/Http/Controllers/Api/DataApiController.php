@@ -104,6 +104,7 @@ class DataApiController extends Controller
     public function findByFranchiseCategory(Request $request, $franchise, $category)
     {
         $perPage = $request->query('per_page', 10);
+        
         $datas = Data::with(['category.franchise', 'tags'])
             ->whereHas('category', function ($q) use ($category, $franchise) {
                 $q->where('slug', 'LIKE', "%{$category}%")
