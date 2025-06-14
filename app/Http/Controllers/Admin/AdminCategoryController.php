@@ -34,37 +34,38 @@ class AdminCategoryController extends Controller
         $request->validate([
             'search' => 'nullable|string|max:255',
             'perPage' => 'nullable|integer|in:10,50,100',
+            'era_id' => 'nullable|exists:eras,id',
+            'franchise_id' => 'nullable|exists:franchises,id',
         ]);
 
         $search = $request->input('search');
         $perPage = (int) $request->input('perPage', 10);
-
+        $eraId = $request->input('era_id');
+        $franchiseId = $request->input('franchise_id');
         $validPerPage = in_array($perPage, [10, 50, 100]) ? $perPage : 10;
 
         $eras = Era::all();
         $franchises = Franchise::all();
 
-        if ($search) {
-            $categories = Category::withTrashed()
-                ->with(['era', 'franchise'])
-                ->when($search, function ($query, $search) {
-                    $query->where(function ($query) use ($search) {
-                        $query->where('name', 'like', "%{$search}%")
-                            ->orWhere('desc', 'like', "%{$search}%")
-                            ->orWhereHas('era', function ($q) use ($search) {
-                                $q->where('name', 'like', "%{$search}%");
-                            })
-                            ->orWhereHas('franchise', function ($q) use ($search) {
-                                $q->where('name', 'like', "%{$search}%");
-                            });
-                    });
-                })
-                ->paginate($validPerPage);
-        } else {
-            $categories = Category::withTrashed()->paginate($validPerPage);
-        }
+        $categories = Category::withTrashed()
+            ->with(['era', 'franchise'])
+            ->when($search, function ($query, $search) {
+                $query->where(function ($query) use ($search) {
+                    $query->where('name', 'like', "%{$search}%")
+                        ->orWhere('desc', 'like', "%{$search}%")
+                        ->orWhereHas('era', fn($q) => $q->where('name', 'like', "%{$search}%"))
+                        ->orWhereHas('franchise', fn($q) => $q->where('name', 'like', "%{$search}%"));
+                });
+            })
+            ->when($eraId, function ($query, $eraId) {
+                $query->where('era_id', $eraId);
+            })
+            ->when($franchiseId, function ($query, $franchiseId) {
+                $query->where('franchise_id', $franchiseId);
+            })
+            ->paginate($validPerPage);
 
-        return view("admin.category.index", compact('categories', 'eras', 'franchises', 'search', 'perPage'));
+        return view("admin.category.index", compact('categories', 'eras', 'franchises', 'eraId', 'franchiseId', 'search', 'perPage'));
     }
 
     public function import(Request $request)

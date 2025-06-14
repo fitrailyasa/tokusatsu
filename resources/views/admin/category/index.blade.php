@@ -157,7 +157,7 @@
             </tr>
         </tfoot>
     </table>
-    {{ $categories->appends(['perPage' => $perPage, 'search' => $search])->links() }}
+    {{ $categories->appends(['era_id' => $eraId, 'franchise_id' => $franchiseId, 'perPage' => $perPage, 'search' => $search])->links() }}
 
     <x-slot name="script">
         <x-preview-image />

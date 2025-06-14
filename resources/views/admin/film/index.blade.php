@@ -106,6 +106,6 @@
             </tr>
         </tfoot>
     </table>
-    {{ $films->appends(['perPage' => $perPage, 'search' => $search])->links() }}
+    {{ $films->appends(['category_id' => $categoryId, 'perPage' => $perPage, 'search' => $search])->links() }}
 
 </x-admin-table>

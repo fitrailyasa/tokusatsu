@@ -34,99 +34,59 @@ class AdminFilmController extends Controller
         $request->validate([
             'search' => 'nullable|string|max:255',
             'perPage' => 'nullable|integer|in:10,50,100',
+            'category_id' => 'nullable|exists:categories,id',
         ]);
 
         $search = $request->input('search');
+        $categoryId = $request->input('category_id');
         $perPage = (int) $request->input('perPage', 10);
-
         $validPerPage = in_array($perPage, [10, 50, 100]) ? $perPage : 10;
 
+        $types = [
+            ['id' => 'episode', 'name' => 'Episode'],
+            ['id' => 'special', 'name' => 'Special'],
+            ['id' => 'movie', 'name' => 'Movie'],
+            ['id' => 'stageshow', 'name' => 'Stage Show'],
+            ['id' => 'manga', 'name' => 'Manga'],
+            ['id' => 'novel', 'name' => 'Novel'],
+            ['id' => 'herosaga', 'name' => 'Hero Saga'],
+            ['id' => 'audiodrama', 'name' => 'Audio Drama'],
+            ['id' => 'netmovie', 'name' => 'Net Movie'],
+            ['id' => 'videogame', 'name' => 'Video Game'],
+            ['id' => 'print', 'name' => 'Print'],
+            ['id' => 'other', 'name' => 'Other'],
+        ];
         $categories = Category::all();
         $groupedCategories = $categories->groupBy('franchise.name');
-        $types = [
-            [
-                'id' => 'episode',
-                'name' => 'Episode'
-            ],
-            [
-                'id' => 'special',
-                'name' => 'Special'
-            ],
-            [
-                'id' => 'movie',
-                'name' => 'Movie'
-            ],
-            [
-                'id' => 'stageshow',
-                'name' => 'Stage Show'
-            ],
-            [
-                'id' => 'manga',
-                'name' => 'Manga'
-            ],
-            [
-                'id' => 'novel',
-                'name' => 'Novel'
-            ],
-            [
-                'id' => 'herosaga',
-                'name' => 'Hero Saga'
-            ],
-            [
-                'id' => 'audiodrama',
-                'name' => 'Audio Drama'
-            ],
-            [
-                'id' => 'netmovie',
-                'name' => 'Net Movie'
-            ],
-            [
-                'id' => 'videogame',
-                'name' => 'Video Game'
-            ],
-            [
-                'id' => 'print',
-                'name' => 'Print'
-            ],
-            [
-                'id' => 'other',
-                'name' => 'Other'
-            ],
-        ];
 
-        if ($search) {
-            $films = Film::withTrashed()
-                ->with(['category', 'category.era', 'category.franchise'])
-                ->when($search, function ($query, $search) {
-                    $query->where(function ($query) use ($search) {
-                        $searchTerms = preg_split('/\s+/', $search, -1, PREG_SPLIT_NO_EMPTY);
-
-                        foreach ($searchTerms as $term) {
-                            $query->where(function ($q) use ($term) {
+        $films = Film::withTrashed()
+            ->with(['category', 'category.era', 'category.franchise'])
+            ->when($search, function ($query, $search) {
+                $searchTerms = preg_split('/\s+/', $search, -1, PREG_SPLIT_NO_EMPTY);
+                foreach ($searchTerms as $term) {
+                    $query->where(function ($q) use ($term) {
+                        $q->where('name', 'like', "%{$term}%")
+                            ->orWhere('img', 'like', "%{$term}%")
+                            ->orWhereHas('category', function ($q) use ($term) {
                                 $q->where('name', 'like', "%{$term}%")
-                                    ->orWhere('type', 'like', "%{$term}%")
-                                    ->orWhere('number', 'like', "%{$term}%")
-                                    ->orWhereHas('category', function ($q) use ($term) {
-                                        $q->where('name', 'like', "%{$term}%")
-                                            ->orWhereHas('era', function ($q) use ($term) {
-                                                $q->where('name', 'like', "%{$term}%");
-                                            })
-                                            ->orWhereHas('franchise', function ($q) use ($term) {
-                                                $q->where('name', 'like', "%{$term}%");
-                                            });
-                                    });
+                                    ->orWhereHas('era', fn($q) => $q->where('name', 'like', "%{$term}%"))
+                                    ->orWhereHas('franchise', fn($q) => $q->where('name', 'like', "%{$term}%"));
                             });
-                        }
                     });
-                })
-                ->paginate($validPerPage);
-        } else {
-            $films = Film::withTrashed()
-                ->with(['category', 'category.era', 'category.franchise'])
-                ->paginate($validPerPage);
-        }
+                }
+            })
+            ->when($categoryId, fn($query) => $query->where('category_id', $categoryId))
+            ->paginate($validPerPage);
 
-        return view("admin.film.index", compact('films', 'groupedCategories', 'categories', 'types', 'search', 'perPage'));
+        return view('admin.film.index', compact(
+            'films',
+            'groupedCategories',
+            'categories',
+            'categoryId',
+            'types',
+            'search',
+            'perPage'
+        ));
     }
 
     public function import(Request $request)
