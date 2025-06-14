@@ -41,11 +41,15 @@
                     <select name="category_id" class="form-select"
                         onchange="document.getElementById('filterForm').submit()">
                         <option value="">-- Filter Category --</option>
-                        @foreach ($categories as $category)
-                            <option value="{{ $category->id }}"
-                                {{ request('category_id') == $category->id ? 'selected' : '' }}>
-                                {{ $category->name }}
-                            </option>
+                        @foreach ($groupedCategories as $franchiseName => $categoriesGroup)
+                            <optgroup label="{{ $franchiseName }}">
+                                @foreach ($categoriesGroup as $category)
+                                    <option value="{{ old('category_id', $category->id) }}"
+                                        {{ request('category_id') == $category->id ? 'selected' : '' }}>
+                                        {{ $category->name }}
+                                    </option>
+                                @endforeach
+                            </optgroup>
                         @endforeach
                     </select>
                 </div>
