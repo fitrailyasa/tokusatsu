@@ -20,8 +20,8 @@ class CategoryResource extends JsonResource
             'slug' => $this->slug,
             'desc' => $this->desc,
             'img' => $this->img,
-            'era' => new EraResource($this->whenLoaded('era')),
-            'franchise' => new FranchiseResource($this->whenLoaded('franchise')),
+            // 'era' => new EraResource($this->whenLoaded('era')),
+            // 'franchise' => new FranchiseResource($this->whenLoaded('franchise')),
             'created_at' => $this->created_at->toDateTimeString(),
             'updated_at' => $this->updated_at->toDateTimeString(),
         ];

@@ -100,4 +100,36 @@ class DataApiController extends Controller
 
         return response()->json(['alert' => 'Berhasil Hapus Data!']);
     }
+
+    public function findByFranchiseCategory(Request $request, $franchise, $category)
+    {
+        $perPage = $request->query('per_page', 10);
+        $datas = Data::with(['category.franchise', 'tags'])
+            ->whereHas('category', function ($q) use ($category, $franchise) {
+                $q->where('slug', 'LIKE', "%{$category}%")
+                    ->whereHas('franchise', function ($q2) use ($franchise) {
+                        $q2->where('slug', 'LIKE', "%{$franchise}%");
+                    });
+            })
+            ->paginate($perPage);
+
+        if ($datas->isEmpty()) {
+            return response()->json([
+                'message' => 'No data found for the specified franchise and category'
+            ], 404);
+        }
+
+        return response()->json([
+            'message' => 'Data retrieved successfully',
+            'data' => DataResource::collection($datas),
+            'pagination' => [
+                'current_page' => $datas->currentPage(),
+                'total' => $datas->total(),
+                'per_page' => $datas->perPage(),
+                'last_page' => $datas->lastPage(),
+                'next_page_url' => $datas->nextPageUrl(),
+                'prev_page_url' => $datas->previousPageUrl(),
+            ]
+        ], 200);
+    }
 }

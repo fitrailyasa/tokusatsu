@@ -91,4 +91,64 @@ class CategoryApiController extends Controller
 
         return response()->json(['alert' => 'Berhasil Hapus Category!']);
     }
+
+    public function findByEra(Request $request, $era)
+    {
+        $perPage = $request->query('per_page', 10);
+
+        $categories = Category::with('era', 'franchise')
+            ->whereHas('era', function ($query) use ($era) {
+                $query->where('slug', $era);
+            })
+            ->paginate($perPage);
+
+        if ($categories->isEmpty()) {
+            return response()->json([
+                'message' => 'No categories found for the specified era'
+            ], 404);
+        }
+
+        return response()->json([
+            'message' => 'Categories retrieved successfully',
+            'data' => CategoryResource::collection($categories),
+            'pagination' => [
+                'current_page' => $categories->currentPage(),
+                'total' => $categories->total(),
+                'per_page' => $categories->perPage(),
+                'last_page' => $categories->lastPage(),
+                'next_page_url' => $categories->nextPageUrl(),
+                'prev_page_url' => $categories->previousPageUrl(),
+            ]
+        ], 200);
+    }
+
+    public function findByFranchise(Request $request, $franchise)
+    {
+        $perPage = $request->query('per_page', 10);
+
+        $categories = Category::with('era', 'franchise')
+            ->whereHas('franchise', function ($query) use ($franchise) {
+                $query->where('slug', $franchise);
+            })
+            ->paginate($perPage);
+
+        if ($categories->isEmpty()) {
+            return response()->json([
+                'message' => 'No categories found for the specified franchise'
+            ], 404);
+        }
+
+        return response()->json([
+            'message' => 'Categories retrieved successfully',
+            'data' => CategoryResource::collection($categories),
+            'pagination' => [
+                'current_page' => $categories->currentPage(),
+                'total' => $categories->total(),
+                'per_page' => $categories->perPage(),
+                'last_page' => $categories->lastPage(),
+                'next_page_url' => $categories->nextPageUrl(),
+                'prev_page_url' => $categories->previousPageUrl(),
+            ]
+        ], 200);
+    }
 }
