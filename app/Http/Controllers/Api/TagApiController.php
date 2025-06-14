@@ -75,4 +75,20 @@ class TagApiController extends Controller
 
         return response()->json(['alert' => 'Berhasil Hapus Tag!']);
     }
+
+    public function all()
+    {
+        $tags = Tag::all();
+
+        if ($tags->isEmpty()) {
+            return response()->json([
+                'message' => 'No tags found',
+            ], 404);
+        }
+
+        return response()->json([
+            'message' => 'All tags retrieved successfully',
+            'data' => TagResource::collection($tags)
+        ], 200);
+    }
 }

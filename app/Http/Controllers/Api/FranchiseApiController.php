@@ -92,4 +92,20 @@ class FranchiseApiController extends Controller
 
         return response()->json(['alert' => 'Berhasil Hapus Franchise!']);
     }
+
+    public function all()
+    {
+        $franchises = Franchise::all();
+
+        if ($franchises->isEmpty()) {
+            return response()->json([
+                'message' => 'No franchises found',
+            ], 404);
+        }
+
+        return response()->json([
+            'message' => 'All franchises retrieved successfully',
+            'data' => FranchiseResource::collection($franchises)
+        ], 200);
+    }
 }

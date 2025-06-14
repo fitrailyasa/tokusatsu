@@ -21,8 +21,8 @@ class FilmResource extends JsonResource
             // 'category' => $this->whenLoaded('category', function () {
             //     return new CategoryResource($this->category);
             // }),
-            'created_at' => $this->created_at->toDateTimeString(),
-            'updated_at' => $this->updated_at->toDateTimeString(),
+            'created_at' => $this->created_at?->toDateTimeString(),
+            'updated_at' => $this->updated_at?->toDateTimeString(),
         ];
     }
 }

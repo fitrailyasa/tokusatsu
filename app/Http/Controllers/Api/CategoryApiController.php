@@ -151,4 +151,20 @@ class CategoryApiController extends Controller
             ]
         ], 200);
     }
+
+    public function all()
+    {
+        $categories = Category::with('franchise', 'era')->get();
+
+        if ($categories->isEmpty()) {
+            return response()->json([
+                'message' => 'No categories found',
+            ], 404);
+        }
+
+        return response()->json([
+            'message' => 'All categories retrieved successfully',
+            'data' => CategoryResource::collection($categories)
+        ], 200);
+    }
 }

@@ -22,8 +22,8 @@ class CategoryResource extends JsonResource
             'img' => $this->img,
             // 'era' => new EraResource($this->whenLoaded('era')),
             // 'franchise' => new FranchiseResource($this->whenLoaded('franchise')),
-            'created_at' => $this->created_at->toDateTimeString(),
-            'updated_at' => $this->updated_at->toDateTimeString(),
+            'created_at' => $this->created_at?->toDateTimeString(),
+            'updated_at' => $this->updated_at?->toDateTimeString(),
         ];
     }
 }

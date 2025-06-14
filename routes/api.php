@@ -14,21 +14,24 @@ Route::post('/login', [LoginApiController::class, 'loginApi'])->name('loginApi')
 
 // API
 Route::resource('/', DataApiController::class, ['only', ['index']]);
-Route::get('/{franchise}/{category}', [DataApiController::class, 'findByFranchiseCategory']);
 
 // ERA API
 Route::resource('/eras', EraApiController::class, ['only', ['index', 'store', 'show', 'edit', 'update', 'destroy']]);
+Route::get('/era/all', [EraApiController::class, 'all']);
 
 // FRANCHISE API
 Route::resource('/franchises', FranchiseApiController::class, ['only', ['index', 'store', 'show', 'edit', 'update', 'destroy']]);
+Route::get('/franchise/all', [FranchiseApiController::class, 'all']);
 
 // CATEGORY API
 Route::resource('/categories', CategoryApiController::class, ['only', ['index', 'store', 'show', 'edit', 'update', 'destroy']]);
+Route::get('/category/all', [CategoryApiController::class, 'all']);
 Route::get('/categories/era/{era}', [CategoryApiController::class, 'findByEra']);
 Route::get('/categories/franchise/{franchise}', [CategoryApiController::class, 'findByFranchise']);
 
 // TAG API
 Route::resource('/tags', TagApiController::class, ['only', ['index', 'store', 'show', 'edit', 'update', 'destroy']]);
+Route::get('/tag/all', [TagApiController::class, 'all']);
 
 // DATA API
 Route::resource('/datas', DataApiController::class, ['only', ['index', 'store', 'show', 'edit', 'update', 'destroy']]);

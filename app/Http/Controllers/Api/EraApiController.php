@@ -92,4 +92,20 @@ class EraApiController extends Controller
 
         return response()->json(['alert' => 'Berhasil Hapus Era!']);
     }
+
+    public function all()
+    {
+        $eras = Era::all();
+
+        if ($eras->isEmpty()) {
+            return response()->json([
+                'message' => 'No eras found',
+            ], 404);
+        }
+
+        return response()->json([
+            'message' => 'All eras retrieved successfully',
+            'data' => EraResource::collection($eras)
+        ], 200);
+    }
 }
