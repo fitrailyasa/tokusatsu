@@ -71,19 +71,20 @@
                         </div>
                     </div>
                     <div class="row mt-3">
-                        <div class="form-group" id="tags">
-                            <label for="tag">{{ __('Tag') }}</label>
-                            <div class="tags-container">
+                        <div class="col-md-12">
+                            <label class="form-label">{{ __('Tag') }}</label>
+                            <div class="btn-group d-flex flex-wrap" role="group" aria-label="Tags">
                                 @foreach ($tags as $tag)
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="tags[]"
-                                            value="{{ old('tags[]', $tag->id) }}" id="tag{{ $tag->id }}">
-                                        <label class="form-check-label" for="tag{{ $tag->id }}">
-                                            {{ $tag->name }}
-                                        </label>
-                                    </div>
+                                    <input type="checkbox" class="btn-check" name="tags[]" value="{{ $tag->id }}"
+                                        id="tag{{ $tag->id }}" autocomplete="off"
+                                        {{ is_array(old('tags')) && in_array($tag->id, old('tags')) ? 'checked' : '' }}>
+                                    <label class="btn btn-outline-primary m-1"
+                                        for="tag{{ $tag->id }}">{{ $tag->name }}</label>
                                 @endforeach
                             </div>
+                            @error('tags')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                 </div>

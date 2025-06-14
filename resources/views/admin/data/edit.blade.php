@@ -80,20 +80,30 @@
                         </div>
                     </div>
                     <div class="row mt-3">
-                        <div class="form-group" id="tags">
-                            <label for="tag">{{ __('Tag') }}</label>
-                            <div class="tags-container">
+                        <div class="col-md-12">
+                            <label class="form-label">{{ __('Tag') }}</label>
+                            <div class="btn-group d-flex flex-wrap" role="group" aria-label="Tags">
                                 @foreach ($tags as $tag)
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="tags[]"
-                                            value="{{ old('tags[]', $tag->id) }}" id="tag{{ $tag->id }}"
-                                            {{ in_array($tag->id, $data->tags->pluck('id')->toArray()) ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="tag{{ $tag->id }}">
-                                            {{ $tag->name }}
-                                        </label>
-                                    </div>
+                                    @php
+                                        $checked = false;
+                                        if (is_array(old('tags'))) {
+                                            $checked = in_array($tag->id, old('tags'));
+                                        } else {
+                                            $checked = $data->tags->contains($tag->id); // Gunakan relasi tag
+                                        }
+                                    @endphp
+
+                                    <input type="checkbox" class="btn-check" name="tags[]" value="{{ $tag->id }}"
+                                        id="edit-tag{{ $data->id }}-{{ $tag->id }}" autocomplete="off"
+                                        {{ $checked ? 'checked' : '' }}>
+
+                                    <label class="btn btn-outline-primary m-1"
+                                        for="edit-tag{{ $data->id }}-{{ $tag->id }}">{{ $tag->name }}</label>
                                 @endforeach
                             </div>
+                            @error('tags')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                 </div>
