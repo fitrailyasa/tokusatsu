@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\CategoryApiController;
 use App\Http\Controllers\Api\TagApiController;
 use App\Http\Controllers\Api\DataApiController;
 use App\Http\Controllers\Api\FilmApiController;
+use App\Http\Controllers\Api\AddressApiController;
 
 Route::post('/login', [LoginApiController::class, 'loginApi'])->name('loginApi');
 
@@ -41,6 +42,19 @@ Route::get('/datas/{franchise}/{category}', [DataApiController::class, 'findByFr
 Route::resource('/films', FilmApiController::class, ['only', ['index', 'store', 'show', 'edit', 'update', 'destroy']]);
 Route::get('/films/{franchise}/{category}', [FilmApiController::class, 'findByFranchiseCategory']);
 Route::get('/films/{franchise}/{category}/{number}', [FilmApiController::class, 'findByFranchiseCategoryNumber']);
+
+// ALL ADDRESS
+Route::get('provinces', [AddressApiController::class, 'getProvinces']);
+Route::get('regencies/{province_id}', [AddressApiController::class, 'getRegencies']);
+Route::get('districts/{regency_id}', [AddressApiController::class, 'getDistricts']);
+Route::get('villages/{district_id}', [AddressApiController::class, 'getVillages']);
+Route::get('address/{id}', [AddressApiController::class, 'getVillageCoords']);
+
+// ADDRESS
+Route::get('province/{id}', [AddressApiController::class, 'getProvince']);
+Route::get('regency/{id}', [AddressApiController::class, 'getRegency']);
+Route::get('district/{id}', [AddressApiController::class, 'getDistrict']);
+Route::get('village/{id}', [AddressApiController::class, 'getVillage']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/logout', [LoginApiController::class, 'logout']);
