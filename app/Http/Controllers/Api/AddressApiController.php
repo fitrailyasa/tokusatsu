@@ -40,9 +40,9 @@ class AddressApiController extends Controller
     }
 
     // Get coordinates of a village
-    public function getVillageCoords($id): JsonResponse
+    public function getVillageCoords($village_id): JsonResponse
     {
-        $village = AddressVillage::find($id);
+        $village = AddressVillage::find($village_id);
 
         if (!$village || !$village->latitude || !$village->longitude) {
             return $this->successResponse(['lat' => null, 'lng' => null]);

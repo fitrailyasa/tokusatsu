@@ -48,7 +48,7 @@ Route::get('provinces', [AddressApiController::class, 'getProvinces']);
 Route::get('regencies/{province_id}', [AddressApiController::class, 'getRegencies']);
 Route::get('districts/{regency_id}', [AddressApiController::class, 'getDistricts']);
 Route::get('villages/{district_id}', [AddressApiController::class, 'getVillages']);
-Route::get('address/{id}', [AddressApiController::class, 'getVillageCoords']);
+Route::get('address/{village_id}', [AddressApiController::class, 'getVillageCoords']);
 
 // ADDRESS
 Route::get('province/{id}', [AddressApiController::class, 'getProvince']);
