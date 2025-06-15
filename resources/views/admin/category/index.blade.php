@@ -29,7 +29,7 @@
     <!-- Button Export PDF -->
     <x-slot name="exportPDF">
         @can('export-category')
-            @include('admin.category.pdf.excel.export')
+            @include('admin.category.pdf.export')
         @endcan
     </x-slot>
 
