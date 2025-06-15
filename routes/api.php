@@ -27,8 +27,8 @@ Route::get('/franchise/all', [FranchiseApiController::class, 'all']);
 // CATEGORY API
 Route::resource('/categories', CategoryApiController::class, ['only', ['index', 'store', 'show', 'edit', 'update', 'destroy']]);
 Route::get('/category/all', [CategoryApiController::class, 'all']);
-Route::get('/categories/era/{era}', [CategoryApiController::class, 'findByEra']);
-Route::get('/categories/franchise/{franchise}', [CategoryApiController::class, 'findByFranchise']);
+Route::get('/category/era/{era}', [CategoryApiController::class, 'findByEra']);
+Route::get('/category/franchise/{franchise}', [CategoryApiController::class, 'findByFranchise']);
 
 // TAG API
 Route::resource('/tags', TagApiController::class, ['only', ['index', 'store', 'show', 'edit', 'update', 'destroy']]);
@@ -36,12 +36,12 @@ Route::get('/tag/all', [TagApiController::class, 'all']);
 
 // DATA API
 Route::resource('/datas', DataApiController::class, ['only', ['index', 'store', 'show', 'edit', 'update', 'destroy']]);
-Route::get('/datas/{franchise}/{category}', [DataApiController::class, 'findByFranchiseCategory']);
+Route::get('/data/{franchise}/{category}', [DataApiController::class, 'findByFranchiseCategory']);
 
 // FILM API
 Route::resource('/films', FilmApiController::class, ['only', ['index', 'store', 'show', 'edit', 'update', 'destroy']]);
-Route::get('/films/{franchise}/{category}', [FilmApiController::class, 'findByFranchiseCategory']);
-Route::get('/films/{franchise}/{category}/{number}', [FilmApiController::class, 'findByFranchiseCategoryNumber']);
+Route::get('/film/{franchise}/{category}', [FilmApiController::class, 'findByFranchiseCategory']);
+Route::get('/film/{franchise}/{category}/{number}', [FilmApiController::class, 'findByFranchiseCategoryNumber']);
 
 // ALL ADDRESS
 Route::get('provinces', [AddressApiController::class, 'getProvinces']);
