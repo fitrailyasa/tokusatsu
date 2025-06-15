@@ -170,5 +170,5 @@ Route::get('/{franchise}/{category}', [HomeController::class, 'show'])->name('be
 Route::get('/film/{franchise}/{category}', [ClientFilmController::class, 'show'])->name('film.show');
 Route::get('/film/{franchise}/{category}/{type}/{number}', [ClientFilmController::class, 'watch'])->name('film.watch');
 
-Route::get('/address', [AddressController::class, 'index'])->name('address.index');
-Route::post('/address', [AddressController::class, 'store'])->name('address.store');
+// Route::get('/address', [AddressController::class, 'index'])->name('address.index');
+// Route::post('/address', [AddressController::class, 'store'])->name('address.store');
