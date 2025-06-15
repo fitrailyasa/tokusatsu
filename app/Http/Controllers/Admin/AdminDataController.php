@@ -11,7 +11,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\DataImport;
 use App\Exports\DataExport;
 use App\Http\Requests\DataRequest;
-use Barryvdh\DomPDF\Facade\PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class AdminDataController extends Controller
 {
@@ -98,7 +98,7 @@ class AdminDataController extends Controller
     public function exportPDF()
     {
         $datas = Data::withTrashed()->get();
-        $pdf = PDF::loadView('admin.data.pdf.template', compact('datas'));
+        $pdf = Pdf::loadView('admin.data.pdf.template', compact('datas'));
 
         return $pdf->download('Data.pdf');
     }

@@ -9,7 +9,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\TagImport;
 use App\Exports\TagExport;
 use App\Http\Requests\TagRequest;
-use Barryvdh\DomPDF\Facade\PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class AdminTagController extends Controller
 {
@@ -70,7 +70,7 @@ class AdminTagController extends Controller
     public function exportPDF()
     {
         $tags = Tag::withTrashed()->get();
-        $pdf = PDF::loadView('admin.tag.pdf.template', compact('tags'));
+        $pdf = Pdf::loadView('admin.tag.pdf.template', compact('tags'));
 
         return $pdf->download('Data Tag.pdf');
     }

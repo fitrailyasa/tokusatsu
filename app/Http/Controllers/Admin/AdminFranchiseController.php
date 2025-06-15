@@ -9,7 +9,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\FranchiseImport;
 use App\Exports\FranchiseExport;
 use App\Http\Requests\FranchiseRequest;
-use Barryvdh\DomPDF\Facade\PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class AdminFranchiseController extends Controller
 {
@@ -72,7 +72,7 @@ class AdminFranchiseController extends Controller
     public function exportPDF()
     {
         $franchises = Franchise::withTrashed()->get();
-        $pdf = PDF::loadView('admin.franchise.pdf.template', compact('franchises'));
+        $pdf = Pdf::loadView('admin.franchise.pdf.template', compact('franchises'));
 
         return $pdf->download('Data Franchise.pdf');
     }

@@ -10,7 +10,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\FilmImport;
 use App\Exports\FilmExport;
 use App\Http\Requests\FilmRequest;
-use Barryvdh\DomPDF\Facade\PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class AdminFilmController extends Controller
 {
@@ -110,7 +110,7 @@ class AdminFilmController extends Controller
     public function exportPDF()
     {
         $films = Film::all();
-        $pdf = PDF::loadView('admin.film.pdf.template', compact('films'));
+        $pdf = Pdf::loadView('admin.film.pdf.template', compact('films'));
 
         return $pdf->download('Data Film.pdf');
     }

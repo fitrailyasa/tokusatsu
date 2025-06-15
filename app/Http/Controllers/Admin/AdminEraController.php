@@ -9,7 +9,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\EraImport;
 use App\Exports\EraExport;
 use App\Http\Requests\EraRequest;
-use Barryvdh\DomPDF\Facade\PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class AdminEraController extends Controller
 {
@@ -72,7 +72,7 @@ class AdminEraController extends Controller
     public function exportPDF()
     {
         $eras = Era::all();
-        $pdf = PDF::loadview('admin.era.pdf.template', compact('eras'));
+        $pdf = Pdf::loadView('admin.era.pdf.template', compact('eras'));
 
         return $pdf->download('Data Era.pdf');
     }

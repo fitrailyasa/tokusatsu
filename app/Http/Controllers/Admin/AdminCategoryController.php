@@ -11,7 +11,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\CategoryImport;
 use App\Exports\CategoryExport;
 use App\Http\Requests\CategoryRequest;
-use Barryvdh\DomPDF\Facade\PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class AdminCategoryController extends Controller
 {
@@ -90,7 +90,7 @@ class AdminCategoryController extends Controller
     public function exportPDF()
     {
         $categories = Category::withTrashed()->get();
-        $pdf = PDF::loadView('admin.category.pdf.template', compact('categories'));
+        $pdf = Pdf::loadView('admin.category.pdf.template', compact('categories'));
 
         return $pdf->download('Data Category.pdf');
     }
