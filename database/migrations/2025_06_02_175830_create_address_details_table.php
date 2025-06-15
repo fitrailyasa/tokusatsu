@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('address_details', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->decimal('latitude', 10, 7)->nullable();
+            $table->decimal('longitude', 10, 7)->nullable();
             $table->foreignId('village_id')->constrained('address_villages');
             $table->timestamps();
         });

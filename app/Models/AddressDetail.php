@@ -10,7 +10,7 @@ class AddressDetail extends Model
     use HasFactory;
 
     protected $table = 'address_details';
-    protected $fillable = ['name', 'village_id'];
+    protected $fillable = ['name', 'latitude', 'longitude', 'village_id'];
 
     public function village()
     {
