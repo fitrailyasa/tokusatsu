@@ -1440,11 +1440,22 @@ class DataSeeder extends Seeder
             ];
         }
 
+        for ($i = 1; $i <= 20; $i++) {
+            $datas[] = [
+                // 'id' => Str::uuid(),
+                'name' => "Ultraman Mebius ($i)",
+                'img' => "Ultraman/Era Heisei/7. Ultraman Mebius/Ultraman Mebius ($i).jpg",
+                'category_id' => $this->Category('Mebius'),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ];
+        }
+
         for ($i = 1; $i <= 30; $i++) {
             $datas[] = [
                 // 'id' => Str::uuid(),
                 'name' => "Ultraman Zero ($i)",
-                'img' => "Ultraman/Era Heisei/7. Ultraman Zero/Ultraman Zero ($i).jpg",
+                'img' => "Ultraman/Era Heisei/8. Ultraman Zero/Ultraman Zero ($i).jpg",
                 'category_id' => $this->Category('Zero'),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
@@ -1455,7 +1466,7 @@ class DataSeeder extends Seeder
             $datas[] = [
                 // 'id' => Str::uuid(),
                 'name' => "Ultraman Ginga ($i)",
-                'img' => "Ultraman/Era Heisei/8. Ultraman Ginga/Ultraman Ginga ($i).jpg",
+                'img' => "Ultraman/Era Heisei/9. Ultraman Ginga/Ultraman Ginga ($i).jpg",
                 'category_id' => $this->Category('Ginga'),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
@@ -1466,7 +1477,7 @@ class DataSeeder extends Seeder
             $datas[] = [
                 // 'id' => Str::uuid(),
                 'name' => "Ultraman Ginga S ($i)",
-                'img' => "Ultraman/Era Heisei/9. Ultraman Ginga S/Ultraman Ginga S ($i).jpg",
+                'img' => "Ultraman/Era Heisei/10. Ultraman Ginga S/Ultraman Ginga S ($i).jpg",
                 'category_id' => $this->Category('Ginga S'),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
@@ -1477,7 +1488,7 @@ class DataSeeder extends Seeder
             $datas[] = [
                 // 'id' => Str::uuid(),
                 'name' => "Ultraman X ($i)",
-                'img' => "Ultraman/Era Heisei/10. Ultraman X/Ultraman X ($i).jpg",
+                'img' => "Ultraman/Era Heisei/11. Ultraman X/Ultraman X ($i).jpg",
                 'category_id' => $this->Category('X'),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
@@ -1488,7 +1499,7 @@ class DataSeeder extends Seeder
             $datas[] = [
                 // 'id' => Str::uuid(),
                 'name' => "Ultraman Orb ($i)",
-                'img' => "Ultraman/Era Heisei/11. Ultraman Orb/Ultraman Orb ($i).jpg",
+                'img' => "Ultraman/Era Heisei/12. Ultraman Orb/Ultraman Orb ($i).jpg",
                 'category_id' => $this->Category('Orb'),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
@@ -1499,7 +1510,7 @@ class DataSeeder extends Seeder
             $datas[] = [
                 // 'id' => Str::uuid(),
                 'name' => "Ultraman Geed ($i)",
-                'img' => "Ultraman/Era Heisei/12. Ultraman Geed/Ultraman Geed ($i).jpg",
+                'img' => "Ultraman/Era Heisei/13. Ultraman Geed/Ultraman Geed ($i).jpg",
                 'category_id' => $this->Category('Geed'),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
@@ -1510,7 +1521,7 @@ class DataSeeder extends Seeder
             $datas[] = [
                 // 'id' => Str::uuid(),
                 'name' => "Ultraman RB ($i)",
-                'img' => "Ultraman/Era Heisei/13. Ultraman RB/Ultraman RB ($i).jpg",
+                'img' => "Ultraman/Era Heisei/14. Ultraman RB/Ultraman RB ($i).jpg",
                 'category_id' => $this->Category('R/B'),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
