@@ -29,7 +29,7 @@
     <!-- Button Export PDF -->
     <x-slot name="exportPDF">
         @can('export-film')
-            @include('admin.film.pdf.export')
+            {{-- @include('admin.film.pdf.export') --}}
         @endcan
     </x-slot>
 
