@@ -1,15 +1,15 @@
 <!-- Tombol untuk membuka modal -->
-<button role="button" class="btn btn-sm m-1 btn-secondary" data-bs-toggle="modal" data-bs-target=".formImport"><i
+<button role="button" class="btn btn-sm m-1 btn-success" data-bs-toggle="modal" data-bs-target=".formImport"><i
         class="fas fa-upload"></i> <span class="d-none d-sm-inline">{{ __('Upload') }}</span></button>
 
 <!-- Modal -->
 <div class="modal fade formImport" tabindex="-1" role="dialog" aria-labelledby="modalFormLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form method="POST" action="{{ route('admin.tag.import') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('admin.data.import') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalFormLabel">{{ __('Upload Tag') }}</h5>
+                    <h5 class="modal-title" id="modalFormLabel">{{ __('Upload Data') }}</h5>
                     <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -30,8 +30,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <a class="btn btn-success" href="{{ asset('assets/template/tag-template.xlsx') }}"
-                        download="tag-template.xlsx">{{ __('Download Format') }}</a>
+                    <a class="btn btn-success" href="{{ asset('assets/template/data-template.xlsx') }}"
+                        download="data-template.xlsx">{{ __('Download Format') }}</a>
                     <button type="submit" class="btn btn-primary">{{ __('Simpan') }}</button>
                 </div>
             </form>

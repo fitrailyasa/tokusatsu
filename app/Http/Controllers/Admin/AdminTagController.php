@@ -9,6 +9,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\TagImport;
 use App\Exports\TagExport;
 use App\Http\Requests\TagRequest;
+use Barryvdh\DomPDF\Facade\PDF;
 
 class AdminTagController extends Controller
 {
@@ -61,9 +62,17 @@ class AdminTagController extends Controller
         return back()->with('message', 'Berhasil Import Data Tag!');
     }
 
-    public function export()
+    public function exportExcel()
     {
         return Excel::download(new TagExport, 'Data Tag.xlsx');
+    }
+
+    public function exportPDF()
+    {
+        $tags = Tag::withTrashed()->get();
+        $pdf = PDF::loadView('admin.tag.pdf.template', compact('tags'));
+
+        return $pdf->download('Data Tag.pdf');
     }
 
     public function store(TagRequest $request)

@@ -5,12 +5,12 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Film;
 use App\Models\Category;
-use App\Models\Tag;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\FilmImport;
 use App\Exports\FilmExport;
 use App\Http\Requests\FilmRequest;
+use Barryvdh\DomPDF\Facade\PDF;
 
 class AdminFilmController extends Controller
 {
@@ -102,9 +102,17 @@ class AdminFilmController extends Controller
         return back()->with('message', 'Berhasil Import Film!');
     }
 
-    public function export()
+    public function exportExcel()
     {
-        return Excel::download(new FilmExport, 'Film.xlsx');
+        return Excel::download(new FilmExport, 'Data Film.xlsx');
+    }
+
+    public function exportPDF()
+    {
+        $films = Film::all();
+        $pdf = PDF::loadView('admin.film.pdf.template', compact('films'));
+
+        return $pdf->download('Data Film.pdf');
     }
 
     public function store(FilmRequest $request)

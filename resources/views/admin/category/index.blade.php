@@ -15,14 +15,21 @@
     <!-- Button Import -->
     <x-slot name="import">
         @can('import-category')
-            @include('admin.category.import')
+            @include('admin.category.excel.import')
         @endcan
     </x-slot>
 
-    <!-- Button Export -->
-    <x-slot name="export">
+    <!-- Button Export Excel -->
+    <x-slot name="exportExcel">
         @can('export-category')
-            @include('admin.category.export')
+            @include('admin.category.excel.export')
+        @endcan
+    </x-slot>
+
+    <!-- Button Export PDF -->
+    <x-slot name="exportPDF">
+        @can('export-category')
+            @include('admin.category.pdf.excel.export')
         @endcan
     </x-slot>
 

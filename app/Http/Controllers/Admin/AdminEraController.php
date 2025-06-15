@@ -9,6 +9,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\EraImport;
 use App\Exports\EraExport;
 use App\Http\Requests\EraRequest;
+use Barryvdh\DomPDF\Facade\PDF;
 
 class AdminEraController extends Controller
 {
@@ -63,9 +64,17 @@ class AdminEraController extends Controller
         return back()->with('message', 'Berhasil Import Data Era!');
     }
 
-    public function export()
+    public function exportExcel()
     {
         return Excel::download(new EraExport, 'Data Era.xlsx');
+    }
+
+    public function exportPDF()
+    {
+        $eras = Era::all();
+        $pdf = PDF::loadview('admin.era.pdf.template', compact('eras'));
+
+        return $pdf->download('Data Era.pdf');
     }
 
     public function store(EraRequest $request)

@@ -26,7 +26,9 @@
 
                     {{ $import ?? '' }}
 
-                    {{ $export ?? '' }}
+                    {{ $exportExcel ?? '' }}
+
+                    {{ $exportPDF ?? '' }}
 
                     {{ $softDeleteAll ?? '' }}
 

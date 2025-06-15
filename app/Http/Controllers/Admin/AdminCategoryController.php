@@ -11,6 +11,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\CategoryImport;
 use App\Exports\CategoryExport;
 use App\Http\Requests\CategoryRequest;
+use Barryvdh\DomPDF\Facade\PDF;
 
 class AdminCategoryController extends Controller
 {
@@ -81,9 +82,17 @@ class AdminCategoryController extends Controller
         return back()->with('message', 'Berhasil Import Data Category!');
     }
 
-    public function export()
+    public function exportExcel()
     {
         return Excel::download(new CategoryExport, 'Data Category.xlsx');
+    }
+
+    public function exportPDF()
+    {
+        $categories = Category::withTrashed()->get();
+        $pdf = PDF::loadView('admin.category.pdf.template', compact('categories'));
+
+        return $pdf->download('Data Category.pdf');
     }
 
     public function store(CategoryRequest $request)

@@ -1,5 +1,5 @@
 <!-- Tombol untuk membuka modal -->
-<button role="button" class="btn btn-sm m-1 btn-secondary" data-bs-toggle="modal" data-bs-target=".formImport"><i
+<button role="button" class="btn btn-sm m-1 btn-success" data-bs-toggle="modal" data-bs-target=".formImport"><i
         class="fas fa-upload"></i> <span class="d-none d-sm-inline">{{ __('Upload') }}</span></button>
 
 <!-- Modal -->

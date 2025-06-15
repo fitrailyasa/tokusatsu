@@ -15,14 +15,21 @@
     <!-- Button Import -->
     <x-slot name="import">
         @can('import-era')
-            @include('admin.era.import')
+            @include('admin.era.excel.import')
         @endcan
     </x-slot>
 
-    <!-- Button Export -->
-    <x-slot name="export">
+    <!-- Button Export Excel -->
+    <x-slot name="exportExcel">
         @can('export-era')
-            @include('admin.era.export')
+            @include('admin.era.excel.export')
+        @endcan
+    </x-slot>
+
+    <!-- Button Export PDF -->
+    <x-slot name="exportPDF">
+        @can('export-era')
+            @include('admin.era.pdf.export')
         @endcan
     </x-slot>
 

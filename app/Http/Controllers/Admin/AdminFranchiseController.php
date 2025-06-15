@@ -9,6 +9,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\FranchiseImport;
 use App\Exports\FranchiseExport;
 use App\Http\Requests\FranchiseRequest;
+use Barryvdh\DomPDF\Facade\PDF;
 
 class AdminFranchiseController extends Controller
 {
@@ -63,9 +64,17 @@ class AdminFranchiseController extends Controller
         return back()->with('message', 'Berhasil Import Data Franchise!');
     }
 
-    public function export()
+    public function exportExcel()
     {
         return Excel::download(new FranchiseExport, 'Data Franchise.xlsx');
+    }
+
+    public function exportPDF()
+    {
+        $franchises = Franchise::withTrashed()->get();
+        $pdf = PDF::loadView('admin.franchise.pdf.template', compact('franchises'));
+
+        return $pdf->download('Data Franchise.pdf');
     }
 
     public function store(FranchiseRequest $request)
