@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\AdminFilmController;
 use App\Http\Controllers\Auth\ProviderController;
 use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\MidtransController;
+use App\Http\Controllers\AddressController;
 use App\Http\Controllers\Client\ClientFranchiseController;
 use App\Http\Controllers\Client\ClientEraController;
 use App\Http\Controllers\Client\ClientCategoryController;
@@ -84,7 +85,8 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/era/{id}/update', [AdminEraController::class, 'update'])->name('era.update');
     Route::delete('/era/{id}/destroy', [AdminEraController::class, 'destroy'])->name('era.destroy');
     Route::post('/era/import', [AdminEraController::class, 'import'])->name('era.import');
-    Route::get('/era/export', [AdminEraController::class, 'export'])->name('era.export');
+    Route::get('/era/exportExcel', [AdminEraController::class, 'exportExcel'])->name('era.exportExcel');
+    Route::get('/era/exportPDF', [AdminEraController::class, 'exportPDF'])->name('era.exportPDF');
     Route::delete('/era/destroyAll', [AdminEraController::class, 'destroyAll'])->name('era.destroyAll');
     Route::delete('/era/{id}/softDelete', [AdminEraController::class, 'softDelete'])->name('era.softDelete');
     Route::delete('/era/softDeleteAll', [AdminEraController::class, 'softDeleteAll'])->name('era.softDeleteAll');
@@ -97,7 +99,8 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/franchise/{id}/update', [AdminFranchiseController::class, 'update'])->name('franchise.update');
     Route::delete('/franchise/{id}/destroy', [AdminFranchiseController::class, 'destroy'])->name('franchise.destroy');
     Route::post('/franchise/import', [AdminFranchiseController::class, 'import'])->name('franchise.import');
-    Route::get('/franchise/export', [AdminFranchiseController::class, 'export'])->name('franchise.export');
+    Route::get('/franchise/exportExcel', [AdminFranchiseController::class, 'exportExcel'])->name('franchise.exportExcel');
+    Route::get('/franchise/exportPDF', [AdminFranchiseController::class, 'exportPDF'])->name('franchise.exportPDF'); 
     Route::delete('/franchise/destroyAll', [AdminFranchiseController::class, 'destroyAll'])->name('franchise.destroyAll');
     Route::delete('/franchise/{id}/softDelete', [AdminFranchiseController::class, 'softDelete'])->name('franchise.softDelete');
     Route::delete('/franchise/softDeleteAll', [AdminFranchiseController::class, 'softDeleteAll'])->name('franchise.softDeleteAll');
@@ -110,7 +113,8 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/category/{id}/update', [AdminCategoryController::class, 'update'])->name('category.update');
     Route::delete('/category/{id}/destroy', [AdminCategoryController::class, 'destroy'])->name('category.destroy');
     Route::post('/category/import', [AdminCategoryController::class, 'import'])->name('category.import');
-    Route::get('/category/export', [AdminCategoryController::class, 'export'])->name('category.export');
+    Route::get('/category/exportExcel', [AdminCategoryController::class, 'exportExcel'])->name('category.exportExcel');
+    Route::get('/category/exportPDF', [AdminCategoryController::class, 'exportPDF'])->name('category.exportPDF');
     Route::delete('/category/destroyAll', [AdminCategoryController::class, 'destroyAll'])->name('category.destroyAll');
     Route::delete('/category/{id}/softDelete', [AdminCategoryController::class, 'softDelete'])->name('category.softDelete');
     Route::delete('/category/softDeleteAll', [AdminCategoryController::class, 'softDeleteAll'])->name('category.softDeleteAll');
@@ -123,7 +127,8 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/tag/{id}/update', [AdminTagController::class, 'update'])->name('tag.update');
     Route::delete('/tag/{id}/destroy', [AdminTagController::class, 'destroy'])->name('tag.destroy');
     Route::post('/tag/import', [AdminTagController::class, 'import'])->name('tag.import');
-    Route::get('/tag/export', [AdminTagController::class, 'export'])->name('tag.export');
+    Route::get('/tag/exportExcel', [AdminTagController::class, 'exportExcel'])->name('tag.exportExcel');
+    Route::get('/tag/exportPDF', [AdminTagController::class, 'exportPDF'])->name('tag.exportPDF');
     Route::delete('/tag/destroyAll', [AdminTagController::class, 'destroyAll'])->name('tag.destroyAll');
     Route::delete('/tag/{id}/softDelete', [AdminTagController::class, 'softDelete'])->name('tag.softDelete');
     Route::delete('/tag/softDeleteAll', [AdminTagController::class, 'softDeleteAll'])->name('tag.softDeleteAll');
@@ -136,7 +141,8 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/data/{id}/update', [AdminDataController::class, 'update'])->name('data.update');
     Route::delete('/data/{id}/destroy', [AdminDataController::class, 'destroy'])->name('data.destroy');
     Route::post('/data/import', [AdminDataController::class, 'import'])->name('data.import');
-    Route::get('/data/export', [AdminDataController::class, 'export'])->name('data.export');
+    Route::get('/data/exportExcel', [AdminDataController::class, 'exportExcel'])->name('data.exportExcel');
+    Route::get('/data/exportPDF', [AdminDataController::class, 'exportPDF'])->name('data.exportPDF');
     Route::delete('/data/destroyAll', [AdminDataController::class, 'destroyAll'])->name('data.destroyAll');
     Route::delete('/data/{id}/softDelete', [AdminDataController::class, 'softDelete'])->name('data.softDelete');
     Route::delete('/data/softDeleteAll', [AdminDataController::class, 'softDeleteAll'])->name('data.softDeleteAll');
@@ -149,7 +155,8 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/film/{id}/update', [AdminFilmController::class, 'update'])->name('film.update');
     Route::delete('/film/{id}/destroy', [AdminFilmController::class, 'destroy'])->name('film.destroy');
     Route::post('/film/import', [AdminFilmController::class, 'import'])->name('film.import');
-    Route::get('/film/export', [AdminFilmController::class, 'export'])->name('film.export');
+    Route::get('/film/exportExcel', [AdminFilmController::class, 'exportExcel'])->name('film.exportExcel');
+    Route::get('/film/exportPDF', [AdminFilmController::class, 'exportPDF'])->name('film.exportPDF');
     Route::delete('/film/destroyAll', [AdminFilmController::class, 'destroyAll'])->name('film.destroyAll');
     Route::delete('/film/{id}/softDelete', [AdminFilmController::class, 'softDelete'])->name('film.softDelete');
     Route::delete('/film/softDeleteAll', [AdminFilmController::class, 'softDeleteAll'])->name('film.softDeleteAll');
@@ -162,3 +169,6 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/{franchise}/{category}', [HomeController::class, 'show'])->name('beranda.show');
 Route::get('/film/{franchise}/{category}', [ClientFilmController::class, 'show'])->name('film.show');
 Route::get('/film/{franchise}/{category}/{type}/{number}', [ClientFilmController::class, 'watch'])->name('film.watch');
+
+Route::get('/address', [AddressController::class, 'index'])->name('address.index');
+Route::post('/address', [AddressController::class, 'store'])->name('address.store');
