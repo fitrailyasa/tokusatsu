@@ -27,7 +27,7 @@ class AdminFilmController extends Controller
         $this->middleware('permission:restore-film')->only(['restore']);
         $this->middleware('permission:restore-all-film')->only(['restoreAll']);
         $this->middleware('permission:import-film')->only(['import']);
-        $this->middleware('permission:export-film')->only(['export']);
+        $this->middleware('permission:export-film')->only(['exportExcel', 'exportPDF']);
     }
 
     public function index(TableRequest $request)

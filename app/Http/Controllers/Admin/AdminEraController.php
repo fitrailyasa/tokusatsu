@@ -26,7 +26,7 @@ class AdminEraController extends Controller
         $this->middleware('permission:restore-era')->only(['restore']);
         $this->middleware('permission:restore-all-era')->only(['restoreAll']);
         $this->middleware('permission:import-era')->only(['import']);
-        $this->middleware('permission:export-era')->only(['export']);
+        $this->middleware('permission:export-era')->only(['exportExcel', 'exportPDF']);
     }
 
     public function index(TableRequest $request)

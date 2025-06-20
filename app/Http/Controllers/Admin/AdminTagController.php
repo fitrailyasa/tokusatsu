@@ -26,7 +26,7 @@ class AdminTagController extends Controller
         $this->middleware('permission:restore-tag')->only(['restore']);
         $this->middleware('permission:restore-all-tag')->only(['restoreAll']);
         $this->middleware('permission:import-tag')->only(['import']);
-        $this->middleware('permission:export-tag')->only(['export']);
+        $this->middleware('permission:export-tag')->only(['exportExcel', 'exportPDF']);
     }
 
     public function index(TableRequest $request)

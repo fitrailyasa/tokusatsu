@@ -142,7 +142,7 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/data/{id}/destroy', [AdminDataController::class, 'destroy'])->name('data.destroy');
     Route::post('/data/import', [AdminDataController::class, 'import'])->name('data.import');
     Route::get('/data/exportExcel', [AdminDataController::class, 'exportExcel'])->name('data.exportExcel');
-    Route::get('/data/exportPDF', [AdminDataController::class, 'exportPDF'])->name('data.exportPDF');
+    // Route::get('/data/exportPDF', [AdminDataController::class, 'exportPDF'])->name('data.exportPDF');
     Route::delete('/data/destroyAll', [AdminDataController::class, 'destroyAll'])->name('data.destroyAll');
     Route::delete('/data/{id}/softDelete', [AdminDataController::class, 'softDelete'])->name('data.softDelete');
     Route::delete('/data/softDeleteAll', [AdminDataController::class, 'softDeleteAll'])->name('data.softDeleteAll');
@@ -156,7 +156,7 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/film/{id}/destroy', [AdminFilmController::class, 'destroy'])->name('film.destroy');
     Route::post('/film/import', [AdminFilmController::class, 'import'])->name('film.import');
     Route::get('/film/exportExcel', [AdminFilmController::class, 'exportExcel'])->name('film.exportExcel');
-    Route::get('/film/exportPDF', [AdminFilmController::class, 'exportPDF'])->name('film.exportPDF');
+    // Route::get('/film/exportPDF', [AdminFilmController::class, 'exportPDF'])->name('film.exportPDF');
     Route::delete('/film/destroyAll', [AdminFilmController::class, 'destroyAll'])->name('film.destroyAll');
     Route::delete('/film/{id}/softDelete', [AdminFilmController::class, 'softDelete'])->name('film.softDelete');
     Route::delete('/film/softDeleteAll', [AdminFilmController::class, 'softDeleteAll'])->name('film.softDeleteAll');

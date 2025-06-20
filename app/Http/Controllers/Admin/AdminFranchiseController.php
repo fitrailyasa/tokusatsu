@@ -26,7 +26,7 @@ class AdminFranchiseController extends Controller
         $this->middleware('permission:restore-franchise')->only(['restore']);
         $this->middleware('permission:restore-all-franchise')->only(['restoreAll']);
         $this->middleware('permission:import-franchise')->only(['import']);
-        $this->middleware('permission:export-franchise')->only(['export']);
+        $this->middleware('permission:export-franchise')->only(['exportExcel', 'exportPDF']);
     }
 
     public function index(TableRequest $request)

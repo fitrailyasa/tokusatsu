@@ -28,7 +28,7 @@ class AdminCategoryController extends Controller
         $this->middleware('permission:restore-category')->only(['restore']);
         $this->middleware('permission:restore-all-category')->only(['restoreAll']);
         $this->middleware('permission:import-category')->only(['import']);
-        $this->middleware('permission:export-category')->only(['export']);
+        $this->middleware('permission:export-category')->only(['exportExcel', 'exportPDF']);
     }
 
     public function index(TableRequest $request)

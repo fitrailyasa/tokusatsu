@@ -28,7 +28,7 @@ class AdminDataController extends Controller
         $this->middleware('permission:restore-data')->only(['restore']);
         $this->middleware('permission:restore-all-data')->only(['restoreAll']);
         $this->middleware('permission:import-data')->only(['import']);
-        $this->middleware('permission:export-data')->only(['export']);
+        $this->middleware('permission:export-data')->only(['exportExcel', 'exportPDF']);
     }
 
     public function index(TableRequest $request)
