@@ -74,7 +74,7 @@ class AdminFranchiseController extends Controller
         $franchises = Franchise::withTrashed()->get();
         $pdf = Pdf::loadView('admin.franchise.pdf.template', compact('franchises'));
 
-        return $pdf->download('Data Franchise.pdf');
+        return $pdf->stream('Data Franchise.pdf');
     }
 
     public function store(FranchiseRequest $request)

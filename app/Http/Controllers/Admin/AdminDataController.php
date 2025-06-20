@@ -100,7 +100,7 @@ class AdminDataController extends Controller
         $datas = Data::withTrashed()->get();
         $pdf = Pdf::loadView('admin.data.pdf.template', compact('datas'));
 
-        return $pdf->download('Data.pdf');
+        return $pdf->stream('Data.pdf');
     }
 
     public function store(DataRequest $request)

@@ -92,7 +92,7 @@ class AdminCategoryController extends Controller
         $categories = Category::withTrashed()->get();
         $pdf = Pdf::loadView('admin.category.pdf.template', compact('categories'));
 
-        return $pdf->download('Data Category.pdf');
+        return $pdf->stream('Data Category.pdf');
     }
 
     public function store(CategoryRequest $request)

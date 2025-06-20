@@ -72,7 +72,7 @@ class AdminTagController extends Controller
         $tags = Tag::withTrashed()->get();
         $pdf = Pdf::loadView('admin.tag.pdf.template', compact('tags'));
 
-        return $pdf->download('Data Tag.pdf');
+        return $pdf->stream('Data Tag.pdf');
     }
 
     public function store(TagRequest $request)

@@ -4,6 +4,5 @@
         class="d-none d-sm-inline"> {{ __('PDF') }}</span></button>
 
 <!-- Form exportPDF -->
-<form id="exportPDF" action="{{ route('admin.category.exportPDF') }}" hidden>
-    @csrf
+<form id="exportPDF" action="{{ route('admin.category.exportPDF') }}" method="GET" hidden>
 </form>

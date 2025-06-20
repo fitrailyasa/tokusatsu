@@ -74,7 +74,7 @@ class AdminEraController extends Controller
         $eras = Era::all();
         $pdf = Pdf::loadView('admin.era.pdf.template', compact('eras'));
 
-        return $pdf->download('Data Era.pdf');
+        return $pdf->stream('Data Era.pdf');
     }
 
     public function store(EraRequest $request)

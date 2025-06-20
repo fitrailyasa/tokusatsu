@@ -112,7 +112,7 @@ class AdminFilmController extends Controller
         $films = Film::all();
         $pdf = Pdf::loadView('admin.film.pdf.template', compact('films'));
 
-        return $pdf->download('Data Film.pdf');
+        return $pdf->stream('Data Film.pdf');
     }
 
     public function store(FilmRequest $request)
