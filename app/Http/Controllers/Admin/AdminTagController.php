@@ -9,6 +9,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\TagImport;
 use App\Exports\TagExport;
 use App\Http\Requests\TagRequest;
+use App\Http\Requests\TableRequest;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 class AdminTagController extends Controller
@@ -28,13 +29,8 @@ class AdminTagController extends Controller
         $this->middleware('permission:export-tag')->only(['export']);
     }
 
-    public function index(Request $request)
+    public function index(TableRequest $request)
     {
-        $request->validate([
-            'search' => 'nullable|string|max:255',
-            'perPage' => 'nullable|integer|in:10,50,100',
-        ]);
-
         $search = $request->input('search');
         $perPage = (int) $request->input('perPage', 10);
 

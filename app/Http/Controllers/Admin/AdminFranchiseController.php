@@ -9,6 +9,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\FranchiseImport;
 use App\Exports\FranchiseExport;
 use App\Http\Requests\FranchiseRequest;
+use App\Http\Requests\TableRequest;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 class AdminFranchiseController extends Controller
@@ -28,13 +29,8 @@ class AdminFranchiseController extends Controller
         $this->middleware('permission:export-franchise')->only(['export']);
     }
 
-    public function index(Request $request)
+    public function index(TableRequest $request)
     {
-        $request->validate([
-            'search' => 'nullable|string|max:255',
-            'perPage' => 'nullable|integer|in:10,50,100',
-        ]);
-
         $search = $request->input('search');
         $perPage = (int) $request->input('perPage', 10);
 

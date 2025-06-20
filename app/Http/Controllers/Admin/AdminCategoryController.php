@@ -11,6 +11,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\CategoryImport;
 use App\Exports\CategoryExport;
 use App\Http\Requests\CategoryRequest;
+use App\Http\Requests\TableRequest;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 class AdminCategoryController extends Controller
@@ -30,15 +31,8 @@ class AdminCategoryController extends Controller
         $this->middleware('permission:export-category')->only(['export']);
     }
 
-    public function index(Request $request)
+    public function index(TableRequest $request)
     {
-        $request->validate([
-            'search' => 'nullable|string|max:255',
-            'perPage' => 'nullable|integer|in:10,50,100',
-            'era_id' => 'nullable|exists:eras,id',
-            'franchise_id' => 'nullable|exists:franchises,id',
-        ]);
-
         $search = $request->input('search');
         $perPage = (int) $request->input('perPage', 10);
         $eraId = $request->input('era_id');

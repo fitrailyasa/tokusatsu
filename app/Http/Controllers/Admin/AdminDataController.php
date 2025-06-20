@@ -11,6 +11,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\DataImport;
 use App\Exports\DataExport;
 use App\Http\Requests\DataRequest;
+use App\Http\Requests\TableRequest;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 class AdminDataController extends Controller
@@ -30,14 +31,8 @@ class AdminDataController extends Controller
         $this->middleware('permission:export-data')->only(['export']);
     }
 
-    public function index(Request $request)
+    public function index(TableRequest $request)
     {
-        $request->validate([
-            'search' => 'nullable|string|max:255',
-            'perPage' => 'nullable|integer|in:10,50,100',
-            'category_id' => 'nullable|exists:categories,id',
-        ]);
-
         $search = $request->input('search');
         $categoryId = $request->input('category_id');
         $perPage = (int) $request->input('perPage', 10);

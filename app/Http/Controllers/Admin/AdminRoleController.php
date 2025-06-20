@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Http\Request;
+use App\Http\Requests\TableRequest;
 
 class AdminRoleController extends Controller
 {
@@ -17,13 +18,8 @@ class AdminRoleController extends Controller
         $this->middleware('permission:delete-role')->only(['destroy']);
     }
 
-    public function index(Request $request)
+    public function index(TableRequest $request)
     {
-        $request->validate([
-            'search' => 'nullable|string|max:255',
-            'perPage' => 'nullable|integer|in:10,50,100',
-        ]);
-
         $search = $request->input('search');
         $perPage = (int) $request->input('perPage', 10);
 
