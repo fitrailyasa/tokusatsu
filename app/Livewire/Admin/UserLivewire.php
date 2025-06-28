@@ -80,7 +80,7 @@ class UserLivewire extends Component
 
         $user->assignRole($this->role);
 
-        session()->flash('message', 'User Created Successfully.');
+        session()->flash('success', 'User Created Successfully.');
 
         $this->resetInputFields();
     }
@@ -121,7 +121,7 @@ class UserLivewire extends Component
 
         $user->syncRoles($this->role);
 
-        session()->flash('message', 'User Updated Successfully.');
+        session()->flash('success', 'User Updated Successfully.');
 
         $this->resetInputFields();
         $this->isUpdate = false;
@@ -131,6 +131,6 @@ class UserLivewire extends Component
     public function delete($id)
     {
         User::findOrFail($id)->forceDelete();
-        session()->flash('message', 'User Deleted Successfully.');
+        session()->flash('success', 'User Deleted Successfully.');
     }
 }

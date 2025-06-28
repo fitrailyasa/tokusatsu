@@ -57,7 +57,7 @@ class AdminEraController extends Controller
         $file = $request->file('file');
         Excel::import(new EraImport, $file);
 
-        return back()->with('message', 'Berhasil Import Data Era!');
+        return back()->with('success', 'Berhasil Import Data Era!');
     }
 
     public function exportExcel()
@@ -85,7 +85,7 @@ class AdminEraController extends Controller
             $img->storeAs('public', $file_name);
         }
 
-        return back()->with('message', 'Berhasil Tambah Data Era!');
+        return back()->with('success', 'Berhasil Tambah Data Era!');
     }
 
     public function update(EraRequest $request, $id)
@@ -101,42 +101,42 @@ class AdminEraController extends Controller
             $img->storeAs('public', $file_name);
         }
 
-        return back()->with('message', 'Berhasil Edit Data Era!');
+        return back()->with('success', 'Berhasil Edit Data Era!');
     }
 
     public function destroy($id)
     {
         Era::withTrashed()->findOrFail($id)->forceDelete();
-        return back()->with('message', 'Berhasil Hapus Data Era!');
+        return back()->with('success', 'Berhasil Hapus Data Era!');
     }
 
     public function destroyAll()
     {
         Era::truncate();
-        return back()->with('message', 'Berhasil Hapus Semua Era!');
+        return back()->with('success', 'Berhasil Hapus Semua Era!');
     }
 
     public function softDelete($id)
     {
         Era::findOrFail($id)->delete();
-        return back()->with('message', 'Berhasil Hapus Data Era!');
+        return back()->with('success', 'Berhasil Hapus Data Era!');
     }
 
     public function softDeleteAll()
     {
         Era::query()->delete();
-        return back()->with('message', 'Berhasil Hapus Semua Era!');
+        return back()->with('success', 'Berhasil Hapus Semua Era!');
     }
 
     public function restore($id)
     {
         Era::withTrashed()->findOrFail($id)->restore();
-        return back()->with('message', 'Berhasil Restore Era!');
+        return back()->with('success', 'Berhasil Restore Era!');
     }
 
     public function restoreAll()
     {
         Era::onlyTrashed()->restore();
-        return back()->with('message', 'Berhasil Restore Semua Era!');
+        return back()->with('success', 'Berhasil Restore Semua Era!');
     }
 }

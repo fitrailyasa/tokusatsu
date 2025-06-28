@@ -11,13 +11,13 @@
     </script>
 @endif
 
-@if (session('message'))
+@if (session('success'))
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             Swal.fire({
                 icon: 'success',
                 title: 'Berhasil!',
-                text: '{{ session('message') }}',
+                text: '{{ session('success') }}',
                 confirmButtonColor: '#28a745',
             });
         });

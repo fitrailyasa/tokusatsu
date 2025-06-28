@@ -64,7 +64,7 @@ class FranchiseTest extends TestCase
         $response = $this->post(route('admin.franchise.store'), $data);
 
         $response->assertRedirect();
-        $response->assertSessionHas('message', 'Berhasil Tambah Data Franchise!');
+        $response->assertSessionHas('success', 'Berhasil Tambah Data Franchise!');
         $this->assertDatabaseHas('franchises', ['name' => 'New Franchise']);
     }
 
@@ -83,7 +83,7 @@ class FranchiseTest extends TestCase
         $response = $this->put(route('admin.franchise.update', $franchise->id), $data);
 
         $response->assertRedirect();
-        $response->assertSessionHas('message', 'Berhasil Edit Data Franchise!');
+        $response->assertSessionHas('success', 'Berhasil Edit Data Franchise!');
         $this->assertDatabaseHas('franchises', [
             'id' => $franchise->id,
             'name' => 'Updated Franchise',
@@ -100,7 +100,7 @@ class FranchiseTest extends TestCase
             ->delete(route('admin.franchise.softDelete', $franchise->id));
 
         $response->assertRedirect();
-        $response->assertSessionHas('message', 'Berhasil Hapus Data Franchise!');
+        $response->assertSessionHas('success', 'Berhasil Hapus Data Franchise!');
 
         $this->assertSoftDeleted('franchises', ['id' => $franchise->id]);
     }
@@ -116,7 +116,7 @@ class FranchiseTest extends TestCase
         $response = $this->put(route('admin.franchise.restore', $franchise->id));
 
         $response->assertRedirect();
-        $response->assertSessionHas('message', 'Berhasil Restore Franchise!');
+        $response->assertSessionHas('success', 'Berhasil Restore Franchise!');
         $this->assertDatabaseHas('franchises', ['id' => $franchise->id]);
     }
 
@@ -130,7 +130,7 @@ class FranchiseTest extends TestCase
             ->delete(route('admin.franchise.destroy', $franchise->id));
 
         $response->assertRedirect();
-        $response->assertSessionHas('message', 'Berhasil Hapus Data Franchise!');
+        $response->assertSessionHas('success', 'Berhasil Hapus Data Franchise!');
 
         $this->assertDatabaseMissing('franchises', ['id' => $franchise->id]);
     }
@@ -147,7 +147,7 @@ class FranchiseTest extends TestCase
             ->post(route('admin.franchise.import'), ['file' => $file]);
 
         $response->assertRedirect();
-        $response->assertSessionHas('message', 'Berhasil Import Data Franchise!');
+        $response->assertSessionHas('success', 'Berhasil Import Data Franchise!');
 
         Excel::assertImported('Franchises.xlsx', function (FranchiseImport $import) {
             return true;

@@ -29,7 +29,7 @@ class EraLivewire extends Component
             'img' => 'nullable|mimes:jpg,jpeg,png|max:2048',
         ];
     }
- 
+
     public function save()
     {
         $this->img->store(path: 'img');
@@ -85,7 +85,7 @@ class EraLivewire extends Component
 
         Era::create($eraData);
 
-        session()->flash('message', 'Era Created Successfully.');
+        session()->flash('success', 'Era Created Successfully.');
 
         $this->resetInputFields();
     }
@@ -115,10 +115,10 @@ class EraLivewire extends Component
             $eraData['img'] = $file_name;
             $img->storeAs('public', $file_name);
         }
-    
+
         $era->update($eraData);
 
-        session()->flash('message', 'Era Updated Successfully.');
+        session()->flash('success', 'Era Updated Successfully.');
 
         $this->resetInputFields();
         $this->isUpdate = false;
@@ -127,6 +127,6 @@ class EraLivewire extends Component
     public function delete($id)
     {
         Era::findOrFail($id)->forceDelete();
-        session()->flash('message', 'Era Deleted Successfully.');
+        session()->flash('success', 'Era Deleted Successfully.');
     }
 }

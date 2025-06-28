@@ -41,7 +41,7 @@ class AdminUserController extends Controller
 
         $user->assignRole($role);
 
-        return back()->with('message', 'Berhasil Tambah User!');
+        return back()->with('success', 'Berhasil Tambah User!');
     }
 
     public function update(UserUpdateRequest $request, string $id)
@@ -62,13 +62,13 @@ class AdminUserController extends Controller
 
         $user->syncRoles($role);
 
-        return back()->with('message', 'Berhasil Edit User!');
+        return back()->with('success', 'Berhasil Edit User!');
     }
 
 
     public function destroy(string $id)
     {
         User::findOrFail($id)->forceDelete();
-        return back()->with('message', 'Berhasil Hapus User!');
+        return back()->with('success', 'Berhasil Hapus User!');
     }
 }

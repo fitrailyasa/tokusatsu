@@ -80,7 +80,7 @@ class FranchiseLivewire extends Component
 
         Franchise::create($franchiseData);
 
-        session()->flash('message', 'Franchise Created Successfully.');
+        session()->flash('success', 'Franchise Created Successfully.');
 
         $this->resetInputFields();
     }
@@ -110,10 +110,10 @@ class FranchiseLivewire extends Component
             $franchiseData['img'] = $file_name;
             $img->storeAs('public', $file_name);
         }
-    
+
         $franchise->update($franchiseData);
 
-        session()->flash('message', 'Franchise Updated Successfully.');
+        session()->flash('success', 'Franchise Updated Successfully.');
 
         $this->resetInputFields();
         $this->isUpdate = false;
@@ -122,6 +122,6 @@ class FranchiseLivewire extends Component
     public function delete($id)
     {
         Franchise::findOrFail($id)->forceDelete();
-        session()->flash('message', 'Franchise Deleted Successfully.');
+        session()->flash('success', 'Franchise Deleted Successfully.');
     }
 }

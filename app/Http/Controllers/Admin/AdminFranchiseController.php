@@ -57,7 +57,7 @@ class AdminFranchiseController extends Controller
         $file = $request->file('file');
         Excel::import(new FranchiseImport, $file);
 
-        return back()->with('message', 'Berhasil Import Data Franchise!');
+        return back()->with('success', 'Berhasil Import Data Franchise!');
     }
 
     public function exportExcel()
@@ -85,7 +85,7 @@ class AdminFranchiseController extends Controller
             $img->storeAs('public', $file_name);
         }
 
-        return back()->with('message', 'Berhasil Tambah Data Franchise!');
+        return back()->with('success', 'Berhasil Tambah Data Franchise!');
     }
 
     public function update(FranchiseRequest $request, $id)
@@ -101,42 +101,42 @@ class AdminFranchiseController extends Controller
             $img->storeAs('public', $file_name);
         }
 
-        return back()->with('message', 'Berhasil Edit Data Franchise!');
+        return back()->with('success', 'Berhasil Edit Data Franchise!');
     }
 
     public function destroy($id)
     {
         Franchise::withTrashed()->findOrFail($id)->forceDelete();
-        return back()->with('message', 'Berhasil Hapus Data Franchise!');
+        return back()->with('success', 'Berhasil Hapus Data Franchise!');
     }
 
     public function destroyAll()
     {
         Franchise::truncate();
-        return back()->with('message', 'Berhasil Hapus Semua Franchise!');
+        return back()->with('success', 'Berhasil Hapus Semua Franchise!');
     }
 
     public function softDelete($id)
     {
         Franchise::findOrFail($id)->delete();
-        return back()->with('message', 'Berhasil Hapus Data Franchise!');
+        return back()->with('success', 'Berhasil Hapus Data Franchise!');
     }
 
     public function softDeleteAll()
     {
         Franchise::query()->delete();
-        return back()->with('message', 'Berhasil Hapus Semua Franchise!');
+        return back()->with('success', 'Berhasil Hapus Semua Franchise!');
     }
 
     public function restore($id)
     {
         Franchise::withTrashed()->findOrFail($id)->restore();
-        return back()->with('message', 'Berhasil Restore Franchise!');
+        return back()->with('success', 'Berhasil Restore Franchise!');
     }
 
     public function restoreAll()
     {
         Franchise::onlyTrashed()->restore();
-        return back()->with('message', 'Berhasil Restore Semua Franchise!');
+        return back()->with('success', 'Berhasil Restore Semua Franchise!');
     }
 }

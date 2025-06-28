@@ -87,7 +87,7 @@ class DataLivewire extends Component
 
         Data::create($datas);
 
-        session()->flash('message', 'Data Created Successfully.');
+        session()->flash('success', 'Data Created Successfully.');
 
         $this->resetInputFields();
     }
@@ -122,7 +122,7 @@ class DataLivewire extends Component
 
         $data->update($datas);
 
-        session()->flash('message', 'Data Updated Successfully.');
+        session()->flash('success', 'Data Updated Successfully.');
 
         $this->resetInputFields();
         $this->isUpdate = false;
@@ -131,6 +131,6 @@ class DataLivewire extends Component
     public function delete($id)
     {
         Data::findOrFail($id)->forceDelete();
-        session()->flash('message', 'Data Deleted Successfully.');
+        session()->flash('success', 'Data Deleted Successfully.');
     }
 }

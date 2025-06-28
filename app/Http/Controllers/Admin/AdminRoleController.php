@@ -54,7 +54,7 @@ class AdminRoleController extends Controller
             $role->syncPermissions($permissions);
         }
 
-        return back()->with('message', 'Berhasil Tambah Data Role!');
+        return back()->with('success', 'Berhasil Tambah Data Role!');
     }
 
     public function update(Request $request, $id)
@@ -76,13 +76,13 @@ class AdminRoleController extends Controller
             $role->syncPermissions([]);
         }
 
-        return back()->with('message', 'Berhasil Edit Data Role!');
+        return back()->with('success', 'Berhasil Edit Data Role!');
     }
 
     public function destroy($id)
     {
         Role::findOrFail($id)->forceDelete();
-        return back()->with('message', 'Berhasil Hapus Data Role!');
+        return back()->with('success', 'Berhasil Hapus Data Role!');
     }
 
     private function mapPermissionBadgeAndType($permissions)

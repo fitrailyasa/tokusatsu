@@ -73,7 +73,7 @@ class AdminCategoryController extends Controller
 
         Excel::import(new CategoryImport, $file);
 
-        return back()->with('message', 'Berhasil Import Data Category!');
+        return back()->with('success', 'Berhasil Import Data Category!');
     }
 
     public function exportExcel()
@@ -101,7 +101,7 @@ class AdminCategoryController extends Controller
             $img->storeAs('public', $file_name);
         }
 
-        return back()->with('message', 'Berhasil Tambah Data Category!');
+        return back()->with('success', 'Berhasil Tambah Data Category!');
     }
 
     public function update(CategoryRequest $request, $id)
@@ -117,42 +117,42 @@ class AdminCategoryController extends Controller
             $img->storeAs('public', $file_name);
         }
 
-        return back()->with('message', 'Berhasil Edit Data Category!');
+        return back()->with('success', 'Berhasil Edit Data Category!');
     }
 
     public function destroy($id)
     {
         Category::withTrashed()->findOrFail($id)->forceDelete();
-        return back()->with('message', 'Berhasil Hapus Data Category!');
+        return back()->with('success', 'Berhasil Hapus Data Category!');
     }
 
     public function destroyAll()
     {
         Category::truncate();
-        return back()->with('message', 'Berhasil Hapus Semua Category!');
+        return back()->with('success', 'Berhasil Hapus Semua Category!');
     }
 
     public function softDelete($id)
     {
         Category::findOrFail($id)->delete();
-        return back()->with('message', 'Berhasil Hapus Data Category!');
+        return back()->with('success', 'Berhasil Hapus Data Category!');
     }
 
     public function softDeleteAll()
     {
         Category::query()->delete();
-        return back()->with('message', 'Berhasil Hapus Semua Category!');
+        return back()->with('success', 'Berhasil Hapus Semua Category!');
     }
 
     public function restore($id)
     {
         Category::withTrashed()->findOrFail($id)->restore();
-        return back()->with('message', 'Berhasil Restore Category!');
+        return back()->with('success', 'Berhasil Restore Category!');
     }
 
     public function restoreAll()
     {
         Category::onlyTrashed()->restore();
-        return back()->with('message', 'Berhasil Restore Semua Category!');
+        return back()->with('success', 'Berhasil Restore Semua Category!');
     }
 }

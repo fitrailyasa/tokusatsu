@@ -53,7 +53,7 @@ class TagLivewire extends Component
 
         Tag::create($validatedData);
 
-        session()->flash('message', 'Tag Created Successfully.');
+        session()->flash('success', 'Tag Created Successfully.');
 
         $this->resetInputFields();
     }
@@ -75,7 +75,7 @@ class TagLivewire extends Component
         $tag = Tag::findOrFail($this->tagId);
         $tag->update($validatedData);
 
-        session()->flash('message', 'Tag Updated Successfully.');
+        session()->flash('success', 'Tag Updated Successfully.');
 
         $this->resetInputFields();
         $this->isUpdate = false;
@@ -84,6 +84,6 @@ class TagLivewire extends Component
     public function delete($id)
     {
         Tag::findOrFail($id)->forceDelete();
-        session()->flash('message', 'Tag Deleted Successfully.');
+        session()->flash('success', 'Tag Deleted Successfully.');
     }
 }

@@ -16,8 +16,8 @@ use App\Http\Controllers\Auth\ProviderController;
 use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\MidtransController;
 use App\Http\Controllers\AddressController;
-use App\Http\Controllers\Client\ClientFranchiseController;
 use App\Http\Controllers\Client\ClientEraController;
+use App\Http\Controllers\Client\ClientFranchiseController;
 use App\Http\Controllers\Client\ClientCategoryController;
 use App\Http\Controllers\Client\ClientFilmController;
 

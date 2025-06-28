@@ -63,7 +63,7 @@ class TagTest extends TestCase
         $response = $this->post(route('admin.tag.store'), $data);
 
         $response->assertRedirect();
-        $response->assertSessionHas('message', 'Berhasil Tambah Data Tag!');
+        $response->assertSessionHas('success', 'Berhasil Tambah Data Tag!');
         $this->assertDatabaseHas('tags', ['name' => 'New Tag']);
     }
 
@@ -81,7 +81,7 @@ class TagTest extends TestCase
         $response = $this->put(route('admin.tag.update', $Tag->id), $data);
 
         $response->assertRedirect();
-        $response->assertSessionHas('message', 'Berhasil Edit Data Tag!');
+        $response->assertSessionHas('success', 'Berhasil Edit Data Tag!');
         $this->assertDatabaseHas('tags', [
             'id' => $Tag->id,
             'name' => 'Updated Tag',
@@ -97,7 +97,7 @@ class TagTest extends TestCase
             ->delete(route('admin.tag.softDelete', $Tag->id));
 
         $response->assertRedirect();
-        $response->assertSessionHas('message', 'Berhasil Hapus Data Tag!');
+        $response->assertSessionHas('success', 'Berhasil Hapus Data Tag!');
 
         $this->assertSoftDeleted('tags', ['id' => $Tag->id]);
     }
@@ -113,7 +113,7 @@ class TagTest extends TestCase
         $response = $this->put(route('admin.tag.restore', $Tag->id));
 
         $response->assertRedirect();
-        $response->assertSessionHas('message', 'Berhasil Restore Tag!');
+        $response->assertSessionHas('success', 'Berhasil Restore Tag!');
         $this->assertDatabaseHas('tags', ['id' => $Tag->id]);
     }
 
@@ -127,7 +127,7 @@ class TagTest extends TestCase
             ->delete(route('admin.tag.destroy', $Tag->id));
 
         $response->assertRedirect();
-        $response->assertSessionHas('message', 'Berhasil Hapus Data Tag!');
+        $response->assertSessionHas('success', 'Berhasil Hapus Data Tag!');
 
         $this->assertDatabaseMissing('tags', ['id' => $Tag->id]);
     }
@@ -144,7 +144,7 @@ class TagTest extends TestCase
             ->post(route('admin.tag.import'), ['file' => $file]);
 
         $response->assertRedirect();
-        $response->assertSessionHas('message', 'Berhasil Import Data Tag!');
+        $response->assertSessionHas('success', 'Berhasil Import Data Tag!');
 
         Excel::assertImported('Tags.xlsx', function (TagImport $import) {
             return true;

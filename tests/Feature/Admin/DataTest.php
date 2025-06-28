@@ -67,7 +67,7 @@ class DataTest extends TestCase
         $response = $this->post(route('admin.data.store'), $data);
 
         $response->assertRedirect();
-        $response->assertSessionHas('message', 'Berhasil Tambah Data!');
+        $response->assertSessionHas('success', 'Berhasil Tambah Data!');
         $this->assertDatabaseHas('datas', ['name' => 'New Data']);
     }
 
@@ -87,7 +87,7 @@ class DataTest extends TestCase
         $response = $this->put(route('admin.data.update', $data->id), $update_data);
 
         $response->assertRedirect();
-        $response->assertSessionHas('message', 'Berhasil Edit Data!');
+        $response->assertSessionHas('success', 'Berhasil Edit Data!');
         $this->assertDatabaseHas('datas', [
             'id' => $data->id,
             'category_id' => $category->id,
@@ -103,7 +103,7 @@ class DataTest extends TestCase
             ->delete(route('admin.data.softDelete', $data->id));
 
         $response->assertRedirect();
-        $response->assertSessionHas('message', 'Berhasil Hapus Data!');
+        $response->assertSessionHas('success', 'Berhasil Hapus Data!');
 
         $this->assertSoftDeleted('datas', ['id' => $data->id]);
     }
@@ -119,7 +119,7 @@ class DataTest extends TestCase
         $response = $this->put(route('admin.data.restore', $data->id));
 
         $response->assertRedirect();
-        $response->assertSessionHas('message', 'Berhasil Restore Data!');
+        $response->assertSessionHas('success', 'Berhasil Restore Data!');
         $this->assertDatabaseHas('datas', ['id' => $data->id]);
     }
 
@@ -133,7 +133,7 @@ class DataTest extends TestCase
             ->delete(route('admin.data.destroy', $data->id));
 
         $response->assertRedirect();
-        $response->assertSessionHas('message', 'Berhasil Hapus Data!');
+        $response->assertSessionHas('success', 'Berhasil Hapus Data!');
 
         $this->assertDatabaseMissing('datas', ['id' => $data->id]);
     }
@@ -150,7 +150,7 @@ class DataTest extends TestCase
             ->post(route('admin.data.import'), ['file' => $file]);
 
         $response->assertRedirect();
-        $response->assertSessionHas('message', 'Berhasil Import Data!');
+        $response->assertSessionHas('success', 'Berhasil Import Data!');
 
         Excel::assertImported('datas.xlsx', function (DataImport $import) {
             return true;

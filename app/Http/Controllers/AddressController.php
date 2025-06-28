@@ -26,6 +26,6 @@ class AddressController extends Controller
         // dd($address);
 
         // return response()->json($address);
-        return redirect()->route('client.address')->with('message', 'Alamat berhasil ditambahkan');
+        return redirect()->route('client.address')->with('success', 'Alamat berhasil ditambahkan');
     }
 }

@@ -94,7 +94,7 @@ class AdminFilmController extends Controller
 
         Excel::import(new FilmImport, $file);
 
-        return back()->with('message', 'Berhasil Import Film!');
+        return back()->with('success', 'Berhasil Import Film!');
     }
 
     public function exportExcel()
@@ -114,50 +114,50 @@ class AdminFilmController extends Controller
     {
         Film::create($request->validated());
 
-        return back()->with('message', 'Berhasil Tambah Film!');
+        return back()->with('success', 'Berhasil Tambah Film!');
     }
 
     public function update(FilmRequest $request, $id)
     {
         Film::findOrFail($id)->update($request->validated());
 
-        return back()->with('message', 'Berhasil Edit Film!');
+        return back()->with('success', 'Berhasil Edit Film!');
     }
 
     public function destroy($id)
     {
         Film::withTrashed()->findOrFail($id)->forceDelete();
-        return back()->with('message', 'Berhasil Hapus Film!');
+        return back()->with('success', 'Berhasil Hapus Film!');
     }
 
     public function destroyAll()
     {
         Film::truncate();
-        return back()->with('message', 'Berhasil Hapus Semua Film!');
+        return back()->with('success', 'Berhasil Hapus Semua Film!');
     }
 
     public function softDelete($id)
     {
         Film::findOrFail($id)->delete();
-        return back()->with('message', 'Berhasil Hapus Film!');
+        return back()->with('success', 'Berhasil Hapus Film!');
     }
 
     public function softDeleteAll()
     {
         Film::query()->delete();
-        return back()->with('message', 'Berhasil Hapus Semua Film!');
+        return back()->with('success', 'Berhasil Hapus Semua Film!');
     }
 
     public function restore($id)
     {
         Film::withTrashed()->findOrFail($id)->restore();
-        return back()->with('message', 'Berhasil Restore Film!');
+        return back()->with('success', 'Berhasil Restore Film!');
     }
 
     public function restoreAll()
     {
         Film::onlyTrashed()->restore();
 
-        return back()->with('message', 'Berhasil Restore Semua Film!');
+        return back()->with('success', 'Berhasil Restore Semua Film!');
     }
 }

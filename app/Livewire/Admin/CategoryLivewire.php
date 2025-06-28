@@ -82,7 +82,7 @@ class CategoryLivewire extends Component
             'desc' => $this->desc,
         ]);
 
-        session()->flash('message', 'Category Created Successfully.');
+        session()->flash('success', 'Category Created Successfully.');
 
         $this->resetInputFields();
     }
@@ -111,7 +111,7 @@ class CategoryLivewire extends Component
             'desc' => $this->desc,
         ]);
 
-        session()->flash('message', 'Category Updated Successfully.');
+        session()->flash('success', 'Category Updated Successfully.');
 
         $this->resetInputFields();
         $this->isUpdate = false;
@@ -120,6 +120,6 @@ class CategoryLivewire extends Component
     public function delete($id)
     {
         Category::findOrFail($id)->forceDelete();
-        session()->flash('message', 'Category Deleted Successfully.');
+        session()->flash('success', 'Category Deleted Successfully.');
     }
 }
