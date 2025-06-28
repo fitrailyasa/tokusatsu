@@ -24,6 +24,7 @@ return new class extends Migration
             $table->json('provider')->nullable();
             $table->json('provider_id')->nullable();
             $table->json('provider_token')->nullable();
+            $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
