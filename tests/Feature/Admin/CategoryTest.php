@@ -3,6 +3,8 @@
 namespace Tests\Feature\Admin;
 
 use Tests\TestCase;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 use App\Models\User;
 use App\Models\Franchise;
 use App\Models\Era;
@@ -25,21 +27,42 @@ class CategoryTest extends TestCase
     {
         parent::setUp();
 
-        // Buat user admin untuk melewati middleware
-        $this->admin = User::factory()->create([
-            'role' => 'admin',
-            'status' => 'aktif',
-        ]);
+        // Buat permission yang dibutuhkan controller
+        $permissions = [
+            'view-category',
+            'create-category',
+            'edit-category',
+            'delete-category',
+            'delete-all-category',
+            'soft-delete-category',
+            'soft-delete-all-category',
+            'restore-category',
+            'restore-all-category',
+            'import-category',
+            'export-category',
+        ];
+
+        foreach ($permissions as $perm) {
+            Permission::firstOrCreate(['name' => $perm]);
+        }
+
+        // Buat role dan assign permissions
+        $adminRole = Role::firstOrCreate(['name' => 'admin']);
+        $adminRole->syncPermissions($permissions);
+
+        // Buat user dan assign role
+        $this->admin = User::factory()->create(['status' => 'aktif']);
+        $this->admin->assignRole($adminRole);
     }
 
     #[Test]
     public function it_redirects_non_admin_users()
     {
-        $user = User::factory()->create(['role' => 'user']);
+        $user = User::factory()->create();
 
         $this->actingAs($user)
             ->get(route('admin.category.index'))
-            ->assertRedirect(route('login'));
+            ->assertForbidden();
     }
 
     #[Test]
@@ -173,7 +196,7 @@ class CategoryTest extends TestCase
         Excel::fake();
 
         $response = $this->actingAs($this->admin)
-            ->get(route('admin.category.export'));
+            ->get(route('admin.category.exportExcel'));
 
         $response->assertStatus(200);
 

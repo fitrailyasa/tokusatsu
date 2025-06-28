@@ -3,6 +3,8 @@
 namespace Tests\Feature\Admin;
 
 use Tests\TestCase;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 use App\Models\User;
 use App\Models\Era;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -23,21 +25,42 @@ class EraTest extends TestCase
     {
         parent::setUp();
 
-        // Buat user admin untuk melewati middleware
-        $this->admin = User::factory()->create([
-            'role' => 'admin',
-            'status' => 'aktif',
-        ]);
+        // Buat permission yang dibutuhkan controller
+        $permissions = [
+            'view-era',
+            'create-era',
+            'edit-era',
+            'delete-era',
+            'delete-all-era',
+            'soft-delete-era',
+            'soft-delete-all-era',
+            'restore-era',
+            'restore-all-era',
+            'import-era',
+            'export-era',
+        ];
+
+        foreach ($permissions as $perm) {
+            Permission::firstOrCreate(['name' => $perm]);
+        }
+
+        // Buat role dan assign permissions
+        $adminRole = Role::firstOrCreate(['name' => 'admin']);
+        $adminRole->syncPermissions($permissions);
+
+        // Buat user dan assign role
+        $this->admin = User::factory()->create(['status' => 'aktif']);
+        $this->admin->assignRole($adminRole);
     }
 
     #[Test]
     public function it_redirects_non_admin_users()
     {
-        $user = User::factory()->create(['role' => 'user']);
+        $user = User::factory()->create();
 
         $this->actingAs($user)
             ->get(route('admin.era.index'))
-            ->assertRedirect(route('login'));
+            ->assertForbidden();
     }
 
     #[Test]
@@ -160,7 +183,7 @@ class EraTest extends TestCase
         Excel::fake();
 
         $response = $this->actingAs($this->admin)
-            ->get(route('admin.era.export'));
+            ->get(route('admin.era.exportExcel'));
 
         $response->assertStatus(200);
 

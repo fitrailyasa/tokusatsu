@@ -3,6 +3,8 @@
 namespace Tests\Feature\Admin;
 
 use Tests\TestCase;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 use App\Models\User;
 use App\Models\Franchise;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -23,21 +25,42 @@ class FranchiseTest extends TestCase
     {
         parent::setUp();
 
-        // Buat user admin untuk melewati middleware
-        $this->admin = User::factory()->create([
-            'role' => 'admin',
-            'status' => 'aktif',
-        ]);
+        // Buat permission yang dibutuhkan controller
+        $permissions = [
+            'view-franchise',
+            'create-franchise',
+            'edit-franchise',
+            'delete-franchise',
+            'delete-all-franchise',
+            'soft-delete-franchise',
+            'soft-delete-all-franchise',
+            'restore-franchise',
+            'restore-all-franchise',
+            'import-franchise',
+            'export-franchise',
+        ];
+
+        foreach ($permissions as $perm) {
+            Permission::firstOrCreate(['name' => $perm]);
+        }
+
+        // Buat role dan assign permissions
+        $adminRole = Role::firstOrCreate(['name' => 'admin']);
+        $adminRole->syncPermissions($permissions);
+
+        // Buat user dan assign role
+        $this->admin = User::factory()->create(['status' => 'aktif']);
+        $this->admin->assignRole($adminRole);
     }
 
     #[Test]
     public function it_redirects_non_admin_users()
     {
-        $user = User::factory()->create(['role' => 'user']);
+        $user = User::factory()->create();
 
         $this->actingAs($user)
             ->get(route('admin.franchise.index'))
-            ->assertRedirect(route('login'));
+            ->assertForbidden();
     }
 
     #[Test]
@@ -160,7 +183,7 @@ class FranchiseTest extends TestCase
         Excel::fake();
 
         $response = $this->actingAs($this->admin)
-            ->get(route('admin.franchise.export'));
+            ->get(route('admin.franchise.exportExcel'));
 
         $response->assertStatus(200);
 
