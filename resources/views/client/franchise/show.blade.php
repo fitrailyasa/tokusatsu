@@ -15,7 +15,7 @@
                     </a>
                 </div>
                 <div class="col-6">
-                    <h4 class="text-white font-weight-bold">{{ $franchise->name }}</h4>
+                    <h4 class="font-weight-bold">{{ $franchise->name }}</h4>
                 </div>
                 <div class="col-3 text-right">
                     <button type="button" class="btn aktif text-white" onclick="window.print()">Print</button>
