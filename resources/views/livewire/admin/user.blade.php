@@ -93,15 +93,13 @@
                 <div class="col-md-6">
                     <div class="mb-3">
                         <label class="form-label">{{ __('Status') }}<span class="text-danger">*</span></label>
-                        <select class="form-select @error('status') is-invalid @enderror" wire:model="status"
-                            id="status" required>
-                            <option value="" disabled selected>{{ __('Select Status') }}</option>
-                            <option value="aktif" @if (old('status') == 'aktif' || $status == 'aktif') selected @endif>
-                                {{ __('Aktif') }}</option>
-                            <option value="tidak aktif" @if (old('status') == 'tidak aktif' || $status == 'tidak aktif') selected @endif>
-                                {{ __('Tidak Aktif') }}</option>
+                        <select class="form-select @error('email_verified') is-invalid @enderror"
+                            wire:model="email_verified" id="email_verified" required>
+                            <option value="" disabled>{{ __('Select Status') }}</option>
+                            <option value="1">{{ __('Aktif') }}</option>
+                            <option value="0">{{ __('Tidak Aktif') }}</option>
                         </select>
-                        @error('status')
+                        @error('email_verified')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
@@ -140,10 +138,10 @@
                             {{ $user->getRoleNames()->implode(', ') }}
                         </td>
                         <td>
-                            @if ($user->status == 'aktif')
-                                <span class="badge badge-success">{{ $user->status }}</span>
+                            @if ($user->email_verified_at)
+                                <span class="badge badge-success">aktif</span>
                             @else
-                                <span class="badge badge-danger">{{ $user->status }}</span>
+                                <span class="badge badge-danger">tidak aktif</span>
                             @endif
                         </td>
                         <td class="manage-row text-center">

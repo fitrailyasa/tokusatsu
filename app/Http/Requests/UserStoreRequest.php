@@ -32,7 +32,7 @@ class UserStoreRequest extends FormRequest
             'no_hp' => 'max:255',
             'password' => 'required|min:8',
             'role' => 'required',
-            'status' => 'required',
+            'email_verified' => 'required|in:0,1',
         ];
     }
 
@@ -48,7 +48,7 @@ class UserStoreRequest extends FormRequest
             'password.required' => 'Kata sandi tidak boleh kosong!',
             'password.min' => 'Kata sandi minimal 8 karakter!',
             'role.required' => 'Role tidak boleh kosong!',
-            'status.required' => 'Status tidak boleh kosong!',
+            'email_verified.required' => 'Email belum diverifikasi!',
         ];
     }
 }

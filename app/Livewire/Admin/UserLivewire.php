@@ -14,7 +14,7 @@ class UserLivewire extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
-    public $name, $email, $no_hp, $password, $role, $status, $userId;
+    public $name, $email, $no_hp, $password, $role, $email_verified, $userId;
     public $isUpdate = false;
 
     public function rules(): array
@@ -24,7 +24,7 @@ class UserLivewire extends Component
             'email' => 'required|email',
             'no_hp' => 'required',
             'role' => 'required',
-            'status' => 'required',
+            'email_verified' => 'required|in:1,0',
         ];
     }
 
@@ -60,7 +60,7 @@ class UserLivewire extends Component
         $this->no_hp = '';
         $this->password = '';
         $this->role = '';
-        $this->status = '';
+        $this->email_verified = '';
         $this->userId = '';
     }
 
@@ -75,7 +75,7 @@ class UserLivewire extends Component
             'email' => $this->email,
             'no_hp' => $this->no_hp,
             'password' => Hash::make($this->password),
-            'status' => $this->status,
+            'email_verified_at' => $this->email_verified === '1' ? now() : null,
         ]);
 
         $user->assignRole($this->role);
@@ -94,7 +94,7 @@ class UserLivewire extends Component
         $this->no_hp = $user->no_hp;
         $this->password = '';
         $this->role = $user->getRoleNames()->first();
-        $this->status = $user->status;
+        $this->email_verified = $user->email_verified_at ? '1' : '0';
         $this->isUpdate = true;
     }
 
@@ -110,7 +110,7 @@ class UserLivewire extends Component
             'name' => $this->name,
             'email' => $this->email,
             'no_hp' => $this->no_hp,
-            'status' => $this->status,
+            'email_verified_at' => $this->email_verified === '1' ? ($user->email_verified_at ?? now()) : null,
         ];
 
         if ($this->password) {

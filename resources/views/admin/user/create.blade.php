@@ -52,7 +52,8 @@
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label class="form-label">{{ __('Password') }}<span class="text-danger">*</span></label>
+                                <label class="form-label">{{ __('Password') }}<span
+                                        class="text-danger">*</span></label>
                                 <input type="password" class="form-control @error('password') is-invalid @enderror"
                                     placeholder="password" name="password" id="password" required>
                                 @error('password')
@@ -80,13 +81,16 @@
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label class="form-label">{{ __('Status') }}<span class="text-danger">*</span></label>
-                                <select class="form-select @error('status') is-invalid @enderror" name="status"
-                                    id="status" required>
-                                    <option value="aktif">Aktif</option>
-                                    <option value="tidak aktif">Tidak Aktif</option>
+                                <label class="form-label">{{ __('Status') }}<span
+                                        class="text-danger">*</span></label>
+                                <select class="form-select @error('email_verified') is-invalid @enderror"
+                                    name="email_verified" id="email_verified" required>
+                                    <option value="1" {{ old('email_verified') == '1' ? 'selected' : '' }}>Aktif
+                                    </option>
+                                    <option value="0" {{ old('email_verified') == '0' ? 'selected' : '' }}>Tidak
+                                        Aktif</option>
                                 </select>
-                                @error('status')
+                                @error('email_verified')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>

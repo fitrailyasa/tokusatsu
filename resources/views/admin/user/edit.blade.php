@@ -85,18 +85,16 @@
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label class="form-label">{{ __('Status') }}<span class="text-danger">*</span></label>
-                                <select class="form-select @error('status') is-invalid @enderror" name="status"
-                                    id="status" required>
-                                    <option value="aktif"
-                                        {{ old('status', $user->status) == 'aktif' ? 'selected' : '' }}>
-                                        Aktif</option>
-                                    <option value="tidak aktif"
-                                        {{ old('status', $user->status) == 'tidak aktif' ? 'selected' : '' }}>Tidak
-                                        Aktif
+                                <label class="form-label">{{ __('Status') }}<span
+                                        class="text-danger">*</span></label>
+                                <select class="form-select @error('email_verified') is-invalid @enderror"
+                                    name="email_verified" id="email_verified" required>
+                                    <option value="1" {{ $user->email_verified_at ? 'selected' : '' }}>Aktif
                                     </option>
+                                    <option value="0" {{ !$user->email_verified_at ? 'selected' : '' }}>Tidak
+                                        Aktif</option>
                                 </select>
-                                @error('status')
+                                @error('email_verified')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>

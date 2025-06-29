@@ -33,9 +33,9 @@ class UserResource extends Resource
                 Forms\Components\TextInput::make('password')
                     ->password()
                     ->label('Password')
-                    ->dehydrateStateUsing(fn ($state) => filled($state) ? bcrypt($state) : null)
-                    ->required(fn (string $context) => $context === 'create')
-                    ->dehydrated(fn ($state) => filled($state)),
+                    ->dehydrateStateUsing(fn($state) => filled($state) ? bcrypt($state) : null)
+                    ->required(fn(string $context) => $context === 'create')
+                    ->dehydrated(fn($state) => filled($state)),
 
                 Forms\Components\Select::make('roles')
                     ->label('Roles')
@@ -44,13 +44,18 @@ class UserResource extends Resource
                     ->preload()
                     ->searchable(),
 
-                Forms\Components\Select::make('status')
-                    ->label('Status')
+                Forms\Components\Toggle::make('email_verified_at')
+                    ->label('Status Aktif')
+                    ->onColor('success')
+                    ->offColor('danger')
+                    ->default(fn($record) => $record && $record->email_verified_at ? true : false)
+                    ->dehydrateStateUsing(fn($state) => $state ? now() : null)
+                    ->afterStateHydrated(function ($component, $state) {
+                        $component->state(!is_null($state));
+                    })
+                    ->dehydrated(true)
                     ->required()
-                    ->options([
-                        'aktif' => 'Aktif',
-                        'tidak aktif' => 'Tidak Aktif',
-                    ]),
+                    ->hiddenOn('view'),
             ]);
     }
 
@@ -75,13 +80,16 @@ class UserResource extends Resource
                         'success' => 'user',
                     ]),
 
-                Tables\Columns\BadgeColumn::make('status')
-                    ->searchable()
-                    ->sortable()
+                Tables\Columns\BadgeColumn::make('email_verified_at')
                     ->label('Status')
+                    ->getStateUsing(fn($record) => $record->email_verified_at ? 'Aktif' : 'Tidak Aktif')
                     ->colors([
-                        'success' => 'aktif',
-                        'secondary' => 'tidak aktif',
+                        'success' => 'Aktif',
+                        'danger' => 'Tidak Aktif',
+                    ])
+                    ->icons([
+                        'heroicon-o-check-circle' => 'Aktif',
+                        'heroicon-o-x-circle' => 'Tidak Aktif',
                     ]),
             ])
             ->filters([])

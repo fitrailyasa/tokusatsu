@@ -23,18 +23,18 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Super Administrator',
                 'email' => 'super@admin.com',
-                'status' => 'aktif',
                 'no_hp' => '081234567890',
                 'password' => Hash::make('password'),
-                'role' => 'super-admin'
+                'role' => 'super-admin',
+                'email_verified_at' => now(),
             ],
             [
                 'name' => 'Administrator',
                 'email' => 'admin@admin.com',
-                'status' => 'aktif',
                 'no_hp' => '081234567890',
                 'password' => Hash::make('password'),
-                'role' => 'admin'
+                'role' => 'admin',
+                'email_verified_at' => now(),
             ],
         ];
 

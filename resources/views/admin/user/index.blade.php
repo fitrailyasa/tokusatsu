@@ -34,10 +34,10 @@
                         {{ $user->getRoleNames()->implode(', ') }}
                     </td>
                     <td class="d-none d-lg-table-cell">
-                        @if ($user->status == 'aktif')
-                            <span class="badge badge-success">{{ $user->status }}</span>
-                        @elseif ($user->status != 'aktif')
-                            <span class="badge badge-danger">{{ $user->status }}</span>
+                        @if ($user->email_verified_at)
+                            <span class="badge badge-success">aktif</span>
+                        @else
+                            <span class="badge badge-danger">tidak aktif</span>
                         @endif
                     </td>
                     <td class="manage-row text-center">

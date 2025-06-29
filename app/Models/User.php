@@ -30,10 +30,10 @@ class User extends Authenticatable
         'no_hp',
         'password',
         'role',
-        'status',
         'provider',
         'provider_id',
         'provider_token',
+        'email_verified_at',
     ];
 
     /**
@@ -57,6 +57,7 @@ class User extends Authenticatable
         'provider' => 'array',
         'provider_id' => 'array',
         'provider_token' => 'array',
+        'email_verified_at' => 'datetime',
     ];
 
     protected static function boot()

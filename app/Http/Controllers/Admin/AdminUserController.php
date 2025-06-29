@@ -30,6 +30,12 @@ class AdminUserController extends Controller
     {
         $userData = $request->validated();
 
+        if ($request->email_verified) {
+            $userData->email_verified_at = now();
+        } else {
+            $userData->email_verified_at = null;
+        }
+
         if (!empty($userData['password'])) {
             $userData['password'] = Hash::make($userData['password']);
         }
@@ -48,6 +54,12 @@ class AdminUserController extends Controller
     {
         $user = User::findOrFail($id);
         $userData = $request->validated();
+
+        if ($request->email_verified == '1') {
+            $user->email_verified_at = now();
+        } else {
+            $user->email_verified_at = null;
+        }
 
         if (!empty($userData['password'])) {
             $userData['password'] = Hash::make($userData['password']);

@@ -50,7 +50,7 @@ class DataTest extends TestCase
         $adminRole->syncPermissions($permissions);
 
         // Buat user dan assign role
-        $this->admin = User::factory()->create(['status' => 'aktif']);
+        $this->admin = User::factory()->create(['email_verified_at' => now()]);
         $this->admin->assignRole($adminRole);
     }
 
