@@ -37,9 +37,11 @@ class DataLivewire extends Component
         $request->validate([
             'search' => 'nullable|string|max:255',
             'perPage' => 'nullable|integer|in:10,50,100',
+            'category_id' => 'nullable|exists:categories,id',
         ]);
 
         $search = $request->input('search');
+        $categoryId = $request->input('category_id');
         $perPage = (int) $request->input('perPage', 10);
 
         $validPerPage = in_array($perPage, [10, 50, 100]) ? $perPage : 10;
@@ -48,14 +50,25 @@ class DataLivewire extends Component
         $categories = Category::all();
         $groupedCategories = $categories->groupBy('franchise.name');
 
-        if ($search) {
-            $datas = Data::withTrashed()
-                ->where('name', 'like', "%{$search}%")
-                ->orWhere('img', 'like', "%{$search}%")
-                ->paginate($validPerPage);
-        } else {
-            $datas = Data::withTrashed()->paginate($validPerPage);
-        }
+        $datas = Data::withTrashed()
+            ->with(['category', 'category.era', 'category.franchise'])
+            ->when($search, function ($query, $search) {
+                $searchTerms = preg_split('/\s+/', $search, -1, PREG_SPLIT_NO_EMPTY);
+                foreach ($searchTerms as $term) {
+                    $query->where(function ($q) use ($term) {
+                        $q->where('name', 'like', "%{$term}%")
+                            ->orWhere('img', 'like', "%{$term}%")
+                            ->orWhereHas('category', function ($q) use ($term) {
+                                $q->where('name', 'like', "%{$term}%")
+                                    ->orWhereHas('era', fn($q) => $q->where('name', 'like', "%{$term}%"))
+                                    ->orWhereHas('franchise', fn($q) => $q->where('name', 'like', "%{$term}%"));
+                            });
+                    });
+                }
+            })
+            ->when($categoryId, fn($query) => $query->where('category_id', $categoryId))
+            ->orderBy('id', 'desc')
+            ->paginate($validPerPage);
 
         return view('livewire.admin.data', compact('datas', 'groupedCategories', 'categories', 'tags', 'search', 'perPage'));
     }

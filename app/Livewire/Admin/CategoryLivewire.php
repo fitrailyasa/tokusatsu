@@ -39,9 +39,13 @@ class CategoryLivewire extends Component
         $request->validate([
             'search' => 'nullable|string|max:255',
             'perPage' => 'nullable|integer|in:10,50,100',
+            'era_id' => 'nullable|exists:eras,id',
+            'franchise_id' => 'nullable|exists:franchises,id',
         ]);
 
         $search = $request->input('search');
+        $eraId = $request->input('era_id');
+        $franchiseId = $request->input('franchise_id');
         $perPage = (int) $request->input('perPage', 10);
 
         $validPerPage = in_array($perPage, [10, 50, 100]) ? $perPage : 10;
@@ -49,14 +53,23 @@ class CategoryLivewire extends Component
         $eras = Era::all();
         $franchises = Franchise::all();
 
-        if ($search) {
-            $categories = Category::withTrashed()
-                ->where('name', 'like', "%{$search}%")
-                ->orWhere('desc', 'like', "%{$search}%")
-                ->paginate($validPerPage);
-        } else {
-            $categories = Category::withTrashed()->paginate($validPerPage);
-        }
+        $categories = Category::withTrashed()
+            ->with(['era', 'franchise'])
+            ->when($search, function ($query, $search) {
+                $query->where(function ($query) use ($search) {
+                    $query->where('name', 'like', "%{$search}%")
+                        ->orWhere('desc', 'like', "%{$search}%")
+                        ->orWhereHas('era', fn($q) => $q->where('name', 'like', "%{$search}%"))
+                        ->orWhereHas('franchise', fn($q) => $q->where('name', 'like', "%{$search}%"));
+                });
+            })
+            ->when($eraId, function ($query, $eraId) {
+                $query->where('era_id', $eraId);
+            })
+            ->when($franchiseId, function ($query, $franchiseId) {
+                $query->where('franchise_id', $franchiseId);
+            })
+            ->paginate($validPerPage);
 
         return view('livewire.admin.category', compact('categories', 'eras', 'franchises', 'search', 'perPage'));
     }

@@ -11,7 +11,7 @@
                 </div>
             </div>
 
-            @if (request()->routeIs('admin.category.index'))
+            @if (request()->routeIs('admin.category.index') || request()->routeIs('admin.category'))
                 <div class="col-md-3">
                     <select name="franchise_id" class="form-select"
                         onchange="document.getElementById('filterForm').submit()">
@@ -36,7 +36,7 @@
                     </select>
                 </div>
             @endif
-            @if (request()->routeIs('admin.data.index') || request()->routeIs('admin.film.index'))
+            @if (request()->routeIs('admin.data.index') || request()->routeIs('admin.film.index') || request()->routeIs('admin.data'))
                 <div class="col-md-3">
                     <select name="category_id" class="form-select"
                         onchange="document.getElementById('filterForm').submit()">
