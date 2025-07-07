@@ -8,7 +8,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">{{ __('Hapus Permanen Film') }}
+                <h5 class="modal-title">{{ __('Permanently Delete Data') }}
                 </h5>
                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
