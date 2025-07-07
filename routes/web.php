@@ -54,15 +54,14 @@ Route::get('/auth/{provider}/callback', [ProviderController::class, 'callback'])
 
 require __DIR__ . '/auth.php';
 
-Route::middleware(['auth', 'verified'])->group(function () {
-
+Route::middleware(['auth'])->group(function () {
   Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
   Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
   Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
   Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
   // CMS ADMINITRASTOR
-  Route::name('admin.')->prefix('admin')->group(function () {
+  Route::middleware(['verified'])->name('admin.')->prefix('admin')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('beranda');
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
 
@@ -105,7 +104,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::put('/franchise/restoreAll', [AdminFranchiseController::class, 'restoreAll'])->name('franchise.restoreAll');
     Route::post('/franchise/import', [AdminFranchiseController::class, 'import'])->name('franchise.import');
     Route::get('/franchise/exportExcel', [AdminFranchiseController::class, 'exportExcel'])->name('franchise.exportExcel');
-    Route::get('/franchise/exportPDF', [AdminFranchiseController::class, 'exportPDF'])->name('franchise.exportPDF'); 
+    Route::get('/franchise/exportPDF', [AdminFranchiseController::class, 'exportPDF'])->name('franchise.exportPDF');
 
     // CRUD CATEGORY
     Route::get('/category', [AdminCategoryController::class, 'index'])->name('category.index');
@@ -148,7 +147,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/data/import', [AdminDataController::class, 'import'])->name('data.import');
     Route::get('/data/exportExcel', [AdminDataController::class, 'exportExcel'])->name('data.exportExcel');
     // Route::get('/data/exportPDF', [AdminDataController::class, 'exportPDF'])->name('data.exportPDF');
-    
+
     // CRUD FILM
     Route::get('/film', [AdminFilmController::class, 'index'])->name('film.index');
     Route::post('/film', [AdminFilmController::class, 'store'])->name('film.store');
