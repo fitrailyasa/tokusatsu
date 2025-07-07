@@ -5,8 +5,9 @@
             <h3 class="card-title">Kelola Tabel {{ $title ?? '' }}</h3>
             <div class="d-flex justify-content-end mb-3">
                 @include('admin.data.create')
-                @include('admin.data.import')
-                @include('admin.data.export')
+                @include('admin.data.excel.import')
+                @include('admin.data.excel.export')
+                {{-- @include('admin.data.pdf.export') --}}
                 @include('admin.data.softDeleteAll')
                 @include('admin.data.restoreAll')
             </div>

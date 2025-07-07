@@ -5,8 +5,9 @@
             <h3 class="card-title">Kelola Tabel {{ $title ?? '' }}</h3>
             <div class="d-flex justify-content-end mb-3">
                 @include('admin.franchise.create')
-                @include('admin.franchise.import')
-                @include('admin.franchise.export')
+                @include('admin.franchise.excel.import')
+                @include('admin.franchise.excel.export')
+                @include('admin.franchise.pdf.export')
                 @include('admin.franchise.softDeleteAll')
                 @include('admin.franchise.restoreAll')
             </div>

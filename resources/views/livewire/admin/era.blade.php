@@ -5,8 +5,9 @@
             <h3 class="card-title">Kelola Tabel {{ $title ?? '' }}</h3>
             <div class="d-flex justify-content-end mb-3">
                 @include('admin.era.create')
-                @include('admin.era.import')
-                @include('admin.era.export')
+                @include('admin.era.excel.import')
+                @include('admin.era.excel.export')
+                @include('admin.era.pdf.export')
                 @include('admin.era.softDeleteAll')
                 @include('admin.era.restoreAll')
             </div>
