@@ -45,7 +45,7 @@
                 <th>No</th>
                 <th>Nama</th>
                 <th>Kategori</th>
-                <th>Gambar</th>
+                {{-- <th>Gambar</th> --}}
             </tr>
         </thead>
         <tbody>
@@ -56,7 +56,7 @@
                     <td>
                         {{ $data->category->name ?? '-' }}
                     </td>
-                    <td>
+                    {{-- <td>
                         @php
                             $imgPath = $data->img
                                 ? public_path('storage/' . $data->img)
@@ -67,7 +67,7 @@
                         @else
                             Tidak ada
                         @endif
-                    </td>
+                    </td> --}}
                 </tr>
             @endforeach
         </tbody>

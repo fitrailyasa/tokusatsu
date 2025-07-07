@@ -32,6 +32,10 @@
             width: 60px;
             height: auto;
         }
+
+        .text-justify {
+            text-align: justify;
+        }
     </style>
 </head>
 
@@ -67,7 +71,7 @@
                             Tidak ada
                         @endif
                     </td>
-                    <td>{{ $category->desc ?? '-' }}</td>
+                    <td class="text-justify">{{ $category->desc ?? '-' }}</td>
                     <td>
                         {{ $category->era->name ?? '-' }}
                     </td>
