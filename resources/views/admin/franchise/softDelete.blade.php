@@ -1,7 +1,7 @@
 <!-- Tombol untuk membuka modal -->
 <button role="button" class="btn btn-sm m-1 btn-danger" data-bs-toggle="modal"
     data-bs-target=".formSoftDelete{{ $franchise->id }}"><i class="fas fa-trash"></i><span class="d-none d-sm-inline">
-        {{ __('Hapus') }}</span></button>
+        {{ __('Delete') }}</span></button>
 
 <!-- Modal -->
 <div class="modal fade formSoftDelete{{ $franchise->id }}" tabindex="-1" role="dialog" aria-hidden="">
