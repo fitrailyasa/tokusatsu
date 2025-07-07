@@ -10,7 +10,7 @@ use OpenApi\Annotations as OA;
  *     type="object",
  *     required={"id", "name"},
  *     @OA\Property(property="id", type="integer", example=1),
- *     @OA\Property(property="name", type="string", example="Laravel"),
+ *     @OA\Property(property="name", type="string", example="Test"),
  *     @OA\Property(property="created_at", type="string", format="date-time", example="2024-06-01T12:00:00Z"),
  *     @OA\Property(property="updated_at", type="string", format="date-time", example="2024-06-01T12:00:00Z")
  * )
@@ -19,7 +19,7 @@ use OpenApi\Annotations as OA;
  *     schema="TagRequest",
  *     type="object",
  *     required={"name"},
- *     @OA\Property(property="name", type="string", example="Laravel")
+ *     @OA\Property(property="name", type="string", example="Test")
  * )
  */
 class TagApiSwagger
