@@ -21,7 +21,7 @@
                     @method('DELETE')
                     <button type="button" class="btn btn-secondary"
                         data-bs-dismiss="modal">{{ __('Close') }}</button>
-                    <input type="submit" class="btn btn-danger light" name="" id="" value="Hapus">
+                    <input type="submit" class="btn btn-danger light" name="" id="" value="Delete">
                 </form>
             </div>
         </div>

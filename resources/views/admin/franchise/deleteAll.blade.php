@@ -1,6 +1,6 @@
 <!-- Tombol untuk membuka modal -->
 <button role="button" class="btn btn-sm m-1 btn-danger" data-bs-toggle="modal" data-bs-target=".deleteAll"><i
-        class="fas fa-trash"></i><span class="d-none d-sm-inline"> {{ __('Hapus Semua') }}</span></button>
+        class="fas fa-trash"></i><span class="d-none d-sm-inline"> {{ __('Delete All') }}</span></button>
 
 <!-- Modal -->
 <div class="modal fade deleteAll" tabindex="-1" role="dialog" aria-labelledby="modalFormLabel" aria-hidden="true">
@@ -21,7 +21,7 @@
                     @method('DELETE')
                     <button type="button" class="btn btn-secondary"
                         data-bs-dismiss="modal">{{ __('Close') }}</button>
-                    <button type="submit" class="btn btn-danger">{{ __('Hapus Semua') }}</button>
+                    <button type="submit" class="btn btn-danger">{{ __('Delete All') }}</button>
                 </form>
             </div>
         </div>
