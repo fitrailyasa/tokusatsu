@@ -54,7 +54,7 @@ class EraApiController extends Controller
             $img->storeAs('public', $file_name);
         }
 
-        return response()->json(['alert' => 'Berhasil Tambah Era!']);
+        return response()->json(['alert' => 'Successfully Create Era!']);
     }
 
     public function show($id)
@@ -82,7 +82,7 @@ class EraApiController extends Controller
             $img->storeAs('public', $file_name);
         }
 
-        return response()->json(['alert' => 'Berhasil Edit Era!']);
+        return response()->json(['alert' => 'Successfully Edit Era!']);
     }
 
     public function destroy($id)
@@ -90,7 +90,7 @@ class EraApiController extends Controller
         $era = Era::findOrFail($id);
         $era->delete();
 
-        return response()->json(['alert' => 'Berhasil Hapus Era!']);
+        return response()->json(['alert' => 'Successfully Delete Era!']);
     }
 
     public function all()

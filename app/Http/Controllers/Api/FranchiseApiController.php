@@ -54,7 +54,7 @@ class FranchiseApiController extends Controller
             $img->storeAs('public', $file_name);
         }
 
-        return response()->json(['alert' => 'Berhasil Tambah Franchise!']);
+        return response()->json(['alert' => 'Successfully Create Franchise!']);
     }
 
     public function show($id)
@@ -82,7 +82,7 @@ class FranchiseApiController extends Controller
             $img->storeAs('public', $file_name);
         }
 
-        return response()->json(['alert' => 'Berhasil Edit Franchise!']);
+        return response()->json(['alert' => 'Successfully Edit Franchise!']);
     }
 
     public function destroy($id)
@@ -90,7 +90,7 @@ class FranchiseApiController extends Controller
         $franchise = Franchise::findOrFail($id);
         $franchise->delete();
 
-        return response()->json(['alert' => 'Berhasil Hapus Franchise!']);
+        return response()->json(['alert' => 'Successfully Delete Franchise!']);
     }
 
     public function all()

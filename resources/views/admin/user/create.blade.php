@@ -1,6 +1,6 @@
 <!-- Tombol untuk membuka modal -->
 <button role="button" class="btn btn-sm m-1 btn-primary" data-bs-toggle="modal" data-bs-target=".formCreate"><i
-        class="fas fa-plus"></i><span class="d-none d-sm-inline"> {{ __('Tambah') }}</span></button>
+        class="fas fa-plus"></i><span class="d-none d-sm-inline"> {{ __('Add') }}</span></button>
 
 <!-- Modal -->
 <div class="modal fade formCreate" tabindex="-1" role="dialog" aria-labelledby="modalFormLabel" aria-hidden="true">
@@ -9,7 +9,7 @@
             <form method="POST" action="{{ route('admin.user.store') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalFormLabel">{{ __('Tambah Data') }}</h5>
+                    <h5 class="modal-title" id="modalFormLabel">{{ __('Add Data') }}</h5>
                     <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -81,8 +81,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label class="form-label">{{ __('Status') }}<span
-                                        class="text-danger">*</span></label>
+                                <label class="form-label">{{ __('Status') }}<span class="text-danger">*</span></label>
                                 <select class="form-select @error('email_verified') is-invalid @enderror"
                                     name="email_verified" id="email_verified" required>
                                     <option value="1" {{ old('email_verified') == '1' ? 'selected' : '' }}>Aktif
@@ -99,8 +98,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary"
-                        data-bs-dismiss="modal">{{ __('Tutup') }}</button>
-                    <button type="submit" class="btn btn-primary">{{ __('Simpan') }}</button>
+                        data-bs-dismiss="modal">{{ __('Close') }}</button>
+                    <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
                 </div>
             </form>
         </div>

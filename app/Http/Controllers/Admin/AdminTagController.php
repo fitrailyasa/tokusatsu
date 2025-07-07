@@ -55,7 +55,7 @@ class AdminTagController extends Controller
 
         $file = $request->file('file');
         Excel::import(new TagImport, $file);
-        return back()->with('success', 'Berhasil Import Data Tag!');
+        return back()->with('success', 'Successfully Import Data Tag!');
     }
 
     public function exportExcel()
@@ -74,49 +74,49 @@ class AdminTagController extends Controller
     public function store(TagRequest $request)
     {
         $tag = Tag::create($request->validated());
-        return back()->with('success', 'Berhasil Tambah Data Tag!');
+        return back()->with('success', 'Successfully Create Data Tag!');
     }
 
     public function update(TagRequest $request, $id)
     {
         $tag = Tag::findOrFail($id);
         $tag->update($request->validated());
-        return back()->with('success', 'Berhasil Edit Data Tag!');
+        return back()->with('success', 'Successfully Edit Data Tag!');
     }
 
     public function destroy($id)
     {
         Tag::withTrashed()->findOrFail($id)->forceDelete();
-        return back()->with('success', 'Berhasil Hapus Data Tag!');
+        return back()->with('success', 'Successfully Delete Data Tag!');
     }
 
     public function destroyAll()
     {
         Tag::truncate();
-        return back()->with('success', 'Berhasil Hapus Semua Tag!');
+        return back()->with('success', 'Successfully Delete All Tag!');
     }
 
     public function softDelete($id)
     {
         Tag::findOrFail($id)->delete();
-        return back()->with('success', 'Berhasil Hapus Data Tag!');
+        return back()->with('success', 'Successfully Delete Data Tag!');
     }
 
     public function softDeleteAll()
     {
         Tag::query()->delete();
-        return back()->with('success', 'Berhasil Hapus Semua Tag!');
+        return back()->with('success', 'Successfully Delete All Tag!');
     }
 
     public function restore($id)
     {
         Tag::withTrashed()->findOrFail($id)->restore();
-        return back()->with('success', 'Berhasil Restore Tag!');
+        return back()->with('success', 'Successfully Restore Tag!');
     }
 
     public function restoreAll()
     {
         Tag::onlyTrashed()->restore();
-        return back()->with('success', 'Berhasil Restore Semua Tag!');
+        return back()->with('success', 'Successfully Restore All Tag!');
     }
 }

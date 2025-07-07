@@ -18,7 +18,7 @@ class FranchiseRequest extends FormRequest
         $db = new Franchise();
 
         // dd($db->getConnection()->getDatabaseName());
-        
+
         $id = $this->route('id');
 
         return [
@@ -35,12 +35,12 @@ class FranchiseRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'Nama tidak boleh kosong!',
-            'name.max' => 'Nama maksimal 100 karakter!',
-            'name.unique' => 'Franchise sudah ada!',
-            'desc.max' => 'Deskripsi maksimal 1024 karakter!',
-            'img.mimes' => 'Format gambar harus jpg, jpeg, png!',
-            'img.max' => 'Ukuran gambar maksimal 2 MB!',
+            'name.required' => 'Name is required.',
+            'name.max' => 'Name must be under 100 chars.',
+            'name.unique' => 'Name already exists.',
+            'desc.max' => 'Description max 1024 chars.',
+            'img.mimes' => 'Image must be jpg, jpeg, or png.',
+            'img.max' => 'Image size must be under 2MB.',
         ];
     }
 }

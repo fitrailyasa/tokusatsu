@@ -87,7 +87,7 @@ class EraTest extends TestCase
         $response = $this->post(route('admin.era.store'), $data);
 
         $response->assertRedirect();
-        $response->assertSessionHas('success', 'Berhasil Tambah Data Era!');
+        $response->assertSessionHas('success', 'Successfully Create Data Era!');
         $this->assertDatabaseHas('eras', ['name' => 'New Era']);
     }
 
@@ -106,7 +106,7 @@ class EraTest extends TestCase
         $response = $this->put(route('admin.era.update', $era->id), $data);
 
         $response->assertRedirect();
-        $response->assertSessionHas('success', 'Berhasil Edit Data Era!');
+        $response->assertSessionHas('success', 'Successfully Edit Data Era!');
         $this->assertDatabaseHas('eras', [
             'id' => $era->id,
             'name' => 'Updated Era',
@@ -123,7 +123,7 @@ class EraTest extends TestCase
             ->delete(route('admin.era.softDelete', $era->id));
 
         $response->assertRedirect();
-        $response->assertSessionHas('success', 'Berhasil Hapus Data Era!');
+        $response->assertSessionHas('success', 'Successfully Delete Data Era!');
 
         $this->assertSoftDeleted('eras', ['id' => $era->id]);
     }
@@ -139,7 +139,7 @@ class EraTest extends TestCase
         $response = $this->put(route('admin.era.restore', $era->id));
 
         $response->assertRedirect();
-        $response->assertSessionHas('success', 'Berhasil Restore Era!');
+        $response->assertSessionHas('success', 'Successfully Restore Era!');
         $this->assertDatabaseHas('eras', ['id' => $era->id]);
     }
 
@@ -153,7 +153,7 @@ class EraTest extends TestCase
             ->delete(route('admin.era.destroy', $era->id));
 
         $response->assertRedirect();
-        $response->assertSessionHas('success', 'Berhasil Hapus Data Era!');
+        $response->assertSessionHas('success', 'Successfully Delete Data Era!');
 
         $this->assertDatabaseMissing('eras', ['id' => $era->id]);
     }
@@ -170,7 +170,7 @@ class EraTest extends TestCase
             ->post(route('admin.era.import'), ['file' => $file]);
 
         $response->assertRedirect();
-        $response->assertSessionHas('success', 'Berhasil Import Data Era!');
+        $response->assertSessionHas('success', 'Successfully Import Data Era!');
 
         Excel::assertImported('eras.xlsx', function (EraImport $import) {
             return true;

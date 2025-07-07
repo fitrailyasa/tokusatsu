@@ -94,7 +94,7 @@ class CategoryTest extends TestCase
         $response = $this->post(route('admin.category.store'), $data);
 
         $response->assertRedirect();
-        $response->assertSessionHas('success', 'Berhasil Tambah Data Category!');
+        $response->assertSessionHas('success', 'Successfully Create Data Category!');
         $this->assertDatabaseHas('categories', ['name' => 'New Category']);
     }
 
@@ -117,7 +117,7 @@ class CategoryTest extends TestCase
         $response = $this->put(route('admin.category.update', $category->id), $data);
 
         $response->assertRedirect();
-        $response->assertSessionHas('success', 'Berhasil Edit Data Category!');
+        $response->assertSessionHas('success', 'Successfully Edit Data Category!');
         $this->assertDatabaseHas('categories', [
             'id' => $category->id,
             'era_id' => $era->id,
@@ -136,7 +136,7 @@ class CategoryTest extends TestCase
             ->delete(route('admin.category.softDelete', $category->id));
 
         $response->assertRedirect();
-        $response->assertSessionHas('success', 'Berhasil Hapus Data Category!');
+        $response->assertSessionHas('success', 'Successfully Delete Data Category!');
 
         $this->assertSoftDeleted('categories', ['id' => $category->id]);
     }
@@ -152,7 +152,7 @@ class CategoryTest extends TestCase
         $response = $this->put(route('admin.category.restore', $category->id));
 
         $response->assertRedirect();
-        $response->assertSessionHas('success', 'Berhasil Restore Category!');
+        $response->assertSessionHas('success', 'Successfully Restore Category!');
         $this->assertDatabaseHas('categories', ['id' => $category->id]);
     }
 
@@ -166,7 +166,7 @@ class CategoryTest extends TestCase
             ->delete(route('admin.category.destroy', $category->id));
 
         $response->assertRedirect();
-        $response->assertSessionHas('success', 'Berhasil Hapus Data Category!');
+        $response->assertSessionHas('success', 'Successfully Delete Data Category!');
 
         $this->assertDatabaseMissing('categories', ['id' => $category->id]);
     }
@@ -183,7 +183,7 @@ class CategoryTest extends TestCase
             ->post(route('admin.category.import'), ['file' => $file]);
 
         $response->assertRedirect();
-        $response->assertSessionHas('success', 'Berhasil Import Data Category!');
+        $response->assertSessionHas('success', 'Successfully Import Data Category!');
 
         Excel::assertImported('categories.xlsx', function (CategoryImport $import) {
             return true;

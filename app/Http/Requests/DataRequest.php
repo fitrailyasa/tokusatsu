@@ -28,11 +28,11 @@ class DataRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'Nama tidak boleh kosong!',
-            'name.max' => 'Nama maksimal 100 karakter!',
-            'category_id.required' => 'Kategori tidak boleh kosong!',
-            'img.mimes' => 'Format gambar harus jpg, jpeg, png!',
-            'img.max' => 'Ukuran gambar maksimal 2 MB!',
+            'name.required' => 'Name is required.',
+            'name.max' => 'Name must be under 100 chars.',
+            'category_id.required' => 'Category is required.',
+            'img.mimes' => 'Image must be jpg, jpeg, or png.',
+            'img.max' => 'Image size must be under 2MB.',
         ];
     }
 }

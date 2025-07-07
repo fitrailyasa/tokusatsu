@@ -7,20 +7,20 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalFormLabel">{{ __('Hapus Permanen Semua Data') }}</h5>
+                <h5 class="modal-title" id="modalFormLabel">{{ __('Permanently Delete All Data') }}</h5>
                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <p>Anda yakin ingin menghapus semua data secara permanen?</p>
+                <p>Are you sure you want to permanently delete all data?</p>
             </div>
             <div class="modal-footer">
                 <form method="POST" action="{{ route('admin.franchise.destroyAll') }}">
                     @csrf
                     @method('DELETE')
                     <button type="button" class="btn btn-secondary"
-                        data-bs-dismiss="modal">{{ __('Tutup') }}</button>
+                        data-bs-dismiss="modal">{{ __('Close') }}</button>
                     <button type="submit" class="btn btn-danger">{{ __('Hapus Semua') }}</button>
                 </form>
             </div>

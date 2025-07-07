@@ -45,7 +45,7 @@ class TagApiController extends Controller
     {
         $tag = Tag::create($request->validated());
 
-        return response()->json(['alert' => 'Berhasil Tambah Tag!']);
+        return response()->json(['alert' => 'Successfully Create Tag!']);
     }
 
     public function show($id)
@@ -65,7 +65,7 @@ class TagApiController extends Controller
         $tag = Tag::findOrFail($id);
         $tag->update($request->validated());
 
-        return response()->json(['alert' => 'Berhasil Edit Tag!']);
+        return response()->json(['alert' => 'Successfully Edit Tag!']);
     }
 
     public function destroy($id)
@@ -73,7 +73,7 @@ class TagApiController extends Controller
         $tag = Tag::findOrFail($id);
         $tag->delete();
 
-        return response()->json(['alert' => 'Berhasil Hapus Tag!']);
+        return response()->json(['alert' => 'Successfully Delete Tag!']);
     }
 
     public function all()

@@ -51,7 +51,7 @@ class FilmApiController extends Controller
     {
         $Film = Film::create($request->validated());
 
-        return response()->json(['alert' => 'Berhasil Tambah Film!']);
+        return response()->json(['alert' => 'Successfully Create Film!']);
     }
 
     public function show($id)
@@ -71,7 +71,7 @@ class FilmApiController extends Controller
         $Film = Film::findOrFail($id);
         $Film->update($request->validated());
 
-        return response()->json(['alert' => 'Berhasil Edit Film!']);
+        return response()->json(['alert' => 'Successfully Edit Film!']);
     }
 
     public function destroy($id)
@@ -79,13 +79,13 @@ class FilmApiController extends Controller
         $Film = Film::findOrFail($id);
         $Film->delete();
 
-        return response()->json(['alert' => 'Berhasil Hapus Film!']);
+        return response()->json(['alert' => 'Successfully Delete Film!']);
     }
 
     public function findByFranchiseCategory(Request $request, $franchise, $category)
     {
         $perPage = $request->query('per_page', 10);
-        
+
         $films = Film::with(['category.franchise'])
             ->whereHas('category', function ($q) use ($category, $franchise) {
                 $q->where('slug', 'LIKE', "%{$category}%")

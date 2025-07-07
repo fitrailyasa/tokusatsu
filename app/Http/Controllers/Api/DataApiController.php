@@ -62,7 +62,7 @@ class DataApiController extends Controller
             $img->storeAs('public', $file_name);
         }
 
-        return response()->json(['alert' => 'Berhasil Tambah Data!']);
+        return response()->json(['alert' => 'Successfully Create Data!']);
     }
 
     public function show($id)
@@ -90,7 +90,7 @@ class DataApiController extends Controller
             $img->storeAs('public', $file_name);
         }
 
-        return response()->json(['alert' => 'Berhasil Edit Data!']);
+        return response()->json(['alert' => 'Successfully Edit Data!']);
     }
 
     public function destroy($id)
@@ -98,13 +98,13 @@ class DataApiController extends Controller
         $data = Data::findOrFail($id);
         $data->delete();
 
-        return response()->json(['alert' => 'Berhasil Hapus Data!']);
+        return response()->json(['alert' => 'Successfully Delete Data!']);
     }
 
     public function findByFranchiseCategory(Request $request, $franchise, $category)
     {
         $perPage = $request->query('per_page', 10);
-        
+
         $datas = Data::with(['category.franchise', 'tags'])
             ->whereHas('category', function ($q) use ($category, $franchise) {
                 $q->where('slug', 'LIKE', "%{$category}%")

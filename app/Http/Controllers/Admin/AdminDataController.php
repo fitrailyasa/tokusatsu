@@ -82,7 +82,7 @@ class AdminDataController extends Controller
 
         Excel::import(new DataImport, $file);
 
-        return back()->with('success', 'Berhasil Import Data!');
+        return back()->with('success', 'Successfully Import Data!');
     }
 
     public function exportExcel()
@@ -111,7 +111,7 @@ class AdminDataController extends Controller
             $img->storeAs('public', $file_name);
         }
 
-        return back()->with('success', 'Berhasil Tambah Data!');
+        return back()->with('success', 'Successfully Create Data!');
     }
 
     public function update(DataRequest $request, $id)
@@ -128,43 +128,43 @@ class AdminDataController extends Controller
             $img->storeAs('public', $file_name);
         }
 
-        return back()->with('success', 'Berhasil Edit Data!');
+        return back()->with('success', 'Successfully Edit Data!');
     }
 
     public function destroy($id)
     {
         Data::withTrashed()->findOrFail($id)->forceDelete();
-        return back()->with('success', 'Berhasil Hapus Data!');
+        return back()->with('success', 'Successfully Delete Data!');
     }
 
     public function destroyAll()
     {
         Data::truncate();
-        return back()->with('success', 'Berhasil Hapus Semua Data!');
+        return back()->with('success', 'Successfully Delete All Data!');
     }
 
     public function softDelete($id)
     {
         Data::findOrFail($id)->delete();
-        return back()->with('success', 'Berhasil Hapus Data!');
+        return back()->with('success', 'Successfully Delete Data!');
     }
 
     public function softDeleteAll()
     {
         Data::query()->delete();
-        return back()->with('success', 'Berhasil Hapus Semua Data!');
+        return back()->with('success', 'Successfully Delete All Data!');
     }
 
     public function restore($id)
     {
         Data::withTrashed()->findOrFail($id)->restore();
-        return back()->with('success', 'Berhasil Restore Data!');
+        return back()->with('success', 'Successfully Restore Data!');
     }
 
     public function restoreAll()
     {
         Data::onlyTrashed()->restore();
 
-        return back()->with('success', 'Berhasil Restore Semua Data!');
+        return back()->with('success', 'Successfully Restore All Data!');
     }
 }

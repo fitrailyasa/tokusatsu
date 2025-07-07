@@ -14,13 +14,13 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body text-left">Apakah anda yakin ingin mengembalikan data ini?</div>
+            <div class="modal-body text-left">Are you sure you want to restore this data?</div>
             <div class="modal-footer">
                 <form action="{{ route('admin.franchise.restore', $franchise->id) }}" method="POST">
                     @method('PUT')
                     @csrf
                     <button type="button" class="btn btn-secondary"
-                        data-bs-dismiss="modal">{{ __('Tutup') }}</button>
+                        data-bs-dismiss="modal">{{ __('Close') }}</button>
                     <input type="submit" class="btn btn-success light" name="" id="" value="Restore">
                 </form>
             </div>

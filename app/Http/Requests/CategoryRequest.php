@@ -37,14 +37,14 @@ class CategoryRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'era_id.required' => 'Era harus dipilih!',
-            'franchise_id.required' => 'Franchise harus dipilih!',
-            'name.required' => 'Kolom Nama harus diisi!',
-            'name.max' => 'Kolom Nama tidak boleh lebih dari 100 karakter!',
-            'name.unique' => 'Kolom Nama sudah ada!',
-            'desc.max' => 'Kolom Deskripsi tidak boleh lebih dari 1024 karakter!',
-            'img.mimes' => 'File harus berupa jpg, jpeg, atau png!',
-            'img.max' => 'File tidak boleh lebih dari 2 MB!',
+            'era_id.required'       => 'Era is required.',
+            'franchise_id.required' => 'Franchise is required.',
+            'name.required'         => 'Name is required.',
+            'name.max'              => 'Name must be under 100 chars.',
+            'name.unique'           => 'Name already exists.',
+            'desc.max'              => 'Description max 1024 chars.',
+            'img.mimes'             => 'Image must be jpg, jpeg, or png.',
+            'img.max'               => 'Image max size is 2MB.',
         ];
     }
 }

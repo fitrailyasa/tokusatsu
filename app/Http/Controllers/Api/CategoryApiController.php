@@ -53,7 +53,7 @@ class CategoryApiController extends Controller
             $img->storeAs('public', $file_name);
         }
 
-        return response()->json(['alert' => 'Berhasil Tambah Category!']);
+        return response()->json(['alert' => 'Successfully Create Category!']);
     }
 
     public function show($id)
@@ -81,7 +81,7 @@ class CategoryApiController extends Controller
             $img->storeAs('public', $file_name);
         }
 
-        return response()->json(['alert' => 'Berhasil Edit Category!']);
+        return response()->json(['alert' => 'Successfully Edit Category!']);
     }
 
     public function destroy($id)
@@ -89,7 +89,7 @@ class CategoryApiController extends Controller
         $category = Category::findOrFail($id);
         $category->delete();
 
-        return response()->json(['alert' => 'Berhasil Hapus Category!']);
+        return response()->json(['alert' => 'Successfully Delete Category!']);
     }
 
     public function findByEra(Request $request, $era)

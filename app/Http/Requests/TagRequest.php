@@ -33,9 +33,9 @@ class TagRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'Nama tidak boleh kosong!',
-            'name.max' => 'Nama maksimal 100 karakter!',
-            'name.unique' => 'Tag sudah ada!'
+            'name.required' => 'Name is required.',
+            'name.max' => 'Name must be under 100 chars.',
+            'name.unique' => 'Name already exists.',
         ];
     }
 }

@@ -41,7 +41,7 @@ class FranchiseApiTest extends TestCase
         $response = $this->postJson(route('franchises.store'), $data);
 
         $response->assertStatus(200)
-            ->assertJson(['alert' => 'Berhasil Tambah Franchise!']);
+            ->assertJson(['alert' => 'Successfully Create Franchise!']);
 
         $this->assertDatabaseHas('franchises', ['name' => 'New Franchise']);
     }
@@ -68,7 +68,7 @@ class FranchiseApiTest extends TestCase
         $response = $this->putJson(route('franchises.update', $franchise->id), $updateData);
 
         $response->assertStatus(200)
-            ->assertJson(['alert' => 'Berhasil Edit Franchise!']);
+            ->assertJson(['alert' => 'Successfully Edit Franchise!']);
 
         $this->assertDatabaseHas('franchises', ['name' => 'Updated Franchise']);
     }
@@ -80,7 +80,7 @@ class FranchiseApiTest extends TestCase
         $response = $this->deleteJson(route('franchises.destroy', $franchise->id));
 
         $response->assertStatus(200)
-            ->assertJson(['alert' => 'Berhasil Hapus Franchise!']);
+            ->assertJson(['alert' => 'Successfully Delete Franchise!']);
 
         $this->assertSoftDeleted('franchises', ['id' => $franchise->id]);
     }

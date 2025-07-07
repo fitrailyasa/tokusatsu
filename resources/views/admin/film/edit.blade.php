@@ -71,7 +71,8 @@
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label class="form-label">{{ __('Number of Episodes') }}<span class="text-danger">*</span></label>
+                                <label class="form-label">{{ __('Number of Episodes') }}<span
+                                        class="text-danger">*</span></label>
                                 <input type="number" class="form-control @error('number') is-invalid @enderror"
                                     placeholder="1" name="number" id="number"
                                     value="{{ old('number', $film->number) }}" required>
@@ -84,8 +85,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary"
-                        data-bs-dismiss="modal">{{ __('Tutup') }}</button>
-                    <button type="submit" class="btn btn-primary">{{ __('Simpan') }}</button>
+                        data-bs-dismiss="modal">{{ __('Close') }}</button>
+                    <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
                 </div>
             </form>
         </div>

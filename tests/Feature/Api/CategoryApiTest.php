@@ -52,7 +52,7 @@ class CategoryApiTest extends TestCase
         $response = $this->postJson(route('categories.store'), $data);
 
         $response->assertStatus(200)
-            ->assertJson(['alert' => 'Berhasil Tambah Category!']);
+            ->assertJson(['alert' => 'Successfully Create Category!']);
 
         $this->assertDatabaseHas('categories', ['name' => 'New Category']);
     }
@@ -82,7 +82,7 @@ class CategoryApiTest extends TestCase
         $response = $this->putJson(route('categories.update', $category->id), $updateData);
 
         $response->assertStatus(200)
-            ->assertJson(['alert' => 'Berhasil Edit Category!']);
+            ->assertJson(['alert' => 'Successfully Edit Category!']);
 
         $this->assertDatabaseHas('categories', ['name' => 'Updated Category']);
     }
@@ -94,7 +94,7 @@ class CategoryApiTest extends TestCase
         $response = $this->deleteJson(route('categories.destroy', $category->id));
 
         $response->assertStatus(200)
-            ->assertJson(['alert' => 'Berhasil Hapus Category!']);
+            ->assertJson(['alert' => 'Successfully Delete Category!']);
 
         $this->assertSoftDeleted('categories', ['id' => $category->id]);
     }

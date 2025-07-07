@@ -41,7 +41,7 @@ class EraApiTest extends TestCase
         $response = $this->postJson(route('eras.store'), $data);
 
         $response->assertStatus(200)
-            ->assertJson(['alert' => 'Berhasil Tambah Era!']);
+            ->assertJson(['alert' => 'Successfully Create Era!']);
 
         $this->assertDatabaseHas('eras', ['name' => 'New Era']);
     }
@@ -68,7 +68,7 @@ class EraApiTest extends TestCase
         $response = $this->putJson(route('eras.update', $era->id), $updateData);
 
         $response->assertStatus(200)
-            ->assertJson(['alert' => 'Berhasil Edit Era!']);
+            ->assertJson(['alert' => 'Successfully Edit Era!']);
 
         $this->assertDatabaseHas('eras', ['name' => 'Updated Era']);
     }
@@ -80,7 +80,7 @@ class EraApiTest extends TestCase
         $response = $this->deleteJson(route('eras.destroy', $era->id));
 
         $response->assertStatus(200)
-            ->assertJson(['alert' => 'Berhasil Hapus Era!']);
+            ->assertJson(['alert' => 'Successfully Delete Era!']);
 
         $this->assertSoftDeleted('eras', ['id' => $era->id]);
     }

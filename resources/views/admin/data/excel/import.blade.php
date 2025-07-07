@@ -32,7 +32,7 @@
                 <div class="modal-footer">
                     <a class="btn btn-success" href="{{ asset('assets/template/data-template.xlsx') }}"
                         download="data-template.xlsx">{{ __('Download Format') }}</a>
-                    <button type="submit" class="btn btn-primary">{{ __('Simpan') }}</button>
+                    <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
                 </div>
             </form>
         </div>
