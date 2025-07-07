@@ -1,6 +1,6 @@
 <!-- Tombol untuk membuka modal -->
 <button role="button" class="btn btn-sm m-1 btn-danger" data-bs-toggle="modal"
-    data-bs-target=".formDelete{{ $era->id }}"><i class="fas fa-trash"></i><span class="d-none d-sm-inline">
+    data-bs-target=".formDelete{{ $era->id }}"><i class="fas fa-skull"></i><span class="d-none d-sm-inline">
         {{ __('Delete') }}</span></button>
 
 <!-- Modal -->
