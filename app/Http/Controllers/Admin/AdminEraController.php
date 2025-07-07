@@ -67,7 +67,7 @@ class AdminEraController extends Controller
 
     public function exportPDF()
     {
-        $eras = Era::all();
+        $eras = Era::withTrashed()->get();
         $pdf = Pdf::loadView('admin.era.pdf.template', compact('eras'));
 
         return $pdf->stream('Data Era.pdf');
