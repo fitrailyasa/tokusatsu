@@ -2,7 +2,7 @@
 <div class="card">
     <div class="card-body">
         <div class="d-flex justify-content-between">
-            <h3 class="card-title">Kelola Tabel {{ $title ?? '' }}</h3>
+            <h3 class="card-title">Table @yield('title')</h3>
             <div class="d-flex justify-content-end mb-3">
                 @include('admin.user.create')
             </div>
