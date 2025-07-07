@@ -61,7 +61,7 @@ class DataTest extends TestCase
 
         $this->actingAs($user)
             ->get(route('admin.data.index'))
-            ->assertForbidden();
+            ->assertRedirect(route('verification.notice'));
     }
 
     #[Test]

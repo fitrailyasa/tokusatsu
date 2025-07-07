@@ -60,7 +60,7 @@ class EraTest extends TestCase
 
         $this->actingAs($user)
             ->get(route('admin.era.index'))
-            ->assertForbidden();
+            ->assertRedirect(route('verification.notice'));
     }
 
     #[Test]

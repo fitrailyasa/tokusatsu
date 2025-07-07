@@ -60,7 +60,7 @@ class FranchiseTest extends TestCase
 
         $this->actingAs($user)
             ->get(route('admin.franchise.index'))
-            ->assertForbidden();
+            ->assertRedirect(route('verification.notice'));
     }
 
     #[Test]

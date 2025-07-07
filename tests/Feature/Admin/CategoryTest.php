@@ -62,7 +62,7 @@ class CategoryTest extends TestCase
 
         $this->actingAs($user)
             ->get(route('admin.category.index'))
-            ->assertForbidden();
+            ->assertRedirect(route('verification.notice'));
     }
 
     #[Test]

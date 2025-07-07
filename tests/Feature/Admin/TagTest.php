@@ -60,7 +60,7 @@ class TagTest extends TestCase
 
         $this->actingAs($user)
             ->get(route('admin.tag.index'))
-            ->assertForbidden();
+            ->assertRedirect(route('verification.notice'));
     }
 
     #[Test]
