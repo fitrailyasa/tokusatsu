@@ -33,20 +33,20 @@ class CategoryApiSwagger
     /**
      * @OA\Get(
      *     path="/api/categories",
-     *     summary="Daftar Category dengan pagination dan search",
+     *     summary="Category list with pagination and search",
      *     tags={"Category"},
      *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
      *         name="search",
      *         in="query",
-     *         description="Kata kunci pencarian nama category",
+     *         description="Category name search keywords",
      *         required=false,
      *         @OA\Schema(type="string")
      *     ),
      *     @OA\Parameter(
      *         name="per_page",
      *         in="query",
-     *         description="Jumlah data per halaman",
+     *         description="Amount of data per page",
      *         required=false,
      *         @OA\Schema(type="integer", default=10)
      *     ),
@@ -73,7 +73,7 @@ class CategoryApiSwagger
      *             )
      *         )
      *     ),
-     *     @OA\Response(response=404, description="Category tidak ditemukan")
+     *     @OA\Response(response=404, description="Category not found")
      * )
      */
     public function index() {}
@@ -81,7 +81,7 @@ class CategoryApiSwagger
     /**
      * @OA\Post(
      *     path="/api/categories",
-     *     summary="Tambah Category baru",
+     *     summary="Create a new Category",
      *     tags={"Category"},
      *     security={{"bearerAuth":{}}},
      *     @OA\RequestBody(
@@ -90,9 +90,9 @@ class CategoryApiSwagger
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Category berhasil dibuat",
+     *         description="Category created successfully",
      *         @OA\JsonContent(
-     *             @OA\Property(property="alert", type="string", example="Berhasil Tambah Category!")
+     *             @OA\Property(property="alert", type="string", example="Successfully Create Category!")
      *         )
      *     )
      * )
@@ -102,7 +102,7 @@ class CategoryApiSwagger
     /**
      * @OA\Get(
      *     path="/api/categories/{id}",
-     *     summary="Ambil detail Category berdasarkan ID",
+     *     summary="Retrieve Category details by ID",
      *     tags={"Category"},
      *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
@@ -112,7 +112,7 @@ class CategoryApiSwagger
      *         @OA\Schema(type="integer")
      *     ),
      *     @OA\Response(response=200, description="Detail Category", @OA\JsonContent(ref="#/components/schemas/Category")),
-     *     @OA\Response(response=404, description="Category tidak ditemukan")
+     *     @OA\Response(response=404, description="Category not found")
      * )
      */
     public function show() {}
@@ -120,7 +120,7 @@ class CategoryApiSwagger
     /**
      * @OA\Put(
      *     path="/api/categories/{id}",
-     *     summary="Update Category berdasarkan ID",
+     *     summary="Update Category details by ID",
      *     tags={"Category"},
      *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
@@ -135,10 +135,10 @@ class CategoryApiSwagger
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Category berhasil diupdate",
-     *         @OA\JsonContent(@OA\Property(property="alert", type="string", example="Berhasil Edit Category!"))
+     *         description="Category updated successfully",
+     *         @OA\JsonContent(@OA\Property(property="alert", type="string", example="Successfully Edit Category!"))
      *     ),
-     *     @OA\Response(response=404, description="Category tidak ditemukan")
+     *     @OA\Response(response=404, description="Category not found")
      * )
      */
     public function update() {}
@@ -146,7 +146,7 @@ class CategoryApiSwagger
     /**
      * @OA\Delete(
      *     path="/api/categories/{id}",
-     *     summary="Hapus Category berdasarkan ID",
+     *     summary="Delete Category details by ID",
      *     tags={"Category"},
      *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
@@ -157,10 +157,10 @@ class CategoryApiSwagger
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Category berhasil dihapus",
-     *         @OA\JsonContent(@OA\Property(property="alert", type="string", example="Berhasil Hapus Category!"))
+     *         description="Category deleted successfully",
+     *         @OA\JsonContent(@OA\Property(property="alert", type="string", example="Successfully Delete Category!"))
      *     ),
-     *     @OA\Response(response=404, description="Category tidak ditemukan")
+     *     @OA\Response(response=404, description="Category not found")
      * )
      */
     public function destroy() {}

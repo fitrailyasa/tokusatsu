@@ -29,20 +29,20 @@ class FranchiseApiSwagger
     /**
      * @OA\Get(
      *     path="/api/franchises",
-     *     summary="Daftar Franchise dengan pagination dan search",
+     *     summary="Franchise list with pagination and search",
      *     tags={"Franchise"},
      *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
      *         name="search",
      *         in="query",
-     *         description="Kata kunci pencarian nama franchise",
+     *         description="Franchise name search keywords",
      *         required=false,
      *         @OA\Schema(type="string")
      *     ),
      *     @OA\Parameter(
      *         name="per_page",
      *         in="query",
-     *         description="Jumlah data per halaman",
+     *         description="Amount of data per page",
      *         required=false,
      *         @OA\Schema(type="integer", default=10)
      *     ),
@@ -69,7 +69,7 @@ class FranchiseApiSwagger
      *             )
      *         )
      *     ),
-     *     @OA\Response(response=404, description="Franchise tidak ditemukan")
+     *     @OA\Response(response=404, description="Franchise not found")
      * )
      */
     public function index() {}
@@ -77,7 +77,7 @@ class FranchiseApiSwagger
     /**
      * @OA\Post(
      *     path="/api/franchises",
-     *     summary="Tambah Franchise baru",
+     *     summary="Create a new Franchise",
      *     tags={"Franchise"},
      *     security={{"bearerAuth":{}}},
      *     @OA\RequestBody(
@@ -86,9 +86,9 @@ class FranchiseApiSwagger
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Franchise berhasil dibuat",
+     *         description="Franchise created successfully",
      *         @OA\JsonContent(
-     *             @OA\Property(property="alert", type="string", example="Berhasil Tambah Franchise!")
+     *             @OA\Property(property="alert", type="string", example="Successfully Create Franchise!")
      *         )
      *     )
      * )
@@ -98,7 +98,7 @@ class FranchiseApiSwagger
     /**
      * @OA\Get(
      *     path="/api/franchises/{id}",
-     *     summary="Ambil detail Franchise berdasarkan ID",
+     *     summary="Retrieve Franchise details by ID",
      *     tags={"Franchise"},
      *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
@@ -108,7 +108,7 @@ class FranchiseApiSwagger
      *         @OA\Schema(type="integer")
      *     ),
      *     @OA\Response(response=200, description="Detail Franchise", @OA\JsonContent(ref="#/components/schemas/Franchise")),
-     *     @OA\Response(response=404, description="Franchise tidak ditemukan")
+     *     @OA\Response(response=404, description="Franchise not found")
      * )
      */
     public function show() {}
@@ -116,7 +116,7 @@ class FranchiseApiSwagger
     /**
      * @OA\Put(
      *     path="/api/franchises/{id}",
-     *     summary="Update Franchise berdasarkan ID",
+     *     summary="Update Franchise details by ID",
      *     tags={"Franchise"},
      *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
@@ -131,10 +131,10 @@ class FranchiseApiSwagger
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Franchise berhasil diupdate",
-     *         @OA\JsonContent(@OA\Property(property="alert", type="string", example="Berhasil Edit Franchise!"))
+     *         description="Franchise updated successfully",
+     *         @OA\JsonContent(@OA\Property(property="alert", type="string", example="Successfully Edit Franchise!"))
      *     ),
-     *     @OA\Response(response=404, description="Franchise tidak ditemukan")
+     *     @OA\Response(response=404, description="Franchise not found")
      * )
      */
     public function update() {}
@@ -142,7 +142,7 @@ class FranchiseApiSwagger
     /**
      * @OA\Delete(
      *     path="/api/franchises/{id}",
-     *     summary="Hapus Franchise berdasarkan ID",
+     *     summary="Delete Franchise details by ID",
      *     tags={"Franchise"},
      *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
@@ -153,10 +153,10 @@ class FranchiseApiSwagger
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Franchise berhasil dihapus",
-     *         @OA\JsonContent(@OA\Property(property="alert", type="string", example="Berhasil Hapus Franchise!"))
+     *         description="Franchise deleted successfully",
+     *         @OA\JsonContent(@OA\Property(property="alert", type="string", example="Successfully Delete Franchise!"))
      *     ),
-     *     @OA\Response(response=404, description="Franchise tidak ditemukan")
+     *     @OA\Response(response=404, description="Franchise not found")
      * )
      */
     public function destroy() {}

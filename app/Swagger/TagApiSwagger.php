@@ -27,20 +27,20 @@ class TagApiSwagger
     /**
      * @OA\Get(
      *     path="/api/tags",
-     *     summary="Daftar Tag dengan pagination dan search",
+     *     summary="Tag list with pagination and search",
      *     tags={"Tag"},
      *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
      *         name="search",
      *         in="query",
-     *         description="Kata kunci pencarian nama tag",
+     *         description="Tag name search keywords",
      *         required=false,
      *         @OA\Schema(type="string")
      *     ),
      *     @OA\Parameter(
      *         name="per_page",
      *         in="query",
-     *         description="Jumlah data per halaman",
+     *         description="Amount of data per page",
      *         required=false,
      *         @OA\Schema(type="integer", default=10)
      *     ),
@@ -75,7 +75,7 @@ class TagApiSwagger
     /**
      * @OA\Post(
      *     path="/api/tags",
-     *     summary="Tambah Tag baru",
+     *     summary="Create a new Tag",
      *     tags={"Tag"},
      *     security={{"bearerAuth":{}}},
      *     @OA\RequestBody(
@@ -84,9 +84,9 @@ class TagApiSwagger
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Tag berhasil dibuat",
+     *         description="Tag created successfully",
      *         @OA\JsonContent(
-     *             @OA\Property(property="alert", type="string", example="Berhasil Tambah Tag!")
+     *             @OA\Property(property="alert", type="string", example="Successfully Create Tag!")
      *         )
      *     )
      * )
@@ -96,7 +96,7 @@ class TagApiSwagger
     /**
      * @OA\Get(
      *     path="/api/tags/{id}",
-     *     summary="Ambil detail Tag berdasarkan ID",
+     *     summary="Retrieve Tag details by ID",
      *     tags={"Tag"},
      *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
@@ -106,7 +106,7 @@ class TagApiSwagger
      *         @OA\Schema(type="integer")
      *     ),
      *     @OA\Response(response=200, description="Detail Tag", @OA\JsonContent(ref="#/components/schemas/Tag")),
-     *     @OA\Response(response=404, description="Tag tidak ditemukan")
+     *     @OA\Response(response=404, description="Tag not found")
      * )
      */
     public function show() {}
@@ -114,7 +114,7 @@ class TagApiSwagger
     /**
      * @OA\Put(
      *     path="/api/tags/{id}",
-     *     summary="Update Tag berdasarkan ID",
+     *     summary="Update Tag details by ID",
      *     tags={"Tag"},
      *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
@@ -129,10 +129,10 @@ class TagApiSwagger
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Tag berhasil diupdate",
-     *         @OA\JsonContent(@OA\Property(property="alert", type="string", example="Berhasil Edit Tag!"))
+     *         description="Tag updated successfully",
+     *         @OA\JsonContent(@OA\Property(property="alert", type="string", example="Successfully Edit Tag!"))
      *     ),
-     *     @OA\Response(response=404, description="Tag tidak ditemukan")
+     *     @OA\Response(response=404, description="Tag not found")
      * )
      */
     public function update() {}
@@ -140,7 +140,7 @@ class TagApiSwagger
     /**
      * @OA\Delete(
      *     path="/api/tags/{id}",
-     *     summary="Hapus Tag berdasarkan ID",
+     *     summary="Delete Tag details by ID",
      *     tags={"Tag"},
      *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
@@ -151,10 +151,10 @@ class TagApiSwagger
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Tag berhasil dihapus",
-     *         @OA\JsonContent(@OA\Property(property="alert", type="string", example="Berhasil Hapus Tag!"))
+     *         description="Tag deleted successfully",
+     *         @OA\JsonContent(@OA\Property(property="alert", type="string", example="Successfully Delete Tag!"))
      *     ),
-     *     @OA\Response(response=404, description="Tag tidak ditemukan")
+     *     @OA\Response(response=404, description="Tag not found")
      * )
      */
     public function destroy() {}

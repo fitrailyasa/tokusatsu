@@ -28,14 +28,14 @@ class AuthApiSwagger {
  *     ),
  *     @OA\Response(
  *         response=200,
- *         description="Login sukses, kembalikan token",
+ *         description="Login successful, return token",
  *         @OA\JsonContent(
  *             @OA\Property(property="token", type="string", example="eyJ0eXAiOiJKV1QiLCJhbGciOi...")
  *         )
  *     ),
  *     @OA\Response(
  *         response=401,
- *         description="Login gagal"
+ *         description="Login failed, invalid credentials",
  *     )
  * )
  */

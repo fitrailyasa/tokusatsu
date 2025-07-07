@@ -29,20 +29,20 @@ class DataApiSwagger
     /**
      * @OA\Get(
      *     path="/api/datas",
-     *     summary="Daftar Data dengan pagination dan search",
+     *     summary="Data list with pagination and search",
      *     tags={"Data"},
      *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
      *         name="search",
      *         in="query",
-     *         description="Kata kunci pencarian nama data",
+     *         description="Data name search keywords",
      *         required=false,
      *         @OA\Schema(type="string")
      *     ),
      *     @OA\Parameter(
      *         name="per_page",
      *         in="query",
-     *         description="Jumlah data per halaman",
+     *         description="Amount of data per page",
      *         required=false,
      *         @OA\Schema(type="integer", default=10)
      *     ),
@@ -69,7 +69,7 @@ class DataApiSwagger
      *             )
      *         )
      *     ),
-     *     @OA\Response(response=404, description="Data tidak ditemukan")
+     *     @OA\Response(response=404, description="Data not found")
      * )
      */
     public function index() {}
@@ -77,7 +77,7 @@ class DataApiSwagger
     /**
      * @OA\Post(
      *     path="/api/datas",
-     *     summary="Tambah Data baru",
+     *     summary="Create a new Data",
      *     tags={"Data"},
      *     security={{"bearerAuth":{}}},
      *     @OA\RequestBody(
@@ -86,9 +86,9 @@ class DataApiSwagger
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Data berhasil dibuat",
+     *         description="Data created successfully",
      *         @OA\JsonContent(
-     *             @OA\Property(property="alert", type="string", example="Berhasil Tambah Data!")
+     *             @OA\Property(property="alert", type="string", example="Successfully Create Data!")
      *         )
      *     )
      * )
@@ -98,7 +98,7 @@ class DataApiSwagger
     /**
      * @OA\Get(
      *     path="/api/datas/{id}",
-     *     summary="Ambil detail Data berdasarkan ID",
+     *     summary="Retrieve Data details by ID",
      *     tags={"Data"},
      *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
@@ -108,7 +108,7 @@ class DataApiSwagger
      *         @OA\Schema(type="integer")
      *     ),
      *     @OA\Response(response=200, description="Detail Data", @OA\JsonContent(ref="#/components/schemas/Data")),
-     *     @OA\Response(response=404, description="Data tidak ditemukan")
+     *     @OA\Response(response=404, description="Data not found")
      * )
      */
     public function show() {}
@@ -116,7 +116,7 @@ class DataApiSwagger
     /**
      * @OA\Put(
      *     path="/api/datas/{id}",
-     *     summary="Update Data berdasarkan ID",
+     *     summary="Update Data details by ID",
      *     tags={"Data"},
      *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
@@ -131,10 +131,10 @@ class DataApiSwagger
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Data berhasil diupdate",
-     *         @OA\JsonContent(@OA\Property(property="alert", type="string", example="Berhasil Edit Data!"))
+     *         description="Data updated successfully",
+     *         @OA\JsonContent(@OA\Property(property="alert", type="string", example="Successfully Edit Data!"))
      *     ),
-     *     @OA\Response(response=404, description="Data tidak ditemukan")
+     *     @OA\Response(response=404, description="Data not found")
      * )
      */
     public function update() {}
@@ -142,7 +142,7 @@ class DataApiSwagger
     /**
      * @OA\Delete(
      *     path="/api/datas/{id}",
-     *     summary="Hapus Data berdasarkan ID",
+     *     summary="Delete Data details by ID",
      *     tags={"Data"},
      *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
@@ -153,10 +153,10 @@ class DataApiSwagger
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Data berhasil dihapus",
-     *         @OA\JsonContent(@OA\Property(property="alert", type="string", example="Berhasil Hapus Data!"))
+     *         description="Data deleted successfully",
+     *         @OA\JsonContent(@OA\Property(property="alert", type="string", example="Successfully Delete Data!"))
      *     ),
-     *     @OA\Response(response=404, description="Data tidak ditemukan")
+     *     @OA\Response(response=404, description="Data not found")
      * )
      */
     public function destroy() {}

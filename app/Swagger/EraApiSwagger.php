@@ -29,20 +29,20 @@ class EraApiSwagger
     /**
      * @OA\Get(
      *     path="/api/eras",
-     *     summary="Daftar Era dengan pagination dan search",
+     *     summary="Era list with pagination and search",
      *     tags={"Era"},
      *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
      *         name="search",
      *         in="query",
-     *         description="Kata kunci pencarian nama era",
+     *         description="Era name search keywords",
      *         required=false,
      *         @OA\Schema(type="string")
      *     ),
      *     @OA\Parameter(
      *         name="per_page",
      *         in="query",
-     *         description="Jumlah data per halaman",
+     *         description="Amount of data per page",
      *         required=false,
      *         @OA\Schema(type="integer", default=10)
      *     ),
@@ -69,7 +69,7 @@ class EraApiSwagger
      *             )
      *         )
      *     ),
-     *     @OA\Response(response=404, description="Era tidak ditemukan")
+     *     @OA\Response(response=404, description="Era not found")
      * )
      */
     public function index() {}
@@ -77,7 +77,7 @@ class EraApiSwagger
     /**
      * @OA\Post(
      *     path="/api/eras",
-     *     summary="Tambah Era baru",
+     *     summary="Create a new Era",
      *     tags={"Era"},
      *     security={{"bearerAuth":{}}},
      *     @OA\RequestBody(
@@ -86,9 +86,9 @@ class EraApiSwagger
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Era berhasil dibuat",
+     *         description="Era created successfully",
      *         @OA\JsonContent(
-     *             @OA\Property(property="alert", type="string", example="Berhasil Tambah Era!")
+     *             @OA\Property(property="alert", type="string", example="Successfully Create Era!")
      *         )
      *     )
      * )
@@ -98,7 +98,7 @@ class EraApiSwagger
     /**
      * @OA\Get(
      *     path="/api/eras/{id}",
-     *     summary="Ambil detail Era berdasarkan ID",
+     *     summary="Retrieve Era details by ID",
      *     tags={"Era"},
      *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
@@ -108,7 +108,7 @@ class EraApiSwagger
      *         @OA\Schema(type="integer")
      *     ),
      *     @OA\Response(response=200, description="Detail Era", @OA\JsonContent(ref="#/components/schemas/Era"))),
-     *     @OA\Response(response=404, description="Era tidak ditemukan")
+     *     @OA\Response(response=404, description="Era not found")
      * )
      */
     public function show() {}
@@ -116,7 +116,7 @@ class EraApiSwagger
     /**
      * @OA\Put(
      *     path="/api/eras/{id}",
-     *     summary="Update Era berdasarkan ID",
+     *     summary="Update Era details by ID",
      *     tags={"Era"},
      *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
@@ -131,10 +131,10 @@ class EraApiSwagger
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Era berhasil diupdate",
-     *         @OA\JsonContent(@OA\Property(property="alert", type="string", example="Berhasil Edit Era!"))
+     *         description="Era updated successfully",
+     *         @OA\JsonContent(@OA\Property(property="alert", type="string", example="Successfully Edit Era!"))
      *     ),
-     *     @OA\Response(response=404, description="Era tidak ditemukan")
+     *     @OA\Response(response=404, description="Era not found")
      * )
      */
     public function update() {}
@@ -142,7 +142,7 @@ class EraApiSwagger
     /**
      * @OA\Delete(
      *     path="/api/eras/{id}",
-     *     summary="Hapus Era berdasarkan ID",
+     *     summary="Delete Era details by ID",
      *     tags={"Era"},
      *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
@@ -153,10 +153,10 @@ class EraApiSwagger
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Era berhasil dihapus",
-     *         @OA\JsonContent(@OA\Property(property="alert", type="string", example="Berhasil Hapus Era!"))
+     *         description="Era deleted successfully",
+     *         @OA\JsonContent(@OA\Property(property="alert", type="string", example="Successfully Delete Era!"))
      *     ),
-     *     @OA\Response(response=404, description="Era tidak ditemukan")
+     *     @OA\Response(response=404, description="Era not found")
      * )
      */
     public function destroy() {}
