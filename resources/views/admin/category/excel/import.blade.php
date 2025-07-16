@@ -20,7 +20,7 @@
                             <div class="mb-1">
                                 <label class="form-label">{{ __('Upload File') }}<span
                                         class="text-danger">*</span></label>
-                                <input type="file" class="form-control @error('file') is-invalid @enderror"
+                                <input type="file" accept=".xlsx" class="form-control @error('file') is-invalid @enderror"
                                     placeholder="file" name="file" id="file" required>
                                 @error('file')
                                     <div class="invalid-feedback">{{ $message }}</div>
