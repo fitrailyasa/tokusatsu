@@ -1,0 +1,227 @@
+@BASE_URL = http://127.0.0.1:8000/api
+@franchise_id = 1
+@era_id = 2
+@category_id = 3
+@data_id = 4
+@tag_id = 5
+@user_id = 6
+@auth_token = token
+
+### Login (Get Token)
+POST {{BASE_URL}}/login
+Content-Type: application/json
+
+{
+  "email": "admin@admin.com",
+  "password": "password"
+}
+
+### Logout (Revoke Token)
+POST {{BASE_URL}}/auth/logout
+Authorization: Bearer {{auth_token}}
+
+### Get List of Data
+GET {{BASE_URL}}/data
+Accept: application/json
+Authorization: Bearer {{auth_token}}
+
+### Get Single Data by ID
+GET {{BASE_URL}}/data/{{data_id}}
+Accept: application/json
+Authorization: Bearer {{auth_token}}
+
+### Create New Data
+POST {{BASE_URL}}/data
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "name": "New Data Example",
+  "category_id": {{category_id}},
+  "tags": [{{tag_id}}]
+}
+
+### Update Data
+PUT {{BASE_URL}}/data/{{data_id}}/update
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "name": "Updated Data Example",
+  "category_id": {{category_id}},
+  "tags": [{{tag_id}}]
+}
+
+### Delete Data
+DELETE {{BASE_URL}}/data/{{data_id}}/destroy
+Authorization: Bearer {{auth_token}}
+
+### Soft Delete Data
+DELETE {{BASE_URL}}/data/{{data_id}}/softDelete
+Authorization: Bearer {{auth_token}}
+
+### Restore Soft Deleted Data
+PUT {{BASE_URL}}/data/{{data_id}}/restore
+Authorization: Bearer {{auth_token}}
+
+### Get List of Franchises
+GET {{BASE_URL}}/franchise
+Accept: application/json
+Authorization: Bearer {{auth_token}}
+
+### Get Single Franchise by ID
+GET {{BASE_URL}}/franchise/{{franchise_id}}
+Accept: application/json
+Authorization: Bearer {{auth_token}}
+
+### Create New Franchise
+POST {{BASE_URL}}/franchise
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "name": "New Franchise Example"
+}
+
+### Update Franchise
+PUT {{BASE_URL}}/franchise/{{franchise_id}}/update
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "name": "Updated Franchise Example"
+}
+
+### Delete Franchise
+DELETE {{BASE_URL}}/franchise/{{franchise_id}}/destroy
+Authorization: Bearer {{auth_token}}
+
+### Get List of Eras
+GET {{BASE_URL}}/era
+Accept: application/json
+Authorization: Bearer {{auth_token}}
+
+### Get Single Era by ID
+GET {{BASE_URL}}/era/{{era_id}}
+Accept: application/json
+Authorization: Bearer {{auth_token}}
+
+### Create New Era
+POST {{BASE_URL}}/era
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "name": "New Era Example"
+}
+
+### Update Era
+PUT {{BASE_URL}}/era/{{era_id}}/update
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "name": "Updated Era Example"
+}
+
+### Delete Era
+DELETE {{BASE_URL}}/era/{{era_id}}/destroy
+Authorization: Bearer {{auth_token}}
+
+### Get List of Categories
+GET {{BASE_URL}}/category
+Accept: application/json
+Authorization: Bearer {{auth_token}}
+
+### Get Single Category by ID
+GET {{BASE_URL}}/category/{{category_id}}
+Accept: application/json
+Authorization: Bearer {{auth_token}}
+
+### Create New Category
+POST {{BASE_URL}}/category
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "era_id": "{{era_id}}",
+  "franchise_id": "{{franchise_id}}",
+  "name": "New Category Example"
+}
+
+### Update Category
+PUT {{BASE_URL}}/category/{{category_id}}/update
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "era_id": "{{era_id}}",
+  "franchise_id": "{{franchise_id}}",
+  "name": "Updated Category Example"
+}
+
+### Delete Category
+DELETE {{BASE_URL}}/category/{{category_id}}/destroy
+Authorization: Bearer {{auth_token}}
+
+### Get List of Tags
+GET {{BASE_URL}}/tag
+Accept: application/json
+Authorization: Bearer {{auth_token}}
+
+### Get Single Tag by ID
+GET {{BASE_URL}}/tag/{{tag_id}}
+Accept: application/json
+Authorization: Bearer {{auth_token}}
+
+### Create New Tag
+POST {{BASE_URL}}/tag
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "name": "New Tag Example"
+}
+
+### Update Tag
+PUT {{BASE_URL}}/tag/{{tag_id}}/update
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "name": "Updated Tag Example"
+}
+
+### Delete Tag
+DELETE {{BASE_URL}}/tag/{{tag_id}}/destroy
+Authorization: Bearer {{auth_token}}
+
+### Get List of Users
+GET {{BASE_URL}}/user
+Accept: application/json
+Authorization: Bearer {{auth_token}}
+
+### Create New User
+POST {{BASE_URL}}/user
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "name": "New User Example",
+  "email": "user@example.com",
+  "password": "password"
+}
+
+### Update User
+PUT {{BASE_URL}}/user/{{user_id}}/update
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "name": "Admin Update",
+  "email": "admin@admin.com"
+}
+
+### Delete User
+DELETE {{BASE_URL}}/user/{{user_id}}/destroy
+Authorization: Bearer {{auth_token}}
