@@ -1,10 +1,10 @@
 @BASE_URL = http://127.0.0.1:8000/api
-@franchise_id = 1
-@era_id = 2
-@category_id = 3
-@data_id = 4
-@tag_id = 5
-@user_id = 6
+@user_id = 1
+@franchise_id = 2
+@era_id = 3
+@category_id = 4
+@data_id = 5
+@tag_id = 6
 @auth_token = token
 
 ### Login (Get Token)
