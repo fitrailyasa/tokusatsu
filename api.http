@@ -21,17 +21,17 @@ POST {{BASE_URL}}/auth/logout
 Authorization: Bearer {{auth_token}}
 
 ### Get List of Data
-GET {{BASE_URL}}/data
+GET {{BASE_URL}}/datas
 Accept: application/json
 Authorization: Bearer {{auth_token}}
 
 ### Get Single Data by ID
-GET {{BASE_URL}}/data/{{data_id}}
+GET {{BASE_URL}}/datas/{{data_id}}
 Accept: application/json
 Authorization: Bearer {{auth_token}}
 
 ### Create New Data
-POST {{BASE_URL}}/data
+POST {{BASE_URL}}/datas
 Content-Type: application/json
 Authorization: Bearer {{auth_token}}
 
@@ -42,7 +42,7 @@ Authorization: Bearer {{auth_token}}
 }
 
 ### Update Data
-PUT {{BASE_URL}}/data/{{data_id}}/update
+PUT {{BASE_URL}}/datas/{{data_id}}/update
 Content-Type: application/json
 Authorization: Bearer {{auth_token}}
 
@@ -53,29 +53,29 @@ Authorization: Bearer {{auth_token}}
 }
 
 ### Delete Data
-DELETE {{BASE_URL}}/data/{{data_id}}/destroy
+DELETE {{BASE_URL}}/datas/{{data_id}}/destroy
 Authorization: Bearer {{auth_token}}
 
 ### Soft Delete Data
-DELETE {{BASE_URL}}/data/{{data_id}}/softDelete
+DELETE {{BASE_URL}}/datas/{{data_id}}/softDelete
 Authorization: Bearer {{auth_token}}
 
 ### Restore Soft Deleted Data
-PUT {{BASE_URL}}/data/{{data_id}}/restore
+PUT {{BASE_URL}}/datas/{{data_id}}/restore
 Authorization: Bearer {{auth_token}}
 
 ### Get List of Franchises
-GET {{BASE_URL}}/franchise
+GET {{BASE_URL}}/franchises
 Accept: application/json
 Authorization: Bearer {{auth_token}}
 
 ### Get Single Franchise by ID
-GET {{BASE_URL}}/franchise/{{franchise_id}}
+GET {{BASE_URL}}/franchises/{{franchise_id}}
 Accept: application/json
 Authorization: Bearer {{auth_token}}
 
 ### Create New Franchise
-POST {{BASE_URL}}/franchise
+POST {{BASE_URL}}/franchises
 Content-Type: application/json
 Authorization: Bearer {{auth_token}}
 
@@ -84,7 +84,7 @@ Authorization: Bearer {{auth_token}}
 }
 
 ### Update Franchise
-PUT {{BASE_URL}}/franchise/{{franchise_id}}/update
+PUT {{BASE_URL}}/franchises/{{franchise_id}}/update
 Content-Type: application/json
 Authorization: Bearer {{auth_token}}
 
@@ -93,21 +93,21 @@ Authorization: Bearer {{auth_token}}
 }
 
 ### Delete Franchise
-DELETE {{BASE_URL}}/franchise/{{franchise_id}}/destroy
+DELETE {{BASE_URL}}/franchises/{{franchise_id}}/destroy
 Authorization: Bearer {{auth_token}}
 
 ### Get List of Eras
-GET {{BASE_URL}}/era
+GET {{BASE_URL}}/eras
 Accept: application/json
 Authorization: Bearer {{auth_token}}
 
 ### Get Single Era by ID
-GET {{BASE_URL}}/era/{{era_id}}
+GET {{BASE_URL}}/eras/{{era_id}}
 Accept: application/json
 Authorization: Bearer {{auth_token}}
 
 ### Create New Era
-POST {{BASE_URL}}/era
+POST {{BASE_URL}}/eras
 Content-Type: application/json
 Authorization: Bearer {{auth_token}}
 
@@ -116,7 +116,7 @@ Authorization: Bearer {{auth_token}}
 }
 
 ### Update Era
-PUT {{BASE_URL}}/era/{{era_id}}/update
+PUT {{BASE_URL}}/eras/{{era_id}}/update
 Content-Type: application/json
 Authorization: Bearer {{auth_token}}
 
@@ -125,21 +125,21 @@ Authorization: Bearer {{auth_token}}
 }
 
 ### Delete Era
-DELETE {{BASE_URL}}/era/{{era_id}}/destroy
+DELETE {{BASE_URL}}/eras/{{era_id}}/destroy
 Authorization: Bearer {{auth_token}}
 
 ### Get List of Categories
-GET {{BASE_URL}}/category
+GET {{BASE_URL}}/categories
 Accept: application/json
 Authorization: Bearer {{auth_token}}
 
 ### Get Single Category by ID
-GET {{BASE_URL}}/category/{{category_id}}
+GET {{BASE_URL}}/categories/{{category_id}}
 Accept: application/json
 Authorization: Bearer {{auth_token}}
 
 ### Create New Category
-POST {{BASE_URL}}/category
+POST {{BASE_URL}}/categories
 Content-Type: application/json
 Authorization: Bearer {{auth_token}}
 
@@ -150,7 +150,7 @@ Authorization: Bearer {{auth_token}}
 }
 
 ### Update Category
-PUT {{BASE_URL}}/category/{{category_id}}/update
+PUT {{BASE_URL}}/categories/{{category_id}}/update
 Content-Type: application/json
 Authorization: Bearer {{auth_token}}
 
@@ -161,21 +161,21 @@ Authorization: Bearer {{auth_token}}
 }
 
 ### Delete Category
-DELETE {{BASE_URL}}/category/{{category_id}}/destroy
+DELETE {{BASE_URL}}/categories/{{category_id}}/destroy
 Authorization: Bearer {{auth_token}}
 
 ### Get List of Tags
-GET {{BASE_URL}}/tag
+GET {{BASE_URL}}/tags
 Accept: application/json
 Authorization: Bearer {{auth_token}}
 
 ### Get Single Tag by ID
-GET {{BASE_URL}}/tag/{{tag_id}}
+GET {{BASE_URL}}/tags/{{tag_id}}
 Accept: application/json
 Authorization: Bearer {{auth_token}}
 
 ### Create New Tag
-POST {{BASE_URL}}/tag
+POST {{BASE_URL}}/tags
 Content-Type: application/json
 Authorization: Bearer {{auth_token}}
 
@@ -184,7 +184,7 @@ Authorization: Bearer {{auth_token}}
 }
 
 ### Update Tag
-PUT {{BASE_URL}}/tag/{{tag_id}}/update
+PUT {{BASE_URL}}/tags/{{tag_id}}/update
 Content-Type: application/json
 Authorization: Bearer {{auth_token}}
 
@@ -193,16 +193,16 @@ Authorization: Bearer {{auth_token}}
 }
 
 ### Delete Tag
-DELETE {{BASE_URL}}/tag/{{tag_id}}/destroy
+DELETE {{BASE_URL}}/tags/{{tag_id}}/destroy
 Authorization: Bearer {{auth_token}}
 
 ### Get List of Users
-GET {{BASE_URL}}/user
+GET {{BASE_URL}}/users
 Accept: application/json
 Authorization: Bearer {{auth_token}}
 
 ### Create New User
-POST {{BASE_URL}}/user
+POST {{BASE_URL}}/users
 Content-Type: application/json
 Authorization: Bearer {{auth_token}}
 
@@ -213,7 +213,7 @@ Authorization: Bearer {{auth_token}}
 }
 
 ### Update User
-PUT {{BASE_URL}}/user/{{user_id}}/update
+PUT {{BASE_URL}}/users/{{user_id}}/update
 Content-Type: application/json
 Authorization: Bearer {{auth_token}}
 
@@ -223,5 +223,5 @@ Authorization: Bearer {{auth_token}}
 }
 
 ### Delete User
-DELETE {{BASE_URL}}/user/{{user_id}}/destroy
+DELETE {{BASE_URL}}/users/{{user_id}}/destroy
 Authorization: Bearer {{auth_token}}
