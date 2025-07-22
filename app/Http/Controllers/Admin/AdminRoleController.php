@@ -10,6 +10,7 @@ use App\Http\Requests\TableRequest;
 
 class AdminRoleController extends Controller
 {
+    // Middleware for role permissions
     public function __construct()
     {
         $this->middleware('permission:view-role')->only(['index']);
@@ -18,6 +19,7 @@ class AdminRoleController extends Controller
         $this->middleware('permission:delete-role')->only(['destroy']);
     }
 
+    // Display a listing of the resource
     public function index(TableRequest $request)
     {
         $search = $request->input('search');
@@ -39,6 +41,7 @@ class AdminRoleController extends Controller
     }
 
 
+    // Handle store data role
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -57,6 +60,7 @@ class AdminRoleController extends Controller
         return back()->with('success', 'Successfully Create Data Role!');
     }
 
+    // Handle update data role
     public function update(Request $request, $id)
     {
         $role = Role::findOrFail($id);
@@ -79,12 +83,20 @@ class AdminRoleController extends Controller
         return back()->with('success', 'Successfully Edit Data Role!');
     }
 
+    // Handle delete data role
     public function destroy($id)
     {
         Role::findOrFail($id)->forceDelete();
         return back()->with('success', 'Successfully Delete Data Role!');
     }
 
+    /**
+     * Mapping permission to badgeClass and type
+     * 
+     * @param Illuminate\Support\Collection $permissions
+     * 
+     * @return Illuminate\Support\Collection
+     */
     private function mapPermissionBadgeAndType($permissions)
     {
         return $permissions->map(function ($permission) {

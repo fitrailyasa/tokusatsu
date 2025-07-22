@@ -16,6 +16,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class AdminCategoryController extends Controller
 {
+    // Middleware for category permissions
     public function __construct()
     {
         $this->middleware('permission:view-category')->only(['index']);
@@ -31,6 +32,7 @@ class AdminCategoryController extends Controller
         $this->middleware('permission:export-category')->only(['exportExcel', 'exportPDF']);
     }
 
+    // Display a listing of the resource
     public function index(TableRequest $request)
     {
         $search = $request->input('search');
@@ -63,6 +65,7 @@ class AdminCategoryController extends Controller
         return view("admin.category.index", compact('categories', 'eras', 'franchises', 'eraId', 'franchiseId', 'search', 'perPage'));
     }
 
+    // Handle import data category from excel file
     public function import(Request $request)
     {
         $request->validate([
@@ -76,11 +79,13 @@ class AdminCategoryController extends Controller
         return back()->with('success', 'Successfully Import Data Category!');
     }
 
+    // Handle export data category to excel file
     public function exportExcel()
     {
         return Excel::download(new CategoryExport, 'Data Category.xlsx');
     }
 
+    // Handle export data category to pdf file
     public function exportPDF()
     {
         $categories = Category::withTrashed()->get();
@@ -89,6 +94,7 @@ class AdminCategoryController extends Controller
         return $pdf->stream('Data Category.pdf');
     }
 
+    // Handle store data category
     public function store(CategoryRequest $request)
     {
         $category = Category::create($request->validated());
@@ -104,6 +110,7 @@ class AdminCategoryController extends Controller
         return back()->with('success', 'Successfully Create Data Category!');
     }
 
+    // Handle update data category
     public function update(CategoryRequest $request, $id)
     {
         $category = Category::findOrFail($id);
@@ -120,36 +127,42 @@ class AdminCategoryController extends Controller
         return back()->with('success', 'Successfully Edit Data Category!');
     }
 
+    // Handle hard delete data category
     public function destroy($id)
     {
         Category::withTrashed()->findOrFail($id)->forceDelete();
         return back()->with('success', 'Successfully Delete Data Category!');
     }
 
+    // Handle hard delete all data category
     public function destroyAll()
     {
         Category::truncate();
         return back()->with('success', 'Successfully Delete All Category!');
     }
 
+    // Handle soft delete data category
     public function softDelete($id)
     {
         Category::findOrFail($id)->delete();
         return back()->with('success', 'Successfully Delete Data Category!');
     }
 
+    // Handle soft delete all data category
     public function softDeleteAll()
     {
         Category::query()->delete();
         return back()->with('success', 'Successfully Delete All Category!');
     }
 
+    // Handle restore data category
     public function restore($id)
     {
         Category::withTrashed()->findOrFail($id)->restore();
         return back()->with('success', 'Successfully Restore Category!');
     }
 
+    // Handle restore all data category
     public function restoreAll()
     {
         Category::onlyTrashed()->restore();
