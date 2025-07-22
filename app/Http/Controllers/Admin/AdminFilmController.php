@@ -91,7 +91,7 @@ class AdminFilmController extends Controller
     public function import(Request $request)
     {
         $request->validate([
-            'file' => 'required|mimes:xlsx,xls',
+            'file' => 'required|max:10240|mimes:xlsx,xls',
         ]);
 
         $file = $request->file('file');
