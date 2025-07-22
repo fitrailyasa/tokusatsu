@@ -23,6 +23,7 @@
                                 <input type="file" accept=".xlsx"
                                     class="form-control @error('file') is-invalid @enderror" placeholder="file"
                                     name="file" id="file" required>
+                                <small class="text-muted">{{ __('Max: 10MB') }}</small>
                                 @error('file')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
