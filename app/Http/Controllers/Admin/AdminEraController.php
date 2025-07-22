@@ -14,6 +14,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class AdminEraController extends Controller
 {
+    // Middleware for era permissions
     public function __construct()
     {
         $this->middleware('permission:view-era')->only(['index']);
@@ -29,6 +30,7 @@ class AdminEraController extends Controller
         $this->middleware('permission:export-era')->only(['exportExcel', 'exportPDF']);
     }
 
+    // Display a listing of the resource
     public function index(TableRequest $request)
     {
         $search = $request->input('search');
@@ -48,6 +50,7 @@ class AdminEraController extends Controller
         return view("admin.era.index", compact('eras', 'search', 'perPage'));
     }
 
+    // Handle import era data from excel file
     public function import(Request $request)
     {
         $request->validate([
@@ -60,11 +63,13 @@ class AdminEraController extends Controller
         return back()->with('success', 'Successfully Import Data Era!');
     }
 
+    // Handle export era data to excel file
     public function exportExcel()
     {
         return Excel::download(new EraExport, 'Data Era.xlsx');
     }
 
+    // Handle export era data to pdf file
     public function exportPDF()
     {
         $eras = Era::withTrashed()->get();
@@ -73,6 +78,7 @@ class AdminEraController extends Controller
         return $pdf->stream('Data Era.pdf');
     }
 
+    // Handle store era data
     public function store(EraRequest $request)
     {
         $era = Era::create($request->validated());
@@ -88,6 +94,7 @@ class AdminEraController extends Controller
         return back()->with('success', 'Successfully Create Data Era!');
     }
 
+    // Handle update era data
     public function update(EraRequest $request, $id)
     {
         $era = Era::findOrFail($id);
@@ -104,36 +111,42 @@ class AdminEraController extends Controller
         return back()->with('success', 'Successfully Edit Data Era!');
     }
 
+    // Handle hard delete era data
     public function destroy($id)
     {
         Era::withTrashed()->findOrFail($id)->forceDelete();
         return back()->with('success', 'Successfully Delete Data Era!');
     }
 
+    // Handle hard delete all era data
     public function destroyAll()
     {
         Era::truncate();
         return back()->with('success', 'Successfully Delete All Era!');
     }
 
+    // Handle soft delete era data
     public function softDelete($id)
     {
         Era::findOrFail($id)->delete();
         return back()->with('success', 'Successfully Delete Data Era!');
     }
 
+    // Handle soft delete all era data
     public function softDeleteAll()
     {
         Era::query()->delete();
         return back()->with('success', 'Successfully Delete All Era!');
     }
 
+    // Handle restore era data
     public function restore($id)
     {
         Era::withTrashed()->findOrFail($id)->restore();
         return back()->with('success', 'Successfully Restore Era!');
     }
 
+    // Handle restore all era data
     public function restoreAll()
     {
         Era::onlyTrashed()->restore();

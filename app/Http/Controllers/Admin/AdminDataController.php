@@ -16,6 +16,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class AdminDataController extends Controller
 {
+    // Middleware for data permissions
     public function __construct()
     {
         $this->middleware('permission:view-data')->only(['index']);
@@ -31,6 +32,7 @@ class AdminDataController extends Controller
         $this->middleware('permission:export-data')->only(['exportExcel', 'exportPDF']);
     }
 
+    // Display a listing of the resource
     public function index(TableRequest $request)
     {
         $search = $request->input('search');
@@ -73,6 +75,7 @@ class AdminDataController extends Controller
         ));
     }
 
+    // Handle import data
     public function import(Request $request)
     {
         $request->validate([
@@ -86,11 +89,13 @@ class AdminDataController extends Controller
         return back()->with('success', 'Successfully Import Data!');
     }
 
+    // Handle export data to excel file
     public function exportExcel()
     {
         return Excel::download(new DataExport, 'Data.xlsx');
     }
 
+    // Handle export data to pdf file
     public function exportPDF()
     {
         $datas = Data::withTrashed()->get();
@@ -99,6 +104,7 @@ class AdminDataController extends Controller
         return $pdf->stream('Data.pdf');
     }
 
+    // Handle store data
     public function store(DataRequest $request)
     {
         $data = Data::create($request->validated());
@@ -115,6 +121,7 @@ class AdminDataController extends Controller
         return back()->with('success', 'Successfully Create Data!');
     }
 
+    // Handle update data
     public function update(DataRequest $request, $id)
     {
         $data = Data::findOrFail($id);
@@ -132,36 +139,42 @@ class AdminDataController extends Controller
         return back()->with('success', 'Successfully Edit Data!');
     }
 
+    // Handle hard delete data
     public function destroy($id)
     {
         Data::withTrashed()->findOrFail($id)->forceDelete();
         return back()->with('success', 'Successfully Delete Data!');
     }
 
+    // Handle hard delete all data
     public function destroyAll()
     {
         Data::truncate();
         return back()->with('success', 'Successfully Delete All Data!');
     }
 
+    // Handle soft delete data
     public function softDelete($id)
     {
         Data::findOrFail($id)->delete();
         return back()->with('success', 'Successfully Delete Data!');
     }
 
+    // Handle soft delete all data
     public function softDeleteAll()
     {
         Data::query()->delete();
         return back()->with('success', 'Successfully Delete All Data!');
     }
 
+    // Handle restore data
     public function restore($id)
     {
         Data::withTrashed()->findOrFail($id)->restore();
         return back()->with('success', 'Successfully Restore Data!');
     }
 
+    // Handle restore all data
     public function restoreAll()
     {
         Data::onlyTrashed()->restore();

@@ -15,6 +15,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class AdminFilmController extends Controller
 {
+    // Middleware for film permissions
     public function __construct()
     {
         $this->middleware('permission:view-film')->only(['index']);
@@ -30,6 +31,7 @@ class AdminFilmController extends Controller
         $this->middleware('permission:export-film')->only(['exportExcel', 'exportPDF']);
     }
 
+    // Display a listing of the resource
     public function index(TableRequest $request)
     {
         $search = $request->input('search');
@@ -85,6 +87,7 @@ class AdminFilmController extends Controller
         ));
     }
 
+    // Handle import film data from excel file
     public function import(Request $request)
     {
         $request->validate([
@@ -98,11 +101,13 @@ class AdminFilmController extends Controller
         return back()->with('success', 'Successfully Import Film!');
     }
 
+    // Handle export film data to excel file
     public function exportExcel()
     {
         return Excel::download(new FilmExport, 'Data Film.xlsx');
     }
 
+    // Handle export film data to pdf file
     public function exportPDF()
     {
         $films = Film::all();
@@ -111,6 +116,7 @@ class AdminFilmController extends Controller
         return $pdf->stream('Data Film.pdf');
     }
 
+    // Handle store data
     public function store(FilmRequest $request)
     {
         Film::create($request->validated());
@@ -118,6 +124,7 @@ class AdminFilmController extends Controller
         return back()->with('success', 'Successfully Create Film!');
     }
 
+    // Handle update data
     public function update(FilmRequest $request, $id)
     {
         Film::findOrFail($id)->update($request->validated());
@@ -125,36 +132,42 @@ class AdminFilmController extends Controller
         return back()->with('success', 'Successfully Edit Film!');
     }
 
+    // Handle hard delete data
     public function destroy($id)
     {
         Film::withTrashed()->findOrFail($id)->forceDelete();
         return back()->with('success', 'Successfully Delete Film!');
     }
 
+    // Handle hard delete all data
     public function destroyAll()
     {
         Film::truncate();
         return back()->with('success', 'Successfully Delete All Film!');
     }
 
+    // Handle soft delete data
     public function softDelete($id)
     {
         Film::findOrFail($id)->delete();
         return back()->with('success', 'Successfully Delete Film!');
     }
 
+    // Handle soft delete all data
     public function softDeleteAll()
     {
         Film::query()->delete();
         return back()->with('success', 'Successfully Delete All Film!');
     }
 
+    // Handle restore data
     public function restore($id)
     {
         Film::withTrashed()->findOrFail($id)->restore();
         return back()->with('success', 'Successfully Restore Film!');
     }
 
+    // Handle restore all data
     public function restoreAll()
     {
         Film::onlyTrashed()->restore();

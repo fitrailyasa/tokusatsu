@@ -14,6 +14,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class AdminFranchiseController extends Controller
 {
+    // Middleware for franchise permissions
     public function __construct()
     {
         $this->middleware('permission:view-franchise')->only(['index']);
@@ -29,6 +30,7 @@ class AdminFranchiseController extends Controller
         $this->middleware('permission:export-franchise')->only(['exportExcel', 'exportPDF']);
     }
 
+    // Display a listing of the resource
     public function index(TableRequest $request)
     {
         $search = $request->input('search');
@@ -48,6 +50,7 @@ class AdminFranchiseController extends Controller
         return view("admin.franchise.index", compact('franchises', 'search', 'perPage'));
     }
 
+    // Handle import franchise data from excel file
     public function import(Request $request)
     {
         $request->validate([
@@ -60,11 +63,13 @@ class AdminFranchiseController extends Controller
         return back()->with('success', 'Successfully Import Data Franchise!');
     }
 
+    // Handle export franchise data to excel file
     public function exportExcel()
     {
         return Excel::download(new FranchiseExport, 'Data Franchise.xlsx');
     }
 
+    // Handle export franchise data to pdf file
     public function exportPDF()
     {
         $franchises = Franchise::withTrashed()->get();
@@ -73,6 +78,7 @@ class AdminFranchiseController extends Controller
         return $pdf->stream('Data Franchise.pdf');
     }
 
+    // Handle store franchise data
     public function store(FranchiseRequest $request)
     {
         $franchise = Franchise::create($request->validated());
@@ -88,6 +94,7 @@ class AdminFranchiseController extends Controller
         return back()->with('success', 'Successfully Create Data Franchise!');
     }
 
+    // Handle update franchise data
     public function update(FranchiseRequest $request, $id)
     {
         $franchise = Franchise::findOrFail($id);
@@ -104,36 +111,42 @@ class AdminFranchiseController extends Controller
         return back()->with('success', 'Successfully Edit Data Franchise!');
     }
 
+    // Handle hard delete franchise data
     public function destroy($id)
     {
         Franchise::withTrashed()->findOrFail($id)->forceDelete();
         return back()->with('success', 'Successfully Delete Data Franchise!');
     }
 
+    // Handle hard delete all franchise data
     public function destroyAll()
     {
         Franchise::truncate();
         return back()->with('success', 'Successfully Delete All Franchise!');
     }
 
+    // Handle soft delete franchise data
     public function softDelete($id)
     {
         Franchise::findOrFail($id)->delete();
         return back()->with('success', 'Successfully Delete Data Franchise!');
     }
 
+    // Handle soft delete all franchise data
     public function softDeleteAll()
     {
         Franchise::query()->delete();
         return back()->with('success', 'Successfully Delete All Franchise!');
     }
 
+    // Handle restore franchise data
     public function restore($id)
     {
         Franchise::withTrashed()->findOrFail($id)->restore();
         return back()->with('success', 'Successfully Restore Franchise!');
     }
 
+    // Handle restore all franchise data
     public function restoreAll()
     {
         Franchise::onlyTrashed()->restore();
