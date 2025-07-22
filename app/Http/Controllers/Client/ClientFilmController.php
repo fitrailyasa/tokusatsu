@@ -8,6 +8,13 @@ use App\Models\Film;
 
 class ClientFilmController extends Controller
 {
+    /**
+     * Display a list of films for a category.
+     *
+     * @param string $franchise The slug of the franchise.
+     * @param string $category The slug of the category.
+     * @return \Illuminate\Http\Response
+     */
     public function show($franchise, $category)
     {
         $category = Category::where('slug', $category)->with('franchise')->firstOrFail();
@@ -25,7 +32,15 @@ class ClientFilmController extends Controller
         ]);
     }
 
-
+    /**
+     * Display a film for a category.
+     *
+     * @param string $franchise The slug of the franchise.
+     * @param string $category The slug of the category.
+     * @param string $type The type of the film.
+     * @param int $number The number of the film.
+     * @return \Illuminate\Http\Response
+     */
     public function watch($franchise, $category, $type, $number)
     {
         $category = Category::where('slug', $category)->firstOrFail();

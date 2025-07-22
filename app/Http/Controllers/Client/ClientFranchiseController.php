@@ -9,12 +9,23 @@ use App\Models\Franchise;
 
 class ClientFranchiseController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         $franchises = Franchise::withoutTrashed()->paginate(12);
         return view('client.franchise.index', compact('franchises'));
     }
 
+    /**
+     * Show the detail of a category.
+     *
+     * @param  string  $category
+     * @return \Illuminate\Http\Response
+     */
     public function show(string $category)
     {
         $franchise = Franchise::where('slug', $category)->withoutTrashed()->firstOrFail();
@@ -23,6 +34,13 @@ class ClientFranchiseController extends Controller
         return view('client.franchise.show', compact('franchise', 'categories'));
     }
 
+    /**
+     * Display the detail of a category.
+     *
+     * @param  string  $category
+     * @param  string  $data
+     * @return \Illuminate\Http\Response
+     */
     public function category(string $category, string $data)
     {
         $category = Category::where('slug', $data)->withoutTrashed()->firstOrFail();
