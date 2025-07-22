@@ -10,6 +10,7 @@ use App\Models\Category;
 
 class CategoryApiController extends Controller
 {
+    // Handle api list categories data
     public function index(Request $request)
     {
         $search = $request->query('search');
@@ -41,6 +42,7 @@ class CategoryApiController extends Controller
         }
     }
 
+    // Handle api store category data
     public function store(CategoryRequest $request)
     {
         $category = Category::create($request->validated());
@@ -56,18 +58,21 @@ class CategoryApiController extends Controller
         return response()->json(['alert' => 'Successfully Create Category!']);
     }
 
+    // Handle api show category data
     public function show($id)
     {
         $category = Category::findOrFail($id);
         return response()->json($category);
     }
 
+    // Handle api edit category data
     public function edit($id)
     {
         $category = Category::findOrFail($id);
         return response()->json($category);
     }
 
+    // Handle api update category data
     public function update(CategoryRequest $request, $id)
     {
         $category = Category::findOrFail($id);
@@ -84,6 +89,7 @@ class CategoryApiController extends Controller
         return response()->json(['alert' => 'Successfully Edit Category!']);
     }
 
+    // Handle api destroy category data
     public function destroy($id)
     {
         $category = Category::findOrFail($id);
@@ -92,6 +98,7 @@ class CategoryApiController extends Controller
         return response()->json(['alert' => 'Successfully Delete Category!']);
     }
 
+    // Handle api find categories by era
     public function findByEra(Request $request, $era)
     {
         $perPage = $request->query('per_page', 10);
@@ -122,6 +129,7 @@ class CategoryApiController extends Controller
         ], 200);
     }
 
+    // Handle api find categories by franchise
     public function findByFranchise(Request $request, $franchise)
     {
         $perPage = $request->query('per_page', 10);
@@ -152,6 +160,7 @@ class CategoryApiController extends Controller
         ], 200);
     }
 
+    // Handle api find all categories data
     public function all()
     {
         $categories = Category::with('franchise', 'era')->get();

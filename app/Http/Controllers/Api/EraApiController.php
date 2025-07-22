@@ -10,6 +10,7 @@ use App\Models\Era;
 
 class EraApiController extends Controller
 {
+    // Handle api list eras data
     public function index(Request $request)
     {
 
@@ -42,6 +43,7 @@ class EraApiController extends Controller
         }
     }
 
+    // Handle api store era data
     public function store(EraRequest $request)
     {
         $era = Era::create($request->validated());
@@ -57,18 +59,21 @@ class EraApiController extends Controller
         return response()->json(['alert' => 'Successfully Create Era!']);
     }
 
+    // Handle api show era data
     public function show($id)
     {
         $era = Era::findOrFail($id);
         return response()->json($era);
     }
 
+    // Handle api edit era data
     public function edit($id)
     {
         $era = Era::findOrFail($id);
         return response()->json($era);
     }
 
+    // Handle api update era data
     public function update(EraRequest $request, $id)
     {
         $era = Era::findOrFail($id);
@@ -85,6 +90,7 @@ class EraApiController extends Controller
         return response()->json(['alert' => 'Successfully Edit Era!']);
     }
 
+    // Handle api destroy era data
     public function destroy($id)
     {
         $era = Era::findOrFail($id);
@@ -93,6 +99,7 @@ class EraApiController extends Controller
         return response()->json(['alert' => 'Successfully Delete Era!']);
     }
 
+    // Handle api find all eras
     public function all()
     {
         $eras = Era::all();
