@@ -11,7 +11,7 @@ use App\Models\Franchise;
 
 class FranchiseApiController extends Controller
 {
-    // Handle api list franchises data
+    // Handle api list data franchises
     public function index(Request $request)
     {
         $search = $request->query('search');
@@ -43,7 +43,7 @@ class FranchiseApiController extends Controller
         }
     }
 
-    // Handle api store franchise data
+    // Handle api store data franchise
     public function store(FranchiseRequest $request)
     {
         $franchise = Franchise::create($request->validated());
@@ -59,21 +59,21 @@ class FranchiseApiController extends Controller
         return response()->json(['alert' => 'Successfully Create Franchise!']);
     }
 
-    // Handle api show franchise data
+    // Handle api show data franchise
     public function show($id)
     {
         $franchise = Franchise::findOrFail($id);
         return response()->json($franchise);
     }
 
-    // Handle api edit franchise data
+    // Handle api edit data franchise
     public function edit($id)
     {
         $franchise = Franchise::findOrFail($id);
         return response()->json($franchise);
     }
 
-    // Handle api update franchise data
+    // Handle api update data franchise
     public function update(FranchiseRequest $request, $id)
     {
         $franchise = Franchise::findOrFail($id);
@@ -90,7 +90,7 @@ class FranchiseApiController extends Controller
         return response()->json(['alert' => 'Successfully Edit Franchise!']);
     }
 
-    // Handle api delete franchise data
+    // Handle api delete data franchise
     public function destroy($id)
     {
         $franchise = Franchise::findOrFail($id);

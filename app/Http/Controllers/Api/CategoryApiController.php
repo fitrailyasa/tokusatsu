@@ -10,7 +10,7 @@ use App\Models\Category;
 
 class CategoryApiController extends Controller
 {
-    // Handle api list categories data
+    // Handle api list data categories
     public function index(Request $request)
     {
         $search = $request->query('search');
@@ -42,7 +42,7 @@ class CategoryApiController extends Controller
         }
     }
 
-    // Handle api store category data
+    // Handle api store data category
     public function store(CategoryRequest $request)
     {
         $category = Category::create($request->validated());
@@ -58,21 +58,21 @@ class CategoryApiController extends Controller
         return response()->json(['alert' => 'Successfully Create Category!']);
     }
 
-    // Handle api show category data
+    // Handle api show data category
     public function show($id)
     {
         $category = Category::findOrFail($id);
         return response()->json($category);
     }
 
-    // Handle api edit category data
+    // Handle api edit data category
     public function edit($id)
     {
         $category = Category::findOrFail($id);
         return response()->json($category);
     }
 
-    // Handle api update category data
+    // Handle api update data category
     public function update(CategoryRequest $request, $id)
     {
         $category = Category::findOrFail($id);
@@ -89,7 +89,7 @@ class CategoryApiController extends Controller
         return response()->json(['alert' => 'Successfully Edit Category!']);
     }
 
-    // Handle api destroy category data
+    // Handle api destroy data category
     public function destroy($id)
     {
         $category = Category::findOrFail($id);
@@ -160,7 +160,7 @@ class CategoryApiController extends Controller
         ], 200);
     }
 
-    // Handle api find all categories data
+    // Handle api find all data categories
     public function all()
     {
         $categories = Category::with('franchise', 'era')->get();

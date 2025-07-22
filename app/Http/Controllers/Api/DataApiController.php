@@ -10,6 +10,7 @@ use App\Models\Data;
 
 class DataApiController extends Controller
 {
+    // Handle api list datas
     public function index(Request $request)
     {
         $search = $request->query('search');
@@ -50,6 +51,7 @@ class DataApiController extends Controller
         }
     }
 
+    // Handle api store data
     public function store(DataRequest $request)
     {
         $data = Data::create($request->validated());
@@ -65,18 +67,21 @@ class DataApiController extends Controller
         return response()->json(['alert' => 'Successfully Create Data!']);
     }
 
+    // Handle api show data
     public function show($id)
     {
         $data = Data::findOrFail($id);
         return response()->json($data);
     }
 
+    // Handle api edit data
     public function edit($id)
     {
         $data = Data::findOrFail($id);
         return response()->json($data);
     }
 
+    // Handle api update data
     public function update(DataRequest $request, $id)
     {
         $data = Data::findOrFail($id);
@@ -93,6 +98,7 @@ class DataApiController extends Controller
         return response()->json(['alert' => 'Successfully Edit Data!']);
     }
 
+    // Handle api delete data
     public function destroy($id)
     {
         $data = Data::findOrFail($id);
@@ -101,6 +107,7 @@ class DataApiController extends Controller
         return response()->json(['alert' => 'Successfully Delete Data!']);
     }
 
+    // Handle api find datas by franchise category
     public function findByFranchiseCategory(Request $request, $franchise, $category)
     {
         $perPage = $request->query('per_page', 10);

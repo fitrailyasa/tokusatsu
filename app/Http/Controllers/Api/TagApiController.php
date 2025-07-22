@@ -10,6 +10,7 @@ use App\Models\Tag;
 
 class TagApiController extends Controller
 {
+    // Handle api list data tags
     public function index(Request $request)
     {
         $search = $request->query('search');
@@ -41,6 +42,7 @@ class TagApiController extends Controller
         }
     }
 
+    // Handle api store tag data
     public function store(TagRequest $request)
     {
         $tag = Tag::create($request->validated());
@@ -48,18 +50,21 @@ class TagApiController extends Controller
         return response()->json(['alert' => 'Successfully Create Tag!']);
     }
 
+    // Handle api show tag data
     public function show($id)
     {
         $tag = Tag::findOrFail($id);
         return response()->json($tag);
     }
 
+    // Handle api edit tag data
     public function edit($id)
     {
         $tag = Tag::findOrFail($id);
         return response()->json($tag);
     }
 
+    // Handle api update tag data
     public function update(TagRequest $request, $id)
     {
         $tag = Tag::findOrFail($id);
@@ -68,6 +73,7 @@ class TagApiController extends Controller
         return response()->json(['alert' => 'Successfully Edit Tag!']);
     }
 
+    // Handle api delete tag data
     public function destroy($id)
     {
         $tag = Tag::findOrFail($id);
@@ -76,6 +82,7 @@ class TagApiController extends Controller
         return response()->json(['alert' => 'Successfully Delete Tag!']);
     }
 
+    // Handle api find all tags
     public function all()
     {
         $tags = Tag::all();

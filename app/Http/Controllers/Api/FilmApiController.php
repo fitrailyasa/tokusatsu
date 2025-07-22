@@ -10,6 +10,7 @@ use App\Models\Film;
 
 class FilmApiController extends Controller
 {
+    // Handle api list films data
     public function index(Request $request)
     {
         $search = $request->query('search');
@@ -47,6 +48,7 @@ class FilmApiController extends Controller
         }
     }
 
+    // Handle api store film data
     public function store(FilmRequest $request)
     {
         $Film = Film::create($request->validated());
@@ -54,18 +56,21 @@ class FilmApiController extends Controller
         return response()->json(['alert' => 'Successfully Create Film!']);
     }
 
+    // Handle api show film data
     public function show($id)
     {
         $Film = Film::findOrFail($id);
         return response()->json($Film);
     }
 
+    // Handle api edit film data
     public function edit($id)
     {
         $Film = Film::findOrFail($id);
         return response()->json($Film);
     }
 
+    // Handle api update film data
     public function update(FilmRequest $request, $id)
     {
         $Film = Film::findOrFail($id);
@@ -74,6 +79,7 @@ class FilmApiController extends Controller
         return response()->json(['alert' => 'Successfully Edit Film!']);
     }
 
+    // Handle api delete film data
     public function destroy($id)
     {
         $Film = Film::findOrFail($id);
@@ -82,6 +88,7 @@ class FilmApiController extends Controller
         return response()->json(['alert' => 'Successfully Delete Film!']);
     }
 
+    // Handle api find films by franchise category
     public function findByFranchiseCategory(Request $request, $franchise, $category)
     {
         $perPage = $request->query('per_page', 10);
@@ -115,6 +122,7 @@ class FilmApiController extends Controller
         ], 200);
     }
 
+    // Handle api find films by franchise category & episode number
     public function findByFranchiseCategoryNumber($franchise, $category, $number)
     {
         $film = Film::with(['category.franchise'])
