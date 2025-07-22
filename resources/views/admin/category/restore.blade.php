@@ -1,4 +1,4 @@
-<!-- Tombol untuk membuka modal Restore -->
+<!-- Button to open modal Restore -->
 <button role="button" class="btn btn-sm m-1 btn-dark" data-bs-toggle="modal"
     data-bs-target=".formRestore{{ $category->id }}"><i class="fas fa-undo"></i><span class="d-none d-sm-inline">
         {{ __('Restore') }}</span></button>

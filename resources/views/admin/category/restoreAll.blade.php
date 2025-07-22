@@ -1,4 +1,4 @@
-<!-- Tombol untuk membuka modal restoreAll -->
+<!-- Button to open modal restoreAll -->
 <button role="button" class="btn btn-sm m-1 btn-dark" data-bs-toggle="modal" data-bs-target=".restoreAll"><i
         class="fas fa-undo"></i><span class="d-none d-sm-inline"> {{ __('Restore All') }}</span></button>
 

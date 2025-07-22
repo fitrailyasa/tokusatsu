@@ -1,4 +1,4 @@
-<!-- Tombol untuk membuka modal -->
+<!-- Button to open modal -->
 <button role="button" class="btn btn-sm m-1 btn-info" data-bs-toggle="modal" data-bs-target=".formImport"><i
         class="fas fa-upload"></i> <span class="d-none d-sm-inline">{{ __('Upload') }}</span></button>
 
