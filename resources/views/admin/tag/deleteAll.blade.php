@@ -19,8 +19,7 @@
                 <form method="POST" action="{{ route('admin.tag.destroyAll') }}">
                     @csrf
                     @method('DELETE')
-                    <button type="button" class="btn btn-secondary"
-                        data-bs-dismiss="modal">{{ __('Close') }}</button>
+                    <x-button.close />
                     <button type="submit" class="btn btn-danger btn-submit">
                         <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
                         <span class="btn-text">{{ __('Delete All') }}</span>

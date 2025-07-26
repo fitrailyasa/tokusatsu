@@ -19,8 +19,7 @@
                     <p>Are you sure you want to restore all deleted data?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary"
-                        data-bs-dismiss="modal">{{ __('Close') }}</button>
+                    <x-button.close />
                     <button type="submit" class="btn btn-success btn-submit">
                         <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
                         <span class="btn-text">{{ __('Restore All') }}</span>
