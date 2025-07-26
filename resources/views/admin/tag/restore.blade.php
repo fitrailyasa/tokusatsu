@@ -21,7 +21,10 @@
                     @csrf
                     <button type="button" class="btn btn-secondary"
                         data-bs-dismiss="modal">{{ __('Close') }}</button>
-                    <input type="submit" class="btn btn-success light" name="" id="" value="Restore">
+                    <button type="submit" class="btn btn-success btn-submit">
+                        <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                        <span class="btn-text">{{ __('Restore') }}</span>
+                    </button>
                 </form>
             </div>
         </div>

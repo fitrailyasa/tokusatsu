@@ -91,7 +91,10 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary"
                         data-bs-dismiss="modal">{{ __('Close') }}</button>
-                    <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
+                    <button type="submit" class="btn btn-primary btn-submit">
+                        <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                        <span class="btn-text">{{ __('Save') }}</span>
+                    </button>
                 </div>
             </form>
         </div>

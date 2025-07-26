@@ -91,6 +91,23 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const forms = document.querySelectorAll('form');
+
+            forms.forEach(form => {
+                form.addEventListener('submit', function() {
+                    const submitBtn = form.querySelector('.btn-submit');
+                    if (submitBtn) {
+                        const spinner = submitBtn.querySelector('.spinner-border');
+                        const btnText = submitBtn.querySelector('.btn-text');
+                        if (spinner) spinner.classList.remove('d-none');
+                        if (btnText) btnText.classList.add('d-none');
+                        submitBtn.disabled = true;
+                    }
+                });
+            });
+        });
     </script>
 
     {{ $script ?? '' }}

@@ -21,7 +21,10 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary"
                         data-bs-dismiss="modal">{{ __('Close') }}</button>
-                    <button type="submit" class="btn btn-danger">{{ __('Delete All') }}</button>
+                    <button type="submit" class="btn btn-danger btn-submit">
+                        <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                        <span class="btn-text">{{ __('Delete All') }}</span>
+                    </button>
                 </div>
             </form>
         </div>
