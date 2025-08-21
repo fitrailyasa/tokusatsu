@@ -5,7 +5,7 @@
 
 <!-- Modal -->
 <div class="modal fade formEdit{{ $geojson->id }}" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <form method="POST" action="{{ route('admin.geojson.update', $geojson->id) }}">
                 @csrf
@@ -16,21 +16,21 @@
                 </div>
                 <div class="modal-body text-left">
                     <div class="mb-3">
-                        <label class="form-label">Name</label>
+                        <label class="form-label">{{ __('Name') }}<span class="text-danger">*</span></label>
                         <input type="text" class="form-control" name="name"
                             value="{{ old('name', $geojson->name) }}" required>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Description</label>
+                        <label class="form-label">{{ __('Description') }}</label>
                         <textarea class="form-control" name="desc" rows="2">{{ old('desc', $geojson->desc) }}</textarea>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Geometry</label>
+                        <label class="form-label">{{ __('Geometry') }}</label>
                         <div id="map-{{ $geojson->id }}" style="height:420px;"></div>
                         <textarea class="form-control mt-2" name="geometry" id="geometry-{{ $geojson->id }}" rows="3">{{ old('geometry', json_encode($geojson->geometry)) }}</textarea>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Properties</label>
+                        <label class="form-label">{{ __('Properties') }}</label>
                         <textarea class="form-control" name="properties" id="properties-{{ $geojson->id }}" rows="3">{{ old('properties', $geojson->properties ? json_encode($geojson->properties) : '') }}</textarea>
                     </div>
                 </div>

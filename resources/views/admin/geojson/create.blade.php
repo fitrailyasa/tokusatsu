@@ -4,7 +4,7 @@
 
 <!-- Modal -->
 <div class="modal fade formCreate" tabindex="-1" role="dialog" aria-labelledby="modalFormLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <form method="POST" action="{{ route('admin.geojson.store') }}" enctype="multipart/form-data">
                 @csrf
@@ -84,13 +84,12 @@
                 featureGroup: drawnItems
             },
             draw: {
-                circle: false, // GeoJSON standar tidak punya Circle
-                circlemarker: false // matikan juga
+                circle: false,
+                circlemarker: false
             }
         });
         map.addControl(drawControl);
 
-        // --- Update isi textarea geometry ketika digambar/diubah ---
         function updateTextarea() {
             let gj = null;
             drawnItems.eachLayer(l => {
@@ -100,7 +99,7 @@
         }
 
         map.on(L.Draw.Event.CREATED, function(e) {
-            drawnItems.clearLayers(); // hanya simpan satu geometry
+            drawnItems.clearLayers();
             drawnItems.addLayer(e.layer);
             updateTextarea();
         });
@@ -108,7 +107,6 @@
         map.on(L.Draw.Event.EDITED, updateTextarea);
         map.on(L.Draw.Event.DELETED, updateTextarea);
 
-        // --- Render geometry lama dari textarea (kalau ada) ---
         const textarea = document.getElementById('geometry');
         try {
             const existing = textarea.value.trim();
@@ -121,7 +119,6 @@
                 };
                 const layer = L.geoJSON(feature).addTo(drawnItems);
 
-                // fit map ke geometry
                 try {
                     map.fitBounds(layer.getBounds(), {
                         padding: [20, 20]
