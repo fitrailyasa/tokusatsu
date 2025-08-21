@@ -3,8 +3,6 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-
-use App\Models\AddressProvince;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -22,6 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call(TagSeeder::class);
         $this->call(DataSeeder::class);
         $this->call(FilmSeeder::class);
+        // $this->call(GeojsonSeeder::class);
         // $this->call(AddressProvinceSeeder::class);
         // $this->call(AddressRegencySeeder::class);
         // $this->call(AddressDistrictSeeder::class);

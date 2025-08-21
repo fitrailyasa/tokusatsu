@@ -173,9 +173,9 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/geojson/softDeleteAll', [AdminGeojsonController::class, 'softDeleteAll'])->name('geojson.softDeleteAll');
     Route::put('/geojson/{id}/restore', [AdminGeojsonController::class, 'restore'])->name('geojson.restore');
     Route::put('/geojson/restoreAll', [AdminGeojsonController::class, 'restoreAll'])->name('geojson.restoreAll');
-    // Route::post('/geojson/import', [AdminGeojsonController::class, 'import'])->name('geojson.import');
-    // Route::get('/geojson/exportExcel', [AdminGeojsonController::class, 'exportExcel'])->name('geojson.exportExcel');
-    // Route::get('/geojson/exportPDF', [AdminGeojsonController::class, 'exportPDF'])->name('geojson.exportPDF');
+    Route::post('/geojson/import', [AdminGeojsonController::class, 'import'])->name('geojson.import');
+    Route::get('/geojson/exportExcel', [AdminGeojsonController::class, 'exportExcel'])->name('geojson.exportExcel');
+    Route::get('/geojson/exportPDF', [AdminGeojsonController::class, 'exportPDF'])->name('geojson.exportPDF');
   });
 });
 

@@ -51,32 +51,32 @@ class AdminGeojsonController extends Controller
     }
 
     // Handle import data geojson from excel file
-    // public function import(Request $request)
-    // {
-    //     $request->validate([
-    //         'file' => 'required|max:10240|mimes:xlsx,xls',
-    //     ]);
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|max:10240|mimes:xlsx,xls',
+        ]);
 
-    //     $file = $request->file('file');
-    //     Excel::import(new geojsonImport, $file);
+        $file = $request->file('file');
+        Excel::import(new GeojsonImport, $file);
 
-    //     return back()->with('success', 'Successfully Import Data GeoJSON!');
-    // }
+        return back()->with('success', 'Successfully Import Data GeoJSON!');
+    }
 
     // Handle export data geojson to excel file
-    // public function exportExcel()
-    // {
-    //     return Excel::download(new geojsonExport, 'Data geojson.xlsx');
-    // }
+    public function exportExcel()
+    {
+        return Excel::download(new GeojsonExport, 'Data Geojson.xlsx');
+    }
 
     // Handle export data geojson to pdf file
-    // public function exportPDF()
-    // {
-    //     $geojsons = Geojson::withTrashed()->get();
-    //     $pdf = Pdf::loadView('admin.geojson.pdf.template', compact('geojsons'));
+    public function exportPDF()
+    {
+        $geojsons = Geojson::withTrashed()->get();
+        $pdf = Pdf::loadView('admin.geojson.pdf.template', compact('geojsons'));
 
-    //     return $pdf->stream('Data Geojson.pdf');
-    // }
+        return $pdf->stream('Data Geojson.pdf');
+    }
 
     // Handle store data geojson
     public function store(GeojsonRequest $request)

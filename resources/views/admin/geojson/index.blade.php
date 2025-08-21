@@ -15,21 +15,21 @@
     <!-- Button Import -->
     <x-slot name="import">
         @can('import-geojson')
-            {{-- @include('admin.geojson.excel.import') --}}
+            @include('admin.geojson.excel.import')
         @endcan
     </x-slot>
 
     <!-- Button Export Excel -->
     <x-slot name="exportExcel">
         @can('export-geojson')
-            {{-- @include('admin.geojson.excel.export') --}}
+            @include('admin.geojson.excel.export')
         @endcan
     </x-slot>
 
     <!-- Button Export PDF -->
     <x-slot name="exportPDF">
         @can('export-geojson')
-            {{-- @include('admin.geojson.pdf.export') --}}
+            @include('admin.geojson.pdf.export')
         @endcan
     </x-slot>
 
@@ -79,13 +79,13 @@
                     <td>{{ Illuminate\Support\Str::words($geojson->desc ?? '-', 10, '...') }}</td>
                     <td>
                         <pre class="mb-0" style="white-space: pre-wrap; word-wrap: break-word; max-width: 250px;">
-                        {{ json_encode($geojson->geometry, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) }}
-                    </pre>
+                            {{ json_encode($geojson->geometry, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) }}
+                        </pre>
                     </td>
                     <td>
                         <pre class="mb-0" style="white-space: pre-wrap; word-wrap: break-word; max-width: 250px;">
-                        {{ json_encode($geojson->properties, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) }}
-                    </pre>
+                            {{ json_encode($geojson->properties, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) }}
+                        </pre>
                     </td>
                     <td class="manage-row text-center">
                         @if ($geojson->trashed())
