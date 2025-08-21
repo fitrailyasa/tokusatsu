@@ -85,7 +85,7 @@ class AdminEraController extends Controller
 
         if ($request->hasFile('img')) {
             $img = $request->file('img');
-            $file_name = $era->name . '_' . time() . '.' . $img->getClientOriginalExtension();
+            $file_name = $era->slug . '_' . time() . '.' . $img->getClientOriginalExtension();
             $era->img = $file_name;
             $era->update();
             $img->storeAs('public', $file_name);
@@ -102,7 +102,7 @@ class AdminEraController extends Controller
 
         if ($request->hasFile('img')) {
             $img = $request->file('img');
-            $file_name = $era->name . '_' . time() . '.' . $img->getClientOriginalExtension();
+            $file_name = $era->slug . '_' . time() . '.' . $img->getClientOriginalExtension();
             $era->img = $file_name;
             $era->update();
             $img->storeAs('public', $file_name);

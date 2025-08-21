@@ -85,7 +85,7 @@ class AdminFranchiseController extends Controller
 
         if ($request->hasFile('img')) {
             $img = $request->file('img');
-            $file_name = $franchise->name . '_' . time() . '.' . $img->getClientOriginalExtension();
+            $file_name = $franchise->slug . '_' . time() . '.' . $img->getClientOriginalExtension();
             $franchise->img = $file_name;
             $franchise->update();
             $img->storeAs('public', $file_name);
@@ -102,7 +102,7 @@ class AdminFranchiseController extends Controller
 
         if ($request->hasFile('img')) {
             $img = $request->file('img');
-            $file_name = $franchise->name . '_' . time() . '.' . $img->getClientOriginalExtension();
+            $file_name = $franchise->slug . '_' . time() . '.' . $img->getClientOriginalExtension();
             $franchise->img = $file_name;
             $franchise->update();
             $img->storeAs('public', $file_name);
