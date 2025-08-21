@@ -25,6 +25,10 @@
     <x-favicon />
 
     <style>
+        #map {
+            height: 420px;
+        }
+
         .border-bottom {
             border-bottom: 0.2px solid rgba(255, 255, 255, 0.2) !important;
         }
