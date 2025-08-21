@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminTagController;
 use App\Http\Controllers\Admin\AdminDataController;
 use App\Http\Controllers\Admin\AdminFilmController;
+use App\Http\Controllers\Admin\AdminGeojsonController;
 use App\Http\Controllers\Auth\ProviderController;
 use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\MidtransController;
@@ -161,6 +162,20 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/film/import', [AdminFilmController::class, 'import'])->name('film.import');
     Route::get('/film/exportExcel', [AdminFilmController::class, 'exportExcel'])->name('film.exportExcel');
     // Route::get('/film/exportPDF', [AdminFilmController::class, 'exportPDF'])->name('film.exportPDF');
+
+    // CRUD geojson
+    Route::get('/geojson', [AdminGeojsonController::class, 'index'])->name('geojson.index');
+    Route::post('/geojson', [AdminGeojsonController::class, 'store'])->name('geojson.store');
+    Route::put('/geojson/{id}/update', [AdminGeojsonController::class, 'update'])->name('geojson.update');
+    Route::delete('/geojson/{id}/destroy', [AdminGeojsonController::class, 'destroy'])->name('geojson.destroy');
+    Route::delete('/geojson/destroyAll', [AdminGeojsonController::class, 'destroyAll'])->name('geojson.destroyAll');
+    Route::delete('/geojson/{id}/softDelete', [AdminGeojsonController::class, 'softDelete'])->name('geojson.softDelete');
+    Route::delete('/geojson/softDeleteAll', [AdminGeojsonController::class, 'softDeleteAll'])->name('geojson.softDeleteAll');
+    Route::put('/geojson/{id}/restore', [AdminGeojsonController::class, 'restore'])->name('geojson.restore');
+    Route::put('/geojson/restoreAll', [AdminGeojsonController::class, 'restoreAll'])->name('geojson.restoreAll');
+    // Route::post('/geojson/import', [AdminGeojsonController::class, 'import'])->name('geojson.import');
+    // Route::get('/geojson/exportExcel', [AdminGeojsonController::class, 'exportExcel'])->name('geojson.exportExcel');
+    // Route::get('/geojson/exportPDF', [AdminGeojsonController::class, 'exportPDF'])->name('geojson.exportPDF');
   });
 });
 
