@@ -22,7 +22,7 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label">{{ __('Description') }}</label>
-                        <textarea class="form-control" name="description" rows="2">{{ old('description', $geojson->desc) }}</textarea>
+                        <textarea class="form-control" name="description" rows="2">{{ old('description', $geojson->description) }}</textarea>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">{{ __('Geometry') }}</label>
