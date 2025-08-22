@@ -14,7 +14,7 @@ class FranchiseLivewire extends Component
     use WithPagination, WithFileUploads;
     protected $paginationTheme = 'bootstrap';
 
-    public $id, $name, $desc, $img;
+    public $id, $name, $description, $img;
     public $isUpdate = false;
 
     public function rules(): array
@@ -25,7 +25,7 @@ class FranchiseLivewire extends Component
                 'max:100',
                 Rule::unique('franchises', 'name')->ignore($this->id),
             ],
-            'desc' => 'nullable|max:1024',
+            'description' => 'nullable|max:1024',
             'img' => 'nullable|mimes:jpg,jpeg,png|max:2048',
         ];
     }
@@ -45,7 +45,7 @@ class FranchiseLivewire extends Component
         if ($search) {
             $franchises = Franchise::withTrashed()
                 ->where('name', 'like', "%{$search}%")
-                ->orWhere('desc', 'like', "%{$search}%")
+                ->orWhere('description', 'like', "%{$search}%")
                 ->paginate($validPerPage);
         } else {
             $franchises = Franchise::withTrashed()->paginate($validPerPage);
@@ -58,7 +58,7 @@ class FranchiseLivewire extends Component
     {
         $this->id = '';
         $this->name = '';
-        $this->desc = '';
+        $this->description = '';
         $this->img = '';
     }
 
@@ -68,7 +68,7 @@ class FranchiseLivewire extends Component
 
         $franchiseData = [
             'name' => $this->name,
-            'desc' => $this->desc,
+            'description' => $this->description,
         ];
 
         if ($this->img) {
@@ -90,7 +90,7 @@ class FranchiseLivewire extends Component
         $franchise = Franchise::findOrFail($id);
         $this->id = $id;
         $this->name = $franchise->name;
-        $this->desc = $franchise->desc;
+        $this->description = $franchise->desc;
         $this->isUpdate = true;
     }
 
@@ -101,7 +101,7 @@ class FranchiseLivewire extends Component
         $franchise = Franchise::findOrFail($this->id);
         $franchiseData = [
             'name' => $this->name,
-            'desc' => $this->desc,
+            'description' => $this->description,
         ];
 
         if ($this->img) {

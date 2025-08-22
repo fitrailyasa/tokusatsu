@@ -13,14 +13,14 @@ class FranchiseImport implements ToModel, WithStartRow
     {
         $name = $row[1];
         $img = $row[2] ?? null;
-        $desc = $row[3] ?? null;
+        $description = $row[3] ?? null;
 
         $checkFranchise = Franchise::withTrashed()->where('name', $name)->first();
 
         if ($checkFranchise) {
             $checkFranchise->update([
                 'img' => $img,
-                'desc' => $desc,
+                'description' => $description,
             ]);
 
             return null;
@@ -28,7 +28,7 @@ class FranchiseImport implements ToModel, WithStartRow
             return new Franchise([
                 'name' => $name,
                 'img' => $img,
-                'desc' => $desc,
+                'description' => $description,
             ]);
         }
     }
@@ -37,5 +37,4 @@ class FranchiseImport implements ToModel, WithStartRow
     {
         return 3;
     }
-    
 }

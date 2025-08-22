@@ -34,7 +34,7 @@
                         <a href="{{ asset('storage/' . $data->img) }}" download="{{ $data->img }}"
                             class="btn aktif text-white border my-3 col-12">Download Gambar</a>
                         <div>
-                            <p>{{ $data->category->desc ?? '---------------' }}</p>
+                            <p>{{ $data->category->description ?? '---------------' }}</p>
                         </div>
                     </div>
                 </div>

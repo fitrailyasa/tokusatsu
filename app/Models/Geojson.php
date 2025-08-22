@@ -16,7 +16,7 @@ class Geojson extends Model
     protected $connection;
     protected $table = 'geojsons';
     protected $primaryKey = 'id';
-    protected $fillable = ['name', 'slug', 'desc', 'geometry', 'properties'];
+    protected $fillable = ['name', 'slug', 'description', 'geometry', 'properties'];
     protected $casts = ['geometry'  => 'array', 'properties' => 'array'];
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 

@@ -5,9 +5,26 @@ namespace App\Http\Controllers\Client;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Film;
+use App\Models\Franchise;
 
 class ClientFilmController extends Controller
 {
+    public function index()
+    {
+        $franchise = Franchise::all();
+
+        return view('client.film.index', compact('franchise'));
+    }
+
+    public function category(string $category)
+    {
+        $franchise = Franchise::where('slug', $category)->withoutTrashed()->firstOrFail();
+        $categories = Category::where('franchise_id', $franchise->id)->withoutTrashed()->paginate(12);
+        dd($categories);
+
+        return view('client.film.index', compact('franchise', 'categories'));
+    }
+
     /**
      * Display a list of films for a category.
      *

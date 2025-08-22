@@ -14,7 +14,7 @@ class EraLivewire extends Component
     use WithFileUploads, WithPagination;
     protected $paginationTheme = 'bootstrap';
 
-    public $id, $name, $desc, $img;
+    public $id, $name, $description, $img;
     public $isUpdate = false;
 
     public function rules(): array
@@ -25,7 +25,7 @@ class EraLivewire extends Component
                 'max:100',
                 Rule::unique('eras', 'name')->ignore($this->id),
             ],
-            'desc' => 'nullable|max:1024',
+            'description' => 'nullable|max:1024',
             'img' => 'nullable|mimes:jpg,jpeg,png|max:2048',
         ];
     }
@@ -50,7 +50,7 @@ class EraLivewire extends Component
         if ($search) {
             $eras = Era::withTrashed()
                 ->where('name', 'like', "%{$search}%")
-                ->orWhere('desc', 'like', "%{$search}%")
+                ->orWhere('description', 'like', "%{$search}%")
                 ->paginate($validPerPage);
         } else {
             $eras = Era::withTrashed()->paginate($validPerPage);
@@ -63,7 +63,7 @@ class EraLivewire extends Component
     {
         $this->id = '';
         $this->name = '';
-        $this->desc = '';
+        $this->description = '';
         $this->img = '';
     }
 
@@ -73,7 +73,7 @@ class EraLivewire extends Component
 
         $eraData = [
             'name' => $this->name,
-            'desc' => $this->desc,
+            'description' => $this->description,
         ];
 
         if ($this->img) {
@@ -95,7 +95,7 @@ class EraLivewire extends Component
         $era = Era::findOrFail($id);
         $this->id = $id;
         $this->name = $era->name;
-        $this->desc = $era->desc;
+        $this->description = $era->desc;
         $this->isUpdate = true;
     }
 
@@ -106,7 +106,7 @@ class EraLivewire extends Component
         $era = Era::findOrFail($this->id);
         $eraData = [
             'name' => $this->name,
-            'desc' => $this->desc,
+            'description' => $this->description,
         ];
 
         if ($this->img) {

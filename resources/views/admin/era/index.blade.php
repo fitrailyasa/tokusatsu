@@ -66,7 +66,7 @@
                 <th>{{ __('No') }}</th>
                 <th>{{ __('Name') }}</th>
                 <th>{{ __('Img') }}</th>
-                <th>{{ __('Desc') }}</th>
+                <th>{{ __('description') }}</th>
                 <th class="text-center">{{ __('Action') }}</th>
             </tr>
         </thead>
@@ -117,7 +117,7 @@
                             </div>
                         @endif
                     </td>
-                    <td>{{ Illuminate\Support\Str::words($era->desc ?? '-', 10, '...') }}</td>
+                    <td>{{ Illuminate\Support\Str::words($era->description ?? '-', 10, '...') }}</td>
                     <td class="manage-row text-center">
                         @if ($era->trashed())
                             <!-- Restore and Delete Button -->
@@ -145,7 +145,7 @@
                 <th>{{ __('No') }}</th>
                 <th>{{ __('Name') }}</th>
                 <th>{{ __('Img') }}</th>
-                <th>{{ __('Desc') }}</th>
+                <th>{{ __('description') }}</th>
                 <th class="text-center">{{ __('Action') }}</th>
             </tr>
         </tfoot>

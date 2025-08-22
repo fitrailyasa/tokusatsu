@@ -65,7 +65,7 @@
                             Tidak ada
                         @endif
                     </td>
-                    <td>{{ $era->desc ?? '-' }}</td>
+                    <td>{{ $era->description ?? '-' }}</td>
                 </tr>
             @endforeach
         </tbody>

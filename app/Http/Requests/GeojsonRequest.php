@@ -27,7 +27,7 @@ class GeojsonRequest extends FormRequest
                 'max:100',
                 Rule::unique('geojsons', 'name')->ignore($id),
             ],
-            'desc' => 'max:1024',
+            'description' => 'max:1024',
             'geometry' => 'required|string',
             'properties' => 'nullable|string',
         ];
@@ -39,7 +39,7 @@ class GeojsonRequest extends FormRequest
             'name.required' => 'Name is required.',
             'name.max' => 'Name must be under 100 chars.',
             'name.unique' => 'Name already exists.',
-            'desc.max' => 'Description max 1024 chars.',
+            'description.max' => 'Description max 1024 chars.',
             'geometry.required' => 'Geometry is required.',
             'geometry.string' => 'Geometry must be a string.',
             'properties.string' => 'Properties must be a string.',

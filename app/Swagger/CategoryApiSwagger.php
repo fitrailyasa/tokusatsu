@@ -11,7 +11,7 @@ use OpenApi\Annotations as OA;
  *     required={"id", "name"},
  *     @OA\Property(property="id", type="integer", example=1),
  *     @OA\Property(property="name", type="string", example="Test"),
- *     @OA\Property(property="desc", nullable=true, type="string", example="Description Category"),
+ *     @OA\Property(property="description", nullable=true, type="string", example="Description Category"),
  *     @OA\Property(property="era_id", type="integer", example=1),
  *     @OA\Property(property="franchise_id", type="integer", example=1),
  *     @OA\Property(property="created_at", type="string", format="date-time", example="2024-06-01T12:00:00Z"),
@@ -23,7 +23,7 @@ use OpenApi\Annotations as OA;
  *     type="object",
  *     required={"name"},
  *     @OA\Property(property="name", type="string", example="Test"),
- *     @OA\Property(property="desc", type="string", nullable=true, example="Description Category"),
+ *     @OA\Property(property="description", type="string", nullable=true, example="Description Category"),
  *     @OA\Property(property="era_id", type="integer", example=1),
  *     @OA\Property(property="franchise_id", type="integer", example=1)
  * )

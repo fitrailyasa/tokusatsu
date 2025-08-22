@@ -35,7 +35,7 @@ class EraApiTest extends TestCase
     {
         $data = [
             'name' => 'New Era',
-            'desc' => 'This is a test Era',
+            'description' => 'This is a test Era',
         ];
 
         $response = $this->postJson(route('eras.store'), $data);
@@ -62,7 +62,7 @@ class EraApiTest extends TestCase
 
         $updateData = [
             'name' => 'Updated Era',
-            'desc' => 'This is a test Era',
+            'description' => 'This is a test Era',
         ];
 
         $response = $this->putJson(route('eras.update', $era->id), $updateData);

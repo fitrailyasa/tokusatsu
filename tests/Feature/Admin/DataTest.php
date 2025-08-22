@@ -28,17 +28,17 @@ class DataTest extends TestCase
 
         // Buat permission yang dibutuhkan controller
         $permissions = [
-            'view-data',
-            'create-data',
-            'edit-data',
-            'delete-data',
-            'delete-all-data',
-            'soft-delete-data',
-            'soft-delete-all-data',
-            'restore-data',
-            'restore-all-data',
-            'import-data',
-            'export-data',
+            'view:data',
+            'create:data',
+            'edit:data',
+            'delete:data',
+            'delete-all:data',
+            'soft-delete:data',
+            'soft-delete-all:data',
+            'restore:data',
+            'restore-all:data',
+            'import:data',
+            'export:data',
         ];
 
         foreach ($permissions as $perm) {

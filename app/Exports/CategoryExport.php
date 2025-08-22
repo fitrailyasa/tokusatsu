@@ -24,7 +24,7 @@ class CategoryExport implements FromCollection, WithHeadings, WithStyles, Should
                 'No' => $no++,
                 'Name' => $category->name ?? '',
                 'Img' => $category->img ?? '',
-                'Desc' => $category->desc ?? '',
+                'Description' => $category->description ?? '',
                 'Era' => $category->era->name ?? '',
                 'Franchise' => $category->franchise->name ?? '',
             ];
@@ -43,7 +43,7 @@ class CategoryExport implements FromCollection, WithHeadings, WithStyles, Should
                 'No',
                 'Name',
                 'Img',
-                'Desc',
+                'Description',
                 'Era',
                 'Franchise',
             ],

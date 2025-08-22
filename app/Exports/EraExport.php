@@ -24,7 +24,7 @@ class EraExport implements FromCollection, WithHeadings, WithStyles, ShouldAutoS
                 'No' => $no++,
                 'Name' => $era->name ?? '',
                 'Img' => $era->img ?? '',
-                'Desc' => $era->desc ?? '',
+                'Description' => $era->description ?? '',
             ];
         }
 
@@ -41,7 +41,7 @@ class EraExport implements FromCollection, WithHeadings, WithStyles, ShouldAutoS
                 'No',
                 'Name',
                 'Img',
-                'Desc',
+                'Description',
             ]
         ];
     }

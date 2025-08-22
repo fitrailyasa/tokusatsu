@@ -43,7 +43,7 @@ class AdminEraController extends Controller
         if ($search) {
             $eras = Era::withTrashed()
                 ->where('name', 'like', "%{$search}%")
-                ->orWhere('desc', 'like', "%{$search}%")
+                ->orWhere('description', 'like', "%{$search}%")
                 ->paginate($validPerPage);
         } else {
             $eras = Era::withTrashed()->paginate($validPerPage);

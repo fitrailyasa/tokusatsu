@@ -15,7 +15,7 @@ class CategoryImport implements ToModel, WithStartRow
     {
         $name = $row[1];
         $img = $row[2] ?? null;
-        $desc = $row[3] ?? null;
+        $description = $row[3] ?? null;
         $eraName = $row[4] ?? null;
         $franchiseName = $row[5] ?? null;
 
@@ -42,7 +42,7 @@ class CategoryImport implements ToModel, WithStartRow
         if ($checkCategory) {
             $checkCategory->update([
                 'img' => $img ?? $checkCategory->img,
-                'desc' => $desc ?? $checkCategory->desc,
+                'description' => $description ?? $checkCategory->description,
                 'era_id' => $era->id,
                 'franchise_id' => $franchise->id,
             ]);
@@ -54,7 +54,7 @@ class CategoryImport implements ToModel, WithStartRow
             // 'id' => Str::uuid(),
             'name' => $name,
             'img' => $img ?? null,
-            'desc' => $desc ?? null,
+            'description' => $description ?? null,
             'era_id' => $era->id ?? null,
             'franchise_id' => $franchise->id ?? null,
         ]);

@@ -24,7 +24,7 @@ class EraResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')->columnSpanFull()->unique('eras', 'name')->required()->label('Nama'),
-                Forms\Components\TextInput::make('desc')->columnSpanFull()->label('Deskripsi'),
+                Forms\Components\TextInput::make('description')->columnSpanFull()->label('Deskripsi'),
                 Forms\Components\FileUpload::make('img')->columnSpanFull()->label('Gambar')->image(),
             ]);
     }
@@ -34,11 +34,11 @@ class EraResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')->searchable()->sortable()->label('Nama'),
-                Tables\Columns\TextColumn::make('desc')
+                Tables\Columns\TextColumn::make('description')
                     ->formatStateUsing(function ($state) {
                         return implode(' ', array_slice(explode(' ', $state), 0, 10));
                     })
-                    ->placeholder('No Desc')
+                    ->placeholder('No description')
                     ->searchable()
                     ->sortable()
                     ->label('Deskripsi'),

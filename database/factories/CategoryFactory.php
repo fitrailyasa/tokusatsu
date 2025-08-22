@@ -22,7 +22,7 @@ class CategoryFactory extends Factory
         return [
             'name' => ucfirst($name),
             'slug' => Str::slug($name),
-            'desc' => $this->faker->sentence(),
+            'description' => $this->faker->sentence(),
             'img' => $this->faker->imageUrl(200, 200, 'categories', true, 'category'),
             'era_id' => Era::factory(),
             'franchise_id' => Franchise::factory(),

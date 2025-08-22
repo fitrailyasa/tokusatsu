@@ -28,7 +28,7 @@ class CategoryResource extends Resource
                 Forms\Components\TextInput::make('name')->columnSpanFull()->unique('categories', 'name')->required()->label('Nama'),
                 Forms\Components\Select::make('era_id')->relationship('era', 'name')->required()->label('Era'),
                 Forms\Components\Select::make('franchise_id')->relationship('franchise', 'name')->required()->label('Franchise'),
-                Forms\Components\TextInput::make('desc')->columnSpanFull()->label('Deskripsi'),
+                Forms\Components\TextInput::make('description')->columnSpanFull()->label('Deskripsi'),
                 Forms\Components\FileUpload::make('img')->columnSpanFull()->label('Gambar')->image()->directory('img'),
             ]);
     }
@@ -39,11 +39,11 @@ class CategoryResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')->searchable()->sortable()->label('Nama'),
                 Tables\Columns\TextColumn::make('slug')->searchable()->sortable()->label('Slug'),
-                Tables\Columns\TextColumn::make('desc')
+                Tables\Columns\TextColumn::make('description')
                     ->formatStateUsing(function ($state) {
                         return implode(' ', array_slice(explode(' ', $state), 0, 10));
                     })
-                    ->placeholder('No Desc')
+                    ->placeholder('No description')
                     ->searchable()
                     ->sortable()
                     ->label('Deskripsi'),

@@ -20,7 +20,7 @@ class FranchiseFactory extends Factory
         return [
             'name' => ucfirst($name),
             'slug' => Str::slug($name),
-            'desc' => $this->faker->sentence(),
+            'description' => $this->faker->sentence(),
             'img' => $this->faker->imageUrl(200, 200, 'franchises', true, 'Franchise'),
             'created_at' => now(),
             'updated_at' => now(),

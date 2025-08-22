@@ -16,7 +16,7 @@ class CategoryLivewire extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
-    public $name, $desc, $img, $categoryId, $era_id, $franchise_id;
+    public $name, $description, $img, $categoryId, $era_id, $franchise_id;
     public $isUpdate = false;
 
     public function rules(): array
@@ -29,7 +29,7 @@ class CategoryLivewire extends Component
                 'max:100',
                 Rule::unique('categories', 'name')->ignore($this->id),
             ],
-            'desc' => 'nullable|max:1024',
+            'description' => 'nullable|max:1024',
             'img' => 'nullable|mimes:jpg,jpeg,png|max:2048',
         ];
     }
@@ -58,7 +58,7 @@ class CategoryLivewire extends Component
             ->when($search, function ($query, $search) {
                 $query->where(function ($query) use ($search) {
                     $query->where('name', 'like', "%{$search}%")
-                        ->orWhere('desc', 'like', "%{$search}%")
+                        ->orWhere('description', 'like', "%{$search}%")
                         ->orWhereHas('era', fn($q) => $q->where('name', 'like', "%{$search}%"))
                         ->orWhereHas('franchise', fn($q) => $q->where('name', 'like', "%{$search}%"));
                 });
@@ -77,7 +77,7 @@ class CategoryLivewire extends Component
     public function resetInputFields()
     {
         $this->name = '';
-        $this->desc = '';
+        $this->description = '';
         $this->img = '';
         $this->categoryId = '';
         $this->era_id = '';
@@ -92,7 +92,7 @@ class CategoryLivewire extends Component
             'era_id' => $this->era_id,
             'franchise_id' => $this->franchise_id,
             'name' => $this->name,
-            'desc' => $this->desc,
+            'description' => $this->description,
         ]);
 
         session()->flash('success', 'Category Created Successfully.');
@@ -105,7 +105,7 @@ class CategoryLivewire extends Component
         $category = Category::findOrFail($id);
         $this->categoryId = $id;
         $this->name = $category->name;
-        $this->desc = $category->desc;
+        $this->description = $category->desc;
         $this->img = $category->img;
         $this->era_id = $category->era_id;
         $this->franchise_id = $category->franchise_id;
@@ -121,7 +121,7 @@ class CategoryLivewire extends Component
             'era_id' => $this->era_id,
             'franchise_id' => $this->franchise_id,
             'name' => $this->name,
-            'desc' => $this->desc,
+            'description' => $this->description,
         ]);
 
         session()->flash('success', 'Category Updated Successfully.');

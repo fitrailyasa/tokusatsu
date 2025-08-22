@@ -12,7 +12,7 @@ class GeojsonSeeder extends Seeder
         $data = [
             [
                 'name' => 'Monas',
-                'desc' => 'Tugu Monas di Jakarta',
+                'description' => 'Tugu Monas di Jakarta',
                 'geometry' => [
                     'type' => 'Point',
                     'coordinates' => [106.827153, -6.175392],
@@ -24,7 +24,7 @@ class GeojsonSeeder extends Seeder
             ],
             [
                 'name' => 'Jalur CFD Sudirman',
-                'desc' => 'LineString di Jakarta',
+                'description' => 'LineString di Jakarta',
                 'geometry' => [
                     'type' => 'LineString',
                     'coordinates' => [
@@ -40,7 +40,7 @@ class GeojsonSeeder extends Seeder
             ],
             [
                 'name' => 'Bundaran HI',
-                'desc' => 'Polygon bundaran HI',
+                'description' => 'Polygon bundaran HI',
                 'geometry' => [
                     'type' => 'Polygon',
                     'coordinates' => [[

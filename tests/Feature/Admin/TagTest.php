@@ -27,17 +27,17 @@ class TagTest extends TestCase
 
         // Buat permission yang dibutuhkan controller
         $permissions = [
-            'view-tag',
-            'create-tag',
-            'edit-tag',
-            'delete-tag',
-            'delete-all-tag',
-            'soft-delete-tag',
-            'soft-delete-all-tag',
-            'restore-tag',
-            'restore-all-tag',
-            'import-tag',
-            'export-tag',
+            'view:tag',
+            'create:tag',
+            'edit:tag',
+            'delete:tag',
+            'delete-all:tag',
+            'soft-delete:tag',
+            'soft-delete-all:tag',
+            'restore:tag',
+            'restore-all:tag',
+            'import:tag',
+            'export:tag',
         ];
 
         foreach ($permissions as $perm) {

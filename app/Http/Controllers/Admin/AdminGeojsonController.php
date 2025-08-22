@@ -43,7 +43,7 @@ class AdminGeojsonController extends Controller
         if ($search) {
             $geojsons = Geojson::withTrashed()
                 ->where('name', 'like', "%{$search}%")
-                ->orWhere('desc', 'like', "%{$search}%")
+                ->orWhere('description', 'like', "%{$search}%")
                 ->paginate($validPerPage);
         } else {
             $geojsons = Geojson::withTrashed()->paginate($validPerPage);
@@ -94,7 +94,7 @@ class AdminGeojsonController extends Controller
 
         Geojson::create([
             'name'       => $validated['name'],
-            'desc'       => $validated['desc'] ?? null,
+            'description'       => $validated['description'] ?? null,
             'geometry'   => $geometry,
             'properties' => $properties,
         ]);
@@ -117,7 +117,7 @@ class AdminGeojsonController extends Controller
 
         $geojson->update([
             'name'       => $validated['name'],
-            'desc'       => $validated['desc'] ?? null,
+            'description'       => $validated['description'] ?? null,
             'geometry'   => $geometry,
             'properties' => $properties,
         ]);
@@ -176,7 +176,7 @@ class AdminGeojsonController extends Controller
                 'properties' => array_merge([
                     'id'          => $f->id,
                     'name'        => $f->name,
-                    'desc'        => $f->desc,
+                    'description'        => $f->description,
                     'created_at'  => $f->created_at,
                 ], $f->properties ?? []),
             ];

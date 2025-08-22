@@ -18,7 +18,7 @@ class CategoryResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'slug' => $this->slug,
-            'desc' => $this->desc,
+            'description' => $this->description,
             'img' => $this->img,
             // 'era' => new EraResource($this->whenLoaded('era')),
             // 'franchise' => new FranchiseResource($this->whenLoaded('franchise')),

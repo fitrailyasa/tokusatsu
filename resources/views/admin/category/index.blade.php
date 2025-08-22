@@ -66,7 +66,7 @@
                 <th>{{ __('No') }}</th>
                 <th>{{ __('Name') }}</th>
                 <th>{{ __('Img') }}</th>
-                <th>{{ __('Desc') }}</th>
+                <th>{{ __('description') }}</th>
                 <th>{{ __('Era') }}</th>
                 <th>{{ __('Franchise') }}</th>
                 <th class="text-center">{{ __('Action') }}</th>
@@ -119,7 +119,7 @@
                             </div>
                         @endif
                     </td>
-                    <td>{{ Illuminate\Support\Str::words($category->desc ?? '-', 10, '...') }}</td>
+                    <td>{{ Illuminate\Support\Str::words($category->description ?? '-', 10, '...') }}</td>
                     <td>
                         <span class="badge bg-{{ $category->getEraColor() }}">
                             {{ $category->era->name ?? '-' }}
@@ -157,7 +157,7 @@
                 <th>{{ __('No') }}</th>
                 <th>{{ __('Name') }}</th>
                 <th>{{ __('Img') }}</th>
-                <th>{{ __('Desc') }}</th>
+                <th>{{ __('description') }}</th>
                 <th>{{ __('Era') }}</th>
                 <th>{{ __('Franchise') }}</th>
                 <th class="text-center">{{ __('Action') }}</th>

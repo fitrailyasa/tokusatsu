@@ -43,7 +43,7 @@ class AdminFranchiseController extends Controller
         if ($search) {
             $franchises = Franchise::withTrashed()
                 ->where('name', 'like', "%{$search}%")
-                ->orWhere('desc', 'like', "%{$search}%")
+                ->orWhere('description', 'like', "%{$search}%")
                 ->paginate($validPerPage);
         } else {
             $franchises = Franchise::withTrashed()->paginate($validPerPage);

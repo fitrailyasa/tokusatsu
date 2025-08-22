@@ -27,17 +27,17 @@ class FranchiseTest extends TestCase
 
         // Buat permission yang dibutuhkan controller
         $permissions = [
-            'view-franchise',
-            'create-franchise',
-            'edit-franchise',
-            'delete-franchise',
-            'delete-all-franchise',
-            'soft-delete-franchise',
-            'soft-delete-all-franchise',
-            'restore-franchise',
-            'restore-all-franchise',
-            'import-franchise',
-            'export-franchise',
+            'view:franchise',
+            'create:franchise',
+            'edit:franchise',
+            'delete:franchise',
+            'delete-all:franchise',
+            'soft-delete:franchise',
+            'soft-delete-all:franchise',
+            'restore:franchise',
+            'restore-all:franchise',
+            'import:franchise',
+            'export:franchise',
         ];
 
         foreach ($permissions as $perm) {
@@ -81,7 +81,7 @@ class FranchiseTest extends TestCase
 
         $data = [
             'name' => 'New Franchise',
-            'desc' => 'This is a test Franchise',
+            'description' => 'This is a test Franchise',
         ];
 
         $response = $this->post(route('admin.franchise.store'), $data);
@@ -100,7 +100,7 @@ class FranchiseTest extends TestCase
 
         $data = [
             'name' => 'Updated Franchise',
-            'desc' => 'This is a test Franchise',
+            'description' => 'This is a test Franchise',
         ];
 
         $response = $this->put(route('admin.franchise.update', $franchise->id), $data);
@@ -110,7 +110,7 @@ class FranchiseTest extends TestCase
         $this->assertDatabaseHas('franchises', [
             'id' => $franchise->id,
             'name' => 'Updated Franchise',
-            'desc' => 'This is a test Franchise',
+            'description' => 'This is a test Franchise',
         ]);
     }
 

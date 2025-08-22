@@ -163,7 +163,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/film/exportExcel', [AdminFilmController::class, 'exportExcel'])->name('film.exportExcel');
     // Route::get('/film/exportPDF', [AdminFilmController::class, 'exportPDF'])->name('film.exportPDF');
 
-    // CRUD geojson
+    // CRUD GEOJSON
     Route::get('/geojson', [AdminGeojsonController::class, 'index'])->name('geojson.index');
     Route::post('/geojson', [AdminGeojsonController::class, 'store'])->name('geojson.store');
     Route::put('/geojson/{id}/update', [AdminGeojsonController::class, 'update'])->name('geojson.update');

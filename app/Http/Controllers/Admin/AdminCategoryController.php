@@ -51,7 +51,7 @@ class AdminCategoryController extends Controller
             ->when($search, function ($query, $search) {
                 $query->where(function ($query) use ($search) {
                     $query->where('name', 'like', "%{$search}%")
-                        ->orWhere('desc', 'like', "%{$search}%")
+                        ->orWhere('description', 'like', "%{$search}%")
                         ->orWhereHas('era', fn($q) => $q->where('name', 'like', "%{$search}%"))
                         ->orWhereHas('franchise', fn($q) => $q->where('name', 'like', "%{$search}%"));
                 });

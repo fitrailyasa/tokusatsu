@@ -71,7 +71,7 @@
                             Tidak ada
                         @endif
                     </td>
-                    <td class="text-justify">{{ $category->desc ?? '-' }}</td>
+                    <td class="text-justify">{{ $category->description ?? '-' }}</td>
                     <td>
                         {{ $category->era->name ?? '-' }}
                     </td>

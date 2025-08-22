@@ -67,7 +67,7 @@ class DataLivewire extends Component
                 }
             })
             ->when($categoryId, fn($query) => $query->where('category_id', $categoryId))
-            ->orderBy('id', 'desc')
+            ->orderBy('id', 'description')
             ->paginate($validPerPage);
 
         return view('livewire.admin.data', compact('datas', 'groupedCategories', 'categories', 'tags', 'search', 'perPage'));

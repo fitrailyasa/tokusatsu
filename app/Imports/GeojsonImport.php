@@ -11,7 +11,7 @@ class GeojsonImport implements ToModel, WithStartRow
     public function model(array $row)
     {
         $name       = $row[1];
-        $desc       = $row[2] ?? null;
+        $description       = $row[2] ?? null;
         $geometry   = $this->decodeJson($row[3] ?? null);
         $properties = $this->decodeJson($row[4] ?? null);
 
@@ -19,7 +19,7 @@ class GeojsonImport implements ToModel, WithStartRow
 
         if ($checkGeojson) {
             $checkGeojson->update([
-                'desc'       => $desc,
+                'description'       => $description,
                 'geometry'   => $geometry,
                 'properties' => $properties,
             ]);
@@ -27,7 +27,7 @@ class GeojsonImport implements ToModel, WithStartRow
         } else {
             return new Geojson([
                 'name'       => $name,
-                'desc'       => $desc,
+                'description'       => $description,
                 'geometry'   => $geometry,
                 'properties' => $properties,
             ]);

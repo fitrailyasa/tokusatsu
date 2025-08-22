@@ -17,7 +17,7 @@ class CreateEraTable extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->string('slug')->unique();
-            $table->text('desc')->nullable();
+            $table->text('description')->nullable();
             $table->string('img')->nullable();
             $table->timestamps();
             $table->softDeletes();

@@ -64,9 +64,9 @@
                 <div class="col-md-12">
                     <div class="mb-3">
                         <label class="form-label">{{ __('Description') }}</label>
-                        <textarea class="form-control @error('desc') is-invalid @enderror" placeholder="description" wire:model="desc"
-                            id="desc" rows="3"></textarea>
-                        @error('desc')
+                        <textarea class="form-control @error('description') is-invalid @enderror" placeholder="description"
+                            wire:model="description" id="description" rows="3"></textarea>
+                        @error('description')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
@@ -95,7 +95,7 @@
                     <th>{{ __('No') }}</th>
                     <th>{{ __('Name') }}</th>
                     <th>{{ __('Img') }}</th>
-                    <th>{{ __('Desc') }}</th>
+                    <th>{{ __('description') }}</th>
                     <th>{{ __('Era') }}</th>
                     <th>{{ __('Franchise') }}</th>
                     <th class="text-center">{{ __('Action') }}</th>
@@ -148,7 +148,7 @@
                                 </div>
                             @endif
                         </td>
-                        <td>{{ Illuminate\Support\Str::words($category->desc ?? '-', 10, '...') }}</td>
+                        <td>{{ Illuminate\Support\Str::words($category->description ?? '-', 10, '...') }}</td>
                         <td>
                             <span class="badge bg-{{ $category->getEraColor() }}">
                                 {{ $category->era->name ?? '-' }}

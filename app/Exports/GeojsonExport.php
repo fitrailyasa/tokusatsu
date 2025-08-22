@@ -23,7 +23,7 @@ class GeojsonExport implements FromCollection, WithHeadings, WithStyles, ShouldA
             $collection[] = [
                 'No' => $no++,
                 'Name' => $geojson->name ?? '',
-                'Desc' => $geojson->desc ?? '',
+                'Description' => $geojson->description ?? '',
                 'Geometry' => $geojson->geometry ?? '',
                 'Properties' => $geojson->properties ?? '',
             ];
@@ -41,7 +41,7 @@ class GeojsonExport implements FromCollection, WithHeadings, WithStyles, ShouldA
             [
                 'No',
                 'Name',
-                'Desc',
+                'Description',
                 'Geometry',
                 'Properties',
             ]

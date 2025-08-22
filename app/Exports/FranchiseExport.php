@@ -24,7 +24,7 @@ class FranchiseExport implements FromCollection, WithHeadings, WithStyles, Shoul
                 'No' => $no++,
                 'Name' => $franchise->name ?? '',
                 'Img' => $franchise->img ?? '',
-                'Desc' => $franchise->desc ?? '',
+                'Description' => $franchise->description ?? '',
             ];
         }
 
@@ -41,7 +41,7 @@ class FranchiseExport implements FromCollection, WithHeadings, WithStyles, Shoul
                 'No',
                 'Name',
                 'Img',
-                'Desc',
+                'Description',
             ]
         ];
     }

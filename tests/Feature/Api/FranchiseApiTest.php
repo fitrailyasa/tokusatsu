@@ -35,7 +35,7 @@ class FranchiseApiTest extends TestCase
     {
         $data = [
             'name' => 'New Franchise',
-            'desc' => 'This is a test Franchise',
+            'description' => 'This is a test Franchise',
         ];
 
         $response = $this->postJson(route('franchises.store'), $data);
@@ -62,7 +62,7 @@ class FranchiseApiTest extends TestCase
 
         $updateData = [
             'name' => 'Updated Franchise',
-            'desc' => 'This is a test Franchise',
+            'description' => 'This is a test Franchise',
         ];
 
         $response = $this->putJson(route('franchises.update', $franchise->id), $updateData);

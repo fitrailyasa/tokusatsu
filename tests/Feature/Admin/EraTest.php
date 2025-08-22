@@ -27,17 +27,17 @@ class EraTest extends TestCase
 
         // Buat permission yang dibutuhkan controller
         $permissions = [
-            'view-era',
-            'create-era',
-            'edit-era',
-            'delete-era',
-            'delete-all-era',
-            'soft-delete-era',
-            'soft-delete-all-era',
-            'restore-era',
-            'restore-all-era',
-            'import-era',
-            'export-era',
+            'view:era',
+            'create:era',
+            'edit:era',
+            'delete:era',
+            'delete-all:era',
+            'soft-delete:era',
+            'soft-delete-all:era',
+            'restore:era',
+            'restore-all:era',
+            'import:era',
+            'export:era',
         ];
 
         foreach ($permissions as $perm) {
@@ -81,7 +81,7 @@ class EraTest extends TestCase
 
         $data = [
             'name' => 'New Era',
-            'desc' => 'This is a test Era',
+            'description' => 'This is a test Era',
         ];
 
         $response = $this->post(route('admin.era.store'), $data);
@@ -100,7 +100,7 @@ class EraTest extends TestCase
 
         $data = [
             'name' => 'Updated Era',
-            'desc' => 'This is a test Era',
+            'description' => 'This is a test Era',
         ];
 
         $response = $this->put(route('admin.era.update', $era->id), $data);
@@ -110,7 +110,7 @@ class EraTest extends TestCase
         $this->assertDatabaseHas('eras', [
             'id' => $era->id,
             'name' => 'Updated Era',
-            'desc' => 'This is a test Era',
+            'description' => 'This is a test Era',
         ]);
     }
 

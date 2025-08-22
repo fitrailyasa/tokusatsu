@@ -65,7 +65,7 @@
                             Tidak ada
                         @endif
                     </td>
-                    <td>{{ $franchise->desc ?? '-' }}</td>
+                    <td>{{ $franchise->description ?? '-' }}</td>
                 </tr>
             @endforeach
         </tbody>

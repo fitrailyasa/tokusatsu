@@ -41,9 +41,9 @@
                 <div class="col-md-12">
                     <div class="mb-3">
                         <label class="form-label">{{ __('Description') }}</label>
-                        <textarea class="form-control @error('desc') is-invalid @enderror" placeholder="description" wire:model="desc"
-                            id="desc" rows="3"></textarea>
-                        @error('desc')
+                        <textarea class="form-control @error('description') is-invalid @enderror" placeholder="description"
+                            wire:model="description" id="description" rows="3"></textarea>
+                        @error('description')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
@@ -65,7 +65,7 @@
                     <th>{{ __('No') }}</th>
                     <th>{{ __('Name') }}</th>
                     <th>{{ __('Img') }}</th>
-                    <th>{{ __('Desc') }}</th>
+                    <th>{{ __('description') }}</th>
                     <th class="text-center">{{ __('Action') }}</th>
                 </tr>
             </thead>
@@ -116,7 +116,7 @@
                                 </div>
                             @endif
                         </td>
-                        <td>{{ Illuminate\Support\Str::words($era->desc ?? '-', 10, '...') }}</td>
+                        <td>{{ Illuminate\Support\Str::words($era->description ?? '-', 10, '...') }}</td>
                         <td class="manage-row text-center">
                             <button wire:click="edit({{ $era->id }})" class="btn btn-sm btn-warning">Edit</button>
                             <button wire:click="delete({{ $era->id }})"

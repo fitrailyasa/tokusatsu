@@ -29,17 +29,17 @@ class CategoryTest extends TestCase
 
         // Buat permission yang dibutuhkan controller
         $permissions = [
-            'view-category',
-            'create-category',
-            'edit-category',
-            'delete-category',
-            'delete-all-category',
-            'soft-delete-category',
-            'soft-delete-all-category',
-            'restore-category',
-            'restore-all-category',
-            'import-category',
-            'export-category',
+            'view:category',
+            'create:category',
+            'edit:category',
+            'delete:category',
+            'delete-all:category',
+            'soft-delete:category',
+            'soft-delete-all:category',
+            'restore:category',
+            'restore-all:category',
+            'import:category',
+            'export:category',
         ];
 
         foreach ($permissions as $perm) {
@@ -88,7 +88,7 @@ class CategoryTest extends TestCase
             'era_id' => $era->id,
             'franchise_id' => $franchise->id,
             'name' => 'New Category',
-            'desc' => 'This is a test category',
+            'description' => 'This is a test category',
         ];
 
         $response = $this->post(route('admin.category.store'), $data);
@@ -111,7 +111,7 @@ class CategoryTest extends TestCase
             'era_id' => $era->id,
             'franchise_id' => $franchise->id,
             'name' => 'Updated Category',
-            'desc' => 'This is a test category',
+            'description' => 'This is a test category',
         ];
 
         $response = $this->put(route('admin.category.update', $category->id), $data);
@@ -123,7 +123,7 @@ class CategoryTest extends TestCase
             'era_id' => $era->id,
             'franchise_id' => $franchise->id,
             'name' => 'Updated Category',
-            'desc' => 'This is a test category',
+            'description' => 'This is a test category',
         ]);
     }
 
