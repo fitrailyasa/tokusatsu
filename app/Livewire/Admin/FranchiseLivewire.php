@@ -90,7 +90,7 @@ class FranchiseLivewire extends Component
         $franchise = Franchise::findOrFail($id);
         $this->id = $id;
         $this->name = $franchise->name;
-        $this->description = $franchise->desc;
+        $this->description = $franchise->description;
         $this->isUpdate = true;
     }
 

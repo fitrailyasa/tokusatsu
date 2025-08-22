@@ -105,7 +105,7 @@ class CategoryLivewire extends Component
         $category = Category::findOrFail($id);
         $this->categoryId = $id;
         $this->name = $category->name;
-        $this->description = $category->desc;
+        $this->description = $category->description;
         $this->img = $category->img;
         $this->era_id = $category->era_id;
         $this->franchise_id = $category->franchise_id;

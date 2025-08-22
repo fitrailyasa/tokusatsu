@@ -95,7 +95,7 @@ class EraLivewire extends Component
         $era = Era::findOrFail($id);
         $this->id = $id;
         $this->name = $era->name;
-        $this->description = $era->desc;
+        $this->description = $era->description;
         $this->isUpdate = true;
     }
 
