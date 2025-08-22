@@ -14,6 +14,8 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class AdminGeojsonController extends Controller
 {
+    protected $title = "GeoJSON";
+
     // Middleware for geojson permissions
     public function __construct()
     {
@@ -60,13 +62,13 @@ class AdminGeojsonController extends Controller
         $file = $request->file('file');
         Excel::import(new GeojsonImport, $file);
 
-        return back()->with('success', 'Successfully Import Data GeoJSON!');
+        return back()->with('success', 'Successfully Import Data ' . $this->title . '!');
     }
 
     // Handle export data geojson to excel file
     public function exportExcel()
     {
-        return Excel::download(new GeojsonExport, 'Data Geojson.xlsx');
+        return Excel::download(new GeojsonExport, 'Data ' . $this->title . '.xlsx');
     }
 
     // Handle export data geojson to pdf file
@@ -75,7 +77,7 @@ class AdminGeojsonController extends Controller
         $geojsons = Geojson::withTrashed()->get();
         $pdf = Pdf::loadView('admin.geojson.pdf.template', compact('geojsons'));
 
-        return $pdf->stream('Data Geojson.pdf');
+        return $pdf->stream('Data ' . $this->title . '.pdf');
     }
 
     // Handle store data geojson
@@ -85,7 +87,7 @@ class AdminGeojsonController extends Controller
 
         $geometry = json_decode($validated['geometry'], true);
         if (!self::isValidGeometry($geometry)) {
-            return back()->withInput()->withErrors(['geometry' => 'Invalid GeoJSON geometry.']);
+            return back()->withInput()->withErrors(['geometry' => 'Invalid ' . $this->title . ' geometry.']);
         }
 
         $properties = !empty($validated['properties']) ? json_decode($validated['properties'], true) : null;
@@ -97,7 +99,7 @@ class AdminGeojsonController extends Controller
             'properties' => $properties,
         ]);
 
-        return back()->with('success', 'Successfully Create Data GeoJSON!');
+        return back()->with('success', 'Successfully Create Data ' . $this->title . '!');
     }
 
     // Handle update data geojson
@@ -108,7 +110,7 @@ class AdminGeojsonController extends Controller
 
         $geometry = json_decode($validated['geometry'], true);
         if (!self::isValidGeometry($geometry)) {
-            return back()->withInput()->withErrors(['geometry' => 'Invalid GeoJSON geometry.']);
+            return back()->withInput()->withErrors(['geometry' => 'Invalid ' . $this->title . ' geometry.']);
         }
 
         $properties = !empty($validated['properties']) ? json_decode($validated['properties'], true) : null;
@@ -120,49 +122,49 @@ class AdminGeojsonController extends Controller
             'properties' => $properties,
         ]);
 
-        return back()->with('success', 'Successfully Edit Data GeoJSON!');
+        return back()->with('success', 'Successfully Edit Data ' . $this->title . '!');
     }
 
     // Handle hard delete data geojson
     public function destroy($id)
     {
         Geojson::withTrashed()->findOrFail($id)->forceDelete();
-        return back()->with('success', 'Successfully Delete Data GeoJSON!');
+        return back()->with('success', 'Successfully Delete Data ' . $this->title . '!');
     }
 
     // Handle hard delete all data geojson
     public function destroyAll()
     {
         Geojson::truncate();
-        return back()->with('success', 'Successfully Delete All GeoJSON!');
+        return back()->with('success', 'Successfully Delete All ' . $this->title . '!');
     }
 
     // Handle soft delete data geojson
     public function softDelete($id)
     {
         Geojson::findOrFail($id)->delete();
-        return back()->with('success', 'Successfully Delete Data GeoJSON!');
+        return back()->with('success', 'Successfully Delete Data ' . $this->title . '!');
     }
 
     // Handle soft delete all data geojson
     public function softDeleteAll()
     {
         Geojson::query()->delete();
-        return back()->with('success', 'Successfully Delete All GeoJSON!');
+        return back()->with('success', 'Successfully Delete All ' . $this->title . '!');
     }
 
     // Handle restore data geojson
     public function restore($id)
     {
         Geojson::withTrashed()->findOrFail($id)->restore();
-        return back()->with('success', 'Successfully Restore GeoJSON!');
+        return back()->with('success', 'Successfully Restore ' . $this->title . '!');
     }
 
     // Handle restore all data geojson
     public function restoreAll()
     {
         Geojson::onlyTrashed()->restore();
-        return back()->with('success', 'Successfully Restore All GeoJSON!');
+        return back()->with('success', 'Successfully Restore All ' . $this->title . '!');
     }
 
     public function asGeoJSON()

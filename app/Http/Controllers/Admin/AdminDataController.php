@@ -16,6 +16,8 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class AdminDataController extends Controller
 {
+    protected $title = 'Data';
+
     // Middleware for data permissions
     public function __construct()
     {
@@ -86,13 +88,13 @@ class AdminDataController extends Controller
 
         Excel::import(new DataImport, $file);
 
-        return back()->with('success', 'Successfully Import Data!');
+        return back()->with('success', 'Successfully Import ' . $this->title . '!');
     }
 
     // Handle export data to excel file
     public function exportExcel()
     {
-        return Excel::download(new DataExport, 'Data.xlsx');
+        return Excel::download(new DataExport, $this->title . '.xlsx');
     }
 
     // Handle export data to pdf file
@@ -101,7 +103,7 @@ class AdminDataController extends Controller
         $datas = Data::withTrashed()->get();
         $pdf = Pdf::loadView('admin.data.pdf.template', compact('datas'));
 
-        return $pdf->stream('Data.pdf');
+        return $pdf->stream($this->title . '.pdf');
     }
 
     // Handle store data
@@ -112,13 +114,13 @@ class AdminDataController extends Controller
 
         if ($request->hasFile('img')) {
             $img = $request->file('img');
-            $file_name = $data->name . '_' . $data->category->name . '_' . '.' . $img->getClientOriginalExtension();
+            $file_name = $data->slug . '_' . $data->category->slug . '.' . $img->getClientOriginalExtension();
             $data->img = $file_name;
             $data->update();
             $img->storeAs('public', $file_name);
         }
 
-        return back()->with('success', 'Successfully Create Data!');
+        return back()->with('success', 'Successfully Create ' . $this->title . '!');
     }
 
     // Handle update data
@@ -130,48 +132,48 @@ class AdminDataController extends Controller
 
         if ($request->hasFile('img')) {
             $img = $request->file('img');
-            $file_name = $data->name . '_' . $data->category->name . '_' . '.' . $img->getClientOriginalExtension();
+            $file_name = $data->slug . '_' . $data->category->slug . '.' . $img->getClientOriginalExtension();
             $data->img = $file_name;
             $data->update();
             $img->storeAs('public', $file_name);
         }
 
-        return back()->with('success', 'Successfully Edit Data!');
+        return back()->with('success', 'Successfully Edit ' . $this->title . '!');
     }
 
     // Handle hard delete data
     public function destroy($id)
     {
         Data::withTrashed()->findOrFail($id)->forceDelete();
-        return back()->with('success', 'Successfully Delete Data!');
+        return back()->with('success', 'Successfully Delete ' . $this->title . '!');
     }
 
     // Handle hard delete all data
     public function destroyAll()
     {
         Data::truncate();
-        return back()->with('success', 'Successfully Delete All Data!');
+        return back()->with('success', 'Successfully Delete All ' . $this->title . '!');
     }
 
     // Handle soft delete data
     public function softDelete($id)
     {
         Data::findOrFail($id)->delete();
-        return back()->with('success', 'Successfully Delete Data!');
+        return back()->with('success', 'Successfully Delete ' . $this->title . '!');
     }
 
     // Handle soft delete all data
     public function softDeleteAll()
     {
         Data::query()->delete();
-        return back()->with('success', 'Successfully Delete All Data!');
+        return back()->with('success', 'Successfully Delete All ' . $this->title . '!');
     }
 
     // Handle restore data
     public function restore($id)
     {
         Data::withTrashed()->findOrFail($id)->restore();
-        return back()->with('success', 'Successfully Restore Data!');
+        return back()->with('success', 'Successfully Restore ' . $this->title . '!');
     }
 
     // Handle restore all data
@@ -179,6 +181,6 @@ class AdminDataController extends Controller
     {
         Data::onlyTrashed()->restore();
 
-        return back()->with('success', 'Successfully Restore All Data!');
+        return back()->with('success', 'Successfully Restore All ' . $this->title . '!');
     }
 }

@@ -10,6 +10,8 @@ use App\Http\Requests\TableRequest;
 
 class AdminRoleController extends Controller
 {
+    protected $title = "Role";
+
     // Middleware for role permissions
     public function __construct()
     {
@@ -57,7 +59,7 @@ class AdminRoleController extends Controller
             $role->syncPermissions($permissions);
         }
 
-        return back()->with('success', 'Successfully Create Data Role!');
+        return back()->with('success', 'Successfully Create Data ' . $this->title . '!');
     }
 
     // Handle update data role
@@ -80,14 +82,14 @@ class AdminRoleController extends Controller
             $role->syncPermissions([]);
         }
 
-        return back()->with('success', 'Successfully Edit Data Role!');
+        return back()->with('success', 'Successfully Edit Data ' . $this->title . '!');
     }
 
     // Handle delete data role
     public function destroy($id)
     {
         Role::findOrFail($id)->forceDelete();
-        return back()->with('success', 'Successfully Delete Data Role!');
+        return back()->with('success', 'Successfully Delete Data ' . $this->title . '!');
     }
 
     /**

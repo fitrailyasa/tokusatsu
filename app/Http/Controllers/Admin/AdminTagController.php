@@ -14,6 +14,8 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class AdminTagController extends Controller
 {
+    protected $title = "Tag";
+
     // Middleware for tag permissions
     public function __construct()
     {
@@ -59,7 +61,7 @@ class AdminTagController extends Controller
 
         $file = $request->file('file');
         Excel::import(new TagImport, $file);
-        return back()->with('success', 'Successfully Import Data Tag!');
+        return back()->with('success', 'Successfully Import Data ' . $this->title . '!');
     }
 
     // Handle export tag data to excel file
@@ -81,7 +83,7 @@ class AdminTagController extends Controller
     public function store(TagRequest $request)
     {
         $tag = Tag::create($request->validated());
-        return back()->with('success', 'Successfully Create Data Tag!');
+        return back()->with('success', 'Successfully Create Data ' . $this->title . '!');
     }
 
     // Handle update tag data
@@ -89,48 +91,48 @@ class AdminTagController extends Controller
     {
         $tag = Tag::findOrFail($id);
         $tag->update($request->validated());
-        return back()->with('success', 'Successfully Edit Data Tag!');
+        return back()->with('success', 'Successfully Edit Data ' . $this->title . '!');
     }
 
     // Handle hard delete tag data
     public function destroy($id)
     {
         Tag::withTrashed()->findOrFail($id)->forceDelete();
-        return back()->with('success', 'Successfully Delete Data Tag!');
+        return back()->with('success', 'Successfully Delete Data ' . $this->title . '!');
     }
 
     // Handle hard delete all tag data
     public function destroyAll()
     {
         Tag::truncate();
-        return back()->with('success', 'Successfully Delete All Tag!');
+        return back()->with('success', 'Successfully Delete All ' . $this->title . '!');
     }
 
     // Handle soft delete tag data
     public function softDelete($id)
     {
         Tag::findOrFail($id)->delete();
-        return back()->with('success', 'Successfully Delete Data Tag!');
+        return back()->with('success', 'Successfully Delete Data ' . $this->title . '!');
     }
 
     // Handle soft delete all tag data
     public function softDeleteAll()
     {
         Tag::query()->delete();
-        return back()->with('success', 'Successfully Delete All Tag!');
+        return back()->with('success', 'Successfully Delete All ' . $this->title . '!');
     }
 
     // Handle restore tag data
     public function restore($id)
     {
         Tag::withTrashed()->findOrFail($id)->restore();
-        return back()->with('success', 'Successfully Restore Tag!');
+        return back()->with('success', 'Successfully Restore ' . $this->title . '!');
     }
 
     // Handle restore all tag data
     public function restoreAll()
     {
         Tag::onlyTrashed()->restore();
-        return back()->with('success', 'Successfully Restore All Tag!');
+        return back()->with('success', 'Successfully Restore All ' . $this->title . '!');
     }
 }

@@ -16,6 +16,8 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class AdminCategoryController extends Controller
 {
+    protected $title = "Category";
+
     // Middleware for category permissions
     public function __construct()
     {
@@ -76,13 +78,13 @@ class AdminCategoryController extends Controller
 
         Excel::import(new CategoryImport, $file);
 
-        return back()->with('success', 'Successfully Import Data Category!');
+        return back()->with('success', 'Successfully Import Data ' . $this->title . '!');
     }
 
     // Handle export data category to excel file
     public function exportExcel()
     {
-        return Excel::download(new CategoryExport, 'Data Category.xlsx');
+        return Excel::download(new CategoryExport, 'Data ' . $this->title . '.xlsx');
     }
 
     // Handle export data category to pdf file
@@ -91,7 +93,7 @@ class AdminCategoryController extends Controller
         $categories = Category::withTrashed()->get();
         $pdf = Pdf::loadView('admin.category.pdf.template', compact('categories'));
 
-        return $pdf->stream('Data Category.pdf');
+        return $pdf->stream('Data ' . $this->title . '.pdf');
     }
 
     // Handle store data category
@@ -101,13 +103,13 @@ class AdminCategoryController extends Controller
 
         if ($request->hasFile('img')) {
             $img = $request->file('img');
-            $file_name = $category->name . '_' . '.' . $img->getClientOriginalExtension();
+            $file_name = $category->slug . '_' . time() . '.' . $img->getClientOriginalExtension();
             $category->img = $file_name;
             $category->update();
             $img->storeAs('public', $file_name);
         }
 
-        return back()->with('success', 'Successfully Create Data Category!');
+        return back()->with('success', 'Successfully Create Data ' . $this->title . '!');
     }
 
     // Handle update data category
@@ -118,54 +120,54 @@ class AdminCategoryController extends Controller
 
         if ($request->hasFile('img')) {
             $img = $request->file('img');
-            $file_name = $category->name . '_' . '.' . $img->getClientOriginalExtension();
+            $file_name = $category->slug . '_' . time() . '.' . $img->getClientOriginalExtension();
             $category->img = $file_name;
             $category->update();
             $img->storeAs('public', $file_name);
         }
 
-        return back()->with('success', 'Successfully Edit Data Category!');
+        return back()->with('success', 'Successfully Edit Data ' . $this->title . '!');
     }
 
     // Handle hard delete data category
     public function destroy($id)
     {
         Category::withTrashed()->findOrFail($id)->forceDelete();
-        return back()->with('success', 'Successfully Delete Data Category!');
+        return back()->with('success', 'Successfully Delete Data ' . $this->title . '!');
     }
 
     // Handle hard delete all data category
     public function destroyAll()
     {
         Category::truncate();
-        return back()->with('success', 'Successfully Delete All Category!');
+        return back()->with('success', 'Successfully Delete All ' . $this->title . '!');
     }
 
     // Handle soft delete data category
     public function softDelete($id)
     {
         Category::findOrFail($id)->delete();
-        return back()->with('success', 'Successfully Delete Data Category!');
+        return back()->with('success', 'Successfully Delete Data ' . $this->title . '!');
     }
 
     // Handle soft delete all data category
     public function softDeleteAll()
     {
         Category::query()->delete();
-        return back()->with('success', 'Successfully Delete All Category!');
+        return back()->with('success', 'Successfully Delete All ' . $this->title . '!');
     }
 
     // Handle restore data category
     public function restore($id)
     {
         Category::withTrashed()->findOrFail($id)->restore();
-        return back()->with('success', 'Successfully Restore Category!');
+        return back()->with('success', 'Successfully Restore ' . $this->title . '!');
     }
 
     // Handle restore all data category
     public function restoreAll()
     {
         Category::onlyTrashed()->restore();
-        return back()->with('success', 'Successfully Restore All Category!');
+        return back()->with('success', 'Successfully Restore All ' . $this->title . '!');
     }
 }

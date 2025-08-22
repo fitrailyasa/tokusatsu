@@ -11,6 +11,8 @@ use Spatie\Permission\Models\Role;
 
 class AdminUserController extends Controller
 {
+    protected $title = "User";
+
     public function __construct()
     {
         $this->middleware('permission:view:user')->only(['index']);
@@ -47,7 +49,7 @@ class AdminUserController extends Controller
 
         $user->assignRole($role);
 
-        return back()->with('success', 'Successfully Create User!');
+        return back()->with('success', 'Successfully Create ' . $this->title . '!');
     }
 
     public function update(UserUpdateRequest $request, string $id)
@@ -74,13 +76,13 @@ class AdminUserController extends Controller
 
         $user->syncRoles($role);
 
-        return back()->with('success', 'Successfully Edit User!');
+        return back()->with('success', 'Successfully Edit ' . $this->title . '!');
     }
 
 
     public function destroy(string $id)
     {
         User::findOrFail($id)->forceDelete();
-        return back()->with('success', 'Successfully Delete User!');
+        return back()->with('success', 'Successfully Delete ' . $this->title . '!');
     }
 }
