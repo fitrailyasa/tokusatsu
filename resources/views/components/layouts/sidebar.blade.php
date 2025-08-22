@@ -16,12 +16,12 @@
                 <x-sidebar-link route="admin.dashboards" icon="tachometer-alt" label="Dashboard" />
                 <x-sidebar-link route="beranda" icon="home" label="Home" />
 
-                <x-sidebar-link route="admin.user" icon="users" label="User" can="view-user" />
-                <x-sidebar-link route="admin.data" icon="database" label="Data" can="view-data" />
-                <x-sidebar-link route="admin.tag" icon="tag" label="Tag" can="view-tag" />
-                <x-sidebar-link route="admin.category" icon="list-alt" label="Category" can="view-category" />
-                <x-sidebar-link route="admin.franchise" icon="tv" label="Franchise" can="view-franchise" />
-                <x-sidebar-link route="admin.era" icon="flag" label="Era" can="view-era" />
+                <x-sidebar-link route="admin.user" icon="users" label="User" can="view:user" />
+                <x-sidebar-link route="admin.data" icon="database" label="Data" can="view:data" />
+                <x-sidebar-link route="admin.tag" icon="tag" label="Tag" can="view:tag" />
+                <x-sidebar-link route="admin.category" icon="list-alt" label="Category" can="view:category" />
+                <x-sidebar-link route="admin.franchise" icon="tv" label="Franchise" can="view:franchise" />
+                <x-sidebar-link route="admin.era" icon="flag" label="Era" can="view:era" />
 
                 <li class="nav-item">
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" hidden>

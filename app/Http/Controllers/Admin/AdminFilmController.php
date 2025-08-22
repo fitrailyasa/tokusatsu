@@ -18,17 +18,17 @@ class AdminFilmController extends Controller
     // Middleware for film permissions
     public function __construct()
     {
-        $this->middleware('permission:view-film')->only(['index']);
-        $this->middleware('permission:create-film')->only(['store']);
-        $this->middleware('permission:edit-film')->only(['update']);
-        $this->middleware('permission:delete-film')->only(['destroy']);
-        $this->middleware('permission:delete-all-film')->only(['destroyAll']);
-        $this->middleware('permission:soft-delete-film')->only(['softDelete']);
-        $this->middleware('permission:soft-delete-all-film')->only(['softDeleteAll']);
-        $this->middleware('permission:restore-film')->only(['restore']);
-        $this->middleware('permission:restore-all-film')->only(['restoreAll']);
-        $this->middleware('permission:import-film')->only(['import']);
-        $this->middleware('permission:export-film')->only(['exportExcel', 'exportPDF']);
+        $this->middleware('permission:view:film')->only(['index']);
+        $this->middleware('permission:create:film')->only(['store']);
+        $this->middleware('permission:edit:film')->only(['update']);
+        $this->middleware('permission:delete:film')->only(['destroy']);
+        $this->middleware('permission:delete-all:film')->only(['destroyAll']);
+        $this->middleware('permission:soft-delete:film')->only(['softDelete']);
+        $this->middleware('permission:soft-delete-all:film')->only(['softDeleteAll']);
+        $this->middleware('permission:restore:film')->only(['restore']);
+        $this->middleware('permission:restore-all:film')->only(['restoreAll']);
+        $this->middleware('permission:import:film')->only(['import']);
+        $this->middleware('permission:export:film')->only(['exportExcel', 'exportPDF']);
     }
 
     // Display a listing of the resource

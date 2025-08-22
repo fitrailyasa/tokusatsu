@@ -7,49 +7,49 @@
 
     <!-- Button Form Create -->
     <x-slot name="formCreate">
-        @can('create-era')
+        @can('create:era')
             @include('admin.era.create')
         @endcan
     </x-slot>
 
     <!-- Button Import -->
     <x-slot name="import">
-        @can('import-era')
+        @can('import:era')
             @include('admin.era.excel.import')
         @endcan
     </x-slot>
 
     <!-- Button Export Excel -->
     <x-slot name="exportExcel">
-        @can('export-era')
+        @can('export:era')
             @include('admin.era.excel.export')
         @endcan
     </x-slot>
 
     <!-- Button Export PDF -->
     <x-slot name="exportPDF">
-        @can('export-era')
+        @can('export:era')
             @include('admin.era.pdf.export')
         @endcan
     </x-slot>
 
     <!-- Button Soft Delete All -->
     <x-slot name="softDeleteAll">
-        @can('soft-delete-all-era')
+        @can('soft-delete-all:era')
             @include('admin.era.softDeleteAll')
         @endcan
     </x-slot>
 
     <!-- Button Restore All -->
     <x-slot name="restoreAll">
-        @can('restore-all-era')
+        @can('restore-all:era')
             @include('admin.era.restoreAll')
         @endcan
     </x-slot>
 
     <!-- Button Permanent Delete All -->
     <x-slot name="deleteAll">
-        @can('delete-all-era')
+        @can('delete-all:era')
             @include('admin.era.deleteAll')
         @endcan
     </x-slot>
@@ -121,18 +121,18 @@
                     <td class="manage-row text-center">
                         @if ($era->trashed())
                             <!-- Restore and Delete Button -->
-                            @can('restore-era')
+                            @can('restore:era')
                                 @include('admin.era.restore')
                             @endcan
-                            @can('delete-era')
+                            @can('delete:era')
                                 @include('admin.era.delete')
                             @endcan
                         @else
                             <!-- Edit and Soft Delete Buttons -->
-                            @can('edit-era')
+                            @can('edit:era')
                                 @include('admin.era.edit')
                             @endcan
-                            @can('soft-delete-era')
+                            @can('soft-delete:era')
                                 @include('admin.era.softDelete')
                             @endcan
                         @endif

@@ -13,10 +13,10 @@ class AdminRoleController extends Controller
     // Middleware for role permissions
     public function __construct()
     {
-        $this->middleware('permission:view-role')->only(['index']);
-        $this->middleware('permission:create-role')->only(['store']);
-        $this->middleware('permission:edit-role')->only(['update']);
-        $this->middleware('permission:delete-role')->only(['destroy']);
+        $this->middleware('permission:view:role')->only(['index']);
+        $this->middleware('permission:create:role')->only(['store']);
+        $this->middleware('permission:edit:role')->only(['update']);
+        $this->middleware('permission:delete:role')->only(['destroy']);
     }
 
     // Display a listing of the resource

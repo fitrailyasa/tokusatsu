@@ -7,49 +7,49 @@
 
     <!-- Button Form Create -->
     <x-slot name="formCreate">
-        @can('create-category')
+        @can('create:category')
             @include('admin.category.create')
         @endcan
     </x-slot>
 
     <!-- Button Import -->
     <x-slot name="import">
-        @can('import-category')
+        @can('import:category')
             @include('admin.category.excel.import')
         @endcan
     </x-slot>
 
     <!-- Button Export Excel -->
     <x-slot name="exportExcel">
-        @can('export-category')
+        @can('export:category')
             @include('admin.category.excel.export')
         @endcan
     </x-slot>
 
     <!-- Button Export PDF -->
     <x-slot name="exportPDF">
-        @can('export-category')
+        @can('export:category')
             @include('admin.category.pdf.export')
         @endcan
     </x-slot>
 
     <!-- Button Soft Delete All -->
     <x-slot name="softDeleteAll">
-        @can('soft-delete-all-category')
+        @can('soft-delete-all:category')
             @include('admin.category.softDeleteAll')
         @endcan
     </x-slot>
 
     <!-- Button Restore All -->
     <x-slot name="restoreAll">
-        @can('restore-all-category')
+        @can('restore-all:category')
             @include('admin.category.restoreAll')
         @endcan
     </x-slot>
 
     <!-- Button Permanent Delete All -->
     <x-slot name="deleteAll">
-        @can('delete-all-category')
+        @can('delete-all:category')
             @include('admin.category.deleteAll')
         @endcan
     </x-slot>
@@ -133,18 +133,18 @@
                     <td class="manage-row text-center">
                         @if ($category->trashed())
                             <!-- Restore and Delete Button -->
-                            @can('restore-category')
+                            @can('restore:category')
                                 @include('admin.category.restore')
                             @endcan
-                            @can('delete-category')
+                            @can('delete:category')
                                 @include('admin.category.delete')
                             @endcan
                         @else
                             <!-- Edit and Soft Delete Buttons -->
-                            @can('edit-category')
+                            @can('edit:category')
                                 @include('admin.category.edit')
                             @endcan
-                            @can('soft-delete-category')
+                            @can('soft-delete:category')
                                 @include('admin.category.softDelete')
                             @endcan
                         @endif

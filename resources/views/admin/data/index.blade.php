@@ -7,49 +7,49 @@
 
     <!-- Button Form Create -->
     <x-slot name="formCreate">
-        @can('create-data')
+        @can('create:data')
             @include('admin.data.create')
         @endcan
     </x-slot>
 
     <!-- Button Import -->
     <x-slot name="import">
-        @can('import-data')
+        @can('import:data')
             @include('admin.data.excel.import')
         @endcan
     </x-slot>
 
     <!-- Button Export Excel -->
     <x-slot name="exportExcel">
-        @can('export-data')
+        @can('export:data')
             @include('admin.data.excel.export')
         @endcan
     </x-slot>
 
     <!-- Button Export PDF -->
     <x-slot name="exportPDF">
-        @can('export-data')
+        @can('export:data')
             {{-- @include('admin.data.pdf.export') --}}
         @endcan
     </x-slot>
 
     <!-- Button Soft Delete All -->
     <x-slot name="softDeleteAll">
-        @can('soft-delete-all-data')
+        @can('soft-delete-all:data')
             @include('admin.data.softDeleteAll')
         @endcan
     </x-slot>
 
     <!-- Button Restore All -->
     <x-slot name="restoreAll">
-        @can('restore-all-data')
+        @can('restore-all:data')
             @include('admin.data.restoreAll')
         @endcan
     </x-slot>
 
     <!-- Button Permanent Delete All -->
     <x-slot name="deleteAll">
-        @can('delete-all-data')
+        @can('delete-all:data')
             @include('admin.data.deleteAll')
         @endcan
     </x-slot>
@@ -138,18 +138,18 @@
                     <td class="manage-row text-center">
                         @if ($data->trashed())
                             <!-- Restore and Delete Button -->
-                            @can('restore-data')
+                            @can('restore:data')
                                 @include('admin.data.restore')
                             @endcan
-                            @can('delete-data')
+                            @can('delete:data')
                                 @include('admin.data.delete')
                             @endcan
                         @else
                             <!-- Edit and Soft Delete Buttons -->
-                            @can('edit-data')
+                            @can('edit:data')
                                 @include('admin.data.edit')
                             @endcan
-                            @can('soft-delete-data')
+                            @can('soft-delete:data')
                                 @include('admin.data.softDelete')
                             @endcan
                         @endif

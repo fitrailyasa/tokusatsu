@@ -19,17 +19,17 @@ class AdminDataController extends Controller
     // Middleware for data permissions
     public function __construct()
     {
-        $this->middleware('permission:view-data')->only(['index']);
-        $this->middleware('permission:create-data')->only(['store']);
-        $this->middleware('permission:edit-data')->only(['update']);
-        $this->middleware('permission:delete-data')->only(['destroy']);
-        $this->middleware('permission:delete-all-data')->only(['destroyAll']);
-        $this->middleware('permission:soft-delete-data')->only(['softDelete']);
-        $this->middleware('permission:soft-delete-all-data')->only(['softDeleteAll']);
-        $this->middleware('permission:restore-data')->only(['restore']);
-        $this->middleware('permission:restore-all-data')->only(['restoreAll']);
-        $this->middleware('permission:import-data')->only(['import']);
-        $this->middleware('permission:export-data')->only(['exportExcel', 'exportPDF']);
+        $this->middleware('permission:view:data')->only(['index']);
+        $this->middleware('permission:create:data')->only(['store']);
+        $this->middleware('permission:edit:data')->only(['update']);
+        $this->middleware('permission:delete:data')->only(['destroy']);
+        $this->middleware('permission:delete-all:data')->only(['destroyAll']);
+        $this->middleware('permission:soft-delete:data')->only(['softDelete']);
+        $this->middleware('permission:soft-delete-all:data')->only(['softDeleteAll']);
+        $this->middleware('permission:restore:data')->only(['restore']);
+        $this->middleware('permission:restore-all:data')->only(['restoreAll']);
+        $this->middleware('permission:import:data')->only(['import']);
+        $this->middleware('permission:export:data')->only(['exportExcel', 'exportPDF']);
     }
 
     // Display a listing of the resource

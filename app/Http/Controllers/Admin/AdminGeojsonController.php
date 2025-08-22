@@ -17,17 +17,17 @@ class AdminGeojsonController extends Controller
     // Middleware for geojson permissions
     public function __construct()
     {
-        $this->middleware('permission:view-geojson')->only(['index']);
-        $this->middleware('permission:create-geojson')->only(['store']);
-        $this->middleware('permission:edit-geojson')->only(['update']);
-        $this->middleware('permission:delete-geojson')->only(['destroy']);
-        $this->middleware('permission:delete-all-geojson')->only(['destroyAll']);
-        $this->middleware('permission:soft-delete-geojson')->only(['softDelete']);
-        $this->middleware('permission:soft-delete-all-geojson')->only(['softDeleteAll']);
-        $this->middleware('permission:restore-geojson')->only(['restore']);
-        $this->middleware('permission:restore-all-geojson')->only(['restoreAll']);
-        $this->middleware('permission:import-geojson')->only(['import']);
-        $this->middleware('permission:export-geojson')->only(['exportExcel', 'exportPDF']);
+        $this->middleware('permission:view:geojson')->only(['index']);
+        $this->middleware('permission:create:geojson')->only(['store']);
+        $this->middleware('permission:edit:geojson')->only(['update']);
+        $this->middleware('permission:delete:geojson')->only(['destroy']);
+        $this->middleware('permission:delete-all:geojson')->only(['destroyAll']);
+        $this->middleware('permission:soft-delete:geojson')->only(['softDelete']);
+        $this->middleware('permission:soft-delete-all:geojson')->only(['softDeleteAll']);
+        $this->middleware('permission:restore:geojson')->only(['restore']);
+        $this->middleware('permission:restore-all:geojson')->only(['restoreAll']);
+        $this->middleware('permission:import:geojson')->only(['import']);
+        $this->middleware('permission:export:geojson')->only(['exportExcel', 'exportPDF']);
     }
 
     // Display a listing of the resource

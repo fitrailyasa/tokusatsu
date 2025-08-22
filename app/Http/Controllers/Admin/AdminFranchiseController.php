@@ -17,17 +17,17 @@ class AdminFranchiseController extends Controller
     // Middleware for franchise permissions
     public function __construct()
     {
-        $this->middleware('permission:view-franchise')->only(['index']);
-        $this->middleware('permission:create-franchise')->only(['store']);
-        $this->middleware('permission:edit-franchise')->only(['update']);
-        $this->middleware('permission:delete-franchise')->only(['destroy']);
-        $this->middleware('permission:delete-all-franchise')->only(['destroyAll']);
-        $this->middleware('permission:soft-delete-franchise')->only(['softDelete']);
-        $this->middleware('permission:soft-delete-all-franchise')->only(['softDeleteAll']);
-        $this->middleware('permission:restore-franchise')->only(['restore']);
-        $this->middleware('permission:restore-all-franchise')->only(['restoreAll']);
-        $this->middleware('permission:import-franchise')->only(['import']);
-        $this->middleware('permission:export-franchise')->only(['exportExcel', 'exportPDF']);
+        $this->middleware('permission:view:franchise')->only(['index']);
+        $this->middleware('permission:create:franchise')->only(['store']);
+        $this->middleware('permission:edit:franchise')->only(['update']);
+        $this->middleware('permission:delete:franchise')->only(['destroy']);
+        $this->middleware('permission:delete-all:franchise')->only(['destroyAll']);
+        $this->middleware('permission:soft-delete:franchise')->only(['softDelete']);
+        $this->middleware('permission:soft-delete-all:franchise')->only(['softDeleteAll']);
+        $this->middleware('permission:restore:franchise')->only(['restore']);
+        $this->middleware('permission:restore-all:franchise')->only(['restoreAll']);
+        $this->middleware('permission:import:franchise')->only(['import']);
+        $this->middleware('permission:export:franchise')->only(['exportExcel', 'exportPDF']);
     }
 
     // Display a listing of the resource

@@ -7,49 +7,49 @@
 
     <!-- Button Form Create -->
     <x-slot name="formCreate">
-        @can('create-film')
+        @can('create:film')
             @include('admin.film.create')
         @endcan
     </x-slot>
 
     <!-- Button Import -->
     <x-slot name="import">
-        @can('import-film')
+        @can('import:film')
             @include('admin.film.excel.import')
         @endcan
     </x-slot>
 
     <!-- Button Export Excel -->
     <x-slot name="exportExcel">
-        @can('export-film')
+        @can('export:film')
             @include('admin.film.excel.export')
         @endcan
     </x-slot>
 
     <!-- Button Export PDF -->
     <x-slot name="exportPDF">
-        @can('export-film')
+        @can('export:film')
             {{-- @include('admin.film.pdf.export') --}}
         @endcan
     </x-slot>
 
     <!-- Button Soft Delete All -->
     <x-slot name="softDeleteAll">
-        @can('soft-delete-all-film')
+        @can('soft-delete-all:film')
             @include('admin.film.softDeleteAll')
         @endcan
     </x-slot>
 
     <!-- Button Restore All -->
     <x-slot name="restoreAll">
-        @can('restore-all-film')
+        @can('restore-all:film')
             @include('admin.film.restoreAll')
         @endcan
     </x-slot>
 
     <!-- Button Permanent Delete All -->
     <x-slot name="deleteAll">
-        @can('delete-all-film')
+        @can('delete-all:film')
             @include('admin.film.deleteAll')
         @endcan
     </x-slot>
@@ -84,18 +84,18 @@
                     <td class="manage-row text-center">
                         @if ($film->trashed())
                             <!-- Restore and Delete Button -->
-                            @can('restore-film')
+                            @can('restore:film')
                                 @include('admin.film.restore')
                             @endcan
-                            @can('delete-film')
+                            @can('delete:film')
                                 @include('admin.film.delete')
                             @endcan
                         @else
                             <!-- Edit and Soft Delete Buttons -->
-                            @can('edit-film')
+                            @can('edit:film')
                                 @include('admin.film.edit')
                             @endcan
-                            @can('soft-delete-film')
+                            @can('soft-delete:film')
                                 @include('admin.film.softDelete')
                             @endcan
                         @endif
