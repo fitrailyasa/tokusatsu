@@ -9,7 +9,7 @@
                 <div class="col-3 text-left d-flex align-items-center">
                     <a
                         href="{{ route('film.show', ['franchise' => $category->franchise->slug, 'category' => $category->slug]) }}">
-                        <p class="m-0"><i class="fas fa-arrow-left fs-4"></i></p>
+                        <p class="m-0"><i class="text-white fas fa-arrow-left fs-4"></i></p>
                     </a>
                 </div>
                 <div class="col-6">
