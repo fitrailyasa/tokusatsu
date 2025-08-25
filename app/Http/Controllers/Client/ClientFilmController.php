@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\TableRequest;
 use App\Models\Category;
 use App\Models\Film;
 use App\Models\Franchise;
@@ -11,18 +12,23 @@ class ClientFilmController extends Controller
 {
     public function index()
     {
-        $franchise = Franchise::all();
-
-        return view('client.film.index', compact('franchise'));
+        $franchises = Franchise::withoutTrashed()->paginate(12);
+        return view('client.film.index', compact('franchises'));
     }
 
-    public function category(string $category)
+    public function category(TableRequest $request, string $category)
     {
-        $franchise = Franchise::where('slug', $category)->withoutTrashed()->firstOrFail();
-        $categories = Category::where('franchise_id', $franchise->id)->withoutTrashed()->paginate(12);
-        dd($categories);
+        $search = $request->input('search');
+        $perPage = (int) $request->input('perPage', 10);
+        $eraId = $request->input('era_id');
+        $franchiseId = $request->input('franchise_id');
+        $validPerPage = in_array($perPage, [10, 50, 100]) ? $perPage : 10;
 
-        return view('client.film.index', compact('franchise', 'categories'));
+        $franchise = Franchise::where('slug', $category)->withoutTrashed()->firstOrFail();
+        $categories = Category::where('franchise_id', $franchise->id)->withoutTrashed()->orderBy('id', 'desc')->paginate(10);
+        // dd($categories);
+
+        return view('client.film.category', compact('franchise', 'categories', 'search', 'perPage', 'eraId', 'franchiseId'));
     }
 
     /**
@@ -40,7 +46,7 @@ class ClientFilmController extends Controller
             abort(404);
         }
 
-        $films = $category->films()->with('category')->get();
+        $films = $category->films()->with('category')->paginate(100);
 
         return view('client.film.show', [
             'category' => $category,

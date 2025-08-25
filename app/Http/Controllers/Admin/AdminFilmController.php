@@ -75,7 +75,7 @@ class AdminFilmController extends Controller
                 }
             })
             ->when($categoryId, fn($query) => $query->where('category_id', $categoryId))
-            ->orderBy('id', 'description')
+            ->orderBy('id', 'desc')
             ->paginate($validPerPage);
 
         return view('admin.film.index', compact(

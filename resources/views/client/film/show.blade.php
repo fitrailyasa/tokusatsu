@@ -4,7 +4,16 @@
 
 @section('content')
     <div class="container my-5">
-        <h3 class="text-center pt-4">Film {{ $category->franchise->name }} {{ $category->name }}</h3>
+        <div class="d-flex justify-content-between align-items-center px-3 pt-4">
+            <div>
+                <a class="text-white" href="{{ route('film.category', $category->franchise->slug) }}"><i
+                        class="fas fa-arrow-left fs-4"></i></a>
+            </div>
+            <div>
+                <h3 class="text-center">Film {{ $category->franchise->name }} {{ $category->name }}</h3>
+            </div>
+            <div></div>
+        </div>
 
         <div class="row">
             @if ($films->isEmpty())
@@ -22,7 +31,9 @@
                         @foreach ($films as $film)
                             <tr>
                                 <td class="text-center">{{ ucfirst($film->type) }} {{ $film->number }}</td>
-                                <td><a class="btn btn-primary" href="{{ $film->category->slug }}/{{ $film->type }}/{{ $film->number }}">Watch</a></td>
+                                <td><a class="btn btn-primary"
+                                        href="{{ $film->category->slug }}/{{ $film->type }}/{{ $film->number }}">Watch</a>
+                                </td>
                                 <td>{{ $film->name }}</td>
                             </tr>
                         @endforeach
