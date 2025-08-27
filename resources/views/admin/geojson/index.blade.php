@@ -65,8 +65,8 @@
             <tr>
                 <th>{{ __('No') }}</th>
                 <th>{{ __('Name') }}</th>
-                <th>{{ __('description') }}</th>
-                <th>{{ __('Geometry') }}</th>
+                <th>{{ __('Description') }}</th>
+                {{-- <th>{{ __('Geometry') }}</th> --}}
                 <th>{{ __('Properties') }}</th>
                 <th class="text-center">{{ __('Action') }}</th>
             </tr>
@@ -77,11 +77,11 @@
                     <td>{{ $geojsons->firstItem() + $loop->index }}</td>
                     <td>{{ $geojson->name ?? '-' }}</td>
                     <td>{{ Illuminate\Support\Str::words($geojson->description ?? '-', 10, '...') }}</td>
-                    <td>
+                    {{-- <td>
                         <pre class="mb-0" style="white-space: pre-wrap; word-wrap: break-word; max-width: 250px;">
                             {{ json_encode($geojson->geometry, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) }}
                         </pre>
-                    </td>
+                    </td> --}}
                     <td>
                         <pre class="mb-0" style="white-space: pre-wrap; word-wrap: break-word; max-width: 250px;">
                             {{ json_encode($geojson->properties, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) }}
@@ -113,8 +113,8 @@
             <tr>
                 <th>{{ __('No') }}</th>
                 <th>{{ __('Name') }}</th>
-                <th>{{ __('description') }}</th>
-                <th>{{ __('Geometry') }}</th>
+                <th>{{ __('Description') }}</th>
+                {{-- <th>{{ __('Geometry') }}</th> --}}
                 <th>{{ __('Properties') }}</th>
                 <th class="text-center">{{ __('Action') }}</th>
             </tr>
