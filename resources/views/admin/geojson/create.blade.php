@@ -73,7 +73,11 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        const map = L.map('map').setView([-6.2, 106.8], 11);
+        const mapId = "map";
+        const geometryId = "geometry";
+        const modalSelector = ".formCreate";
+        const map = L.map(mapId).setView([-6.2, 106.8], 11);
+
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19
         }).addTo(map);
@@ -84,29 +88,37 @@
                 featureGroup: drawnItems
             },
             draw: {
-                circle: false,
-                circlemarker: false
+                marker: true,
+                polygon: true,
+                polyline: true,
+                rectangle: true,
+                circle: true,
+                circlemarker: true
             }
         });
         map.addControl(drawControl);
 
         function updateTextarea() {
-            let gj = null;
+            const features = [];
             drawnItems.eachLayer(l => {
-                if (!gj) gj = l.toGeoJSON();
+                features.push(l.toGeoJSON());
             });
-            document.getElementById('geometry').value = gj ? JSON.stringify(gj.geometry) : '';
+
+            const geojson = {
+                type: "FeatureCollection",
+                features: features
+            };
+            document.getElementById(geometryId).value = JSON.stringify(geojson);
         }
 
         map.on(L.Draw.Event.CREATED, function(e) {
-            drawnItems.clearLayers();
             drawnItems.addLayer(e.layer);
             updateTextarea();
         });
         map.on(L.Draw.Event.EDITED, updateTextarea);
         map.on(L.Draw.Event.DELETED, updateTextarea);
 
-        const modalEl = document.querySelector('.formCreate');
+        const modalEl = document.querySelector(modalSelector);
         modalEl.addEventListener('shown.bs.modal', function() {
             map.invalidateSize();
         });

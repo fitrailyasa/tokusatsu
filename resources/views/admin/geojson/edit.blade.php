@@ -46,10 +46,10 @@
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const mapId = "map-{{ $geojson->id }}";
-        const textareaId = "geometry-{{ $geojson->id }}";
+        const geometryId = "geometry-{{ $geojson->id }}";
         const modalSelector = ".formEdit{{ $geojson->id }}";
-
         const map = L.map(mapId).setView([-6.2, 106.8], 11);
+
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19
         }).addTo(map);
@@ -60,49 +60,70 @@
                 featureGroup: drawnItems
             },
             draw: {
-                circle: false,
-                circlemarker: false
+                marker: true,
+                polygon: true,
+                polyline: true,
+                rectangle: true,
+                circle: true,
+                circlemarker: true
             }
         });
         map.addControl(drawControl);
 
-        const textarea = document.getElementById(textareaId);
+        const textarea = document.getElementById(geometryId);
+        const geomData = JSON.parse(textarea.value);
+        let features = [];
 
-        try {
-            const geom = JSON.parse(textarea.value);
-            if (geom) {
-                const feat = {
-                    type: "Feature",
-                    geometry: geom,
-                    properties: {}
-                };
-                const layer = L.geoJSON(feat).addTo(drawnItems);
+        if (geomData.type === "FeatureCollection" && Array.isArray(geomData.features)) {
+            features = geomData.features;
+        } else if (geomData.type) {
+            features = [{
+                type: "Feature",
+                geometry: geomData,
+                properties: {}
+            }];
+        }
 
-                try {
-                    map.fitBounds(layer.getBounds(), {
-                        padding: [20, 20]
-                    });
-                } catch (e) {
-                    if (geom.type === "Point") {
-                        const c = geom.coordinates;
-                        if (Array.isArray(c)) map.setView([c[1], c[0]], 14);
-                    }
+        features.forEach(f => {
+            L.geoJSON(f).addTo(drawnItems);
+        });
+
+        if (drawnItems.getLayers().length > 0) {
+            try {
+                map.fitBounds(drawnItems.getBounds(), {
+                    padding: [20, 20]
+                });
+            } catch (e) {
+                const geom = features[0].geometry;
+                if (geom.type === "Point") {
+                    map.setView([geom.coordinates[1], geom.coordinates[0]], 14);
                 }
             }
-        } catch (e) {
-            console.warn("Geometry JSON invalid:", e);
         }
 
         function updateTextarea() {
-            let gj = null;
-            drawnItems.eachLayer(l => {
-                if (!gj) gj = l.toGeoJSON();
+            const features = [];
+            drawnItems.eachLayer(layer => {
+                const geojson = layer.toGeoJSON();
+                if (!geojson.type || geojson.type !== "Feature") {
+                    features.push({
+                        type: "Feature",
+                        geometry: geojson.geometry || geojson,
+                        properties: geojson.properties || {}
+                    });
+                } else {
+                    features.push(geojson);
+                }
             });
-            textarea.value = gj ? JSON.stringify(gj.geometry) : "";
+
+            const geojsonCollection = {
+                type: "FeatureCollection",
+                features: features
+            };
+            textarea.value = JSON.stringify(geojsonCollection);
         }
 
         map.on(L.Draw.Event.CREATED, function(e) {
-            drawnItems.clearLayers();
             drawnItems.addLayer(e.layer);
             updateTextarea();
         });

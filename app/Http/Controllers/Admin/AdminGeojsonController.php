@@ -93,10 +93,10 @@ class AdminGeojsonController extends Controller
         $properties = !empty($validated['properties']) ? json_decode($validated['properties'], true) : null;
 
         Geojson::create([
-            'name'       => $validated['name'],
-            'description'       => $validated['description'] ?? null,
-            'geometry'   => $geometry,
-            'properties' => $properties,
+            'name'          => $validated['name'],
+            'description'   => $validated['description'] ?? null,
+            'geometry'      => $geometry,
+            'properties'    => $properties,
         ]);
 
         return back()->with('success', 'Successfully Create Data ' . $this->title . '!');
@@ -116,10 +116,10 @@ class AdminGeojsonController extends Controller
         $properties = !empty($validated['properties']) ? json_decode($validated['properties'], true) : null;
 
         $geojson->update([
-            'name'       => $validated['name'],
-            'description'       => $validated['description'] ?? null,
-            'geometry'   => $geometry,
-            'properties' => $properties,
+            'name'          => $validated['name'],
+            'description'   => $validated['description'] ?? null,
+            'geometry'      => $geometry,
+            'properties'    => $properties,
         ]);
 
         return back()->with('success', 'Successfully Edit Data ' . $this->title . '!');
@@ -167,33 +167,20 @@ class AdminGeojsonController extends Controller
         return back()->with('success', 'Successfully Restore All ' . $this->title . '!');
     }
 
-    public function asGeoJSON()
-    {
-        $features = Geojson::all()->map(function ($f) {
-            return [
-                'type'       => 'Feature',
-                'geometry'   => $f->geometry,
-                'properties' => array_merge([
-                    'id'          => $f->id,
-                    'name'        => $f->name,
-                    'description'        => $f->description,
-                    'created_at'  => $f->created_at,
-                ], $f->properties ?? []),
-            ];
-        });
-
-        return response()->json([
-            'type'     => 'FeatureCollection',
-            'features' => $features,
-        ]);
-    }
-
     private static function isValidGeometry(?array $geom): bool
     {
         if (!$geom || !isset($geom['type'])) return false;
-        $type = $geom['type'];
-        $hasCoords = isset($geom['coordinates']) || isset($geom['geometries']); // GeometryCollection
-        $validType = in_array($type, [
+
+        if (isset($geom['features'])) {
+            if (!is_array($geom['features'])) return false;
+            foreach ($geom['features'] as $feature) {
+                if (!isset($feature['geometry'])) return false;
+                if (!self::isValidGeometry($feature['geometry'])) return false;
+            }
+            return true;
+        }
+
+        $validType = in_array($geom['type'], [
             'Point',
             'MultiPoint',
             'LineString',
@@ -202,6 +189,7 @@ class AdminGeojsonController extends Controller
             'MultiPolygon',
             'GeometryCollection'
         ], true);
+        $hasCoords = isset($geom['coordinates']) || isset($geom['geometries']);
         return $validType && $hasCoords;
     }
 }
