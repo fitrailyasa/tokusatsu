@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class AddressRegency extends Model
 {
@@ -20,5 +21,14 @@ class AddressRegency extends Model
     public function districts()
     {
         return $this->hasMany(AddressDistrict::class);
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        // DB::setDefaultConnection(env('DB_CONNECTION'));
+        // DB::setDefaultConnection(env('DB2_CONNECTION'));
+        DB::setDefaultConnection(env('DB3_CONNECTION'));
     }
 }

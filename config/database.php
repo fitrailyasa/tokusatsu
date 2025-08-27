@@ -108,7 +108,7 @@ return [
             // 'encrypt' => env('DB_ENCRYPT', 'yes'),
             // 'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'false'),
         ],
-        
+
         'sqlite2' => [
             'driver' => 'sqlite',
             'url' => env('DB2_URL'),
@@ -187,6 +187,84 @@ return [
             // 'trust_server_certificate' => env('DB2_TRUST_SERVER_CERTIFICATE', 'false'),
         ],
 
+        'sqlite3' => [
+            'driver' => 'sqlite',
+            'url' => env('DB3_URL'),
+            'database' => env('DB3_DATABASE', database_path('database3.sqlite')),
+            'prefix' => '',
+            'foreign_key_constraints' => env('DB3_FOREIGN_KEYS', true),
+        ],
+
+        'mysql3' => [
+            'driver' => 'mysql',
+            'url' => env('DB3_URL'),
+            'host' => env('DB3_HOST', '127.0.0.1'),
+            'port' => env('DB3_PORT', '3306'),
+            'database' => env('DB3_DATABASE', 'laravel'),
+            'username' => env('DB3_USERNAME', 'root'),
+            'password' => env('DB3_PASSWORD', ''),
+            'unix_socket' => env('DB3_SOCKET', ''),
+            'charset' => env('DB3_CHARSET', 'utf8mb4'),
+            'collation' => env('DB3_COLLATION', 'utf8mb4_unicode_ci'),
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+        ],
+
+        'mariadb3' => [
+            'driver' => 'mariadb',
+            'url' => env('DB3_URL'),
+            'host' => env('DB3_HOST', '127.0.0.1'),
+            'port' => env('DB3_PORT', '3306'),
+            'database' => env('DB3_DATABASE', 'laravel'),
+            'username' => env('DB3_USERNAME', 'root'),
+            'password' => env('DB3_PASSWORD', ''),
+            'unix_socket' => env('DB3_SOCKET', ''),
+            'charset' => env('DB3_CHARSET', 'utf8mb4'),
+            'collation' => env('DB3_COLLATION', 'utf8mb4_unicode_ci'),
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+        ],
+
+        'pgsql3' => [
+            'driver' => 'pgsql',
+            'url' => env('DB3_URL'),
+            'host' => env('DB3_HOST', '127.0.0.1'),
+            'port' => env('DB3_PORT', '5432'),
+            'database' => env('DB3_DATABASE', 'laravel'),
+            'username' => env('DB3_USERNAME', 'root'),
+            'password' => env('DB3_PASSWORD', ''),
+            'charset' => env('DB3_CHARSET', 'utf8'),
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'search_path' => 'public',
+            'sslmode' => 'prefer',
+        ],
+
+        'sqlsrv3' => [
+            'driver' => 'sqlsrv',
+            'url' => env('DB3_URL'),
+            'host' => env('DB3_HOST', 'localhost'),
+            'port' => env('DB3_PORT', '1433'),
+            'database' => env('DB3_DATABASE', 'laravel'),
+            'username' => env('DB3_USERNAME', 'root'),
+            'password' => env('DB3_PASSWORD', ''),
+            'charset' => env('DB3_CHARSET', 'utf8'),
+            'prefix' => '',
+            'prefix_indexes' => true,
+            // 'encrypt' => env('DB3_ENCRYPT', 'yes'),
+            // 'trust_server_certificate' => env('DB3_TRUST_SERVER_CERTIFICATE', 'false'),
+        ],
+
     ],
 
     /*
@@ -222,7 +300,7 @@ return [
 
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'redis'),
-            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_database_'),
+            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_') . '_database_'),
         ],
 
         'default' => [
