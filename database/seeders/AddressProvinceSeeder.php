@@ -47,6 +47,7 @@ class AddressProvinceSeeder extends Seeder
             ['id' => 93, 'name' => 'PAPUA SELATAN'],
             ['id' => 94, 'name' => 'PAPUA TENGAH'],
             ['id' => 95, 'name' => 'PAPUA PEGUNUNGAN'],
+            ['id' => 96, 'name' => 'PAPUA BARAT DAYA'],
         ];
 
         foreach ($data as $address) {
