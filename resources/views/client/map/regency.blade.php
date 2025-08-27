@@ -99,7 +99,15 @@
                 name = name.replace(/_/g, " ").replace(/\b\w/g, l => l.toUpperCase());
 
                 let layer = L.geoJson(geojsonData, {
-                    style: styleFeature
+                    style: styleFeature,
+                    onEachFeature: (feature, layer) => {
+                        if (feature.properties && feature.properties.district) {
+                            let villageName = feature.properties.village || "N/A";
+                            layer.bindPopup(
+                                `<b>Province:</b> ${feature.properties.province}<br><b>Regency:</b> ${feature.properties.regency}<br><b>District:</b> ${feature.properties.district}<br><b>Village:</b> ${villageName}`
+                            );
+                        }
+                    }
                 });
 
                 allLayers.addLayer(layer);
@@ -113,7 +121,6 @@
             }
 
             const geojsonDB = @json($geojsonData);
-            console.log(geojsonDB);
             geojsonDB.forEach(item => {
                 if (!item.geometry) return;
 
