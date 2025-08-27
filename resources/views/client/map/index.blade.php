@@ -101,7 +101,13 @@
                         layer: L.geoJson(await getGeoJSON(
                             "{{ asset('assets/geojson/province.json') }}"
                         ), {
-                            style: styleFeature
+                            style: styleFeature,
+                            onEachFeature: function(feature, layer) {
+                                if (feature.properties && feature.properties.PROVINSI) {
+                                    layer.bindPopup("<b>Provinsi:</b> " + feature.properties
+                                        .PROVINSI);
+                                }
+                            }
                         })
                     },
                     {
@@ -116,7 +122,14 @@
                         layer: L.geoJson(await getGeoJSON(
                             "{{ asset('assets/geojson/regency.json') }}"
                         ), {
-                            style: styleFeature
+                            style: styleFeature,
+                            onEachFeature: function(feature, layer) {
+                                if (feature.properties && feature.properties.WADMKK) {
+                                    layer.bindPopup("<b>Kabupaten/Kota:</b> " + feature
+                                        .properties
+                                        .WADMKK);
+                                }
+                            }
                         })
                     },
                 ]
