@@ -103,35 +103,12 @@
             drawnItems.addLayer(e.layer);
             updateTextarea();
         });
-
         map.on(L.Draw.Event.EDITED, updateTextarea);
         map.on(L.Draw.Event.DELETED, updateTextarea);
 
-        const textarea = document.getElementById('geometry');
-        try {
-            const existing = textarea.value.trim();
-            if (existing) {
-                const geom = JSON.parse(existing);
-                const feature = {
-                    type: 'Feature',
-                    geometry: geom,
-                    properties: {}
-                };
-                const layer = L.geoJSON(feature).addTo(drawnItems);
-
-                try {
-                    map.fitBounds(layer.getBounds(), {
-                        padding: [20, 20]
-                    });
-                } catch (e) {
-                    if (geom.type === 'Point') {
-                        const c = geom.coordinates;
-                        map.setView([c[1], c[0]], 14);
-                    }
-                }
-            }
-        } catch (e) {
-            console.error("Geometry JSON invalid:", e);
-        }
+        const modalEl = document.querySelector('.formCreate');
+        modalEl.addEventListener('shown.bs.modal', function() {
+            map.invalidateSize();
+        });
     });
 </script>

@@ -45,7 +45,11 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        const map = L.map("map-{{ $geojson->id }}").setView([-6.2, 106.8], 11);
+        const mapId = "map-{{ $geojson->id }}";
+        const textareaId = "geometry-{{ $geojson->id }}";
+        const modalSelector = ".formEdit{{ $geojson->id }}";
+
+        const map = L.map(mapId).setView([-6.2, 106.8], 11);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19
         }).addTo(map);
@@ -62,28 +66,31 @@
         });
         map.addControl(drawControl);
 
-        const textarea = document.getElementById("geometry-{{ $geojson->id }}");
-        let geom = null;
+        const textarea = document.getElementById(textareaId);
+
         try {
-            geom = JSON.parse(textarea.value);
-        } catch (e) {}
-        if (geom) {
-            const feat = {
-                type: "Feature",
-                geometry: geom,
-                properties: {}
-            };
-            const layer = L.geoJSON(feat).addTo(drawnItems);
-            try {
-                map.fitBounds(layer.getBounds(), {
-                    padding: [20, 20]
-                });
-            } catch (e) {
-                if (geom.type === "Point") {
-                    const c = geom.coordinates;
-                    if (Array.isArray(c)) map.setView([c[1], c[0]], 14);
+            const geom = JSON.parse(textarea.value);
+            if (geom) {
+                const feat = {
+                    type: "Feature",
+                    geometry: geom,
+                    properties: {}
+                };
+                const layer = L.geoJSON(feat).addTo(drawnItems);
+
+                try {
+                    map.fitBounds(layer.getBounds(), {
+                        padding: [20, 20]
+                    });
+                } catch (e) {
+                    if (geom.type === "Point") {
+                        const c = geom.coordinates;
+                        if (Array.isArray(c)) map.setView([c[1], c[0]], 14);
+                    }
                 }
             }
+        } catch (e) {
+            console.warn("Geometry JSON invalid:", e);
         }
 
         function updateTextarea() {
@@ -93,6 +100,7 @@
             });
             textarea.value = gj ? JSON.stringify(gj.geometry) : "";
         }
+
         map.on(L.Draw.Event.CREATED, function(e) {
             drawnItems.clearLayers();
             drawnItems.addLayer(e.layer);
@@ -100,5 +108,12 @@
         });
         map.on(L.Draw.Event.EDITED, updateTextarea);
         map.on(L.Draw.Event.DELETED, updateTextarea);
+
+        const modalEl = document.querySelector(modalSelector);
+        if (modalEl) {
+            modalEl.addEventListener('shown.bs.modal', function() {
+                map.invalidateSize();
+            });
+        }
     });
 </script>
