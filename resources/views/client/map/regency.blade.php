@@ -112,6 +112,24 @@
                 });
             }
 
+            const geojsonDB = @json($geojsonData);
+            console.log(geojsonDB);
+            geojsonDB.forEach(item => {
+                if (!item.geometry) return;
+
+                let layer = L.geoJson(item.geometry, {
+                    style: styleFeature
+                });
+                allLayers.addLayer(layer);
+
+                overlayMaps[0].layers.push({
+                    name: item.name,
+                    icon: panelCostumIconColor(getRandomColorForPolygon()),
+                    active: false,
+                    layer: layer
+                });
+            });
+
             var control = L.control.panelLayers(baseMaps, overlayMaps, {
                 selectorGroup: true,
                 collapsibleGroups: true
