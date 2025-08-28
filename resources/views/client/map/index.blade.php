@@ -14,10 +14,48 @@
             height: 100vh;
             width: 100%;
         }
+
+        .legend-container {
+            position: absolute;
+            bottom: 20px;
+            left: 25px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 10px;
+            border-radius: 8px;
+            max-height: 300px;
+            overflow-y: auto;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+            font-size: 14px;
+            color: #000;
+            z-index: 1000;
+        }
+
+        .legend-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 3px;
+            color: #000;
+        }
+
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border: 1px solid #000;
+            margin-right: 5px;
+        }
     </style>
 
-    <div class="card mx-3 mx-md-4 my-5 pt-3">
+    <div class="mt-5 mx-3 mx-md-4 pt-3">
         <div id="map"></div>
+        <div class="legend-container" id="legend-container">
+            <div id="legend-prov" class="legend-section"></div>
+            <div id="legend-regency" class="legend-section"></div>
+        </div>
     </div>
 
     <!-- Leaflet JS -->
@@ -31,14 +69,6 @@
             return await response.json();
         }
 
-        function panelCostumIcon(iconUrl) {
-            let img = document.createElement("img");
-            img.src = iconUrl;
-            img.style.width = "16px";
-            img.style.height = "16px";
-            return img;
-        }
-
         function panelCostumIconColor(color) {
             let div = document.createElement("div");
             div.style.width = "16px";
@@ -48,100 +78,145 @@
             return div;
         }
 
-        function featureCostumIcon(iconUrl) {
-            return L.icon({
-                iconUrl: iconUrl,
-                iconSize: [24, 24]
+        function generateColorMap(features, field) {
+            const colors = {};
+            const letters = '0123456789ABCDEF';
+            features.forEach(f => {
+                const name = f.properties[field] || "N/A";
+                if (!colors[name]) {
+                    let color = "#";
+                    for (let i = 0; i < 6; i++) color += letters[Math.floor(Math.random() * 16)];
+                    colors[name] = color;
+                }
+            });
+            return colors;
+        }
+
+        function styleFeatureGenerator(colorMap, field) {
+            return function(feature) {
+                const name = feature.properties[field] || "N/A";
+                return {
+                    color: colorMap[name],
+                    weight: 2,
+                    fillOpacity: 0.6
+                };
+            }
+        }
+
+        function updateLegend(layer, container, title, field, colorMap) {
+            container.innerHTML = `<div class="legend-title">${title}</div>`;
+            layer.eachLayer(f => {
+                if (f.feature && f.feature.properties) {
+                    const name = f.feature.properties[field] || "N/A";
+                    const color = colorMap[name] || "#3388ff";
+
+                    const item = document.createElement('div');
+                    item.classList.add('legend-item');
+
+                    const colorDiv = document.createElement('div');
+                    colorDiv.classList.add('legend-color');
+                    colorDiv.style.backgroundColor = color;
+
+                    item.appendChild(colorDiv);
+                    item.appendChild(document.createTextNode(name));
+
+                    container.appendChild(item);
+                }
             });
         }
 
-        var map = L.map('map').setView([-2.5, 118], 5);
+        document.addEventListener('DOMContentLoaded', async function() {
+            var map = L.map('map').setView([-2.5, 118], 5);
 
-        var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '© OpenStreetMap contributors'
-        }).addTo(map);
+            var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
 
-        var esriWorldImagery = L.tileLayer(
-            'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-                attribution: 'Esri World Imagery'
+            var esriWorldImagery = L.tileLayer(
+                'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+                    attribution: 'Esri World Imagery'
+                });
+
+            var esriStreets = L.tileLayer(
+                'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+                    attribution: 'Esri Streets'
+                });
+
+            var baseMap = [{
+                    name: "OpenStreetMap",
+                    layer: osm
+                },
+                {
+                    name: "Esri World Imagery",
+                    layer: esriWorldImagery
+                },
+                {
+                    name: "Esri Streets",
+                    layer: esriStreets
+                }
+            ];
+
+            // Load GeoJSON
+            const provGeoJSON = await getGeoJSON("{{ asset('assets/geojson/province.json') }}");
+            const regencyGeoJSON = await getGeoJSON("{{ asset('assets/geojson/regency.json') }}");
+
+            // Generate color maps
+            const provColorMap = generateColorMap(provGeoJSON.features, "PROVINSI");
+            const regencyColorMap = generateColorMap(regencyGeoJSON.features, "WADMKK");
+
+            const provLayer = L.geoJson(provGeoJSON, {
+                style: styleFeatureGenerator(provColorMap, "PROVINSI")
+            }).addTo(map);
+            const regencyLayer = L.geoJson(regencyGeoJSON, {
+                style: styleFeatureGenerator(regencyColorMap, "WADMKK")
             });
 
-        var esriStreets = L.tileLayer(
-            'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
-                attribution: 'Esri Streets'
+            // Bind popup
+            provLayer.eachLayer(layer => {
+                layer.bindPopup("<b>Provinsi:</b> " + layer.feature.properties.PROVINSI);
+            });
+            regencyLayer.eachLayer(layer => {
+                layer.bindPopup("<b>Kabupaten/Kota:</b> " + layer.feature.properties.WADMKK);
             });
 
-        var baseMap = [{
-                name: "OpenStreetMap",
-                layer: osm
-            },
-            {
-                name: "Esri World Imagery",
-                layer: esriWorldImagery
-            },
-            {
-                name: "Esri Streets",
-                layer: esriStreets
-            }
-        ];
-
-        async function initializeMaps() {
-            overlayMaps = [{
+            // Overlay for Panel Layers
+            const overlayMaps = [{
                 group: "Batas Administrasi Umum",
                 collapsed: false,
                 layers: [{
-                        name: "Batas Administrasi Provinsi",
-                        icon: panelCostumIconColor(getRandomColorForPolygon()),
-                        legend: true,
+                        name: "Provinsi",
+                        icon: panelCostumIconColor(provColorMap[Object.keys(provColorMap)[0]]),
                         active: true,
-                        legendProperties: {
-                            title: "Provinsi Indonesia",
-                            field: "Provinsi",
-                        },
-                        layer: L.geoJson(await getGeoJSON(
-                            "{{ asset('assets/geojson/province.json') }}"
-                        ), {
-                            style: styleFeature,
-                            onEachFeature: function(feature, layer) {
-                                if (feature.properties && feature.properties.PROVINSI) {
-                                    layer.bindPopup("<b>Provinsi:</b> " + feature.properties
-                                        .PROVINSI);
-                                }
-                            }
-                        })
+                        layer: provLayer
                     },
                     {
-                        name: "Batas Administrasi Kabupaten/Kota",
-                        icon: panelCostumIconColor(getRandomColorForPolygon()),
-                        legend: true,
+                        name: "Kabupaten/Kota",
+                        icon: panelCostumIconColor(regencyColorMap[Object.keys(regencyColorMap)[
+                            0]]),
                         active: false,
-                        legendProperties: {
-                            title: "Kabupaten/Kota Indonesia",
-                            field: "Kabupaten/Kota",
-                        },
-                        layer: L.geoJson(await getGeoJSON(
-                            "{{ asset('assets/geojson/regency.json') }}"
-                        ), {
-                            style: styleFeature,
-                            onEachFeature: function(feature, layer) {
-                                if (feature.properties && feature.properties.WADMKK) {
-                                    layer.bindPopup("<b>Kabupaten/Kota:</b> " + feature
-                                        .properties
-                                        .WADMKK);
-                                }
-                            }
-                        })
-                    },
+                        layer: regencyLayer
+                    }
                 ]
-            }, ];
+            }];
 
-            var control = L.control.panelLayers(baseMap, overlayMaps, {
+            const control = L.control.panelLayers(baseMap, overlayMaps, {
                 selectorGroup: true,
                 collapsibleGroups: true
             });
             map.addControl(control);
-        }
 
-        initializeMaps();
+            // Legend containers
+            const legendProv = document.getElementById('legend-prov');
+            const legendRegency = document.getElementById('legend-regency');
+
+            updateLegend(provLayer, legendProv, "Provinsi Indonesia", "PROVINSI", provColorMap);
+            provLayer.on('add', () => updateLegend(provLayer, legendProv, "Provinsi Indonesia", "PROVINSI",
+                provColorMap));
+            provLayer.on('remove', () => legendProv.innerHTML = "");
+
+            regencyLayer.on('add', () => updateLegend(regencyLayer, legendRegency, "Kabupaten/Kota Indonesia",
+                "WADMKK", regencyColorMap));
+            regencyLayer.on('remove', () => legendRegency.innerHTML = "");
+        });
     </script>
 @endsection
