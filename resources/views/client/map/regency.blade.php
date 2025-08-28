@@ -176,7 +176,7 @@
                     layers: []
                 },
                 {
-                    group: "Batas Kec. {{ $regency }}",
+                    group: "Batas Kec. di {{ $regency }}",
                     collapsed: false,
                     layers: []
                 }
