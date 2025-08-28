@@ -1,17 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
-use App\Models\Geojson;
 
-class MapController extends Controller
+class MapApiController extends Controller
 {
-    public function index()
-    {
-        return view('client.map.index');
-    }
-
     public function province($province)
     {
         $basePath = storage_path("app/public/geojson/");
@@ -29,10 +24,15 @@ class MapController extends Controller
         $provFolder = str_replace('\\', '/', $provFolder);
         $provFolder = '/' . ltrim($provFolder, '/');
 
-        return view('client.map.province', [
-            'province' => ucwords(str_replace("_", " ", $province)),
-            'regencies' => $regencies,
-            'provFolder' => asset('storage' . $provFolder),
+        return response()->json([
+            'message' => 'Province retrieved successfully',
+            'data' => [
+                'province' => ucwords(str_replace("_", " ", $province)),
+                'regencies' => $regencies,
+                'provFolder' => asset('storage' . $provFolder),
+            ],
+            'status' => 200,
+            'success' => true,
         ]);
     }
 
@@ -63,11 +63,16 @@ class MapController extends Controller
         $regFolder = str_replace('\\', '/', $regFolder);
         $regFolder = '/' . ltrim($regFolder, '/');
 
-        return view('client.map.regency', [
-            'province' => ucwords(str_replace("_", " ", $province)),
-            'regency' => ucwords(str_replace("_", " ", $regency)),
-            'geojsonFiles' => $files,
-            'regFolder' => asset('storage' . $regFolder),
+        return response()->json([
+            'message' => 'Regency retrieved successfully',
+            'data' => [
+                'province' => ucwords(str_replace("_", " ", $province)),
+                'regency' => ucwords(str_replace("_", " ", $regency)),
+                'geojsonFiles' => $files,
+                'regFolder' => asset('storage' . $regFolder),
+            ],
+            'status' => 200,
+            'success' => true,
         ]);
     }
 }

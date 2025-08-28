@@ -6,7 +6,7 @@
     <div class="container my-5 py-4">
         <h3 class="mb-4">List of Regencies/Cities in {{ $province }}</h3>
 
-        @if ($regency->isEmpty())
+        @if ($regencies->isEmpty())
             <p>No Regencies/Cities were found in this province.</p>
         @else
             <table class="table table-bordered table-striped">
@@ -18,9 +18,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($regency as $index => $reg)
+                    @foreach ($regencies as $index => $regency)
                         @php
-                            $regSlug = explode('_', $reg, 2)[1];
+                            $regSlug = explode('_', $regency, 2)[1];
                         @endphp
                         <tr>
                             <td class="text-center">{{ $index + 1 }}</td>
