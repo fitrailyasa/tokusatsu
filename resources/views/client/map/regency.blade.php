@@ -71,7 +71,8 @@
 
         <div id="map"></div>
         <div id="village-legend">
-            <h6 id="village-legend-title"></h6>
+            <input type="checkbox" id="master-checkbox">
+            <span id="village-legend-title"></span>
             <div id="village-layers-container"></div>
         </div>
     </div>
@@ -96,11 +97,13 @@
         }
 
         let activeLayers = {};
+        let villageState = {};
 
         function updateVillageLegend() {
-            const title = document.getElementById('village-legend-title');
-            title.textContent = "Kelurahan/Desa";
+            const legendTitle = document.getElementById('village-legend-title');
+            legendTitle.textContent = "Kelurahan/Desa";
             const container = document.getElementById('village-layers-container');
+
             container.innerHTML = "";
 
             for (const layerName in activeLayers) {
@@ -109,35 +112,106 @@
                     colorMap
                 } = activeLayers[layerName];
 
-                const title = document.createElement('div');
-                title.classList.add('layer-title');
-                title.textContent = layerName;
-                container.appendChild(title);
+                const layerTitle = document.createElement('div');
+                layerTitle.classList.add('layer-title');
+                layerTitle.textContent = layerName;
+                container.appendChild(layerTitle);
 
                 const ul = document.createElement('ul');
 
                 layer.eachLayer(function(featureLayer) {
-                    if (featureLayer.feature && featureLayer.feature.properties) {
-                        const villageName = featureLayer.feature.properties.village || "N/A";
-                        const color = colorMap[villageName] || '#3388ff';
+                    if (!featureLayer.feature || !featureLayer.feature.properties) return;
 
-                        const li = document.createElement('li');
-                        li.classList.add('village-item');
+                    const props = featureLayer.feature.properties;
+                    const villageName = props.village || "N/A";
+                    const color = colorMap[villageName] || '#3388ff';
 
-                        const colorDiv = document.createElement('div');
-                        colorDiv.classList.add('village-color');
-                        colorDiv.style.backgroundColor = color;
+                    const li = document.createElement('li');
+                    li.classList.add('village-item');
 
-                        li.appendChild(colorDiv);
-                        li.appendChild(document.createTextNode(villageName));
+                    const uniqueKey = `${layerName}__${featureLayer._leaflet_id}`;
 
-                        ul.appendChild(li);
+                    if (villageState[uniqueKey] === undefined) villageState[uniqueKey] = true;
+
+                    const checkbox = document.createElement('input');
+                    checkbox.type = 'checkbox';
+                    checkbox.checked = !!villageState[uniqueKey];
+                    checkbox.style.marginRight = "5px";
+
+                    checkbox.addEventListener('change', function() {
+                        villageState[uniqueKey] = this.checked;
+
+                        if (featureLayer.setStyle) {
+                            featureLayer.setStyle({
+                                color: color,
+                                opacity: this.checked ? 1 : 0,
+                                fillOpacity: this.checked ? 0.6 : 0
+                            });
+                        }
+
+                        const allCbs = container.querySelectorAll('input[type="checkbox"]');
+                        const master = document.getElementById('master-checkbox');
+                        master.checked = Array.from(allCbs).every(cb => cb.checked);
+                    });
+
+                    if (featureLayer.setStyle) {
+                        featureLayer.setStyle({
+                            color: color,
+                            opacity: villageState[uniqueKey] ? 1 : 0,
+                            fillOpacity: villageState[uniqueKey] ? 0.6 : 0
+                        });
                     }
+
+                    const colorDiv = document.createElement('div');
+                    colorDiv.classList.add('village-color');
+                    colorDiv.style.backgroundColor = color;
+
+                    li.appendChild(checkbox);
+                    li.appendChild(colorDiv);
+                    li.appendChild(document.createTextNode(villageName));
+                    ul.appendChild(li);
                 });
 
                 container.appendChild(ul);
             }
+
+            const allCbs = container.querySelectorAll('input[type="checkbox"]');
+            const master = document.getElementById('master-checkbox');
+            master.checked = allCbs.length > 0 && Array.from(allCbs).every(cb => cb.checked);
         }
+
+
+        document.getElementById('master-checkbox').addEventListener('change', function() {
+            const checked = this.checked;
+
+            for (const layerName in activeLayers) {
+                const {
+                    layer,
+                    colorMap
+                } = activeLayers[layerName];
+                layer.eachLayer(function(featureLayer) {
+                    if (!featureLayer.feature || !featureLayer.feature.properties) return;
+
+                    const villageName = featureLayer.feature.properties.village || "N/A";
+                    const color = colorMap[villageName] || '#3388ff';
+                    const uniqueKey = `${layerName}__${featureLayer._leaflet_id}`;
+
+                    villageState[uniqueKey] = checked;
+
+                    if (featureLayer.setStyle) {
+                        featureLayer.setStyle({
+                            color: color,
+                            opacity: checked ? 1 : 0,
+                            fillOpacity: checked ? 0.6 : 0
+                        });
+                    }
+                });
+            }
+
+            const checkboxes = document.querySelectorAll('#village-layers-container input[type="checkbox"]');
+            checkboxes.forEach(cb => cb.checked = checked);
+        });
+
 
         var map = L.map('map');
 
@@ -214,9 +288,9 @@
                             let villageName = feature.properties.village || "N/A";
                             layerFeature.bindPopup(
                                 `<b>Province:</b> ${feature.properties.province}<br>
-                        <b>Regency:</b> ${feature.properties.regency}<br>
-                        <b>District:</b> ${feature.properties.district}<br>
-                        <b>Village:</b> ${villageName}`
+                                <b>Regency:</b> ${feature.properties.regency}<br>
+                                <b>District:</b> ${feature.properties.district}<br>
+                                <b>Village:</b> ${villageName}`
                             );
                         }
                     }
