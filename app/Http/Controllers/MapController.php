@@ -56,6 +56,7 @@ class MapController extends Controller
         $files = collect(File::files($regPath))
             ->map(fn($file) => $file->getFilename())
             ->filter(fn($file) => str_ends_with($file, '.geojson'))
+            ->reverse()
             ->values();
 
         $regFolder = str_replace(storage_path('app/public'), '', $regPath);

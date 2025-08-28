@@ -171,17 +171,24 @@
 
         async function initializeMaps() {
             let overlayMaps = [{
-                group: "Batas Adm {{ $regency }}",
-                collapsed: false,
-                layers: []
-            }];
+                    group: "Batas Adm {{ $regency }}",
+                    collapsed: false,
+                    layers: []
+                },
+                {
+                    group: "Batas Kec. {{ $regency }}",
+                    collapsed: false,
+                    layers: []
+                }
+            ];
 
             const files = @json($geojsonFiles);
             const folder = "{{ $regFolder }}";
 
             let allLayers = L.featureGroup();
 
-            for (const file of files) {
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
                 const geojsonData = await getGeoJSON(folder + "/" + file);
 
                 let name = file.replace(".geojson", "");
@@ -207,9 +214,9 @@
                             let villageName = feature.properties.village || "N/A";
                             layerFeature.bindPopup(
                                 `<b>Province:</b> ${feature.properties.province}<br>
-                                <b>Regency:</b> ${feature.properties.regency}<br>
-                                <b>District:</b> ${feature.properties.district}<br>
-                                <b>Village:</b> ${villageName}`
+                        <b>Regency:</b> ${feature.properties.regency}<br>
+                        <b>District:</b> ${feature.properties.district}<br>
+                        <b>Village:</b> ${villageName}`
                             );
                         }
                     }
@@ -217,7 +224,9 @@
 
                 allLayers.addLayer(layer);
 
-                overlayMaps[0].layers.push({
+                let groupIndex = (i === 0) ? 0 : 1;
+
+                overlayMaps[groupIndex].layers.push({
                     name: name,
                     icon: panelCostumIconColor(getRandomColorForPolygon()),
                     active: false,
@@ -236,42 +245,6 @@
                     updateVillageLegend();
                 });
             }
-
-            const geojsonDB = @json($geojsonData);
-            geojsonDB.forEach(item => {
-                if (!item.geometry) return;
-
-                let colorMap = {};
-                if (item.geometry && item.name) colorMap[item.name] = getRandomColorForPolygon();
-
-                let layer = L.geoJson(item.geometry, {
-                    style: {
-                        color: colorMap[item.name] || '#3388ff',
-                        weight: 2,
-                        fillOpacity: 0.6
-                    }
-                });
-                allLayers.addLayer(layer);
-
-                overlayMaps[0].layers.push({
-                    name: item.name,
-                    icon: panelCostumIconColor(getRandomColorForPolygon()),
-                    active: false,
-                    layer: layer
-                });
-
-                layer.on('add', function() {
-                    activeLayers[item.name] = {
-                        layer: layer,
-                        colorMap: colorMap
-                    };
-                    updateVillageLegend();
-                });
-                layer.on('remove', function() {
-                    delete activeLayers[item.name];
-                    updateVillageLegend();
-                });
-            });
 
             var control = L.control.panelLayers(baseMaps, overlayMaps, {
                 selectorGroup: true,
