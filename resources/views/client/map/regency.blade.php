@@ -72,7 +72,7 @@
         <div id="map"></div>
         <div id="village-legend">
             <input type="checkbox" id="master-checkbox">
-            <span id="village-legend-title"></span>
+            <span class="fw-bold" id="village-legend-title"></span>
             <div id="village-layers-container"></div>
         </div>
     </div>
