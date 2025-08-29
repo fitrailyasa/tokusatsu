@@ -29,11 +29,13 @@ class Film extends Model
         'deleted_at',
     ];
 
-    protected static function boot()
+    public function __construct(array $attributes = [])
     {
-        parent::boot();
+        parent::__construct($attributes);
 
-        DB::setDefaultConnection(env('DB_CONNECTION'));
+        $this->connection = env('DB1_CONNECTION');
+        // $this->connection = env('DB2_CONNECTION');
+        // $this->connection = env('DB3_CONNECTION');
     }
 
     public function category()

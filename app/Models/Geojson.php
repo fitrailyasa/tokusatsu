@@ -20,13 +20,18 @@ class Geojson extends Model
     protected $casts = ['geometry'  => 'array'];
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+
+        $this->connection = env('DB1_CONNECTION');
+        // $this->connection = env('DB2_CONNECTION');
+        // $this->connection = env('DB3_CONNECTION');
+    }
+
     protected static function boot()
     {
         parent::boot();
-
-        DB::setDefaultConnection(env('DB_CONNECTION'));
-        // DB::setDefaultConnection(env('DB2_CONNECTION'));
-        // DB::setDefaultConnection(env('DB3_CONNECTION'));
 
         static::creating(function ($model) {
             if (empty($model->slug) && !empty($model->name)) {

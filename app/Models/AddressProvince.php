@@ -22,7 +22,7 @@ class AddressProvince extends Model
     {
         parent::__construct($attributes);
 
-        // $this->connection = env('DB1_CONNECTION');
+        // $this->connection = env('DB_CONNECTION');
         // $this->connection = env('DB2_CONNECTION');
         $this->connection = env('DB3_CONNECTION');
     }

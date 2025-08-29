@@ -60,11 +60,12 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    protected static function boot()
+    public function __construct(array $attributes = [])
     {
-        parent::boot();
+        parent::__construct($attributes);
 
-        DB::setDefaultConnection(env('DB_CONNECTION'));
-        // DB::setDefaultConnection(env('DB2_CONNECTION'));
+        $this->connection = env('DB_CONNECTION');
+        // $this->connection = env('DB2_CONNECTION');
+        // $this->connection = env('DB3_CONNECTION');
     }
 }

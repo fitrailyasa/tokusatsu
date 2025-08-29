@@ -33,8 +33,6 @@ class Data extends Model
     {
         parent::boot();
 
-        DB::setDefaultConnection(env('DB_CONNECTION'));
-
         // static::created(function ($model) {
         //     TelegramHelper::sendMessage(
         //         "<b>📦 Data Created</b>\n" . self::formatMessage($model)
