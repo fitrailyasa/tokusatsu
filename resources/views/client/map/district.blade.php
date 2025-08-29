@@ -250,9 +250,13 @@
 
             const files = @json($geojsonFiles);
             const folder = "{{ $regFolder }}";
+            const geojsons = @json($geojsons);
 
             let allLayers = L.featureGroup();
 
+            // ===============================
+            // 1. Load dari file .geojson
+            // ===============================
             for (let i = 0; i < files.length; i++) {
                 const file = files[i];
                 const geojsonData = await getGeoJSON(folder + "/" + file);
@@ -311,6 +315,60 @@
                     updateVillageLegend();
                 });
             }
+
+            // ===============================
+            // 2. Load dari database
+            // ===============================
+            geojsons.forEach((g, index) => {
+                const geojsonData = g.geometry;
+                let name = g.name || `Data ${index+1}`;
+
+                let colorMap = {};
+                geojsonData.features.forEach(f => {
+                    const village = f.properties.village || "N/A";
+                    colorMap[village] = getRandomColorForPolygon();
+                });
+
+                let layer = L.geoJson(geojsonData, {
+                    style: f => ({
+                        color: colorMap[f.properties.village] || '#3388ff',
+                        weight: 2,
+                        fillOpacity: 0.6
+                    }),
+                    onEachFeature: (feature, layerFeature) => {
+                        if (feature.properties && feature.properties.district) {
+                            let villageName = feature.properties.village || "N/A";
+                            layerFeature.bindPopup(
+                                `<b>Province:</b> ${feature.properties.province}<br>
+                                <b>Regency:</b> ${feature.properties.regency}<br>
+                                <b>District:</b> ${feature.properties.district}<br>
+                                <b>Village:</b> ${villageName}`
+                            );
+                        }
+                    }
+                });
+
+                allLayers.addLayer(layer);
+
+                overlayMaps[0].layers.push({
+                    name: name,
+                    icon: panelCostumIconColor(getRandomColorForPolygon()),
+                    active: true,
+                    layer: layer
+                });
+
+                layer.on('add', function() {
+                    activeLayers[name] = {
+                        layer: layer,
+                        colorMap: colorMap
+                    };
+                    updateVillageLegend();
+                });
+                layer.on('remove', function() {
+                    delete activeLayers[name];
+                    updateVillageLegend();
+                });
+            });
 
             var control = L.control.panelLayers(baseMaps, overlayMaps, {
                 selectorGroup: true,

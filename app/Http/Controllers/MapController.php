@@ -63,11 +63,15 @@ class MapController extends Controller
         $regFolder = str_replace('\\', '/', $regFolder);
         $regFolder = '/' . ltrim($regFolder, '/');
 
+        $geojsons = Geojson::all();
+        // dd($geojsons);
+
         return view('client.map.regency', [
             'province' => ucwords(str_replace("_", " ", $province)),
             'regency' => ucwords(str_replace("_", " ", $regency)),
             'geojsonFiles' => $files,
             'regFolder' => asset('storage' . $regFolder),
+            'geojsons' => $geojsons,
         ]);
     }
 
@@ -99,12 +103,16 @@ class MapController extends Controller
         $regFolder = str_replace('\\', '/', $regFolder);
         $regFolder = '/' . ltrim($regFolder, '/');
 
+        $geojsons = Geojson::all();
+        // dd($geojsons);
+
         return view('client.map.district', [
             'province' => ucwords(str_replace("_", " ", $province)),
             'regency' => ucwords(str_replace("_", " ", $regency)),
             'district' => ucwords(str_replace("_", " ", $district)),
             'geojsonFiles' => $files,
             'regFolder' => asset('storage' . $regFolder),
+            'geojsons' => $geojsons,
         ]);
     }
 }
