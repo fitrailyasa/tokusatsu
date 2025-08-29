@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Helpers\ApiResponse;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\CategoryRequest;
@@ -13,33 +14,33 @@ class CategoryApiController extends Controller
     // Handle api list data categories
     public function index(Request $request)
     {
-        $search = $request->query('search');
+        $search  = $request->query('search');
+        $perPage = $request->query('per_page', 10);
 
-        $query = Category::with('franchise', 'era');
+        $query = Category::with(['franchise', 'era']);
 
         if ($search) {
             $query->where('name', 'LIKE', "%{$search}%");
         }
 
-        $perPage = $request->query('per_page', 10);
         $categories = $query->paginate($perPage);
 
         if ($categories->isEmpty()) {
-            return response()->json(['message' => 'No categories found'], 404);
-        } else {
-            return response()->json([
-                'message' => 'Category retrieved successfully',
-                'data' => CategoryResource::collection($categories),
-                'pagination' => [
-                    'current_page' => $categories->currentPage(),
-                    'total' => $categories->total(),
-                    'per_page' => $categories->perPage(),
-                    'last_page' => $categories->lastPage(),
-                    'next_page_url' => $categories->nextPageUrl(),
-                    'prev_page_url' => $categories->previousPageUrl(),
-                ]
-            ], 200);
+            return ApiResponse::error('No categories found', 404);
         }
+
+        return ApiResponse::success(
+            'Categories retrieved successfully',
+            CategoryResource::collection($categories),
+            [
+                'current_page'   => $categories->currentPage(),
+                'total'          => $categories->total(),
+                'per_page'       => $categories->perPage(),
+                'last_page'      => $categories->lastPage(),
+                'next_page_url'  => $categories->nextPageUrl(),
+                'prev_page_url'  => $categories->previousPageUrl(),
+            ]
+        );
     }
 
     // Handle api store data category
@@ -49,27 +50,25 @@ class CategoryApiController extends Controller
 
         if ($request->hasFile('img')) {
             $img = $request->file('img');
-            $file_name = $category->name . '.' . $img->getClientOriginalExtension();
-            $category->img = $file_name;
-            $category->update();
-            $img->storeAs('public', $file_name);
+            $fileName = $category->name . '.' . $img->getClientOriginalExtension();
+            $category->update(['img' => $fileName]);
+            $img->storeAs('public', $fileName);
         }
 
-        return response()->json(['alert' => 'Successfully Create Category!']);
+        return ApiResponse::success('Category created successfully', new CategoryResource($category), null, 201);
     }
 
     // Handle api show data category
     public function show($id)
     {
-        $category = Category::findOrFail($id);
-        return response()->json($category);
+        $category = Category::with(['franchise', 'era'])->findOrFail($id);
+        return ApiResponse::success('Category retrieved successfully', new CategoryResource($category));
     }
 
     // Handle api edit data category
     public function edit($id)
     {
-        $category = Category::findOrFail($id);
-        return response()->json($category);
+        return $this->show($id);
     }
 
     // Handle api update data category
@@ -80,13 +79,12 @@ class CategoryApiController extends Controller
 
         if ($request->hasFile('img')) {
             $img = $request->file('img');
-            $file_name = $category->name . '.' . $img->getClientOriginalExtension();
-            $category->img = $file_name;
-            $category->update();
-            $img->storeAs('public', $file_name);
+            $fileName = $category->name . '.' . $img->getClientOriginalExtension();
+            $category->update(['img' => $fileName]);
+            $img->storeAs('public', $fileName);
         }
 
-        return response()->json(['alert' => 'Successfully Edit Category!']);
+        return ApiResponse::success('Category updated successfully', new CategoryResource($category));
     }
 
     // Handle api destroy data category
@@ -95,85 +93,60 @@ class CategoryApiController extends Controller
         $category = Category::findOrFail($id);
         $category->delete();
 
-        return response()->json(['alert' => 'Successfully Delete Category!']);
+        return ApiResponse::success('Category deleted successfully');
     }
 
     // Handle api find categories by era
     public function findByEra(Request $request, $era)
     {
-        $perPage = $request->query('per_page', 10);
-
-        $categories = Category::with('era', 'franchise')
-            ->whereHas('era', function ($query) use ($era) {
-                $query->where('slug', $era);
-            })
-            ->paginate($perPage);
-
-        if ($categories->isEmpty()) {
-            return response()->json([
-                'message' => 'No categories found for the specified era'
-            ], 404);
-        }
-
-        return response()->json([
-            'message' => 'Categories retrieved successfully',
-            'data' => CategoryResource::collection($categories),
-            'pagination' => [
-                'current_page' => $categories->currentPage(),
-                'total' => $categories->total(),
-                'per_page' => $categories->perPage(),
-                'last_page' => $categories->lastPage(),
-                'next_page_url' => $categories->nextPageUrl(),
-                'prev_page_url' => $categories->previousPageUrl(),
-            ]
-        ], 200);
+        return $this->filterByRelation($request, 'era', $era);
     }
 
     // Handle api find categories by franchise
     public function findByFranchise(Request $request, $franchise)
     {
+        return $this->filterByRelation($request, 'franchise', $franchise);
+    }
+
+    // Reusable filter function
+    private function filterByRelation(Request $request, $relation, $slug)
+    {
         $perPage = $request->query('per_page', 10);
 
-        $categories = Category::with('era', 'franchise')
-            ->whereHas('franchise', function ($query) use ($franchise) {
-                $query->where('slug', $franchise);
-            })
+        $categories = Category::with(['era', 'franchise'])
+            ->whereHas($relation, fn($query) => $query->where('slug', $slug))
             ->paginate($perPage);
 
         if ($categories->isEmpty()) {
-            return response()->json([
-                'message' => 'No categories found for the specified franchise'
-            ], 404);
+            return ApiResponse::error("No categories found for the specified $relation", 404);
         }
 
-        return response()->json([
-            'message' => 'Categories retrieved successfully',
-            'data' => CategoryResource::collection($categories),
-            'pagination' => [
-                'current_page' => $categories->currentPage(),
-                'total' => $categories->total(),
-                'per_page' => $categories->perPage(),
-                'last_page' => $categories->lastPage(),
-                'next_page_url' => $categories->nextPageUrl(),
-                'prev_page_url' => $categories->previousPageUrl(),
+        return ApiResponse::success(
+            'Categories retrieved successfully',
+            CategoryResource::collection($categories),
+            [
+                'current_page'   => $categories->currentPage(),
+                'total'          => $categories->total(),
+                'per_page'       => $categories->perPage(),
+                'last_page'      => $categories->lastPage(),
+                'next_page_url'  => $categories->nextPageUrl(),
+                'prev_page_url'  => $categories->previousPageUrl(),
             ]
-        ], 200);
+        );
     }
 
     // Handle api find all data categories
     public function all()
     {
-        $categories = Category::with('franchise', 'era')->get();
+        $categories = Category::with(['franchise', 'era'])->get();
 
         if ($categories->isEmpty()) {
-            return response()->json([
-                'message' => 'No categories found',
-            ], 404);
+            return ApiResponse::error('No categories found', 404);
         }
 
-        return response()->json([
-            'message' => 'All categories retrieved successfully',
-            'data' => CategoryResource::collection($categories)
-        ], 200);
+        return ApiResponse::success(
+            'All categories retrieved successfully',
+            CategoryResource::collection($categories)
+        );
     }
 }

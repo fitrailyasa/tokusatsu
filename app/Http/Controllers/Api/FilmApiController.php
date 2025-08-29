@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Helpers\ApiResponse;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\FilmRequest;
@@ -14,6 +15,7 @@ class FilmApiController extends Controller
     public function index(Request $request)
     {
         $search = $request->query('search');
+        $perPage = $request->query('per_page', 10);
 
         $query = Film::with(['category.era', 'category.franchise']);
 
@@ -27,47 +29,44 @@ class FilmApiController extends Controller
             });
         }
 
-        $perPage = $request->query('per_page', 10);
         $films = $query->paginate($perPage);
 
         if ($films->isEmpty()) {
-            return response()->json(['message' => 'No Films found'], 404);
-        } else {
-            return response()->json([
-                'message' => 'Film retrieved successfully',
-                'data' => FilmResource::collection($films),
-                'pagination' => [
-                    'current_page' => $films->currentPage(),
-                    'total' => $films->total(),
-                    'per_page' => $films->perPage(),
-                    'last_page' => $films->lastPage(),
-                    'next_page_url' => $films->nextPageUrl(),
-                    'prev_page_url' => $films->previousPageUrl(),
-                ]
-            ], 200);
+            return ApiResponse::error('No films found', 404);
         }
+
+        return ApiResponse::success(
+            'Films retrieved successfully',
+            FilmResource::collection($films),
+            [
+                'current_page'   => $films->currentPage(),
+                'total'          => $films->total(),
+                'per_page'       => $films->perPage(),
+                'last_page'      => $films->lastPage(),
+                'next_page_url'  => $films->nextPageUrl(),
+                'prev_page_url'  => $films->previousPageUrl(),
+            ]
+        );
     }
 
     // Handle api store film data
     public function store(FilmRequest $request)
     {
         $Film = Film::create($request->validated());
-
-        return response()->json(['alert' => 'Successfully Create Film!']);
+        return ApiResponse::success('Film created successfully', new FilmResource($Film), null, 201);
     }
 
     // Handle api show film data
     public function show($id)
     {
         $Film = Film::findOrFail($id);
-        return response()->json($Film);
+        return ApiResponse::success('Film retrieved successfully', new FilmResource($Film));
     }
 
     // Handle api edit film data
     public function edit($id)
     {
-        $Film = Film::findOrFail($id);
-        return response()->json($Film);
+        return $this->show($id);
     }
 
     // Handle api update film data
@@ -76,7 +75,7 @@ class FilmApiController extends Controller
         $Film = Film::findOrFail($id);
         $Film->update($request->validated());
 
-        return response()->json(['alert' => 'Successfully Edit Film!']);
+        return ApiResponse::success('Film updated successfully', new FilmResource($Film));
     }
 
     // Handle api delete film data
@@ -85,7 +84,7 @@ class FilmApiController extends Controller
         $Film = Film::findOrFail($id);
         $Film->delete();
 
-        return response()->json(['alert' => 'Successfully Delete Film!']);
+        return ApiResponse::success('Film deleted successfully');
     }
 
     // Handle api find films by franchise category
@@ -103,23 +102,21 @@ class FilmApiController extends Controller
             ->paginate($perPage);
 
         if ($films->isEmpty()) {
-            return response()->json([
-                'message' => 'No film found for the specified franchise and category'
-            ], 404);
+            return ApiResponse::error("No film found for the specified franchise and category", 404);
         }
 
-        return response()->json([
-            'message' => 'Film retrieved successfully',
-            'data' => FilmResource::collection($films),
-            'pagination' => [
-                'current_page' => $films->currentPage(),
-                'total' => $films->total(),
-                'per_page' => $films->perPage(),
-                'last_page' => $films->lastPage(),
-                'next_page_url' => $films->nextPageUrl(),
-                'prev_page_url' => $films->previousPageUrl(),
+        return ApiResponse::success(
+            'Films retrieved successfully',
+            FilmResource::collection($films),
+            [
+                'current_page'   => $films->currentPage(),
+                'total'          => $films->total(),
+                'per_page'       => $films->perPage(),
+                'last_page'      => $films->lastPage(),
+                'next_page_url'  => $films->nextPageUrl(),
+                'prev_page_url'  => $films->previousPageUrl(),
             ]
-        ], 200);
+        );
     }
 
     // Handle api find films by franchise category & episode number
@@ -134,13 +131,13 @@ class FilmApiController extends Controller
                     });
             })->first();
 
-        if (!$film) {
-            return response()->json(['message' => 'Film not found'], 404);
+        if ($film->isEmpty()) {
+            return ApiResponse::error('No film found', 404);
         }
 
-        return response()->json([
-            'message' => 'Film found',
-            'data' => new FilmResource($film),
-        ], 200);
+        return ApiResponse::success(
+            'Film retrieved successfully',
+            FilmResource::collection($film)
+        );
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Helpers\ApiResponse;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\EraRequest;
@@ -15,6 +16,7 @@ class EraApiController extends Controller
     {
 
         $search = $request->query('search');
+        $perPage = $request->query('per_page', 10);
 
         $query = Era::query();
 
@@ -22,25 +24,24 @@ class EraApiController extends Controller
             $query->where('name', 'LIKE', "%{$search}%");
         }
 
-        $perPage = $request->query('per_page', 10);
         $eras = $query->paginate($perPage);
 
         if ($eras->isEmpty()) {
-            return response()->json(['message' => 'No eras found'], 404);
-        } else {
-            return response()->json([
-                'message' => 'Era retrieved successfully',
-                'data' => EraResource::collection($eras),
-                'pagination' => [
-                    'current_page' => $eras->currentPage(),
-                    'total' => $eras->total(),
-                    'per_page' => $eras->perPage(),
-                    'last_page' => $eras->lastPage(),
-                    'next_page_url' => $eras->nextPageUrl(),
-                    'prev_page_url' => $eras->previousPageUrl(),
-                ]
-            ], 200);
+            return ApiResponse::error('No eras found', 404);
         }
+
+        return ApiResponse::success(
+            'Eras retrieved successfully',
+            EraResource::collection($eras),
+            [
+                'current_page'   => $eras->currentPage(),
+                'total'          => $eras->total(),
+                'per_page'       => $eras->perPage(),
+                'last_page'      => $eras->lastPage(),
+                'next_page_url'  => $eras->nextPageUrl(),
+                'prev_page_url'  => $eras->previousPageUrl(),
+            ]
+        );
     }
 
     // Handle api store data era
@@ -50,27 +51,25 @@ class EraApiController extends Controller
 
         if ($request->hasFile('img')) {
             $img = $request->file('img');
-            $file_name = $era->name . '_' . $img->getClientOriginalExtension();
-            $era->img = $file_name;
-            $era->update();
-            $img->storeAs('public', $file_name);
+            $fileName = $era->name . '.' . $img->getClientOriginalExtension();
+            $era->update(['img' => $fileName]);
+            $img->storeAs('public', $fileName);
         }
 
-        return response()->json(['alert' => 'Successfully Create Era!']);
+        return ApiResponse::success('Era created successfully', new EraResource($era), null, 201);
     }
 
     // Handle api show data era
     public function show($id)
     {
         $era = Era::findOrFail($id);
-        return response()->json($era);
+        return ApiResponse::success('Era retrieved successfully', new EraResource($era));
     }
 
     // Handle api edit data era
     public function edit($id)
     {
-        $era = Era::findOrFail($id);
-        return response()->json($era);
+        return $this->show($id);
     }
 
     // Handle api update data era
@@ -81,13 +80,12 @@ class EraApiController extends Controller
 
         if ($request->hasFile('img')) {
             $img = $request->file('img');
-            $file_name = $era->name . '_' . $img->getClientOriginalExtension();
-            $era->img = $file_name;
-            $era->update();
-            $img->storeAs('public', $file_name);
+            $fileName = $era->name . '.' . $img->getClientOriginalExtension();
+            $era->update(['img' => $fileName]);
+            $img->storeAs('public', $fileName);
         }
 
-        return response()->json(['alert' => 'Successfully Edit Era!']);
+        return ApiResponse::success('Era updated successfully', new EraResource($era));
     }
 
     // Handle api destroy data era
@@ -96,7 +94,7 @@ class EraApiController extends Controller
         $era = Era::findOrFail($id);
         $era->delete();
 
-        return response()->json(['alert' => 'Successfully Delete Era!']);
+        return ApiResponse::success('Era deleted successfully');
     }
 
     // Handle api find all eras
@@ -105,14 +103,12 @@ class EraApiController extends Controller
         $eras = Era::all();
 
         if ($eras->isEmpty()) {
-            return response()->json([
-                'message' => 'No eras found',
-            ], 404);
+            return ApiResponse::error('No eras found', 404);
         }
 
-        return response()->json([
-            'message' => 'All eras retrieved successfully',
-            'data' => EraResource::collection($eras)
-        ], 200);
+        return ApiResponse::success(
+            'All eras retrieved successfully',
+            EraResource::collection($eras)
+        );
     }
 }

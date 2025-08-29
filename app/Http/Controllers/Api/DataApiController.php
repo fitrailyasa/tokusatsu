@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Helpers\ApiResponse;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\DataRequest;
@@ -14,6 +15,7 @@ class DataApiController extends Controller
     public function index(Request $request)
     {
         $search = $request->query('search');
+        $perPage = $request->query('per_page', 10);
 
         $query = Data::with(['category.era', 'category.franchise', 'tags']);
 
@@ -30,25 +32,24 @@ class DataApiController extends Controller
             });
         }
 
-        $perPage = $request->query('per_page', 10);
         $datas = $query->paginate($perPage);
 
         if ($datas->isEmpty()) {
-            return response()->json(['message' => 'No datas found'], 404);
-        } else {
-            return response()->json([
-                'message' => 'Data retrieved successfully',
-                'data' => DataResource::collection($datas),
-                'pagination' => [
-                    'current_page' => $datas->currentPage(),
-                    'total' => $datas->total(),
-                    'per_page' => $datas->perPage(),
-                    'last_page' => $datas->lastPage(),
-                    'next_page_url' => $datas->nextPageUrl(),
-                    'prev_page_url' => $datas->previousPageUrl(),
-                ]
-            ], 200);
+            return ApiResponse::error('No datas found', 404);
         }
+
+        return ApiResponse::success(
+            'Datas retrieved successfully',
+            DataResource::collection($datas),
+            [
+                'current_page'   => $datas->currentPage(),
+                'total'          => $datas->total(),
+                'per_page'       => $datas->perPage(),
+                'last_page'      => $datas->lastPage(),
+                'next_page_url'  => $datas->nextPageUrl(),
+                'prev_page_url'  => $datas->previousPageUrl(),
+            ]
+        );
     }
 
     // Handle api store data
@@ -58,27 +59,25 @@ class DataApiController extends Controller
 
         if ($request->hasFile('img')) {
             $img = $request->file('img');
-            $file_name = $data->name . '.' . $img->getClientOriginalExtension();
-            $data->img = $file_name;
-            $data->update();
-            $img->storeAs('public', $file_name);
+            $fileName = $data->name . '.' . $img->getClientOriginalExtension();
+            $data->update(['img' => $fileName]);
+            $img->storeAs('public', $fileName);
         }
 
-        return response()->json(['alert' => 'Successfully Create Data!']);
+        return ApiResponse::success('Data created successfully', new DataResource($data), null, 201);
     }
 
     // Handle api show data
     public function show($id)
     {
         $data = Data::findOrFail($id);
-        return response()->json($data);
+        return ApiResponse::success('Data retrieved successfully', new DataResource($data));
     }
 
     // Handle api edit data
     public function edit($id)
     {
-        $data = Data::findOrFail($id);
-        return response()->json($data);
+        return $this->show($id);
     }
 
     // Handle api update data
@@ -89,13 +88,12 @@ class DataApiController extends Controller
 
         if ($request->hasFile('img')) {
             $img = $request->file('img');
-            $file_name = $data->name . '.' . $img->getClientOriginalExtension();
-            $data->img = $file_name;
-            $data->update();
-            $img->storeAs('public', $file_name);
+            $fileName = $data->name . '.' . $img->getClientOriginalExtension();
+            $data->update(['img' => $fileName]);
+            $img->storeAs('public', $fileName);
         }
 
-        return response()->json(['alert' => 'Successfully Edit Data!']);
+        return ApiResponse::success('Data updated successfully', new DataResource($data));
     }
 
     // Handle api delete data
@@ -104,7 +102,7 @@ class DataApiController extends Controller
         $data = Data::findOrFail($id);
         $data->delete();
 
-        return response()->json(['alert' => 'Successfully Delete Data!']);
+        return ApiResponse::success('Data deleted successfully');
     }
 
     // Handle api find datas by franchise category

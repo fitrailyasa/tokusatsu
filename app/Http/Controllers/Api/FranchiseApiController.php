@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Helpers\ApiResponse;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\FranchiseRequest;
@@ -15,6 +16,7 @@ class FranchiseApiController extends Controller
     public function index(Request $request)
     {
         $search = $request->query('search');
+        $perPage = $request->query('per_page', 10);
 
         $query = Franchise::query();
 
@@ -22,25 +24,24 @@ class FranchiseApiController extends Controller
             $query->where('name', 'LIKE', "%{$search}%");
         }
 
-        $perPage = $request->query('per_page', 10);
         $franchises = $query->paginate($perPage);
 
         if ($franchises->isEmpty()) {
-            return response()->json(['message' => 'No franchises found'], 404);
-        } else {
-            return response()->json([
-                'message' => 'Franchise retrieved successfully',
-                'data' => FranchiseResource::collection($franchises),
-                'pagination' => [
-                    'current_page' => $franchises->currentPage(),
-                    'total' => $franchises->total(),
-                    'per_page' => $franchises->perPage(),
-                    'last_page' => $franchises->lastPage(),
-                    'next_page_url' => $franchises->nextPageUrl(),
-                    'prev_page_url' => $franchises->previousPageUrl(),
-                ]
-            ], 200);
+            return ApiResponse::error('No franchises found', 404);
         }
+
+        return ApiResponse::success(
+            'Franchises retrieved successfully',
+            FranchiseResource::collection($franchises),
+            [
+                'current_page'   => $franchises->currentPage(),
+                'total'          => $franchises->total(),
+                'per_page'       => $franchises->perPage(),
+                'last_page'      => $franchises->lastPage(),
+                'next_page_url'  => $franchises->nextPageUrl(),
+                'prev_page_url'  => $franchises->previousPageUrl(),
+            ]
+        );
     }
 
     // Handle api store data franchise
@@ -50,27 +51,25 @@ class FranchiseApiController extends Controller
 
         if ($request->hasFile('img')) {
             $img = $request->file('img');
-            $file_name = $franchise->name . '_' . $img->getClientOriginalExtension();
-            $franchise->img = $file_name;
-            $franchise->update();
-            $img->storeAs('public', $file_name);
+            $fileName = $franchise->name . '.' . $img->getClientOriginalExtension();
+            $franchise->update(['img' => $fileName]);
+            $img->storeAs('public', $fileName);
         }
 
-        return response()->json(['alert' => 'Successfully Create Franchise!']);
+        return ApiResponse::success('Franchise created successfully', new FranchiseResource($franchise), null, 201);
     }
 
     // Handle api show data franchise
     public function show($id)
     {
         $franchise = Franchise::findOrFail($id);
-        return response()->json($franchise);
+        return ApiResponse::success('Franchise retrieved successfully', new FranchiseResource($franchise));
     }
 
     // Handle api edit data franchise
     public function edit($id)
     {
-        $franchise = Franchise::findOrFail($id);
-        return response()->json($franchise);
+        return $this->show($id);
     }
 
     // Handle api update data franchise
@@ -81,13 +80,12 @@ class FranchiseApiController extends Controller
 
         if ($request->hasFile('img')) {
             $img = $request->file('img');
-            $file_name = $franchise->name . '_' . $img->getClientOriginalExtension();
-            $franchise->img = $file_name;
-            $franchise->update();
-            $img->storeAs('public', $file_name);
+            $fileName = $franchise->name . '.' . $img->getClientOriginalExtension();
+            $franchise->update(['img' => $fileName]);
+            $img->storeAs('public', $fileName);
         }
 
-        return response()->json(['alert' => 'Successfully Edit Franchise!']);
+        return ApiResponse::success('Franchise updated successfully', new FranchiseResource($franchise));
     }
 
     // Handle api delete data franchise
@@ -96,7 +94,7 @@ class FranchiseApiController extends Controller
         $franchise = Franchise::findOrFail($id);
         $franchise->delete();
 
-        return response()->json(['alert' => 'Successfully Delete Franchise!']);
+        return ApiResponse::success('Franchise deleted successfully');
     }
 
     // Handle api find all franchises
@@ -105,14 +103,12 @@ class FranchiseApiController extends Controller
         $franchises = Franchise::all();
 
         if ($franchises->isEmpty()) {
-            return response()->json([
-                'message' => 'No franchises found',
-            ], 404);
+            return ApiResponse::error('No franchises found', 404);
         }
 
-        return response()->json([
-            'message' => 'All franchises retrieved successfully',
-            'data' => FranchiseResource::collection($franchises)
-        ], 200);
+        return ApiResponse::success(
+            'All franchises retrieved successfully',
+            FranchiseResource::collection($franchises)
+        );
     }
 }
