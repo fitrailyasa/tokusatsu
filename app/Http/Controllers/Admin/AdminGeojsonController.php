@@ -11,6 +11,8 @@ use App\Exports\GeojsonExport;
 use App\Http\Requests\GeojsonRequest;
 use App\Http\Requests\TableRequest;
 use App\Models\AddressDistrict;
+use App\Models\AddressProvince;
+use App\Models\AddressRegency;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 class AdminGeojsonController extends Controller
@@ -50,10 +52,14 @@ class AdminGeojsonController extends Controller
             $geojsons = Geojson::withTrashed()->paginate($validPerPage);
         }
 
-        $districtIds = $geojsons->pluck('district_id')->filter()->unique();
-        $districts = AddressDistrict::whereIn('id', $districtIds)->get()->keyBy('id');
+        $districtIds = collect($geojsons->items())->pluck('district_id')->filter()->unique();
+        $district = AddressDistrict::whereIn('id', $districtIds)->get()->keyBy('id');
 
-        return view("admin.geojson.index", compact('geojsons', 'search', 'perPage', 'districts'));
+        $provinces = AddressProvince::all();
+        $regencies = AddressRegency::all();
+        $districts = AddressDistrict::all();
+
+        return view("admin.geojson.index", compact('geojsons', 'search', 'perPage', 'district', 'provinces', 'regencies', 'districts'));
     }
 
     // Handle import data geojson from excel file

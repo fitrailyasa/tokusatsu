@@ -75,10 +75,10 @@
                     <td>{{ $geojsons->firstItem() + $loop->index }}</td>
                     <td>{{ $geojson->name ?? '-' }}</td>
                     <td>
-                        @if (isset($districts[$geojson->district_id]))
-                            {{ ucwords(strtolower($districts[$geojson->district_id]->name)) }},
-                            {{ ucwords(strtolower($districts[$geojson->district_id]->regency->name)) }},
-                            {{ ucwords(strtolower($districts[$geojson->district_id]->regency->province->name)) }}
+                        @if (isset($district[$geojson->district_id]))
+                            {{ ucwords(strtolower($district[$geojson->district_id]->name)) }},
+                            {{ ucwords(strtolower($district[$geojson->district_id]->regency->name)) }},
+                            {{ ucwords(strtolower($district[$geojson->district_id]->regency->province->name)) }}
                         @else
                             <em>-</em>
                         @endif
