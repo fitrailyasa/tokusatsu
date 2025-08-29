@@ -95,7 +95,7 @@
                     <th>{{ __('No') }}</th>
                     <th>{{ __('Name') }}</th>
                     <th>{{ __('Img') }}</th>
-                    <th>{{ __('description') }}</th>
+                    <th>{{ __('Description') }}</th>
                     <th>{{ __('Era') }}</th>
                     <th>{{ __('Franchise') }}</th>
                     <th class="text-center">{{ __('Action') }}</th>

@@ -65,7 +65,7 @@
                     <th>{{ __('No') }}</th>
                     <th>{{ __('Name') }}</th>
                     <th>{{ __('Img') }}</th>
-                    <th>{{ __('description') }}</th>
+                    <th>{{ __('Description') }}</th>
                     <th class="text-center">{{ __('Action') }}</th>
                 </tr>
             </thead>
