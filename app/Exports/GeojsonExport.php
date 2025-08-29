@@ -25,7 +25,6 @@ class GeojsonExport implements FromCollection, WithHeadings, WithStyles, ShouldA
                 'Name' => $geojson->name ?? '',
                 'Description' => $geojson->description ?? '',
                 'Geometry' => $geojson->geometry ?? '',
-                'Properties' => $geojson->properties ?? '',
             ];
         }
 
@@ -43,14 +42,13 @@ class GeojsonExport implements FromCollection, WithHeadings, WithStyles, ShouldA
                 'Name',
                 'Description',
                 'Geometry',
-                'Properties',
             ]
         ];
     }
 
     public function styles(Worksheet $sheet)
     {
-        $sheet->mergeCells('A1:E1');
+        $sheet->mergeCells('A1:D1');
 
         $borderStyle = [
             'borders' => [

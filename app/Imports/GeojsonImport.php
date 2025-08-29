@@ -13,7 +13,6 @@ class GeojsonImport implements ToModel, WithStartRow
         $name       = $row[1];
         $description       = $row[2] ?? null;
         $geometry   = $this->decodeJson($row[3] ?? null);
-        $properties = $this->decodeJson($row[4] ?? null);
 
         $checkGeojson = Geojson::withTrashed()->where('name', $name)->first();
 
@@ -21,7 +20,6 @@ class GeojsonImport implements ToModel, WithStartRow
             $checkGeojson->update([
                 'description'       => $description,
                 'geometry'   => $geometry,
-                'properties' => $properties,
             ]);
             return null;
         } else {
@@ -29,7 +27,6 @@ class GeojsonImport implements ToModel, WithStartRow
                 'name'       => $name,
                 'description'       => $description,
                 'geometry'   => $geometry,
-                'properties' => $properties,
             ]);
         }
     }

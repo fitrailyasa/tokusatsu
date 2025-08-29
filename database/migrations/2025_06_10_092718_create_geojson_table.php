@@ -18,9 +18,8 @@ class CreateGeojsonTable extends Migration
             $table->string('name');
             $table->string('slug')->unique();
             $table->text('description')->nullable();
-            $table->foreignId('district_id')->nullable();
             $table->json('geometry')->nullable();
-            $table->json('properties')->nullable();
+            $table->foreignId('district_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

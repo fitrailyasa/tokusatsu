@@ -64,19 +64,7 @@
                                 <div id="map"></div>
                                 <textarea class="form-control @error('geometry') is-invalid @enderror" placeholder="geometry" name="geometry"
                                     id="geometry" rows="3">{{ old('geometry') }}</textarea>
-                                <div class="form-text">Disimpan sebagai <code>GeoJSON geometry</code>. Contoh:
-                                    {"type":"Point","coordinates":[106.8,-6.2]}</div>
                                 @error('geometry')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="mb-3">
-                                <label class="form-label">{{ __('Properties') }}</label>
-                                <textarea class="form-control @error('properties') is-invalid @enderror" placeholder="properties" name="properties"
-                                    id="properties" rows="3">{{ old('properties') }}</textarea>
-                                @error('properties')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>

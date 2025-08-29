@@ -15,14 +15,14 @@
     <!-- Button Import -->
     <x-slot name="import">
         @can('import:geojson')
-            @include('admin.geojson.excel.import')
+            {{-- @include('admin.geojson.excel.import') --}}
         @endcan
     </x-slot>
 
     <!-- Button Export Excel -->
     <x-slot name="exportExcel">
         @can('export:geojson')
-            @include('admin.geojson.excel.export')
+            {{-- @include('admin.geojson.excel.export') --}}
         @endcan
     </x-slot>
 

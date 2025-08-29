@@ -100,13 +100,10 @@ class AdminGeojsonController extends Controller
             return back()->withInput()->withErrors(['geometry' => 'Invalid ' . $this->title . ' geometry.']);
         }
 
-        $properties = !empty($validated['properties']) ? json_decode($validated['properties'], true) : null;
-
         Geojson::create([
             'name'          => $validated['name'],
             'description'   => $validated['description'] ?? null,
             'geometry'      => $geometry,
-            'properties'    => $properties,
             'district_id'   => $validated['district_id'],
         ]);
 
@@ -124,13 +121,10 @@ class AdminGeojsonController extends Controller
             return back()->withInput()->withErrors(['geometry' => 'Invalid ' . $this->title . ' geometry.']);
         }
 
-        $properties = !empty($validated['properties']) ? json_decode($validated['properties'], true) : null;
-
         $geojson->update([
             'name'          => $validated['name'],
             'description'   => $validated['description'] ?? null,
             'geometry'      => $geometry,
-            'properties'    => $properties,
             'district_id'   => $validated['district_id'],
         ]);
 

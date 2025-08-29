@@ -46,7 +46,6 @@
                 <th>Nama</th>
                 <th>Deskripsi</th>
                 <th>Geometry</th>
-                <th>Properties</th>
             </tr>
         </thead>
         <tbody>
@@ -58,11 +57,6 @@
                     <td>
                         <pre class="mb-0" style="white-space: pre-wrap; word-wrap: break-word; max-width: 250px;">
                             {{ json_encode($geojson->geometry, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) }}
-                        </pre>
-                    </td>
-                    <td>
-                        <pre class="mb-0" style="white-space: pre-wrap; word-wrap: break-word; max-width: 250px;">
-                            {{ json_encode($geojson->properties, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) }}
                         </pre>
                     </td>
                 </tr>

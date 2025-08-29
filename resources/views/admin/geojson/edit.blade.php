@@ -70,10 +70,6 @@
                             <div id="map-{{ $geojson->id }}" style="height:420px;"></div>
                             <textarea class="form-control mt-2" name="geometry" id="geometry-{{ $geojson->id }}" rows="3">{{ old('geometry', json_encode($geojson->geometry)) }}</textarea>
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label">{{ __('Properties') }}</label>
-                            <textarea class="form-control" name="properties" id="properties-{{ $geojson->id }}" rows="3">{{ old('properties', $geojson->properties ? json_encode($geojson->properties) : '') }}</textarea>
-                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -123,7 +119,6 @@
             features = [{
                 type: "Feature",
                 geometry: geomData,
-                properties: {}
             }];
         }
 
@@ -152,7 +147,6 @@
                     features.push({
                         type: "Feature",
                         geometry: geojson.geometry || geojson,
-                        properties: geojson.properties || {}
                     });
                 } else {
                     features.push(geojson);
