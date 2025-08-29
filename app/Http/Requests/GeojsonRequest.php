@@ -30,6 +30,7 @@ class GeojsonRequest extends FormRequest
             'description' => 'max:1024',
             'geometry' => 'required|string',
             'properties' => 'nullable|string',
+            'district_id' => 'required|numeric',
         ];
     }
 
@@ -43,6 +44,8 @@ class GeojsonRequest extends FormRequest
             'geometry.required' => 'Geometry is required.',
             'geometry.string' => 'Geometry must be a string.',
             'properties.string' => 'Properties must be a string.',
+            'district_id.required' => 'District is required.',
+            'district_id.numeric' => 'District must be a number.',
         ];
     }
 }

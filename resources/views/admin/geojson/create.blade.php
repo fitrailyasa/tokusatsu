@@ -37,6 +37,27 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="mb-3 col-md-6">
+                            <label>Provinsi<span class="text-danger">*</span></label>
+                            <select name="create__id" id="create_province" class="form-control">
+                                <option value="">Pilih Provinsi</option>
+                                @foreach ($provinces as $province)
+                                    <option value="{{ $province->id }}">{{ $province->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label>Kabupaten/Kota<span class="text-danger">*</span></label>
+                            <select name="regency_id" id="create_regency" class="form-control">
+                                <option value="">Pilih Kabupaten/Kota</option>
+                            </select>
+                        </div>
+                        <div class="mb-3 col-md-12">
+                            <label>Kecamatan<span class="text-danger">*</span></label>
+                            <select name="district_id" id="create_district" class="form-control">
+                                <option value="">Pilih Kecamatan</option>
+                            </select>
+                        </div>
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="form-label">{{ __('Geometry') }}</label>
@@ -71,6 +92,7 @@
     </div>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const mapId = "map";
@@ -121,6 +143,34 @@
         const modalEl = document.querySelector(modalSelector);
         modalEl.addEventListener('shown.bs.modal', function() {
             map.invalidateSize();
+        });
+    });
+</script>
+<script>
+    $('#create_province').on('change', function() {
+        let id = $(this).val();
+        $('#create_regency').html('<option value="">Loading...</option>');
+        $('#create_district').html('<option value="">-</option>');
+
+        $.get('/api/regencies/' + id, function(res) {
+            if (res.status) {
+                let opt = '<option value="">Pilih Kabupaten/Kota</option>';
+                res.data.forEach(item => opt += `<option value="${item.id}">${item.name}</option>`);
+                $('#create_regency').html(opt);
+            }
+        });
+    });
+
+    $('#create_regency').on('change', function() {
+        let id = $(this).val();
+        $('#create_district').html('<option value="">Loading...</option>');
+
+        $.get('/api/districts/' + id, function(res) {
+            if (res.status) {
+                let opt = '<option value="">Pilih Kecamatan</option>';
+                res.data.forEach(item => opt += `<option value="${item.id}">${item.name}</option>`);
+                $('#create_district').html(opt);
+            }
         });
     });
 </script>

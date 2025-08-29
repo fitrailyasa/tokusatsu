@@ -107,6 +107,7 @@ class AdminGeojsonController extends Controller
             'description'   => $validated['description'] ?? null,
             'geometry'      => $geometry,
             'properties'    => $properties,
+            'district_id'   => $validated['district_id'],
         ]);
 
         return back()->with('success', 'Successfully Create Data ' . $this->title . '!');
@@ -130,6 +131,7 @@ class AdminGeojsonController extends Controller
             'description'   => $validated['description'] ?? null,
             'geometry'      => $geometry,
             'properties'    => $properties,
+            'district_id'   => $validated['district_id'],
         ]);
 
         return back()->with('success', 'Successfully Edit Data ' . $this->title . '!');

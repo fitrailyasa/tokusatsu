@@ -15,23 +15,65 @@
                     <button type="button" class="close" data-bs-dismiss="modal"><span>&times;</span></button>
                 </div>
                 <div class="modal-body text-left">
-                    <div class="mb-3">
-                        <label class="form-label">{{ __('Name') }}<span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" name="name"
-                            value="{{ old('name', $geojson->name) }}" required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">{{ __('Description') }}</label>
-                        <textarea class="form-control" name="description" rows="2">{{ old('description', $geojson->description) }}</textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">{{ __('Geometry') }}</label>
-                        <div id="map-{{ $geojson->id }}" style="height:420px;"></div>
-                        <textarea class="form-control mt-2" name="geometry" id="geometry-{{ $geojson->id }}" rows="3">{{ old('geometry', json_encode($geojson->geometry)) }}</textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">{{ __('Properties') }}</label>
-                        <textarea class="form-control" name="properties" id="properties-{{ $geojson->id }}" rows="3">{{ old('properties', $geojson->properties ? json_encode($geojson->properties) : '') }}</textarea>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="mb-3">
+                                <label class="form-label">{{ __('Name') }}<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="name"
+                                    value="{{ old('name', $geojson->name) }}" required>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="mb-3">
+                                <label class="form-label">{{ __('Description') }}</label>
+                                <textarea class="form-control" name="description" rows="2">{{ old('description', $geojson->description) }}</textarea>
+                            </div>
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label>Provinsi<span class="text-danger">*</span></label>
+                            <select name="province_id" id="edit_province-{{ $geojson->id }}" class="form-control">
+                                <option value="">Pilih Provinsi</option>
+                                @foreach ($provinces as $province)
+                                    <option value="{{ $province->id }}"
+                                        {{ $province->id == $geojson->province_id ? 'selected' : '' }}>
+                                        {{ $province->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label>Kabupaten/Kota<span class="text-danger">*</span></label>
+                            <select name="regency_id" id="edit_regency-{{ $geojson->id }}" class="form-control">
+                                <option value="">Pilih Kabupaten/Kota</option>
+                                @foreach ($regencies->where('province_id', $geojson->province_id) as $regency)
+                                    <option value="{{ $regency->id }}"
+                                        {{ $regency->id == $geojson->regency_id ? 'selected' : '' }}>
+                                        {{ $regency->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="mb-3 col-md-12">
+                            <label>Kecamatan<span class="text-danger">*</span></label>
+                            <select name="district_id" id="edit_district-{{ $geojson->id }}" class="form-control">
+                                <option value="">Pilih Kecamatan</option>
+                                @foreach ($districts->where('regency_id', $geojson->regency_id) as $district)
+                                    <option value="{{ $district->id }}"
+                                        {{ $district->id == $geojson->district_id ? 'selected' : '' }}>
+                                        {{ $district->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">{{ __('Geometry') }}</label>
+                            <div id="map-{{ $geojson->id }}" style="height:420px;"></div>
+                            <textarea class="form-control mt-2" name="geometry" id="geometry-{{ $geojson->id }}" rows="3">{{ old('geometry', json_encode($geojson->geometry)) }}</textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">{{ __('Properties') }}</label>
+                            <textarea class="form-control" name="properties" id="properties-{{ $geojson->id }}" rows="3">{{ old('properties', $geojson->properties ? json_encode($geojson->properties) : '') }}</textarea>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -43,6 +85,7 @@
     </div>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const mapId = "map-{{ $geojson->id }}";
@@ -136,5 +179,43 @@
                 map.invalidateSize();
             });
         }
+    });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const province = $('#edit_province-{{ $geojson->id }}');
+        const regency = $('#edit_regency-{{ $geojson->id }}');
+        const district = $('#edit_district-{{ $geojson->id }}');
+
+        province.on('change', function() {
+            let id = $(this).val();
+            regency.html('<option value="">Loading...</option>');
+            district.html('<option value="">-</option>');
+
+            $.get('/api/regencies/' + id, function(res) {
+                if (res.status) {
+                    let opt = '<option value="">Pilih Kabupaten/Kota</option>';
+                    res.data.forEach(item => {
+                        opt += `<option value="${item.id}">${item.name}</option>`;
+                    });
+                    regency.html(opt);
+                }
+            });
+        });
+
+        regency.on('change', function() {
+            let id = $(this).val();
+            district.html('<option value="">Loading...</option>');
+
+            $.get('/api/districts/' + id, function(res) {
+                if (res.status) {
+                    let opt = '<option value="">Pilih Kecamatan</option>';
+                    res.data.forEach(item => {
+                        opt += `<option value="${item.id}">${item.name}</option>`;
+                    });
+                    district.html(opt);
+                }
+            });
+        });
     });
 </script>
