@@ -65,9 +65,7 @@
             <tr>
                 <th>{{ __('No') }}</th>
                 <th>{{ __('Name') }}</th>
-                <th>{{ __('Description') }}</th>
-                {{-- <th>{{ __('Geometry') }}</th> --}}
-                <th>{{ __('Properties') }}</th>
+                <th>{{ __('District') }}</th>
                 <th class="text-center">{{ __('Action') }}</th>
             </tr>
         </thead>
@@ -76,16 +74,14 @@
                 <tr @if ($geojson->trashed()) class="text-muted" @endif>
                     <td>{{ $geojsons->firstItem() + $loop->index }}</td>
                     <td>{{ $geojson->name ?? '-' }}</td>
-                    <td>{{ Illuminate\Support\Str::words($geojson->description ?? '-', 10, '...') }}</td>
-                    {{-- <td>
-                        <pre class="mb-0" style="white-space: pre-wrap; word-wrap: break-word; max-width: 250px;">
-                            {{ json_encode($geojson->geometry, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) }}
-                        </pre>
-                    </td> --}}
                     <td>
-                        <pre class="mb-0" style="white-space: pre-wrap; word-wrap: break-word; max-width: 250px;">
-                            {{ json_encode($geojson->properties, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) }}
-                        </pre>
+                        @if (isset($districts[$geojson->district_id]))
+                            {{ ucwords(strtolower($districts[$geojson->district_id]->name)) }},
+                            {{ ucwords(strtolower($districts[$geojson->district_id]->regency->name)) }},
+                            {{ ucwords(strtolower($districts[$geojson->district_id]->regency->province->name)) }}
+                        @else
+                            <em>-</em>
+                        @endif
                     </td>
                     <td class="manage-row text-center">
                         @if ($geojson->trashed())
@@ -113,9 +109,7 @@
             <tr>
                 <th>{{ __('No') }}</th>
                 <th>{{ __('Name') }}</th>
-                <th>{{ __('Description') }}</th>
-                {{-- <th>{{ __('Geometry') }}</th> --}}
-                <th>{{ __('Properties') }}</th>
+                <th>{{ __('District') }}</th>
                 <th class="text-center">{{ __('Action') }}</th>
             </tr>
         </tfoot>

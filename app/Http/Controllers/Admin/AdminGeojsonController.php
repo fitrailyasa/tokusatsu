@@ -10,6 +10,7 @@ use App\Imports\GeojsonImport;
 use App\Exports\GeojsonExport;
 use App\Http\Requests\GeojsonRequest;
 use App\Http\Requests\TableRequest;
+use App\Models\AddressDistrict;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 class AdminGeojsonController extends Controller
@@ -49,7 +50,10 @@ class AdminGeojsonController extends Controller
             $geojsons = Geojson::withTrashed()->paginate($validPerPage);
         }
 
-        return view("admin.geojson.index", compact('geojsons', 'search', 'perPage'));
+        $districtIds = $geojsons->pluck('district_id')->filter()->unique();
+        $districts = AddressDistrict::whereIn('id', $districtIds)->get()->keyBy('id');
+
+        return view("admin.geojson.index", compact('geojsons', 'search', 'perPage', 'districts'));
     }
 
     // Handle import data geojson from excel file

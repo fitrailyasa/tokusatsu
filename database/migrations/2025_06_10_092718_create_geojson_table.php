@@ -15,9 +15,10 @@ class CreateGeojsonTable extends Migration
     {
         Schema::create('geojsons', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
+            $table->string('name');
             $table->string('slug')->unique();
             $table->text('description')->nullable();
+            $table->foreignId('district_id')->nullable();
             $table->json('geometry')->nullable();
             $table->json('properties')->nullable();
             $table->timestamps();

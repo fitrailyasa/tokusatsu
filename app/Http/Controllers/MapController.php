@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AddressDistrict;
+use App\Models\AddressProvince;
+use App\Models\AddressRegency;
 use Illuminate\Support\Facades\File;
 use App\Models\Geojson;
 
@@ -63,8 +66,10 @@ class MapController extends Controller
         $regFolder = str_replace('\\', '/', $regFolder);
         $regFolder = '/' . ltrim($regFolder, '/');
 
-        $geojsons = Geojson::all();
-        // dd($geojsons);
+        preg_match('/id(\d+)_/', basename($regPath), $matches);
+        $regencyId = $matches[1] ?? null;
+        $districtIds = AddressDistrict::where('regency_id', $regencyId)->pluck('id');
+        $geojsons = Geojson::whereIn('district_id', $districtIds)->get() ?? [];
 
         return view('client.map.regency', [
             'province' => ucwords(str_replace("_", " ", $province)),
@@ -103,8 +108,10 @@ class MapController extends Controller
         $regFolder = str_replace('\\', '/', $regFolder);
         $regFolder = '/' . ltrim($regFolder, '/');
 
-        $geojsons = Geojson::all();
-        // dd($geojsons);
+        preg_match('/id(\d+)_/', basename($regPath), $matches);
+        $regencyId = $matches[1] ?? null;
+        $districtIds = AddressDistrict::where('regency_id', $regencyId)->pluck('id');
+        $geojsons = Geojson::whereIn('district_id', $districtIds)->get() ?? [];
 
         return view('client.map.district', [
             'province' => ucwords(str_replace("_", " ", $province)),

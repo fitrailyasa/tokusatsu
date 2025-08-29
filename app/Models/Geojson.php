@@ -16,7 +16,7 @@ class Geojson extends Model
     protected $connection;
     protected $table = 'geojsons';
     protected $primaryKey = 'id';
-    protected $fillable = ['name', 'slug', 'description', 'geometry', 'properties'];
+    protected $fillable = ['name', 'slug', 'description', 'geometry', 'properties', 'district_id'];
     protected $casts = ['geometry'  => 'array', 'properties' => 'array'];
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 
@@ -26,6 +26,7 @@ class Geojson extends Model
 
         DB::setDefaultConnection(env('DB_CONNECTION'));
         // DB::setDefaultConnection(env('DB2_CONNECTION'));
+        // DB::setDefaultConnection(env('DB3_CONNECTION'));
 
         static::creating(function ($model) {
             if (empty($model->slug) && !empty($model->name)) {
@@ -43,5 +44,10 @@ class Geojson extends Model
     public function categories()
     {
         return $this->hasMany(Category::class);
+    }
+
+    public function district()
+    {
+        return $this->belongsTo(AddressDistrict::class, 'district_id', 'id');
     }
 }
