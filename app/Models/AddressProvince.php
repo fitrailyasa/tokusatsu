@@ -10,6 +10,7 @@ class AddressProvince extends Model
 {
     use HasFactory;
 
+    protected $connection;
     protected $table = 'address_provinces';
     protected $fillable = ['name'];
 
@@ -18,12 +19,12 @@ class AddressProvince extends Model
         return $this->hasMany(AddressRegency::class);
     }
 
-    protected static function boot()
+    public function __construct(array $attributes = [])
     {
-        parent::boot();
+        parent::__construct($attributes);
 
-        // DB::setDefaultConnection(env('DB_CONNECTION'));
-        // DB::setDefaultConnection(env('DB2_CONNECTION'));
-        DB::setDefaultConnection(env('DB3_CONNECTION'));
+        // $this->connection = env('DB1_CONNECTION');
+        // $this->connection = env('DB2_CONNECTION');
+        $this->connection = env('DB3_CONNECTION');
     }
 }

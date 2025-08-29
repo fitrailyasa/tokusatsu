@@ -10,6 +10,7 @@ class AddressDistrict extends Model
 {
     use HasFactory;
 
+    protected $connection;
     protected $table = 'address_districts';
     protected $fillable = ['name', 'regency_id'];
 
@@ -23,12 +24,12 @@ class AddressDistrict extends Model
         return $this->hasMany(AddressVillage::class);
     }
 
-    protected static function boot()
+    public function __construct(array $attributes = [])
     {
-        parent::boot();
+        parent::__construct($attributes);
 
-        // DB::setDefaultConnection(env('DB_CONNECTION'));
-        // DB::setDefaultConnection(env('DB2_CONNECTION'));
-        DB::setDefaultConnection(env('DB3_CONNECTION'));
+        // $this->connection = env('DB1_CONNECTION');
+        // $this->connection = env('DB2_CONNECTION');
+        $this->connection = env('DB3_CONNECTION');
     }
 }
