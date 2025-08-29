@@ -37,7 +37,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="mb-3 col-md-6">
+                        <div class="mb-3 col-md-4">
                             <label>Provinsi<span class="text-danger">*</span></label>
                             <select name="create__id" id="create_province" class="form-control">
                                 <option value="">Pilih Provinsi</option>
@@ -46,13 +46,13 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="mb-3 col-md-6">
+                        <div class="mb-3 col-md-4">
                             <label>Kabupaten/Kota<span class="text-danger">*</span></label>
                             <select name="regency_id" id="create_regency" class="form-control">
                                 <option value="">Pilih Kabupaten/Kota</option>
                             </select>
                         </div>
-                        <div class="mb-3 col-md-12">
+                        <div class="mb-3 col-md-4">
                             <label>Kecamatan<span class="text-danger">*</span></label>
                             <select name="district_id" id="create_district" class="form-control">
                                 <option value="">Pilih Kecamatan</option>

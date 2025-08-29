@@ -29,35 +29,35 @@
                                 <textarea class="form-control" name="description" rows="2">{{ old('description', $geojson->description) }}</textarea>
                             </div>
                         </div>
-                        <div class="mb-3 col-md-6">
+                        <div class="mb-3 col-md-4">
                             <label>Provinsi<span class="text-danger">*</span></label>
-                            <select name="province_id" id="edit_province-{{ $geojson->id }}" class="form-control">
+                            <select id="edit_province-{{ $geojson->id }}" class="form-control">
                                 <option value="">Pilih Provinsi</option>
                                 @foreach ($provinces as $province)
                                     <option value="{{ $province->id }}"
-                                        {{ $province->id == $geojson->province_id ? 'selected' : '' }}>
+                                        {{ $province->id == $district[$geojson->district_id]->regency->province->id ? 'selected' : '' }}>
                                         {{ $province->name }}
                                     </option>
                                 @endforeach
                             </select>
                         </div>
-                        <div class="mb-3 col-md-6">
+                        <div class="mb-3 col-md-4">
                             <label>Kabupaten/Kota<span class="text-danger">*</span></label>
-                            <select name="regency_id" id="edit_regency-{{ $geojson->id }}" class="form-control">
+                            <select id="edit_regency-{{ $geojson->id }}" class="form-control">
                                 <option value="">Pilih Kabupaten/Kota</option>
-                                @foreach ($regencies->where('province_id', $geojson->province_id) as $regency)
+                                @foreach ($regencies->where('province_id', $district[$geojson->district_id]->regency->province->id) as $regency)
                                     <option value="{{ $regency->id }}"
-                                        {{ $regency->id == $geojson->regency_id ? 'selected' : '' }}>
+                                        {{ $regency->id == $district[$geojson->district_id]->regency->id ? 'selected' : '' }}>
                                         {{ $regency->name }}
                                     </option>
                                 @endforeach
                             </select>
                         </div>
-                        <div class="mb-3 col-md-12">
+                        <div class="mb-3 col-md-4">
                             <label>Kecamatan<span class="text-danger">*</span></label>
                             <select name="district_id" id="edit_district-{{ $geojson->id }}" class="form-control">
                                 <option value="">Pilih Kecamatan</option>
-                                @foreach ($districts->where('regency_id', $geojson->regency_id) as $district)
+                                @foreach ($districts->where('regency_id', $district[$geojson->district_id]->regency->id) as $district)
                                     <option value="{{ $district->id }}"
                                         {{ $district->id == $geojson->district_id ? 'selected' : '' }}>
                                         {{ $district->name }}
