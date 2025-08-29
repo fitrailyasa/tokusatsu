@@ -113,6 +113,10 @@ class MapController extends Controller
         $districtIds = AddressDistrict::where('regency_id', $regencyId)->pluck('id');
         $geojsons = Geojson::whereIn('district_id', $districtIds)->get() ?? [];
 
+        if (!$files->count()) {
+            abort(404, "District not found");
+        }
+
         return view('client.map.district', [
             'province' => ucwords(str_replace("_", " ", $province)),
             'regency' => ucwords(str_replace("_", " ", $regency)),
