@@ -110,20 +110,40 @@
         map.addControl(drawControl);
 
         const textarea = document.getElementById(geometryId);
-        const geomData = JSON.parse(textarea.value);
+        let geomData = {};
+        try {
+            geomData = JSON.parse(textarea.value);
+        } catch (e) {
+            geomData = {
+                type: "FeatureCollection",
+                features: []
+            };
+        }
+
         let features = [];
 
         if (geomData.type === "FeatureCollection" && Array.isArray(geomData.features)) {
-            features = geomData.features;
+            geomData.features.forEach(f => {
+                if (f.geometry && f.geometry.type === "FeatureCollection" && Array.isArray(f.geometry
+                        .features)) {
+                    f.geometry.features.forEach(innerF => features.push(innerF));
+                } else {
+                    features.push(f);
+                }
+            });
+        } else if (geomData.type === "Feature") {
+            features = [geomData];
         } else if (geomData.type) {
             features = [{
                 type: "Feature",
-                geometry: geomData,
+                geometry: geomData
             }];
         }
 
         features.forEach(f => {
-            L.geoJSON(f).addTo(drawnItems);
+            L.geoJSON(f).eachLayer(layer => {
+                drawnItems.addLayer(layer);
+            });
         });
 
         if (drawnItems.getLayers().length > 0) {
@@ -143,11 +163,8 @@
             const features = [];
             drawnItems.eachLayer(layer => {
                 const geojson = layer.toGeoJSON();
-                if (!geojson.type || geojson.type !== "Feature") {
-                    features.push({
-                        type: "Feature",
-                        geometry: geojson.geometry || geojson,
-                    });
+                if (geojson.type === "FeatureCollection" && Array.isArray(geojson.features)) {
+                    geojson.features.forEach(innerF => features.push(innerF));
                 } else {
                     features.push(geojson);
                 }
