@@ -52,14 +52,11 @@ class AdminGeojsonController extends Controller
             $geojsons = Geojson::withTrashed()->paginate($validPerPage);
         }
 
-        $districtIds = collect($geojsons->items())->pluck('district_id')->filter()->unique();
-        $district = AddressDistrict::whereIn('id', $districtIds)->get()->keyBy('id');
-
         $provinces = AddressProvince::all();
         $regencies = AddressRegency::all();
         $districts = AddressDistrict::all();
 
-        return view("admin.geojson.index", compact('geojsons', 'search', 'perPage', 'district', 'provinces', 'regencies', 'districts'));
+        return view("admin.geojson.index", compact('geojsons', 'search', 'perPage', 'provinces', 'regencies', 'districts'));
     }
 
     // Handle import data geojson from excel file

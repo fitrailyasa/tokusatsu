@@ -35,7 +35,7 @@
                                 <option value="">Pilih Provinsi</option>
                                 @foreach ($provinces as $province)
                                     <option value="{{ $province->id }}"
-                                        {{ $province->id == $district[$geojson->district_id]->regency->province->id ? 'selected' : '' }}>
+                                        {{ $province->id == $geojson->district->regency->province->id ? 'selected' : '' }}>
                                         {{ $province->name }}
                                     </option>
                                 @endforeach
@@ -45,9 +45,9 @@
                             <label>Kabupaten/Kota<span class="text-danger">*</span></label>
                             <select id="edit_regency-{{ $geojson->id }}" class="form-control">
                                 <option value="">Pilih Kabupaten/Kota</option>
-                                @foreach ($regencies->where('province_id', $district[$geojson->district_id]->regency->province->id) as $regency)
+                                @foreach ($regencies->where('province_id', $geojson->district->regency->province->id) as $regency)
                                     <option value="{{ $regency->id }}"
-                                        {{ $regency->id == $district[$geojson->district_id]->regency->id ? 'selected' : '' }}>
+                                        {{ $regency->id == $geojson->district->regency->id ? 'selected' : '' }}>
                                         {{ $regency->name }}
                                     </option>
                                 @endforeach
@@ -57,7 +57,7 @@
                             <label>Kecamatan<span class="text-danger">*</span></label>
                             <select name="district_id" id="edit_district-{{ $geojson->id }}" class="form-control">
                                 <option value="">Pilih Kecamatan</option>
-                                @foreach ($districts->where('regency_id', $district[$geojson->district_id]->regency->id) as $district)
+                                @foreach ($districts->where('regency_id', $geojson->district->regency->id) as $district)
                                     <option value="{{ $district->id }}"
                                         {{ $district->id == $geojson->district_id ? 'selected' : '' }}>
                                         {{ $district->name }}
