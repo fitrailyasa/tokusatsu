@@ -191,5 +191,6 @@ Route::post('/address', [AddressController::class, 'store'])->name('address.stor
 Route::get('/map', [MapController::class, 'index'])->name('map.index');
 Route::get('/map/{province}', [MapController::class, 'province'])->name('map.province');
 Route::get('/map/{province}/{regency}', [MapController::class, 'regency'])->name('map.regency');
+Route::get('/map/{province}/{regency}/{district}', [MapController::class, 'district'])->name('map.district');
 
 Route::get('/{franchise}/{category}', [HomeController::class, 'show'])->name('beranda.show');

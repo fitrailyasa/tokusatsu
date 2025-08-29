@@ -1,6 +1,6 @@
 @extends('layouts.client.app')
 
-@section('title', "Map $regency - $province")
+@section('title', "Map $district - $regency - $province")
 
 @section('content')
     <link rel="stylesheet" href="{{ asset('assets/maps/leaflet/leaflet.css') }}">
@@ -64,7 +64,7 @@
                 </a>
             </div>
             <div>
-                <h3 class="text-center">Map {{ $regency }}</h3>
+                <h3 class="text-center">Map {{ $district }}</h3>
             </div>
             <div></div>
         </div>
@@ -301,7 +301,7 @@
                 overlayMaps[groupIndex].layers.push({
                     name: name,
                     icon: panelCostumIconColor(getRandomColorForPolygon()),
-                    active: groupIndex === 1,
+                    active: true,
                     layer: layer
                 });
 
