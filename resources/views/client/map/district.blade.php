@@ -243,16 +243,10 @@
 
         async function initializeMaps() {
             let overlayMaps = [{
-                    group: "Batas Adm {{ $regency }}",
-                    collapsed: false,
-                    layers: []
-                },
-                {
-                    group: "Batas Kec. di {{ $regency }}",
-                    collapsed: false,
-                    layers: []
-                }
-            ];
+                group: "Batas Kec. {{ $district }}",
+                collapsed: false,
+                layers: []
+            }];
 
             const files = @json($geojsonFiles);
             const folder = "{{ $regFolder }}";
