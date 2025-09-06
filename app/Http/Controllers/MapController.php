@@ -59,7 +59,7 @@ class MapController extends Controller
         $regFolder = '/' . ltrim($regFolder, '/');
         $regFolderUrl = asset('storage' . $regFolder);
 
-        $files = collect(File::files($regPath))
+        $staticGeojsons = collect(File::files($regPath))
             ->filter(fn($file) => str_ends_with($file->getFilename(), '.geojson'))
             ->map(fn($file) => $regFolderUrl . '/' . $file->getFilename())
             ->reverse()
@@ -68,13 +68,14 @@ class MapController extends Controller
         preg_match('/id(\d+)_/', basename($regPath), $matches);
         $regencyId = $matches[1] ?? null;
         $districtIds = AddressDistrict::where('regency_id', $regencyId)->pluck('id');
-        $geojsons = Geojson::whereIn('district_id', $districtIds)->get() ?? [];
+
+        $dynamicGeojsons = Geojson::whereIn('district_id', $districtIds)->get() ?? [];
 
         return view('client.map.regency', [
             'province' => ucwords(str_replace("_", " ", $province)),
             'regency' => ucwords(str_replace("_", " ", $regency)),
-            'geojsonFiles' => $files,
-            'geojsons' => $geojsons,
+            'staticGeojsons' => $staticGeojsons,
+            'dynamicGeojsons' => $dynamicGeojsons,
         ]);
     }
 
@@ -99,7 +100,7 @@ class MapController extends Controller
         $regFolder = str_replace('\\', '/', $regFolder);
         $regFolder = '/' . ltrim($regFolder, '/');
 
-        $files = collect(File::files($regPath))
+        $staticGeojsons = collect(File::files($regPath))
             ->filter(fn($file) => str_contains($file->getFilename(), $district))
             ->filter(fn($file) => str_ends_with($file->getFilename(), '.geojson'))
             ->map(fn($file) => asset('storage' . $regFolder . '/' . $file->getFilename()))
@@ -109,9 +110,10 @@ class MapController extends Controller
         preg_match('/id(\d+)_/', basename($regPath), $matches);
         $regencyId = $matches[1] ?? null;
         $districtIds = AddressDistrict::where('regency_id', $regencyId)->pluck('id');
-        $geojsons = Geojson::whereIn('district_id', $districtIds)->get() ?? [];
 
-        if (!$files->count()) {
+        $dynamicGeojsons = Geojson::whereIn('district_id', $districtIds)->get() ?? [];
+
+        if (!$staticGeojsons->count()) {
             abort(404, "District not found");
         }
 
@@ -119,8 +121,8 @@ class MapController extends Controller
             'province' => ucwords(str_replace("_", " ", $province)),
             'regency' => ucwords(str_replace("_", " ", $regency)),
             'district' => ucwords(str_replace("_", " ", $district)),
-            'geojsonFiles' => $files,
-            'geojsons' => $geojsons,
+            'staticGeojsons' => $staticGeojsons,
+            'dynamicGeojsons' => $dynamicGeojsons,
         ]);
     }
 }

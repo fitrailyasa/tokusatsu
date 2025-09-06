@@ -248,16 +248,16 @@
                 layers: []
             }];
 
-            const files = @json($geojsonFiles);
-            const geojsons = @json($geojsons);
+            const staticGeojsons = @json($staticGeojsons);
+            const dynamicGeojsons = @json($dynamicGeojsons);
 
             let allLayers = L.featureGroup();
 
             // ===============================
-            // 1. Load dari file .geojson
+            // 1. static geojson
             // ===============================
-            for (let i = 0; i < files.length; i++) {
-                const fileUrl = files[i];
+            for (let i = 0; i < staticGeojsons.length; i++) {
+                const fileUrl = staticGeojsons[i];
                 const geojsonData = await getGeoJSON(fileUrl);
 
                 let name = fileUrl.split("/").pop().replace(".geojson", "");
@@ -316,9 +316,9 @@
             }
 
             // ===============================
-            // 2. Load dari database
+            // 2. dynamic geojson
             // ===============================
-            geojsons.forEach((g, index) => {
+            dynamicGeojsons.forEach((g, index) => {
                 const geojsonData = g.geometry;
                 let name = g.name || `Data ${index+1}`;
 
