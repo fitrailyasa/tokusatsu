@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AddressDistrict;
-use App\Models\AddressProvince;
-use App\Models\AddressRegency;
 use Illuminate\Support\Facades\File;
+use App\Models\AddressDistrict;
 use App\Models\Geojson;
 
 class MapController extends Controller
@@ -56,15 +54,16 @@ class MapController extends Controller
             abort(404, "Regency not found");
         }
 
-        $files = collect(File::files($regPath))
-            ->map(fn($file) => $file->getFilename())
-            ->filter(fn($file) => str_ends_with($file, '.geojson'))
-            ->reverse()
-            ->values();
-
         $regFolder = str_replace(storage_path('app/public'), '', $regPath);
         $regFolder = str_replace('\\', '/', $regFolder);
         $regFolder = '/' . ltrim($regFolder, '/');
+        $regFolderUrl = asset('storage' . $regFolder);
+
+        $files = collect(File::files($regPath))
+            ->filter(fn($file) => str_ends_with($file->getFilename(), '.geojson'))
+            ->map(fn($file) => $regFolderUrl . '/' . $file->getFilename())
+            ->reverse()
+            ->values();
 
         preg_match('/id(\d+)_/', basename($regPath), $matches);
         $regencyId = $matches[1] ?? null;
@@ -75,7 +74,6 @@ class MapController extends Controller
             'province' => ucwords(str_replace("_", " ", $province)),
             'regency' => ucwords(str_replace("_", " ", $regency)),
             'geojsonFiles' => $files,
-            'regFolder' => asset('storage' . $regFolder),
             'geojsons' => $geojsons,
         ]);
     }
@@ -97,16 +95,16 @@ class MapController extends Controller
             abort(404, "Regency not found");
         }
 
-        $files = collect(File::files($regPath))
-            ->filter(fn($file) => str_contains($file->getFilename(), $district))
-            ->map(fn($file) => $file->getFilename())
-            ->filter(fn($file) => str_ends_with($file, '.geojson'))
-            ->reverse()
-            ->values();
-
         $regFolder = str_replace(storage_path('app/public'), '', $regPath);
         $regFolder = str_replace('\\', '/', $regFolder);
         $regFolder = '/' . ltrim($regFolder, '/');
+
+        $files = collect(File::files($regPath))
+            ->filter(fn($file) => str_contains($file->getFilename(), $district))
+            ->filter(fn($file) => str_ends_with($file->getFilename(), '.geojson'))
+            ->map(fn($file) => asset('storage' . $regFolder . '/' . $file->getFilename()))
+            ->reverse()
+            ->values();
 
         preg_match('/id(\d+)_/', basename($regPath), $matches);
         $regencyId = $matches[1] ?? null;
@@ -122,7 +120,6 @@ class MapController extends Controller
             'regency' => ucwords(str_replace("_", " ", $regency)),
             'district' => ucwords(str_replace("_", " ", $district)),
             'geojsonFiles' => $files,
-            'regFolder' => asset('storage' . $regFolder),
             'geojsons' => $geojsons,
         ]);
     }

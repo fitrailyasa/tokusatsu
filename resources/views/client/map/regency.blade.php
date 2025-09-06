@@ -255,7 +255,6 @@
             ];
 
             const files = @json($geojsonFiles);
-            const folder = "{{ $regFolder }}";
             const geojsons = @json($geojsons);
 
             let allLayers = L.featureGroup();
@@ -264,10 +263,10 @@
             // 1. Load dari file .geojson
             // ===============================
             for (let i = 0; i < files.length; i++) {
-                const file = files[i];
-                const geojsonData = await getGeoJSON(folder + "/" + file);
+                const fileUrl = files[i];
+                const geojsonData = await getGeoJSON(fileUrl);
 
-                let name = file.replace(".geojson", "");
+                let name = fileUrl.split("/").pop().replace(".geojson", "");
                 if (name.includes("_")) {
                     name = name.split("_").slice(1).join("_");
                 }
