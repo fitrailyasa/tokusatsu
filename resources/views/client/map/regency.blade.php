@@ -228,7 +228,7 @@
             });
 
         var baseMaps = [{
-                name: "OpenStreetMap",
+                name: "Open Street Map",
                 layer: osm
             },
             {
@@ -342,14 +342,24 @@
                         fillOpacity: 0.6
                     }),
                     onEachFeature: (feature, layerFeature) => {
-                        if (feature.properties && feature.properties.district) {
-                            let villageName = feature.properties.village || "N/A";
-                            layerFeature.bindPopup(
-                                `<b>Province:</b> ${feature.properties.province}<br>
-                                <b>Regency:</b> ${feature.properties.regency}<br>
-                                <b>District:</b> ${feature.properties.district}<br>
-                                <b>Village:</b> ${villageName}`
-                            );
+                        let props = feature.properties;
+
+                        if (Array.isArray(props)) {
+                            props = props[0] || {};
+                        }
+
+                        if (props && Object.keys(props).length > 0) {
+                            let content = "";
+                            for (const key in props) {
+                                if (Object.hasOwn(props, key)) {
+                                    const label = key.replace(/_/g, " ")
+                                        .replace(/\b\w/g, l => l.toUpperCase());
+                                    content += `<b>${label}:</b> ${props[key]}<br>`;
+                                }
+                            }
+                            layerFeature.bindPopup(content);
+                        } else {
+                            layerFeature.bindPopup("<i>No properties</i>");
                         }
                     }
                 });
@@ -363,17 +373,17 @@
                     layer: layer
                 });
 
-                layer.on('add', function() {
-                    activeLayers[name] = {
-                        layer: layer,
-                        colorMap: colorMap
-                    };
-                    updateVillageLegend();
-                });
-                layer.on('remove', function() {
-                    delete activeLayers[name];
-                    updateVillageLegend();
-                });
+                // layer.on('add', function() {
+                //     activeLayers[name] = {
+                //         layer: layer,
+                //         colorMap: colorMap
+                //     };
+                //     updateVillageLegend();
+                // });
+                // layer.on('remove', function() {
+                //     delete activeLayers[name];
+                //     updateVillageLegend();
+                // });
             });
 
             var control = L.control.panelLayers(baseMaps, overlayMaps, {
