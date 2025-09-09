@@ -75,9 +75,9 @@
                     <td>{{ $geojsons->firstItem() + $loop->index }}</td>
                     <td>{{ $geojson->name ?? '-' }}</td>
                     <td>
-                        {{ ucwords(strtolower($geojson->district->name)) ?? '-' }},
-                        {{ ucwords(strtolower($geojson->district->regency->name)) ?? '-' }},
-                        {{ ucwords(strtolower($geojson->district->regency->province->name)) ?? '-' }}
+                        {{ ucwords(strtolower($geojson->district->name ?? '-')) ?? '-' }},
+                        {{ ucwords(strtolower($geojson->district->regency->name ?? '-')) ?? '-' }},
+                        {{ ucwords(strtolower($geojson->district->regency->province->name ?? '-')) ?? '-' }}
                     </td>
                     <td class="manage-row text-center">
                         @if ($geojson->trashed())
