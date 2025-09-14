@@ -18,7 +18,7 @@
         .legend-container {
             position: absolute;
             bottom: 20px;
-            left: 25px;
+            margin-left: 15px;
             background: rgba(255, 255, 255, 0.95);
             padding: 10px;
             border-radius: 8px;
