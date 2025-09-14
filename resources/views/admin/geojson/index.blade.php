@@ -65,6 +65,7 @@
             <tr>
                 <th>{{ __('No') }}</th>
                 <th>{{ __('Name') }}</th>
+                <th>{{ __('Type') }}</th>
                 <th>{{ __('District') }}</th>
                 <th class="text-center">{{ __('Action') }}</th>
             </tr>
@@ -74,6 +75,15 @@
                 <tr @if ($geojson->trashed()) class="text-muted" @endif>
                     <td>{{ $geojsons->firstItem() + $loop->index }}</td>
                     <td>{{ $geojson->name ?? '-' }}</td>
+                    <td>
+                        @if ($geojson->type == 'file')
+                            <span class="badge badge-success">File</span>
+                        @elseif ($geojson->type == 'geometry')
+                            <span class="badge badge-primary">Geometry</span>
+                        @else
+                            <span class="badge badge-danger">-</span>
+                        @endif
+                    </td>
                     <td>
                         {{ ucwords(strtolower($geojson->district->name ?? '-')) ?? '-' }},
                         {{ ucwords(strtolower($geojson->district->regency->name ?? '-')) ?? '-' }},
@@ -105,6 +115,7 @@
             <tr>
                 <th>{{ __('No') }}</th>
                 <th>{{ __('Name') }}</th>
+                <th>{{ __('Type') }}</th>
                 <th>{{ __('District') }}</th>
                 <th class="text-center">{{ __('Action') }}</th>
             </tr>

@@ -28,7 +28,9 @@ class GeojsonRequest extends FormRequest
                 Rule::unique('geojsons', 'name')->ignore($id),
             ],
             'description' => 'max:1024',
-            'geometry' => 'required|string',
+            'type' => 'nullable|string|in:file,geometry',
+            'file' => 'nullable|mimes:json,geojson|max:10240',
+            'geometry' => 'nullable|string',
             'district_id' => 'required|numeric',
         ];
     }
@@ -40,7 +42,11 @@ class GeojsonRequest extends FormRequest
             'name.max' => 'Name must be under 100 chars.',
             'name.unique' => 'Name already exists.',
             'description.max' => 'Description max 1024 chars.',
-            'geometry.required' => 'Geometry is required.',
+            'type.string' => 'Type must be a string.',
+            'type.in' => 'Type must be file or geometry.',
+            'file.mimes' => 'File must be json.',
+            'file.max' => 'File max 10MB.',
+            'file.mimes' => 'File must be json or geojson.',
             'geometry.string' => 'Geometry must be a string.',
             'district_id.required' => 'District is required.',
             'district_id.numeric' => 'District must be a number.',
