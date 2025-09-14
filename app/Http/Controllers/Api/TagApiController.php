@@ -2,18 +2,21 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Helpers\ApiResponse;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\TagRequest;
 use App\Http\Resources\TagResource;
-use App\Models\Tag;
+use App\Models\tag;
 
-class TagApiController extends Controller
+
+class tagApiController extends Controller
 {
     // Handle api list data tags
     public function index(Request $request)
     {
         $search = $request->query('search');
+        $perPage = $request->query('per_page', 10);
 
         $query = Tag::query();
 
@@ -21,65 +24,77 @@ class TagApiController extends Controller
             $query->where('name', 'LIKE', "%{$search}%");
         }
 
-        $perPage = $request->query('per_page', 10);
         $tags = $query->paginate($perPage);
 
         if ($tags->isEmpty()) {
-            return response()->json(['message' => 'No tags found'], 404);
-        } else {
-            return response()->json([
-                'message' => 'Tag retrieved successfully',
-                'data' => TagResource::collection($tags),
-                'pagination' => [
-                    'current_page' => $tags->currentPage(),
-                    'total' => $tags->total(),
-                    'per_page' => $tags->perPage(),
-                    'last_page' => $tags->lastPage(),
-                    'next_page_url' => $tags->nextPageUrl(),
-                    'prev_page_url' => $tags->previousPageUrl(),
-                ]
-            ], 200);
+            return ApiResponse::error('No tags found', 404);
         }
+
+        return ApiResponse::success(
+            'tags retrieved successfully',
+            TagResource::collection($tags),
+            [
+                'current_page'   => $tags->currentPage(),
+                'total'          => $tags->total(),
+                'per_page'       => $tags->perPage(),
+                'last_page'      => $tags->lastPage(),
+                'next_page_url'  => $tags->nextPageUrl(),
+                'prev_page_url'  => $tags->previousPageUrl(),
+            ]
+        );
     }
 
-    // Handle api store tag data
+    // Handle api store data tag
     public function store(TagRequest $request)
     {
         $tag = Tag::create($request->validated());
 
-        return response()->json(['alert' => 'Successfully Create Tag!']);
+        if ($request->hasFile('img')) {
+            $img = $request->file('img');
+            $fileName = $tag->name . '.' . $img->getClientOriginalExtension();
+            $tag->update(['img' => $fileName]);
+            $img->storeAs('public', $fileName);
+        }
+
+        return ApiResponse::success('Tag created successfully', new TagResource($tag), null, 201);
     }
 
-    // Handle api show tag data
+    // Handle api show data tag
     public function show($id)
     {
         $tag = Tag::findOrFail($id);
-        return response()->json($tag);
+        return ApiResponse::success('Tag retrieved successfully', new TagResource($tag));
     }
 
-    // Handle api edit tag data
+    // Handle api edit data tag
     public function edit($id)
     {
-        $tag = Tag::findOrFail($id);
-        return response()->json($tag);
+        return $this->show($id);
     }
 
-    // Handle api update tag data
+    // Handle api update data tag
     public function update(TagRequest $request, $id)
     {
         $tag = Tag::findOrFail($id);
         $tag->update($request->validated());
 
-        return response()->json(['alert' => 'Successfully Edit Tag!']);
+        if ($request->hasFile('img')) {
+            $img = $request->file('img');
+            $fileName = $tag->name . '.' . $img->getClientOriginalExtension();
+            $tag->update(['img' => $fileName]);
+            $img->storeAs('public', $fileName);
+        }
+
+        return ApiResponse::success('Tag updated successfully', new TagResource($tag));
     }
 
-    // Handle api delete tag data
+    // Handle api delete data tag
     public function destroy($id)
     {
         $tag = Tag::findOrFail($id);
         $tag->delete();
 
-        return response()->json(['alert' => 'Successfully Delete Tag!']);
+        return ApiResponse::success('Tag deleted successfully');
     }
 
     // Handle api find all tags
@@ -88,14 +103,12 @@ class TagApiController extends Controller
         $tags = Tag::all();
 
         if ($tags->isEmpty()) {
-            return response()->json([
-                'message' => 'No tags found',
-            ], 404);
+            return ApiResponse::error('No tags found', 404);
         }
 
-        return response()->json([
-            'message' => 'All tags retrieved successfully',
-            'data' => TagResource::collection($tags)
-        ], 200);
+        return ApiResponse::success(
+            'All tags retrieved successfully',
+            TagResource::collection($tags)
+        );
     }
 }

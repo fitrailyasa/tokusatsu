@@ -42,8 +42,11 @@ class TagApiTest extends TestCase
 
         $response = $this->postJson(route('tags.store'), $data);
 
-        $response->assertStatus(200)
-            ->assertJson(['alert' => 'Successfully Create Tag!']);
+        $response->assertStatus(201)
+            ->assertJson([
+                'success' => true,
+                'message' => 'Tag created successfully',
+            ]);
 
         $this->assertDatabaseHas('tags', ['name' => 'New Tag']);
     }
@@ -69,7 +72,10 @@ class TagApiTest extends TestCase
         $response = $this->putJson(route('tags.update', $tag->id), $updateData);
 
         $response->assertStatus(200)
-            ->assertJson(['alert' => 'Successfully Edit Tag!']);
+            ->assertJson([
+                'success' => true,
+                'message' => 'Tag updated successfully',
+            ]);
 
         $this->assertDatabaseHas('tags', ['name' => 'Updated Tag']);
     }
@@ -81,7 +87,10 @@ class TagApiTest extends TestCase
         $response = $this->deleteJson(route('tags.destroy', $tag->id));
 
         $response->assertStatus(200)
-            ->assertJson(['alert' => 'Successfully Delete Tag!']);
+            ->assertJson([
+                'success' => true,
+                'message' => 'Tag deleted successfully',
+            ]);
 
         $this->assertSoftDeleted('tags', ['id' => $tag->id]);
     }

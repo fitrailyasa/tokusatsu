@@ -43,8 +43,11 @@ class DataApiTest extends TestCase
 
         $response = $this->postJson(route('datas.store'), $data);
 
-        $response->assertStatus(200)
-            ->assertJson(['alert' => 'Successfully Create Data!']);
+        $response->assertStatus(201)
+            ->assertJson([
+                'success' => true,
+                'message' => 'Data created successfully',
+            ]);
 
         $this->assertDatabaseHas('datas', ['name' => 'New Data']);
     }
@@ -72,7 +75,10 @@ class DataApiTest extends TestCase
         $response = $this->putJson(route('datas.update', $data->id), $updateData);
 
         $response->assertStatus(200)
-            ->assertJson(['alert' => 'Successfully Edit Data!']);
+            ->assertJson([
+                'success' => true,
+                'message' => 'Data updated successfully',
+            ]);
 
         $this->assertDatabaseHas('datas', ['name' => 'Updated Data']);
     }
@@ -84,7 +90,10 @@ class DataApiTest extends TestCase
         $response = $this->deleteJson(route('datas.destroy', $data->id));
 
         $response->assertStatus(200)
-            ->assertJson(['alert' => 'Successfully Delete Data!']);
+            ->assertJson([
+                'success' => true,
+                'message' => 'Data deleted successfully',
+            ]);
 
         $this->assertSoftDeleted('datas', ['id' => $data->id]);
     }
