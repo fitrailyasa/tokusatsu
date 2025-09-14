@@ -7,7 +7,8 @@
 <div class="modal fade formEdit{{ $geojson->id }}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
-            <form method="POST" action="{{ route('admin.geojson.update', $geojson->id) }}">
+            <form method="POST" action="{{ route('admin.geojson.update', $geojson->id) }}"
+                enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="modal-header">
@@ -101,13 +102,28 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label">{{ __('Geometry') }}</label>
-                            <div id="map-{{ $geojson->id }}" style="height:420px;"></div>
-                            <textarea class="form-control mt-2" name="geometry" id="geometry-{{ $geojson->id }}" rows="3">{{ old('geometry', json_encode($geojson->geometry)) }}</textarea>
-                            @error('geometry')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
+                        <div class="col-md-12">
+                            <div class="mb-3">
+                                <div class="mb-3">
+                                    <label class="form-label">{{ __('File') }}</label>
+                                    <input type="file" class="form-control @error('file') is-invalid @enderror"
+                                        name="file" id="file" value="{{ old('file', $geojson->file) }}"
+                                        required>
+                                    @error('file')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="mb-3">
+                                <label class="form-label">{{ __('Geometry') }}</label>
+                                <div id="map-{{ $geojson->id }}" style="height:420px;"></div>
+                                <textarea class="form-control mt-2" name="geometry" id="geometry-{{ $geojson->id }}" rows="3">{{ old('geometry', json_encode($geojson->geometry)) }}</textarea>
+                                @error('geometry')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -121,6 +137,42 @@
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const typeSelect = document.querySelector('.formEdit{{ $geojson->id }} select[name="type"]');
+        const fileField = document.querySelector('.formEdit{{ $geojson->id }} input[name="file"]').closest(
+            ".mb-3");
+        const geometryField = document.querySelector('.formEdit{{ $geojson->id }} textarea[name="geometry"]')
+            .closest(".mb-3");
+
+        function toggleFields() {
+            if (typeSelect.value === "file") {
+                fileField.style.display = "block";
+                fileField.querySelector("input").required = true;
+
+                geometryField.style.display = "none";
+                geometryField.querySelector("textarea").required = false;
+            } else if (typeSelect.value === "geometry") {
+                fileField.style.display = "none";
+                fileField.querySelector("input").required = false;
+
+                geometryField.style.display = "block";
+                geometryField.querySelector("textarea").required = true;
+            } else {
+                fileField.style.display = "none";
+                fileField.querySelector("input").required = false;
+
+                geometryField.style.display = "none";
+                geometryField.querySelector("textarea").required = false;
+            }
+        }
+
+        toggleFields();
+        typeSelect.addEventListener("change", function() {
+            toggleFields();
+        });
+    });
+</script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const mapId = "map-{{ $geojson->id }}";

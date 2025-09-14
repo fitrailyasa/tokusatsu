@@ -88,6 +88,18 @@
                         </div>
                         <div class="col-md-12">
                             <div class="mb-3">
+                                <div class="mb-3">
+                                    <label class="form-label">{{ __('File') }}</label>
+                                    <input type="file" class="form-control @error('file') is-invalid @enderror"
+                                        name="file" id="file" value="{{ old('file') }}" required>
+                                    @error('file')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="mb-3">
                                 <label class="form-label">{{ __('Geometry') }}</label>
                                 <div id="map"></div>
                                 <textarea class="form-control @error('geometry') is-invalid @enderror" placeholder="geometry" name="geometry"
@@ -159,6 +171,27 @@
         const modalEl = document.querySelector(modalSelector);
         modalEl.addEventListener('shown.bs.modal', function() {
             map.invalidateSize();
+        });
+
+        const typeSelect = document.getElementById("type");
+        const fileField = document.getElementById("file").closest(".mb-3");
+        const geometryField = document.getElementById("geometry").closest(".mb-3");
+
+        fileField.style.display = "none";
+        geometryField.style.display = "none";
+
+        typeSelect.addEventListener("change", function() {
+            if (this.value === "file") {
+                fileField.style.display = "block";
+                geometryField.style.display = "none";
+            } else if (this.value === "geometry") {
+                fileField.style.display = "none";
+                geometryField.style.display = "block";
+                map.invalidateSize();
+            } else {
+                fileField.style.display = "none";
+                geometryField.style.display = "none";
+            }
         });
     });
 </script>
