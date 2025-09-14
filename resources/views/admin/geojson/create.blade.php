@@ -16,13 +16,26 @@
                 </div>
                 <div class="modal-body text-left">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">{{ __('Name') }}<span class="text-danger">*</span></label>
                                 <input type="text" class="form-control @error('name') is-invalid @enderror"
                                     placeholder="name" name="name" id="name" value="{{ old('name') }}"
                                     required>
                                 @error('name')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label>Type<span class="text-danger">*</span></label>
+                                <select name="type" id="type" class="form-control" required>
+                                    <option value="">Pilih Type</option>
+                                    <option value="file">File</option>
+                                    <option value="geometry">Geometry</option>
+                                </select>
+                                @error('type')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -37,26 +50,41 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="mb-3 col-md-4">
-                            <label>Provinsi<span class="text-danger">*</span></label>
-                            <select name="create__id" id="create_province" class="form-control">
-                                <option value="">Pilih Provinsi</option>
-                                @foreach ($provinces as $province)
-                                    <option value="{{ $province->id }}">{{ $province->name }}</option>
-                                @endforeach
-                            </select>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label>Provinsi<span class="text-danger">*</span></label>
+                                <select name="create__id" id="create_province" class="form-control" required>
+                                    <option value="">Pilih Provinsi</option>
+                                    @foreach ($provinces as $province)
+                                        <option value="{{ $province->id }}">{{ $province->name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('province_id')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
                         </div>
-                        <div class="mb-3 col-md-4">
-                            <label>Kabupaten/Kota<span class="text-danger">*</span></label>
-                            <select name="regency_id" id="create_regency" class="form-control">
-                                <option value="">Pilih Kabupaten/Kota</option>
-                            </select>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label>Kabupaten/Kota<span class="text-danger">*</span></label>
+                                <select name="regency_id" id="create_regency" class="form-control" required>
+                                    <option value="">Pilih Kabupaten/Kota</option>
+                                </select>
+                                @error('regency_id')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
                         </div>
-                        <div class="mb-3 col-md-4">
-                            <label>Kecamatan<span class="text-danger">*</span></label>
-                            <select name="district_id" id="create_district" class="form-control">
-                                <option value="">Pilih Kecamatan</option>
-                            </select>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label>Kecamatan<span class="text-danger">*</span></label>
+                                <select name="district_id" id="create_district" class="form-control" required>
+                                    <option value="">Pilih Kecamatan</option>
+                                </select>
+                                @error('district_id')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
                         </div>
                         <div class="col-md-12">
                             <div class="mb-3">

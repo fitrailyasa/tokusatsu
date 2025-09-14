@@ -100,6 +100,8 @@ class AdminGeojsonController extends Controller
         Geojson::create([
             'name'          => $validated['name'],
             'description'   => $validated['description'] ?? null,
+            'type'          => $validated['type'],
+            'file'          => $validated['file'] ?? null,
             'geometry'      => $geometry,
             'district_id'   => $validated['district_id'],
         ]);
@@ -121,6 +123,8 @@ class AdminGeojsonController extends Controller
         $geojson->update([
             'name'          => $validated['name'],
             'description'   => $validated['description'] ?? null,
+            'type'          => $validated['type'],
+            'file'          => $validated['file'] ?? null,
             'geometry'      => $geometry,
             'district_id'   => $validated['district_id'],
         ]);
