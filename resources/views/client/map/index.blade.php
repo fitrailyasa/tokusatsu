@@ -35,18 +35,28 @@
             margin-bottom: 5px;
         }
 
-        .legend-item {
+        .layer-title {
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        .regency-item {
             display: flex;
             align-items: center;
             margin-bottom: 3px;
-            color: #000;
         }
 
-        .legend-color {
-            width: 16px;
-            height: 16px;
+        .regency-color {
+            width: 14px;
+            height: 14px;
             border: 1px solid #000;
-            margin-right: 5px;
+            margin: 0 5px;
+        }
+
+        #regency-layers-container ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
         }
     </style>
 
@@ -54,7 +64,10 @@
         <div id="map"></div>
         <div class="legend-container" id="legend-container">
             <div id="legend-prov" class="legend-section"></div>
-            <div id="legend-regency" class="legend-section"></div>
+            <div id="legend-regency" class="legend-section">
+                <div class="fw-bold" id="regency-legend-title"></div>
+                <div id="regency-layers-container"></div>
+            </div>
         </div>
     </div>
 
@@ -103,26 +116,76 @@
             }
         }
 
-        function updateLegend(layer, container, title, field, colorMap) {
-            container.innerHTML = `<div class="legend-title">${title}</div>`;
-            layer.eachLayer(f => {
-                if (f.feature && f.feature.properties) {
-                    const name = f.feature.properties[field] || "N/A";
-                    const color = colorMap[name] || "#3388ff";
+        let activeLayers = {};
+        let regencyState = {};
 
-                    const item = document.createElement('div');
-                    item.classList.add('legend-item');
+        function updateRegencyLegend() {
+            const legendTitle = document.getElementById('regency-legend-title');
+            legendTitle.textContent = "Kabupaten/Kota";
+            const container = document.getElementById('regency-layers-container');
+            container.innerHTML = "";
+
+            for (const provName in activeLayers) {
+                const {
+                    layer,
+                    colorMap
+                } = activeLayers[provName];
+
+                const provTitle = document.createElement('div');
+                provTitle.classList.add('layer-title');
+                provTitle.textContent = 'Provinsi ' + provName;
+                container.appendChild(provTitle);
+
+                const ul = document.createElement('ul');
+
+                layer.eachLayer(function(featureLayer) {
+                    if (!featureLayer.feature || !featureLayer.feature.properties) return;
+
+                    const props = featureLayer.feature.properties;
+                    const regencyName = props.WADMKK || "N/A";
+                    const color = colorMap[regencyName] || '#3388ff';
+
+                    const li = document.createElement('li');
+                    li.classList.add('regency-item');
+
+                    const uniqueKey = `${provName}__${featureLayer._leaflet_id}`;
+                    if (regencyState[uniqueKey] === undefined) regencyState[uniqueKey] = true;
+
+                    const checkbox = document.createElement('input');
+                    checkbox.type = 'checkbox';
+                    checkbox.checked = !!regencyState[uniqueKey];
+
+                    checkbox.addEventListener('change', function() {
+                        regencyState[uniqueKey] = this.checked;
+                        if (featureLayer.setStyle) {
+                            featureLayer.setStyle({
+                                color: color,
+                                opacity: this.checked ? 1 : 0,
+                                fillOpacity: this.checked ? 0.6 : 0
+                            });
+                        }
+                    });
+
+                    if (featureLayer.setStyle) {
+                        featureLayer.setStyle({
+                            color: color,
+                            opacity: regencyState[uniqueKey] ? 1 : 0,
+                            fillOpacity: regencyState[uniqueKey] ? 0.6 : 0
+                        });
+                    }
 
                     const colorDiv = document.createElement('div');
-                    colorDiv.classList.add('legend-color');
+                    colorDiv.classList.add('regency-color');
                     colorDiv.style.backgroundColor = color;
 
-                    item.appendChild(colorDiv);
-                    item.appendChild(document.createTextNode(name));
+                    li.appendChild(checkbox);
+                    li.appendChild(colorDiv);
+                    li.appendChild(document.createTextNode(regencyName));
+                    ul.appendChild(li);
+                });
 
-                    container.appendChild(item);
-                }
-            });
+                container.appendChild(ul);
+            }
         }
 
         document.addEventListener('DOMContentLoaded', async function() {
@@ -156,48 +219,68 @@
                 }
             ];
 
-            // Load GeoJSON
             const provGeoJSON = await getGeoJSON("{{ asset('assets/geojson/province.json') }}");
             const regencyGeoJSON = await getGeoJSON("{{ asset('assets/geojson/regency.json') }}");
 
-            // Generate color maps
             const provColorMap = generateColorMap(provGeoJSON.features, "PROVINSI");
             const regencyColorMap = generateColorMap(regencyGeoJSON.features, "WADMKK");
 
             const provLayer = L.geoJson(provGeoJSON, {
                 style: styleFeatureGenerator(provColorMap, "PROVINSI")
             }).addTo(map);
-            const regencyLayer = L.geoJson(regencyGeoJSON, {
-                style: styleFeatureGenerator(regencyColorMap, "WADMKK")
+
+            const regencyByProv = {};
+            regencyGeoJSON.features.forEach(f => {
+                const provName = f.properties.WADMPR;
+                if (!regencyByProv[provName]) regencyByProv[provName] = [];
+                regencyByProv[provName].push(f);
             });
 
-            // Bind popup
-            provLayer.eachLayer(layer => {
-                layer.bindPopup("<b>Provinsi:</b> " + layer.feature.properties.PROVINSI);
-            });
-            regencyLayer.eachLayer(layer => {
-                layer.bindPopup("<b>Kabupaten/Kota:</b> " + layer.feature.properties.WADMKK);
-            });
-
-            // Overlay for Panel Layers
             const overlayMaps = [{
-                group: "Batas Administrasi Umum",
+                group: "Batas Administrasi",
                 collapsed: false,
                 layers: [{
-                        name: "Provinsi",
-                        icon: panelCostumIconColor(provColorMap[Object.keys(provColorMap)[0]]),
-                        active: true,
-                        layer: provLayer
-                    },
-                    {
-                        name: "Kabupaten/Kota",
-                        icon: panelCostumIconColor(regencyColorMap[Object.keys(regencyColorMap)[
-                            0]]),
-                        active: false,
-                        layer: regencyLayer
-                    }
-                ]
+                    name: "Provinsi",
+                    icon: panelCostumIconColor(provColorMap[Object.keys(provColorMap)[0]]),
+                    active: true,
+                    layer: provLayer
+                }]
             }];
+
+            Object.keys(regencyByProv).forEach(provName => {
+                let layer = L.geoJson(regencyByProv[provName], {
+                    style: f => ({
+                        color: regencyColorMap[f.properties.WADMKK],
+                        weight: 2,
+                        fillOpacity: 0.6
+                    }),
+                    onEachFeature: (feature, layer) => {
+                        layer.bindPopup(
+                            "<b>Provinsi:</b> " + feature.properties.WADMPR + "<br>" +
+                            "<b>Kabupaten/Kota:</b> " + feature.properties.WADMKK
+                        );
+                    }
+                });
+
+                layer.on('add', function() {
+                    activeLayers[provName] = {
+                        layer: layer,
+                        colorMap: regencyColorMap
+                    };
+                    updateRegencyLegend();
+                });
+                layer.on('remove', function() {
+                    delete activeLayers[provName];
+                    updateRegencyLegend();
+                });
+
+                overlayMaps[0].layers.push({
+                    name: provName,
+                    icon: panelCostumIconColor(provColorMap[provName] || "#3388ff"),
+                    active: false,
+                    layer: layer
+                });
+            });
 
             const control = L.control.panelLayers(baseMap, overlayMaps, {
                 selectorGroup: true,
@@ -205,18 +288,26 @@
             });
             map.addControl(control);
 
-            // Legend containers
             const legendProv = document.getElementById('legend-prov');
-            const legendRegency = document.getElementById('legend-regency');
 
-            updateLegend(provLayer, legendProv, "Provinsi Indonesia", "PROVINSI", provColorMap);
-            provLayer.on('add', () => updateLegend(provLayer, legendProv, "Provinsi Indonesia", "PROVINSI",
-                provColorMap));
+            function updateProvLegend() {
+                legendProv.innerHTML = `<div class="legend-title">Provinsi Indonesia</div>`;
+                provLayer.eachLayer(f => {
+                    const name = f.feature.properties.PROVINSI || "N/A";
+                    const color = provColorMap[name] || "#3388ff";
+                    const item = document.createElement('div');
+                    item.classList.add('regency-item');
+                    const colorDiv = document.createElement('div');
+                    colorDiv.classList.add('regency-color');
+                    colorDiv.style.backgroundColor = color;
+                    item.appendChild(colorDiv);
+                    item.appendChild(document.createTextNode(name));
+                    legendProv.appendChild(item);
+                });
+            }
+            updateProvLegend();
+            provLayer.on('add', updateProvLegend);
             provLayer.on('remove', () => legendProv.innerHTML = "");
-
-            regencyLayer.on('add', () => updateLegend(regencyLayer, legendRegency, "Kabupaten/Kota Indonesia",
-                "WADMKK", regencyColorMap));
-            regencyLayer.on('remove', () => legendRegency.innerHTML = "");
         });
     </script>
 @endsection
