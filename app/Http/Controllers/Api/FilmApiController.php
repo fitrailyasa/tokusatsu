@@ -31,7 +31,7 @@ class FilmApiController extends Controller
 
         $films = $query->paginate($perPage);
 
-        if (!$films) {
+        if ($films->isEmpty()) {
             return ApiResponse::error('No films found', 404);
         }
 
@@ -101,7 +101,7 @@ class FilmApiController extends Controller
             })
             ->paginate($perPage);
 
-        if (!$films) {
+        if ($films->isEmpty()) {
             return ApiResponse::error("No film found for the specified franchise and category", 404);
         }
 
@@ -131,7 +131,7 @@ class FilmApiController extends Controller
                     });
             })->first();
 
-        if (!$film) {
+        if ($film->isEmpty()) {
             return ApiResponse::error('No film found', 404);
         }
 

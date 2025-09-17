@@ -20,13 +20,13 @@ class FranchiseApiController extends Controller
 
         $query = Franchise::query();
 
-        if (!$search) {
+        if ($search) {
             $query->where('name', 'LIKE', "%{$search}%");
         }
 
         $franchises = $query->paginate($perPage);
 
-        if (!$franchises) {
+        if ($franchises->isEmpty()) {
             return ApiResponse::error('No franchises found', 404);
         }
 
@@ -102,7 +102,7 @@ class FranchiseApiController extends Controller
     {
         $franchises = Franchise::all();
 
-        if (!$franchises) {
+        if ($franchises->isEmpty()) {
             return ApiResponse::error('No franchises found', 404);
         }
 

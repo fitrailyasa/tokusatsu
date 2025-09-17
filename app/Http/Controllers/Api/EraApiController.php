@@ -20,13 +20,13 @@ class EraApiController extends Controller
 
         $query = Era::query();
 
-        if (!$search) {
+        if ($search) {
             $query->where('name', 'LIKE', "%{$search}%");
         }
 
         $eras = $query->paginate($perPage);
 
-        if (!$eras) {
+        if ($eras->isEmpty()) {
             return ApiResponse::error('No eras found', 404);
         }
 
@@ -102,7 +102,7 @@ class EraApiController extends Controller
     {
         $eras = Era::all();
 
-        if (!$eras) {
+        if ($eras->isEmpty()) {
             return ApiResponse::error('No eras found', 404);
         }
 

@@ -20,13 +20,13 @@ class tagApiController extends Controller
 
         $query = Tag::query();
 
-        if (!$search) {
+        if ($search) {
             $query->where('name', 'LIKE', "%{$search}%");
         }
 
         $tags = $query->paginate($perPage);
 
-        if (!$tags) {
+        if ($tags->isEmpty()) {
             return ApiResponse::error('No tags found', 404);
         }
 
@@ -102,7 +102,7 @@ class tagApiController extends Controller
     {
         $tags = Tag::all();
 
-        if (!$tags) {
+        if ($tags->isEmpty()) {
             return ApiResponse::error('No tags found', 404);
         }
 

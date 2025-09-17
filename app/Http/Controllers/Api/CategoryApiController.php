@@ -25,7 +25,7 @@ class CategoryApiController extends Controller
 
         $categories = $query->paginate($perPage);
 
-        if (!$categories) {
+        if ($categories->isEmpty()) {
             return ApiResponse::error('No categories found', 404);
         }
 
@@ -117,7 +117,7 @@ class CategoryApiController extends Controller
             ->whereHas($relation, fn($query) => $query->where('slug', $slug))
             ->paginate($perPage);
 
-        if (!$categories) {
+        if ($categories->isEmpty()) {
             return ApiResponse::error("No categories found for the specified $relation", 404);
         }
 
@@ -140,7 +140,7 @@ class CategoryApiController extends Controller
     {
         $categories = Category::with(['franchise', 'era'])->get();
 
-        if (!$categories) {
+        if ($categories->isEmpty()) {
             return ApiResponse::error('No categories found', 404);
         }
 

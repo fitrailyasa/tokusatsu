@@ -34,7 +34,7 @@ class DataApiController extends Controller
 
         $datas = $query->paginate($perPage);
 
-        if (!$datas) {
+        if ($datas->isEmpty()) {
             return ApiResponse::error('No datas found', 404);
         }
 
@@ -119,7 +119,7 @@ class DataApiController extends Controller
             })
             ->paginate($perPage);
 
-        if (!$datas) {
+        if ($datas->isEmpty()) {
             return response()->json([
                 'message' => 'No data found for the specified franchise and category'
             ], 404);
