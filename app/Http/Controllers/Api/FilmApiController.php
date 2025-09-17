@@ -131,13 +131,13 @@ class FilmApiController extends Controller
                     });
             })->first();
 
-        if ($film->isEmpty()) {
+        if (!$film) {
             return ApiResponse::error('No film found', 404);
         }
 
         return ApiResponse::success(
             'Film retrieved successfully',
-            FilmResource::collection($film)
+            new FilmResource($film)
         );
     }
 }
