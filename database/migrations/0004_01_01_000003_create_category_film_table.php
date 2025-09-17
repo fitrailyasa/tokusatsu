@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->string('type')->nullable()->default('episode');
             $table->integer('number')->nullable();
+            $table->string('link')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

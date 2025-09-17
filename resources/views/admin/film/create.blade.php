@@ -74,6 +74,17 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="col-md-12">
+                            <div class="mb-3">
+                                <label class="form-label">{{ __('Link') }}<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control @error('link') is-invalid @enderror"
+                                    placeholder="https://google.com" name="link" id="link"
+                                    value="{{ old('link') }}" required>
+                                @error('link')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">

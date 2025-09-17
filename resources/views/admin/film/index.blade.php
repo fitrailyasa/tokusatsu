@@ -67,6 +67,7 @@
                 <th>{{ __('Name') }}</th>
                 <th>{{ __('Category') }}</th>
                 <th>{{ __('Type') }}</th>
+                <th>{{ __('Link') }}</th>
                 <th class="text-center">{{ __('Action') }}</th>
             </tr>
         </thead>
@@ -81,6 +82,7 @@
                         </span>
                     </td>
                     <td>{{ $film->type ?? '-' }} {{ $film->number ?? 0 }}</td>
+                    <td><a href="{{ $film->link ?? '-' }}" target="_blank">{{ $film->link ?? '-' }}</a></td>
                     <td class="manage-row text-center">
                         @if ($film->trashed())
                             <!-- Restore and Delete Button -->
@@ -109,6 +111,7 @@
                 <th>{{ __('Name') }}</th>
                 <th>{{ __('Category') }}</th>
                 <th>{{ __('Type') }}</th>
+                <th>{{ __('Link') }}</th>
                 <th class="text-center">{{ __('Action') }}</th>
             </tr>
         </tfoot>

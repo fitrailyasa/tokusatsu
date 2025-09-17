@@ -66,7 +66,7 @@ class ClientFilmController extends Controller
      */
     public function watch($franchise, $category, $type, $number)
     {
-        $category = Category::where('slug', $category)->firstOrFail();
+        $category = Category::where('slug', $category)->with('franchise')->firstOrFail();
 
         if ($category->franchise->slug !== $franchise) {
             abort(404);
@@ -78,10 +78,51 @@ class ClientFilmController extends Controller
             ['number', '=', $number],
         ])->firstOrFail();
 
+        $embedUrl = $this->videoEmbed($film->link);
+
         return view('client.film.watch', [
             'category' => $category,
             'franchise' => $category->franchise,
             'film' => $film,
+            'embedUrl' => $embedUrl,
         ]);
+    }
+
+    /**
+     * Convert video link into embeddable URL.
+     */
+    protected function videoEmbed($url)
+    {
+        // Google Drive
+        if (strpos($url, 'drive.google.com') !== false) {
+            if (preg_match('/\/d\/(.*?)\//', $url, $matches)) {
+                return "https://drive.google.com/file/d/" . $matches[1] . "/preview";
+            }
+        }
+
+        // YouTube
+        if (strpos($url, 'youtube.com') !== false || strpos($url, 'youtu.be') !== false) {
+            preg_match('/(youtu\.be\/|v=)([^&]+)/', $url, $matches);
+            if (isset($matches[2])) {
+                return "https://www.youtube.com/embed/" . $matches[2];
+            }
+        }
+
+        // Dropbox
+        if (strpos($url, 'dropbox.com') !== false) {
+            return str_replace('?dl=0', '?raw=1', $url);
+        }
+
+        // OneDrive
+        if (strpos($url, 'onedrive.live.com') !== false) {
+            return $url;
+        }
+
+        // Direct storage / CDN / S3 / Laravel public storage
+        if (preg_match('/\.(mp4|webm|ogg)$/i', $url)) {
+            return $url;
+        }
+
+        return $url;
     }
 }

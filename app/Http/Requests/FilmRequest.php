@@ -22,6 +22,7 @@ class FilmRequest extends FormRequest
             'name' => 'required|max:100',
             'type' => 'required|max:100',
             'number' => 'nullable|numeric|max:100',
+            'link' => 'nullable|url',
             'category_id' => 'required',
         ];
     }
@@ -36,6 +37,7 @@ class FilmRequest extends FormRequest
             'category_id.required' => 'Category is required.',
             'number.max'      => 'Number must be under 100 chars.',
             'number.numeric'      => 'Number must be numeric.',
+            'link.url'      => 'Link must be url.',
         ];
     }
 }

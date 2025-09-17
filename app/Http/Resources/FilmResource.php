@@ -18,6 +18,7 @@ class FilmResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'number' => $this->number,
+            'link' => $this->link,
             // 'category' => $this->whenLoaded('category', function () {
             //     return new CategoryResource($this->category);
             // }),
