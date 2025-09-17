@@ -23,17 +23,19 @@
             </div>
         </div>
 
-        <div class="row">
-            @if (strpos($embedUrl, 'embed') !== false || strpos($embedUrl, 'preview') !== false)
-                <iframe src="{{ $embedUrl }}" width="100%" height="480" allow="autoplay" frameborder="0"
-                    allowfullscreen>
-                </iframe>
-            @else
-                <video controls width="100%">
-                    <source src="{{ $embedUrl }}" type="video/mp4">
-                    Browser Anda tidak mendukung pemutaran video.
-                </video>
-            @endif
+        <div class="row mb-5">
+            <div class="mb-3">
+                @if (strpos($embedUrl, 'embed') !== false || strpos($embedUrl, 'preview') !== false)
+                    <iframe src="{{ $embedUrl }}" width="100%" height="480" allow="autoplay" frameborder="0"
+                        allowfullscreen>
+                    </iframe>
+                @else
+                    <video controls width="100%">
+                        <source src="{{ $embedUrl }}" type="video/mp4">
+                        Browser Anda tidak mendukung pemutaran video.
+                    </video>
+                @endif
+            </div>
         </div>
     </div>
 @endsection
