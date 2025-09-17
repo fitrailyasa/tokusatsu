@@ -42,7 +42,7 @@ Route::get('/data/{franchise}/{category}', [DataApiController::class, 'findByFra
 // FILM API
 Route::resource('/films', FilmApiController::class, ['only', ['index', 'store', 'show', 'edit', 'update', 'destroy']]);
 Route::get('/film/{franchise}/{category}', [FilmApiController::class, 'findByFranchiseCategory']);
-Route::get('/film/{franchise}/{category}/{number}', [FilmApiController::class, 'findByFranchiseCategoryNumber']);
+Route::get('/film/{franchise}/{category}/{type}/{number}', [FilmApiController::class, 'findByFranchiseCategoryNumber']);
 
 // MAP API
 Route::get('/map/{province}', [MapApiController::class, 'province'])->name('map.province');

@@ -120,10 +120,11 @@ class FilmApiController extends Controller
     }
 
     // Handle api find films by franchise category & episode number
-    public function findByFranchiseCategoryNumber($franchise, $category, $number)
+    public function findByFranchiseCategoryNumber($franchise, $category, $type, $number)
     {
         $film = Film::with(['category.franchise'])
             ->where('number', $number)
+            ->where('type', $type)
             ->whereHas('category', function ($query) use ($category, $franchise) {
                 $query->where('slug', $category)
                     ->whereHas('franchise', function ($subQuery) use ($franchise) {
