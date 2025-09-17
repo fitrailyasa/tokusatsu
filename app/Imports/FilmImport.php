@@ -30,7 +30,14 @@ class FilmImport implements ToModel, WithStartRow
 
         $checkFilm = Film::withTrashed()->where('name', $name)->first();
         if ($checkFilm) {
-            return null;
+            // return null;
+            $checkFilm->update([
+                'category_id' => $category->id ?? null,
+                'type' => $type,
+                'number' => $number,
+                'link' => $link,
+            ]);
+            return $checkFilm;
         }
 
         $film = new Film([
