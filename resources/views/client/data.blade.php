@@ -10,7 +10,6 @@
                 <h4 class="font-weight-bold responsive-title">{{ $category->name }}</h4>
             </div>
             <div class="col-3 text-right">
-                <button type="button" class="btn aktif text-white" onclick="window.print()">Print</button>
             </div>
         </div>
     </div>
