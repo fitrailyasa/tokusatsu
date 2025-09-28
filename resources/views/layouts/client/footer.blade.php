@@ -21,23 +21,19 @@
                             class="fas fa-home fs-4"></i></a>
                 </li>
                 <li>
-                    <a href="{{ route('era') }}" class="nav-link p-3 text-white fw-bold @yield('textEra')"><i
-                            class="fas fa-crown fs-4"></i></a>
-                </li>
-                <li>
                     <a href="{{ route('franchise') }}" class="nav-link p-3 text-white fw-bold @yield('textFranchise')"><i
-                            class="fas fa-tv fs-4"></i></a>
+                            class="fas fa-image fs-4"></i></a>
                 </li>
                 <li>
-                    <a href="{{ route('category') }}" class="nav-link p-3 text-white fw-bold @yield('textCategory')"><i
-                            class="fas fa-tag fs-4"></i></a>
+                    <a href="{{ route('film') }}" class="nav-link p-3 text-white fw-bold @yield('textFilm')"><i
+                            class="fas fa-video fs-4"></i></a>
                 </li>
             </ul>
         </div>
     </div>
-    <a href="#" class="scroll-to-top d-block aktif text-center text-white p-3" id="scrollToTopBtn">
+    {{-- <a href="#" class="scroll-to-top d-block aktif text-center text-white p-3" id="scrollToTopBtn">
         <i class="fas fa-chevron-up fs-4"></i>
-    </a>
+    </a> --}}
 </footer>
 <script>
     const scrollToTopBtn = document.getElementById('scrollToTopBtn');

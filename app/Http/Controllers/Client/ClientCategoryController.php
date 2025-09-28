@@ -8,20 +8,20 @@ use App\Models\Category;
 
 class ClientCategoryController extends Controller
 {
-    
+
     /**
      * Show the list of categories.
      *
      * @return \Illuminate\Http\Response
      */
-    
+
     public function index()
     {
-        $categories = Category::withoutTrashed()->latest('id')->paginate(12);
+        $categories = Category::withoutTrashed()->latest('id')->paginate(15);
         return view('client.category.index', compact('categories'));
     }
 
-    
+
     /**
      * Show the detail of a category.
      *

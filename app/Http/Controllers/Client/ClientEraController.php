@@ -9,7 +9,7 @@ use App\Models\Era;
 
 class ClientEraController extends Controller
 {
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +17,7 @@ class ClientEraController extends Controller
      */
     public function index()
     {
-        $eras = Era::withoutTrashed()->paginate(12);
+        $eras = Era::withoutTrashed()->paginate(15);
         return view('client.era.index', compact('eras'));
     }
 
@@ -30,12 +30,12 @@ class ClientEraController extends Controller
     public function show(string $category)
     {
         $era = Era::where('slug', $category)->withoutTrashed()->firstOrFail();
-        $categories = Category::where('era_id', $era->id)->withoutTrashed()->paginate(12);
+        $categories = Category::where('era_id', $era->id)->withoutTrashed()->paginate(15);
 
         return view('client.era.show', compact('era', 'categories'));
     }
 
-    
+
     /**
      * Display the detail of a category.
      *

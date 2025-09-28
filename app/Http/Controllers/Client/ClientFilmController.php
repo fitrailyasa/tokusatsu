@@ -12,7 +12,7 @@ class ClientFilmController extends Controller
 {
     public function index()
     {
-        $franchises = Franchise::withoutTrashed()->paginate(12);
+        $franchises = Franchise::withoutTrashed()->paginate(15);
         return view('client.film.index', compact('franchises'));
     }
 

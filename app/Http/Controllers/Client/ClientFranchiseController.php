@@ -16,7 +16,7 @@ class ClientFranchiseController extends Controller
      */
     public function index()
     {
-        $franchises = Franchise::withoutTrashed()->paginate(12);
+        $franchises = Franchise::withoutTrashed()->paginate(15);
         return view('client.franchise.index', compact('franchises'));
     }
 
@@ -29,7 +29,7 @@ class ClientFranchiseController extends Controller
     public function show(string $category)
     {
         $franchise = Franchise::where('slug', $category)->withoutTrashed()->firstOrFail();
-        $categories = Category::where('franchise_id', $franchise->id)->withoutTrashed()->paginate(12);
+        $categories = Category::where('franchise_id', $franchise->id)->withoutTrashed()->paginate(15);
 
         return view('client.franchise.show', compact('franchise', 'categories'));
     }

@@ -180,7 +180,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('/film', [ClientFilmController::class, 'index'])->name('film.index');
+Route::get('/film', [ClientFilmController::class, 'index'])->name('film');
 Route::get('/film/{category}', [ClientFilmController::class, 'category'])->name('film.category');
 Route::get('/film/{franchise}/{category}', [ClientFilmController::class, 'show'])->name('film.show');
 Route::get('/film/{franchise}/{category}/{type}/{number}', [ClientFilmController::class, 'watch'])->name('film.watch');
