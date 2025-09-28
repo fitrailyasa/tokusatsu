@@ -7,7 +7,7 @@
 @section('content')
 
     <div class="text-center my-5 py-4">
-        <h4 class="font-weight-bold">@yield('title')</h4>
+        <h4 class="font-weight-bold responsive-title">@yield('title')</h4>
         <div class="text-center d-flex flex-wrap justify-content-center">
             @foreach ($categories as $category)
                 <a href="{{ route('category.show', $category->slug) }}" class="btn m-2 img-gallery" loading="lazy">

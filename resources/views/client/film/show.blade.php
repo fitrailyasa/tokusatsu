@@ -7,10 +7,10 @@
         <div class="d-flex justify-content-between align-items-center px-3 pt-4">
             <div>
                 <a class="text-white" href="{{ route('film.category', $category->franchise->slug) }}"><i
-                        class="fas fa-arrow-left fs-4"></i></a>
+                        class="fas fa-arrow-left"></i></a>
             </div>
             <div>
-                <h3 class="text-center">Film {{ $category->franchise->name }} {{ $category->name }}</h3>
+                <h3 class="text-center responsive-title">Film {{ $category->franchise->name }} {{ $category->name }}</h3>
             </div>
             <div></div>
         </div>

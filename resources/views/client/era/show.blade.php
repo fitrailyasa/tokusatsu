@@ -11,11 +11,11 @@
             <div class="row px-3">
                 <div class="col-3 text-left">
                     <a href="#" onclick="history.back();">
-                        <p class="text-white"><i class="fas fa-arrow-left fs-4"></i></p>
+                        <p class="text-white"><i class="fas fa-arrow-left"></i></p>
                     </a>
                 </div>
                 <div class="col-6">
-                    <h4 class="font-weight-bold">{{ $era->name }}</h4>
+                    <h4 class="font-weight-bold responsive-title">{{ $era->name }}</h4>
                 </div>
                 <div class="col-3 text-right">
                     <button type="button" class="btn aktif text-white" onclick="window.print()">Print</button>

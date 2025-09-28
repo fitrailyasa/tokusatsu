@@ -60,11 +60,11 @@
         <div class="d-flex justify-content-between align-items-center p-2">
             <div>
                 <a class="text-white px-2" href="{{ route('map.province', strtolower(str_replace(' ', '_', $province))) }}">
-                    <i class="fas fa-arrow-left fs-4"></i>
+                    <i class="fas fa-arrow-left"></i>
                 </a>
             </div>
             <div>
-                <h3 class="text-center">Map {{ $district }}</h3>
+                <h3 class="text-center responsive-title">Map {{ $district }}</h3>
             </div>
             <div></div>
         </div>

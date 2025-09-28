@@ -3,11 +3,11 @@
         <div class="row px-3 mb-3">
             <div class="col-3 text-left d-flex align-items-center">
                 <a href="#" onclick="history.back();">
-                    <p class="text-white m-0"><i class="fas fa-arrow-left fs-4"></i></p>
+                    <p class="text-white m-0"><i class="fas fa-arrow-left"></i></p>
                 </a>
             </div>
             <div class="col-6">
-                <h4 class="font-weight-bold">{{ $category->name }}</h4>
+                <h4 class="font-weight-bold responsive-title">{{ $category->name }}</h4>
             </div>
             <div class="col-3 text-right">
                 <button type="button" class="btn aktif text-white" onclick="window.print()">Print</button>

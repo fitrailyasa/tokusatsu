@@ -6,10 +6,10 @@
     <div class="container my-5">
         <div class="d-flex justify-content-between align-items-center px-3 pt-4">
             <div>
-                <a class="text-white" href="{{ route('film.index') }}"><i class="fas fa-arrow-left fs-4"></i></a>
+                <a class="text-white" href="{{ route('film.index') }}"><i class="fas fa-arrow-left"></i></a>
             </div>
             <div>
-                <h3 class="text-center">Film {{ $franchise->name }}</h3>
+                <h3 class="text-center responsive-title">Film {{ $franchise->name }}</h3>
             </div>
             <div></div>
         </div>
