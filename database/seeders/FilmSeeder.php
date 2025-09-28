@@ -4722,7 +4722,6 @@ class FilmSeeder extends Seeder
             ['name' => "Constellation Thief (星座泥棒, Seiza Dorobō)", 'category_id' => $this->Category('max'), 'type' => 'episode', 'number' => 37],
             ['name' => "Prelude to Ground Annihilation (地上壊滅の序曲, Chijō Kaimetsu no Jokyoku)", 'category_id' => $this->Category('max'), 'type' => 'episode', 'number' => 38],
             ['name' => "Hold On To! Future (つかみとれ! 未来, Tsukami Tore! Mirai)", 'category_id' => $this->Category('max'), 'type' => 'episode', 'number' => 39],
-            ['name' => "To the Ultra Future (スペシャルフィナーレ ～ウルトラの未来へ～, Supesharu Fināre -Urutora no Mirai e-)", 'category_id' => $this->Category('max'), 'type' => 'episode', 'number' => 40],
             ['name' => "A Fateful Encounter (運命の出逢い, Unmei no Deai)", 'category_id' => $this->Category('mebius'), 'type' => 'episode', 'number' => 1],
             ['name' => "Our Wings (俺達の翼, Oretachi no Tsubasa)", 'category_id' => $this->Category('mebius'), 'type' => 'episode', 'number' => 2],
             ['name' => "Only One Life (ひとつきりの命, Hitotsu kiri no Inochi)", 'category_id' => $this->Category('mebius'), 'type' => 'episode', 'number' => 3],
