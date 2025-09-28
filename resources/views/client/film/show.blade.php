@@ -23,16 +23,17 @@
                     <thead class="table-dark">
                         <tr>
                             <th class="text-center" scope="col">No</th>
-                            <th scope="col">Link</th>
                             <th scope="col">Title</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($films as $film)
                             <tr>
-                                <td class="text-center">{{ ucfirst($film->type) }} {{ $film->number }}</td>
-                                <td><a class="btn btn-primary"
-                                        href="{{ $film->category->slug }}/{{ $film->type }}/{{ $film->number }}">Watch</a>
+                                <td class="text-center">
+                                    <a href="{{ $film->category->slug }}/{{ $film->type }}/{{ $film->number }}">
+                                        {{ ucfirst($film->type) }} {{ $film->number }}
+                                        <i class="fa-solid fa-arrow-up-right-from-square text-primary"></i>
+                                    </a>
                                 </td>
                                 <td>{{ $film->name }}</td>
                             </tr>

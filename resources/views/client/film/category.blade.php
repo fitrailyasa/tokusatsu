@@ -24,18 +24,23 @@
                             <th class="text-center" scope="col">No</th>
                             <th scope="col">Title</th>
                             <th scope="col">Cover</th>
-                            <th scope="col">Link</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($categories as $item)
                             <tr>
                                 <td class="text-center">{{ $categories->firstItem() + $loop->index }}</td>
-                                <td>{{ $item->franchise->name }} {{ $item->name }}</td>
-                                <td><img class="img img-fluid rounded" width="80"
-                                        src="{{ asset('storage/' . $item->img ?? '') }}" alt=""></td>
-                                <td><a class="btn btn-primary"
-                                        href="{{ $item->franchise->slug }}/{{ $item->slug }}">Watch</a>
+                                <td>
+                                    <a href="{{ $item->franchise->slug }}/{{ $item->slug }}">{{ $item->franchise->name }}
+                                        {{ $item->name }}
+                                        <i class="fa-solid fa-arrow-up-right-from-square text-primary"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ $item->franchise->slug }}/{{ $item->slug }}">
+                                        <img class="img img-fluid rounded" width="80"
+                                            src="{{ asset('storage/' . $item->img ?? '') }}" alt="">
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach
