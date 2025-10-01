@@ -27,9 +27,10 @@
             <div class="col-12">
                 <div class="ratio ratio-16x9">
                     @if (strpos($embedUrl, 'embed') !== false || strpos($embedUrl, 'preview') !== false)
-                        <iframe src="{{ $embedUrl }}" allow="autoplay" allowfullscreen></iframe>
+                        <iframe id="film-iframe" src="{{ $embedUrl }}" allow="autoplay" allowfullscreen
+                            class="w-100 h-100"></iframe>
                     @else
-                        <video controls class="w-100 h-100">
+                        <video id="film-video" controls class="w-100 h-100">
                             <source src="{{ $embedUrl }}" type="video/mp4">
                             Browser Anda tidak mendukung pemutaran video.
                         </video>
@@ -41,26 +42,49 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            // === Watch History ===
             let watchHistory = JSON.parse(localStorage.getItem("watchHistory")) || [];
-
             const filmTitle =
                 "{{ $category->franchise->name }} {{ $category->name }} {{ ucfirst($film->type) }} {{ $film->number }}";
             const filmUrl = window.location.href;
             const currentTime = new Date().toLocaleString();
 
-
             const exists = watchHistory.find(item => item.url === filmUrl);
             if (!exists) {
-                const newEntry = {
+                watchHistory.unshift({
                     title: filmTitle,
                     url: filmUrl,
                     time: currentTime
-                };
-                watchHistory.unshift(newEntry);
-                if (watchHistory.length > 20) {
-                    watchHistory = watchHistory.slice(0, 20);
-                }
+                });
+                if (watchHistory.length > 20) watchHistory = watchHistory.slice(0, 20);
                 localStorage.setItem("watchHistory", JSON.stringify(watchHistory));
+            }
+
+            // === Fullscreen & Landscape for Mobile ===
+            const video = document.getElementById('film-video') || document.getElementById('film-iframe');
+
+            if (video) {
+                // Event fullscreen change
+                video.addEventListener('fullscreenchange', async () => {
+                    if (document.fullscreenElement) {
+                        try {
+                            if (screen.orientation && screen.orientation.lock) {
+                                await screen.orientation.lock('landscape');
+                            }
+                        } catch (err) {
+                            console.log('Orientation lock failed:', err);
+                        }
+                    } else {
+                        if (screen.orientation && screen.orientation.unlock) {
+                            screen.orientation.unlock();
+                        }
+                    }
+                });
+
+                // iOS Safari workaround
+                video.addEventListener('webkitbeginfullscreen', () => {
+                    console.log('iOS fullscreen triggered (manual landscape)');
+                });
             }
         });
     </script>
