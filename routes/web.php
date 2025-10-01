@@ -33,6 +33,7 @@ use App\Livewire\Admin\UserLivewire;
 
 // CLIENT SIDE
 Route::get('/', [HomeController::class, 'index'])->name('beranda');
+Route::get('/offline', [HomeController::class, 'offline'])->name('offline');
 
 Route::get('/search', [HomeController::class, 'search'])->name('search');
 Route::get('/era', [ClientEraController::class, 'index'])->name('era');

@@ -14,6 +14,11 @@ class HomeController extends Controller
         return view('client.index', compact('categories'));
     }
 
+    public function offline()
+    {;
+        return view('offline');
+    }
+
     public function show(string $franchiseSlug, string $categorySlug)
     {
         $category = Category::whereHas('franchise', function ($query) use ($franchiseSlug) {
