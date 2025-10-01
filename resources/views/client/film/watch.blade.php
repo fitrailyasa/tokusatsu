@@ -38,4 +38,30 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let watchHistory = JSON.parse(localStorage.getItem("watchHistory")) || [];
+
+            const filmTitle =
+                "{{ $category->franchise->name }} {{ $category->name }} {{ ucfirst($film->type) }} {{ $film->number }}";
+            const filmUrl = window.location.href;
+            const currentTime = new Date().toLocaleString();
+
+
+            const exists = watchHistory.find(item => item.url === filmUrl);
+            if (!exists) {
+                const newEntry = {
+                    title: filmTitle,
+                    url: filmUrl,
+                    time: currentTime
+                };
+                watchHistory.unshift(newEntry);
+                if (watchHistory.length > 20) {
+                    watchHistory = watchHistory.slice(0, 20);
+                }
+                localStorage.setItem("watchHistory", JSON.stringify(watchHistory));
+            }
+        });
+    </script>
 @endsection

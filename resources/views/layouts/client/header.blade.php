@@ -2,15 +2,22 @@
 use App\Models\Category;
 use App\Models\Era;
 use App\Models\Franchise;
-$eras = Era::withoutTrashed()->get()->reverse();
-$franchises = Franchise::withoutTrashed()->get()->reverse();
-$categories = Category::withoutTrashed()->get()->reverse();
+
+// Ambil 5 franchise pertama
+$franchises = Franchise::withoutTrashed()->take(5)->get();
+$eras = Era::withoutTrashed()->get();
 ?>
 <style>
     .custom-dropdown {
         max-height: 60vh;
         overflow-y: auto;
         overflow-x: hidden;
+    }
+
+    .dropdown-header {
+        font-weight: bold;
+        font-size: 0.9rem;
+        color: #555;
     }
 </style>
 <header class="header px-3 border-bottom text-white mb-3 fixed-top" style="background-color: #111111">
@@ -22,35 +29,17 @@ $categories = Category::withoutTrashed()->get()->reverse();
             </div>
             <div class="d-none d-lg-block">
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 mx-3 justify-content-center mb-md-0">
-                    <li><a href="{{ route('beranda') }}"
-                            class="nav-link py-3 px-3 text-white fw-bold @yield('textHome')">{{ __('Home') }}</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle py-3 px-3 text-white fw-bold @yield('textEra')"
-                            href="#" id="eraDropdown" role="button">
-                            {{ __('Era') }}
+                    <li>
+                        <a href="{{ route('beranda') }}"
+                            class="nav-link py-3 px-3 text-white fw-bold @yield('textHome')">
+                            {{ __('Home') }}
                         </a>
-                        <ul class="dropdown-menu m-0" aria-labelledby="eraDropdown">
-                            @if ($eras != null)
-                                @foreach ($eras as $era)
-                                    <li class="dropdown-submenu">
-                                        <a class="dropdown-item dropdown-toggle" href="#">{{ $era->name }}</a>
-                                        <ul class="dropdown-menu custom-dropdown">
-                                            @foreach ($era->categories as $category)
-                                                <li><a class="dropdown-item"
-                                                        href="{{ route('era.category', [$category->era->slug, $category->slug]) }}">{{ $category->name }}</a>
-                                                </li>
-                                            @endforeach
-                                        </ul>
-                                    </li>
-                                @endforeach
-                            @endif
-                        </ul>
                     </li>
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle py-3 px-3 text-white fw-bold @yield('textFranchise')"
                             href="#" id="franchiseDropdown" role="button">
-                            {{ __('Franchise') }}
+                            {{ __('Gallery') }}
                         </a>
                         <ul class="dropdown-menu m-0" aria-labelledby="franchiseDropdown">
                             @if ($franchises != null)
@@ -70,31 +59,55 @@ $categories = Category::withoutTrashed()->get()->reverse();
                             @endif
                         </ul>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle py-3 px-3 text-white fw-bold @yield('textCategory')"
-                            href="#" id="dropdownMenuLink" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            {{ __('Category') }}
-                        </a>
-                        <ul class="dropdown-menu m-0 custom-dropdown" aria-labelledby="dropdownMenuLink">
-                            @if ($categories != null)
-                                @foreach ($categories as $category)
-                                    <li><a class="dropdown-item"
-                                            href="{{ route('category.show', $category->slug) }}">{{ $category->name }}</a>
-                                    </li>
+
+                    {{-- Loop franchise --}}
+                    @foreach ($franchises as $franchise)
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle py-3 px-3 text-white fw-bold" href="#"
+                                id="franchiseDropdown{{ $franchise->id }}" role="button">
+                                {{ $franchise->name }}
+                            </a>
+                            <ul class="dropdown-menu custom-dropdown m-0"
+                                aria-labelledby="franchiseDropdown{{ $franchise->id }}">
+                                @foreach ($eras as $era)
+                                    @php
+                                        $categoriesByEra = $franchise->categories->where('era_id', $era->id);
+                                    @endphp
+
+                                    @if ($categoriesByEra->count() > 0)
+                                        <li>
+                                            <h6 class="dropdown-header fw-bold text-white">
+                                                {{ strtoupper($era->name) }}
+                                            </h6>
+                                        </li>
+                                        @foreach ($categoriesByEra as $category)
+                                            <li>
+                                                <a class="dropdown-item"
+                                                    href="{{ route('film.show', [$franchise->slug, $category->slug]) }}">
+                                                    {{ $category->name }}
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                    @endif
                                 @endforeach
-                            @endif
-                        </ul>
+                            </ul>
+                        </li>
+                    @endforeach
+
+                    <li class="nav-item">
+                        <a class="nav-link py-3 px-3 text-white fw-bold @yield('textHistory')"
+                            href="{{ route('history') }}">
+                            {{ __('History') }}
+                        </a>
                     </li>
                 </ul>
             </div>
-            {{-- <div class="d-flex align-items-center">
-                <a href="#" class="ml-4 border rounded-circle nav-link px-2 text-white fw-bold d-none d-lg-block">
-                    <i class="fa-solid fa-user mx-1 fs-4"></i>
-                </a>
-            </div> --}}
         </div>
     </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const dropdownItems = document.querySelectorAll('.nav-item.dropdown, .dropdown-submenu');

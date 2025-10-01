@@ -17,22 +17,26 @@
     <div class="container">
         <div class="d-flex">
             <ul class="nav col-12 align-items-center justify-content-between">
-                <li><a href="{{ route('beranda') }}" class="nav-link p-3 text-white fw-bold @yield('textHome')"><i
-                            class="fas fa-home fs-4"></i></a>
+                <li><a href="{{ route('beranda') }}" class="nav-link p-2 text-white fw-bold @yield('textHome')"><i
+                            class="fas fa-home fs-5"></i></a>
                 </li>
                 <li>
-                    <a href="{{ route('franchise') }}" class="nav-link p-3 text-white fw-bold @yield('textFranchise')"><i
-                            class="fas fa-image fs-4"></i></a>
+                    <a href="{{ route('franchise') }}" class="nav-link p-2 text-white fw-bold @yield('textFranchise')"><i
+                            class="fas fa-image fs-5"></i></a>
                 </li>
                 <li>
-                    <a href="{{ route('film') }}" class="nav-link p-3 text-white fw-bold @yield('textFilm')"><i
-                            class="fas fa-video fs-4"></i></a>
+                    <a href="{{ route('film') }}" class="nav-link p-2 text-white fw-bold @yield('textFilm')"><i
+                            class="fas fa-video fs-5"></i></a>
+                </li>
+                <li>
+                    <a href="{{ route('history') }}" class="nav-link p-2 text-white fw-bold @yield('textHistory')"><i
+                            class="fas fa-history fs-5"></i></a>
                 </li>
             </ul>
         </div>
     </div>
-    {{-- <a href="#" class="scroll-to-top d-block aktif text-center text-white p-3" id="scrollToTopBtn">
-        <i class="fas fa-chevron-up fs-4"></i>
+    {{-- <a href="#" class="scroll-to-top d-block aktif text-center text-white p-2" id="scrollToTopBtn">
+        <i class="fas fa-chevron-up fs-5"></i>
     </a> --}}
 </footer>
 <script>
