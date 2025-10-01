@@ -1,6 +1,6 @@
 @extends('layouts.client.app')
 
-@section('title', 'Era')
+@section('title', 'Gallery')
 
 @section('textEra', 'rounded aktif')
 

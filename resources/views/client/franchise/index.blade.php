@@ -1,6 +1,6 @@
 @extends('layouts.client.app')
 
-@section('title', 'Franchise')
+@section('title', 'Gallery')
 
 @section('textFranchise', 'rounded aktif')
 
