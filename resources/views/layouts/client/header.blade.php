@@ -4,7 +4,7 @@ use App\Models\Era;
 use App\Models\Franchise;
 
 $franchises = Franchise::withoutTrashed()->take(5)->get();
-$eras = Era::withoutTrashed()->get();
+$eras = Era::withoutTrashed()->get()->reverse();
 ?>
 <style>
     .custom-dropdown {
@@ -44,7 +44,7 @@ $eras = Era::withoutTrashed()->get();
                                 aria-labelledby="franchiseDropdown{{ $franchise->id }}">
                                 @foreach ($eras as $era)
                                     @php
-                                        $categoriesByEra = $franchise->categories->where('era_id', $era->id);
+                                        $categoriesByEra = $franchise->categories->where('era_id', $era->id)->reverse();
                                     @endphp
 
                                     @if ($categoriesByEra->count() > 0)
