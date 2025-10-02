@@ -22,6 +22,7 @@ use App\Http\Controllers\Client\ClientFranchiseController;
 use App\Http\Controllers\Client\ClientCategoryController;
 use App\Http\Controllers\Client\ClientFilmController;
 use App\Http\Controllers\Client\ClientHistoryController;
+use App\Http\Controllers\Client\ClientBookmarkController;
 use App\Http\Controllers\MapController;
 use App\Livewire\Admin\DashboardLivewire;
 use App\Livewire\Admin\CategoryLivewire;
@@ -187,6 +188,7 @@ Route::get('/film/{category}', [ClientFilmController::class, 'category'])->name(
 Route::get('/film/{franchise}/{category}', [ClientFilmController::class, 'show'])->name('film.show');
 Route::get('/film/{franchise}/{category}/{type}/{number}', [ClientFilmController::class, 'watch'])->name('film.watch');
 Route::get('/history', [ClientHistoryController::class, 'index'])->name('history');
+Route::get('/bookmark', [ClientBookmarkController::class, 'index'])->name('bookmark');
 
 Route::get('/address', [AddressController::class, 'index'])->name('address.index');
 Route::post('/address', [AddressController::class, 'store'])->name('address.store');

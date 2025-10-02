@@ -6,16 +6,16 @@
                             class="fas fa-home fs-5"></i></a>
                 </li>
                 <li>
-                    <a href="{{ route('franchise') }}" class="nav-link p-2 text-white fw-bold @yield('textFranchise')"><i
-                            class="fas fa-image fs-5"></i></a>
-                </li>
-                <li>
                     <a href="{{ route('film') }}" class="nav-link p-2 text-white fw-bold @yield('textFilm')"><i
-                            class="fas fa-video fs-5"></i></a>
+                            class="far fa-play-circle fs-5"></i></a>
                 </li>
                 <li>
                     <a href="{{ route('history') }}" class="nav-link p-2 text-white fw-bold @yield('textHistory')"><i
-                            class="fas fa-history fs-5"></i></a>
+                            class="far fa-clock fs-5"></i></a>
+                </li>
+                <li>
+                    <a href="{{ route('bookmark') }}" class="nav-link p-2 text-white fw-bold @yield('textBookmark')"><i
+                            class="far fa-bookmark fs-5"></i></a>
                 </li>
             </ul>
         </div>

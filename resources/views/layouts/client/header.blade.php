@@ -35,32 +35,6 @@ $eras = Era::withoutTrashed()->get();
                             {{ __('Home') }}
                         </a>
                     </li>
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle py-3 px-3 text-white fw-bold @yield('textFranchise')"
-                            href="#" id="franchiseDropdown" role="button">
-                            {{ __('Gallery') }}
-                        </a>
-                        <ul class="dropdown-menu m-0" aria-labelledby="franchiseDropdown">
-                            @if ($franchises != null)
-                                @foreach ($franchises as $franchise)
-                                    <li class="dropdown-submenu">
-                                        <a class="dropdown-item dropdown-toggle"
-                                            href="#">{{ $franchise->name }}</a>
-                                        <ul class="dropdown-menu custom-dropdown">
-                                            @foreach ($franchise->categories as $category)
-                                                <li><a class="dropdown-item"
-                                                        href="{{ route('franchise.category', [$category->franchise->slug, $category->slug]) }}">{{ $category->name }}</a>
-                                                </li>
-                                            @endforeach
-                                        </ul>
-                                    </li>
-                                @endforeach
-                            @endif
-                        </ul>
-                    </li>
-
-                    {{-- Loop franchise --}}
                     @foreach ($franchises as $franchise)
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle py-3 px-3 text-white fw-bold" href="#"
@@ -100,7 +74,13 @@ $eras = Era::withoutTrashed()->get();
                     <li class="nav-item">
                         <a class="nav-link py-3 px-3 text-white fw-bold @yield('textHistory')"
                             href="{{ route('history') }}">
-                            {{ __('History') }}
+                            <i class="far fa-clock fs-5"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link py-3 px-3 text-white fw-bold @yield('textBookmark')"
+                            href="{{ route('bookmark') }}">
+                            <i class="far fa-bookmark fs-5"></i>
                         </a>
                     </li>
                 </ul>

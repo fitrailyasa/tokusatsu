@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 
-class ClientHistoryController extends Controller
+class ClientBookmarkController extends Controller
 {
     public function index()
     {
-        return view('client.history.index');
+        return view('client.bookmark.index');
     }
 }

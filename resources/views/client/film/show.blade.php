@@ -24,6 +24,7 @@
                         <tr>
                             <th class="text-center" scope="col">No</th>
                             <th scope="col">Title</th>
+                            <th class="text-center" scope="col">Bookmark</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -36,6 +37,13 @@
                                     </a>
                                 </td>
                                 <td>{{ $film->name }}</td>
+                                <td class="text-center">
+                                    <button class="btn btn-sm btn-outline-warning bookmark-btn"
+                                        data-title="{{ $category->franchise->name }} {{ $category->name }} {{ ucfirst($film->type) }} {{ $film->number }}"
+                                        data-url="{{ url('film/' . $category->franchise->slug . '/' . $film->category->slug . '/' . $film->type . '/' . $film->number) }}">
+                                        ⭐
+                                    </button>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -43,4 +51,50 @@
             @endif
         </div>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const buttons = document.querySelectorAll(".bookmark-btn");
+
+            let bookmarks = JSON.parse(localStorage.getItem("bookmarks")) || [];
+
+            function updateButtons() {
+                buttons.forEach(btn => {
+                    const filmUrl = btn.dataset.url;
+                    if (bookmarks.find(b => b.url === filmUrl)) {
+                        btn.textContent = "✅";
+                        btn.classList.remove("btn-outline-warning");
+                        btn.classList.add("btn-success");
+                    } else {
+                        btn.textContent = "⭐";
+                        btn.classList.remove("btn-success");
+                        btn.classList.add("btn-outline-warning");
+                    }
+                });
+            }
+
+            buttons.forEach(btn => {
+                btn.addEventListener("click", function() {
+                    const filmTitle = this.dataset.title;
+                    const filmUrl = this.dataset.url;
+
+                    const index = bookmarks.findIndex(b => b.url === filmUrl);
+
+                    if (index === -1) {
+                        bookmarks.push({
+                            title: filmTitle,
+                            url: filmUrl
+                        });
+                    } else {
+                        bookmarks.splice(index, 1);
+                    }
+
+                    localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+                    updateButtons();
+                });
+            });
+
+            updateButtons();
+        });
+    </script>
 @endsection

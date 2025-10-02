@@ -51,7 +51,7 @@
 
                     const deleteBtn = document.createElement("button");
                     deleteBtn.className = "btn btn-sm btn-outline-danger";
-                    deleteBtn.textContent = "Delete";
+                    deleteBtn.innerHTML = "<i class='fas fa-trash'></i>";
 
                     deleteBtn.addEventListener("click", function() {
                         watchHistory.splice(index, 1);
