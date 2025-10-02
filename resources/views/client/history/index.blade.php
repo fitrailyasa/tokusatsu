@@ -70,13 +70,13 @@
 
             renderHistory();
 
-            clearHistoryBtn.addEventListener("click", function() {
-                if (confirm("Are you sure you want to delete all viewing history?")) {
-                    localStorage.removeItem("watchHistory");
-                    watchHistory = [];
-                    renderHistory();
-                }
-            });
+            // clearHistoryBtn.addEventListener("click", function() {
+            //     if (confirm("Are you sure you want to delete all viewing history?")) {
+            //         localStorage.removeItem("watchHistory");
+            //         watchHistory = [];
+            //         renderHistory();
+            //     }
+            // });
         });
     </script>
 @endsection

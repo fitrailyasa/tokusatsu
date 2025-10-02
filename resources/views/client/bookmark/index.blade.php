@@ -66,13 +66,13 @@
 
             renderBookmarks();
 
-            clearBookmarkBtn.addEventListener("click", function() {
-                if (confirm("Are you sure you want to delete all bookmarks?")) {
-                    localStorage.removeItem("bookmarks");
-                    bookmarks = [];
-                    renderBookmarks();
-                }
-            });
+            // clearBookmarkBtn.addEventListener("click", function() {
+            //     if (confirm("Are you sure you want to delete all bookmarks?")) {
+            //         localStorage.removeItem("bookmarks");
+            //         bookmarks = [];
+            //         renderBookmarks();
+            //     }
+            // });
         });
     </script>
 @endsection
