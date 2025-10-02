@@ -3,7 +3,6 @@ use App\Models\Category;
 use App\Models\Era;
 use App\Models\Franchise;
 
-// Ambil 5 franchise pertama
 $franchises = Franchise::withoutTrashed()->take(5)->get();
 $eras = Era::withoutTrashed()->get();
 ?>
@@ -24,8 +23,8 @@ $eras = Era::withoutTrashed()->get();
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-between">
             <div class="d-flex align-items-center justify-content-center">
-                <img class="img-fluid" width="50" src="{{ asset('logo.png') }}" alt="Logo">
-                <h4 class="mb-0 font-weight-bold">TOKUSATSU</h4>
+                <img class="img-fluid logo-sm" src="{{ asset('logo.png') }}" alt="Logo">
+                <h5 class="mb-0 ms-2 font-weight-bold title-sm">TOKUSATSU</h5>
             </div>
             <div class="d-none d-lg-block">
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 mx-3 justify-content-center mb-md-0">

@@ -84,6 +84,141 @@
                 font-size: 22px;
             }
         }
+
+        .list-group-item a {
+            text-decoration: none;
+            color: #000;
+            font-size: 1rem;
+            word-break: break-word;
+        }
+
+        .list-group-item button {
+            padding: 0.2rem 0.4rem;
+            font-size: 0.8rem;
+        }
+
+        .logo-sm {
+            width: 50px;
+        }
+
+        @media (max-width: 320px) {
+
+            .responsive-title {
+                font-size: 1rem !important;
+            }
+
+            /* GALLERY */
+            .img-gallery {
+                width: 80px;
+                margin: 2px;
+            }
+
+            .modal-body img {
+                width: 100%;
+            }
+
+            .btn {
+                font-size: 0.75rem;
+                padding: 0.25rem 0.5rem;
+            }
+
+            h4 {
+                font-size: 1rem;
+            }
+
+            /* SEARCH */
+            .input-group {
+                width: 100% !important;
+                flex-wrap: nowrap;
+            }
+
+            .form-control-sm {
+                font-size: 0.75rem;
+                padding: 0.25rem 0.5rem;
+            }
+
+            .btn-sm {
+                font-size: 0.7rem;
+                padding: 0.25rem 0.5rem;
+            }
+
+            .input-group .btn {
+                width: 30% !important;
+            }
+
+            .input-group .form-control {
+                width: 70% !important;
+            }
+
+            /* HISTORY */
+            #watchHistory .list-group-item {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 0.3rem 0.5rem;
+                font-size: 0.8rem;
+            }
+
+            #watchHistory .list-group-item a {
+                font-size: 0.8rem;
+            }
+
+            #watchHistory .list-group-item button {
+                margin-top: 0.3rem;
+                align-self: flex-end;
+                font-size: 0.7rem;
+                padding: 0.2rem 0.3rem;
+            }
+
+            /* BOOKMARK */
+            #bookmarkList .list-group-item {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 0.3rem 0.5rem;
+                font-size: 0.8rem;
+            }
+
+            #bookmarkList .list-group-item a {
+                font-size: 0.8rem;
+            }
+
+            #bookmarkList .list-group-item button {
+                margin-top: 0.3rem;
+                align-self: flex-end;
+                font-size: 0.7rem;
+                padding: 0.2rem 0.3rem;
+            }
+
+            /* HEADER */
+            .header {
+                padding: 5px !important;
+            }
+
+            .logo-sm {
+                width: 30px;
+            }
+
+            .title-sm {
+                font-size: 0.9rem;
+            }
+
+            .d-none.d-lg-block {
+                display: none !important;
+            }
+
+            /* FOOTER */
+            .footer {
+                font-size: 10px;
+            }
+
+            .footer i {
+                width: 16px !important;
+                height: 16px !important;
+            }
+
+            .footer .nav-link {
+                padding: 3px !important;
+            }
+        }
     </style>
 
 </head>
