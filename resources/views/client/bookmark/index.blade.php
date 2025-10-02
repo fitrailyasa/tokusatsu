@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="container my-5 py-4">
-        <div class="row px-3 mb-3">
+        <div class="row mb-3">
             <div class="col-3 text-left"></div>
             <div class="col-6">
                 <h4 class="text-center responsive-title">Bookmark</h4>
