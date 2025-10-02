@@ -17,11 +17,11 @@
 
         <div class="mt-4">
             <ul id="watchHistory" class="list-group"></ul>
-            <div class="mt-3">
+            {{-- <div class="mt-3">
                 <button id="clearHistoryBtn" class="btn btn-danger btn-sm">
                     Delete All History
                 </button>
-            </div>
+            </div> --}}
         </div>
     </div>
     <script>

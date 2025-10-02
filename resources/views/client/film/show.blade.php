@@ -2,6 +2,8 @@
 
 @section('title', 'Film')
 
+@section('textFilm', 'rounded aktif')
+
 @section('content')
     <div class="container my-5">
         <div class="d-flex justify-content-between align-items-center px-3 pt-4">

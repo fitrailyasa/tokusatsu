@@ -16,11 +16,11 @@
 
         <div class="mt-4">
             <ul id="bookmarkList" class="list-group"></ul>
-            <div class="mt-3">
+            {{-- <div class="mt-3">
                 <button id="clearBookmarkBtn" class="btn btn-danger btn-sm">
                     Delete All Bookmark
                 </button>
-            </div>
+            </div> --}}
         </div>
     </div>
 
