@@ -1,7 +1,7 @@
 <footer class="footer px-3 d-block d-lg-none border-top text-white mt-3 fixed-bottom" style="background-color: #111111">
     <div class="container">
         <div class="d-flex">
-            <ul class="nav col-12 align-items-center justify-content-between">
+            <ul class="nav col-12 align-items-center justify-content-between py-2">
                 <li><a href="{{ route('beranda') }}" class="nav-link p-2 text-white fw-bold @yield('textHome')"><i
                             data-feather="home"></i></a>
                 </li>
