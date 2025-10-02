@@ -45,7 +45,7 @@
     <meta name="msapplication-wide310x150logo" content="{{ asset('assets/favicon/mstile-310x150.png') }}" />
     <meta name="msapplication-square310x310logo" content="{{ asset('assets/favicon/mstile-310x310.png') }}" />
     <link rel="icon" href="{{ asset('assets/favicon/favicon.ico') }}">
-
+    <script src="https://unpkg.com/feather-icons"></script>
 
     <style>
         .responsive-title {
@@ -104,7 +104,6 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-    </script>
     </script>
     @yield('script')
 </body>
