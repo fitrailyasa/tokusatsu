@@ -19,6 +19,8 @@ class CreateCategoryTable extends Migration
             $table->string('slug')->unique();
             $table->text('description')->nullable();
             $table->string('img')->nullable();
+            $table->date('first_aired')->nullable();
+            $table->date('last_aired')->nullable();
             $table->foreignId('era_id')->nullable();
             $table->foreignId('franchise_id')->nullable();
             $table->timestamps();
