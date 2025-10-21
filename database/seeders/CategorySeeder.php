@@ -737,7 +737,7 @@ class CategorySeeder extends Seeder
                 'name' => 'Gingaman',
                 'slug' => Str::slug('Gingaman', '-'),
                 'description' => null,
-                'img' => "super-sentai/heisei/22-seijuu-sentai-gingaman-jpn-power-rangers-lost-galaxy-usa-6.jpg",
+                'img' => "super-sentai/heisei/22-seijuu-sentai-gingaman-jpn-power-rangers-lost-galaxy-usa-1.jpg",
                 'first_aired' => '1998-02-22',
                 'last_aired' => '1999-02-14',
                 'created_at' => $now,
