@@ -187,7 +187,6 @@ Route::get('/film', [ClientFilmController::class, 'index'])->name('film');
 Route::get('/film/{category}', [ClientFilmController::class, 'category'])->name('film.category');
 Route::get('/film/{franchise}/{category}', [ClientFilmController::class, 'show'])->name('film.show');
 Route::get('/film/{franchise}/{category}/{type}/{number}', [ClientFilmController::class, 'watch'])->name('film.watch');
-Route::get('/{franchise}-{category}-{type}-{number}', [ClientFilmController::class, 'watch'])->name('film.watch.slug');
 Route::get('/history', [ClientHistoryController::class, 'index'])->name('history');
 Route::get('/bookmark', [ClientBookmarkController::class, 'index'])->name('bookmark');
 
@@ -199,4 +198,5 @@ Route::get('/map/{province}', [MapController::class, 'province'])->name('map.pro
 Route::get('/map/{province}/{regency}', [MapController::class, 'regency'])->name('map.regency');
 Route::get('/map/{province}/{regency}/{district}', [MapController::class, 'district'])->name('map.district');
 
-Route::get('/{franchise}/{category}', [HomeController::class, 'show'])->name('beranda.show');
+Route::get('/{franchise}-{category}-{type}-{number}', [ClientFilmController::class, 'watch'])->name('film.watch.slug');
+// Route::get('/{franchise}/{category}', [HomeController::class, 'show'])->name('beranda.show');
