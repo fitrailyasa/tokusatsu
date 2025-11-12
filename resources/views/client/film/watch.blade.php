@@ -5,6 +5,18 @@
 @section('textFilm', 'rounded aktif')
 
 @section('content')
+    <style>
+        .no-click-overlay {
+            position: absolute;
+            margin-top: 10px;
+            margin-right: 10px;
+            width: 50px;
+            height: 50px;
+            cursor: default;
+            z-index: 5;
+            /* background: #fff; */
+        }
+    </style>
     <div class="container my-5 py-4">
         <div class="container">
             <div class="row px-3 mb-3">
@@ -28,6 +40,9 @@
         <div class="row mb-5">
             <div class="col-12">
                 <div class="ratio ratio-16x9">
+                    <div class="d-flex justify-content-end">
+                        <div class="no-click-overlay"></div>
+                    </div>
                     @if (strpos($embedUrl, 'embed') !== false || strpos($embedUrl, 'preview') !== false)
                         <iframe id="film-iframe" src="{{ $embedUrl }}" allow="autoplay" allowfullscreen
                             class="w-100 h-100"></iframe>
@@ -89,5 +104,25 @@
                 });
             }
         });
+    </script>
+    <script>
+        document.addEventListener("contextmenu", function(e) {
+            e.preventDefault();
+        });
+
+        document.addEventListener("keydown", function(e) {
+            if (e.key === "F12" ||
+                (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J")) ||
+                (e.ctrlKey && e.key === "U")) {
+                e.preventDefault();
+            }
+        });
+
+        const video = document.getElementById('film-video') || document.getElementById('film-iframe');
+        if (video) {
+            video.addEventListener("contextmenu", function(e) {
+                e.preventDefault();
+            });
+        }
     </script>
 @endsection
