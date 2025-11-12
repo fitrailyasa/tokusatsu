@@ -79,7 +79,7 @@ class AdminProviderAccountController extends Controller
         $query = "name contains 'episode'";
 
         $files = $service->files->listFiles([
-            'pageSize' => 100,
+            'pageSize' => 200,
             'fields' => 'files(id, name, modifiedTime, createdTime)',
             'orderBy' => $orderBy,
             'q' => $query
