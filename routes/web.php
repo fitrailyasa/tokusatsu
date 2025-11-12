@@ -187,6 +187,7 @@ Route::get('/film', [ClientFilmController::class, 'index'])->name('film');
 Route::get('/film/{category}', [ClientFilmController::class, 'category'])->name('film.category');
 Route::get('/film/{franchise}/{category}', [ClientFilmController::class, 'show'])->name('film.show');
 Route::get('/film/{franchise}/{category}/{type}/{number}', [ClientFilmController::class, 'watch'])->name('film.watch');
+Route::get('/{franchise}-{category}-{type}-{number}', [ClientFilmController::class, 'watch'])->name('film.watch.slug');
 Route::get('/history', [ClientHistoryController::class, 'index'])->name('history');
 Route::get('/bookmark', [ClientBookmarkController::class, 'index'])->name('bookmark');
 
