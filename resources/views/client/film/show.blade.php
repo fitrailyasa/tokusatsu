@@ -33,8 +33,7 @@
                         @foreach ($films as $film)
                             <tr>
                                 <td class="text-center">
-                                    <a
-                                        href="/{{ $film->category->franchise->slug }}-{{ $film->category->slug }}-{{ $film->type }}-{{ $film->number }}">
+                                    <a href="{{ $film->category->slug }}/{{ $film->type }}/{{ $film->number }}">
                                         {{ ucfirst($film->type) }} {{ $film->number }}
                                         <i class="fa-solid fa-arrow-up-right-from-square text-primary"></i>
                                     </a>
@@ -43,7 +42,7 @@
                                 <td class="text-center">
                                     <button class="btn btn-sm btn-outline-warning bookmark-btn"
                                         data-title="{{ $category->franchise->name }} {{ $category->name }} {{ ucfirst($film->type) }} {{ $film->number }}"
-                                        data-url="{{ url($category->franchise->slug . '-' . $film->category->slug . '-' . $film->type . '-' . $film->number) }}">
+                                        data-url="{{ url('film/' . $category->franchise->slug . '/' . $film->category->slug . '/' . $film->type . '/' . $film->number) }}">
                                         ⭐
                                     </button>
                                 </td>
