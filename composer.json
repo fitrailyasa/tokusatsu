@@ -9,6 +9,7 @@
         "barryvdh/laravel-dompdf": "^3.1",
         "darkaonline/l5-swagger": "^9.0",
         "filament/filament": "^3.2",
+        "google/apiclient": "2.15",
         "laravel/breeze": "^2.0",
         "laravel/framework": "^11.0",
         "laravel/reverb": "@beta",

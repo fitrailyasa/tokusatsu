@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\AdminTagController;
 use App\Http\Controllers\Admin\AdminDataController;
 use App\Http\Controllers\Admin\AdminFilmController;
 use App\Http\Controllers\Admin\AdminGeojsonController;
+use App\Http\Controllers\Admin\AdminProviderAccountController;
 use App\Http\Controllers\Auth\ProviderController;
 use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\MidtransController;
@@ -179,6 +180,14 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/geojson/import', [AdminGeojsonController::class, 'import'])->name('geojson.import');
     Route::get('/geojson/exportExcel', [AdminGeojsonController::class, 'exportExcel'])->name('geojson.exportExcel');
     Route::get('/geojson/exportPDF', [AdminGeojsonController::class, 'exportPDF'])->name('geojson.exportPDF');
+
+    // PROVIDER ACCOUNT
+    Route::get('/auth/provider', [AdminProviderAccountController::class, 'index'])->name('auth');
+    Route::get('/auth/provider/login', [AdminProviderAccountController::class, 'login'])->name('auth.login');
+    Route::get('/auth/provider/callback', [AdminProviderAccountController::class, 'callback'])->name('auth.callback');
+    Route::get('/auth/provider/{email}/files', [AdminProviderAccountController::class, 'files'])->name('auth.files');
+    Route::get('/auth/provider/{email}/export', [AdminProviderAccountController::class, 'exportExcel'])->name('auth.export');
+    Route::get('/auth/provider/{email}/logout', [AdminProviderAccountController::class, 'logout'])->name('auth.logout');
   });
 });
 
