@@ -19,12 +19,12 @@ class GeojsonExport implements FromCollection, WithHeadings, WithStyles, ShouldA
         $no = 1;
         $geojsons = Geojson::all();
 
-        foreach ($geojsons as $geojson) {
+        foreach ($geojsons as $item) {
             $collection[] = [
                 'No' => $no++,
-                'Name' => $geojson->name ?? '',
-                'Description' => $geojson->description ?? '',
-                'Geometry' => $geojson->geometry ?? '',
+                'Name' => $item->name ?? '',
+                'Description' => $item->description ?? '',
+                'Geometry' => $item->geometry ?? '',
             ];
         }
 

@@ -20,14 +20,14 @@ class FilmExport implements FromCollection, WithHeadings, WithStyles, ShouldAuto
         $no = 1;
         $films = Film::all();
 
-        foreach ($films as $film) {
+        foreach ($films as $item) {
             $collection[] = [
                 'No' => $no++,
-                'Name' => $film->name ?? '',
-                'Category' => $film->category->name ?? 'null',
-                'Type' => $film->type ?? '',
-                'Number' => $film->number ?? 0,
-                'Link' => $film->link ?? '',
+                'Name' => $item->name ?? '',
+                'Category' => $item->category->name ?? 'null',
+                'Type' => $item->type ?? '',
+                'Number' => $item->number ?? 0,
+                'Link' => $item->link ?? '',
             ];
         }
 

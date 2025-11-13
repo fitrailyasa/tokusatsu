@@ -20,13 +20,13 @@ class DataExport implements FromCollection, WithHeadings, WithStyles, ShouldAuto
         $no = 1;
         $datas = Data::all();
 
-        foreach ($datas as $data) {
+        foreach ($datas as $item) {
             $collection[] = [
                 'No' => $no++,
-                'Name' => $data->name ?? '',
-                'Category' => $data->category->name ?? 'null',
-                'Img' => $data->img ?? '',
-                'Tags' => implode(', ', $data->tags->pluck('name')->toArray()),
+                'Name' => $item->name ?? '',
+                'Category' => $item->category->name ?? 'null',
+                'Img' => $item->img ?? '',
+                'Tags' => implode(', ', $item->tags->pluck('name')->toArray()),
             ];
         }
 

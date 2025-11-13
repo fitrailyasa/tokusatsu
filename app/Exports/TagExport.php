@@ -19,10 +19,10 @@ class TagExport implements FromCollection, WithHeadings, WithStyles, ShouldAutoS
         $no = 1;
         $tags = Tag::all();
 
-        foreach ($tags as $tag) {
+        foreach ($tags as $item) {
             $collection[] = [
                 'No' => $no++,
-                'Name' => $tag->name ?? '',
+                'Name' => $item->name ?? '',
             ];
         }
 
