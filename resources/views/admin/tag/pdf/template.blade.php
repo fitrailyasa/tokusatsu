@@ -47,10 +47,10 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($tags as $tag)
+            @foreach ($tags as $item)
                 <tr>
                     <td>{{ $loop->iteration + (($page ?? 1) - 1) * ($perPage ?? 10) }}</td>
-                    <td>{{ $tag->name ?? '-' }}</td>
+                    <td>{{ $item->name ?? '-' }}</td>
                 </tr>
             @endforeach
         </tbody>

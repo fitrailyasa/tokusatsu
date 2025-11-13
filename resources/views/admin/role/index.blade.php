@@ -29,12 +29,12 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($roles as $role)
+            @foreach ($roles as $item)
                 <tr>
                     <td>{{ $roles->firstItem() + $loop->index }}</td>
-                    <td>{{ $role->name ?? '-' }}</td>
+                    <td>{{ $item->name ?? '-' }}</td>
                     <td>
-                        @forelse ($role->permissions as $permission)
+                        @forelse ($item->permissions as $permission)
                             @php
                                 $name = strtolower($permission->name);
                                 if (str_contains($name, 'view')) {

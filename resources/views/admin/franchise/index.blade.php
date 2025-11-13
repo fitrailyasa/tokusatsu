@@ -71,29 +71,29 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($franchises as $franchise)
-                <tr @if ($franchise->trashed()) class="text-muted" @endif>
+            @foreach ($franchises as $item)
+                <tr @if ($item->trashed()) class="text-muted" @endif>
                     <td>{{ $franchises->firstItem() + $loop->index }}</td>
-                    <td>{{ $franchise->name ?? '-' }}</td>
+                    <td>{{ $item->name ?? '-' }}</td>
                     <td>
-                        @if ($franchise->img == null)
-                            <img src="{{ asset('assets/profile/default.png') }}" alt="{{ $franchise->name }}"
+                        @if ($item->img == null)
+                            <img src="{{ asset('assets/profile/default.png') }}" alt="{{ $item->name }}"
                                 width="100">
                         @else
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#myModal{{ $franchise->id }}">
-                                <img class="img img-fluid rounded" src="{{ asset('storage/' . $franchise->img) }}"
-                                    alt="{{ $franchise->img }}" width="100" loading="lazy">
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#myModal{{ $item->id }}">
+                                <img class="img img-fluid rounded" src="{{ asset('storage/' . $item->img) }}"
+                                    alt="{{ $item->img }}" width="100" loading="lazy">
                             </a>
 
                             <!-- Modal -->
-                            <div class="modal fade" id="myModal{{ $franchise->id }}" tabindex="-1" role="dialog"
+                            <div class="modal fade" id="myModal{{ $item->id }}" tabindex="-1" role="dialog"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-body">
                                             <div class="card">
                                                 <div class="card-header">
-                                                    <h3 class="card-title">{{ $franchise->name }}</h3>
+                                                    <h3 class="card-title">{{ $item->name }}</h3>
                                                     <div class="card-tools">
                                                         <button type="button" class="btn btn-tool"
                                                             data-card-widget="maximize"><i
@@ -102,11 +102,11 @@
                                                 </div>
                                                 <div class="card-body">
                                                     <img class="img img-fluid col-12"
-                                                        src="{{ asset('storage/' . $franchise->img) }}"
-                                                        alt="{{ $franchise->img }}">
+                                                        src="{{ asset('storage/' . $item->img) }}"
+                                                        alt="{{ $item->img }}">
                                                     <!-- Tombol Download -->
-                                                    <a href="{{ asset('storage/' . $franchise->img) }}"
-                                                        download="{{ $franchise->img }}"
+                                                    <a href="{{ asset('storage/' . $item->img) }}"
+                                                        download="{{ $item->img }}"
                                                         class="btn btn-success mt-2 col-12">Download
                                                         Gambar</a>
                                                 </div>
@@ -117,9 +117,9 @@
                             </div>
                         @endif
                     </td>
-                    <td>{{ Illuminate\Support\Str::words($franchise->description ?? '-', 10, '...') }}</td>
+                    <td>{{ Illuminate\Support\Str::words($item->description ?? '-', 10, '...') }}</td>
                     <td class="manage-row text-center">
-                        @if ($franchise->trashed())
+                        @if ($item->trashed())
                             <!-- Restore and Delete Button -->
                             @can('restore:franchise')
                                 @include('admin.franchise.restore')

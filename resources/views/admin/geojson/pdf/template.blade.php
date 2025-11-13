@@ -49,14 +49,14 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($geojsons as $geojson)
+            @foreach ($geojsons as $item)
                 <tr>
                     <td>{{ $loop->iteration + (($page ?? 1) - 1) * ($perPage ?? 10) }}</td>
-                    <td>{{ $geojson->name ?? '-' }}</td>
-                    <td>{{ Illuminate\Support\Str::words($geojson->description ?? '-', 10, '...') }}</td>
+                    <td>{{ $item->name ?? '-' }}</td>
+                    <td>{{ Illuminate\Support\Str::words($item->description ?? '-', 10, '...') }}</td>
                     <td>
                         <pre class="mb-0" style="white-space: pre-wrap; word-wrap: break-word; max-width: 250px;">
-                            {{ json_encode($geojson->geometry, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) }}
+                            {{ json_encode($item->geometry, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) }}
                         </pre>
                     </td>
                 </tr>

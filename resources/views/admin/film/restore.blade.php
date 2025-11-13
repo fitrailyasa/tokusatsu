@@ -1,10 +1,10 @@
 <!-- Button to open modal Restore -->
 <button role="button" class="btn btn-sm m-1 btn-dark" data-bs-toggle="modal"
-    data-bs-target=".formRestore{{ $film->id }}"><i class="fas fa-undo"></i><span class="d-none d-sm-inline">
+    data-bs-target=".formRestore{{ $item->id }}"><i class="fas fa-undo"></i><span class="d-none d-sm-inline">
         {{ __('Restore') }}</span></button>
 
 <!-- Modal -->
-<div class="modal fade formRestore{{ $film->id }}" tabindex="-1" role="dialog" aria-hidden="">
+<div class="modal fade formRestore{{ $item->id }}" tabindex="-1" role="dialog" aria-hidden="">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -16,7 +16,7 @@
             </div>
             <div class="modal-body text-left">Are you sure you want to restore this data?</div>
             <div class="modal-footer">
-                <form action="{{ route('admin.film.restore', $film->id) }}" method="POST">
+                <form action="{{ route('admin.film.restore', $item->id) }}" method="POST">
                     @method('PUT')
                     @csrf
                     <x-button.close />

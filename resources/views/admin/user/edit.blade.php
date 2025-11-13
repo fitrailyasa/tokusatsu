@@ -1,13 +1,13 @@
 <!-- Button to open modal -->
 <button role="button" class="btn btn-sm m-1 btn-warning" data-bs-toggle="modal"
-    data-bs-target=".formEdit{{ $user->id }}"><i class="fas fa-edit"></i><span class="d-none d-sm-inline">
+    data-bs-target=".formEdit{{ $item->id }}"><i class="fas fa-edit"></i><span class="d-none d-sm-inline">
         {{ __('Edit') }}</span></button>
 
 <!-- Modal -->
-<div class="modal fade formEdit{{ $user->id }}" tabindex="-1" role="dialog" aria-hidden="">
+<div class="modal fade formEdit{{ $item->id }}" tabindex="-1" role="dialog" aria-hidden="">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form method="POST" action="{{ route('admin.user.update', $user->id) }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('admin.user.update', $item->id) }}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="modal-header">
@@ -24,7 +24,7 @@
                                 <label class="form-label">{{ __('Name') }}<span class="text-danger">*</span></label>
                                 <input type="text" class="form-control @error('name') is-invalid @enderror"
                                     placeholder="name" name="name" id="name"
-                                    value="{{ old('name', $user->name) }}" required>
+                                    value="{{ old('name', $item->name) }}" required>
                                 @error('name')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -35,7 +35,7 @@
                                 <label class="form-label">{{ __('No HP') }}</label>
                                 <input type="text" class="form-control @error('no_hp') is-invalid @enderror"
                                     placeholder="no_hp" name="no_hp" id="no_hp"
-                                    value="{{ old('no_hp', $user->no_hp) }}">
+                                    value="{{ old('no_hp', $item->no_hp) }}">
                                 @error('no_hp')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -48,7 +48,7 @@
                                 <label class="form-label">{{ __('Email') }}<span class="text-danger">*</span></label>
                                 <input type="email" class="form-control @error('email') is-invalid @enderror"
                                     placeholder="email" name="email" id="email"
-                                    value="{{ old('email', $user->email) }}" required>
+                                    value="{{ old('email', $item->email) }}" required>
                                 @error('email')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -73,7 +73,7 @@
                                     id="role" required>
                                     @foreach ($roles as $role)
                                         <option value="{{ $role->name }}"
-                                            {{ old('role', $user->getRoleNames()->first()) == $role->name ? 'selected' : '' }}>
+                                            {{ old('role', $item->getRoleNames()->first()) == $role->name ? 'selected' : '' }}>
                                             {{ ucfirst($role->name) }}
                                         </option>
                                     @endforeach
@@ -88,9 +88,9 @@
                                 <label class="form-label">{{ __('Status') }}<span class="text-danger">*</span></label>
                                 <select class="form-select @error('email_verified') is-invalid @enderror"
                                     name="email_verified" id="email_verified" required>
-                                    <option value="1" {{ $user->email_verified_at ? 'selected' : '' }}>Aktif
+                                    <option value="1" {{ $item->email_verified_at ? 'selected' : '' }}>Aktif
                                     </option>
-                                    <option value="0" {{ !$user->email_verified_at ? 'selected' : '' }}>Tidak
+                                    <option value="0" {{ !$item->email_verified_at ? 'selected' : '' }}>Tidak
                                         Aktif</option>
                                 </select>
                                 @error('email_verified')

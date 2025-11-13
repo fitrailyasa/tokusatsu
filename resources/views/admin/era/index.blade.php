@@ -71,29 +71,29 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($eras as $era)
-                <tr @if ($era->trashed()) class="text-muted" @endif>
+            @foreach ($eras as $item)
+                <tr @if ($item->trashed()) class="text-muted" @endif>
                     <td>{{ $eras->firstItem() + $loop->index }}</td>
-                    <td>{{ $era->name ?? '-' }}</td>
+                    <td>{{ $item->name ?? '-' }}</td>
                     <td>
-                        @if ($era->img == null)
-                            <img src="{{ asset('assets/profile/default.png') }}" alt="{{ $era->name }}"
+                        @if ($item->img == null)
+                            <img src="{{ asset('assets/profile/default.png') }}" alt="{{ $item->name }}"
                                 width="100">
                         @else
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#myModal{{ $era->id }}">
-                                <img class="img img-fluid rounded" src="{{ asset('storage/' . $era->img) }}"
-                                    alt="{{ $era->img }}" width="100" loading="lazy">
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#myModal{{ $item->id }}">
+                                <img class="img img-fluid rounded" src="{{ asset('storage/' . $item->img) }}"
+                                    alt="{{ $item->img }}" width="100" loading="lazy">
                             </a>
 
                             <!-- Modal -->
-                            <div class="modal fade" id="myModal{{ $era->id }}" tabindex="-1" role="dialog"
+                            <div class="modal fade" id="myModal{{ $item->id }}" tabindex="-1" role="dialog"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-body">
                                             <div class="card">
                                                 <div class="card-header">
-                                                    <h3 class="card-title">{{ $era->name }}</h3>
+                                                    <h3 class="card-title">{{ $item->name }}</h3>
                                                     <div class="card-tools">
                                                         <button type="button" class="btn btn-tool"
                                                             data-card-widget="maximize"><i
@@ -102,11 +102,11 @@
                                                 </div>
                                                 <div class="card-body">
                                                     <img class="img img-fluid col-12"
-                                                        src="{{ asset('storage/' . $era->img) }}"
-                                                        alt="{{ $era->img }}">
+                                                        src="{{ asset('storage/' . $item->img) }}"
+                                                        alt="{{ $item->img }}">
                                                     <!-- Tombol Download -->
-                                                    <a href="{{ asset('storage/' . $era->img) }}"
-                                                        download="{{ $era->img }}"
+                                                    <a href="{{ asset('storage/' . $item->img) }}"
+                                                        download="{{ $item->img }}"
                                                         class="btn btn-success mt-2 col-12">Download
                                                         Gambar</a>
                                                 </div>
@@ -117,9 +117,9 @@
                             </div>
                         @endif
                     </td>
-                    <td>{{ Illuminate\Support\Str::words($era->description ?? '-', 10, '...') }}</td>
+                    <td>{{ Illuminate\Support\Str::words($item->description ?? '-', 10, '...') }}</td>
                     <td class="manage-row text-center">
-                        @if ($era->trashed())
+                        @if ($item->trashed())
                             <!-- Restore and Delete Button -->
                             @can('restore:era')
                                 @include('admin.era.restore')

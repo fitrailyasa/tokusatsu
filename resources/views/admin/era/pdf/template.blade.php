@@ -49,23 +49,23 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($eras as $era)
+            @foreach ($eras as $item)
                 <tr>
                     <td>{{ $loop->iteration + (($page ?? 1) - 1) * ($perPage ?? 10) }}</td>
-                    <td>{{ $era->name ?? '-' }}</td>
+                    <td>{{ $item->name ?? '-' }}</td>
                     <td>
                         @php
-                            $imgPath = $era->img
-                                ? public_path('storage/' . $era->img)
+                            $imgPath = $item->img
+                                ? public_path('storage/' . $item->img)
                                 : public_path('assets/profile/default.png');
                         @endphp
                         @if (file_exists($imgPath))
-                            <img src="{{ $imgPath }}" alt="{{ $era->name }}">
+                            <img src="{{ $imgPath }}" alt="{{ $item->name }}">
                         @else
                             Tidak ada
                         @endif
                     </td>
-                    <td>{{ $era->description ?? '-' }}</td>
+                    <td>{{ $item->description ?? '-' }}</td>
                 </tr>
             @endforeach
         </tbody>

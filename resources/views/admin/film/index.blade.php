@@ -72,19 +72,19 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($films as $film)
-                <tr @if ($film->trashed()) class="text-muted" @endif>
+            @foreach ($films as $item)
+                <tr @if ($item->trashed()) class="text-muted" @endif>
                     <td>{{ $films->firstItem() + $loop->index }}</td>
-                    <td>{{ $film->name ?? '-' }}</td>
+                    <td>{{ $item->name ?? '-' }}</td>
                     <td>
-                        <span class="badge bg-{{ $film->getCategoryColor() }}">
-                            {{ $film->category->name ?? '-' }}
+                        <span class="badge bg-{{ $item->getCategoryColor() }}">
+                            {{ $item->category->name ?? '-' }}
                         </span>
                     </td>
-                    <td>{{ $film->type ?? '-' }} {{ $film->number ?? 0 }}</td>
-                    <td><a href="{{ $film->link ?? '-' }}" target="_blank">{{ $film->link ?? '-' }}</a></td>
+                    <td>{{ $item->type ?? '-' }} {{ $item->number ?? 0 }}</td>
+                    <td><a href="{{ $item->link ?? '-' }}" target="_blank">{{ $item->link ?? '-' }}</a></td>
                     <td class="manage-row text-center">
-                        @if ($film->trashed())
+                        @if ($item->trashed())
                             <!-- Restore and Delete Button -->
                             @can('restore:film')
                                 @include('admin.film.restore')

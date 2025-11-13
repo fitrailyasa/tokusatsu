@@ -69,12 +69,12 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($tags as $tag)
-                <tr @if ($tag->trashed()) class="text-muted" @endif>
+            @foreach ($tags as $item)
+                <tr @if ($item->trashed()) class="text-muted" @endif>
                     <td>{{ $tags->firstItem() + $loop->index }}</td>
-                    <td>{{ $tag->name ?? '-' }}</td>
+                    <td>{{ $item->name ?? '-' }}</td>
                     <td class="manage-row text-center">
-                        @if ($tag->trashed())
+                        @if ($item->trashed())
                             <!-- Restore and Delete Button -->
                             @can('restore:tag')
                                 @include('admin.tag.restore')

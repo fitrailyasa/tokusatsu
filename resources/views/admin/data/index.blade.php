@@ -72,34 +72,34 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($datas as $data)
-                <tr @if ($data->trashed()) class="text-muted" @endif>
+            @foreach ($datas as $item)
+                <tr @if ($item->trashed()) class="text-muted" @endif>
                     <td>{{ $datas->firstItem() + $loop->index }}</td>
-                    <td>{{ $data->name ?? '-' }}</td>
+                    <td>{{ $item->name ?? '-' }}</td>
                     <td>
-                        <span class="badge bg-{{ $data->getCategoryColor() }}">
-                            {{ $data->category->name ?? '-' }}
+                        <span class="badge bg-{{ $item->getCategoryColor() }}">
+                            {{ $item->category->name ?? '-' }}
                         </span>
                     </td>
                     <td>
-                        @if ($data->img == null)
-                            <img src="{{ asset('assets/profile/default.png') }}" alt="{{ $data->name }}"
+                        @if ($item->img == null)
+                            <img src="{{ asset('assets/profile/default.png') }}" alt="{{ $item->name }}"
                                 width="100">
                         @else
-                            <a href="#" data-bs-toggle="modal" data-bs-target=".myModal{{ $data->id }}">
-                                <img class="img img-fluid rounded" src="{{ asset('storage/' . $data->img) }}"
-                                    alt="{{ $data->img }}" width="100" loading="lazy">
+                            <a href="#" data-bs-toggle="modal" data-bs-target=".myModal{{ $item->id }}">
+                                <img class="img img-fluid rounded" src="{{ asset('storage/' . $item->img) }}"
+                                    alt="{{ $item->img }}" width="100" loading="lazy">
                             </a>
 
                             <!-- Modal -->
-                            <div class="modal fade myModal{{ $data->id }}" tabindex="-1" role="dialog"
+                            <div class="modal fade myModal{{ $item->id }}" tabindex="-1" role="dialog"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-body">
                                             <div class="card">
                                                 <div class="card-header">
-                                                    <h3 class="card-title">{{ $data->name }}</h3>
+                                                    <h3 class="card-title">{{ $item->name }}</h3>
                                                     <div class="card-tools">
                                                         <button type="button" class="btn btn-tool"
                                                             data-card-widget="maximize"><i
@@ -108,11 +108,11 @@
                                                 </div>
                                                 <div class="card-body">
                                                     <img class="img img-fluid col-12"
-                                                        src="{{ asset('storage/' . $data->img) }}"
-                                                        alt="{{ $data->img }}">
+                                                        src="{{ asset('storage/' . $item->img) }}"
+                                                        alt="{{ $item->img }}">
                                                     <!-- Tombol Download -->
-                                                    <a href="{{ asset('storage/' . $data->img) }}"
-                                                        download="{{ $data->img }}"
+                                                    <a href="{{ asset('storage/' . $item->img) }}"
+                                                        download="{{ $item->img }}"
                                                         class="btn btn-success mt-2 col-12">Download
                                                         Gambar</a>
                                                 </div>
@@ -126,7 +126,7 @@
                     {{-- Json Data Tags --}}
                     <td>
                         @php
-                            $tagNames = $data->tags->pluck('name')->toArray();
+                            $tagNames = $item->tags->pluck('name')->toArray();
                             $tagsString = implode(', ', $tagNames);
                             $decodedTags = explode(', ', $tagsString);
                         @endphp
@@ -136,7 +136,7 @@
                         @endforeach
                     </td>
                     <td class="manage-row text-center">
-                        @if ($data->trashed())
+                        @if ($item->trashed())
                             <!-- Restore and Delete Button -->
                             @can('restore:data')
                                 @include('admin.data.restore')

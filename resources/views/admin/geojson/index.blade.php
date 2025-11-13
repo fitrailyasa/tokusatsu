@@ -71,26 +71,26 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($geojsons as $geojson)
-                <tr @if ($geojson->trashed()) class="text-muted" @endif>
+            @foreach ($geojsons as $item)
+                <tr @if ($item->trashed()) class="text-muted" @endif>
                     <td>{{ $geojsons->firstItem() + $loop->index }}</td>
-                    <td>{{ $geojson->name ?? '-' }}</td>
+                    <td>{{ $item->name ?? '-' }}</td>
                     <td>
-                        @if ($geojson->type == 'file')
+                        @if ($item->type == 'file')
                             <span class="badge badge-success">File</span>
-                        @elseif ($geojson->type == 'geometry')
+                        @elseif ($item->type == 'geometry')
                             <span class="badge badge-primary">Geometry</span>
                         @else
                             <span class="badge badge-danger">-</span>
                         @endif
                     </td>
                     <td>
-                        {{ ucwords(strtolower($geojson->district->name ?? '-')) ?? '-' }},
-                        {{ ucwords(strtolower($geojson->district->regency->name ?? '-')) ?? '-' }},
-                        {{ ucwords(strtolower($geojson->district->regency->province->name ?? '-')) ?? '-' }}
+                        {{ ucwords(strtolower($item->district->name ?? '-')) ?? '-' }},
+                        {{ ucwords(strtolower($item->district->regency->name ?? '-')) ?? '-' }},
+                        {{ ucwords(strtolower($item->district->regency->province->name ?? '-')) ?? '-' }}
                     </td>
                     <td class="manage-row text-center">
-                        @if ($geojson->trashed())
+                        @if ($item->trashed())
                             <!-- Restore and Delete Button -->
                             @can('restore:geojson')
                                 @include('admin.geojson.restore')

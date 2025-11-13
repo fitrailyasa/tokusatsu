@@ -1,13 +1,13 @@
 <!-- Button to open modal -->
 <button role="button" class="btn btn-sm m-1 btn-warning" data-bs-toggle="modal"
-    data-bs-target=".formEdit{{ $film->id }}"><i class="fas fa-edit"></i><span class="d-none d-sm-inline">
+    data-bs-target=".formEdit{{ $item->id }}"><i class="fas fa-edit"></i><span class="d-none d-sm-inline">
         {{ __('Edit') }}</span></button>
 
 <!-- Modal -->
-<div class="modal fade formEdit{{ $film->id }}" tabindex="-1" role="dialog" aria-hidden="">
+<div class="modal fade formEdit{{ $item->id }}" tabindex="-1" role="dialog" aria-hidden="">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form method="POST" action="{{ route('admin.film.update', $film->id) }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('admin.film.update', $item->id) }}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="modal-header">
@@ -24,7 +24,7 @@
                                 <label class="form-label">{{ __('Name') }}<span class="text-danger">*</span></label>
                                 <input type="text" class="form-control @error('name') is-invalid @enderror"
                                     placeholder="name" name="name" id="name"
-                                    value="{{ old('name', $film->name) }}" required>
+                                    value="{{ old('name', $item->name) }}" required>
                                 @error('name')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -40,7 +40,7 @@
                                         <optgroup label="{{ $franchiseName }}">
                                             @foreach ($categoriesGroup as $category)
                                                 <option value="{{ old('category_id', $category->id) }}"
-                                                    {{ $category->id == $film->category_id ? 'selected' : '' }}>
+                                                    {{ $category->id == $item->category_id ? 'selected' : '' }}>
                                                     {{ $category->name }}
                                                 </option>
                                             @endforeach
@@ -60,7 +60,7 @@
                                     <option selected disabled>{{ __('Select Type') }}</option>
                                     @foreach ($types as $type)
                                         <option value="{{ old('type', $type['id']) }}"
-                                            {{ $type['id'] == $film->type ? 'selected' : '' }}>{{ $type['name'] }}
+                                            {{ $type['id'] == $item->type ? 'selected' : '' }}>{{ $type['name'] }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -75,7 +75,7 @@
                                         class="text-danger">*</span></label>
                                 <input type="number" class="form-control @error('number') is-invalid @enderror"
                                     placeholder="1" name="number" id="number"
-                                    value="{{ old('number', $film->number) }}" required>
+                                    value="{{ old('number', $item->number) }}" required>
                                 @error('number')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -86,7 +86,7 @@
                                 <label class="form-label">{{ __('Link') }}<span class="text-danger">*</span></label>
                                 <input type="text" class="form-control @error('link') is-invalid @enderror"
                                     placeholder="https://google.com" name="link" id="link"
-                                    value="{{ old('link', $film->link) }}" required>
+                                    value="{{ old('link', $item->link) }}" required>
                                 @error('link')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror

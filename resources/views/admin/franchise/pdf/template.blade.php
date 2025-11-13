@@ -49,23 +49,23 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($franchises as $franchise)
+            @foreach ($franchises as $item)
                 <tr>
                     <td>{{ $loop->iteration + (($page ?? 1) - 1) * ($perPage ?? 10) }}</td>
-                    <td>{{ $franchise->name ?? '-' }}</td>
+                    <td>{{ $item->name ?? '-' }}</td>
                     <td>
                         @php
-                            $imgPath = $franchise->img
-                                ? public_path('storage/' . $franchise->img)
+                            $imgPath = $item->img
+                                ? public_path('storage/' . $item->img)
                                 : public_path('assets/profile/default.png');
                         @endphp
                         @if (file_exists($imgPath))
-                            <img src="{{ $imgPath }}" alt="{{ $franchise->name }}">
+                            <img src="{{ $imgPath }}" alt="{{ $item->name }}">
                         @else
                             Tidak ada
                         @endif
                     </td>
-                    <td>{{ $franchise->description ?? '-' }}</td>
+                    <td>{{ $item->description ?? '-' }}</td>
                 </tr>
             @endforeach
         </tbody>

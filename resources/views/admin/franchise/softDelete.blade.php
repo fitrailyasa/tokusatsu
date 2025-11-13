@@ -1,10 +1,10 @@
 <!-- Button to open modal -->
 <button role="button" class="btn btn-sm m-1 btn-danger" data-bs-toggle="modal"
-    data-bs-target=".formSoftDelete{{ $franchise->id }}"><i class="fas fa-trash"></i><span class="d-none d-sm-inline">
+    data-bs-target=".formSoftDelete{{ $item->id }}"><i class="fas fa-trash"></i><span class="d-none d-sm-inline">
         {{ __('Delete') }}</span></button>
 
 <!-- Modal -->
-<div class="modal fade formSoftDelete{{ $franchise->id }}" tabindex="-1" role="dialog" aria-hidden="">
+<div class="modal fade formSoftDelete{{ $item->id }}" tabindex="-1" role="dialog" aria-hidden="">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -16,7 +16,7 @@
             </div>
             <div class="modal-body text-left">Are you sure you want to delete data?</div>
             <div class="modal-footer">
-                <form action="{{ route('admin.franchise.softDelete', $franchise->id) }}" method="POST">
+                <form action="{{ route('admin.franchise.softDelete', $item->id) }}" method="POST">
                     @method('DELETE')
                     @csrf
                     <x-button.close />

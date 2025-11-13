@@ -1,14 +1,13 @@
 <!-- Button to open modal -->
 <button role="button" class="btn btn-sm m-1 btn-warning" data-bs-toggle="modal"
-    data-bs-target=".formEdit{{ $geojson->id }}"><i class="fas fa-edit"></i><span class="d-none d-sm-inline">
+    data-bs-target=".formEdit{{ $item->id }}"><i class="fas fa-edit"></i><span class="d-none d-sm-inline">
         {{ __('Edit') }}</span></button>
 
 <!-- Modal -->
-<div class="modal fade formEdit{{ $geojson->id }}" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade formEdit{{ $item->id }}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
-            <form method="POST" action="{{ route('admin.geojson.update', $geojson->id) }}"
-                enctype="multipart/form-data">
+            <form method="POST" action="{{ route('admin.geojson.update', $item->id) }}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="modal-header">
@@ -21,7 +20,7 @@
                             <div class="mb-3">
                                 <label class="form-label">{{ __('Name') }}<span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" name="name"
-                                    value="{{ old('name', $geojson->name) }}" required>
+                                    value="{{ old('name', $item->name) }}" required>
                                 @error('name')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -32,10 +31,10 @@
                                 <label>Type<span class="text-danger">*</span></label>
                                 <select name="type" id="type" class="form-control" required>
                                     <option value="">Pilih Type</option>
-                                    <option value="file" {{ $geojson->type == 'file' ? 'selected' : '' }}>
+                                    <option value="file" {{ $item->type == 'file' ? 'selected' : '' }}>
                                         File
                                     </option>
-                                    <option value="geometry" {{ $geojson->type == 'geometry' ? 'selected' : '' }}>
+                                    <option value="geometry" {{ $item->type == 'geometry' ? 'selected' : '' }}>
                                         Geometry
                                     </option>
                                 </select>
@@ -47,17 +46,17 @@
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="form-label">{{ __('Description') }}</label>
-                                <textarea class="form-control" name="description" rows="2">{{ old('description', $geojson->description) }}</textarea>
+                                <textarea class="form-control" name="description" rows="2">{{ old('description', $item->description) }}</textarea>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="mb-3">
                                 <label>Provinsi<span class="text-danger">*</span></label>
-                                <select id="edit_province-{{ $geojson->id }}" class="form-control" required>
+                                <select id="edit_province-{{ $item->id }}" class="form-control" required>
                                     <option value="">Pilih Provinsi</option>
                                     @foreach ($provinces as $province)
                                         <option value="{{ $province->id }}"
-                                            {{ $province->id == optional(optional(optional($geojson->district)->regency)->province)->id ? 'selected' : '' }}>
+                                            {{ $province->id == optional(optional(optional($item->district)->regency)->province)->id ? 'selected' : '' }}>
                                             {{ $province->name }}
                                         </option>
                                     @endforeach
@@ -70,11 +69,11 @@
                         <div class="col-md-4">
                             <div class="mb-3">
                                 <label>Kabupaten/Kota<span class="text-danger">*</span></label>
-                                <select id="edit_regency-{{ $geojson->id }}" class="form-control" required>
+                                <select id="edit_regency-{{ $item->id }}" class="form-control" required>
                                     <option value="">Pilih Kabupaten/Kota</option>
-                                    @foreach ($regencies->where('province_id', optional(optional(optional($geojson->district)->regency)->province)->id) as $regency)
+                                    @foreach ($regencies->where('province_id', optional(optional(optional($item->district)->regency)->province)->id) as $regency)
                                         <option value="{{ $regency->id }}"
-                                            {{ $regency->id == optional(optional($geojson->district)->regency)->id ? 'selected' : '' }}>
+                                            {{ $regency->id == optional(optional($item->district)->regency)->id ? 'selected' : '' }}>
                                             {{ $regency->name }}
                                         </option>
                                     @endforeach
@@ -87,12 +86,12 @@
                         <div class="col-md-4">
                             <div class="mb-3">
                                 <label>Kecamatan<span class="text-danger">*</span></label>
-                                <select name="district_id" id="edit_district-{{ $geojson->id }}" class="form-control"
+                                <select name="district_id" id="edit_district-{{ $item->id }}" class="form-control"
                                     required>
                                     <option value="">Pilih Kecamatan</option>
-                                    @foreach ($districts->where('regency_id', optional(optional($geojson->district)->regency)->id) as $district)
+                                    @foreach ($districts->where('regency_id', optional(optional($item->district)->regency)->id) as $district)
                                         <option value="{{ $district->id }}"
-                                            {{ $district->id == $geojson->district_id ? 'selected' : '' }}>
+                                            {{ $district->id == $item->district_id ? 'selected' : '' }}>
                                             {{ $district->name }}
                                         </option>
                                     @endforeach
@@ -107,8 +106,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">{{ __('File') }}</label>
                                     <input type="file" class="form-control @error('file') is-invalid @enderror"
-                                        name="file" id="file" value="{{ old('file', $geojson->file) }}"
-                                        required>
+                                        name="file" id="file" value="{{ old('file', $item->file) }}" required>
                                     @error('file')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -118,8 +116,8 @@
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="form-label">{{ __('Geometry') }}</label>
-                                <div id="map-{{ $geojson->id }}" style="height:420px;"></div>
-                                <textarea class="form-control mt-2" name="geometry" id="geometry-{{ $geojson->id }}" rows="3">{{ old('geometry', json_encode($geojson->geometry)) }}</textarea>
+                                <div id="map-{{ $item->id }}" style="height:420px;"></div>
+                                <textarea class="form-control mt-2" name="geometry" id="geometry-{{ $item->id }}" rows="3">{{ old('geometry', json_encode($item->geometry)) }}</textarea>
                                 @error('geometry')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -139,10 +137,10 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        const typeSelect = document.querySelector('.formEdit{{ $geojson->id }} select[name="type"]');
-        const fileField = document.querySelector('.formEdit{{ $geojson->id }} input[name="file"]').closest(
+        const typeSelect = document.querySelector('.formEdit{{ $item->id }} select[name="type"]');
+        const fileField = document.querySelector('.formEdit{{ $item->id }} input[name="file"]').closest(
             ".mb-3");
-        const geometryField = document.querySelector('.formEdit{{ $geojson->id }} textarea[name="geometry"]')
+        const geometryField = document.querySelector('.formEdit{{ $item->id }} textarea[name="geometry"]')
             .closest(".mb-3");
 
         function toggleFields() {
@@ -175,9 +173,9 @@
 </script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        const mapId = "map-{{ $geojson->id }}";
-        const geometryId = "geometry-{{ $geojson->id }}";
-        const modalSelector = ".formEdit{{ $geojson->id }}";
+        const mapId = "map-{{ $item->id }}";
+        const geometryId = "geometry-{{ $item->id }}";
+        const modalSelector = ".formEdit{{ $item->id }}";
         const map = L.map(mapId).setView([-6.2, 106.8], 11);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -285,9 +283,9 @@
 </script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        const province = $('#edit_province-{{ $geojson->id }}');
-        const regency = $('#edit_regency-{{ $geojson->id }}');
-        const district = $('#edit_district-{{ $geojson->id }}');
+        const province = $('#edit_province-{{ $item->id }}');
+        const regency = $('#edit_regency-{{ $item->id }}');
+        const district = $('#edit_district-{{ $item->id }}');
 
         province.on('change', function() {
             let id = $(this).val();

@@ -25,13 +25,13 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($users->where('email', '!=', 'super@admin.com') as $user)
+            @foreach ($users->where('email', '!=', 'super@admin.com') as $item)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $user->name ?? '-' }}</td>
-                    <td class="d-none d-lg-table-cell">{{ $user->email ?? '-' }}</td>
+                    <td>{{ $item->name ?? '-' }}</td>
+                    <td class="d-none d-lg-table-cell">{{ $item->email ?? '-' }}</td>
                     <td class="d-none d-lg-table-cell">
-                        {{ $user->getRoleNames()->implode(', ') }}
+                        {{ $item->getRoleNames()->implode(', ') }}
                     </td>
                     <td class="d-none d-lg-table-cell">
                         @if ($user->email_verified_at)

@@ -49,12 +49,12 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($films as $film)
+            @foreach ($films as $item)
                 <tr>
                     <td>{{ $loop->iteration + (($page ?? 1) - 1) * ($perPage ?? 10) }}</td>
-                    <td>{{ $film->name ?? '-' }}</td>
-                    <td>{{ $film->category->name ?? '-' }}</td>
-                    <td>{{ $film->type ?? '-' }}</td>
+                    <td>{{ $item->name ?? '-' }}</td>
+                    <td>{{ $item->category->name ?? '-' }}</td>
+                    <td>{{ $item->type ?? '-' }}</td>
                 </tr>
             @endforeach
         </tbody>

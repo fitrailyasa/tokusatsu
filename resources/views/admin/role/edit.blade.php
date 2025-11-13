@@ -1,13 +1,13 @@
 <!-- Button to open modal -->
 <button role="button" class="btn btn-sm m-1 btn-warning" data-bs-toggle="modal"
-    data-bs-target=".formEdit{{ $role->id }}"><i class="fas fa-edit"></i><span class="d-none d-sm-inline">
+    data-bs-target=".formEdit{{ $item->id }}"><i class="fas fa-edit"></i><span class="d-none d-sm-inline">
         {{ __('Edit') }}</span></button>
 
 <!-- Modal -->
-<div class="modal fade formEdit{{ $role->id }}" tabindex="-1" role="dialog" aria-hidden="">
+<div class="modal fade formEdit{{ $item->id }}" tabindex="-1" role="dialog" aria-hidden="">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form method="POST" action="{{ route('admin.role.update', $role->id) }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('admin.role.update', $item->id) }}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="modal-header">
@@ -24,7 +24,7 @@
                                 <label class="form-label">{{ __('Name') }}<span class="text-danger">*</span></label>
                                 <input type="text" class="form-control @error('name') is-invalid @enderror"
                                     placeholder="name" name="name" id="name"
-                                    value="{{ old('name', $role->name) }}" required>
+                                    value="{{ old('name', $item->name) }}" required>
                                 @error('name')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -39,10 +39,10 @@
                                             <div class="border rounded px-3 py-2 d-flex align-items-center gap-2">
                                                 <input class="form-check-input me-2" type="checkbox"
                                                     name="permissions[]" value="{{ $permission->id }}"
-                                                    id="edit-perm-{{ $role->id }}-{{ $permission->id }}"
-                                                    {{ $role->permissions->contains('id', $permission->id) ? 'checked' : '' }}>
+                                                    id="edit-perm-{{ $item->id }}-{{ $permission->id }}"
+                                                    {{ $item->permissions->contains('id', $permission->id) ? 'checked' : '' }}>
                                                 <label class="form-check-label flex-grow-1"
-                                                    for="edit-perm-{{ $role->id }}-{{ $permission->id }}">
+                                                    for="edit-perm-{{ $item->id }}-{{ $permission->id }}">
                                                     {{ $permission->name }}
                                                 </label>
                                                 <span
