@@ -21,18 +21,18 @@
             <div class="card shadow-sm">
                 <div class="card-header bg-primary text-white fw-bold">Account connected</div>
                 <ul class="list-group list-group-flush">
-                    @foreach ($accounts as $acc)
+                    @foreach ($accounts as $item)
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <span>
-                                <a href="{{ route('admin.auth.files', $acc->email) }}">
-                                    <i class="fas fa-user-circle me-2 text-secondary"></i>{{ $acc->email }}
+                                <a href="{{ route('admin.auth.files', $item->email) }}">
+                                    <i class="fas fa-user-circle me-2 text-secondary"></i>{{ $item->email }}
                                 </a>
                             </span>
                             <div>
-                                <a href="{{ route('admin.auth.files', $acc->email) }}" class="btn btn-sm btn-primary">
+                                <a href="{{ route('admin.auth.files', $item->email) }}" class="btn btn-sm btn-primary">
                                     <i class="fas fa-folder-open me-2"></i>
                                 </a>
-                                <a href="{{ route('admin.auth.logout', $acc->email) }}" class="btn btn-sm btn-danger">
+                                <a href="{{ route('admin.auth.logout', $item->email) }}" class="btn btn-sm btn-danger">
                                     <i class="fas fa-sign-out-alt me-2"></i>
                                 </a>
                             </div>

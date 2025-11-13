@@ -16,14 +16,14 @@
             </div>
         </div>
     </div>
-    @foreach ($datas as $data)
-        <a href="#" data-bs-toggle="modal" data-bs-target="#myModal{{ $data->id }}">
-            <img class="img img-fluid img-gallery" loading="lazy" src="{{ asset('storage/' . $data->img) }}"
-                alt="{{ $data->img }}">
+    @foreach ($datas as $item)
+        <a href="#" data-bs-toggle="modal" data-bs-target="#myModal{{ $item->id }}">
+            <img class="img img-fluid img-gallery" loading="lazy" src="{{ asset('storage/' . $item->img) }}"
+                alt="{{ $item->img }}">
         </a>
 
         <!-- Modal -->
-        <div class="modal fade" id="myModal{{ $data->id }}" tabindex="-1" role="dialog"
+        <div class="modal fade" id="myModal{{ $item->id }}" tabindex="-1" role="dialog"
             aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -31,12 +31,12 @@
                         <button type="button" class="close text-white" data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <img class="img img-fluid" src="{{ asset('storage/' . $data->img) }}" alt="{{ $data->img }}">
+                        <img class="img img-fluid" src="{{ asset('storage/' . $item->img) }}" alt="{{ $item->img }}">
                         <!-- Tombol Download -->
-                        <a href="{{ asset('storage/' . $data->img) }}" download="{{ $data->img }}"
+                        <a href="{{ asset('storage/' . $item->img) }}" download="{{ $item->img }}"
                             class="btn aktif text-white border my-3 col-12">Download Gambar</a>
                         <div>
-                            <p>{{ $data->category->description ?? '---------------' }}</p>
+                            <p>{{ $item->category->description ?? '---------------' }}</p>
                         </div>
                     </div>
                 </div>
