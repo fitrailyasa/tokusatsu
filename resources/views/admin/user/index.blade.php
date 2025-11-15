@@ -34,7 +34,7 @@
                         {{ $item->getRoleNames()->implode(', ') }}
                     </td>
                     <td class="d-none d-lg-table-cell">
-                        @if ($user->email_verified_at)
+                        @if ($item->email_verified_at)
                             <span class="badge badge-success">aktif</span>
                         @else
                             <span class="badge badge-danger">tidak aktif</span>
