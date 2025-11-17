@@ -16,6 +16,7 @@ class FilmRequest extends FormRequest
     public function rules(): array
     {
         $db = new Film();
+        $filmId = $this->route('film')?->id ?? $this->route('id');
 
         // dd($db->getConnection()->getDatabaseName());
 
@@ -28,7 +29,7 @@ class FilmRequest extends FormRequest
                 'max:100',
                 Rule::unique($db->getTable(), 'number')->where(function ($query) {
                     return $query->where('type', $this->type);
-                })->ignore($this->film)
+                })->ignore($filmId)
             ],
             'link' => 'nullable|url',
             'category_id' => 'required',
