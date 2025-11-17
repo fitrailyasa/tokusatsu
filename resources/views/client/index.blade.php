@@ -14,6 +14,12 @@
             width: 95%;
             padding-top: 10px;
             padding-bottom: 30px;
+            opacity: 0;
+            transition: opacity .3s ease;
+        }
+
+        .swiper.swiper-initialized {
+            opacity: 1;
         }
 
         .swiper-slide img {
