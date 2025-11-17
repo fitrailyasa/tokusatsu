@@ -6,60 +6,191 @@
 
 @section('content')
 
-    <div class="text-center my-5 py-5">
+    {{-- SWIPER CSS --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <style>
+        .swiper {
+            width: 95%;
+            padding-bottom: 40px;
+        }
+
+        .swiper-slide img {
+            width: 100%;
+            background-color: #111;
+            border-radius: 8px;
+        }
+
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: #fff !important;
+        }
+
+        .swiper-button-next::after,
+        .swiper-button-prev::after {
+            color: #fff !important;
+            font-size: 28px;
+        }
+    </style>
+
+
+    <div class="my-5 py-5 text-center">
+
+        {{-- ===================== KAMEN RIDER ===================== --}}
         @include('client.buttonSearch')
-        <h4 class="text-white font-weight-bold">Kamen Rider</h4>
-        <div class="text-center d-flex flex-wrap justify-content-center border-bottom pb-3">
-            @foreach ($categories as $category)
-                @if ($category->franchise && $category->franchise->name === 'Kamen Rider' && $category->era->name !== 'Showa')
-                    <a href="{{ route('beranda.show', [$category->franchise->slug, $category->slug]) }}" loading="lazy">
-                        @if ($category->img === null)
-                            <img class="img img-fluid img-gallery" loading="lazy" width="300px"
-                                src="{{ asset('storage/comingsoon.jpg') }}" alt="alt">
-                        @else
-                            <img class="img img-fluid img-gallery" loading="lazy" width="300px"
-                                src="{{ asset('storage/' . $category->img) }}" alt="{{ $category->img }}">
-                        @endif
-                    </a>
-                @endif
-            @endforeach
+        <h4 class="text-white fw-bold mb-3">Kamen Rider</h4>
+
+        <div class="swiper mySwiperKR">
+            <div class="swiper-wrapper">
+
+                @foreach ($categories as $category)
+                    @if ($category->franchise && $category->franchise->name === 'Kamen Rider' && $category->era->name !== 'Showa')
+                        <div class="swiper-slide">
+                            <a href="{{ route('beranda.show', [$category->franchise->slug, $category->slug]) }}">
+                                <img src="{{ $category->img ? asset('storage/' . $category->img) : asset('storage/comingsoon.jpg') }}"
+                                    loading="lazy">
+                            </a>
+                        </div>
+                    @endif
+                @endforeach
+
+            </div>
+
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
         </div>
-        <br>
+
+
+        <hr class="border-secondary my-5">
+
+
+
+        {{-- ===================== ULTRAMAN ===================== --}}
         @include('client.buttonSearch')
-        <h4 class="text-white font-weight-bold">Ultraman</h4>
-        <div class="text-center d-flex flex-wrap justify-content-center border-bottom pb-3">
-            @foreach ($categories as $category)
-                @if ($category->franchise && $category->franchise->name === 'Ultraman' && $category->era->name !== 'Showa')
-                    <a href="{{ route('beranda.show', [$category->franchise->slug, $category->slug]) }}" loading="lazy">
-                        @if ($category->img === null)
-                            <img class="img img-fluid img-gallery" loading="lazy" width="300px"
-                                src="{{ asset('storage/comingsoon.jpg') }}" alt="alt">
-                        @else
-                            <img class="img img-fluid img-gallery" loading="lazy" width="300px"
-                                src="{{ asset('storage/' . $category->img) }}" alt="{{ $category->img }}">
-                        @endif
-                    </a>
-                @endif
-            @endforeach
+        <h4 class="text-white fw-bold mb-3">Ultraman</h4>
+
+        <div class="swiper mySwiperUL">
+            <div class="swiper-wrapper">
+
+                @foreach ($categories as $category)
+                    @if ($category->franchise && $category->franchise->name === 'Ultraman' && $category->era->name !== 'Showa')
+                        <div class="swiper-slide">
+                            <a href="{{ route('beranda.show', [$category->franchise->slug, $category->slug]) }}">
+                                <img src="{{ $category->img ? asset('storage/' . $category->img) : asset('storage/comingsoon.jpg') }}"
+                                    loading="lazy">
+                            </a>
+                        </div>
+                    @endif
+                @endforeach
+
+            </div>
+
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
         </div>
-        <br>
+
+
+        <hr class="border-secondary my-5">
+
+
+
+        {{-- ===================== SUPER SENTAI ===================== --}}
         @include('client.buttonSearch')
-        <h4 class="text-white font-weight-bold">Super Sentai</h4>
-        <div class="text-center d-flex flex-wrap justify-content-center">
-            @foreach ($categories as $category)
-                @if ($category->franchise && $category->franchise->name === 'Super Sentai' && $category->era->name !== 'Showa')
-                    <a href="{{ route('beranda.show', [$category->franchise->slug, $category->slug]) }}" loading="lazy">
-                        @if ($category->img === null)
-                            <img class="img img-fluid img-gallery" loading="lazy" width="300px"
-                                src="{{ asset('storage/comingsoon.jpg') }}" alt="alt">
-                        @else
-                            <img class="img img-fluid img-gallery" loading="lazy" width="300px"
-                                src="{{ asset('storage/' . $category->img) }}" alt="{{ $category->img }}">
-                        @endif
-                    </a>
-                @endif
-            @endforeach
+        <h4 class="text-white fw-bold mb-3">Super Sentai</h4>
+
+        <div class="swiper mySwiperSS">
+            <div class="swiper-wrapper">
+
+                @foreach ($categories as $category)
+                    @if ($category->franchise && $category->franchise->name === 'Super Sentai' && $category->era->name !== 'Showa')
+                        <div class="swiper-slide">
+                            <a href="{{ route('beranda.show', [$category->franchise->slug, $category->slug]) }}">
+                                <img src="{{ $category->img ? asset('storage/' . $category->img) : asset('storage/comingsoon.jpg') }}"
+                                    loading="lazy">
+                            </a>
+                        </div>
+                    @endif
+                @endforeach
+
+            </div>
+
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
         </div>
+
     </div>
+
+
+
+    {{-- SWIPER JS --}}
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+        // Kamen Rider
+        new Swiper(".mySwiperKR", {
+            slidesPerView: 3,
+            spaceBetween: 10,
+            loop: true,
+            navigation: {
+                nextEl: ".mySwiperKR .swiper-button-next",
+                prevEl: ".mySwiperKR .swiper-button-prev",
+            },
+            breakpoints: {
+                768: {
+                    slidesPerView: 3
+                },
+                992: {
+                    slidesPerView: 4
+                },
+                1200: {
+                    slidesPerView: 6
+                },
+            }
+        });
+
+        // Ultraman
+        new Swiper(".mySwiperUL", {
+            slidesPerView: 3,
+            spaceBetween: 10,
+            loop: true,
+            navigation: {
+                nextEl: ".mySwiperUL .swiper-button-next",
+                prevEl: ".mySwiperUL .swiper-button-prev",
+            },
+            breakpoints: {
+                768: {
+                    slidesPerView: 3
+                },
+                992: {
+                    slidesPerView: 4
+                },
+                1200: {
+                    slidesPerView: 6
+                },
+            }
+        });
+
+        // Super Sentai
+        new Swiper(".mySwiperSS", {
+            slidesPerView: 3,
+            spaceBetween: 10,
+            loop: true,
+            navigation: {
+                nextEl: ".mySwiperSS .swiper-button-next",
+                prevEl: ".mySwiperSS .swiper-button-prev",
+            },
+            breakpoints: {
+                768: {
+                    slidesPerView: 3
+                },
+                992: {
+                    slidesPerView: 4
+                },
+                1200: {
+                    slidesPerView: 6
+                },
+            }
+        });
+    </script>
 
 @endsection
