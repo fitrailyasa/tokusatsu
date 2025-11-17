@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Models\Film;
+use Illuminate\Validation\Rule;
 
 class FilmRequest extends FormRequest
 {
@@ -21,7 +22,14 @@ class FilmRequest extends FormRequest
         return [
             'name' => 'required|max:100',
             'type' => 'required|max:100',
-            'number' => 'nullable|numeric|max:100',
+            'number' => [
+                'nullable',
+                'numeric',
+                'max:100',
+                Rule::unique($db->getTable(), 'number')->where(function ($query) {
+                    return $query->where('type', $this->type);
+                })->ignore($this->film)
+            ],
             'link' => 'nullable|url',
             'category_id' => 'required',
         ];
@@ -37,6 +45,7 @@ class FilmRequest extends FormRequest
             'category_id.required' => 'Category is required.',
             'number.max'      => 'Number must be under 100 chars.',
             'number.numeric'      => 'Number must be numeric.',
+            'number.unique'      => 'Number already exists.',
             'link.url'      => 'Link must be url.',
         ];
     }
