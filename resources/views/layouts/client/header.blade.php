@@ -34,30 +34,39 @@ $eras = Era::withoutTrashed()->get()->reverse();
                             {{ __('Home') }}
                         </a>
                     </li>
-                    @foreach ($franchises as $franchise)
+                    {{-- ================= PER MENU ================= --}}
+                    @php
+                        $mainFranchises = ['Kamen Rider', 'Ultraman', 'Super Sentai'];
+
+                        $franchiseKR = $franchises->firstWhere('name', 'Kamen Rider');
+                        $franchiseUL = $franchises->firstWhere('name', 'Ultraman');
+                        $franchiseSS = $franchises->firstWhere('name', 'Super Sentai');
+
+                        $otherFranchises = $franchises->filter(function ($item) use ($mainFranchises) {
+                            return !in_array($item->name, $mainFranchises);
+                        });
+                    @endphp
+
+                    {{-- ============ KAMEN RIDER ============ --}}
+                    @if ($franchiseKR)
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle py-3 px-3 text-white fw-bold" href="#"
-                                id="franchiseDropdown{{ $franchise->id }}" role="button">
-                                {{ $franchise->name }}
+                            <a class="nav-link dropdown-toggle py-3 px-3 text-white fw-bold" href="#">
+                                Kamen Rider
                             </a>
-                            <ul class="dropdown-menu custom-dropdown m-0"
-                                aria-labelledby="franchiseDropdown{{ $franchise->id }}">
+                            <ul class="dropdown-menu custom-dropdown m-0">
                                 @foreach ($eras as $era)
                                     @php
-                                        $categoriesByEra = $franchise->categories->where('era_id', $era->id)->reverse();
+                                        $list = $franchiseKR->categories->where('era_id', $era->id)->reverse();
                                     @endphp
-
-                                    @if ($categoriesByEra->count() > 0)
+                                    @if ($list->count() > 0)
                                         <li>
-                                            <h6 class="dropdown-header fw-bold text-white">
-                                                {{ strtoupper($era->name) }}
-                                            </h6>
+                                            <h6 class="dropdown-header text-white">{{ strtoupper($era->name) }}</h6>
                                         </li>
-                                        @foreach ($categoriesByEra as $category)
+                                        @foreach ($list as $cat)
                                             <li>
                                                 <a class="dropdown-item"
-                                                    href="{{ route('film.show', [$franchise->slug, $category->slug]) }}">
-                                                    {{ $category->name }}
+                                                    href="{{ route('film.show', [$franchiseKR->slug, $cat->slug]) }}">
+                                                    {{ $cat->name }}
                                                 </a>
                                             </li>
                                         @endforeach
@@ -68,7 +77,108 @@ $eras = Era::withoutTrashed()->get()->reverse();
                                 @endforeach
                             </ul>
                         </li>
-                    @endforeach
+                    @endif
+
+                    {{-- ============ ULTRAMAN ============ --}}
+                    @if ($franchiseUL)
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle py-3 px-3 text-white fw-bold" href="#">
+                                Ultraman
+                            </a>
+                            <ul class="dropdown-menu custom-dropdown m-0">
+                                @foreach ($eras as $era)
+                                    @php
+                                        $list = $franchiseUL->categories->where('era_id', $era->id)->reverse();
+                                    @endphp
+                                    @if ($list->count() > 0)
+                                        <li>
+                                            <h6 class="dropdown-header text-white">{{ strtoupper($era->name) }}</h6>
+                                        </li>
+                                        @foreach ($list as $cat)
+                                            <li>
+                                                <a class="dropdown-item"
+                                                    href="{{ route('film.show', [$franchiseUL->slug, $cat->slug]) }}">
+                                                    {{ $cat->name }}
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                    @endif
+                                @endforeach
+                            </ul>
+                        </li>
+                    @endif
+
+                    {{-- ============ SUPER SENTAI ============ --}}
+                    @if ($franchiseSS)
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle py-3 px-3 text-white fw-bold" href="#">
+                                Super Sentai
+                            </a>
+                            <ul class="dropdown-menu custom-dropdown m-0">
+                                @foreach ($eras as $era)
+                                    @php
+                                        $list = $franchiseSS->categories->where('era_id', $era->id)->reverse();
+                                    @endphp
+                                    @if ($list->count() > 0)
+                                        <li>
+                                            <h6 class="dropdown-header text-white">{{ strtoupper($era->name) }}</h6>
+                                        </li>
+                                        @foreach ($list as $cat)
+                                            <li>
+                                                <a class="dropdown-item"
+                                                    href="{{ route('film.show', [$franchiseSS->slug, $cat->slug]) }}">
+                                                    {{ $cat->name }}
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                    @endif
+                                @endforeach
+                            </ul>
+                        </li>
+                    @endif
+
+
+                    {{-- ============ OTHER MENU ============ --}}
+                    @if ($otherFranchises->count() > 0)
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle py-3 px-3 text-white fw-bold" href="#">
+                                Other
+                            </a>
+                            <ul class="dropdown-menu custom-dropdown m-0">
+
+                                @foreach ($otherFranchises as $franchise)
+                                    <li>
+                                        <h6 class="dropdown-header text-white">{{ strtoupper($franchise->name) }}</h6>
+                                    </li>
+                                    @foreach ($eras as $era)
+                                        @php
+                                            $list = $franchise->categories->where('era_id', $era->id)->reverse();
+                                        @endphp
+                                        @if ($list->count() > 0)
+                                            <li class="px-3 text-secondary small">{{ strtoupper($era->name) }}</li>
+                                            @foreach ($list as $cat)
+                                                <li>
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('film.show', [$franchise->slug, $cat->slug]) }}">
+                                                        {{ $cat->name }}
+                                                    </a>
+                                                </li>
+                                            @endforeach
+                                            <li>
+                                                <hr class="dropdown-divider">
+                                            </li>
+                                        @endif
+                                    @endforeach
+                                @endforeach
+                            </ul>
+                        </li>
+                    @endif
 
                     <li class="nav-item">
                         <a class="nav-link py-3 px-3 text-white fw-bold @yield('textHistory')"

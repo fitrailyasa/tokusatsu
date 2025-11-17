@@ -37,14 +37,11 @@
 
 
     <div class="my-5 py-4 text-center">
-
         @include('client.buttonSearch')
         {{-- ===================== KAMEN RIDER ===================== --}}
         <h5 class="text-white fw-bold mb-1">Kamen Rider</h5>
-
         <div class="swiper mySwiperKR">
             <div class="swiper-wrapper">
-
                 @foreach ($categories as $category)
                     @if ($category->franchise && $category->franchise->name === 'Kamen Rider' && $category->era->name !== 'Showa')
                         <div class="swiper-slide">
@@ -55,19 +52,15 @@
                         </div>
                     @endif
                 @endforeach
-
             </div>
-
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
         </div>
 
         {{-- ===================== ULTRAMAN ===================== --}}
         <h5 class="text-white fw-bold mb-1">Ultraman</h5>
-
         <div class="swiper mySwiperUL">
             <div class="swiper-wrapper">
-
                 @foreach ($categories as $category)
                     @if ($category->franchise && $category->franchise->name === 'Ultraman' && $category->era->name !== 'Showa')
                         <div class="swiper-slide">
@@ -78,19 +71,15 @@
                         </div>
                     @endif
                 @endforeach
-
             </div>
-
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
         </div>
 
         {{-- ===================== SUPER SENTAI ===================== --}}
         <h5 class="text-white fw-bold mb-1">Super Sentai</h5>
-
         <div class="swiper mySwiperSS">
             <div class="swiper-wrapper">
-
                 @foreach ($categories as $category)
                     @if ($category->franchise && $category->franchise->name === 'Super Sentai' && $category->era->name !== 'Showa')
                         <div class="swiper-slide">
@@ -101,13 +90,10 @@
                         </div>
                     @endif
                 @endforeach
-
             </div>
-
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
         </div>
-
     </div>
 
     {{-- SWIPER JS --}}
