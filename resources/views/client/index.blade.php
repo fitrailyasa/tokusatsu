@@ -36,11 +36,11 @@
     </style>
 
 
-    <div class="my-5 py-5 text-center">
+    <div class="my-5 py-4 text-center">
 
         @include('client.buttonSearch')
         {{-- ===================== KAMEN RIDER ===================== --}}
-        <h5 class="text-white fw-bold mb-2">Kamen Rider</h5>
+        <h5 class="text-white fw-bold mb-1">Kamen Rider</h5>
 
         <div class="swiper mySwiperKR">
             <div class="swiper-wrapper">
@@ -63,7 +63,7 @@
         </div>
 
         {{-- ===================== ULTRAMAN ===================== --}}
-        <h5 class="text-white fw-bold mb-2">Ultraman</h5>
+        <h5 class="text-white fw-bold mb-1">Ultraman</h5>
 
         <div class="swiper mySwiperUL">
             <div class="swiper-wrapper">
@@ -86,7 +86,7 @@
         </div>
 
         {{-- ===================== SUPER SENTAI ===================== --}}
-        <h5 class="text-white fw-bold mb-2">Super Sentai</h5>
+        <h5 class="text-white fw-bold mb-1">Super Sentai</h5>
 
         <div class="swiper mySwiperSS">
             <div class="swiper-wrapper">
@@ -109,8 +109,6 @@
         </div>
 
     </div>
-
-
 
     {{-- SWIPER JS --}}
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
