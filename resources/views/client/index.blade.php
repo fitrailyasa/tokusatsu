@@ -12,7 +12,8 @@
     <style>
         .swiper {
             width: 95%;
-            padding-bottom: 40px;
+            padding-top: 10px;
+            padding-bottom: 30px;
         }
 
         .swiper-slide img {
@@ -23,6 +24,7 @@
 
         .swiper-button-next,
         .swiper-button-prev {
+            top: 40% !important;
             color: #fff !important;
         }
 
@@ -36,8 +38,8 @@
 
     <div class="my-5 py-5 text-center">
 
-        {{-- ===================== KAMEN RIDER ===================== --}}
         @include('client.buttonSearch')
+        {{-- ===================== KAMEN RIDER ===================== --}}
         <h4 class="text-white fw-bold mb-3">Kamen Rider</h4>
 
         <div class="swiper mySwiperKR">
@@ -60,13 +62,7 @@
             <div class="swiper-button-prev"></div>
         </div>
 
-
-        <hr class="border-secondary my-5">
-
-
-
         {{-- ===================== ULTRAMAN ===================== --}}
-        @include('client.buttonSearch')
         <h4 class="text-white fw-bold mb-3">Ultraman</h4>
 
         <div class="swiper mySwiperUL">
@@ -89,13 +85,7 @@
             <div class="swiper-button-prev"></div>
         </div>
 
-
-        <hr class="border-secondary my-5">
-
-
-
         {{-- ===================== SUPER SENTAI ===================== --}}
-        @include('client.buttonSearch')
         <h4 class="text-white fw-bold mb-3">Super Sentai</h4>
 
         <div class="swiper mySwiperSS">
