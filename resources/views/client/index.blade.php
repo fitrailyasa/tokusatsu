@@ -40,7 +40,7 @@
 
         @include('client.buttonSearch')
         {{-- ===================== KAMEN RIDER ===================== --}}
-        <h4 class="text-white fw-bold mb-3">Kamen Rider</h4>
+        <h5 class="text-white fw-bold mb-3">Kamen Rider</h5>
 
         <div class="swiper mySwiperKR">
             <div class="swiper-wrapper">
@@ -63,7 +63,7 @@
         </div>
 
         {{-- ===================== ULTRAMAN ===================== --}}
-        <h4 class="text-white fw-bold mb-3">Ultraman</h4>
+        <h5 class="text-white fw-bold mb-3">Ultraman</h5>
 
         <div class="swiper mySwiperUL">
             <div class="swiper-wrapper">
@@ -86,7 +86,7 @@
         </div>
 
         {{-- ===================== SUPER SENTAI ===================== --}}
-        <h4 class="text-white fw-bold mb-3">Super Sentai</h4>
+        <h5 class="text-white fw-bold mb-3">Super Sentai</h5>
 
         <div class="swiper mySwiperSS">
             <div class="swiper-wrapper">
