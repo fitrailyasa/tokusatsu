@@ -10,7 +10,7 @@ use App\Http\Resources\TagResource;
 use App\Models\tag;
 
 
-class tagApiController extends Controller
+class TagApiController extends Controller
 {
     // Handle api list data tags
     public function index(Request $request)
