@@ -21,7 +21,7 @@ use App\Http\Controllers\AddressController;
 use App\Http\Controllers\Client\ClientEraController;
 use App\Http\Controllers\Client\ClientFranchiseController;
 use App\Http\Controllers\Client\ClientCategoryController;
-use App\Http\Controllers\Client\ClientvideoController;
+use App\Http\Controllers\Client\ClientVideoController;
 use App\Http\Controllers\Client\ClientHistoryController;
 use App\Http\Controllers\Client\ClientBookmarkController;
 use App\Http\Controllers\MapController;
@@ -192,10 +192,10 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('/video', [ClientvideoController::class, 'index'])->name('video');
-Route::get('/video/{category}', [ClientvideoController::class, 'category'])->name('video.category');
-Route::get('/video/{franchise}/{category}', [ClientvideoController::class, 'show'])->name('video.show');
-Route::get('/video/{franchise}/{category}/{type}/{number}', [ClientvideoController::class, 'watch'])->name('video.watch');
+Route::get('/video', [ClientVideoController::class, 'index'])->name('video');
+Route::get('/video/{category}', [ClientVideoController::class, 'category'])->name('video.category');
+Route::get('/video/{franchise}/{category}', [ClientVideoController::class, 'show'])->name('video.show');
+Route::get('/video/{franchise}/{category}/{type}/{number}', [ClientVideoController::class, 'watch'])->name('video.watch');
 Route::get('/history', [ClientHistoryController::class, 'index'])->name('history');
 Route::get('/bookmark', [ClientBookmarkController::class, 'index'])->name('bookmark');
 
