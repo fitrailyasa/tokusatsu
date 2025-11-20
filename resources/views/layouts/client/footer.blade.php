@@ -8,7 +8,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('film') }}" class="nav-link p-1 text-white fw-bold @yield('textFilm')">
+                    <a href="{{ route('video') }}" class="nav-link p-1 text-white fw-bold @yield('textvideo')">
                         <i data-feather="play-circle"></i>
                     </a>
                 </li>

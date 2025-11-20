@@ -65,7 +65,7 @@ $eras = Era::withoutTrashed()->get()->reverse();
                                         @foreach ($list as $cat)
                                             <li>
                                                 <a class="dropdown-item"
-                                                    href="{{ route('film.show', [$franchiseKR->slug, $cat->slug]) }}">
+                                                    href="{{ route('video.show', [$franchiseKR->slug, $cat->slug]) }}">
                                                     {{ $cat->name }}
                                                 </a>
                                             </li>
@@ -97,7 +97,7 @@ $eras = Era::withoutTrashed()->get()->reverse();
                                         @foreach ($list as $cat)
                                             <li>
                                                 <a class="dropdown-item"
-                                                    href="{{ route('film.show', [$franchiseUL->slug, $cat->slug]) }}">
+                                                    href="{{ route('video.show', [$franchiseUL->slug, $cat->slug]) }}">
                                                     {{ $cat->name }}
                                                 </a>
                                             </li>
@@ -129,7 +129,7 @@ $eras = Era::withoutTrashed()->get()->reverse();
                                         @foreach ($list as $cat)
                                             <li>
                                                 <a class="dropdown-item"
-                                                    href="{{ route('film.show', [$franchiseSS->slug, $cat->slug]) }}">
+                                                    href="{{ route('video.show', [$franchiseSS->slug, $cat->slug]) }}">
                                                     {{ $cat->name }}
                                                 </a>
                                             </li>
@@ -165,7 +165,7 @@ $eras = Era::withoutTrashed()->get()->reverse();
                                             @foreach ($list as $cat)
                                                 <li>
                                                     <a class="dropdown-item"
-                                                        href="{{ route('film.show', [$franchise->slug, $cat->slug]) }}">
+                                                        href="{{ route('video.show', [$franchise->slug, $cat->slug]) }}">
                                                         {{ $cat->name }}
                                                     </a>
                                                 </li>

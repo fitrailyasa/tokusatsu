@@ -8,7 +8,7 @@ use App\Http\Controllers\Api\FranchiseApiController;
 use App\Http\Controllers\Api\CategoryApiController;
 use App\Http\Controllers\Api\TagApiController;
 use App\Http\Controllers\Api\DataApiController;
-use App\Http\Controllers\Api\FilmApiController;
+use App\Http\Controllers\Api\VideoApiController;
 use App\Http\Controllers\Api\MapApiController;
 use App\Http\Controllers\Api\AddressApiController;
 
@@ -39,10 +39,10 @@ Route::get('/tag/all', [TagApiController::class, 'all']);
 Route::resource('/datas', DataApiController::class, ['only', ['index', 'store', 'show', 'edit', 'update', 'destroy']]);
 Route::get('/data/{franchise}/{category}', [DataApiController::class, 'findByFranchiseCategory']);
 
-// FILM API
-Route::resource('/films', FilmApiController::class, ['only', ['index', 'store', 'show', 'edit', 'update', 'destroy']]);
-Route::get('/film/{franchise}/{category}', [FilmApiController::class, 'findByFranchiseCategory']);
-Route::get('/film/{franchise}/{category}/{type}/{number}', [FilmApiController::class, 'findByFranchiseCategoryNumber']);
+// video API
+Route::resource('/videos', VideoApiController::class, ['only', ['index', 'store', 'show', 'edit', 'update', 'destroy']]);
+Route::get('/video/{franchise}/{category}', [VideoApiController::class, 'findByFranchiseCategory']);
+Route::get('/video/{franchise}/{category}/{type}/{number}', [VideoApiController::class, 'findByFranchiseCategoryNumber']);
 
 // MAP API
 Route::get('/map/{province}', [MapApiController::class, 'province'])->name('map.province');

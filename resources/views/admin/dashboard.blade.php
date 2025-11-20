@@ -65,11 +65,11 @@
             <!-- small box -->
             <div class="small-box bg-danger">
                 <div class="inner">
-                    <h3>{{ $films }}</h3>
+                    <h3>{{ $videos }}</h3>
 
-                    <p>{{ __('Film') }}</p>
+                    <p>{{ __('Video') }}</p>
                 </div>
-                <a href="{{ route('admin.film.index') }}" class="small-box-footer">More info <i
+                <a href="{{ route('admin.video.index') }}" class="small-box-footer">More info <i
                         class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>

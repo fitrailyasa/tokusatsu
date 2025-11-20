@@ -5,10 +5,10 @@
                 <img class="img img-fluid img-gallery" loading="lazy" width="300px"
                     src="{{ $category->img ? asset('storage/' . $category->img) : asset('storage/comingsoon.jpg') }}"
                     alt="{{ $category->img ?? 'comingsoon' }}">
-                
+
                 @php
-                    $episodeCount = $category->films->where('type', 'episode')->count();
-                    $movieCount = $category->films->where('type', 'movie')->count();
+                    $episodeCount = $category->videos->where('type', 'episode')->count();
+                    $movieCount = $category->videos->where('type', 'movie')->count();
                 @endphp
 
                 <p class="text-white">

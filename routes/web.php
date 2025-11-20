@@ -11,7 +11,7 @@ use App\Http\Controllers\Admin\AdminFranchiseController;
 use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminTagController;
 use App\Http\Controllers\Admin\AdminDataController;
-use App\Http\Controllers\Admin\AdminFilmController;
+use App\Http\Controllers\Admin\AdminVideoController;
 use App\Http\Controllers\Admin\AdminGeojsonController;
 use App\Http\Controllers\Admin\AdminProviderAccountController;
 use App\Http\Controllers\Auth\ProviderController;
@@ -21,7 +21,7 @@ use App\Http\Controllers\AddressController;
 use App\Http\Controllers\Client\ClientEraController;
 use App\Http\Controllers\Client\ClientFranchiseController;
 use App\Http\Controllers\Client\ClientCategoryController;
-use App\Http\Controllers\Client\ClientFilmController;
+use App\Http\Controllers\Client\ClientvideoController;
 use App\Http\Controllers\Client\ClientHistoryController;
 use App\Http\Controllers\Client\ClientBookmarkController;
 use App\Http\Controllers\MapController;
@@ -153,19 +153,19 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/data/exportExcel', [AdminDataController::class, 'exportExcel'])->name('data.exportExcel');
     // Route::get('/data/exportPDF', [AdminDataController::class, 'exportPDF'])->name('data.exportPDF');
 
-    // CRUD FILM
-    Route::get('/film', [AdminFilmController::class, 'index'])->name('film.index');
-    Route::post('/film', [AdminFilmController::class, 'store'])->name('film.store');
-    Route::put('/film/{id}/update', [AdminFilmController::class, 'update'])->name('film.update');
-    Route::delete('/film/{id}/destroy', [AdminFilmController::class, 'destroy'])->name('film.destroy');
-    Route::delete('/film/destroyAll', [AdminFilmController::class, 'destroyAll'])->name('film.destroyAll');
-    Route::delete('/film/{id}/softDelete', [AdminFilmController::class, 'softDelete'])->name('film.softDelete');
-    Route::delete('/film/softDeleteAll', [AdminFilmController::class, 'softDeleteAll'])->name('film.softDeleteAll');
-    Route::put('/film/{id}/restore', [AdminFilmController::class, 'restore'])->name('film.restore');
-    Route::put('/film/restoreAll', [AdminFilmController::class, 'restoreAll'])->name('film.restoreAll');
-    Route::post('/film/import', [AdminFilmController::class, 'import'])->name('film.import');
-    Route::get('/film/exportExcel', [AdminFilmController::class, 'exportExcel'])->name('film.exportExcel');
-    // Route::get('/film/exportPDF', [AdminFilmController::class, 'exportPDF'])->name('film.exportPDF');
+    // CRUD video
+    Route::get('/video', [AdminVideoController::class, 'index'])->name('video.index');
+    Route::post('/video', [AdminVideoController::class, 'store'])->name('video.store');
+    Route::put('/video/{id}/update', [AdminVideoController::class, 'update'])->name('video.update');
+    Route::delete('/video/{id}/destroy', [AdminVideoController::class, 'destroy'])->name('video.destroy');
+    Route::delete('/video/destroyAll', [AdminVideoController::class, 'destroyAll'])->name('video.destroyAll');
+    Route::delete('/video/{id}/softDelete', [AdminVideoController::class, 'softDelete'])->name('video.softDelete');
+    Route::delete('/video/softDeleteAll', [AdminVideoController::class, 'softDeleteAll'])->name('video.softDeleteAll');
+    Route::put('/video/{id}/restore', [AdminVideoController::class, 'restore'])->name('video.restore');
+    Route::put('/video/restoreAll', [AdminVideoController::class, 'restoreAll'])->name('video.restoreAll');
+    Route::post('/video/import', [AdminVideoController::class, 'import'])->name('video.import');
+    Route::get('/video/exportExcel', [AdminVideoController::class, 'exportExcel'])->name('video.exportExcel');
+    // Route::get('/video/exportPDF', [AdminVideoController::class, 'exportPDF'])->name('video.exportPDF');
 
     // CRUD GEOJSON
     Route::get('/geojson', [AdminGeojsonController::class, 'index'])->name('geojson.index');
@@ -192,10 +192,10 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('/film', [ClientFilmController::class, 'index'])->name('film');
-Route::get('/film/{category}', [ClientFilmController::class, 'category'])->name('film.category');
-Route::get('/film/{franchise}/{category}', [ClientFilmController::class, 'show'])->name('film.show');
-Route::get('/film/{franchise}/{category}/{type}/{number}', [ClientFilmController::class, 'watch'])->name('film.watch');
+Route::get('/video', [ClientvideoController::class, 'index'])->name('video');
+Route::get('/video/{category}', [ClientvideoController::class, 'category'])->name('video.category');
+Route::get('/video/{franchise}/{category}', [ClientvideoController::class, 'show'])->name('video.show');
+Route::get('/video/{franchise}/{category}/{type}/{number}', [ClientvideoController::class, 'watch'])->name('video.watch');
 Route::get('/history', [ClientHistoryController::class, 'index'])->name('history');
 Route::get('/bookmark', [ClientBookmarkController::class, 'index'])->name('bookmark');
 

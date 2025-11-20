@@ -50,9 +50,9 @@ class Category extends Model
         return $this->hasMany(Data::class);
     }
 
-    public function films()
+    public function videos()
     {
-        return $this->hasMany(Film::class);
+        return $this->hasMany(Video::class);
     }
 
     public function era()

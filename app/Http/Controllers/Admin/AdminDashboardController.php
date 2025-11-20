@@ -8,7 +8,7 @@ use App\Models\Franchise;
 use App\Models\Category;
 use App\Models\Data;
 use App\Models\Tag;
-use App\Models\Film;
+use App\Models\Video;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 
@@ -27,9 +27,9 @@ class AdminDashboardController extends Controller
         $categories = Category::all()->count();
         $datas = Data::all()->count();
         $tags = Tag::all()->count();
-        $films = Film::all()->count();
+        $videos = Video::all()->count();
         $roles = Role::all()->count();
 
-        return view('admin.dashboard', compact('users', 'franchises', 'eras', 'categories', 'datas', 'tags', 'films', 'roles'));
+        return view('admin.dashboard', compact('users', 'franchises', 'eras', 'categories', 'datas', 'tags', 'videos', 'roles'));
     }
 }

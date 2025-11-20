@@ -11,7 +11,7 @@
             </div>
             <div class="col-3 text-right">
                 <a class="btn btn-xs text-white rounded aktif"
-                    href="{{ route('film') }}/{{ $category->franchise->slug }}/{{ $category->slug }}"><i
+                    href="{{ route('video') }}/{{ $category->franchise->slug }}/{{ $category->slug }}"><i
                         data-feather="play-circle"></i></a>
             </div>
         </div>

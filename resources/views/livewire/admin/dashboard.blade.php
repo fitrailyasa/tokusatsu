@@ -57,9 +57,9 @@
         <!-- small box -->
         <div class="small-box bg-success">
             <div class="inner">
-                <h3>{{ $films }}</h3>
+                <h3>{{ $videos }}</h3>
 
-                <p>{{ __('Film') }}</p>
+                <p>{{ __('Video') }}</p>
             </div>
             <a href="{{ route('admin.category') }}" class="small-box-footer">More info <i
                     class="fas fa-arrow-circle-right"></i></a>

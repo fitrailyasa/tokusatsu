@@ -36,7 +36,9 @@
                     </select>
                 </div>
             @endif
-            @if (request()->routeIs('admin.data.index') || request()->routeIs('admin.film.index') || request()->routeIs('admin.data'))
+            @if (request()->routeIs('admin.data.index') ||
+                    request()->routeIs('admin.video.index') ||
+                    request()->routeIs('admin.data'))
                 <div class="col-md-3">
                     <select name="category_id" class="form-select"
                         onchange="document.getElementById('filterForm').submit()">
