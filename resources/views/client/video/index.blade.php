@@ -1,6 +1,6 @@
 @extends('layouts.client.app')
 
-@section('title', 'video')
+@section('title', 'Video')
 
 @section('textvideo', 'rounded aktif')
 

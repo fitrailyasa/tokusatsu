@@ -1,6 +1,6 @@
 @extends('layouts.client.app')
 
-@section('title', 'video')
+@section('title', 'Video')
 
 @section('textvideo', 'rounded aktif')
 
@@ -11,7 +11,7 @@
                 <a class="text-white" href="{{ route('video') }}"><i class="fas fa-arrow-left"></i></a>
             </div>
             <div>
-                <h3 class="text-center responsive-title">video {{ $franchise->name }}</h3>
+                <h3 class="text-center responsive-title">Video {{ $franchise->name }}</h3>
             </div>
             <div></div>
         </div>
