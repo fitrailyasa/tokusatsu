@@ -9,7 +9,7 @@
             <form method="POST" action="{{ route('admin.video.import') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalFormLabel">{{ __('Upload Video') }}</h5>
+                    <h5 class="modal-title" id="modalFormLabel">{{ __('Upload Data') }}</h5>
                     <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
