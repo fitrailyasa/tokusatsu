@@ -80,11 +80,25 @@ class ClientFilmController extends Controller
 
         $embedUrl = $this->videoEmbed($film->link);
 
+        $prev = Film::where([
+            'category_id' => $category->id,
+            'type' => $type,
+            'number' => $number - 1,
+        ])->first();
+
+        $next = Film::where([
+            'category_id' => $category->id,
+            'type' => $type,
+            'number' => $number + 1,
+        ])->first();
+
         return view('client.film.watch', [
             'category' => $category,
             'franchise' => $category->franchise,
             'film' => $film,
             'embedUrl' => $embedUrl,
+            'prev' => $prev,
+            'next' => $next,
         ]);
     }
 

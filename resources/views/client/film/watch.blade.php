@@ -8,10 +8,10 @@
     <style>
         .no-click-overlay {
             position: absolute;
-            margin-top: 10px;
-            margin-right: 10px;
-            width: 50px;
-            height: 50px;
+            /* margin-top: 10px; */
+            /* margin-right: 10px; */
+            width: 100%;
+            height: 70px;
             cursor: default;
             z-index: 5;
             /* background: #fff; */
@@ -53,9 +53,54 @@
                         </video>
                     @endif
                 </div>
+                <div class="row mt-4">
+                    <div class="col-12 d-flex justify-content-center gap-3">
+                        @if ($prev)
+                            <a href="{{ route('film.watch', [
+                                'franchise' => $category->franchise->slug,
+                                'category' => $category->slug,
+                                'type' => $prev->type,
+                                'number' => $prev->number,
+                            ]) }}"
+                                class="btn btn-primary px-4 py-2">
+                                <i class="text-white fas fa-arrow-left me-2"></i>
+                                Prev
+                            </a>
+                        @endif
+                        @if ($next)
+                            <a href="{{ route('film.watch', [
+                                'franchise' => $category->franchise->slug,
+                                'category' => $category->slug,
+                                'type' => $next->type,
+                                'number' => $next->number,
+                            ]) }}"
+                                class="btn btn-primary px-4 py-2">
+                                Next
+                                <i class="text-white fas fa-arrow-right ms-2"></i>
+                            </a>
+                        @endif
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
+    <script>
+        const vid = document.getElementById("film-video");
+        @if ($next)
+            if (vid) {
+                vid.onended = function() {
+                    window.location.href =
+                        "{{ route('film.watch', [
+                            'franchise' => $category->franchise->slug,
+                            'category' => $category->slug,
+                            'type' => $next->type,
+                            'number' => $next->number,
+                        ]) }}";
+                };
+            }
+        @endif
+    </script>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
