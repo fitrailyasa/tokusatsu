@@ -19,7 +19,7 @@
 
         <div class="row">
             @if ($videos->isEmpty())
-                <p>There are no video in this category.</p>
+                <p class="text-center">There are no video in this category.</p>
             @else
                 <table class="table table-bordered table-striped mt-3">
                     <thead class="table-dark">
