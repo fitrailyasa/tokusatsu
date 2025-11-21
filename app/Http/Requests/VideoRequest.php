@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\video;
+use App\Models\Video;
 use Illuminate\Validation\Rule;
 
 class VideoRequest extends FormRequest
