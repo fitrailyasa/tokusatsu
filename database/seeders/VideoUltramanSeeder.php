@@ -871,7 +871,6 @@ class VideoUltramanSeeder extends Seeder
             ['name' => "Clash! Ultra Big Match! (激突！ ウルトラビッグマッチ！, Gekitotsu! Urutora Biggu Macchi!)", 'category_id' => $this->Category('taiga'), 'type' => 'episode', 'number' => 23, 'airdate' => '2019-12-07'],
             ['name' => "I'm Pirika (私はピリカ, Watashi wa Pirika)", 'category_id' => $this->Category('taiga'), 'type' => 'episode', 'number' => 24, 'airdate' => '2019-12-14'],
             ['name' => "Buddy, Steady, Go! (バディ ステディ ゴー！, Badi Sutedi Gō!)", 'category_id' => $this->Category('taiga'), 'type' => 'episode', 'number' => 25, 'airdate' => '2019-12-21'],
-            // ['name' => "And Taiga Is Here (そしてタイガがここにいる, Soshite Taiga ga Koko ni Iru)", 'category_id' => $this->Category('taiga'), 'type' => 'episode', 'number' => 26, 'airdate' => '2019-12-28'],
             ['name' => "Chant My Name! (ご唱和ください、我の名を!, Goshōwa Kudasai, Ware no Na wo!)", 'category_id' => $this->Category('z'), 'type' => 'episode', 'number' => 1, 'airdate' => '2020-06-20'],
             ['name' => "A Warrior's Principle (戦士の心得, Senshi no Kokoroe)", 'category_id' => $this->Category('z'), 'type' => 'episode', 'number' => 2, 'airdate' => '2020-06-27'],
             ['name' => "Live Coverage! The Monster Transport Operation (生中継!怪獣輸送大作戦, Nama Chūkei! Kaijū Yusō Dai Sakusen)", 'category_id' => $this->Category('z'), 'type' => 'episode', 'number' => 3, 'airdate' => '2020-07-04'],
