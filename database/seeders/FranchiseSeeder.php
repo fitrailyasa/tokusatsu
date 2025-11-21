@@ -36,6 +36,14 @@ class FranchiseSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
+            [
+                'name' => 'Garo',
+                'slug' => Str::slug('Garo', '-'),
+                'description' => null,
+                'img' => null,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
         ]);
 
         foreach ($data as $item) {
