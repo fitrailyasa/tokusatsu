@@ -21,7 +21,7 @@ class VideoRequest extends FormRequest
         // dd($db->getConnection()->getDatabaseName());
 
         return [
-            'name' => 'required|max:100',
+            'name' => 'required|max:1000',
             'type' => 'required|max:100',
             'number' => [
                 'nullable',
