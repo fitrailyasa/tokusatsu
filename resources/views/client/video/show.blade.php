@@ -26,6 +26,7 @@
                         <tr>
                             <th class="text-center" scope="col">No</th>
                             <th scope="col">Title</th>
+                            <th scope="col">Release Date</th>
                             <th class="text-center" scope="col">Bookmark</th>
                         </tr>
                     </thead>
@@ -39,6 +40,7 @@
                                     </a>
                                 </td>
                                 <td>{{ $item->name }}</td>
+                                <td>{{ date('d M Y', strtotime($item->airdate)) }}</td>
                                 <td class="text-center">
                                     <button class="btn btn-sm btn-outline-warning bookmark-btn"
                                         data-title="{{ $category->franchise->name }} {{ $category->name }} {{ ucfirst($item->type) }} {{ $item->number }}"
