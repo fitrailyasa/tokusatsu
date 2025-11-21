@@ -22,8 +22,6 @@ class DatabaseSeeder extends Seeder
         $this->call(TagSeeder::class);
         $this->call(DataSeeder::class);
         $this->call(VideoSeeder::class);
-        $this->call(FormSeeder::class);
-        $this->call(ProviderAccountSeeder::class);
         // $this->call(GeojsonSeeder::class);
         // $this->call(AddressProvinceSeeder::class);
         // $this->call(AddressRegencySeeder::class);
