@@ -1280,7 +1280,7 @@ class CategorySeeder extends Seeder
                 'description' => null,
                 'img' => "ultraman/heisei/11.ultraman-x/ultraman-x-1.jpg",
                 'first_aired' => '2015-07-14',
-                'last_aired' => '2016-01-05',
+                'last_aired' => '2015-12-22',
                 'created_at' => $now,
                 'updated_at' => $now,
             ],
