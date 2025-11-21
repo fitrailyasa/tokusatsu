@@ -764,7 +764,7 @@ class CategorySeeder extends Seeder
                 'description' => null,
                 'img' => "super-sentai/heisei/24-mirai-sentai-timeranger-jpn-power-rangers-time-force-usa-1.jpg",
                 'first_aired' => '2000-02-13',
-                'last_aired' => '2001-02-04',
+                'last_aired' => '2001-02-11',
                 'created_at' => $now,
                 'updated_at' => $now,
             ],
