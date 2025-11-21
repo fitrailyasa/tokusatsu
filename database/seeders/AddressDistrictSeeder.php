@@ -7289,8 +7289,8 @@ class AddressDistrictSeeder extends Seeder
             ['id' => 967110, 'name' => 'Maladum Mes', 'regency_id' => 9671],
         ];
 
-        foreach ($data as $address) {
-            AddressDistrict::create($address);
+        foreach ($data as $item) {
+            AddressDistrict::create($item);
         }
     }
 }

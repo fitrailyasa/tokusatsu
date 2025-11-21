@@ -35,8 +35,8 @@ class EraSeeder extends Seeder
             ],
         ];
 
-        foreach ($data as $era) {
-            Era::create($era);
+        foreach ($data as $item) {
+            Era::create($item);
         }
     }
 }

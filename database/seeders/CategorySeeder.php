@@ -1382,8 +1382,8 @@ class CategorySeeder extends Seeder
 
         ]);
 
-        foreach ($data as $category) {
-            Category::create($category);
+        foreach ($data as $item) {
+            Category::create($item);
         }
     }
 

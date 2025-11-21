@@ -526,8 +526,8 @@ class AddressRegencySeeder extends Seeder
             ['id' => 9671, 'name' => 'KOTA SORONG', 'province_id' => 96],
         ];
 
-        foreach ($data as $address) {
-            AddressRegency::create($address);
+        foreach ($data as $item) {
+            AddressRegency::create($item);
         }
     }
 }

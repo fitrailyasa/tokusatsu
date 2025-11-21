@@ -11,7 +11,7 @@ class TagSeeder extends Seeder
 {
     public function run(): void
     {
-        $tags = [
+        $data = [
             [
                 'name' => 'Primary',
                 'slug' => Str::slug('Primary', '-'),
@@ -68,8 +68,8 @@ class TagSeeder extends Seeder
             ],
         ];
 
-        foreach ($tags as $tag) {
-            Tag::create($tag);
+        foreach ($data as $item) {
+            Tag::create($item);
         }
     }
 }

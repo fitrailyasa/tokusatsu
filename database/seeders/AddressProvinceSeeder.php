@@ -50,8 +50,8 @@ class AddressProvinceSeeder extends Seeder
             ['id' => 96, 'name' => 'PAPUA BARAT DAYA'],
         ];
 
-        foreach ($data as $address) {
-            AddressProvince::create($address);
+        foreach ($data as $item) {
+            AddressProvince::create($item);
         }
     }
 }

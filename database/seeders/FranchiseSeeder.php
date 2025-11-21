@@ -38,8 +38,8 @@ class FranchiseSeeder extends Seeder
             ],
         ]);
 
-        foreach ($data as $franchise) {
-            Franchise::create($franchise);
+        foreach ($data as $item) {
+            Franchise::create($item);
         }
     }
 }

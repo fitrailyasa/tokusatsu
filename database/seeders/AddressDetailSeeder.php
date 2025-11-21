@@ -9,12 +9,10 @@ class AddressDetailSeeder extends Seeder
 {
     public function run(): void
     {
-        $data = [
-            
-        ];
+        $data = [];
 
-        foreach ($data as $address) {
-            AddressDetail::create($address);
+        foreach ($data as $item) {
+            AddressDetail::create($item);
         }
     }
 }

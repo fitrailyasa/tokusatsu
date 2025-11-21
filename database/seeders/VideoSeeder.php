@@ -11,7 +11,7 @@ class VideoSeeder extends Seeder
 {
     public function run(): void
     {
-        $defaultTimestamps = [
+        $timestamp = [
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];
@@ -5036,8 +5036,8 @@ class VideoSeeder extends Seeder
             ['name' => "The Approaching Third Wave (第３波接近襲来, Dai 3 Nami Sekkin Shūrai)", 'category_id' => $this->Category('blazar'), 'type' => 'episode', 'number' => 24],
             ['name' => "The Ones Who Embrace the Earth (地球を抱くものたち, Chikyū o Daku Mono-tachi)", 'category_id' => $this->Category('blazar'), 'type' => 'episode', 'number' => 25],
 
-        ])->map(function ($item) use ($defaultTimestamps) {
-            return array_merge($item, $defaultTimestamps);
+        ])->map(function ($item) use ($timestamp) {
+            return array_merge($item, $timestamp);
         });
 
         DB::table('category_videos')->insert($data->toArray());
