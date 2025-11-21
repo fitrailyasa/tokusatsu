@@ -548,7 +548,7 @@ class CategorySeeder extends Seeder
                 'description' => null,
                 'img' => "super-sentai/showa/6-dai-sentai-goggle-five-1.jpg",
                 'first_aired' => '1982-02-06',
-                'last_aired' => '1983-01-20',
+                'last_aired' => '1983-01-29',
                 'created_at' => $now,
                 'updated_at' => $now,
             ],
