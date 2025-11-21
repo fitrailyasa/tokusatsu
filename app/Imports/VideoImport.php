@@ -17,40 +17,22 @@ class VideoImport implements ToModel, WithStartRow
         $number = $row[4] ?? 0;
         $link = $row[5] ?? null;
 
-        $category = Category::withTrashed()->where('name', $categoryName)->first();
+        $category = Category::withTrashed()->firstOrCreate(
+            ['name' => $categoryName],
+            ['type' => null, 'franchise_id' => null, 'era_id' => null]
+        );
 
-        if (!$category) {
-            $category = Category::create([
-                'name' => $categoryName,
-                'type' => null,
-                'franchise_id' => null,
-                'era_id' => null,
-            ]);
-        }
-
-        $checkVideo = Video::withTrashed()->where('name', $name)->first();
-        if ($checkVideo) {
-            // return null;
-            $checkVideo->update([
-                'category_id' => $category->id ?? null,
+        return Video::updateOrCreate(
+            [
+                'category_id' => $category->id,
                 'type' => $type,
-                'number' => $number,
-                'link' => $link,
-            ]);
-            return $checkVideo;
-        }
-
-        $video = new Video([
-            'name' => $name,
-            'category_id' => $category->id ?? null,
-            'type' => $type,
-            'number' => $number,
-            'link' => $link,
-        ]);
-
-        $video->save();
-
-        return $video;
+                'number' => $number
+            ],
+            [
+                'name' => $name,
+                'link' => $link
+            ]
+        );
     }
 
     public function startRow(): int

@@ -15,22 +15,13 @@ class EraImport implements ToModel, WithStartRow
         $img = $row[2] ?? null;
         $description = $row[3] ?? null;
 
-        $checkEra = Era::withTrashed()->where('name', $name)->first();
-
-        if ($checkEra) {
-            $checkEra->update([
+        return Era::updateOrCreate(
+            ['name' => $name],
+            [
                 'img' => $img,
-                'description' => $description,
-            ]);
-
-            return null;
-        } else {
-            return new Era([
-                'name' => $name,
-                'img' => $img,
-                'description' => $description,
-            ]);
-        }
+                'description' => $description
+            ]
+        );
     }
 
     public function startRow(): int
