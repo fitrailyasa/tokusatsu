@@ -21,6 +21,7 @@ class Video extends Model
         'type',
         'number',
         'link',
+        'airdate',
         'category_id',
     ];
 

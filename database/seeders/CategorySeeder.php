@@ -21,6 +21,7 @@ class CategorySeeder extends Seeder
         $ultraman = $this->Franchise('Ultraman');
         $kamenrider = $this->Franchise('Kamen Rider');
         $supersentai = $this->Franchise('Super Sentai');
+        $garo = $this->Franchise('Garo');
 
         $data = collect([
             [
@@ -1376,6 +1377,42 @@ class CategorySeeder extends Seeder
                 'img' => "logo.png",
                 'first_aired' => '2023-07-08',
                 'last_aired' => '2024-01-20',
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            [
+                'era_id' => $heisei,
+                'franchise_id' => $garo,
+                'name' => 'Garo',
+                'slug' => Str::slug('Garo', '-'),
+                'description' => null,
+                'img' => "logo.png",
+                'first_aired' => '',
+                'last_aired' => '',
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            [
+                'era_id' => $heisei,
+                'franchise_id' => $garo,
+                'name' => 'Garo: Makai Senki',
+                'slug' => Str::slug('Garo Makai Senki', '-'),
+                'description' => null,
+                'img' => "logo.png",
+                'first_aired' => '',
+                'last_aired' => '',
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            [
+                'era_id' => $heisei,
+                'franchise_id' => $garo,
+                'name' => 'Garo: Yami o Terasu Mono',
+                'slug' => Str::slug('Garo Yami O Terasu Mono', '-'),
+                'description' => null,
+                'img' => "logo.png",
+                'first_aired' => '',
+                'last_aired' => '',
                 'created_at' => $now,
                 'updated_at' => $now,
             ],

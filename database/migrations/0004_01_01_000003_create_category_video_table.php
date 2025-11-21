@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('type')->nullable()->default('episode');
             $table->integer('number')->nullable();
             $table->string('link')->nullable();
+            $table->date('airdate')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
