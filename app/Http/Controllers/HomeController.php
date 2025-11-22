@@ -19,6 +19,16 @@ class HomeController extends Controller
         return view('offline');
     }
 
+    public function privacyPolicy()
+    {
+        return view('privacy-policy');
+    }
+
+    public function termsConditions()
+    {
+        return view('terms-conditions');
+    }
+
     public function show(string $franchiseSlug, string $categorySlug)
     {
         $category = Category::whereHas('franchise', function ($query) use ($franchiseSlug) {

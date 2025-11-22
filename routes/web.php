@@ -36,6 +36,8 @@ use App\Livewire\Admin\UserLivewire;
 // CLIENT SIDE
 Route::get('/', [HomeController::class, 'index'])->name('beranda');
 Route::get('/offline', [HomeController::class, 'offline'])->name('offline');
+Route::get('/privacy-policy', [HomeController::class, 'privacyPolicy'])->name('privacy-policy');
+Route::get('/terms-conditions', [HomeController::class, 'termsConditions'])->name('terms-conditions');
 
 Route::get('/search', [HomeController::class, 'search'])->name('search');
 Route::get('/era', [ClientEraController::class, 'index'])->name('era');
