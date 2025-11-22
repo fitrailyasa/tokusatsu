@@ -68,7 +68,7 @@
                 <th>{{ __('Category') }}</th>
                 <th>{{ __('Type') }}</th>
                 <th>{{ __('Link') }}</th>
-                <th>{{ __('Airdate') }}</th>
+                <th>{{ __('Release Date') }}</th>
                 <th class="text-center">{{ __('Action') }}</th>
             </tr>
         </thead>
@@ -114,7 +114,7 @@
                 <th>{{ __('Category') }}</th>
                 <th>{{ __('Type') }}</th>
                 <th>{{ __('Link') }}</th>
-                <th>{{ __('Airdate') }}</th>
+                <th>{{ __('Release Date') }}</th>
                 <th class="text-center">{{ __('Action') }}</th>
             </tr>
         </tfoot>
