@@ -65,10 +65,10 @@
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label class="form-label">{{ __('Number of Episodes') }}<span
-                                        class="text-danger">*</span></label>
+                                <label class="form-label">{{ __('Number of Episodes') }} <small
+                                        class="text-muted">(Optional)</small></label>
                                 <input type="number" class="form-control @error('number') is-invalid @enderror"
-                                    placeholder="1" name="number" id="number" value="{{ old('number') }}" required>
+                                    placeholder="1" name="number" id="number" value="{{ old('number') }}">
                                 @error('number')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -76,11 +76,21 @@
                         </div>
                         <div class="col-md-12">
                             <div class="mb-3">
-                                <label class="form-label">{{ __('Link') }}<span class="text-danger">*</span></label>
+                                <label class="form-label">{{ __('Link') }}</label>
                                 <input type="text" class="form-control @error('link') is-invalid @enderror"
                                     placeholder="https://google.com" name="link" id="link"
-                                    value="{{ old('link') }}" required>
+                                    value="{{ old('link') }}">
                                 @error('link')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="mb-3">
+                                <label class="form-label">{{ __('Release Date') }}</label>
+                                <input type="date" class="form-control @error('airdate') is-invalid @enderror"
+                                    name="airdate" id="airdate" value="{{ old('airdate') }}">
+                                @error('airdate')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>

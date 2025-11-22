@@ -32,6 +32,7 @@ class VideoRequest extends FormRequest
                 })->ignore($videoId)
             ],
             'link' => 'nullable|url',
+            'airdate' => 'nullable|date',
             'category_id' => 'required',
         ];
     }
@@ -48,6 +49,7 @@ class VideoRequest extends FormRequest
             'number.numeric'      => 'Number must be numeric.',
             'number.unique'      => 'Number already exists.',
             'link.url'      => 'Link must be url.',
+            'airdate.date'      => 'Airdate must be date.',
         ];
     }
 }

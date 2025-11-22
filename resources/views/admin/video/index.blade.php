@@ -68,6 +68,7 @@
                 <th>{{ __('Category') }}</th>
                 <th>{{ __('Type') }}</th>
                 <th>{{ __('Link') }}</th>
+                <th>{{ __('Airdate') }}</th>
                 <th class="text-center">{{ __('Action') }}</th>
             </tr>
         </thead>
@@ -83,6 +84,7 @@
                     </td>
                     <td>{{ $item->type ?? '-' }} {{ $item->number ?? 0 }}</td>
                     <td><a href="{{ $item->link ?? '-' }}" target="_blank">{{ $item->link ?? '-' }}</a></td>
+                    <td>{{ date('d M Y', strtotime($item->airdate)) }}</td>
                     <td class="manage-row text-center">
                         @if ($item->trashed())
                             <!-- Restore and Delete Button -->
@@ -112,6 +114,7 @@
                 <th>{{ __('Category') }}</th>
                 <th>{{ __('Type') }}</th>
                 <th>{{ __('Link') }}</th>
+                <th>{{ __('Airdate') }}</th>
                 <th class="text-center">{{ __('Action') }}</th>
             </tr>
         </tfoot>
