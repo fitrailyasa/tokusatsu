@@ -21,7 +21,7 @@ class VideoApiController extends Controller
 
         if (!empty($search)) {
             $query->where(function ($q) use ($search) {
-                $q->where('name', 'LIKE', "%{$search}%")
+                $q->where('title', 'LIKE', "%{$search}%")
                     ->orWhere('description', 'LIKE', "%{$search}%")
                     ->orWhereHas('category', function ($q) use ($search) {
                         $q->where('name', 'LIKE', "%{$search}%");
