@@ -23,8 +23,8 @@ class VideoExport implements FromCollection, WithHeadings, WithStyles, ShouldAut
         foreach ($Videos as $item) {
             $collection[] = [
                 'No' => $no++,
-                'Name' => $item->name ?? '',
-                'Category' => $item->category->name ?? 'null',
+                'Title' => $item->title ?? '',
+                'Category' => $item->category->title ?? 'null',
                 'Type' => $item->type ?? '',
                 'Number' => $item->number ?? 0,
                 'Link' => $item->link ?? '',
@@ -42,7 +42,7 @@ class VideoExport implements FromCollection, WithHeadings, WithStyles, ShouldAut
             [''],
             [
                 'No',
-                'Name',
+                'Title',
                 'Category',
                 'Type',
                 'Number',

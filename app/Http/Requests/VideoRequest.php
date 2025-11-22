@@ -21,7 +21,7 @@ class VideoRequest extends FormRequest
         // dd($db->getConnection()->getDatabaseName());
 
         return [
-            'name' => 'required|max:1000',
+            'title' => 'required|max:1000',
             'type' => 'required|max:100',
             'number' => [
                 'nullable',
@@ -39,8 +39,8 @@ class VideoRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'Name is required.',
-            'name.max'      => 'Name must be under 100 chars.',
+            'title.required' => 'Title is required.',
+            'title.max'      => 'Title must be under 100 chars.',
             'type.required' => 'Type is required.',
             'type.max'      => 'Type must be under 100 chars.',
             'category_id.required' => 'Category is required.',

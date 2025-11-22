@@ -39,7 +39,7 @@
                                         <i class="fa-solid fa-arrow-up-right-from-square text-primary"></i>
                                     </a>
                                 </td>
-                                <td>{{ $item->name }}</td>
+                                <td>{{ $item->title }}</td>
                                 <td>{{ date('d M Y', strtotime($item->airdate)) }}</td>
                                 <td class="text-center">
                                     <button class="btn btn-sm btn-outline-warning bookmark-btn"

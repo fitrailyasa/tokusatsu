@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('category_videos', function (Blueprint $table) {
             $table->id('id');
             $table->foreignId('category_id')->nullable();
-            $table->string('name')->nullable();
+            $table->string('title')->nullable();
             $table->string('type')->nullable()->default('episode');
             $table->integer('number')->nullable();
             $table->string('link')->nullable();

@@ -64,7 +64,7 @@
         <thead>
             <tr>
                 <th>{{ __('No') }}</th>
-                <th>{{ __('Name') }}</th>
+                <th>{{ __('Title') }}</th>
                 <th>{{ __('Category') }}</th>
                 <th>{{ __('Type') }}</th>
                 <th>{{ __('Link') }}</th>
@@ -75,7 +75,7 @@
             @foreach ($videos as $item)
                 <tr @if ($item->trashed()) class="text-muted" @endif>
                     <td>{{ $videos->firstItem() + $loop->index }}</td>
-                    <td>{{ $item->name ?? '-' }}</td>
+                    <td>{{ $item->title ?? '-' }}</td>
                     <td>
                         <span class="badge bg-{{ $item->getCategoryColor() }}">
                             {{ $item->category->name ?? '-' }}
@@ -108,7 +108,7 @@
         <tfoot>
             <tr>
                 <th>{{ __('No') }}</th>
-                <th>{{ __('Name') }}</th>
+                <th>{{ __('Title') }}</th>
                 <th>{{ __('Category') }}</th>
                 <th>{{ __('Type') }}</th>
                 <th>{{ __('Link') }}</th>

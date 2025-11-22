@@ -21,11 +21,11 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label class="form-label">{{ __('Name') }}<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                    placeholder="name" name="name" id="name"
-                                    value="{{ old('name', $item->name) }}" required>
-                                @error('name')
+                                <label class="form-label">{{ __('Title') }}<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control @error('title') is-invalid @enderror"
+                                    placeholder="title" name="title" id="title"
+                                    value="{{ old('title', $item->title) }}" required>
+                                @error('title')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>

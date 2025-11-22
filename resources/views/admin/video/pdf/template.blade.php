@@ -43,7 +43,7 @@
         <thead>
             <tr>
                 <th>No</th>
-                <th>Nama</th>
+                <th>Judul</th>
                 <th>Kategori</th>
                 <th>Tipe</th>
             </tr>
@@ -52,7 +52,7 @@
             @foreach ($videos as $item)
                 <tr>
                     <td>{{ $loop->iteration + (($page ?? 1) - 1) * ($perPage ?? 10) }}</td>
-                    <td>{{ $item->name ?? '-' }}</td>
+                    <td>{{ $item->title ?? '-' }}</td>
                     <td>{{ $item->category->name ?? '-' }}</td>
                     <td>{{ $item->type ?? '-' }}</td>
                 </tr>

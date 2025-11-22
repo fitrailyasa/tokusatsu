@@ -11,7 +11,7 @@ class VideoImport implements ToModel, WithStartRow
 {
     public function model(array $row)
     {
-        $name = $row[1];
+        $title = $row[1];
         $categoryName = $row[2] ?? null;
         $type = $row[3] ?? null;
         $number = $row[4] ?? 0;
@@ -29,7 +29,7 @@ class VideoImport implements ToModel, WithStartRow
                 'number' => $number
             ],
             [
-                'name' => $name,
+                'title' => $title,
                 'link' => $link
             ]
         );

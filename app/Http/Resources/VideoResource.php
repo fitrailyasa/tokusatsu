@@ -16,7 +16,7 @@ class VideoResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
+            'title' => $this->title,
             'number' => $this->number,
             'link' => $this->link,
             // 'category' => $this->whenLoaded('category', function () {
