@@ -43,7 +43,7 @@
                                 <td>{{ date('d M Y', strtotime($item->airdate)) }}</td>
                                 <td class="text-center">
                                     <button class="btn btn-sm btn-outline-warning bookmark-btn"
-                                        data-title="{{ $category->franchise->name }} {{ $category->name }} {{ ucfirst($item->type) }} {{ $item->number }}"
+                                        data-title="{{ $category->fullname }} {{ ucfirst($item->type) }} {{ $item->number }}"
                                         data-url="{{ url('video/' . $category->franchise->slug . '/' . $item->category->slug . '/' . $item->type . '/' . $item->number) }}">
                                         ⭐
                                     </button>
