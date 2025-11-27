@@ -33,7 +33,7 @@
                             <tr>
                                 <td class="text-center">{{ $categories->firstItem() + $loop->index }}</td>
                                 <td>
-                                    <a href="{{ $item->franchise->slug }}/{{ $item->slug }}">{{ $item->franchise->name }}
+                                    <a href="{{ $item->franchise->slug }}/{{ $item->slug }}">
                                         {{ $item->fullname }}
                                         <i class="fa-solid fa-arrow-up-right-from-square text-primary"></i>
                                     </a>
