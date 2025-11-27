@@ -107,7 +107,7 @@
             // === Watch History ===
             let watchHistory = JSON.parse(localStorage.getItem("watchHistory")) || [];
             const videoTitle =
-                "{{ $category->franchise->name }} {{ $category->name }} {{ ucfirst($video->type) }} {{ $video->number }}";
+                "{{ $category->fullname }} {{ ucfirst($video->type) }} {{ $video->number }}";
             const videoUrl = window.location.href;
             const currentTime = new Date().toLocaleString();
 
