@@ -11,7 +11,7 @@
                 <a class="text-white" href="{{ route('video') }}"><i class="fas fa-arrow-left"></i></a>
             </div>
             <div>
-                <h3 class="text-center responsive-title">Video {{ $franchise->name }}</h3>
+                <h3 class="text-center responsive-title">{{ $franchise->name }}</h3>
             </div>
             <div></div>
         </div>
@@ -34,7 +34,7 @@
                                 <td class="text-center">{{ $categories->firstItem() + $loop->index }}</td>
                                 <td>
                                     <a href="{{ $item->franchise->slug }}/{{ $item->slug }}">{{ $item->franchise->name }}
-                                        {{ $item->name }}
+                                        {{ $item->fullname }}
                                         <i class="fa-solid fa-arrow-up-right-from-square text-primary"></i>
                                     </a>
                                 </td>

@@ -20,6 +20,7 @@ class CategoryFactory extends Factory
         $name = $this->faker->unique()->word;
 
         return [
+            'fullname' => $name,
             'name' => ucfirst($name),
             'slug' => Str::slug($name),
             'description' => $this->faker->sentence(),

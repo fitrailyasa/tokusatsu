@@ -7,7 +7,7 @@
                 </a>
             </div>
             <div class="col-6">
-                <h5 class="font-weight-bold responsive-title">{{ $category->name }}</h5>
+                <h5 class="font-weight-bold responsive-title">{{ $category->fullname }}</h5>
             </div>
             <div class="col-3 text-right">
                 <a class="btn btn-xs text-white rounded aktif"

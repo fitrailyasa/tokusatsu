@@ -64,6 +64,7 @@
         <thead>
             <tr>
                 <th>{{ __('No') }}</th>
+                <th>{{ __('Full Name') }}</th>
                 <th>{{ __('Name') }}</th>
                 <th>{{ __('Img') }}</th>
                 <th>{{ __('Description') }}</th>
@@ -76,6 +77,7 @@
             @foreach ($categories as $item)
                 <tr @if ($item->trashed()) class="text-muted" @endif>
                     <td>{{ $categories->firstItem() + $loop->index }}</td>
+                    <td>{{ $item->fullname ?? '-' }}</td>
                     <td>{{ $item->name ?? '-' }}</td>
                     <td>
                         @if ($item->img == null)
@@ -155,6 +157,7 @@
         <tfoot>
             <tr>
                 <th>{{ __('No') }}</th>
+                <th>{{ __('Full Name') }}</th>
                 <th>{{ __('Name') }}</th>
                 <th>{{ __('Img') }}</th>
                 <th>{{ __('Description') }}</th>

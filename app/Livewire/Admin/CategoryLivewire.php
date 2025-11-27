@@ -16,7 +16,7 @@ class CategoryLivewire extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
-    public $name, $description, $img, $categoryId, $era_id, $franchise_id;
+    public $fullname, $name, $description, $img, $categoryId, $era_id, $franchise_id;
     public $isUpdate = false;
 
     public function rules(): array
@@ -24,6 +24,11 @@ class CategoryLivewire extends Component
         return [
             'era_id' => 'required',
             'franchise_id' => 'required',
+            'fullname' => [
+                'required',
+                'max:100',
+                Rule::unique('categories', 'fullname')->ignore($this->id),
+            ],
             'name' => [
                 'required',
                 'max:100',

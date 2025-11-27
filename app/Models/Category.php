@@ -16,7 +16,7 @@ class Category extends Model
     protected $connection;
     protected $table = 'categories';
     protected $primaryKey = 'id';
-    protected $fillable = ['name', 'slug', 'description', 'img', 'era_id', 'franchise_id'];
+    protected $fillable = ['fullname', 'name', 'slug', 'description', 'img', 'era_id', 'franchise_id'];
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 
     public function __construct(array $attributes = [])

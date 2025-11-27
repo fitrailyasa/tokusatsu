@@ -10,6 +10,7 @@ use OpenApi\Annotations as OA;
  *     type="object",
  *     required={"id", "name"},
  *     @OA\Property(property="id", type="integer", example=1),
+ *     @OA\Property(property="fullname", type="string", example="Test"),
  *     @OA\Property(property="name", type="string", example="Test"),
  *     @OA\Property(property="description", nullable=true, type="string", example="Description Category"),
  *     @OA\Property(property="era_id", type="integer", example=1),
@@ -21,7 +22,8 @@ use OpenApi\Annotations as OA;
  * @OA\Schema(
  *     schema="CategoryRequest",
  *     type="object",
- *     required={"name"},
+ *     required={"fullname", "name"},
+ *     @OA\Property(property="fullname", type="string", example="Test"),
  *     @OA\Property(property="name", type="string", example="Test"),
  *     @OA\Property(property="description", type="string", nullable=true, example="Description Category"),
  *     @OA\Property(property="era_id", type="integer", example=1),

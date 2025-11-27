@@ -28,7 +28,7 @@
                 </div>
                 <div class="col-6">
                     <h4 class="text-center responsive-title">
-                        {{ $category->franchise->name }} {{ $category->name }} {{ ucfirst($video->type) }}
+                        {{ $category->fullname }} {{ ucfirst($video->type) }}
                         {{ $video->number }}
                     </h4>
                 </div>

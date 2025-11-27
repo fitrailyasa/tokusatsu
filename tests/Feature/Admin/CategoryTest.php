@@ -87,6 +87,7 @@ class CategoryTest extends TestCase
         $data = [
             'era_id' => $era->id,
             'franchise_id' => $franchise->id,
+            'fullname' => 'New Category',
             'name' => 'New Category',
             'description' => 'This is a test category',
         ];
@@ -110,6 +111,7 @@ class CategoryTest extends TestCase
         $data = [
             'era_id' => $era->id,
             'franchise_id' => $franchise->id,
+            'fullname' => 'Updated Category',
             'name' => 'Updated Category',
             'description' => 'This is a test category',
         ];
@@ -122,6 +124,7 @@ class CategoryTest extends TestCase
             'id' => $category->id,
             'era_id' => $era->id,
             'franchise_id' => $franchise->id,
+            'fullname' => 'Updated Category',
             'name' => 'Updated Category',
             'description' => 'This is a test category',
         ]);

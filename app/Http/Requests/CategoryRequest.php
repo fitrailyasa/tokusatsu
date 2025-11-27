@@ -24,6 +24,11 @@ class CategoryRequest extends FormRequest
         return [
             'era_id' => 'required',
             'franchise_id' => 'required',
+            'fullname' => [
+                'required',
+                'max:200',
+                Rule::unique('categories', 'fullname')->ignore($id),
+            ],
             'name' => [
                 'required',
                 'max:100',
@@ -39,6 +44,8 @@ class CategoryRequest extends FormRequest
         return [
             'era_id.required'       => 'Era is required.',
             'franchise_id.required' => 'Franchise is required.',
+            'fullname.required'     => 'Fullname is required.',
+            'fullname.max'          => 'Fullname must be under 200 chars.',
             'name.required'         => 'Name is required.',
             'name.max'              => 'Name must be under 100 chars.',
             'name.unique'           => 'Name already exists.',

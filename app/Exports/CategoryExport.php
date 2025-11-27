@@ -22,6 +22,7 @@ class CategoryExport implements FromCollection, WithHeadings, WithStyles, Should
         foreach ($categories as $item) {
             $collection[] = [
                 'No' => $no++,
+                'Fullname' => $item->fullname ?? '',
                 'Name' => $item->name ?? '',
                 'Img' => $item->img ?? '',
                 'Description' => $item->description ?? '',
@@ -41,6 +42,7 @@ class CategoryExport implements FromCollection, WithHeadings, WithStyles, Should
             [''],
             [
                 'No',
+                'Fullname',
                 'Name',
                 'Img',
                 'Description',

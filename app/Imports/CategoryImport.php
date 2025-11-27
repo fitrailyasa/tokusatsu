@@ -12,11 +12,12 @@ class CategoryImport implements ToModel, WithStartRow
 {
     public function model(array $row)
     {
-        $name = $row[1];
-        $img = $row[2] ?? null;
-        $description = $row[3] ?? null;
-        $eraName = $row[4] ?? null;
-        $franchiseName = $row[5] ?? null;
+        $fullname = $row[1];
+        $name = $row[2];
+        $img = $row[3] ?? null;
+        $description = $row[4] ?? null;
+        $eraName = $row[5] ?? null;
+        $franchiseName = $row[6] ?? null;
 
         $era = Era::withTrashed()->firstOrCreate(
             ['name' => $eraName],
@@ -29,7 +30,7 @@ class CategoryImport implements ToModel, WithStartRow
         );
 
         return Category::updateOrCreate(
-            ['name' => $name],
+            ['fullname' => $fullname, 'name' => $name],
             [
                 'img' => $img ?? null,
                 'description' => $description ?? null,

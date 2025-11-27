@@ -48,7 +48,7 @@
                                 @foreach ($categoriesGroup as $category)
                                     <option value="{{ old('category_id', $category->id) }}"
                                         {{ request('category_id') == $category->id ? 'selected' : '' }}>
-                                        {{ $category->name }}
+                                        {{ $category->fullname }}
                                     </option>
                                 @endforeach
                             </optgroup>

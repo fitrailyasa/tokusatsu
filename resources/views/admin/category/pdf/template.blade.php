@@ -47,6 +47,7 @@
         <thead>
             <tr>
                 <th>No</th>
+                <th>Nama Lengkap</th>
                 <th>Nama</th>
                 <th>Gambar</th>
                 <th>Deskripsi</th>
@@ -58,6 +59,7 @@
             @foreach ($categories as $item)
                 <tr>
                     <td>{{ $loop->iteration + (($page ?? 1) - 1) * ($perPage ?? 10) }}</td>
+                    <td>{{ $item->fullname ?? '-' }}</td>
                     <td>{{ $item->name ?? '-' }}</td>
                     <td>
                         @php

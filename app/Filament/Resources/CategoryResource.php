@@ -25,6 +25,7 @@ class CategoryResource extends Resource
     {
         return $form
             ->schema([
+                Forms\Components\TextInput::make('fullname')->columnSpanFull()->unique('categories', 'fullname')->required()->label('Nama Lengkap'),
                 Forms\Components\TextInput::make('name')->columnSpanFull()->unique('categories', 'name')->required()->label('Nama'),
                 Forms\Components\Select::make('era_id')->relationship('era', 'name')->required()->label('Era'),
                 Forms\Components\Select::make('franchise_id')->relationship('franchise', 'name')->required()->label('Franchise'),
@@ -37,6 +38,7 @@ class CategoryResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('fullname')->searchable()->sortable()->label('Nama Lengkap'),
                 Tables\Columns\TextColumn::make('name')->searchable()->sortable()->label('Nama'),
                 Tables\Columns\TextColumn::make('slug')->searchable()->sortable()->label('Slug'),
                 Tables\Columns\TextColumn::make('description')

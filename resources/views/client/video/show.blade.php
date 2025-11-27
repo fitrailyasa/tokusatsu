@@ -12,7 +12,7 @@
                         class="fas fa-arrow-left"></i></a>
             </div>
             <div>
-                <h3 class="text-center responsive-title">Video {{ $category->franchise->name }} {{ $category->name }}</h3>
+                <h3 class="text-center responsive-title">{{ $category->fullname }}</h3>
             </div>
             <div></div>
         </div>

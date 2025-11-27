@@ -17,7 +17,18 @@
 
         <form wire:submit.prevent="{{ $isUpdate ? 'update' : 'store' }}">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label">{{ __('Full Name') }}<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control @error('fullname') is-invalid @enderror"
+                            placeholder="fullname" wire:model="fullname" id="fullname" value="{{ old('fullname') }}"
+                            required>
+                        @error('fullname')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-md-6">
                     <div class="mb-3">
                         <label class="form-label">{{ __('Name') }}<span class="text-danger">*</span></label>
                         <input type="text" class="form-control @error('name') is-invalid @enderror"
@@ -27,7 +38,7 @@
                         @enderror
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="mb-3">
                         <label class="form-label">{{ __('Franchise') }}<span class="text-danger">*</span></label>
                         <select class="form-select @error('franchise_id') is-invalid @enderror"
@@ -44,7 +55,7 @@
                         @enderror
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="mb-3">
                         <label class="form-label">{{ __('Era') }}<span class="text-danger">*</span></label>
                         <select class="form-select @error('era_id') is-invalid @enderror" wire:model="era_id"

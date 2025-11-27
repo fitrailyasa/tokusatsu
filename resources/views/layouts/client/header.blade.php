@@ -62,11 +62,11 @@ $eras = Era::withoutTrashed()->get()->reverse();
                                         <li>
                                             <h6 class="dropdown-header text-white">{{ strtoupper($era->name) }}</h6>
                                         </li>
-                                        @foreach ($list as $cat)
+                                        @foreach ($list as $item)
                                             <li>
                                                 <a class="dropdown-item"
-                                                    href="{{ route('video.show', [$franchiseKR->slug, $cat->slug]) }}">
-                                                    {{ $cat->name }}
+                                                    href="{{ route('video.show', [$franchiseKR->slug, $item->slug]) }}">
+                                                    {{ $item->fullname }}
                                                 </a>
                                             </li>
                                         @endforeach
@@ -94,11 +94,11 @@ $eras = Era::withoutTrashed()->get()->reverse();
                                         <li>
                                             <h6 class="dropdown-header text-white">{{ strtoupper($era->name) }}</h6>
                                         </li>
-                                        @foreach ($list as $cat)
+                                        @foreach ($list as $item)
                                             <li>
                                                 <a class="dropdown-item"
-                                                    href="{{ route('video.show', [$franchiseUL->slug, $cat->slug]) }}">
-                                                    {{ $cat->name }}
+                                                    href="{{ route('video.show', [$franchiseUL->slug, $item->slug]) }}">
+                                                    {{ $item->fullname }}
                                                 </a>
                                             </li>
                                         @endforeach
@@ -126,11 +126,11 @@ $eras = Era::withoutTrashed()->get()->reverse();
                                         <li>
                                             <h6 class="dropdown-header text-white">{{ strtoupper($era->name) }}</h6>
                                         </li>
-                                        @foreach ($list as $cat)
+                                        @foreach ($list as $item)
                                             <li>
                                                 <a class="dropdown-item"
-                                                    href="{{ route('video.show', [$franchiseSS->slug, $cat->slug]) }}">
-                                                    {{ $cat->name }}
+                                                    href="{{ route('video.show', [$franchiseSS->slug, $item->slug]) }}">
+                                                    {{ $item->fullname }}
                                                 </a>
                                             </li>
                                         @endforeach
@@ -162,11 +162,11 @@ $eras = Era::withoutTrashed()->get()->reverse();
                                         @endphp
                                         @if ($list->count() > 0)
                                             <li class="px-3 text-secondary small">{{ strtoupper($era->name) }}</li>
-                                            @foreach ($list as $cat)
+                                            @foreach ($list as $item)
                                                 <li>
                                                     <a class="dropdown-item"
-                                                        href="{{ route('video.show', [$franchise->slug, $cat->slug]) }}">
-                                                        {{ $cat->name }}
+                                                        href="{{ route('video.show', [$franchise->slug, $item->slug]) }}">
+                                                        {{ $item->fullname }}
                                                     </a>
                                                 </li>
                                             @endforeach

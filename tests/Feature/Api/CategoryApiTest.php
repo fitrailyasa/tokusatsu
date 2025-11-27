@@ -45,6 +45,7 @@ class CategoryApiTest extends TestCase
         $data = [
             'era_id' => $era->id,
             'franchise_id' => $franchise->id,
+            'fullname' => 'New Category',
             'name' => 'New Category',
             'img' => UploadedFile::fake()->image('category.jpg'),
         ];
@@ -79,6 +80,7 @@ class CategoryApiTest extends TestCase
         $updateData = [
             'era_id' => $era->id,
             'franchise_id' => $franchise->id,
+            'fullname' => 'Updated Category',
             'name' => 'Updated Category',
         ];
 

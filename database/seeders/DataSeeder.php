@@ -799,7 +799,7 @@ class DataSeeder extends Seeder
                 // 'id' => $uuid,
                 'name' => "Denjiman ($i)",
                 'img' => "super-sentai/showa/4-denshi-sentai-denjiman-$i.jpg",
-                'category_id' => $this->Category('denziman'),
+                'category_id' => $this->Category('denjiman'),
                 'created_at' => $now,
                 'updated_at' => $now,
             ];
@@ -1008,7 +1008,7 @@ class DataSeeder extends Seeder
                 // 'id' => $uuid,
                 'name' => "KyuKyu Sentai GoGo V (JPN) - Power Rangers Lightspeed Rescue (USA) ($i)",
                 'img' => "super-sentai/heisei/23-kyukyu-sentai-gogo-v-jpn-power-rangers-lightspeed-rescue-usa-$i.jpg",
-                'category_id' => $this->Category('go-go-v'),
+                'category_id' => $this->Category('gogofive'),
                 'created_at' => $now,
                 'updated_at' => $now,
             ];
