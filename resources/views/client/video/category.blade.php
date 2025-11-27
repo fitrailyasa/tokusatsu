@@ -34,7 +34,9 @@
                                 <td class="text-center">{{ $categories->firstItem() + $loop->index }}</td>
                                 <td>
                                     <a href="{{ $item->franchise->slug }}/{{ $item->slug }}">
-                                        {{ $item->fullname }}
+                                        {{ $item->fullname }} 
+@if($item->first_aired)  ({{ \Carbon\Carbon::parse($item->first_aired)->year }})
+@endif
                                         <i class="fa-solid fa-arrow-up-right-from-square text-primary"></i>
                                     </a>
                                 </td>
