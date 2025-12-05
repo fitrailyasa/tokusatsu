@@ -63,7 +63,7 @@
                                 'number' => $prev->number,
                             ]) }}"
                                 class="btn btn-primary px-4 py-2">
-                                <i class="text-dark fas fa-arrow-left me-2"></i>
+                                <i class="text-white fas fa-arrow-left me-2"></i>
                                 Prev
                             </a>
                         @endif
@@ -76,7 +76,7 @@
                             ]) }}"
                                 class="btn btn-primary px-4 py-2">
                                 Next
-                                <i class="text-dark fas fa-arrow-right ms-2"></i>
+                                <i class="text-white fas fa-arrow-right ms-2"></i>
                             </a>
                         @endif
                     </div>
