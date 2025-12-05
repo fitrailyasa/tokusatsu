@@ -54,8 +54,8 @@
                             <a href="{{ route('beranda.show', [$category->franchise->slug, $category->slug]) }}">
                                 <img src="{{ $category->img ? asset('storage/' . $category->img) : asset('storage/comingsoon.jpg') }}"
                                     loading="lazy">
+                                <p class="small pt-2 text-dark">{{ $category->fullname }}</p>
                             </a>
-                            <p class="small pt-2">{{ $category->fullname }}</p>
                         </div>
                     @endif
                 @endforeach
@@ -72,8 +72,8 @@
                             <a href="{{ route('beranda.show', [$category->franchise->slug, $category->slug]) }}">
                                 <img src="{{ $category->img ? asset('storage/' . $category->img) : asset('storage/comingsoon.jpg') }}"
                                     loading="lazy">
+                                <p class="small pt-2 text-dark">{{ $category->fullname }}</p>
                             </a>
-                            <p class="small pt-2">{{ $category->fullname }}</p>
                         </div>
                     @endif
                 @endforeach
@@ -90,8 +90,8 @@
                             <a href="{{ route('beranda.show', [$category->franchise->slug, $category->slug]) }}">
                                 <img src="{{ $category->img ? asset('storage/' . $category->img) : asset('storage/comingsoon.jpg') }}"
                                     loading="lazy">
+                                <p class="small pt-2 text-dark">{{ $category->fullname }}</p>
                             </a>
-                            <p class="small pt-2">{{ $category->fullname }}</p>
                         </div>
                     @endif
                 @endforeach
