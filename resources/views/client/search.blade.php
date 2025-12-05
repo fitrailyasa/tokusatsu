@@ -1,13 +1,13 @@
 @extends('layouts.client.app')
 
-@section('title', 'Hasil Pencarian')
+@section('title', 'Search Result')
 
 @section('textHome', 'rounded aktif')
 
 @section('content')
     <div class="text-center my-5 py-5">
         @include('client.buttonSearch')
-        <h4 class="text-white font-weight-bold">Hasil Pencarian</h4>
+        <h4 class="font-weight-bold">Search Result</h4>
         <div class="text-center d-flex flex-wrap justify-content-center pb-3">
             @foreach ($datas as $data)
                 <a href="#" data-bs-toggle="modal" data-bs-target="#myModal{{ $data->id }}">
@@ -28,7 +28,7 @@
                                     alt="{{ $data->img }}">
                                 <!-- Tombol Download -->
                                 <a href="{{ asset('storage/' . $data->img) }}" download="{{ $data->img }}"
-                                    class="btn aktif border mt-2 col-12">Download Gambar</a>
+                                    class="btn aktif border mt-2 col-12">Download</a>
                             </div>
                         </div>
                     </div>

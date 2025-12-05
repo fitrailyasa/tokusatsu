@@ -3,14 +3,14 @@
         <div class="row px-3 mb-3">
             <div class="col-3 text-left d-flex align-items-center">
                 <a href="#" onclick="history.back();">
-                    <p class="text-white m-0"><i class="fas fa-arrow-left"></i></p>
+                    <p class="text-dark m-0"><i class="fas fa-arrow-left"></i></p>
                 </a>
             </div>
             <div class="col-6">
                 <h5 class="font-weight-bold responsive-title">{{ $category->fullname }}</h5>
             </div>
             <div class="col-3 text-right">
-                <a class="btn btn-xs text-white rounded aktif"
+                <a class="btn btn-xs text-dark rounded aktif"
                     href="{{ route('video') }}/{{ $category->franchise->slug }}/{{ $category->slug }}"><i
                         data-feather="play-circle"></i></a>
             </div>
@@ -28,13 +28,13 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-body">
-                        <button type="button" class="close text-white" data-bs-dismiss="modal" aria-label="Close">
+                        <button type="button" class="close text-dark" data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                         <img class="img img-fluid" src="{{ asset('storage/' . $item->img) }}" alt="{{ $item->img }}">
                         <!-- Tombol Download -->
                         <a href="{{ asset('storage/' . $item->img) }}" download="{{ $item->img }}"
-                            class="btn aktif text-white border my-3 col-12">Download Gambar</a>
+                            class="btn aktif text-dark border my-3 col-12">Download</a>
                         <div>
                             <p>{{ $item->category->description ?? '---------------' }}</p>
                         </div>

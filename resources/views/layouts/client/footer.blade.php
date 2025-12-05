@@ -1,24 +1,24 @@
-<footer class="footer px-1 d-block d-lg-none border-top text-white mt-1 fixed-bottom" style="background-color: #111111">
+<footer class="footer px-1 d-block d-lg-none border-top bg-light mt-1 fixed-bottom">
     <div class="container-fluid">
         <div class="d-flex">
             <ul class="nav col-12 align-items-center justify-content-between py-1">
                 <li>
-                    <a href="{{ route('beranda') }}" class="nav-link p-1 text-white fw-bold @yield('textHome')">
+                    <a href="{{ route('beranda') }}" class="nav-link p-1 text-dark fw-bold @yield('textHome')">
                         <i data-feather="home"></i>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('video') }}" class="nav-link p-1 text-white fw-bold @yield('textvideo')">
+                    <a href="{{ route('video') }}" class="nav-link p-1 text-dark fw-bold @yield('textvideo')">
                         <i data-feather="play-circle"></i>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('history') }}" class="nav-link p-1 text-white fw-bold @yield('textHistory')">
+                    <a href="{{ route('history') }}" class="nav-link p-1 text-dark fw-bold @yield('textHistory')">
                         <i data-feather="clock"></i>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('bookmark') }}" class="nav-link p-1 text-white fw-bold @yield('textBookmark')">
+                    <a href="{{ route('bookmark') }}" class="nav-link p-1 text-dark fw-bold @yield('textBookmark')">
                         <i data-feather="bookmark"></i>
                     </a>
                 </li>

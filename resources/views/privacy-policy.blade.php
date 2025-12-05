@@ -7,8 +7,8 @@
 @section('content')
 
     <div class="my-5 py-4">
-        <h3 class="text-white text-center">Privacy Policy</h3>
-        <div class="container text-white mb-5" style="max-width: 900px;">
+        <h3 class="text-dark text-center">Privacy Policy</h3>
+        <div class="container text-dark mb-5" style="max-width: 900px;">
             <h4>1. Introduction</h4>
             <p>
                 Welcome to <strong>Your Company</strong>. This Privacy Policy explains how we collect, use, and protect your

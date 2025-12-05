@@ -8,7 +8,7 @@
     <div class="container my-5">
         <div class="d-flex justify-content-between align-items-center px-3 pt-4">
             <div>
-                <a class="text-white" href="{{ route('video.category', $category->franchise->slug) }}"><i
+                <a class="text-dark" href="{{ route('video.category', $category->franchise->slug) }}"><i
                         class="fas fa-arrow-left"></i></a>
             </div>
             <div>

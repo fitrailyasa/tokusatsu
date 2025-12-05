@@ -8,26 +8,6 @@
     }
 }
 
-.header,
-.content,
-.modal-body,
-.img-gallery,
-.dropdown-menu,
-.footer {
-    color: white;
-    background-color: #000000;
-    background-image: linear-gradient(
-        225deg,
-        #000000 0%,
-        #12085f 50%,
-        #000000 100%
-    ) !important;
-}
-
-.dropdown-item {
-    color: #fff;
-}
-
 .border-top {
     border-top: 0.2px solid rgba(255, 255, 255, 0.2) !important;
 }
@@ -41,7 +21,7 @@
 }
 
 .aktif {
-    background-image: linear-gradient(to top, #00c6fb 0%, #005bea 100%);
+    background-image: linear-gradient(to top, #cecece 0%, #d4d4d4 100%);
 }
 
 .modal-content {

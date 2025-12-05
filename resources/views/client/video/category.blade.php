@@ -8,7 +8,7 @@
     <div class="container my-5">
         <div class="d-flex justify-content-between align-items-center px-3 pt-4">
             <div>
-                <a class="text-white" href="{{ route('video') }}"><i class="fas fa-arrow-left"></i></a>
+                <a class="text-dark" href="{{ route('video') }}"><i class="fas fa-arrow-left"></i></a>
             </div>
             <div>
                 <h3 class="text-center responsive-title">{{ $franchise->name }}</h3>
@@ -34,9 +34,10 @@
                                 <td class="text-center">{{ $categories->firstItem() + $loop->index }}</td>
                                 <td>
                                     <a href="{{ $item->franchise->slug }}/{{ $item->slug }}">
-                                        {{ $item->fullname }} 
-@if($item->first_aired)  ({{ \Carbon\Carbon::parse($item->first_aired)->year }})
-@endif
+                                        {{ $item->fullname }}
+                                        @if ($item->first_aired)
+                                            ({{ \Carbon\Carbon::parse($item->first_aired)->year }})
+                                        @endif
                                         <i class="fa-solid fa-arrow-up-right-from-square text-primary"></i>
                                     </a>
                                 </td>

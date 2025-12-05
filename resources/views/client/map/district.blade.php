@@ -59,7 +59,7 @@
     <div class="mt-5 pt-4">
         <div class="d-flex justify-content-between align-items-center p-2">
             <div>
-                <a class="text-white px-2" href="{{ route('map.province', strtolower(str_replace(' ', '_', $province))) }}">
+                <a class="text-dark px-2" href="{{ route('map.province', strtolower(str_replace(' ', '_', $province))) }}">
                     <i class="fas fa-arrow-left"></i>
                 </a>
             </div>

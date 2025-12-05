@@ -23,7 +23,7 @@
                 <div class="col-3 text-left d-flex align-items-center">
                     <a
                         href="{{ route('video.show', ['franchise' => $category->franchise->slug, 'category' => $category->slug]) }}">
-                        <p class="m-0"><i class="text-white fas fa-arrow-left"></i></p>
+                        <p class="m-0"><i class="text-dark fas fa-arrow-left"></i></p>
                     </a>
                 </div>
                 <div class="col-6">
@@ -63,7 +63,7 @@
                                 'number' => $prev->number,
                             ]) }}"
                                 class="btn btn-primary px-4 py-2">
-                                <i class="text-white fas fa-arrow-left me-2"></i>
+                                <i class="text-dark fas fa-arrow-left me-2"></i>
                                 Prev
                             </a>
                         @endif
@@ -76,7 +76,7 @@
                             ]) }}"
                                 class="btn btn-primary px-4 py-2">
                                 Next
-                                <i class="text-white fas fa-arrow-right ms-2"></i>
+                                <i class="text-dark fas fa-arrow-right ms-2"></i>
                             </a>
                         @endif
                     </div>

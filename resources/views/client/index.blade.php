@@ -12,8 +12,8 @@
     <style>
         .swiper {
             width: 95%;
-            padding-top: 10px;
-            padding-bottom: 30px;
+            padding-top: 20px;
+            /* padding-bottom: 30px; */
             opacity: 0;
             transition: opacity .3s ease;
         }
@@ -42,11 +42,11 @@
     </style>
 
 
-    <div class="my-5 py-4 text-center">
+    <div class="my-5 py-4 bg-light text-center">
         @include('client.buttonSearch')
         {{-- ===================== KAMEN RIDER ===================== --}}
-        <h5 class="text-white fw-bold mb-1">Kamen Rider</h5>
-        <div class="swiper mySwiperKR">
+        <h5 class="fw-bold mb-1">Kamen Rider</h5>
+        <div class="swiper mb-3 px-2 bg-light mySwiperKR">
             <div class="swiper-wrapper">
                 @foreach ($categories as $category)
                     @if ($category->franchise && $category->franchise->name === 'Kamen Rider' && $category->era->name !== 'Showa')
@@ -55,17 +55,16 @@
                                 <img src="{{ $category->img ? asset('storage/' . $category->img) : asset('storage/comingsoon.jpg') }}"
                                     loading="lazy">
                             </a>
+                            <p class="small pt-2">{{ $category->fullname }}</p>
                         </div>
                     @endif
                 @endforeach
             </div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
         </div>
 
         {{-- ===================== ULTRAMAN ===================== --}}
-        <h5 class="text-white fw-bold mb-1">Ultraman</h5>
-        <div class="swiper mySwiperUL">
+        <h5 class="fw-bold mb-1">Ultraman</h5>
+        <div class="swiper mb-3 px-2 bg-light mySwiperUL">
             <div class="swiper-wrapper">
                 @foreach ($categories as $category)
                     @if ($category->franchise && $category->franchise->name === 'Ultraman' && $category->era->name !== 'Showa')
@@ -74,17 +73,16 @@
                                 <img src="{{ $category->img ? asset('storage/' . $category->img) : asset('storage/comingsoon.jpg') }}"
                                     loading="lazy">
                             </a>
+                            <p class="small pt-2">{{ $category->fullname }}</p>
                         </div>
                     @endif
                 @endforeach
             </div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
         </div>
 
         {{-- ===================== SUPER SENTAI ===================== --}}
-        <h5 class="text-white fw-bold mb-1">Super Sentai</h5>
-        <div class="swiper mySwiperSS">
+        <h5 class="fw-bold mb-1">Super Sentai</h5>
+        <div class="swiper mb-3 px-2 bg-light mySwiperSS">
             <div class="swiper-wrapper">
                 @foreach ($categories as $category)
                     @if ($category->franchise && $category->franchise->name === 'Super Sentai' && $category->era->name !== 'Showa')
@@ -93,12 +91,11 @@
                                 <img src="{{ $category->img ? asset('storage/' . $category->img) : asset('storage/comingsoon.jpg') }}"
                                     loading="lazy">
                             </a>
+                            <p class="small pt-2">{{ $category->fullname }}</p>
                         </div>
                     @endif
                 @endforeach
             </div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
         </div>
     </div>
 

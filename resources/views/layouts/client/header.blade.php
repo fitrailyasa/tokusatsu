@@ -19,7 +19,7 @@ $eras = Era::withoutTrashed()->get()->reverse();
         color: #555;
     }
 </style>
-<header class="header px-3 border-bottom text-white mb-3 fixed-top" style="background-color: #111111">
+<header class="header px-3 border-bottom mb-3 fixed-top bg-light">
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-between">
             <div class="d-flex align-items-center justify-content-center">
@@ -29,8 +29,7 @@ $eras = Era::withoutTrashed()->get()->reverse();
             <div class="d-none d-lg-block">
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 mx-3 justify-content-center mb-md-0">
                     <li>
-                        <a href="{{ route('beranda') }}"
-                            class="nav-link py-3 px-3 text-white fw-bold @yield('textHome')">
+                        <a href="{{ route('beranda') }}" class="nav-link text-dark py-3 px-3 fw-bold @yield('textHome')">
                             {{ __('Home') }}
                         </a>
                     </li>
@@ -50,7 +49,7 @@ $eras = Era::withoutTrashed()->get()->reverse();
                     {{-- ============ KAMEN RIDER ============ --}}
                     @if ($franchiseKR)
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle py-3 px-3 text-white fw-bold" href="#">
+                            <a class="nav-link text-dark dropdown-toggle py-3 px-3 fw-bold" href="#">
                                 Kamen Rider
                             </a>
                             <ul class="dropdown-menu custom-dropdown m-0">
@@ -60,13 +59,13 @@ $eras = Era::withoutTrashed()->get()->reverse();
                                     @endphp
                                     @if ($list->count() > 0)
                                         <li>
-                                            <h6 class="dropdown-header text-white">{{ strtoupper($era->name) }}</h6>
+                                            <h6 class="dropdown-header">{{ strtoupper($era->name) }}</h6>
                                         </li>
                                         @foreach ($list as $item)
                                             <li>
                                                 <a class="dropdown-item"
                                                     href="{{ route('video.show', [$franchiseKR->slug, $item->slug]) }}">
-                                                    {{ $item->fullname }}
+                                                    {{ \Illuminate\Support\Str::words($item->fullname, 4, '...') }}
                                                 </a>
                                             </li>
                                         @endforeach
@@ -82,7 +81,7 @@ $eras = Era::withoutTrashed()->get()->reverse();
                     {{-- ============ ULTRAMAN ============ --}}
                     @if ($franchiseUL)
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle py-3 px-3 text-white fw-bold" href="#">
+                            <a class="nav-link text-dark dropdown-toggle py-3 px-3 fw-bold" href="#">
                                 Ultraman
                             </a>
                             <ul class="dropdown-menu custom-dropdown m-0">
@@ -92,13 +91,13 @@ $eras = Era::withoutTrashed()->get()->reverse();
                                     @endphp
                                     @if ($list->count() > 0)
                                         <li>
-                                            <h6 class="dropdown-header text-white">{{ strtoupper($era->name) }}</h6>
+                                            <h6 class="dropdown-header">{{ strtoupper($era->name) }}</h6>
                                         </li>
                                         @foreach ($list as $item)
                                             <li>
                                                 <a class="dropdown-item"
                                                     href="{{ route('video.show', [$franchiseUL->slug, $item->slug]) }}">
-                                                    {{ $item->fullname }}
+                                                    {{ \Illuminate\Support\Str::words($item->fullname, 4, '...') }}
                                                 </a>
                                             </li>
                                         @endforeach
@@ -114,7 +113,7 @@ $eras = Era::withoutTrashed()->get()->reverse();
                     {{-- ============ SUPER SENTAI ============ --}}
                     @if ($franchiseSS)
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle py-3 px-3 text-white fw-bold" href="#">
+                            <a class="nav-link text-dark dropdown-toggle py-3 px-3 fw-bold" href="#">
                                 Super Sentai
                             </a>
                             <ul class="dropdown-menu custom-dropdown m-0">
@@ -124,13 +123,13 @@ $eras = Era::withoutTrashed()->get()->reverse();
                                     @endphp
                                     @if ($list->count() > 0)
                                         <li>
-                                            <h6 class="dropdown-header text-white">{{ strtoupper($era->name) }}</h6>
+                                            <h6 class="dropdown-header">{{ strtoupper($era->name) }}</h6>
                                         </li>
                                         @foreach ($list as $item)
                                             <li>
                                                 <a class="dropdown-item"
                                                     href="{{ route('video.show', [$franchiseSS->slug, $item->slug]) }}">
-                                                    {{ $item->fullname }}
+                                                    {{ \Illuminate\Support\Str::words($item->fullname, 4, '...') }}
                                                 </a>
                                             </li>
                                         @endforeach
@@ -147,14 +146,14 @@ $eras = Era::withoutTrashed()->get()->reverse();
                     {{-- ============ OTHER MENU ============ --}}
                     @if ($otherFranchises->count() > 0)
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle py-3 px-3 text-white fw-bold" href="#">
+                            <a class="nav-link text-dark dropdown-toggle py-3 px-3 fw-bold" href="#">
                                 Other
                             </a>
                             <ul class="dropdown-menu custom-dropdown m-0">
 
                                 @foreach ($otherFranchises as $franchise)
                                     <li>
-                                        <h6 class="dropdown-header text-white">{{ strtoupper($franchise->name) }}</h6>
+                                        <h6 class="dropdown-header">{{ strtoupper($franchise->name) }}</h6>
                                     </li>
                                     @foreach ($eras as $era)
                                         @php
@@ -166,7 +165,7 @@ $eras = Era::withoutTrashed()->get()->reverse();
                                                 <li>
                                                     <a class="dropdown-item"
                                                         href="{{ route('video.show', [$franchise->slug, $item->slug]) }}">
-                                                        {{ $item->fullname }}
+                                                        {{ \Illuminate\Support\Str::words($item->fullname, 4, '...') }}
                                                     </a>
                                                 </li>
                                             @endforeach
@@ -181,13 +180,13 @@ $eras = Era::withoutTrashed()->get()->reverse();
                     @endif
 
                     <li class="nav-item">
-                        <a class="nav-link py-3 px-3 text-white fw-bold @yield('textHistory')"
+                        <a class="nav-link text-dark py-3 px-3 fw-bold @yield('textHistory')"
                             href="{{ route('history') }}">
                             <i class="far fa-clock fs-5"></i>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link py-3 px-3 text-white fw-bold @yield('textBookmark')"
+                        <a class="nav-link text-dark py-3 px-3 fw-bold @yield('textBookmark')"
                             href="{{ route('bookmark') }}">
                             <i class="far fa-bookmark fs-5"></i>
                         </a>

@@ -11,7 +11,7 @@
             <div class="row px-3">
                 <div class="col-3 text-left">
                     <a href="#" onclick="history.back();">
-                        <p class="text-white"><i class="fas fa-arrow-left"></i></p>
+                        <p class="text-dark"><i class="fas fa-arrow-left"></i></p>
                     </a>
                 </div>
                 <div class="col-6">
