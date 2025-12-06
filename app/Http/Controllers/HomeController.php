@@ -47,15 +47,46 @@ class HomeController extends Controller
             'query' => 'nullable|string|max:255',
         ]);
 
-        $query = '%' . ($validatedData['query'] ?? '') . '%';
+        $input = trim($validatedData['query'] ?? '');
 
-        $datas = Data::where('name', 'like', $query)
-            ->orWhere('img', 'like', $query)
-            ->orWhereHas('tags', function ($q) use ($query) {
-                $q->where('name', 'like', $query);
-            })
+        if ($input === '') {
+            $videos = collect();
+            return view('client.search-video', compact('videos'));
+        }
+
+        $keywords = explode(' ', $input);
+
+        $datas = \App\Models\Video::query()
             ->withoutTrashed()
-            ->paginate(30);
+            ->where(function ($query) use ($keywords) {
+
+                foreach ($keywords as $word) {
+
+                    $query->where(function ($q) use ($word) {
+
+                        if (is_numeric($word)) {
+
+                            $q->where('number', '=', $word)
+                                ->orWhereHas('category', function ($cat) use ($word) {
+                                    $like = '%' . $word . '%';
+                                    $cat->where('fullname', 'like', $like)
+                                        ->orWhere('name', 'like', $like);
+                                });
+                        } else {
+
+                            $like = '%' . $word . '%';
+
+                            $q->where('title', 'like', $like)
+                                ->orWhere('type', 'like', $like)
+                                ->orWhereHas('category', function ($cat) use ($like) {
+                                    $cat->where('name', 'like', $like)
+                                        ->orWhere('fullname', 'like', $like);
+                                });
+                        }
+                    });
+                }
+            })
+            ->paginate(10);
 
         return view('client.search', compact('datas'));
     }

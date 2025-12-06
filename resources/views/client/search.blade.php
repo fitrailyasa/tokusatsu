@@ -9,30 +9,13 @@
         @include('client.buttonSearch')
         <h4 class="font-weight-bold">Search Result</h4>
         <div class="text-center d-flex flex-wrap justify-content-center pb-3">
-            @foreach ($datas as $data)
-                <a href="#" data-bs-toggle="modal" data-bs-target="#myModal{{ $data->id }}">
-                    <img class="img img-fluid img-gallery" loading="lazy" src="{{ asset('storage/' . $data->img) }}"
-                        alt="{{ $data->img }}">
+            @foreach ($datas as $item)
+                <a class="bg-light px-2 py-1 mx-2 my-2 rounded"
+                    href="{{ url('video/' . $item->category->franchise->slug) }}/{{ $item->category->slug }}/{{ $item->type }}/{{ $item->number }}">
+                    <img class="img img-fluid img-gallery" loading="lazy" src="{{ asset('storage/' . $item->category->img) }}"
+                        alt="{{ $item->category->img }}">
+                    <p>{{ ucwords($item->category->fullname) }} {{ ucwords($item->type) }} {{ $item->number }}</p>
                 </a>
-
-                <!-- Modal -->
-                <div class="modal fade" id="myModal{{ $data->id }}" tabindex="-1" role="dialog"
-                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                                <img class="img img-fluid" src="{{ asset('storage/' . $data->img) }}"
-                                    alt="{{ $data->img }}">
-                                <!-- Tombol Download -->
-                                <a href="{{ asset('storage/' . $data->img) }}" download="{{ $data->img }}"
-                                    class="btn aktif border mt-2 col-12">Download</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             @endforeach
         </div>
         <div class="d-flex justify-content-center mt-3">
