@@ -24,7 +24,7 @@ $eras = Era::withoutTrashed()->get()->reverse();
         <div class="d-flex flex-wrap align-items-center justify-content-between">
             <div class="d-flex align-items-center justify-content-center">
                 {{-- <img class="img-fluid logo-sm" src="{{ asset('logo.png') }}" alt="Logo"> --}}
-                <h5 class="my-2 ms-2 font-weight-bold title-sm">{{ strtoupper(config('app.name')) }}</h5>
+                <h5 class="my-3 font-weight-bold title-sm">{{ strtoupper(config('app.name')) }}</h5>
             </div>
             <div class="d-none d-lg-block">
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 mx-3 justify-content-center mb-md-0">
