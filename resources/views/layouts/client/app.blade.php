@@ -6,20 +6,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="title" content="{{ config('app.name') }}">
-    <meta name="description"
-        content="Playsatsu: Streaming Tokusatsu Kamen Rider, Ultraman, Super Sentai, Metal Heroes, Garo, Etc.">
+    <meta name="description" content="Streaming Tokusatsu Kamen Rider, Ultraman, Super Sentai, Metal Heroes, Garo, Etc.">
     <meta name="keywords" content="Tokusatsu, Kamen Rider, Ultraman, Super Sentai, Metal Heroes, Garo">
     <meta name="author" content="Playsatsu">
     <meta property="og:title" content="{{ config('app.name') }}">
     <meta property="og:description"
-        content="Playsatsu: Streaming Tokusatsu Kamen Rider, Ultraman, Super Sentai, Metal Heroes, Garo, Etc.">
+        content="Streaming Tokusatsu Kamen Rider, Ultraman, Super Sentai, Metal Heroes, Garo, Etc.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ config('app.url') }}/">
     <meta property="og:image" content="{{ config('app.url') }}/logo.png">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ config('app.name') }}">
     <meta name="twitter:description"
-        content="Playsatsu: Streaming Tokusatsu Kamen Rider, Ultraman, Super Sentai, Metal Heroes, Garo, Etc.">
+        content="Streaming Tokusatsu Kamen Rider, Ultraman, Super Sentai, Metal Heroes, Garo, Etc.">
     <meta name="twitter:image" content="{{ config('app.url') }}/logo.png">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#260751">
