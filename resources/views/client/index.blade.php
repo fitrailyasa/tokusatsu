@@ -88,7 +88,7 @@
         }
     </style>
 
-    <div class="my-5 py-4 bg-light text-center">
+    <div class="my-5 py-3 bg-light text-center">
         @include('client.buttonSearch')
         <br>
         {{-- ===================== KAMEN RIDER ===================== --}}
