@@ -1,17 +1,17 @@
-const CACHE_NAME = "tokusatsu-cache-v1";
+const CACHE_NAME = "playsatsu-cache-v1";
 const PRECACHE_URLS = [
     "/",
     "/offline",
     "/manifest.json",
     "/assets/favicon/favicon-96x96.png",
-    "/assets/favicon/favicon-196x196.png",
+    "/assets/favicon/ms-icon-310x310.png",
 ];
 
 self.addEventListener("install", (event) => {
     event.waitUntil(
         caches.open(CACHE_NAME).then((cache) => {
             return cache.addAll(PRECACHE_URLS);
-        }),
+        })
     );
     self.skipWaiting();
 });
@@ -24,9 +24,9 @@ self.addEventListener("activate", (event) => {
                     if (key !== CACHE_NAME) {
                         return caches.delete(key);
                     }
-                }),
+                })
             );
-        }),
+        })
     );
     self.clients.claim();
 });
@@ -50,7 +50,7 @@ self.addEventListener("fetch", (event) => {
                     return caches
                         .match(req)
                         .then((cached) => cached || caches.match("/offline"));
-                }),
+                })
         );
         return;
     }
@@ -70,6 +70,6 @@ self.addEventListener("fetch", (event) => {
                 .catch(() => {
                     return caches.match(req);
                 });
-        }),
+        })
     );
 });
