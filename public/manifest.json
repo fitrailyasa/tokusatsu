@@ -9,13 +9,13 @@
     "lang": "id-ID",
     "icons": [
         {
-            "src": "/assets/favicon/favicon-96x96.png",
+            "src": "/assets/favicon/ms-icon-150x150.png",
             "sizes": "96x96",
             "type": "image/png",
             "purpose": "any maskable"
         },
         {
-            "src": "/assets/favicon/favicon-196x196.png",
+            "src": "/assets/favicon/ms-icon-310x310.png",
             "sizes": "512x512",
             "type": "image/png",
             "purpose": "any maskable"
