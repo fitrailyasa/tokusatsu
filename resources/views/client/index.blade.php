@@ -13,7 +13,6 @@
         .swiper {
             width: 95%;
             padding-top: 20px;
-            /* padding-bottom: 30px; */
             opacity: 0;
             transition: opacity .3s ease;
         }
@@ -39,13 +38,65 @@
             color: #fff !important;
             font-size: 28px;
         }
-    </style>
 
+        .section-title {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            margin-bottom: 5px;
+            padding: 0 15px;
+        }
+
+        .section-title .title {
+            text-align: center;
+            margin: 0;
+        }
+
+        .section-title a {
+            position: absolute;
+            right: 45px;
+            font-size: 14px;
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .section-title a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 576px) {
+            .section-title {
+                justify-content: flex-start;
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            .section-title .title {
+                text-align: left !important;
+                font-size: 16px !important;
+            }
+
+            .section-title a {
+                right: 20px;
+                font-size: 12px;
+            }
+
+            .swiper {
+                padding-top: 10px;
+            }
+        }
+    </style>
 
     <div class="my-5 py-4 bg-light text-center">
         @include('client.buttonSearch')
+        <br>
         {{-- ===================== KAMEN RIDER ===================== --}}
-        <h5 class="fw-bold mb-1">Kamen Rider</h5>
+        <div class="section-title">
+            <h5 class="title fw-bold mb-1">Kamen Rider</h5>
+            <a class="text-dark" href="{{ route('video.category', 'kamen-rider') }}">Lihat Semua <i
+                    class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        </div>
         <div class="swiper mb-3 px-2 bg-light mySwiperKR">
             <div class="swiper-wrapper">
                 @foreach ($categories as $category)
@@ -63,7 +114,11 @@
         </div>
 
         {{-- ===================== ULTRAMAN ===================== --}}
-        <h5 class="fw-bold mb-1">Ultraman</h5>
+        <div class="section-title">
+            <h5 class="title fw-bold mb-1">Ultraman</h5>
+            <a class="text-dark" href="{{ route('video.category', 'ultraman') }}">Lihat Semua <i
+                    class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        </div>
         <div class="swiper mb-3 px-2 bg-light mySwiperUL">
             <div class="swiper-wrapper">
                 @foreach ($categories as $category)
@@ -81,7 +136,11 @@
         </div>
 
         {{-- ===================== SUPER SENTAI ===================== --}}
-        <h5 class="fw-bold mb-1">Super Sentai</h5>
+        <div class="section-title">
+            <h5 class="title fw-bold mb-1">Super Sentai</h5>
+            <a class="text-dark" href="{{ route('video.category', 'super-sentai') }}">Lihat Semua <i
+                    class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        </div>
         <div class="swiper mb-3 px-2 bg-light mySwiperSS">
             <div class="swiper-wrapper">
                 @foreach ($categories as $category)

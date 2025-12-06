@@ -34,12 +34,18 @@
                         @foreach ($videos as $item)
                             <tr>
                                 <td class="text-center">
-                                    <a href="{{ $item->category->slug }}/{{ $item->type }}/{{ $item->number }}">
+                                    <a class="text-dark"
+                                        href="{{ $item->category->slug }}/{{ $item->type }}/{{ $item->number }}">
                                         {{ ucfirst($item->type) }} {{ $item->number }}
-                                        <i class="fa-solid fa-arrow-up-right-from-square text-primary"></i>
+                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
                                     </a>
                                 </td>
-                                <td>{{ $item->title }}</td>
+                                <td>
+                                    <a class="text-dark"
+                                        href="{{ $item->category->slug }}/{{ $item->type }}/{{ $item->number }}">
+                                        {{ $item->title }}
+                                    </a>
+                                </td>
                                 <td>{{ date('d M Y', strtotime($item->airdate)) }}</td>
                                 <td class="text-center">
                                     <button class="btn btn-sm btn-outline-warning bookmark-btn"
