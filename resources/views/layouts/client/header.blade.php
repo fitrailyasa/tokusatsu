@@ -23,7 +23,7 @@ $eras = Era::withoutTrashed()->get()->reverse();
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-between">
             <div class="d-flex align-items-center justify-content-center">
-                <img class="img-fluid logo-sm" src="{{ asset('logo.png') }}" alt="Logo">
+                {{-- <img class="img-fluid logo-sm" src="{{ asset('logo.png') }}" alt="Logo"> --}}
                 <h5 class="mb-0 ms-2 font-weight-bold title-sm">TOKUSATSU</h5>
             </div>
             <div class="d-none d-lg-block">
