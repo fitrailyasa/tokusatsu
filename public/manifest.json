@@ -1,6 +1,6 @@
 {
-    "name": "Tokusatsu",
-    "short_name": "tokusatsu",
+    "name": "Playsatsu",
+    "short_name": "Playsatsu",
     "description": "Kamen Rider, Ultraman, Super Sentai",
     "start_url": "/",
     "display": "standalone",
