@@ -3,7 +3,7 @@ const PRECACHE_URLS = [
     "/",
     "/offline",
     "/manifest.json",
-    "/assets/favicon/favicon-96x96.png",
+    "/assets/favicon/ms-icon-150x150.png",
     "/assets/favicon/ms-icon-310x310.png",
 ];
 
