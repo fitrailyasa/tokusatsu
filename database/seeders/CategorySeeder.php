@@ -539,7 +539,7 @@ class CategorySeeder extends Seeder
                 'slug' => Str::slug('Zeztz', '-'),
                 'description' => '',
                 'img' => 'category/reiwa-rider-logo-7.jpg',
-                'first_aired' => null,
+                'first_aired' => '2025-09-07',
                 'last_aired' => null,
                 'created_at' => $now,
                 'updated_at' => $now,
