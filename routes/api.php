@@ -39,11 +39,6 @@ Route::get('/tag/all', [TagApiController::class, 'all']);
 Route::resource('/datas', DataApiController::class, ['only', ['index', 'store', 'show', 'edit', 'update', 'destroy']]);
 Route::get('/data/{franchise}/{category}', [DataApiController::class, 'findByFranchiseCategory']);
 
-// video API
-Route::resource('/videos', VideoApiController::class, ['only', ['index', 'store', 'show', 'edit', 'update', 'destroy']]);
-Route::get('/video/{franchise}/{category}', [VideoApiController::class, 'findByFranchiseCategory']);
-Route::get('/video/{franchise}/{category}/{type}/{number}', [VideoApiController::class, 'findByFranchiseCategoryNumber']);
-
 // MAP API
 Route::get('/map/{province}', [MapApiController::class, 'province'])->name('map.province');
 Route::get('/map/{province}/{regency}', [MapApiController::class, 'regency'])->name('map.regency');
@@ -62,5 +57,11 @@ Route::get('district/{id}', [AddressApiController::class, 'getDistrict']);
 Route::get('village/{id}', [AddressApiController::class, 'getVillage']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
+
+    // VIDEO API
+    Route::resource('/videos', VideoApiController::class, ['only', ['index', 'store', 'show', 'edit', 'update', 'destroy']]);
+    Route::get('/video/{franchise}/{category}', [VideoApiController::class, 'findByFranchiseCategory']);
+    Route::get('/video/{franchise}/{category}/{type}/{number}', [VideoApiController::class, 'findByFranchiseCategoryNumber']);
+
     Route::post('/logout', [LoginApiController::class, 'logout']);
 });
