@@ -1010,6 +1010,13 @@ class VideoUltramanSeeder extends Seeder
             ['title' => "Time to Run, Yuma! (走れ、ユウマ！ / Hashire, Yūma!)", 'category_id' => $this->Category('arc'), 'type' => 'episode', 'number' => 25, 'airdate' => '2025-01-18'],
 
         ])->map(function ($item) use ($timestamp) {
+
+            $category = Category::find($item['category_id']);
+
+            $item['slug'] = \Illuminate\Support\Str::slug(
+                "{$category->fullname} {$item['type']} {$item['number']}"
+            );
+
             return array_merge($item, $timestamp);
         });
 

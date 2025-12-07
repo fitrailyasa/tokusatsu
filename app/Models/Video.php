@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class Video extends Model
 {
@@ -18,6 +18,7 @@ class Video extends Model
     protected $fillable = [
         'id',
         'title',
+        'slug',
         'type',
         'number',
         'link',
@@ -38,6 +39,22 @@ class Video extends Model
         $this->connection = env('DB1_CONNECTION');
         // $this->connection = env('DB2_CONNECTION');
         // $this->connection = env('DB3_CONNECTION');
+    }
+
+    public static function booted()
+    {
+        static::saving(function ($video) {
+
+            if ($video->category_id) {
+                $category = $video->category()->first();
+
+                if ($category && $category->fullname) {
+                    $video->slug = Str::slug(
+                        "{$category->fullname} {$video->type} {$video->number}"
+                    );
+                }
+            }
+        });
     }
 
     public function category()

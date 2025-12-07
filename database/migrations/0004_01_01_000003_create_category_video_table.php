@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('id');
             $table->foreignId('category_id')->nullable();
             $table->string('title')->nullable();
+            $table->string('slug')->unique();
             $table->string('type')->nullable()->default('episode');
             $table->integer('number')->nullable();
             $table->string('link')->nullable();

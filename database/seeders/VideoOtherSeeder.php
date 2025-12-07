@@ -95,6 +95,13 @@ class VideoOtherSeeder extends Seeder
             ['title' => "Beginning (道 Beginning)", 'category_id' => $this->Category('yami-o-terasu-mono'), 'type' => 'episode', 'number' => 25, 'airdate' => null],
 
         ])->map(function ($item) use ($timestamp) {
+
+            $category = Category::find($item['category_id']);
+
+            $item['slug'] = \Illuminate\Support\Str::slug(
+                "{$category->fullname} {$item['type']} {$item['number']}"
+            );
+
             return array_merge($item, $timestamp);
         });
 

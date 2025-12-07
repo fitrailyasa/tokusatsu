@@ -2427,6 +2427,13 @@ class VideoSuperSentaiSeeder extends Seeder
             ['title' => "Bakuage Final: Your Handle (君のハンドル Kimi no Handoru)", 'category_id' => $this->Category('boonboomger'), 'type' => 'episode', 'number' => 48, 'airdate' => '2025-02-09'],
 
         ])->map(function ($item) use ($timestamp) {
+
+            $category = Category::find($item['category_id']);
+
+            $item['slug'] = \Illuminate\Support\Str::slug(
+                "{$category->fullname} {$item['type']} {$item['number']}"
+            );
+
             return array_merge($item, $timestamp);
         });
 
