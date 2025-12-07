@@ -13,7 +13,7 @@
 
             <div class="col-3 text-right">
                 <a class="btn btn-xs text-dark rounded aktif"
-                    href="{{ route('video') }}/{{ $category->franchise->slug }}/{{ $category->slug }}">
+                    href="{{ route('video', [$category->franchise->slug, $category->slug]) }}">
                     <i data-feather="play-circle"></i>
                 </a>
             </div>
