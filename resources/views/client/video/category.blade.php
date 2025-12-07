@@ -33,7 +33,8 @@
                             <tr>
                                 <td class="text-center">{{ $categories->firstItem() + $loop->index }}</td>
                                 <td>
-                                    <a class="text-dark" href="{{ $item->franchise->slug }}/{{ $item->slug }}">
+                                    <a class="text-dark"
+                                        href="{{ route('video.show', [$item->franchise->slug, $item->slug]) }}">
                                         {{ $item->fullname }}
                                         @if ($item->first_aired)
                                             ({{ \Carbon\Carbon::parse($item->first_aired)->year }})
@@ -42,7 +43,7 @@
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="{{ $item->franchise->slug }}/{{ $item->slug }}">
+                                    <a href="{{ route('video.show', [$item->franchise->slug, $item->slug]) }}">
                                         <img class="img img-fluid rounded" width="80"
                                             src="{{ asset('storage/' . $item->img ?? '') }}" alt="">
                                     </a>
