@@ -102,7 +102,7 @@
                 @foreach ($categories as $category)
                     @if ($category->franchise && $category->franchise->name === 'Kamen Rider' && $category->era->name !== 'Showa')
                         <div class="swiper-slide">
-                            <a href="{{ route('video', [$category->franchise->slug, $category->slug]) }}">
+                            <a href="{{ route('video.show', [$category->franchise->slug, $category->slug]) }}">
                                 <img src="{{ $category->img ? asset('storage/' . $category->img) : asset('storage/comingsoon.jpg') }}"
                                     loading="lazy">
                                 <p class="small pt-2 text-dark">{{ $category->fullname }}
@@ -128,7 +128,7 @@
                 @foreach ($categories as $category)
                     @if ($category->franchise && $category->franchise->name === 'Ultraman' && $category->era->name !== 'Showa')
                         <div class="swiper-slide">
-                            <a href="{{ route('video', [$category->franchise->slug, $category->slug]) }}">
+                            <a href="{{ route('video.show', [$category->franchise->slug, $category->slug]) }}">
                                 <img src="{{ $category->img ? asset('storage/' . $category->img) : asset('storage/comingsoon.jpg') }}"
                                     loading="lazy">
                                 <p class="small pt-2 text-dark">{{ $category->fullname }}
@@ -154,7 +154,7 @@
                 @foreach ($categories as $category)
                     @if ($category->franchise && $category->franchise->name === 'Super Sentai' && $category->era->name !== 'Showa')
                         <div class="swiper-slide">
-                            <a href="{{ route('video', [$category->franchise->slug, $category->slug]) }}">
+                            <a href="{{ route('video.show', [$category->franchise->slug, $category->slug]) }}">
                                 <img src="{{ $category->img ? asset('storage/' . $category->img) : asset('storage/comingsoon.jpg') }}"
                                     loading="lazy">
                                 <p class="small pt-2 text-dark">{{ $category->fullname }}
