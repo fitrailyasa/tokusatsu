@@ -4,7 +4,7 @@
 
 <!-- Modal -->
 <div class="modal fade formCreate" tabindex="-1" role="dialog" aria-labelledby="modalFormLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <form method="POST" action="{{ route('admin.category.store') }}" enctype="multipart/form-data">
                 @csrf
@@ -39,7 +39,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <div class="mb-3">
                                 <label class="form-label">{{ __('Franchise') }}<span
                                         class="text-danger">*</span></label>
@@ -57,7 +57,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <div class="mb-3">
                                 <label class="form-label">{{ __('Era') }}<span class="text-danger">*</span></label>
                                 <select class="form-select @error('era_id') is-invalid @enderror" name="era_id"
@@ -68,6 +68,29 @@
                                     @endforeach
                                 </select>
                                 @error('era_id')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <label class="form-label">{{ __('First Aired') }}<span
+                                        class="text-danger">*</span></label>
+                                <input type="date" class="form-control @error('first_aired') is-invalid @enderror"
+                                    placeholder="first_aired" name="first_aired" id="first_aired"
+                                    value="{{ old('first_aired') }}" required>
+                                @error('first_aired')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <label class="form-label">{{ __('Last Aired') }}</label>
+                                <input type="date" class="form-control @error('last_aired') is-invalid @enderror"
+                                    placeholder="last_aired" name="last_aired" id="last_aired"
+                                    value="{{ old('last_aired') }}">
+                                @error('last_aired')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
