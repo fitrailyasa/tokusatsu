@@ -70,6 +70,8 @@
                 <th>{{ __('Description') }}</th>
                 <th>{{ __('Era') }}</th>
                 <th>{{ __('Franchise') }}</th>
+                <th>{{ __('First Aired') }}</th>
+                <th>{{ __('Last Aired') }}</th>
                 <th class="text-center">{{ __('Action') }}</th>
             </tr>
         </thead>
@@ -132,6 +134,12 @@
                             {{ $item->franchise->name ?? '-' }}
                         </span>
                     </td>
+                    <td>
+                        {{ date('d M Y', strtotime($item->first_aired)) }}
+                    </td>
+                    <td>
+                        {{ date('d M Y', strtotime($item->last_aired)) }}
+                    </td>
                     <td class="manage-row text-center">
                         @if ($item->trashed())
                             <!-- Restore and Delete Button -->
@@ -163,6 +171,8 @@
                 <th>{{ __('Description') }}</th>
                 <th>{{ __('Era') }}</th>
                 <th>{{ __('Franchise') }}</th>
+                <th>{{ __('First Aired') }}</th>
+                <th>{{ __('Last Aired') }}</th>
                 <th class="text-center">{{ __('Action') }}</th>
             </tr>
         </tfoot>

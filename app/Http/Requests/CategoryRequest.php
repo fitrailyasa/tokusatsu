@@ -36,6 +36,8 @@ class CategoryRequest extends FormRequest
             ],
             'description' => 'nullable|max:1024',
             'img' => 'nullable|mimes:jpg,jpeg,png|max:2048',
+            'first_aired' => 'nullable|date',
+            'last_aired' => 'nullable|date',
         ];
     }
 
@@ -49,9 +51,11 @@ class CategoryRequest extends FormRequest
             'name.required'         => 'Name is required.',
             'name.max'              => 'Name must be under 100 chars.',
             'name.unique'           => 'Name already exists.',
-            'description.max'              => 'Description max 1024 chars.',
+            'description.max'       => 'Description max 1024 chars.',
             'img.mimes'             => 'Image must be jpg, jpeg, or png.',
             'img.max'               => 'Image max size is 2MB.',
+            'first_aired.date'      => 'First aired must be a valid date.',
+            'last_aired.date'       => 'Last aired must be a valid date.',
         ];
     }
 }
