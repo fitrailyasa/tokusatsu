@@ -34,8 +34,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/showa-rider-logo-1.jpg',
                 'first_aired' => '1971-04-03',
                 'last_aired' => '1973-02-10',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $showa,
@@ -47,8 +45,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/showa-rider-logo-2.jpg',
                 'first_aired' => '1973-02-17',
                 'last_aired' => '1974-02-09',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $showa,
@@ -60,8 +56,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/showa-rider-logo-3.jpg',
                 'first_aired' => '1974-02-16',
                 'last_aired' => '1974-10-12',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $showa,
@@ -73,8 +67,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/showa-rider-logo-4.jpg',
                 'first_aired' => '1974-10-19',
                 'last_aired' => '1975-03-29',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $showa,
@@ -86,8 +78,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/showa-rider-logo-5.jpg',
                 'first_aired' => '1975-04-05',
                 'last_aired' => '1975-12-27',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $showa,
@@ -99,8 +89,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/showa-rider-logo-6.jpg',
                 'first_aired' => '1979-10-05',
                 'last_aired' => '1980-10-10',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $showa,
@@ -112,8 +100,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/showa-rider-logo-7.jpg',
                 'first_aired' => '1980-10-17',
                 'last_aired' => '1981-10-03',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $showa,
@@ -125,8 +111,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/showa-rider-logo-8.jpg',
                 'first_aired' => '1984-01-03',
                 'last_aired' => '1984-01-03',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $showa,
@@ -138,8 +122,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/showa-rider-logo-9.jpg',
                 'first_aired' => '1987-10-04',
                 'last_aired' => '1988-10-09',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $showa,
@@ -151,8 +133,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/showa-rider-logo-10.jpg',
                 'first_aired' => '1988-10-23',
                 'last_aired' => '1989-09-24',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $showa,
@@ -164,8 +144,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/showa-rider-logo-11.jpg',
                 'first_aired' => '1992-02-20',
                 'last_aired' => '1992-02-20',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $showa,
@@ -177,8 +155,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/showa-rider-logo-12.jpg',
                 'first_aired' => '1993-12-21',
                 'last_aired' => '1993-12-21',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $showa,
@@ -190,8 +166,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/showa-rider-logo-13.jpg',
                 'first_aired' => '1994-04-16',
                 'last_aired' => '1994-04-16',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -203,8 +177,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/heisei-rider-logo-1.jpg',
                 'first_aired' => '2000-01-30',
                 'last_aired' => '2001-01-21',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -216,8 +188,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/heisei-rider-logo-2.jpg',
                 'first_aired' => '2001-01-28',
                 'last_aired' => '2002-01-27',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -229,8 +199,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/heisei-rider-logo-3.jpg',
                 'first_aired' => '2002-02-03',
                 'last_aired' => '2003-01-19',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -242,8 +210,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/heisei-rider-logo-4.jpg',
                 'first_aired' => '2003-01-26',
                 'last_aired' => '2004-01-18',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -255,8 +221,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/heisei-rider-logo-5.jpg',
                 'first_aired' => '2004-01-25',
                 'last_aired' => '2005-01-23',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -268,8 +232,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/heisei-rider-logo-6.jpg',
                 'first_aired' => '2005-01-30',
                 'last_aired' => '2006-01-22',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -281,8 +243,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/heisei-rider-logo-7.jpg',
                 'first_aired' => '2006-01-29',
                 'last_aired' => '2007-01-21',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -294,8 +254,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/heisei-rider-logo-8.jpg',
                 'first_aired' => '2007-01-28',
                 'last_aired' => '2008-01-20',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -307,8 +265,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/heisei-rider-logo-9.jpg',
                 'first_aired' => '2008-01-27',
                 'last_aired' => '2009-01-18',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -320,8 +276,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/heisei-rider-logo-10.jpg',
                 'first_aired' => '2009-01-25',
                 'last_aired' => '2009-08-30',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -333,8 +287,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/heisei-rider-logo-11.jpg',
                 'first_aired' => '2009-09-06',
                 'last_aired' => '2010-08-29',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -346,8 +298,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/heisei-rider-logo-12.jpg',
                 'first_aired' => '2010-09-05',
                 'last_aired' => '2011-08-28',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -359,8 +309,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/heisei-rider-logo-13.jpg',
                 'first_aired' => '2011-09-04',
                 'last_aired' => '2012-08-26',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -372,8 +320,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/heisei-rider-logo-14.jpg',
                 'first_aired' => '2012-09-02',
                 'last_aired' => '2013-08-29',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -385,8 +331,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/heisei-rider-logo-15.jpg',
                 'first_aired' => '2013-10-06',
                 'last_aired' => '2014-09-28',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -398,8 +342,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/heisei-rider-logo-16.jpg',
                 'first_aired' => '2014-10-05',
                 'last_aired' => '2015-09-27',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -411,8 +353,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/heisei-rider-logo-17.jpg',
                 'first_aired' => '2015-10-04',
                 'last_aired' => '2016-09-25',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -424,8 +364,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/heisei-rider-logo-18.jpg',
                 'first_aired' => '2016-10-02',
                 'last_aired' => '2017-08-27',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -437,8 +375,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/heisei-rider-logo-19.jpg',
                 'first_aired' => '2017-09-03',
                 'last_aired' => '2018-08-26',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -450,8 +386,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/heisei-rider-logo-20.jpg',
                 'first_aired' => '2018-09-02',
                 'last_aired' => '2019-08-25',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $reiwa,
@@ -463,8 +397,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/reiwa-rider-logo-1.jpg',
                 'first_aired' => '2019-09-01',
                 'last_aired' => '2020-08-30',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $reiwa,
@@ -476,8 +408,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/reiwa-rider-logo-2.jpg',
                 'first_aired' => '2020-09-06',
                 'last_aired' => '2021-08-29',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $reiwa,
@@ -489,8 +419,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/reiwa-rider-logo-3.jpg',
                 'first_aired' => '2021-09-05',
                 'last_aired' => '2022-08-28',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $reiwa,
@@ -502,8 +430,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/reiwa-rider-logo-4.jpg',
                 'first_aired' => '2022-09-04',
                 'last_aired' => '2023-08-27',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $reiwa,
@@ -515,8 +441,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/reiwa-rider-logo-5.jpg',
                 'first_aired' => '2023-09-03',
                 'last_aired' => '2024-08-25',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $reiwa,
@@ -528,8 +452,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/reiwa-rider-logo-6.jpg',
                 'first_aired' => '2024-09-01',
                 'last_aired' => '2025-08-31',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $reiwa,
@@ -541,8 +463,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/reiwa-rider-logo-7.jpg',
                 'first_aired' => '2025-09-07',
                 'last_aired' => null,
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $showa,
@@ -554,8 +474,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/super_sentai_01.png',
                 'first_aired' => '1975-04-05',
                 'last_aired' => '1977-03-26',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $showa,
@@ -567,8 +485,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/super_sentai_02.png',
                 'first_aired' => '1977-04-09',
                 'last_aired' => '1977-12-24',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $showa,
@@ -580,8 +496,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/super_sentai_03.png',
                 'first_aired' => '1979-02-03',
                 'last_aired' => '1980-01-26',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $showa,
@@ -593,8 +507,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/super_sentai_04.png',
                 'first_aired' => '1980-02-02',
                 'last_aired' => '1981-01-31',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $showa,
@@ -606,8 +518,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/super_sentai_05.png',
                 'first_aired' => '1981-02-07',
                 'last_aired' => '1982-01-30',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $showa,
@@ -619,8 +529,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/super_sentai_06.png',
                 'first_aired' => '1982-02-06',
                 'last_aired' => '1983-01-29',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $showa,
@@ -632,8 +540,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/super_sentai_07.png',
                 'first_aired' => '1983-02-05',
                 'last_aired' => '1984-01-28',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $showa,
@@ -645,8 +551,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/super_sentai_08.png',
                 'first_aired' => '1984-02-04',
                 'last_aired' => '1985-01-26',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $showa,
@@ -658,8 +562,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/super_sentai_09.png',
                 'first_aired' => '1985-02-02',
                 'last_aired' => '1986-02-22',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $showa,
@@ -671,8 +573,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/super_sentai_10.png',
                 'first_aired' => '1986-03-01',
                 'last_aired' => '1987-02-21',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $showa,
@@ -684,8 +584,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/super_sentai_11.png',
                 'first_aired' => '1987-02-28',
                 'last_aired' => '1988-02-20',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $showa,
@@ -697,8 +595,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/super_sentai_12.png',
                 'first_aired' => '1988-02-27',
                 'last_aired' => '1989-02-18',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -710,8 +606,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/super_sentai_13.png',
                 'first_aired' => '1989-03-04',
                 'last_aired' => '1990-02-23',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -723,8 +617,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/super_sentai_14.png',
                 'first_aired' => '1990-03-02',
                 'last_aired' => '1991-02-08',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -736,8 +628,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/super_sentai_15.png',
                 'first_aired' => '1991-02-15',
                 'last_aired' => '1992-02-14',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -749,8 +639,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/super_sentai_16.png',
                 'first_aired' => '1992-02-21',
                 'last_aired' => '1993-02-12',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -762,8 +650,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/super_sentai_17.png',
                 'first_aired' => '1993-02-19',
                 'last_aired' => '1994-02-11',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -775,8 +661,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/super_sentai_18.png',
                 'first_aired' => '1994-02-18',
                 'last_aired' => '1995-02-24',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -788,8 +672,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/super_sentai_18.png',
                 'first_aired' => '1995-03-03',
                 'last_aired' => '1996-02-23',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -801,8 +683,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/super_sentai_20.png',
                 'first_aired' => '1996-03-01',
                 'last_aired' => '1997-02-07',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -814,8 +694,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/super_sentai_21.png',
                 'first_aired' => '1997-02-14',
                 'last_aired' => '1998-02-15',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -827,8 +705,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/super_sentai_22.png',
                 'first_aired' => '1998-02-22',
                 'last_aired' => '1999-02-14',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -840,8 +716,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/super_sentai_23.png',
                 'first_aired' => '1999-02-21',
                 'last_aired' => '2000-02-06',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -853,8 +727,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/super_sentai_24.png',
                 'first_aired' => '2000-02-13',
                 'last_aired' => '2001-02-11',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -866,8 +738,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/super_sentai_25.png',
                 'first_aired' => '2001-02-18',
                 'last_aired' => '2002-02-10',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -879,8 +749,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/super_sentai_26.png',
                 'first_aired' => '2002-02-17',
                 'last_aired' => '2003-02-09',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -892,8 +760,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/super_sentai_27.png',
                 'first_aired' => '2003-02-16',
                 'last_aired' => '2004-02-08',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -905,8 +771,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/super_sentai_28.png',
                 'first_aired' => '2004-02-15',
                 'last_aired' => '2005-02-06',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -918,8 +782,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/super_sentai_29.png',
                 'first_aired' => '2005-02-13',
                 'last_aired' => '2006-02-12',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -931,8 +793,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/super_sentai_30.png',
                 'first_aired' => '2006-02-19',
                 'last_aired' => '2007-02-11',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -944,8 +804,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/super_sentai_31.png',
                 'first_aired' => '2007-02-18',
                 'last_aired' => '2008-02-10',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -957,8 +815,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/super_sentai_32.png',
                 'first_aired' => '2008-02-17',
                 'last_aired' => '2009-02-08',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -970,8 +826,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/super_sentai_33.png',
                 'first_aired' => '2009-02-15',
                 'last_aired' => '2010-02-07',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -983,8 +837,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/super_sentai_34.png',
                 'first_aired' => '2010-02-14',
                 'last_aired' => '2011-02-06',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -996,8 +848,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/super_sentai_35.png',
                 'first_aired' => '2011-02-13',
                 'last_aired' => '2012-02-19',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -1009,8 +859,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/super_sentai_36.png',
                 'first_aired' => '2012-02-26',
                 'last_aired' => '2013-02-10',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -1022,8 +870,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/super_sentai_37.png',
                 'first_aired' => '2013-02-17',
                 'last_aired' => '2014-02-09',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -1035,8 +881,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/super_sentai_38.png',
                 'first_aired' => '2014-02-16',
                 'last_aired' => '2015-02-15',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -1048,8 +892,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/super_sentai_39.png',
                 'first_aired' => '2015-02-22',
                 'last_aired' => '2016-02-07',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -1061,8 +903,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/super_sentai_40.png',
                 'first_aired' => '2016-02-14',
                 'last_aired' => '2017-02-05',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -1074,8 +914,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/super_sentai_41.png',
                 'first_aired' => '2017-02-12',
                 'last_aired' => '2018-02-04',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -1087,8 +925,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/super_sentai_42_43.png',
                 'first_aired' => '2018-02-11',
                 'last_aired' => '2019-02-10',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -1100,8 +936,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/super_sentai_44.png',
                 'first_aired' => '2019-03-17',
                 'last_aired' => '2020-03-01',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $reiwa,
@@ -1113,8 +947,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/super_sentai_45.png',
                 'first_aired' => '2020-03-08',
                 'last_aired' => '2021-02-28',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $reiwa,
@@ -1126,8 +958,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/super_sentai_46.png',
                 'first_aired' => '2021-03-07',
                 'last_aired' => '2022-02-27',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $reiwa,
@@ -1139,8 +969,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/super_sentai_47.png',
                 'first_aired' => '2022-03-06',
                 'last_aired' => '2023-02-26',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $reiwa,
@@ -1152,8 +980,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/super_sentai_48.png',
                 'first_aired' => '2023-03-05',
                 'last_aired' => '2024-02-25',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $reiwa,
@@ -1165,8 +991,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/super_sentai_49.png',
                 'first_aired' => '2024-03-03',
                 'last_aired' => '2025-02-09',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $reiwa,
@@ -1178,8 +1002,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/super_sentai_50.png',
                 'first_aired' => '2025-02-16',
                 'last_aired' => null,
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $showa,
@@ -1191,8 +1013,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/ultraman-logo.jpg',
                 'first_aired' => '1966-07-17',
                 'last_aired' => '1967-04-09',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $showa,
@@ -1204,8 +1024,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/ultraman-logo.jpg',
                 'first_aired' => '1967-10-01',
                 'last_aired' => '1968-09-08',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $showa,
@@ -1217,8 +1035,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/ultraman-logo.jpg',
                 'first_aired' => '1971-04-02',
                 'last_aired' => '1972-03-31',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $showa,
@@ -1230,8 +1046,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/ultraman-logo.jpg',
                 'first_aired' => '1972-04-07',
                 'last_aired' => '1973-03-30',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $showa,
@@ -1243,8 +1057,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/ultraman-logo.jpg',
                 'first_aired' => '1973-04-06',
                 'last_aired' => '1974-04-05',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $showa,
@@ -1256,8 +1068,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/ultraman-logo.jpg',
                 'first_aired' => '1974-04-12',
                 'last_aired' => '1975-03-28',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $showa,
@@ -1269,8 +1079,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/ultraman-logo.jpg',
                 'first_aired' => '1980-04-02',
                 'last_aired' => '1981-03-25',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $showa,
@@ -1282,8 +1090,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/ultraman-logo.jpg',
                 'first_aired' => '1984-03-17',
                 'last_aired' => '1984-03-17',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -1295,8 +1101,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/ultraman-logo.jpg',
                 'first_aired' => '1996-09-07',
                 'last_aired' => '1997-08-30',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -1308,8 +1112,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/ultraman-logo.jpg',
                 'first_aired' => '1997-09-06',
                 'last_aired' => '1998-08-29',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -1321,8 +1123,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/ultraman-logo.jpg',
                 'first_aired' => '1998-09-05',
                 'last_aired' => '1999-08-28',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -1334,8 +1134,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/ultraman-logo.jpg',
                 'first_aired' => '2000-11-22',
                 'last_aired' => '2001-05-09',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -1347,8 +1145,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/ultraman-logo.jpg',
                 'first_aired' => '2001-07-07',
                 'last_aired' => '2002-09-28',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -1360,8 +1156,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/ultraman-logo.jpg',
                 'first_aired' => '2004-10-02',
                 'last_aired' => '2005-06-25',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -1373,8 +1167,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/ultraman-logo.jpg',
                 'first_aired' => '2005-07-02',
                 'last_aired' => '2006-03-25',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -1386,8 +1178,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/ultraman-logo.jpg',
                 'first_aired' => '2006-04-08',
                 'last_aired' => '2007-03-31',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -1399,8 +1189,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/ultraman-logo.jpg',
                 'first_aired' => '2010-12-23',
                 'last_aired' => '2010-12-23',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -1412,8 +1200,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/ultraman-logo.jpg',
                 'first_aired' => '2013-07-10',
                 'last_aired' => '2013-12-18',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -1425,8 +1211,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/ultraman-logo.jpg',
                 'first_aired' => '2014-07-15',
                 'last_aired' => '2014-12-23',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -1438,8 +1222,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/ultraman-logo.jpg',
                 'first_aired' => '2015-07-14',
                 'last_aired' => '2015-12-22',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -1451,8 +1233,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/ultraman-logo.jpg',
                 'first_aired' => '2016-07-09',
                 'last_aired' => '2016-12-24',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -1464,8 +1244,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/ultraman-logo.jpg',
                 'first_aired' => '2017-07-08',
                 'last_aired' => '2017-12-23',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -1477,8 +1255,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/ultraman-logo.jpg',
                 'first_aired' => '2018-07-07',
                 'last_aired' => '2018-12-22',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $reiwa,
@@ -1490,8 +1266,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/ultraman-logo.jpg',
                 'first_aired' => '2019-07-06',
                 'last_aired' => '2019-12-28',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $reiwa,
@@ -1503,8 +1277,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/ultraman-logo.jpg',
                 'first_aired' => '2020-06-20',
                 'last_aired' => '2020-12-19',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $reiwa,
@@ -1516,8 +1288,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/ultraman-logo.jpg',
                 'first_aired' => '2021-07-10',
                 'last_aired' => '2022-01-22',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $reiwa,
@@ -1529,8 +1299,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/ultraman-logo.jpg',
                 'first_aired' => '2022-07-09',
                 'last_aired' => '2023-01-21',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $reiwa,
@@ -1542,8 +1310,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/ultraman-logo.jpg',
                 'first_aired' => '2023-07-08',
                 'last_aired' => '2024-01-20',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $reiwa,
@@ -1555,8 +1321,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/ultraman-logo.jpg',
                 'first_aired' => '2024-07-06',
                 'last_aired' => '2025-01-18',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $reiwa,
@@ -1568,8 +1332,6 @@ class CategorySeeder extends Seeder
                 'img' => 'category/ultraman-logo.jpg',
                 'first_aired' => '2025-07-05',
                 'last_aired' => null,
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -1581,8 +1343,6 @@ class CategorySeeder extends Seeder
                 'img' => "logo.png",
                 'first_aired' => '',
                 'last_aired' => '',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -1594,8 +1354,6 @@ class CategorySeeder extends Seeder
                 'img' => "logo.png",
                 'first_aired' => '',
                 'last_aired' => '',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -1607,8 +1365,6 @@ class CategorySeeder extends Seeder
                 'img' => "logo.png",
                 'first_aired' => '',
                 'last_aired' => '',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -1620,8 +1376,6 @@ class CategorySeeder extends Seeder
                 'img' => "logo.png",
                 'first_aired' => '',
                 'last_aired' => '',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -1633,8 +1387,6 @@ class CategorySeeder extends Seeder
                 'img' => "logo.png",
                 'first_aired' => '',
                 'last_aired' => '',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -1646,8 +1398,6 @@ class CategorySeeder extends Seeder
                 'img' => "logo.png",
                 'first_aired' => '',
                 'last_aired' => '',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
             [
                 'era_id' => $heisei,
@@ -1659,8 +1409,6 @@ class CategorySeeder extends Seeder
                 'img' => "logo.png",
                 'first_aired' => '',
                 'last_aired' => '',
-                'created_at' => $now,
-                'updated_at' => $now,
             ],
 
         ]);
