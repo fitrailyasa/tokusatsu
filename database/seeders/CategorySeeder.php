@@ -13,8 +13,6 @@ class CategorySeeder extends Seeder
 {
     public function run(): void
     {
-        $now = Carbon::now();
-
         $showa = $this->Era('Showa');
         $heisei = $this->Era('Heisei');
         $reiwa = $this->Era('Reiwa');
@@ -522,7 +520,7 @@ class CategorySeeder extends Seeder
             [
                 'era_id' => $showa,
                 'franchise_id' => $supersentai,
-                'fullname' => 'Dai Sentai Goggle-V',
+                'fullname' => 'Dai Sentai Goggle V',
                 'name' => 'Goggle V',
                 'slug' => Str::slug('Goggle V', '-'),
                 'description' => null,
@@ -874,7 +872,7 @@ class CategorySeeder extends Seeder
             [
                 'era_id' => $heisei,
                 'franchise_id' => $supersentai,
-                'fullname' => 'Ressha Sentai Tokkyuger',
+                'fullname' => 'Ressha Sentai ToQger',
                 'name' => 'ToQger',
                 'slug' => Str::slug('ToQger', '-'),
                 'description' => null,
