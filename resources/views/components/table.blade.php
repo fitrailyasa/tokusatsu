@@ -11,6 +11,7 @@
                 align-items: center;
             }
         </style>
+        {{ $style ?? '' }}
     </x-slot>
 
     <div class="card">
@@ -50,8 +51,7 @@
 
     <x-slot name="script">
         @include('components.datatables')
+        {{ $script ?? '' }}
     </x-slot>
 
-    {{ $script ?? '' }}
-    
 </x-admin-layout>
