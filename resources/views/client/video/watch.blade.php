@@ -5,16 +5,15 @@
 @section('textvideo', 'rounded aktif')
 
 @section('content')
+    <link rel="canonical" href="{{ url()->current() }}">
+
     <style>
         .no-click-overlay {
             position: absolute;
-            /* margin-top: 10px; */
-            /* margin-right: 10px; */
             width: 100%;
             height: 70px;
             cursor: default;
             z-index: 5;
-            /* background: #fff; */
         }
     </style>
     <div class="container my-5 py-4">
@@ -27,10 +26,10 @@
                     </a>
                 </div>
                 <div class="col-6">
-                    <h4 class="text-center responsive-title">
+                    <h1 class="text-center responsive-title">
                         {{ $category->fullname }} {{ ucfirst($video->type) }}
                         {{ $video->number }}
-                    </h4>
+                    </h1>
                 </div>
                 <div class="col-3 text-right">
                 </div>
