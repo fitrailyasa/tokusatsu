@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Video;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
@@ -194,10 +195,6 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('/video', [ClientVideoController::class, 'index'])->name('video');
-Route::get('/video/{category}', [ClientVideoController::class, 'category'])->name('video.category');
-Route::get('/video/{franchise}/{category}', [ClientVideoController::class, 'show'])->name('video.show');
-Route::get('/video/{franchise}/{category}/{type}/{number}', [ClientVideoController::class, 'watch'])->name('video.watch');
 Route::get('/history', [ClientHistoryController::class, 'index'])->name('history');
 Route::get('/bookmark', [ClientBookmarkController::class, 'index'])->name('bookmark');
 
@@ -209,5 +206,22 @@ Route::get('/map/{province}', [MapController::class, 'province'])->name('map.pro
 Route::get('/map/{province}/{regency}', [MapController::class, 'regency'])->name('map.regency');
 Route::get('/map/{province}/{regency}/{district}', [MapController::class, 'district'])->name('map.district');
 
-// Route::get('/gallery/{franchise}/{category}', [HomeController::class, 'show'])->name('beranda.show');
-Route::get('/{slug}', [ClientVideoController::class, 'slug'])->name('video.slug');
+// Route::get('/{franchise}/{category}', [HomeController::class, 'show'])->name('beranda.show');
+Route::get('/video', [ClientVideoController::class, 'index'])->name('video');
+Route::get('/video/{category}', [ClientVideoController::class, 'category'])->name('video.category');
+Route::get('/video/{franchise}/{category}', [ClientVideoController::class, 'show'])->name('video.show');
+Route::get('/video/{franchise}/{category}/{type}/{number}', [ClientVideoController::class, 'watch'])->name('video.watch');
+
+Route::get('/{slug}', function ($slug) {
+
+  $slug = preg_replace('/-(sub-[a-zA-Z0-9]+|dub)$/', '', $slug);
+
+  $video = Video::where('slug', $slug)->firstOrFail();
+
+  return redirect()->route('video.watch', [
+    'franchise' => $video->category->franchise->slug,
+    'category'  => $video->category->slug,
+    'type'      => $video->type,
+    'number'    => $video->number,
+  ], 301);
+})->where('slug', '[A-Za-z0-9\-]+')->name('video.slug');

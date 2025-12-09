@@ -34,13 +34,15 @@
                         @foreach ($videos as $item)
                             <tr>
                                 <td class="text-center">
-                                    <a class="text-dark" href="{{ route('video.slug', $item->slug) }}">
+                                    <a class="text-dark"
+                                        href="{{ route('video.watch', [$item->category->franchise->slug, $item->category->slug, $item->type, $item->number]) }}">
                                         {{ ucfirst($item->type) }} {{ $item->number }}
                                         <i class="fa-solid fa-arrow-up-right-from-square"></i>
                                     </a>
                                 </td>
                                 <td>
-                                    <a class="text-dark" href="{{ route('video.slug', $item->slug) }}">
+                                    <a class="text-dark"
+                                        href="{{ route('video.watch', [$item->category->franchise->slug, $item->category->slug, $item->type, $item->number]) }}">
                                         {{ $item->title }}
                                     </a>
                                 </td>
@@ -48,7 +50,7 @@
                                 <td class="text-center">
                                     <button class="btn btn-sm btn-outline-warning bookmark-btn"
                                         data-title="{{ $category->fullname }} {{ ucfirst($item->type) }} {{ $item->number }}"
-                                        data-url="{{ route('video.slug', $item->slug) }}">
+                                        data-url="{{ route('video.watch', [$item->category->franchise->slug, $item->category->slug, $item->type, $item->number]) }}">
                                         ⭐
                                     </button>
                                 </td>

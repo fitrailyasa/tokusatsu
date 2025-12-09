@@ -23,7 +23,7 @@
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#260751">
 
-    <title>{{ config('app.name') }} - @yield('title')</title>
+    <title>@yield('title') - {{ config('app.name') }}</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">

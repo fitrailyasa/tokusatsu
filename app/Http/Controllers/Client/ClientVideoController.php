@@ -102,35 +102,6 @@ class ClientVideoController extends Controller
         ]);
     }
 
-    public function slug($slug)
-    {
-        $video = Video::where('slug', $slug)->firstOrFail();
-
-        $category = $video->category;
-        $franchise = $category->franchise;
-
-        $embedUrl = $this->videoEmbed($video->link);
-
-        $prev = Video::where('category_id', $category->id)
-            ->where('type', $video->type)
-            ->where('number', $video->number - 1)
-            ->first();
-
-        $next = Video::where('category_id', $category->id)
-            ->where('type', $video->type)
-            ->where('number', $video->number + 1)
-            ->first();
-
-        return view('client.video.slug', [
-            'category' => $category,
-            'franchise' => $franchise,
-            'video' => $video,
-            'embedUrl' => $embedUrl,
-            'prev' => $prev,
-            'next' => $next,
-        ]);
-    }
-
     /**
      * Convert video link into embeddable URL.
      */

@@ -1,6 +1,6 @@
 @extends('layouts.client.app')
 
-@section('title', 'Video')
+@section('title', $category->fullname . ' ' . ucfirst($video->type) . ' ' . $video->number)
 
 @section('textvideo', 'rounded aktif')
 
