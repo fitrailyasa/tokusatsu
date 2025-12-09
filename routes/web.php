@@ -214,7 +214,13 @@ Route::get('/video/{franchise}/{category}/{type}/{number}', [ClientVideoControll
 
 Route::get('/{slug}', function ($slug) {
 
-  $slug = preg_replace('/-(sub-[a-zA-Z0-9]+|dub)$/', '', $slug);
+  if (preg_match('/-sub-[a-zA-Z0-9]+$/', $slug)) {
+    $slug = preg_replace('/-sub-[a-zA-Z0-9]+$/', '', $slug);
+  }
+
+  if (preg_match('/-dub$/', $slug)) {
+    $slug = preg_replace('/-dub$/', '', $slug);
+  }
 
   $video = Video::where('slug', $slug)->firstOrFail();
 
