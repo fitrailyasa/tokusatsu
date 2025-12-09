@@ -6,6 +6,26 @@
 
 @section('content')
     <link rel="canonical" href="{{ url()->current() }}">
+    <script type="application/ld+json">
+    {!! json_encode([
+        "@context"    => "https://schema.org",
+        "@type"       => "VideoObject",
+        "name"        => $category->fullname . ' ' . ucfirst($video->type) . ' ' . $video->number,
+        "description" => $category->fullname . ' ' . ucfirst($video->type) . ' ' . $video->number,
+        "thumbnailUrl"=> $video->category->img ?: config('app.url') . "/logo.png",
+        "uploadDate"  => $video->created_at->toIso8601String(),
+        "contentUrl"  => url()->current(), 
+        "genre"       => $category->fullname,
+        "publisher"   => [
+            "@type" => "Organization",
+            "name"  => config('app.name'),
+            "logo"  => [
+                "@type" => "ImageObject",
+                "url"   => config('app.url') . "/logo.png",
+            ],
+        ],
+    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
+    </script>
 
     <style>
         .no-click-overlay {
