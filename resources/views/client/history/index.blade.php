@@ -29,8 +29,31 @@
             const historyList = document.getElementById("watchHistory");
             const clearHistoryBtn = document.getElementById("clearHistoryBtn");
 
-            let watchHistory =
-                JSON.parse(localStorage.getItem("watchHistory")) || [];
+            let watchHistory = JSON.parse(localStorage.getItem("watchHistory")) || [];
+
+            function timeAgo(dateString) {
+                const now = new Date();
+                const past = new Date(dateString);
+                const seconds = Math.floor((now - past) / 1000);
+
+                const intervals = {
+                    year: 31536000,
+                    month: 2592000,
+                    week: 604800,
+                    day: 86400,
+                    hour: 3600,
+                    minute: 60,
+                    second: 1
+                };
+
+                for (const unit in intervals) {
+                    const value = Math.floor(seconds / intervals[unit]);
+                    if (value >= 1) {
+                        return `${value} ${unit}${value > 1 ? 's' : ''} ago`;
+                    }
+                }
+                return "just now";
+            }
 
             function renderHistory() {
                 historyList.innerHTML = "";
@@ -42,12 +65,19 @@
 
                 watchHistory.forEach((item, index) => {
                     const li = document.createElement("li");
-                    li.className =
-                        "list-group-item d-flex justify-content-between align-items-center";
-
+                    li.className = "list-group-item d-flex justify-content-between align-items-center";
+                    const container = document.createElement("div");
                     const link = document.createElement("a");
                     link.href = item.url;
-                    link.textContent = `${item.title} - ${item.time}`;
+                    link.className = "text-dark fw-semibold text-decoration-none";
+                    link.textContent = item.title;
+
+                    const timeAgoText = document.createElement("span");
+                    timeAgoText.className = "text-muted ms-2";
+                    timeAgoText.textContent = "• " + timeAgo(item.time);
+
+                    container.appendChild(link);
+                    container.appendChild(timeAgoText);
 
                     const deleteBtn = document.createElement("button");
                     deleteBtn.className = "btn btn-sm btn-outline-danger";
@@ -55,14 +85,11 @@
 
                     deleteBtn.addEventListener("click", function() {
                         watchHistory.splice(index, 1);
-                        localStorage.setItem(
-                            "watchHistory",
-                            JSON.stringify(watchHistory)
-                        );
+                        localStorage.setItem("watchHistory", JSON.stringify(watchHistory));
                         renderHistory();
                     });
 
-                    li.appendChild(link);
+                    li.appendChild(container);
                     li.appendChild(deleteBtn);
                     historyList.appendChild(li);
                 });
