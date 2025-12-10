@@ -1,6 +1,6 @@
 @extends('layouts.client.app')
 
-@section('title', 'Video')
+@section('title', $category->fullname ?? '')
 
 @section('textvideo', 'rounded aktif')
 
@@ -12,7 +12,7 @@
                         class="fas fa-arrow-left"></i></a>
             </div>
             <div>
-                <h3 class="text-center responsive-title">{{ $category->fullname }}</h3>
+                <h1 class="text-center responsive-title">{{ $category->fullname }}</h1>
             </div>
             <div></div>
         </div>

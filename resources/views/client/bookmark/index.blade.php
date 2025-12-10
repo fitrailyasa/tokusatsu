@@ -9,7 +9,7 @@
         <div class="row mb-3">
             <div class="col-3 text-left"></div>
             <div class="col-6">
-                <h4 class="text-center responsive-title">Bookmark</h4>
+                <h1 class="text-center responsive-title">Bookmark</h1>
             </div>
             <div class="col-3 text-right"></div>
         </div>

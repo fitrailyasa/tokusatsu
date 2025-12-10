@@ -1,6 +1,6 @@
 @extends('layouts.client.app')
 
-@section('title', 'Video')
+@section('title', $franchise->name ?? '')
 
 @section('textvideo', 'rounded aktif')
 

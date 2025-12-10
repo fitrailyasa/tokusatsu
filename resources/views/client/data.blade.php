@@ -8,7 +8,7 @@
             </div>
 
             <div class="col-6">
-                <h5 class="font-weight-bold responsive-title">{{ $category->fullname }}</h5>
+                <h1 class="font-weight-bold responsive-title">{{ $category->fullname }}</h1>
             </div>
 
             <div class="col-3 text-right">

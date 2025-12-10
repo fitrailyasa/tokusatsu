@@ -7,7 +7,7 @@
 @section('content')
 
     <div class="container text-center my-5 py-4">
-        <h5 class="font-weight-bold">@yield('title')</h5>
+        <h1 class="font-weight-bold">@yield('title')</h1>
         <div class="text-center d-flex flex-wrap justify-content-center">
             @foreach ($franchises as $item)
                 <div class="col-sm-4 col-md-3 p-3"><a href="{{ route('franchise.show', $item->slug) }}"

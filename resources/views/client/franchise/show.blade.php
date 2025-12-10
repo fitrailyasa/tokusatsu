@@ -15,7 +15,7 @@
                     </a>
                 </div>
                 <div class="col-6">
-                    <h5 class="font-weight-bold responsive-title">{{ $franchise->name }}</h5>
+                    <h1 class="font-weight-bold responsive-title">{{ $franchise->name }}</h1>
                 </div>
                 <div class="col-3 text-right">
                 </div>
