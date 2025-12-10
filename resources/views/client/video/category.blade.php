@@ -20,38 +20,50 @@
             @if ($categories->isEmpty())
                 <p class="text-center mt-3">There are no video in this category.</p>
             @else
-                <table class="table table-bordered table-striped mt-3">
-                    <thead class="table-dark">
-                        <tr>
-                            <th class="text-center" scope="col">No</th>
-                            <th scope="col">Title</th>
-                            <th scope="col">Cover</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($categories as $item)
+                <div class="table-responsive">
+                    <table class="table align-middle table-hover shadow-sm mt-3">
+                        <thead class="bg-dark text-white">
                             <tr>
-                                <td class="text-center">{{ $categories->firstItem() + $loop->index }}</td>
-                                <td>
-                                    <a class="text-dark"
-                                        href="{{ route('video.show', [$item->franchise->slug, $item->slug]) }}">
-                                        {{ $item->fullname }}
-                                        @if ($item->first_aired)
-                                            ({{ \Carbon\Carbon::parse($item->first_aired)->year }})
-                                        @endif
-                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="{{ route('video.show', [$item->franchise->slug, $item->slug]) }}">
-                                        <img class="img img-fluid rounded" width="80"
-                                            src="{{ asset('storage/' . $item->img ?? '') }}" alt="">
-                                    </a>
-                                </td>
+                                <th class="text-center" style="width: 80px;">No</th>
+                                <th>Title</th>
+                                <th class="text-center" style="width: 120px;">Cover</th>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+
+                        <tbody>
+                            @foreach ($categories as $item)
+                                <tr>
+                                    <td class="text-center fw-semibold">
+                                        {{ $categories->firstItem() + $loop->index }}
+                                    </td>
+
+                                    <td class="fw-semibold">
+                                        <a class="text-decoration-none text-dark"
+                                            href="{{ route('video.show', [$item->franchise->slug, $item->slug]) }}">
+                                            {{ $item->fullname }}
+
+                                            @if ($item->first_aired)
+                                                <span class="text-muted">
+                                                    ({{ \Carbon\Carbon::parse($item->first_aired)->year }})
+                                                </span>
+                                            @endif
+
+                                            <i class="fa-solid fa-arrow-up-right-from-square ms-1"></i>
+                                        </a>
+                                    </td>
+
+                                    <td class="text-center">
+                                        <a href="{{ route('video.show', [$item->franchise->slug, $item->slug]) }}">
+                                            <img class="img-fluid rounded shadow-sm"
+                                                src="{{ asset('storage/' . $item->img ?? '') }}"
+                                                alt="{{ $item->fullname }}">
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             @endif
         </div>
         <div class="d-flex justify-content-center">

@@ -21,43 +21,51 @@
             @if ($videos->isEmpty())
                 <p class="text-center mt-3">There are no video in this category.</p>
             @else
-                <table class="table table-bordered table-striped mt-3">
-                    <thead class="table-dark">
-                        <tr>
-                            <th class="text-center" scope="col">No</th>
-                            <th scope="col">Title</th>
-                            <th scope="col">Release Date</th>
-                            <th class="text-center" scope="col">Bookmark</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($videos as $item)
+                <div class="table-responsive">
+                    <table class="table align-middle table-hover shadow-sm mt-3">
+                        <thead class="bg-dark text-white">
                             <tr>
-                                <td class="text-center">
-                                    <a class="text-dark"
-                                        href="{{ route('video.watch', [$item->category->franchise->slug, $item->category->slug, $item->type, $item->number]) }}">
-                                        {{ ucfirst($item->type) }} {{ $item->number }}
-                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a class="text-dark"
-                                        href="{{ route('video.watch', [$item->category->franchise->slug, $item->category->slug, $item->type, $item->number]) }}">
-                                        {{ $item->title }}
-                                    </a>
-                                </td>
-                                <td>{{ date('d M Y', strtotime($item->airdate ?? $item->category->first_aired)) }}</td>
-                                <td class="text-center">
-                                    <button class="btn btn-sm btn-outline-warning bookmark-btn"
-                                        data-title="{{ $category->fullname }} {{ ucfirst($item->type) }} {{ $item->number }}"
-                                        data-url="{{ route('video.watch', [$item->category->franchise->slug, $item->category->slug, $item->type, $item->number]) }}">
-                                        ⭐
-                                    </button>
-                                </td>
+                                <th class="text-center" style="width: 120px;">Episode</th>
+                                <th>Title</th>
+                                <th style="width: 160px;">Release Date</th>
+                                <th class="text-center" style="width: 110px;">Bookmark</th>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach ($videos as $item)
+                                <tr>
+                                    <td class="text-center fw-semibold">
+                                        <a class="text-decoration-none text-dark"
+                                            href="{{ route('video.watch', [$item->category->franchise->slug, $item->category->slug, $item->type, $item->number]) }}">
+                                            {{ ucfirst($item->type) }} {{ $item->number }}
+                                            <i class="fa-solid fa-arrow-up-right-from-square ms-1"></i>
+                                        </a>
+                                    </td>
+
+                                    <td class="fw-semibold">
+                                        <a class="text-decoration-none text-dark"
+                                            href="{{ route('video.watch', [$item->category->franchise->slug, $item->category->slug, $item->type, $item->number]) }}">
+                                            {{ $item->title }}
+                                        </a>
+                                    </td>
+
+                                    <td class="text-muted">
+                                        {{ date('d M Y', strtotime($item->airdate ?? $item->category->first_aired)) }}
+                                    </td>
+
+                                    <td class="text-center">
+                                        <button class="btn btn-sm bookmark-btn px-3 py-1 btn-outline-warning"
+                                            data-title="{{ $category->fullname }} {{ ucfirst($item->type) }} {{ $item->number }}"
+                                            data-url="{{ route('video.watch', [$item->category->franchise->slug, $item->category->slug, $item->type, $item->number]) }}">
+                                            ⭐
+                                        </button>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+
             @endif
         </div>
     </div>
