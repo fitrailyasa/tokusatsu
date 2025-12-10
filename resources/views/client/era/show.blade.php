@@ -1,6 +1,6 @@
 @extends('layouts.client.app')
 
-@section('title', 'Category')
+@section('title', $era->name ?? '')
 
 @section('textEra', 'rounded aktif')
 

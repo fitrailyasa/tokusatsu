@@ -1,6 +1,6 @@
 @extends('layouts.client.app')
 
-@section('title', 'Detail')
+@section('title', $category->fullname ?? '')
 
 @section('textHome', 'rounded aktif')
 

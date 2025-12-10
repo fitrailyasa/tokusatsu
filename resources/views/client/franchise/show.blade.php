@@ -1,6 +1,6 @@
 @extends('layouts.client.app')
 
-@section('title', 'Category')
+@section('title', $franchise->name ?? '')
 
 @section('textFranchise', 'rounded aktif')
 

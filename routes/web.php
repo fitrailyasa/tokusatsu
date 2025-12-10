@@ -206,7 +206,7 @@ Route::get('/map/{province}', [MapController::class, 'province'])->name('map.pro
 Route::get('/map/{province}/{regency}', [MapController::class, 'regency'])->name('map.regency');
 Route::get('/map/{province}/{regency}/{district}', [MapController::class, 'district'])->name('map.district');
 
-// Route::get('/{franchise}/{category}', [HomeController::class, 'show'])->name('beranda.show');
+Route::get('/gallery/{franchise}/{category}', [HomeController::class, 'show'])->name('gallery.show');
 Route::get('/video', [ClientVideoController::class, 'index'])->name('video');
 Route::get('/video/{category}', [ClientVideoController::class, 'category'])->name('video.category');
 Route::get('/video/{franchise}/{category}', [ClientVideoController::class, 'show'])->name('video.show');
