@@ -65,6 +65,7 @@
             margin: 0;
             padding: 0;
             font-size: 14px;
+            font-weight: bold;
         }
 
         @media (max-width: 576px) {
