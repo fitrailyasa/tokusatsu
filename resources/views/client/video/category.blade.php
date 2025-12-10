@@ -24,7 +24,7 @@
                     <table class="table align-middle table-hover shadow-sm mt-3">
                         <thead class="bg-dark text-white">
                             <tr>
-                                <th class="text-center" style="width: 80px;">No</th>
+                                <th class="text-center" style="width: 25px;">No</th>
                                 <th>Title</th>
                                 <th class="text-center" style="width: 120px;">Cover</th>
                             </tr>
