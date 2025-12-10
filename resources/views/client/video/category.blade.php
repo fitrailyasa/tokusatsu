@@ -11,7 +11,7 @@
                 <a class="text-dark" href="{{ route('video') }}"><i class="fas fa-arrow-left"></i></a>
             </div>
             <div>
-                <h3 class="text-center responsive-title">{{ $franchise->name }}</h3>
+                <h1 class="text-center responsive-title">{{ $franchise->name }}</h1>
             </div>
             <div></div>
         </div>
