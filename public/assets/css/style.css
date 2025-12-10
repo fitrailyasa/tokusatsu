@@ -62,7 +62,7 @@
     .img-gallery {
         border-radius: 30px;
         padding: 10px;
-        width: 300px;
+        width: 200px;
     }
 }
 
@@ -71,6 +71,6 @@
     .img-gallery {
         border-radius: 20px;
         padding: 5px;
-        width: 200px;
+        width: 150px;
     }
 }

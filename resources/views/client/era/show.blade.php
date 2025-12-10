@@ -30,6 +30,7 @@
                     @else
                         <img class="img img-fluid rounded" src="{{ asset('storage/' . $item->img) }}" alt="">
                     @endif
+                    <p>{{ $item->fullname }}</p>
                 </a>
             @endforeach
         </div>
