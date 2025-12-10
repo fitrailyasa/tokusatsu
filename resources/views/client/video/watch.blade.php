@@ -5,7 +5,6 @@
 @section('textvideo', 'rounded aktif')
 
 @section('content')
-    <link rel="canonical" href="{{ url()->current() }}">
     <script type="application/ld+json">
     {!! json_encode([
         "@context"    => "https://schema.org",
