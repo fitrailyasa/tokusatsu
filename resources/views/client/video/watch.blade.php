@@ -84,8 +84,8 @@
                                 'type' => $prev->type,
                                 'number' => $prev->number,
                             ]) }}"
-                                class="btn btn-dark px-4 py-2">
-                                <i class="fas fa-arrow-left me-2"></i>
+                                class="btn btn-xs btn-dark px-2 py-1">
+                                <i class="fas fa-arrow-left me-1"></i>
                                 Prev
                             </a>
                         @endif
@@ -96,9 +96,9 @@
                                 'type' => $next->type,
                                 'number' => $next->number,
                             ]) }}"
-                                class="btn btn-dark px-4 py-2">
+                                class="btn btn-xs btn-dark px-2 py-1">
                                 Next
-                                <i class="fas fa-arrow-right ms-2"></i>
+                                <i class="fas fa-arrow-right ms-1"></i>
                             </a>
                         @endif
                     </div>
