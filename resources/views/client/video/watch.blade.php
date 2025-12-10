@@ -62,8 +62,8 @@
                         <div class="no-click-overlay"></div>
                     </div>
                     @if (empty($embedUrl))
-                        <div class="w-100 py-5 text-center">
-                            <p>Video Not Found!</p>
+                        <div class="w-100 bg-dark rounded d-flex align-items-center justify-content-center">
+                            <p class="">Video Not Found!</p>
                         </div>
                     @elseif (strpos($embedUrl, 'embed') !== false || strpos($embedUrl, 'preview') !== false)
                         <iframe id="video-iframe" src="{{ $embedUrl }}" allow="autoplay" allowfullscreen
