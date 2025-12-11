@@ -146,35 +146,29 @@ $eras = Era::withoutTrashed()->get()->reverse();
                     {{-- ============ OTHER MENU ============ --}}
                     @if ($otherFranchises->count() > 0)
                         <li class="nav-item dropdown">
-                            <a class="nav-link text-dark dropdown-toggle py-3 px-3 fw-bold" href="#">
-                                Other
+                            <a class="nav-link dropdown-toggle py-3 px-3 text-dark fw-bold" href="#"
+                                id="otherDropdown" role="button">
+                                {{ __('Other') }}
                             </a>
-                            <ul class="dropdown-menu custom-dropdown m-0">
-
-                                @foreach ($otherFranchises as $franchise)
-                                    <li>
-                                        <h6 class="dropdown-header">{{ strtoupper($franchise->name) }}</h6>
-                                    </li>
-                                    @foreach ($eras as $era)
-                                        @php
-                                            $list = $franchise->categories->where('era_id', $era->id)->reverse();
-                                        @endphp
-                                        @if ($list->count() > 0)
-                                            <li class="px-3 text-secondary small">{{ strtoupper($era->name) }}</li>
-                                            @foreach ($list as $item)
-                                                <li>
-                                                    <a class="dropdown-item"
-                                                        href="{{ route('video.show', [$franchise->slug, $item->slug]) }}">
-                                                        {{ \Illuminate\Support\Str::words($item->fullname, 4, '...') }}
-                                                    </a>
-                                                </li>
-                                            @endforeach
-                                            <li>
-                                                <hr class="dropdown-divider">
-                                            </li>
-                                        @endif
+                            <ul class="dropdown-menu m-0" aria-labelledby="otherDropdown">
+                                @if ($eras != null)
+                                    @foreach ($otherFranchises as $era)
+                                        <li class="dropdown-submenu">
+                                            <a class="dropdown-item dropdown-toggle"
+                                                href="#">{{ $era->name }}</a>
+                                            <ul class="dropdown-menu custom-dropdown">
+                                                @foreach ($era->categories as $item)
+                                                    <li>
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('video.show', [$item->franchise->slug, $item->slug]) }}">
+                                                            {{ \Illuminate\Support\Str::words($item->fullname, 4, '...') }}
+                                                        </a>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </li>
                                     @endforeach
-                                @endforeach
+                                @endif
                             </ul>
                         </li>
                     @endif
