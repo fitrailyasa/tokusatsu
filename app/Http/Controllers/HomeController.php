@@ -51,7 +51,7 @@ class HomeController extends Controller
 
         if ($input === '') {
             $videos = collect();
-            return view('client.search-video', compact('videos'));
+            return view('client.search', compact('videos'));
         }
 
         $keywords = explode(' ', $input);
