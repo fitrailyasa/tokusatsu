@@ -54,9 +54,14 @@
 
                                     <td class="text-center">
                                         <a href="{{ route('video.show', [$item->franchise->slug, $item->slug]) }}">
-                                            <img class="img-fluid rounded shadow-sm"
-                                                src="{{ asset('storage/' . $item->img ?? '') }}"
-                                                alt="{{ $item->fullname }}">
+                                            @if ($item->img === null)
+                                                <img class="img-fluid rounded shadow-sm"
+                                                    src="{{ asset('storage/logo.png') }}" alt="{{ $item->fullname }}">
+                                            @else
+                                                <img class="img-fluid rounded shadow-sm"
+                                                    src="{{ asset('storage/' . $item->img ?? '') }}"
+                                                    alt="{{ $item->fullname }}">
+                                            @endif
                                         </a>
                                     </td>
                                 </tr>
