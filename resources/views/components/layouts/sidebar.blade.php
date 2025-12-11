@@ -14,7 +14,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
                 <x-sidebar-link route="admin.dashboards" icon="tachometer-alt" label="Dashboard" />
-                <x-sidebar-link route="beranda" icon="home" label="Home" />
+                <x-sidebar-link route="home" icon="home" label="Home" />
 
                 <x-sidebar-link route="admin.user" icon="users" label="User" can="view:user" />
                 <x-sidebar-link route="admin.data" icon="database" label="Data" can="view:data" />

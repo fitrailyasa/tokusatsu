@@ -70,7 +70,7 @@ Route::middleware(['auth'])->group(function () {
 
   // CMS ADMINITRASTOR
   Route::middleware(['verified'])->name('admin.')->prefix('admin')->group(function () {
-    Route::get('/', [HomeController::class, 'index'])->name('beranda');
+    Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
 
     // CRUD LIVEWIRE
