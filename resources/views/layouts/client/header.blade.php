@@ -29,7 +29,7 @@ $eras = Era::withoutTrashed()->get()->reverse();
             <div class="d-none d-lg-block">
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 mx-3 justify-content-center mb-md-0">
                     <li>
-                        <a href="{{ route('beranda') }}" class="nav-link text-dark py-3 px-3 fw-bold @yield('textHome')">
+                        <a href="{{ route('home') }}" class="nav-link text-dark py-3 px-3 fw-bold @yield('textHome')">
                             {{ __('Home') }}
                         </a>
                     </li>

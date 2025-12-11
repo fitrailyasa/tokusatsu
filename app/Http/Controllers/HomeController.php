@@ -51,8 +51,7 @@ class HomeController extends Controller
         $input = trim($validatedData['query'] ?? '');
 
         if ($input === '') {
-            $datas = new LengthAwarePaginator([], 0, 10);
-            return view('client.search', compact('datas'));
+            return redirect()->route('home');
         }
 
         $keywords = explode(' ', $input);

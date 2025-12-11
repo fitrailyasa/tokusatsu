@@ -3,7 +3,7 @@
         <div class="d-flex">
             <ul class="nav col-12 align-items-center justify-content-between py-1">
                 <li>
-                    <a href="{{ route('beranda') }}" class="nav-link p-1 text-dark fw-bold @yield('textHome')">
+                    <a href="{{ route('home') }}" class="nav-link p-1 text-dark fw-bold @yield('textHome')">
                         <i data-feather="home"></i>
                     </a>
                 </li>
