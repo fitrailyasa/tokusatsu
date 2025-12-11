@@ -50,8 +50,8 @@ class HomeController extends Controller
         $input = trim($validatedData['query'] ?? '');
 
         if ($input === '') {
-            $videos = collect();
-            return view('client.search', compact('videos'));
+            $datas = collect();
+            return view('client.search', compact('datas'));
         }
 
         $keywords = explode(' ', $input);
