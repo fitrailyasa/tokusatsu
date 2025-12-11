@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Data;
 use App\Models\Category;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class HomeController extends Controller
 {
@@ -50,7 +51,7 @@ class HomeController extends Controller
         $input = trim($validatedData['query'] ?? '');
 
         if ($input === '') {
-            $datas = collect();
+            $datas = new LengthAwarePaginator([], 0, 10);
             return view('client.search', compact('datas'));
         }
 
