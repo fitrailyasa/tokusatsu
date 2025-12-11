@@ -22,6 +22,7 @@ class DataImport implements ToModel, WithStartRow
 
         if (!$category) {
             $category = Category::create([
+                'fullname' => $categoryName,
                 'name' => $categoryName,
                 'img' => null,
                 'franchise_id' => null,
