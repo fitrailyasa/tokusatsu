@@ -132,6 +132,23 @@ class ClientVideoController extends Controller
             return $url;
         }
 
+        // Archive.org
+        if (strpos($url, 'archive.org') !== false) {
+
+            // Jika format /details/xxxx/file.mp4
+            if (preg_match('#archive\.org/details/([^/]+)/(.+)$#', $url, $m)) {
+                return "https://archive.org/embed/{$m[1]}/{$m[2]}";
+            }
+
+            // Jika format /download/xxxx/file.mp4
+            if (preg_match('#archive\.org/download/([^/]+)/(.+)$#', $url, $m)) {
+                return "https://archive.org/embed/{$m[1]}/{$m[2]}";
+            }
+
+            // fallback default
+            return str_replace('/details/', '/embed/', $url);
+        }
+
         // Direct storage / CDN / S3 / Laravel public storage
         if (preg_match('/\.(mp4|webm|ogg)$/i', $url)) {
             return $url;
