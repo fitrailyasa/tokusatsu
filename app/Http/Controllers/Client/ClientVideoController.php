@@ -25,7 +25,7 @@ class ClientVideoController extends Controller
         $validPerPage = in_array($perPage, [10, 50, 100]) ? $perPage : 10;
 
         $franchise = Franchise::where('slug', $category)->withoutTrashed()->firstOrFail();
-        $categories = Category::where('franchise_id', $franchise->id)->withoutTrashed()->orderBy('id', 'desc')->paginate(10);
+        $categories = Category::where('franchise_id', $franchise->id)->withoutTrashed()->orderBy('id', 'desc')->where('status', 1)->paginate(10);
         // dd($categories);
 
         return view('client.video.category', compact('franchise', 'categories', 'search', 'perPage', 'eraId', 'franchiseId'));
@@ -40,7 +40,7 @@ class ClientVideoController extends Controller
      */
     public function show($franchise, $category)
     {
-        $category = Category::where('slug', $category)->with('franchise')->firstOrFail();
+        $category = Category::where('slug', $category)->with('franchise')->where('status', 1)->firstOrFail();
 
         if ($category->franchise->slug !== $franchise) {
             abort(404);
@@ -66,7 +66,7 @@ class ClientVideoController extends Controller
      */
     public function watch($franchise, $category, $type, $number)
     {
-        $category = Category::where('slug', $category)->with('franchise')->firstOrFail();
+        $category = Category::where('slug', $category)->with('franchise')->where('status', 1)->firstOrFail();
 
         if ($category->franchise->slug !== $franchise) {
             abort(404);

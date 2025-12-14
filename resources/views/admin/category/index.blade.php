@@ -72,6 +72,7 @@
                 <th>{{ __('Franchise') }}</th>
                 <th>{{ __('First Aired') }}</th>
                 <th>{{ __('Last Aired') }}</th>
+                <th>{{ __('Status') }}</th>
                 <th class="text-center">{{ __('Action') }}</th>
             </tr>
         </thead>
@@ -140,6 +141,13 @@
                     <td>
                         {{ date('d M Y', strtotime($item->last_aired)) }}
                     </td>
+                    <td>
+                        @if ($item->status === 1)
+                            <span class="badge bg-success">Active</span>
+                        @else
+                            <span class="badge bg-danger">Inactive</span>
+                        @endif
+                    </td>
                     <td class="manage-row text-center">
                         @if ($item->trashed())
                             <!-- Restore and Delete Button -->
@@ -173,6 +181,7 @@
                 <th>{{ __('Franchise') }}</th>
                 <th>{{ __('First Aired') }}</th>
                 <th>{{ __('Last Aired') }}</th>
+                <th>{{ __('Status') }}</th>
                 <th class="text-center">{{ __('Action') }}</th>
             </tr>
         </tfoot>

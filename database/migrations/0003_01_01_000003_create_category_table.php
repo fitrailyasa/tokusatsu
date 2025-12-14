@@ -15,7 +15,7 @@ class CreateCategoryTable extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string('fullname')->unique();
+            $table->string('fullname')->nullable();
             $table->string('name')->unique();
             $table->string('slug')->unique();
             $table->text('description')->nullable();
@@ -24,6 +24,7 @@ class CreateCategoryTable extends Migration
             $table->date('last_aired')->nullable();
             $table->foreignId('era_id')->nullable();
             $table->foreignId('franchise_id')->nullable();
+            $table->boolean('status')->default(true)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

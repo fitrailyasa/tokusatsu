@@ -28,6 +28,7 @@ class CategoryExport implements FromCollection, WithHeadings, WithStyles, Should
                 'Description' => $item->description ?? '',
                 'Era' => $item->era->name ?? '',
                 'Franchise' => $item->franchise->name ?? '',
+                'Status' => $item->status ?? '',
             ];
         }
 
@@ -48,13 +49,14 @@ class CategoryExport implements FromCollection, WithHeadings, WithStyles, Should
                 'Description',
                 'Era',
                 'Franchise',
+                'Status',
             ],
         ];
     }
 
     public function styles(Worksheet $sheet)
     {
-        $sheet->mergeCells('A1:F1');
+        $sheet->mergeCells('A1:H1');
 
         $borderStyle = [
             'borders' => [
@@ -65,7 +67,7 @@ class CategoryExport implements FromCollection, WithHeadings, WithStyles, Should
             ],
         ];
 
-        $sheet->getStyle('A1:F' . $sheet->getHighestRow())
+        $sheet->getStyle('A1:H' . $sheet->getHighestRow())
             ->applyFromArray($borderStyle);
 
         return [

@@ -55,7 +55,10 @@ $eras = Era::withoutTrashed()->get()->reverse();
                             <ul class="dropdown-menu custom-dropdown m-0">
                                 @foreach ($eras as $era)
                                     @php
-                                        $list = $franchiseKR->categories->where('era_id', $era->id)->reverse();
+                                        $list = $franchiseKR->categories
+                                            ->where('era_id', $era->id)
+                                            ->where('status', 1)
+                                            ->reverse();
                                     @endphp
                                     @if ($list->count() > 0)
                                         <li>
@@ -87,7 +90,10 @@ $eras = Era::withoutTrashed()->get()->reverse();
                             <ul class="dropdown-menu custom-dropdown m-0">
                                 @foreach ($eras as $era)
                                     @php
-                                        $list = $franchiseUL->categories->where('era_id', $era->id)->reverse();
+                                        $list = $franchiseUL->categories
+                                            ->where('era_id', $era->id)
+                                            ->where('status', 1)
+                                            ->reverse();
                                     @endphp
                                     @if ($list->count() > 0)
                                         <li>
@@ -119,7 +125,10 @@ $eras = Era::withoutTrashed()->get()->reverse();
                             <ul class="dropdown-menu custom-dropdown m-0">
                                 @foreach ($eras as $era)
                                     @php
-                                        $list = $franchiseSS->categories->where('era_id', $era->id)->reverse();
+                                        $list = $franchiseSS->categories
+                                            ->where('era_id', $era->id)
+                                            ->where('status', 1)
+                                            ->reverse();
                                     @endphp
                                     @if ($list->count() > 0)
                                         <li>
@@ -144,20 +153,32 @@ $eras = Era::withoutTrashed()->get()->reverse();
 
 
                     {{-- ============ OTHER MENU ============ --}}
-                    @if ($otherFranchises->count() > 0)
+                    @php
+                        $hasActiveOther =
+                            $otherFranchises
+                                ->filter(function ($era) {
+                                    return $era->categories->where('status', 1)->count() > 0;
+                                })
+                                ->count() > 0;
+                    @endphp
+                    @if ($hasActiveOther)
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle py-3 px-3 text-dark fw-bold" href="#"
                                 id="otherDropdown" role="button">
                                 {{ __('Other') }}
                             </a>
                             <ul class="dropdown-menu m-0" aria-labelledby="otherDropdown">
-                                @if ($eras != null)
-                                    @foreach ($otherFranchises as $era)
+                                @foreach ($otherFranchises as $era)
+                                    @php
+                                        $activeCategories = $era->categories->where('status', 1);
+                                    @endphp
+                                    @if ($activeCategories->count() > 0)
                                         <li class="dropdown-submenu">
-                                            <a class="dropdown-item dropdown-toggle"
-                                                href="#">{{ $era->name }}</a>
+                                            <a class="dropdown-item dropdown-toggle" href="#">
+                                                {{ $era->name }}
+                                            </a>
                                             <ul class="dropdown-menu custom-dropdown">
-                                                @foreach ($era->categories as $item)
+                                                @foreach ($activeCategories as $item)
                                                     <li>
                                                         <a class="dropdown-item"
                                                             href="{{ route('video.show', [$item->franchise->slug, $item->slug]) }}">
@@ -167,8 +188,8 @@ $eras = Era::withoutTrashed()->get()->reverse();
                                                 @endforeach
                                             </ul>
                                         </li>
-                                    @endforeach
-                                @endif
+                                    @endif
+                                @endforeach
                             </ul>
                         </li>
                     @endif
