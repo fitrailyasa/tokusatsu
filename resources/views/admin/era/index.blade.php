@@ -67,6 +67,7 @@
                 <th>{{ __('Name') }}</th>
                 <th>{{ __('Img') }}</th>
                 <th>{{ __('Description') }}</th>
+                <th>{{ __('Status') }}</th>
                 <th class="text-center">{{ __('Action') }}</th>
             </tr>
         </thead>
@@ -118,6 +119,22 @@
                         @endif
                     </td>
                     <td>{{ Illuminate\Support\Str::words($item->description ?? '-', 10, '...') }}</td>
+                    <td class="text-center">
+                        @can('edit:era')
+                            <form action="{{ route('admin.era.toggleStatus', $item->id) }}" method="POST">
+                                @csrf
+                                @method('PUT')
+
+                                <label class="toggle-switch">
+                                    <input type="checkbox" onchange="this.form.submit()"
+                                        {{ $item->status == 1 ? 'checked' : '' }}>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </form>
+                        @else
+                            <span class="badge bg-secondary">No Access</span>
+                        @endcan
+                    </td>
                     <td class="manage-row text-center">
                         @if ($item->trashed())
                             <!-- Restore and Delete Button -->
@@ -146,6 +163,7 @@
                 <th>{{ __('Name') }}</th>
                 <th>{{ __('Img') }}</th>
                 <th>{{ __('Description') }}</th>
+                <th>{{ __('Status') }}</th>
                 <th class="text-center">{{ __('Action') }}</th>
             </tr>
         </tfoot>

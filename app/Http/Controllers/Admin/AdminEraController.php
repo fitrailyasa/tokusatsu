@@ -52,6 +52,17 @@ class AdminEraController extends Controller
         return view("admin.era.index", compact('eras', 'search', 'perPage'));
     }
 
+    // Handle toggle status era
+    public function toggleStatus($id)
+    {
+        $era = Era::withTrashed()->findOrFail($id);
+
+        $era->status = $era->status == 1 ? 0 : 1;
+        $era->save();
+
+        return redirect()->back()->with('success', 'Successfully Change Status ' . $this->title . '!');
+    }
+
     // Handle import data era from excel file
     public function import(Request $request)
     {

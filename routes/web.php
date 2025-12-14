@@ -99,6 +99,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/era/import', [AdminEraController::class, 'import'])->name('era.import');
     Route::get('/era/exportExcel', [AdminEraController::class, 'exportExcel'])->name('era.exportExcel');
     Route::get('/era/exportPDF', [AdminEraController::class, 'exportPDF'])->name('era.exportPDF');
+    Route::put('/era/{id}/toggle-status', [AdminEraController::class, 'toggleStatus'])->name('era.toggleStatus');
 
     // CRUD FRANCHISE
     Route::get('/franchise', [AdminFranchiseController::class, 'index'])->name('franchise.index');
@@ -113,6 +114,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/franchise/import', [AdminFranchiseController::class, 'import'])->name('franchise.import');
     Route::get('/franchise/exportExcel', [AdminFranchiseController::class, 'exportExcel'])->name('franchise.exportExcel');
     Route::get('/franchise/exportPDF', [AdminFranchiseController::class, 'exportPDF'])->name('franchise.exportPDF');
+    Route::put('/franchise/{id}/toggle-status', [AdminFranchiseController::class, 'toggleStatus'])->name('franchise.toggleStatus');
 
     // CRUD CATEGORY
     Route::get('/category', [AdminCategoryController::class, 'index'])->name('category.index');

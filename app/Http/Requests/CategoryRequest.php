@@ -38,6 +38,7 @@ class CategoryRequest extends FormRequest
             'img' => 'nullable|mimes:jpg,jpeg,png|max:2048',
             'first_aired' => 'nullable|date',
             'last_aired' => 'nullable|date',
+            'status' => 'required|in:0,1',
         ];
     }
 
@@ -56,6 +57,8 @@ class CategoryRequest extends FormRequest
             'img.max'               => 'Image max size is 2MB.',
             'first_aired.date'      => 'First aired must be a valid date.',
             'last_aired.date'       => 'Last aired must be a valid date.',
+            'status.required'       => 'Status is required.',
+            'status.in'             => 'Status must be 0 or 1.',
         ];
     }
 }

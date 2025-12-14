@@ -29,6 +29,7 @@ class FranchiseRequest extends FormRequest
             ],
             'description' => 'max:1024',
             'img' => 'mimes:jpg,jpeg,png|max:2048',
+            'status' => 'required|in:0,1',
         ];
     }
 
@@ -41,6 +42,8 @@ class FranchiseRequest extends FormRequest
             'description.max' => 'Description max 1024 chars.',
             'img.mimes' => 'Image must be jpg, jpeg, or png.',
             'img.max' => 'Image size must be under 2MB.',
+            'status.required' => 'Status is required.',
+            'status.in' => 'Status must be 0 or 1.',
         ];
     }
 }

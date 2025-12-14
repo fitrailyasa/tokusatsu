@@ -67,6 +67,7 @@ class AdminCategoryController extends Controller
         return view("admin.category.index", compact('categories', 'eras', 'franchises', 'eraId', 'franchiseId', 'search', 'perPage'));
     }
 
+    // Handle toggle status category
     public function toggleStatus($id)
     {
         $category = Category::withTrashed()->findOrFail($id);
@@ -76,7 +77,6 @@ class AdminCategoryController extends Controller
 
         return redirect()->back()->with('success', 'Successfully Change Status ' . $this->title . '!');
     }
-
 
     // Handle import data category from excel file
     public function import(Request $request)

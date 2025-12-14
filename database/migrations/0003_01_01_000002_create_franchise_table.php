@@ -19,6 +19,7 @@ class CreateFranchiseTable extends Migration
             $table->string('slug')->unique();
             $table->text('description')->nullable();
             $table->string('img')->nullable();
+            $table->boolean('status')->default(true)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

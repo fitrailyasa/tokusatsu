@@ -16,7 +16,7 @@ class Franchise extends Model
     protected $connection;
     protected $table = 'franchises';
     protected $primaryKey = 'id';
-    protected $fillable = ['name', 'slug', 'description', 'img'];
+    protected $fillable = ['name', 'slug', 'description', 'img', 'status'];
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 
     public function __construct(array $attributes = [])

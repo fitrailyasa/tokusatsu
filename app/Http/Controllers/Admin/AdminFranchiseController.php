@@ -52,6 +52,17 @@ class AdminFranchiseController extends Controller
         return view("admin.franchise.index", compact('franchises', 'search', 'perPage'));
     }
 
+    // Handle toggle status franchise
+    public function toggleStatus($id)
+    {
+        $franchise = Franchise::withTrashed()->findOrFail($id);
+
+        $franchise->status = $franchise->status == 1 ? 0 : 1;
+        $franchise->save();
+
+        return redirect()->back()->with('success', 'Successfully Change Status ' . $this->title . '!');
+    }
+
     // Handle import data franchise from excel file
     public function import(Request $request)
     {
