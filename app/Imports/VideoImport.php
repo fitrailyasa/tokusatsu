@@ -18,8 +18,8 @@ class VideoImport implements ToModel, WithStartRow
         $link = $row[5] ?? null;
 
         $category = Category::withTrashed()->firstOrCreate(
-            ['fullname' => $categoryName, 'name' => $categoryName],
-            ['type' => null, 'franchise_id' => null, 'era_id' => null]
+            ['name' => $categoryName],
+            ['fullname' => $categoryName, 'type' => null, 'franchise_id' => null, 'era_id' => null]
         );
 
         return Video::updateOrCreate(
