@@ -24,14 +24,11 @@ class ClientVideoController extends Controller
         $franchiseId = $request->input('franchise_id');
         $validPerPage = in_array($perPage, [10, 50, 100]) ? $perPage : 10;
 
-        $franchise = Franchise::where('slug', $category)->withoutTrashed()->firstOrFail();
+        $franchise = Franchise::where('slug', $category)->withoutTrashed()->where('status', 1)->firstOrFail();
         $categories = Category::where('franchise_id', $franchise->id)
             ->withoutTrashed()
             ->orderBy('id', 'desc')
             ->where('status', 1)
-            ->whereHas('franchise', function ($q) {
-                $q->where('status', 1);
-            })
             ->whereHas('era', function ($q) {
                 $q->where('status', 1);
             })
