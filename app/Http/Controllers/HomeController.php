@@ -11,7 +11,15 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $categories = Category::withoutTrashed()->where('status', 1)->get()->reverse();
+        $categories = Category::withoutTrashed()
+            ->where('status', 1)
+            ->whereHas('franchise', function ($q) {
+                $q->where('status', 1);
+            })
+            ->whereHas('era', function ($q) {
+                $q->where('status', 1);
+            })
+            ->get()->reverse();
         return view('client.index', compact('categories'));
     }
 
