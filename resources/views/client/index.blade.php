@@ -102,7 +102,7 @@
                         <div class="swiper-slide">
                             <a href="{{ route('video.show', [$category->franchise->slug, $category->slug]) }}">
                                 <img src="{{ $category->img ? asset('storage/' . $category->img) : asset('storage/comingsoon.jpg') }}"
-                                    loading="lazy">
+                                    loading="lazy" alt="{{ $category->fullname }}">
                                 <p class="small pt-2 text-dark">{{ $category->fullname }}
                                     @if ($category->first_aired)
                                         ({{ \Carbon\Carbon::parse($category->first_aired)->year }})
@@ -128,7 +128,7 @@
                         <div class="swiper-slide">
                             <a href="{{ route('video.show', [$category->franchise->slug, $category->slug]) }}">
                                 <img src="{{ $category->img ? asset('storage/' . $category->img) : asset('storage/comingsoon.jpg') }}"
-                                    loading="lazy">
+                                    loading="lazy" alt="{{ $category->fullname }}">
                                 <p class="small pt-2 text-dark">{{ $category->fullname }}
                                     @if ($category->first_aired)
                                         ({{ \Carbon\Carbon::parse($category->first_aired)->year }})
@@ -154,7 +154,7 @@
                         <div class="swiper-slide">
                             <a href="{{ route('video.show', [$category->franchise->slug, $category->slug]) }}">
                                 <img src="{{ $category->img ? asset('storage/' . $category->img) : asset('storage/comingsoon.jpg') }}"
-                                    loading="lazy">
+                                    loading="lazy" alt="{{ $category->fullname }}">
                                 <p class="small pt-2 text-dark">{{ $category->fullname }}
                                     @if ($category->first_aired)
                                         ({{ \Carbon\Carbon::parse($category->first_aired)->year }})
