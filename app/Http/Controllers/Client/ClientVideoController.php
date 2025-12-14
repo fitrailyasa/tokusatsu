@@ -12,7 +12,7 @@ class ClientVideoController extends Controller
 {
     public function index()
     {
-        $franchises = Franchise::withoutTrashed()->paginate(15);
+        $franchises = Franchise::withoutTrashed()->where('status', 1)->paginate(15);
         return view('client.video.index', compact('franchises'));
     }
 
@@ -25,8 +25,17 @@ class ClientVideoController extends Controller
         $validPerPage = in_array($perPage, [10, 50, 100]) ? $perPage : 10;
 
         $franchise = Franchise::where('slug', $category)->withoutTrashed()->firstOrFail();
-        $categories = Category::where('franchise_id', $franchise->id)->withoutTrashed()->orderBy('id', 'desc')->where('status', 1)->paginate(10);
-        // dd($categories);
+        $categories = Category::where('franchise_id', $franchise->id)
+            ->withoutTrashed()
+            ->orderBy('id', 'desc')
+            ->where('status', 1)
+            ->whereHas('franchise', function ($q) {
+                $q->where('status', 1);
+            })
+            ->whereHas('era', function ($q) {
+                $q->where('status', 1);
+            })
+            ->paginate(10);
 
         return view('client.video.category', compact('franchise', 'categories', 'search', 'perPage', 'eraId', 'franchiseId'));
     }
@@ -40,7 +49,16 @@ class ClientVideoController extends Controller
      */
     public function show($franchise, $category)
     {
-        $category = Category::where('slug', $category)->with('franchise')->where('status', 1)->firstOrFail();
+        $category = Category::where('slug', $category)
+            ->with('franchise')
+            ->where('status', 1)
+            ->whereHas('franchise', function ($q) {
+                $q->where('status', 1);
+            })
+            ->whereHas('era', function ($q) {
+                $q->where('status', 1);
+            })
+            ->firstOrFail();
 
         if ($category->franchise->slug !== $franchise) {
             abort(404);
@@ -66,7 +84,16 @@ class ClientVideoController extends Controller
      */
     public function watch($franchise, $category, $type, $number)
     {
-        $category = Category::where('slug', $category)->with('franchise')->where('status', 1)->firstOrFail();
+        $category = Category::where('slug', $category)
+            ->with('franchise')
+            ->where('status', 1)
+            ->whereHas('franchise', function ($q) {
+                $q->where('status', 1);
+            })
+            ->whereHas('era', function ($q) {
+                $q->where('status', 1);
+            })
+            ->firstOrFail();
 
         if ($category->franchise->slug !== $franchise) {
             abort(404);
