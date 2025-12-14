@@ -127,6 +127,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/category/import', [AdminCategoryController::class, 'import'])->name('category.import');
     Route::get('/category/exportExcel', [AdminCategoryController::class, 'exportExcel'])->name('category.exportExcel');
     Route::get('/category/exportPDF', [AdminCategoryController::class, 'exportPDF'])->name('category.exportPDF');
+    Route::put('/category/{id}/toggle-status', [AdminCategoryController::class, 'toggleStatus'])->name('category.toggleStatus');
 
     // CRUD TAG
     Route::get('/tag', [AdminTagController::class, 'index'])->name('tag.index');

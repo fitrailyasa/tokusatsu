@@ -5,6 +5,54 @@
         Category
     </x-slot>
 
+    <!-- Style -->
+    <x-slot name="style">
+        <style>
+            .toggle-switch {
+                position: relative;
+                display: inline-block;
+                width: 46px;
+                height: 24px;
+            }
+
+            .toggle-switch input {
+                display: none;
+            }
+
+            .toggle-slider {
+                position: absolute;
+                cursor: pointer;
+                background-color: #dc3545;
+                border-radius: 24px;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                transition: 0.4s;
+            }
+
+            .toggle-slider::before {
+                content: "";
+                position: absolute;
+                height: 18px;
+                width: 18px;
+                left: 3px;
+                bottom: 3px;
+                background-color: white;
+                border-radius: 50%;
+                transition: 0.4s;
+            }
+
+            .toggle-switch input:checked+.toggle-slider {
+                background-color: #28a745;
+            }
+
+            .toggle-switch input:checked+.toggle-slider::before {
+                transform: translateX(22px);
+            }
+        </style>
+    </x-slot>
+
     <!-- Button Form Create -->
     <x-slot name="formCreate">
         @can('create:category')
@@ -141,12 +189,21 @@
                     <td>
                         {{ date('d M Y', strtotime($item->last_aired)) }}
                     </td>
-                    <td>
-                        @if ($item->status === 1)
-                            <span class="badge bg-success">Active</span>
+                    <td class="text-center">
+                        @can('edit:category')
+                            <form action="{{ route('admin.category.toggleStatus', $item->id) }}" method="POST">
+                                @csrf
+                                @method('PUT')
+
+                                <label class="toggle-switch">
+                                    <input type="checkbox" onchange="this.form.submit()"
+                                        {{ $item->status == 1 ? 'checked' : '' }}>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </form>
                         @else
-                            <span class="badge bg-danger">Inactive</span>
-                        @endif
+                            <span class="badge bg-secondary">No Access</span>
+                        @endcan
                     </td>
                     <td class="manage-row text-center">
                         @if ($item->trashed())
