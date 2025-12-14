@@ -3,8 +3,8 @@ use App\Models\Category;
 use App\Models\Era;
 use App\Models\Franchise;
 
-$franchises = Franchise::withoutTrashed()->take(5)->get();
-$eras = Era::withoutTrashed()->get()->reverse();
+$franchises = Franchise::withoutTrashed()->take(5)->where('status', 1)->get();
+$eras = Era::withoutTrashed()->get()->where('status', 1)->reverse();
 ?>
 <style>
     .custom-dropdown {
