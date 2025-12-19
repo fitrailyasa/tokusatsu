@@ -57,10 +57,16 @@ class AdminProviderAccountController extends Controller
                 ->with('error', $token['error_description'] ?? 'OAuth error');
         }
 
+        $existingAccount = ProviderAccount::where('email', $request->input('email'))->first();
+
         $this->client->setAccessToken($token);
 
         $oauth2 = new Oauth2($this->client);
         $userinfo = $oauth2->userinfo->get();
+
+        if ($existingAccount && empty($token['refresh_token'])) {
+            $token['refresh_token'] = $existingAccount->access_token['refresh_token'] ?? null;
+        }
 
         ProviderAccount::updateOrCreate(
             ['email' => $userinfo->email],
