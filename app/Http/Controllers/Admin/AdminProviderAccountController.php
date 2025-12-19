@@ -56,7 +56,7 @@ class AdminProviderAccountController extends Controller
                 ['access_token' => $this->client->getAccessToken()]
             );
 
-            return redirect()->route('admin.auth')->with('success', "Akun {$userinfo->email} berhasil terhubung!");
+            return redirect()->route('admin.auth')->with('success', "Account {$userinfo->email} successfully logged in!");
         }
 
         return redirect()->route('admin.auth')->with('error', 'Login gagal.');
@@ -107,7 +107,7 @@ class AdminProviderAccountController extends Controller
 
         if ($anyonePermission) {
             $service->permissions->delete($fileId, $anyonePermission->id);
-            $message = 'File berhasil di-set PRIVATE';
+            $message = 'File successfully set PRIVATE';
         } else {
             $permission = new \Google\Service\Drive\Permission([
                 'type' => 'anyone',
@@ -118,10 +118,10 @@ class AdminProviderAccountController extends Controller
                 'sendNotificationEmail' => false,
             ]);
 
-            $message = 'File berhasil di-set PUBLIC';
+            $message = 'File successfully set PUBLIC';
         }
 
-        return back()->with('status', $message);
+        return back()->with('success', $message);
     }
 
     public function exportExcel($email)
