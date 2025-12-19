@@ -139,6 +139,12 @@
                                 <span class="badge {{ $f->is_public ? 'bg-success' : 'bg-secondary' }}">
                                     <i class="fas {{ $f->is_public ? 'fa-globe' : 'fa-lock' }}"></i>
                                 </span>
+
+                                @if (!$f->is_folder)
+                                    <a href="{{ $downloadLink }}" class="btn btn-xs btn-primary" title="Download">
+                                        <i class="fas fa-download"></i>
+                                    </a>
+                                @endif
                             </div>
 
                             <small class="text-muted">
@@ -147,12 +153,6 @@
                         </div>
 
                         <div class="btn-group btn-group-sm align-items-center">
-                            @if (!$f->is_folder)
-                                <a href="{{ $downloadLink }}" class="btn btn-outline-primary" title="Download">
-                                    <i class="fas fa-download"></i>
-                                </a>
-                            @endif
-
                             <button class="btn btn-outline-secondary copy-link" data-link="{{ $fileLink }}">
                                 <i class="fas fa-copy"></i>
                             </button>
