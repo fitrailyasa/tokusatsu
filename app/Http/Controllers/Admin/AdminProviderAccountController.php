@@ -15,14 +15,14 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 
 class AdminProviderAccountController extends Controller
 {
-    private $client;
+    private Client $client;
 
     public function __construct()
     {
         $this->client = new Client();
         $this->client->setAuthConfig(storage_path('app/credentials.json'));
         $this->client->addScope([
-            Drive::DRIVE_METADATA_READONLY,
+            Drive::DRIVE,
             Oauth2::USERINFO_EMAIL
         ]);
         $this->client->setRedirectUri(route('admin.auth.callback'));
@@ -62,7 +62,7 @@ class AdminProviderAccountController extends Controller
         return redirect()->route('admin.auth')->with('error', 'Login gagal.');
     }
 
-    public function files(Request $request, $email)
+    public function files(Request $request, string $email)
     {
         $account = ProviderAccount::where('email', $email)->firstOrFail();
         $this->client->setAccessToken($account->access_token);
@@ -76,20 +76,52 @@ class AdminProviderAccountController extends Controller
             $orderBy = 'name';
         }
 
-        $query = "name contains 'episode'";
-
         $files = $service->files->listFiles([
             'pageSize' => 200,
-            'fields' => 'files(id, name, modifiedTime, createdTime)',
+            'fields' => 'files(id, name, modifiedTime, permissions(type, role))',
             'orderBy' => $orderBy,
-            'q' => $query
+            'q' => "name contains 'episode'",
         ])->getFiles();
 
-        usort($files, function ($a, $b) {
-            return strnatcmp(strtolower($a->name), strtolower($b->name));
-        });
+        $files = collect($files)->map(function ($file) {
+            $file->is_public = collect($file->permissions ?? [])
+                ->contains(fn($p) => $p->type === 'anyone');
+
+            return $file;
+        })->sortBy(fn($f) => strtolower($f->name))->values();
 
         return view('admin.provider.show', compact('files', 'email', 'orderBy'));
+    }
+
+    public function toggleStatus(string $email, string $fileId)
+    {
+        $account = ProviderAccount::where('email', $email)->firstOrFail();
+        $this->client->setAccessToken($account->access_token);
+
+        $service = new Drive($this->client);
+
+        $permissions = $service->permissions->listPermissions($fileId)->getPermissions();
+
+        $anyonePermission = collect($permissions)
+            ->first(fn($p) => $p->type === 'anyone');
+
+        if ($anyonePermission) {
+            $service->permissions->delete($fileId, $anyonePermission->id);
+            $message = 'File berhasil di-set PRIVATE';
+        } else {
+            $permission = new \Google\Service\Drive\Permission([
+                'type' => 'anyone',
+                'role' => 'reader',
+            ]);
+
+            $service->permissions->create($fileId, $permission, [
+                'sendNotificationEmail' => false,
+            ]);
+
+            $message = 'File berhasil di-set PUBLIC';
+        }
+
+        return back()->with('status', $message);
     }
 
     public function exportExcel($email)

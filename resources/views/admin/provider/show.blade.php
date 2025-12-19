@@ -1,8 +1,10 @@
-@extends('layouts.admin.app')
+<x-admin-table>
 
-@section('title', 'File Google Drive')
+    <!-- Title -->
+    <x-slot name="title">
+        File Google Drive
+    </x-slot>
 
-@section('content')
     <div class="container mb-5">
         <div class="d-flex justify-content-between align-items-center mb-3">
             <a href="{{ route('admin.auth') }}"><i class="text-dark fas fa-arrow-left"></i></a>
@@ -26,18 +28,36 @@
                             <a href="{{ $fileLink }}" target="_blank">
                                 {{ $f->name }}
                             </a>
+                            @if ($f->is_public)
+                                <span class="badge bg-success ms-2">Public</span>
+                            @else
+                                <span class="badge bg-secondary ms-2">Private</span>
+                            @endif
                             <br>
                             <small class="text-muted">
                                 {{ isset($f->modifiedTime) ? \Carbon\Carbon::parse($f->modifiedTime)->format('d M Y H:i') : '' }}
                             </small>
                         </div>
 
-                        <div class="btn-group">
+                        <div class="btn-group align-items-center">
+                            <form action="{{ route('admin.provider.toggleStatus', [$email, $f->id]) }}" method="POST"
+                                class="me-2">
+                                @csrf
+                                @method('PUT')
+                                <label class="toggle-switch mb-0">
+                                    <input type="checkbox" onchange="this.form.submit()"
+                                        {{ $f->is_public ? 'checked' : '' }}>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </form>
                             <a href="{{ $downloadLink }}" class="btn btn-outline-primary btn-sm" target="_blank">
-                                <i class="fas fa-download"></i> Download
+                                <i class="fas fa-download"></i>
+                                Download
                             </a>
-                            <button class="btn btn-outline-secondary btn-sm copy-link" data-link="{{ $fileLink }}">
-                                <i class="fas fa-copy"></i> Copy Link
+                            <button type="button" class="btn btn-outline-secondary btn-sm copy-link"
+                                data-link="{{ $fileLink }}">
+                                <i class="fas fa-copy"></i>
+                                Copy Link
                             </button>
                         </div>
                     </li>
@@ -65,4 +85,4 @@
             });
         });
     </script>
-@endsection
+</x-admin-table>
