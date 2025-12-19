@@ -153,12 +153,17 @@
                                 </a>
                             @endif
 
+                            <button class="btn btn-outline-secondary copy-link" data-link="{{ $fileLink }}">
+                                <i class="fas fa-copy"></i>
+                            </button>
+
                             <button class="btn btn-outline-warning edit-name" data-id="{{ $f->id }}">
                                 <i class="fas fa-edit"></i>
                             </button>
 
-                            <button class="btn btn-outline-secondary copy-link" data-link="{{ $fileLink }}">
-                                <i class="fas fa-copy"></i>
+                            <button class="btn btn-outline-danger delete-file" data-id="{{ $f->id }}"
+                                data-name="{{ $f->name }}">
+                                <i class="fas fa-trash"></i>
                             </button>
 
                             <form action="{{ route('admin.provider.toggleStatus', [$email, $f->id]) }}" method="POST">
@@ -183,25 +188,29 @@
         document.addEventListener('DOMContentLoaded', () => {
 
             document.querySelectorAll('.copy-link').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    navigator.clipboard.writeText(this.dataset.link);
-                    this.innerHTML = '<i class="fas fa-check"></i>';
-                    setTimeout(() => this.innerHTML = '<i class="fas fa-copy"></i>', 1500);
+                btn.addEventListener('click', () => {
+                    navigator.clipboard.writeText(btn.dataset.link);
+                    btn.innerHTML = '<i class="fas fa-check"></i>';
+                    setTimeout(() => {
+                        btn.innerHTML = '<i class="fas fa-copy"></i>';
+                    }, 1500);
                 });
             });
 
             const showRename = id => {
-                document.querySelector(`.file-name[data-id="${id}"]`).classList.add('d-none');
-                document.querySelector(`.rename-wrapper[data-id="${id}"]`).classList.remove('d-none');
+                document.querySelector(`.file-name[data-id="${id}"]`)?.classList.add('d-none');
+                document.querySelector(`.rename-wrapper[data-id="${id}"]`)?.classList.remove('d-none');
             };
 
             const hideRename = id => {
-                document.querySelector(`.file-name[data-id="${id}"]`).classList.remove('d-none');
-                document.querySelector(`.rename-wrapper[data-id="${id}"]`).classList.add('d-none');
+                document.querySelector(`.file-name[data-id="${id}"]`)?.classList.remove('d-none');
+                document.querySelector(`.rename-wrapper[data-id="${id}"]`)?.classList.add('d-none');
             };
 
             const submitRename = id => {
                 const input = document.querySelector(`.rename-input[data-id="${id}"]`);
+                if (!input) return;
+
                 fetch(`{{ url('/admin/auth/provider') }}/${@json($email)}/files/${id}/rename`, {
                         method: 'PUT',
                         headers: {
@@ -215,22 +224,49 @@
                     .then(res => res.json())
                     .then(res => {
                         if (res.success) {
-                            document.querySelector(`.file-name[data-id="${id}"] a`).textContent = input
-                                .value;
+                            const nameEl = document.querySelector(`.file-name[data-id="${id}"] a`);
+                            if (nameEl) nameEl.textContent = input.value;
                             hideRename(id);
                         }
                     });
             };
 
-            document.querySelectorAll('.edit-name').forEach(b =>
-                b.addEventListener('click', () => showRename(b.dataset.id))
-            );
-            document.querySelectorAll('.save-rename').forEach(b =>
-                b.addEventListener('click', () => submitRename(b.dataset.id))
-            );
-            document.querySelectorAll('.cancel-rename').forEach(b =>
-                b.addEventListener('click', () => hideRename(b.dataset.id))
-            );
+            document.querySelectorAll('.edit-name')
+                .forEach(btn => btn.addEventListener('click', () => showRename(btn.dataset.id)));
+
+            document.querySelectorAll('.save-rename')
+                .forEach(btn => btn.addEventListener('click', () => submitRename(btn.dataset.id)));
+
+            document.querySelectorAll('.cancel-rename')
+                .forEach(btn => btn.addEventListener('click', () => hideRename(btn.dataset.id)));
+
+            document.querySelectorAll('.delete-file').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const {
+                        id,
+                        name
+                    } = btn.dataset;
+
+                    if (!confirm(`Delete "${name}"?\nThis action cannot be undone.`)) return;
+
+                    fetch(`{{ url('/admin/auth/provider') }}/${@json($email)}/files/${id}`, {
+                            method: 'DELETE',
+                            headers: {
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                            }
+                        })
+                        .then(res => res.json())
+                        .then(res => {
+                            if (res.success) {
+                                btn.closest('.list-group-item')?.remove();
+                            } else {
+                                alert('Failed to delete file');
+                            }
+                        })
+                        .catch(() => alert('Error deleting file'));
+                });
+            });
+
         });
     </script>
 @endsection

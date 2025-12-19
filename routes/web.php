@@ -197,6 +197,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/auth/provider/{email}/upload', [AdminProviderAccountController::class, 'upload'])->name('provider.upload');
     Route::put('/auth/provider/{email}/files/{fileId}/rename', [AdminProviderAccountController::class, 'renameFile'])->name('provider.rename');
     Route::put('/auth/provider/{email}/files/{fileId}/toggle-status', [AdminProviderAccountController::class, 'toggleStatus'])->name('provider.toggleStatus');
+    Route::delete('/auth/provider/{email}/files/{fileId}', [AdminProviderAccountController::class, 'delete'])->name('provider.delete');
   });
 });
 

@@ -256,6 +256,22 @@ class AdminProviderAccountController extends Controller
         }, "Account_{$email}.xlsx");
     }
 
+    public function delete(string $email, string $fileId)
+    {
+        $account = ProviderAccount::where('email', $email)->firstOrFail();
+        $this->useAccountToken($account);
+
+        $service = new Drive($this->client);
+
+        $service->files->delete($fileId);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'File successfully deleted',
+        ]);
+    }
+
+
     public function logout($email)
     {
         ProviderAccount::where('email', $email)->delete();
