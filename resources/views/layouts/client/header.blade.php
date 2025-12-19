@@ -22,10 +22,11 @@ $eras = Era::withoutTrashed()->get()->where('status', 1)->reverse();
 <header class="header px-3 mb-3 fixed-top bg-light" style="border-bottom: 1px solid #afafaf;">
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-between">
-            <div class="d-flex align-items-center justify-content-center">
+            <a href="{{ route('home') }}"
+                class="d-flex align-items-center justify-content-center text-dark text-decoration-none">
                 <img class="img-fluid logo-sm" src="{{ asset('logo.png') }}" alt="Logo">
                 <h5 class="my-3 ms-2 font-weight-bold title-sm">{{ strtoupper(config('app.name')) }}</h5>
-            </div>
+            </a>
             <div class="d-none d-lg-block">
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 mx-3 justify-content-center mb-md-0">
                     <li>
