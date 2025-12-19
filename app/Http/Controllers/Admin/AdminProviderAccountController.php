@@ -80,7 +80,7 @@ class AdminProviderAccountController extends Controller
     public function files(Request $request, string $email)
     {
         $account = ProviderAccount::where('email', $email)->firstOrFail();
-        $this->client->setAccessToken($account->access_token);
+        $this->useAccountToken($account);
 
         $service = new Drive($this->client);
 
@@ -184,5 +184,29 @@ class AdminProviderAccountController extends Controller
     {
         ProviderAccount::where('email', $email)->delete();
         return redirect()->route('admin.auth')->with('status', "Account {$email} successfully logged out!");
+    }
+
+    private function useAccountToken(ProviderAccount $account): void
+    {
+        $this->client->setAccessToken($account->access_token);
+
+        if ($this->client->isAccessTokenExpired()) {
+            if (empty($account->access_token['refresh_token'])) {
+                abort(401, 'Google token expired. Please login again.');
+            }
+
+            $newToken = $this->client->fetchAccessTokenWithRefreshToken(
+                $account->access_token['refresh_token']
+            );
+
+            $account->update([
+                'access_token' => array_merge(
+                    $account->access_token,
+                    $newToken
+                ),
+            ]);
+
+            $this->client->setAccessToken($account->access_token);
+        }
     }
 }
