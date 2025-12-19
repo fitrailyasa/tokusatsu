@@ -11,7 +11,8 @@
         <div class="container text-dark mb-5" style="max-width: 900px;">
             <h4>1. Introduction</h4>
             <p>
-                Welcome to <strong>Your Company</strong>. This Privacy Policy explains how we collect, use, and protect your
+                Welcome to <strong>{{ config('app.name') }}</strong>. This Privacy Policy explains how we collect, use, and
+                protect your
                 personal data when using our website.
             </p>
 
@@ -40,7 +41,7 @@
             <h4>5. Contact Us</h4>
             <p>
                 If you have any questions about this Privacy Policy, please contact us at:
-                <br>Email: <a href="mailto:support@example.com">support@example.com</a>
+                <br>Email: <a href="mailto:{{ config('mail.from.address') }}">{{ config('mail.from.address') }}</a>
             </p>
         </div>
     </div>

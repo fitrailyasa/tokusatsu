@@ -34,8 +34,8 @@
             <h4>4. Intellectual Property</h4>
             <p>
                 All content, trademarks, logos, and materials displayed on this website belong to
-                <strong>Your Company</strong> unless otherwise stated. You may not copy, reproduce, or distribute
-                any content without prior written permission.
+                <strong>{{ config('app.name') }}</strong> unless otherwise stated. You may not copy, reproduce, or
+                distribute any content without prior written permission.
             </p>
 
             <h4>5. Third-Party Links</h4>
@@ -75,7 +75,7 @@
             <h4>10. Contact Us</h4>
             <p>
                 If you have any questions about these Terms & Conditions, you may contact us at:<br>
-                Email: <a href="mailto:support@example.com">support@example.com</a>
+                Email: <a href="mailto:{{ config('mail.from.address') }}">{{ config('mail.from.address') }}</a>
             </p>
 
         </div>
