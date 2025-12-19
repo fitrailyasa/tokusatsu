@@ -45,39 +45,27 @@ class AdminProviderAccountController extends Controller
 
     public function callback(Request $request)
     {
-        if (!$request->has('code')) {
-            return redirect()->route('admin.auth')
-                ->with('error', 'Login failed.');
+        if ($request->has('code')) {
+            $this->client->fetchAccessTokenWithAuthCode($request->code);
+
+            $oauth2 = new Oauth2($this->client);
+            $userinfo = $oauth2->userinfo->get();
+
+            ProviderAccount::updateOrCreate(
+                ['email' => $userinfo->email],
+                ['access_token' => $this->client->getAccessToken()]
+            );
+
+            return redirect()->route('admin.auth')->with('success', "Account {$userinfo->email} successfully logged in!");
         }
 
-        $token = $this->client->fetchAccessTokenWithAuthCode($request->code);
-
-        if (isset($token['error'])) {
-            return redirect()->route('admin.auth')
-                ->with('error', 'Google authentication failed.');
-        }
-
-        $this->client->setAccessToken($token);
-
-        $oauth2 = new Oauth2($this->client);
-        $userinfo = $oauth2->userinfo->get();
-
-        ProviderAccount::updateOrCreate(
-            ['email' => $userinfo->email],
-            [
-                'access_token'  => json_encode($token),
-                'refresh_token' => $token['refresh_token'] ?? null,
-            ]
-        );
-
-        return redirect()->route('admin.auth')
-            ->with('success', "Account {$userinfo->email} successfully logged in!");
+        return redirect()->route('admin.auth')->with('error', 'Login failed.');
     }
 
     public function files(Request $request, string $email)
     {
         $account = ProviderAccount::where('email', $email)->firstOrFail();
-        $this->client->setAccessToken($account->access_token);
+        $this->client->setAccessToken(json_decode($account->access_token, true));
 
         $service = new Drive($this->client);
 
@@ -108,7 +96,7 @@ class AdminProviderAccountController extends Controller
     public function toggleStatus(string $email, string $fileId)
     {
         $account = ProviderAccount::where('email', $email)->firstOrFail();
-        $this->client->setAccessToken($account->access_token);
+        $this->client->setAccessToken(json_decode($account->access_token, true));
 
         $service = new Drive($this->client);
 
@@ -139,7 +127,7 @@ class AdminProviderAccountController extends Controller
     public function exportExcel($email)
     {
         $account = ProviderAccount::where('email', $email)->firstOrFail();
-        $this->client->setAccessToken($account->access_token);
+        $this->client->setAccessToken(json_decode($account->access_token, true));
 
         $service = new Drive($this->client);
 
