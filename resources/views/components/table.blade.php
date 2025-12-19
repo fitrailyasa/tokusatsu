@@ -19,7 +19,7 @@
         <div class="card-body">
             <div class="d-flex justify-content-between">
                 <div class="d-flex justify-content-between mb-3">
-                    <h3 class="card-title m-1">Kelola Tabel {{ $title ?? '' }}</h3>
+                    <h3 class="card-title m-1">Table {{ $title ?? '' }}</h3>
                 </div>
                 <div class="d-flex justify-content-end mb-3">
 
