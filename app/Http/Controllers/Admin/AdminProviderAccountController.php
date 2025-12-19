@@ -168,6 +168,6 @@ class AdminProviderAccountController extends Controller
     public function logout($email)
     {
         ProviderAccount::where('email', $email)->delete();
-        return redirect()->route('admin.auth')->with('status', "Akun {$email} berhasil dihapus.");
+        return redirect()->route('admin.auth')->with('status', "Account {$email} successfully logged out!");
     }
 }
