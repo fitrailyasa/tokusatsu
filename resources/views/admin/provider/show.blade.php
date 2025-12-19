@@ -136,12 +136,12 @@
                                     </div>
                                 </div>
 
-                                <span class="badge {{ $f->is_public ? 'bg-success' : 'bg-secondary' }}">
+                                <span class="badge {{ $f->is_public ? 'bg-primary' : 'bg-secondary' }}">
                                     <i class="fas {{ $f->is_public ? 'fa-globe' : 'fa-lock' }}"></i>
                                 </span>
 
                                 @if (!$f->is_folder)
-                                    <a href="{{ $downloadLink }}" class="btn btn-xs btn-primary" title="Download">
+                                    <a href="{{ $downloadLink }}" class="btn btn-xs btn-outline-success" title="Download">
                                         <i class="fas fa-download"></i>
                                     </a>
                                 @endif
