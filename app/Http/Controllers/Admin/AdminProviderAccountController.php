@@ -78,28 +78,110 @@ class AdminProviderAccountController extends Controller
 
         $service = new Drive($this->client);
 
-        $orderBy = $request->get('orderBy', 'name');
+        $folderId = $request->get('folder', 'root');
 
-        $allowed = ['name', 'modifiedTime', 'createdTime', 'viewedByMeTime'];
-        if (!in_array($orderBy, $allowed)) {
-            $orderBy = 'name';
-        }
+        $query = "'{$folderId}' in parents and trashed = false";
 
         $files = $service->files->listFiles([
-            'pageSize' => 200,
-            'fields' => 'files(id, name, modifiedTime, permissions(type, role))',
-            'orderBy' => $orderBy,
-            'q' => "name contains 'episode'",
+            'q' => $query,
+            'fields' => 'files(id,name,mimeType,modifiedTime,permissions(type))',
+            'orderBy' => 'folder,name',
         ])->getFiles();
 
         $files = collect($files)->map(function ($file) {
+            $file->is_folder = $file->mimeType === 'application/vnd.google-apps.folder';
+
             $file->is_public = collect($file->permissions ?? [])
                 ->contains(fn($p) => $p->type === 'anyone');
 
             return $file;
-        })->sortBy(fn($f) => strtolower($f->name))->values();
+        })->sortBy(fn($f) => [$f->is_folder ? 0 : 1, strtolower($f->name)])
+            ->values();
 
-        return view('admin.provider.show', compact('files', 'email', 'orderBy'));
+        $breadcrumbs = $this->getBreadcrumbs($service, $folderId);
+
+        return view('admin.provider.show', compact(
+            'files',
+            'email',
+            'folderId',
+            'breadcrumbs'
+        ));
+    }
+
+    private function getBreadcrumbs(Drive $service, string $folderId): array
+    {
+        $breadcrumbs = [];
+
+        while ($folderId !== 'root') {
+            $folder = $service->files->get($folderId, [
+                'fields' => 'id,name,parents',
+            ]);
+
+            array_unshift($breadcrumbs, [
+                'id' => $folder->id,
+                'name' => $folder->name,
+            ]);
+
+            $folderId = $folder->parents[0] ?? 'root';
+        }
+
+        array_unshift($breadcrumbs, [
+            'id' => 'root',
+            'name' => 'Root',
+        ]);
+
+        return $breadcrumbs;
+    }
+
+    public function renameFile(Request $request, string $email, string $fileId)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        $account = ProviderAccount::where('email', $email)->firstOrFail();
+        $this->useAccountToken($account);
+
+        $service = new Drive($this->client);
+
+        $fileMetadata = new \Google\Service\Drive\DriveFile([
+            'name' => $request->name,
+        ]);
+
+        $service->files->update($fileId, $fileMetadata);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'File name updated successfully',
+        ]);
+    }
+
+    public function upload(Request $request, string $email)
+    {
+        $request->validate([
+            'file' => 'required|file|max:512000',
+            'folder_id' => 'nullable|string',
+        ]);
+
+        $account = ProviderAccount::where('email', $email)->firstOrFail();
+        $this->useAccountToken($account);
+
+        $service = new Drive($this->client);
+
+        $file = $request->file('file');
+
+        $fileMetadata = new \Google\Service\Drive\DriveFile([
+            'name' => $file->getClientOriginalName(),
+            'parents' => [$request->folder_id ?? 'root'],
+        ]);
+
+        $service->files->create($fileMetadata, [
+            'data' => file_get_contents($file->getRealPath()),
+            'mimeType' => $file->getMimeType(),
+            'uploadType' => 'multipart',
+        ]);
+
+        return back()->with('success', 'File uploaded successfully');
     }
 
     public function toggleStatus(string $email, string $fileId)
@@ -152,8 +234,8 @@ class AdminProviderAccountController extends Controller
 
         $data = collect($files)->map(function ($f) {
             return [
-                'Nama File' => $f->name,
-                'Link Google Drive' => "https://drive.google.com/file/d/{$f->id}/view?usp=sharing",
+                'File Name' => $f->name,
+                'Link' => "https://drive.google.com/file/d/{$f->id}/view?usp=sharing",
             ];
         });
 
@@ -169,7 +251,7 @@ class AdminProviderAccountController extends Controller
             }
             public function headings(): array
             {
-                return ['Nama File', 'Link Google Drive'];
+                return ['File Name', 'Link'];
             }
         }, "Account_{$email}.xlsx");
     }

@@ -194,6 +194,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/auth/provider/{email}/files', [AdminProviderAccountController::class, 'files'])->name('auth.files');
     Route::get('/auth/provider/{email}/export', [AdminProviderAccountController::class, 'exportExcel'])->name('auth.export');
     Route::get('/auth/provider/{email}/logout', [AdminProviderAccountController::class, 'logout'])->name('auth.logout');
+    Route::post('/auth/provider/{email}/upload', [AdminProviderAccountController::class, 'upload'])->name('provider.upload');
+    Route::put('/auth/provider/{email}/files/{fileId}/rename', [AdminProviderAccountController::class, 'renameFile'])->name('provider.rename');
     Route::put('/auth/provider/{email}/files/{fileId}/toggle-status', [AdminProviderAccountController::class, 'toggleStatus'])->name('provider.toggleStatus');
   });
 });
