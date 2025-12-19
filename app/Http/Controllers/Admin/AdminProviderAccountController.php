@@ -45,21 +45,30 @@ class AdminProviderAccountController extends Controller
 
     public function callback(Request $request)
     {
-        if ($request->has('code')) {
-            $this->client->fetchAccessTokenWithAuthCode($request->code);
-
-            $oauth2 = new Oauth2($this->client);
-            $userinfo = $oauth2->userinfo->get();
-
-            ProviderAccount::updateOrCreate(
-                ['email' => $userinfo->email],
-                ['access_token' => $this->client->getAccessToken()]
-            );
-
-            return redirect()->route('admin.auth')->with('success', "Account {$userinfo->email} successfully logged in!");
+        if (!$request->has('code')) {
+            return redirect()->route('admin.auth')
+                ->with('error', 'Login failed: no auth code');
         }
 
-        return redirect()->route('admin.auth')->with('error', 'Login failed.');
+        $token = $this->client->fetchAccessTokenWithAuthCode($request->code);
+
+        if (isset($token['error'])) {
+            return redirect()->route('admin.auth')
+                ->with('error', $token['error_description'] ?? 'OAuth error');
+        }
+
+        $this->client->setAccessToken($token);
+
+        $oauth2 = new Oauth2($this->client);
+        $userinfo = $oauth2->userinfo->get();
+
+        ProviderAccount::updateOrCreate(
+            ['email' => $userinfo->email],
+            ['access_token' => $token]
+        );
+
+        return redirect()->route('admin.auth')
+            ->with('success', "Account {$userinfo->email} successfully logged in!");
     }
 
     public function files(Request $request, string $email)
