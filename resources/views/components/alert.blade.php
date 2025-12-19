@@ -1,4 +1,4 @@
-@if ($errors->any())
+@if ($errors->any() || session('error'))
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             Swal.fire({
