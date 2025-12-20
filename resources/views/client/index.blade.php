@@ -95,7 +95,7 @@
             <a class="text-dark" href="{{ route('video.category', 'kamen-rider') }}">Lihat Semua <i
                     class="fa-solid fa-arrow-up-right-from-square"></i></a>
         </div>
-        <div class="swiper mb-3 px-2 bg-light mySwiperKR">
+        <div class="swiper pt-0 pb-3 px-2 bg-light mySwiperKR">
             <div class="swiper-wrapper">
                 @foreach ($categories as $category)
                     @if ($category->franchise && $category->franchise->name === 'Kamen Rider' && $category->era->name !== 'Showa')
@@ -121,7 +121,7 @@
             <a class="text-dark" href="{{ route('video.category', 'ultraman') }}">Lihat Semua <i
                     class="fa-solid fa-arrow-up-right-from-square"></i></a>
         </div>
-        <div class="swiper mb-3 px-2 bg-light mySwiperUL">
+        <div class="swiper pt-0 pb-3 px-2 bg-light mySwiperUL">
             <div class="swiper-wrapper">
                 @foreach ($categories as $category)
                     @if ($category->franchise && $category->franchise->name === 'Ultraman' && $category->era->name !== 'Showa')
@@ -147,7 +147,7 @@
             <a class="text-dark" href="{{ route('video.category', 'super-sentai') }}">Lihat Semua <i
                     class="fa-solid fa-arrow-up-right-from-square"></i></a>
         </div>
-        <div class="swiper mb-3 px-2 bg-light mySwiperSS">
+        <div class="swiper pt-0 pb-3 px-2 bg-light mySwiperSS">
             <div class="swiper-wrapper">
                 @foreach ($categories as $category)
                     @if ($category->franchise && $category->franchise->name === 'Super Sentai' && $category->era->name !== 'Showa')

@@ -98,10 +98,10 @@
 
         @if (count($files) > 0)
             <ul class="list-group shadow-sm rounded">
-                @foreach ($files as $f)
+                @foreach ($files as $item)
                     @php
-                        $fileLink = "https://drive.google.com/file/d/{$f->id}/view";
-                        $downloadLink = "https://drive.google.com/uc?export=download&id={$f->id}";
+                        $fileLink = "https://drive.google.com/file/d/{$item->id}/view";
+                        $downloadLink = "https://drive.google.com/uc?export=download&id={$item->id}";
                     @endphp
 
                     <li
@@ -110,37 +110,38 @@
                         <div class="flex-grow-1">
                             <div class="d-flex align-items-center gap-2">
 
-                                <span class="file-name fw-medium" data-id="{{ $f->id }}">
-                                    @if ($f->is_folder)
-                                        <a href="{{ route('admin.auth.files', ['email' => $email, 'folder' => $f->id]) }}">
-                                            <i class="fas fa-folder text-warning me-1"></i>{{ $f->name }}
+                                <span class="file-name fw-medium" data-id="{{ $item->id }}">
+                                    @if ($item->is_folder)
+                                        <a
+                                            href="{{ route('admin.auth.files', ['email' => $email, 'folder' => $item->id]) }}">
+                                            <i class="fas fa-folder text-warning me-1"></i>{{ $item->name }}
                                         </a>
                                     @else
                                         <a href="{{ $fileLink }}" target="_blank">
-                                            <i class="fas fa-file text-secondary me-1"></i>{{ $f->name }}
+                                            <i class="fas fa-file text-secondary me-1"></i>{{ $item->name }}
                                         </a>
                                     @endif
                                 </span>
 
-                                <div class="rename-wrapper d-none" data-id="{{ $f->id }}">
+                                <div class="rename-wrapper d-none" data-id="{{ $item->id }}">
                                     <div class="input-group input-group-sm">
-                                        <input type="text" class="form-control rename-input" value="{{ $f->name }}"
-                                            data-id="{{ $f->id }}">
-                                        <button class="btn btn-success save-rename" data-id="{{ $f->id }}">
+                                        <input type="text" class="form-control rename-input" value="{{ $item->name }}"
+                                            data-id="{{ $item->id }}">
+                                        <button class="btn btn-success save-rename" data-id="{{ $item->id }}">
                                             <i class="fas fa-check"></i>
                                         </button>
                                         <button class="btn btn-outline-secondary cancel-rename"
-                                            data-id="{{ $f->id }}">
+                                            data-id="{{ $item->id }}">
                                             <i class="fas fa-times"></i>
                                         </button>
                                     </div>
                                 </div>
 
-                                <span class="badge {{ $f->is_public ? 'bg-primary' : 'bg-secondary' }}">
-                                    <i class="fas {{ $f->is_public ? 'fa-globe' : 'fa-lock' }}"></i>
+                                <span class="badge {{ $item->is_public ? 'bg-primary' : 'bg-secondary' }}">
+                                    <i class="fas {{ $item->is_public ? 'fa-globe' : 'fa-lock' }}"></i>
                                 </span>
 
-                                @if (!$f->is_folder)
+                                @if (!$item->is_folder)
                                     <a href="{{ $downloadLink }}" class="btn btn-xs btn-outline-success" title="Download">
                                         <i class="fas fa-download"></i>
                                     </a>
@@ -148,7 +149,7 @@
                             </div>
 
                             <small class="text-muted">
-                                {{ isset($f->modifiedTime) ? \Carbon\Carbon::parse($f->modifiedTime)->format('d M Y H:i') : '' }}
+                                {{ isset($item->modifiedTime) ? \Carbon\Carbon::parse($item->modifiedTime)->format('d M Y H:i') : '' }}
                             </small>
                         </div>
 
@@ -157,21 +158,21 @@
                                 <i class="fas fa-copy"></i>
                             </button>
 
-                            <button class="btn btn-outline-warning edit-name" data-id="{{ $f->id }}">
+                            <button class="btn btn-outline-warning edit-name" data-id="{{ $item->id }}">
                                 <i class="fas fa-edit"></i>
                             </button>
 
-                            <button class="btn btn-outline-danger delete-file" data-id="{{ $f->id }}"
-                                data-name="{{ $f->name }}">
+                            <button class="btn btn-outline-danger delete-file" data-id="{{ $item->id }}"
+                                data-name="{{ $item->name }}">
                                 <i class="fas fa-trash"></i>
                             </button>
 
-                            <form action="{{ route('admin.provider.toggleStatus', [$email, $f->id]) }}" method="POST">
+                            <form action="{{ route('admin.provider.toggleStatus', [$email, $item->id]) }}" method="POST">
                                 @csrf
                                 @method('PUT')
                                 <label class="toggle-switch ms-2">
                                     <input type="checkbox" onchange="this.form.submit()"
-                                        {{ $f->is_public ? 'checked' : '' }}>
+                                        {{ $item->is_public ? 'checked' : '' }}>
                                     <span class="toggle-slider"></span>
                                 </label>
                             </form>
