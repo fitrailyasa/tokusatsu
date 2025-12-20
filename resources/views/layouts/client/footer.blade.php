@@ -27,23 +27,6 @@
     </div>
 </footer>
 
-<footer class="d-none d-lg-block border-top bg-light py-3">
-    <div class="container text-center">
-        <a href="{{ route('home') }}" class="text-muted text-decoration-none">
-            Copyright &copy; {{ date('Y') }} {{ config('app.name') }}
-        </a>
-    </div>
-    <div class="container text-center">
-        <a href="{{ route('privacy-policy') }}" class="text-muted text-decoration-none">
-            Privacy Policy
-        </a>
-        <span class="text-muted mx-2">|</span>
-        <a href="{{ route('terms-conditions') }}" class="text-muted text-decoration-none">
-            Terms & Conditions
-        </a>
-    </div>
-</footer>
-
 <script>
     feather.replace()
 </script>
