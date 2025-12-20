@@ -51,7 +51,7 @@
                                         </td>
 
                                         <td class="text-muted">
-                                            {{ date('d M Y', strtotime($item->airdate ?? $item->category->first_aired)) }}
+                                            {{ \Carbon\Carbon::parse($item->airdate ?? $item->category->first_aired)->diffForHumans() }}
                                         </td>
 
                                         <td class="text-center">
