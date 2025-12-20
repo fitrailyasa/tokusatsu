@@ -6,6 +6,7 @@ use App\Models\Video;
 use App\Models\Category;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithStartRow;
+use Illuminate\Support\Str;
 
 class VideoImport implements ToModel, WithStartRow
 {
@@ -17,10 +18,30 @@ class VideoImport implements ToModel, WithStartRow
         $number = $row[4] ?? 0;
         $link = $row[5] ?? null;
 
-        $category = Category::withTrashed()->firstOrCreate(
-            ['name' => $categoryName],
-            ['fullname' => $categoryName, 'type' => null, 'franchise_id' => null, 'era_id' => null]
-        );
+        $normalizedName = trim($categoryName);
+
+        $category = Category::withTrashed()
+            ->whereRaw('LOWER(name) = ?', [strtolower($normalizedName)])
+            ->first();
+
+        if (!$category) {
+            $baseSlug = Str::slug(Str::lower($normalizedName));
+            $slug = $baseSlug;
+            $i = 1;
+
+            while (Category::withTrashed()->where('slug', $slug)->exists()) {
+                $slug = $baseSlug . '-' . $i++;
+            }
+
+            $category = Category::create([
+                'name' => $normalizedName,
+                'fullname' => $normalizedName,
+                'type' => null,
+                'franchise_id' => null,
+                'era_id' => null,
+                'slug' => $slug,
+            ]);
+        }
 
         return Video::updateOrCreate(
             [
