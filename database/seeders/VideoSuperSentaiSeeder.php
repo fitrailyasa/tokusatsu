@@ -2437,7 +2437,7 @@ class VideoSuperSentaiSeeder extends Seeder
             return array_merge($item, $timestamp);
         });
 
-        DB::table('category_videos')->insert($data->toArray());
+        DB::table('videos')->insert($data->toArray());
     }
 
     private function Category(string $slug): string

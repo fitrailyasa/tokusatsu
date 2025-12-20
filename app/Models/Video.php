@@ -12,7 +12,7 @@ class Video extends Model
     use HasFactory, SoftDeletes;
 
     protected $connection;
-    protected $table = 'category_videos';
+    protected $table = 'videos';
     protected $primaryKey = 'id';
 
     protected $fillable = [

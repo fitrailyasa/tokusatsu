@@ -15,25 +15,28 @@ class VideoRequest extends FormRequest
 
     public function rules(): array
     {
-        $db = new video();
-        $videoId = $this->route('video')?->id ?? $this->route('id');
-
-        // dd($db->getConnection()->getDatabaseName());
+        $video = $this->route('video') ?? Video::find($this->route('id'));
+        $videoId = $video?->id;
 
         return [
             'title' => 'required|max:1000',
             'type' => 'required|max:100',
+            'category_id' => 'required',
+
             'number' => [
                 'nullable',
                 'numeric',
-                'max:100',
-                Rule::unique($db->getTable(), 'number')->where(function ($query) {
-                    return $query->where('type', $this->type);
-                })->ignore($videoId)
+                Rule::unique('videos', 'number')
+                    ->where(function ($query) use ($video) {
+                        return $query
+                            ->where('type', $this->input('type', $video?->type))
+                            ->where('category_id', $this->input('category_id', $video?->category_id));
+                    })
+                    ->ignore($videoId),
             ],
+
             'link' => 'nullable|url',
             'airdate' => 'nullable|date',
-            'category_id' => 'required',
         ];
     }
 
