@@ -5,6 +5,29 @@
 @section('textvideo', 'rounded aktif')
 
 @section('content')
+    <script type="application/ld+json">
+    {!! json_encode([
+        "@context"    => "https://schema.org",
+        "@type"       => "VideoObject",
+        "name"        => $franchise->name,
+        "description" => $franchise->description,
+        "thumbnailUrl"=> config('app.url') . "/storage/" . $franchise->img ?: config('app.url') . "/logo.png",
+        "uploadDate"  => optional($franchise->first_aired)
+                            ? \Carbon\Carbon::parse($franchise->first_aired)->toIso8601String()
+                            : \Carbon\Carbon::parse($franchise->created_at)->toIso8601String(),
+        "contentUrl"  => url()->current(), 
+        "genre"       => $franchise->name,
+        "publisher"   => [
+            "@type" => "Organization",
+            "name"  => config('app.name'),
+            "logo"  => [
+                "@type" => "ImageObject",
+                "url"   => config('app.url') . "/logo.png",
+            ],
+        ],
+    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
+    </script>
+
     <div class="container my-5">
         <div class="d-flex justify-content-between align-items-center px-3 pt-4">
             <div>

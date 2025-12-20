@@ -11,8 +11,10 @@
         "@type"       => "VideoObject",
         "name"        => $category->fullname . ' ' . ucfirst($video->type) . ' ' . $video->number,
         "description" => $category->fullname . ' ' . ucfirst($video->type) . ' ' . $video->number,
-        "thumbnailUrl"=> $video->category->img ?: config('app.url') . "/logo.png",
-        "uploadDate"  => $video->created_at->toIso8601String(),
+        "thumbnailUrl"=> config('app.url') . "/storage/" . $video->category->img ?: config('app.url') . "/logo.png",
+        "uploadDate"  => optional($video->airdate)
+                            ? \Carbon\Carbon::parse($video->airdate)->toIso8601String()
+                            : \Carbon\Carbon::parse($video->category->first_aired)->toIso8601String(),
         "contentUrl"  => url()->current(), 
         "genre"       => $category->fullname,
         "publisher"   => [
