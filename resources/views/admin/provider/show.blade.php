@@ -68,7 +68,8 @@
             </div>
 
             <div class="d-flex align-items-center gap-2">
-                <a href="{{ route('admin.auth.export', $email) }}" class="btn btn-success btn-sm d-flex align-items-center">
+                <a href="{{ route('admin.auth.export', ['email' => $email, 'folder' => $folderId]) }}"
+                    class="btn btn-success btn-sm d-flex align-items-center">
                     <i class="fas fa-file-excel me-1"></i> Export
                 </a>
 

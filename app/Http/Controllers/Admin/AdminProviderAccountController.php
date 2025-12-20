@@ -215,17 +215,21 @@ class AdminProviderAccountController extends Controller
         return back()->with('success', $message);
     }
 
-    public function exportExcel($email)
+    public function exportExcel(Request $request, $email)
     {
+        $folderId = $request->get('folder', 'root');
+
         $account = ProviderAccount::where('email', $email)->firstOrFail();
         $this->client->setAccessToken($account->access_token);
 
         $service = new Drive($this->client);
 
+        $query = "'{$folderId}' in parents and trashed = false";
+
         $files = $service->files->listFiles([
             'pageSize' => 200,
             'fields' => 'files(id, name)',
-            'q' => "name contains 'episode'",
+            'q' => $query,
         ])->getFiles();
 
         usort($files, function ($a, $b) {
