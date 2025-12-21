@@ -172,6 +172,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/video/import', [AdminVideoController::class, 'import'])->name('video.import');
     Route::get('/video/exportExcel', [AdminVideoController::class, 'exportExcel'])->name('video.exportExcel');
     // Route::get('/video/exportPDF', [AdminVideoController::class, 'exportPDF'])->name('video.exportPDF');
+    Route::put('/video/{id}/toggle-status', [AdminVideoController::class, 'toggleStatus'])->name('video.toggleStatus');
 
     // CRUD GEOJSON
     Route::get('/geojson', [AdminGeojsonController::class, 'index'])->name('geojson.index');

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('number')->nullable();
             $table->json('link')->nullable();
             $table->date('airdate')->nullable();
+            $table->boolean('status')->default(true)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

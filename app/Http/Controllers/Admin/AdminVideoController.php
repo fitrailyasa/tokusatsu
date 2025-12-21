@@ -88,6 +88,17 @@ class AdminVideoController extends Controller
         ));
     }
 
+    // Handle toggle status video
+    public function toggleStatus($id)
+    {
+        $video = Video::withTrashed()->findOrFail($id);
+
+        $video->status = $video->status == 1 ? 0 : 1;
+        $video->save();
+
+        return redirect()->back()->with('success', 'Successfully Change Status ' . $this->title . '!');
+    }
+
     // Handle import video data from excel file
     public function import(Request $request)
     {

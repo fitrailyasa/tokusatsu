@@ -38,6 +38,7 @@ class VideoRequest extends FormRequest
             'link' => 'nullable|array',
             'link.*' => 'nullable|url|max:225',
             'airdate' => 'nullable|date',
+            'status' => 'required|in:0,1',
         ];
     }
 
@@ -56,6 +57,7 @@ class VideoRequest extends FormRequest
             'link.*.url' => 'Each link must be a valid URL.',
             'link.*.max' => 'Each link must not exceed 225 characters.',
             'airdate.date'      => 'Airdate must be date.',
+            'status.in'      => 'Status must be 0 or 1.',
         ];
     }
 }
