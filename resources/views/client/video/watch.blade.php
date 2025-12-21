@@ -35,7 +35,6 @@
             height: 70px;
             cursor: default;
             z-index: 5;
-            pointer-events: none;
         }
     </style>
     <div class="container my-5 py-4">
@@ -61,7 +60,7 @@
         <div class="row mb-5">
             <div class="col-12">
 
-                <div class="ratio ratio-16x9 position-relative rounded overflow-hidden bg-dark mb-4">
+                <div class="ratio ratio-16x9 rounded overflow-hidden bg-dark mb-4">
                     <div class="no-click-overlay"></div>
 
                     <iframe id="video-iframe" class="w-100 h-100 d-none border-0" allow="autoplay; fullscreen"
