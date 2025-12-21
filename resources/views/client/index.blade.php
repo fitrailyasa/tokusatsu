@@ -98,7 +98,7 @@
         <div class="swiper pt-0 pb-3 px-2 bg-light mySwiperKR">
             <div class="swiper-wrapper">
                 @foreach ($categories as $category)
-                    @if ($category->franchise && $category->franchise->name === 'Kamen Rider' && $category->era->name !== 'Showa')
+                    @if ($category->franchise && $category->franchise->name === 'Kamen Rider')
                         <div class="swiper-slide">
                             <a href="{{ route('video.show', [$category->franchise->slug, $category->slug]) }}">
                                 <img src="{{ $category->img ? asset('storage/' . $category->img) : asset('storage/comingsoon.jpg') }}"
@@ -124,7 +124,7 @@
         <div class="swiper pt-0 pb-3 px-2 bg-light mySwiperUL">
             <div class="swiper-wrapper">
                 @foreach ($categories as $category)
-                    @if ($category->franchise && $category->franchise->name === 'Ultraman' && $category->era->name !== 'Showa')
+                    @if ($category->franchise && $category->franchise->name === 'Ultraman')
                         <div class="swiper-slide">
                             <a href="{{ route('video.show', [$category->franchise->slug, $category->slug]) }}">
                                 <img src="{{ $category->img ? asset('storage/' . $category->img) : asset('storage/comingsoon.jpg') }}"
@@ -150,7 +150,7 @@
         <div class="swiper pt-0 pb-3 px-2 bg-light mySwiperSS">
             <div class="swiper-wrapper">
                 @foreach ($categories as $category)
-                    @if ($category->franchise && $category->franchise->name === 'Super Sentai' && $category->era->name !== 'Showa')
+                    @if ($category->franchise && $category->franchise->name === 'Super Sentai')
                         <div class="swiper-slide">
                             <a href="{{ route('video.show', [$category->franchise->slug, $category->slug]) }}">
                                 <img src="{{ $category->img ? asset('storage/' . $category->img) : asset('storage/comingsoon.jpg') }}"
