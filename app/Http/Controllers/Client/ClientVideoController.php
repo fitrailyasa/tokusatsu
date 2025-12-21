@@ -100,6 +100,7 @@ class ClientVideoController extends Controller
             ['category_id', '=', $category->id],
             ['type', '=', $type],
             ['number', '=', $number],
+            ['status', '=', 1],
         ])->firstOrFail();
 
         $embedUrls = collect($video->link ?? [])
@@ -111,12 +112,14 @@ class ClientVideoController extends Controller
             'category_id' => $category->id,
             'type' => $type,
             'number' => $number - 1,
+            'status' => 1,
         ])->first();
 
         $next = Video::where([
             'category_id' => $category->id,
             'type' => $type,
             'number' => $number + 1,
+            'status' => 1,
         ])->first();
 
         return view('client.video.watch', [
