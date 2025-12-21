@@ -56,36 +56,34 @@
                         </thead>
                         <tbody>
                             @foreach ($videos as $item)
-                                @if ($item->link != null)
-                                    <tr>
-                                        <td class="text-center fw-semibold">
-                                            <a class="text-decoration-none text-dark"
-                                                href="{{ route('video.watch', [$item->category->franchise->slug, $item->category->slug, $item->type, $item->number]) }}">
-                                                {{ ucfirst($item->type) }} {{ $item->number }}
-                                                <i class="fa-solid fa-arrow-up-right-from-square ms-1"></i>
-                                            </a>
-                                        </td>
+                                <tr>
+                                    <td class="text-center fw-semibold">
+                                        <a class="text-decoration-none text-dark"
+                                            href="{{ route('video.watch', [$item->category->franchise->slug, $item->category->slug, $item->type, $item->number]) }}">
+                                            {{ ucfirst($item->type) }} {{ $item->number }}
+                                            <i class="fa-solid fa-arrow-up-right-from-square ms-1"></i>
+                                        </a>
+                                    </td>
 
-                                        <td class="fw-semibold">
-                                            <a class="text-decoration-none text-dark"
-                                                href="{{ route('video.watch', [$item->category->franchise->slug, $item->category->slug, $item->type, $item->number]) }}">
-                                                {{ $item->title }}
-                                            </a>
-                                        </td>
+                                    <td class="fw-semibold">
+                                        <a class="text-decoration-none text-dark"
+                                            href="{{ route('video.watch', [$item->category->franchise->slug, $item->category->slug, $item->type, $item->number]) }}">
+                                            {{ $item->title }}
+                                        </a>
+                                    </td>
 
-                                        <td class="text-muted">
-                                            {{ \Carbon\Carbon::parse($item->airdate ?? $item->category->first_aired)->diffForHumans() }}
-                                        </td>
+                                    <td class="text-muted">
+                                        {{ \Carbon\Carbon::parse($item->airdate ?? $item->category->first_aired)->diffForHumans() }}
+                                    </td>
 
-                                        <td class="text-center">
-                                            <button class="btn btn-sm bookmark-btn px-3 py-1 btn-outline-warning"
-                                                data-title="{{ $category->fullname }} {{ ucfirst($item->type) }} {{ $item->number }}"
-                                                data-url="{{ route('video.watch', [$item->category->franchise->slug, $item->category->slug, $item->type, $item->number]) }}">
-                                                ⭐
-                                            </button>
-                                        </td>
-                                    </tr>
-                                @endif
+                                    <td class="text-center">
+                                        <button class="btn btn-sm bookmark-btn px-3 py-1 btn-outline-warning"
+                                            data-title="{{ $category->fullname }} {{ ucfirst($item->type) }} {{ $item->number }}"
+                                            data-url="{{ route('video.watch', [$item->category->franchise->slug, $item->category->slug, $item->type, $item->number]) }}">
+                                            ⭐
+                                        </button>
+                                    </td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>
