@@ -61,7 +61,13 @@ class ClientVideoController extends Controller
             abort(404);
         }
 
-        $videos = $category->videos()->with('category')->latest('number')->where('link', '!=', null)->where('status', 1)->paginate(100);
+        $videos = $category->videos()
+            ->with('category')
+            ->latest('number')
+            ->where('type', 'episode')
+            ->where('link', '!=', null)
+            ->where('status', 1)
+            ->paginate(100);
 
         return view('client.video.show', [
             'category' => $category,
