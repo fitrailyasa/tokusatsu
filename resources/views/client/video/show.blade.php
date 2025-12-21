@@ -9,8 +9,8 @@
     {!! json_encode([
         "@context"    => "https://schema.org",
         "@type"       => "VideoObject",
-        "name"        => $category->fullname,
-        "description" => $category->description,
+        "name"        => $category->fullname . ' - ' . config('app.name'),
+        "description" => $category->description . ' - ' . config('app.name'),
         "thumbnailUrl"=> config('app.url') . "/storage/" . $category->img ?: config('app.url') . "/logo.png",
         "uploadDate"  => optional($category->first_aired)
                             ? \Carbon\Carbon::parse($category->first_aired)->toIso8601String()

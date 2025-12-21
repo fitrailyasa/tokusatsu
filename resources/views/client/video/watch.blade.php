@@ -9,8 +9,8 @@
     {!! json_encode([
         "@context"    => "https://schema.org",
         "@type"       => "VideoObject",
-        "name"        => $category->fullname . ' ' . ucfirst($video->type) . ' ' . $video->number,
-        "description" => $category->fullname . ' ' . ucfirst($video->type) . ' ' . $video->number,
+        "name"        => $category->fullname . ' ' . ucfirst($video->type) . ' ' . $video->number . ' - ' . config('app.name'),
+        "description" => $category->fullname . ' ' . ucfirst($video->type) . ' ' . $video->number . ' - ' . config('app.name'),
         "thumbnailUrl"=> config('app.url') . "/storage/" . $video->category->img ?: config('app.url') . "/logo.png",
         "uploadDate"  => optional($video->airdate)
                             ? \Carbon\Carbon::parse($video->airdate)->toIso8601String()
