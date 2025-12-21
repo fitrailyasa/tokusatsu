@@ -12,35 +12,47 @@ class VideoImport implements ToModel, WithStartRow
 {
     public function model(array $row)
     {
-        $title = $row[1];
-        $categoryName = $row[2] ?? null;
-        $type = $row[3] ?? null;
-        $number = $row[4] ?? 0;
-        $link = $row[5] ?? null;
+        $title        = trim($row[1] ?? '');
+        $categoryName = trim($row[2] ?? '');
+        $type         = trim($row[3] ?? '');
+        $number       = is_numeric($row[4] ?? null) ? (int) $row[4] : null;
+        $rawLink      = trim($row[5] ?? '');
 
-        $normalizedName = trim($categoryName);
+        if (!$title || !$categoryName || !$type) {
+            return null;
+        }
 
         $category = Category::withTrashed()
-            ->whereRaw('LOWER(name) = ?', [strtolower($normalizedName)])
+            ->whereRaw('LOWER(name) = ?', [strtolower($categoryName)])
             ->first();
 
         if (!$category) {
-            $baseSlug = Str::slug(Str::lower($normalizedName));
+            $baseSlug = Str::slug($categoryName);
             $slug = $baseSlug;
             $i = 1;
 
             while (Category::withTrashed()->where('slug', $slug)->exists()) {
-                $slug = $baseSlug . '-' . $i++;
+                $slug = "{$baseSlug}-{$i}";
+                $i++;
             }
 
             $category = Category::create([
-                'name' => $normalizedName,
-                'fullname' => $normalizedName,
-                'type' => null,
+                'name'         => $categoryName,
+                'fullname'     => $categoryName,
                 'franchise_id' => null,
                 'era_id' => null,
                 'slug' => $slug,
             ]);
+        }
+
+        $link = [];
+
+        if (!empty($rawLink)) {
+            $link = collect(preg_split('/[|,]/', $rawLink))
+                ->map(fn($url) => trim($url))
+                ->filter(fn($url) => filter_var($url, FILTER_VALIDATE_URL))
+                ->values()
+                ->toArray();
         }
 
         return Video::updateOrCreate(

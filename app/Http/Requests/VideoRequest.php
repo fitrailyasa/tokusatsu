@@ -35,7 +35,8 @@ class VideoRequest extends FormRequest
                     ->ignore($videoId),
             ],
 
-            'link' => 'nullable|url',
+            'link' => 'nullable|array',
+            'link.*' => 'nullable|url|max:225',
             'airdate' => 'nullable|date',
         ];
     }
@@ -51,7 +52,9 @@ class VideoRequest extends FormRequest
             'number.max'      => 'Number must be under 100 chars.',
             'number.numeric'      => 'Number must be numeric.',
             'number.unique'      => 'Number already exists.',
-            'link.url'      => 'Link must be url.',
+            'link.array' => 'Link must be an array.',
+            'link.*.url' => 'Each link must be a valid URL.',
+            'link.*.max' => 'Each link must not exceed 225 characters.',
             'airdate.date'      => 'Airdate must be date.',
         ];
     }

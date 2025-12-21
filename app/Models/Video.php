@@ -32,6 +32,11 @@ class Video extends Model
         'deleted_at',
     ];
 
+    protected $casts = [
+        'link' => 'array',
+        'airdate' => 'date',
+    ];
+
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);

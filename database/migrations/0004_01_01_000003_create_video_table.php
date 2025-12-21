@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->string('type')->nullable()->default('episode');
             $table->integer('number')->nullable();
-            $table->string('link')->nullable();
+            $table->json('link')->nullable();
             $table->date('airdate')->nullable();
             $table->timestamps();
             $table->softDeletes();

@@ -83,7 +83,14 @@
                         </span>
                     </td>
                     <td>{{ $item->type ?? '-' }} {{ $item->number ?? 0 }}</td>
-                    <td><a href="{{ $item->link ?? '-' }}" target="_blank">{{ $item->link ?? '-' }}</a></td>
+                    {{-- <td><a href="{{ $item->link ?? '-' }}" target="_blank">{{ $item->link ?? '-' }}</a></td> --}}
+                    <td>
+                        @forelse ($item->link ?? [] as $url)
+                            <a href="{{ $url }}" target="_blank">{{ $url }}</a><br>
+                        @empty
+                            -
+                        @endforelse
+                    </td>
                     <td>{{ date('d M Y', strtotime($item->airdate)) }}</td>
                     <td class="manage-row text-center">
                         @if ($item->trashed())

@@ -35,6 +35,7 @@
             height: 70px;
             cursor: default;
             z-index: 5;
+            pointer-events: none;
         }
     </style>
     <div class="container my-5 py-4">
@@ -59,61 +60,106 @@
 
         <div class="row mb-5">
             <div class="col-12">
-                <div class="ratio ratio-16x9">
-                    <div class="d-flex justify-content-end">
-                        <div class="no-click-overlay"></div>
-                    </div>
-                    @if (empty($embedUrl))
-                        <div class="w-100 bg-dark rounded d-flex align-items-center justify-content-center">
-                            <p class="">Video Not Found!</p>
-                        </div>
-                    @elseif (strpos($embedUrl, 'embed') !== false || strpos($embedUrl, 'preview') !== false)
-                        <iframe id="video-iframe" src="{{ $embedUrl }}" allow="autoplay" allowfullscreen
-                            class="w-100 h-100"></iframe>
-                    @else
-                        <video id="video-video" controls class="w-100 h-100">
-                            <source src="{{ $embedUrl }}" type="video/mp4">
-                            Browser Anda tidak mendukung pemutaran video.
-                        </video>
-                    @endif
+
+                <div class="ratio ratio-16x9 position-relative rounded overflow-hidden bg-dark mb-4">
+                    <div class="no-click-overlay"></div>
+
+                    <iframe id="video-iframe" class="w-100 h-100 d-none border-0" allow="autoplay; fullscreen"
+                        allowfullscreen>
+                    </iframe>
+
+                    <video id="video-video" class="w-100 h-100 d-none" controls>
+                        <source id="video-source" src="">
+                        Browser Anda tidak mendukung video.
+                    </video>
                 </div>
-                <div class="row mt-4">
-                    <div class="col-12 d-flex justify-content-center gap-3">
-                        @if ($prev)
-                            <a href="{{ route('video.watch', [
-                                'franchise' => $category->franchise->slug,
-                                'category' => $category->slug,
-                                'type' => $prev->type,
-                                'number' => $prev->number,
-                            ]) }}"
-                                class="btn btn-xs btn-dark px-2 py-1">
-                                <i class="fas fa-arrow-left me-1"></i>
-                                Prev
-                            </a>
-                        @endif
-                        @if ($next)
-                            <a href="{{ route('video.watch', [
-                                'franchise' => $category->franchise->slug,
-                                'category' => $category->slug,
-                                'type' => $next->type,
-                                'number' => $next->number,
-                            ]) }}"
-                                class="btn btn-xs btn-dark px-2 py-1">
-                                Next
-                                <i class="fas fa-arrow-right ms-1"></i>
-                            </a>
-                        @endif
+
+                @if (count($embedUrls) > 1)
+                    <div class="mb-3 d-flex justify-content-center gap-3 flex-wrap">
+                        @foreach ($embedUrls as $index => $url)
+                            <button type="button"
+                                class="btn btn-sm btn-outline-dark server-btn {{ $index === 0 ? 'active' : '' }}"
+                                data-index="{{ $index }}">
+                                Server {{ $index + 1 }}
+                            </button>
+                        @endforeach
                     </div>
+                @endif
+
+                <div class="d-flex justify-content-center gap-3 mb-3">
+                    @if ($prev)
+                        <a href="{{ route('video.watch', [
+                            'franchise' => $category->franchise->slug,
+                            'category' => $category->slug,
+                            'type' => $prev->type,
+                            'number' => $prev->number,
+                        ]) }}"
+                            class="btn btn-sm btn-outline-dark">
+                            <i class="fas fa-arrow-left me-1"></i> Prev
+                        </a>
+                    @endif
+
+                    @if ($next)
+                        <a href="{{ route('video.watch', [
+                            'franchise' => $category->franchise->slug,
+                            'category' => $category->slug,
+                            'type' => $next->type,
+                            'number' => $next->number,
+                        ]) }}"
+                            class="btn btn-sm btn-outline-dark">
+                            Next <i class="fas fa-arrow-right ms-1"></i>
+                        </a>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        const vid = document.getElementById("video-video");
-        @if ($next)
-            if (vid) {
-                vid.onended = function() {
+        document.addEventListener("DOMContentLoaded", function() {
+
+            const servers = @json($embedUrls);
+            const iframe = document.getElementById("video-iframe");
+            const video = document.getElementById("video-video");
+            const source = document.getElementById("video-source");
+
+            function resetPlayer() {
+                iframe.classList.add("d-none");
+                video.classList.add("d-none");
+                iframe.src = "";
+                video.pause();
+                source.src = "";
+            }
+
+            function loadServer(index) {
+                resetPlayer();
+
+                const url = servers[index];
+                if (!url) return;
+
+                if (url.includes("embed") || url.includes("preview")) {
+                    iframe.src = url;
+                    iframe.classList.remove("d-none");
+                } else {
+                    source.src = url;
+                    video.load();
+                    video.classList.remove("d-none");
+                }
+
+                document.querySelectorAll(".server-btn").forEach(btn => btn.classList.remove("active"));
+                document.querySelector(`.server-btn[data-index='${index}']`)?.classList.add("active");
+            }
+
+            loadServer(0);
+
+            document.querySelectorAll(".server-btn").forEach(btn => {
+                btn.addEventListener("click", function() {
+                    loadServer(this.dataset.index);
+                });
+            });
+
+            @if ($next)
+                video.addEventListener("ended", function() {
                     window.location.href =
                         "{{ route('video.watch', [
                             'franchise' => $category->franchise->slug,
@@ -121,9 +167,9 @@
                             'type' => $next->type,
                             'number' => $next->number,
                         ]) }}";
-                };
-            }
-        @endif
+                });
+            @endif
+        });
     </script>
 
     <script>

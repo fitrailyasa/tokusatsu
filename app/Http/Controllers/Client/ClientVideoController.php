@@ -102,7 +102,10 @@ class ClientVideoController extends Controller
             ['number', '=', $number],
         ])->firstOrFail();
 
-        $embedUrl = $this->videoEmbed($video->link);
+        $embedUrls = collect($video->link ?? [])
+            ->map(fn($url) => $this->videoEmbed($url))
+            ->filter()
+            ->values();
 
         $prev = Video::where([
             'category_id' => $category->id,
@@ -120,7 +123,7 @@ class ClientVideoController extends Controller
             'category' => $category,
             'franchise' => $category->franchise,
             'video' => $video,
-            'embedUrl' => $embedUrl,
+            'embedUrls' => $embedUrls,
             'prev' => $prev,
             'next' => $next,
         ]);
@@ -174,7 +177,7 @@ class ClientVideoController extends Controller
         }
 
         // Direct storage / CDN / S3 / Laravel public storage
-        if (preg_match('/\.(mp4|webm|ogg)$/i', $url)) {
+        if (preg_match('/\.(mp4|mkv|webm|ogg)$/i', $url)) {
             return $url;
         }
 

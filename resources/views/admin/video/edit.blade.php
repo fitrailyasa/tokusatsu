@@ -84,12 +84,36 @@
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="form-label">{{ __('Link') }}</label>
-                                <input type="text" class="form-control @error('link') is-invalid @enderror"
-                                    placeholder="https://google.com" name="link" id="link"
-                                    value="{{ old('link', $item->link) }}">
-                                @error('link')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
+                                <div id="edit-link-wrapper">
+                                    @php
+                                        $links = old('link', $item->link ?? []);
+                                    @endphp
+
+                                    @forelse ($links as $index => $url)
+                                        <div class="input-group mb-2">
+                                            <input type="url" name="link[]"
+                                                class="form-control @error("link.$index") is-invalid @enderror"
+                                                value="{{ $url }}" placeholder="https://google.com">
+
+                                            <button type="button" class="btn btn-outline-danger"
+                                                onclick="removeLink(this)">
+                                                ✕
+                                            </button>
+
+                                            @error("link.$index")
+                                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    @empty
+                                        <input type="url" name="link[]" class="form-control mb-2"
+                                            placeholder="https://google.com">
+                                    @endforelse
+                                </div>
+
+                                <button type="button" class="btn btn-sm btn-outline-primary mt-2"
+                                    onclick="addEditLink()">
+                                    + Add Link
+                                </button>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -112,3 +136,22 @@
         </div>
     </div>
 </div>
+<script>
+    function addEditLink() {
+        const wrapper = document.getElementById('edit-link-wrapper');
+
+        const div = document.createElement('div');
+        div.className = 'input-group mb-2';
+
+        div.innerHTML = `
+            <input type="url" name="link[]" class="form-control" placeholder="https://google.com">
+            <button type="button" class="btn btn-outline-danger" onclick="removeLink(this)">✕</button>
+        `;
+
+        wrapper.appendChild(div);
+    }
+
+    function removeLink(button) {
+        button.closest('.input-group').remove();
+    }
+</script>
