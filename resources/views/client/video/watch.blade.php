@@ -190,32 +190,22 @@
                 if (watchHistory.length > 20) watchHistory = watchHistory.slice(0, 20);
                 localStorage.setItem("watchHistory", JSON.stringify(watchHistory));
             }
-
-            // === Fullscreen & Landscape for Mobile ===
-            const video = document.getElementById('video-video') || document.getElementById('video-iframe');
-
-            if (video) {
-                // Event fullscreen change
-                video.addEventListener('fullscreenchange', async () => {
-                    if (document.fullscreenElement) {
-                        try {
-                            if (screen.orientation && screen.orientation.lock) {
-                                await screen.orientation.lock('landscape');
-                            }
-                        } catch (err) {
-                            console.log('Orientation lock failed:', err);
-                        }
-                    } else {
-                        if (screen.orientation && screen.orientation.unlock) {
-                            screen.orientation.unlock();
-                        }
+        });
+    </script>
+    <script>
+        document.addEventListener("fullscreenchange", async () => {
+            if (document.fullscreenElement) {
+                try {
+                    if (screen.orientation && screen.orientation.lock) {
+                        await screen.orientation.lock("landscape");
                     }
-                });
-
-                // iOS Safari workaround
-                video.addEventListener('webkitbeginfullscreen', () => {
-                    console.log('iOS fullscreen triggered (manual landscape)');
-                });
+                } catch (err) {
+                    console.log("Orientation lock failed:", err);
+                }
+            } else {
+                if (screen.orientation && screen.orientation.unlock) {
+                    screen.orientation.unlock();
+                }
             }
         });
     </script>
