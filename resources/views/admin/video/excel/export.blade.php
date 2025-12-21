@@ -6,4 +6,7 @@
 <!-- Form export -->
 <form id="export" action="{{ route('admin.video.exportExcel') }}" hidden>
     @csrf
+    @if (request()->has('category_id'))
+        <input type="hidden" name="category_id" value="{{ request()->category_id }}">
+    @endif
 </form>

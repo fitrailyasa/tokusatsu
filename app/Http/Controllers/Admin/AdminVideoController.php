@@ -103,9 +103,23 @@ class AdminVideoController extends Controller
     }
 
     // Handle export video data to excel file
-    public function exportExcel()
+    public function exportExcel(Request $request)
     {
-        return Excel::download(new VideoExport, 'Data video.xlsx');
+        $categoryId = $request->query('category_id');
+
+        $categoryName = $categoryId
+            ? Category::where('id', $categoryId)->value('fullname')
+            : null;
+
+        $fileName = 'Data Video';
+
+        if (!empty($categoryName)) {
+            $fileName .= ' ' . $categoryName;
+        }
+
+        $fileName .= '.xlsx';
+
+        return Excel::download(new VideoExport($categoryId), $fileName);
     }
 
     // Handle export video data to pdf file

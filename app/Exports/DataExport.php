@@ -12,13 +12,23 @@ use PhpOffice\PhpSpreadsheet\Style\Border;
 
 class DataExport implements FromCollection, WithHeadings, WithStyles, ShouldAutoSize
 {
+
+    protected $categoryId;
+
+    public function __construct($categoryId)
+    {
+        $this->categoryId = $categoryId;
+    }
+
     public function collection()
     {
 
         $collection = [];
 
         $no = 1;
-        $datas = Data::all();
+        $datas = $this->categoryId
+            ? Data::where('category_id', $this->categoryId)->get()
+            : Data::all();
 
         foreach ($datas as $item) {
             $collection[] = [

@@ -12,13 +12,22 @@ use PhpOffice\PhpSpreadsheet\Style\Border;
 
 class VideoExport implements FromCollection, WithHeadings, WithStyles, ShouldAutoSize
 {
+    protected $categoryId;
+
+    public function __construct($categoryId)
+    {
+        $this->categoryId = $categoryId;
+    }
+
     public function collection()
     {
 
         $collection = [];
 
         $no = 1;
-        $Videos = Video::all();
+        $Videos = $this->categoryId
+            ? Video::where('category_id', $this->categoryId)->get()
+            : Video::all();
 
         foreach ($Videos as $item) {
             $collection[] = [

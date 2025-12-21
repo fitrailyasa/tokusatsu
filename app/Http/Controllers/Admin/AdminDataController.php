@@ -92,9 +92,23 @@ class AdminDataController extends Controller
     }
 
     // Handle export data to excel file
-    public function exportExcel()
+    public function exportExcel(Request $request)
     {
-        return Excel::download(new DataExport, $this->title . '.xlsx');
+        $categoryId = $request->query('category_id');
+
+        $categoryName = $categoryId
+            ? Category::where('id', $categoryId)->value('fullname')
+            : null;
+
+        $fileName = 'Data';
+
+        if (!empty($categoryName)) {
+            $fileName .= ' ' . $categoryName;
+        }
+
+        $fileName .= '.xlsx';
+
+        return Excel::download(new DataExport($categoryId), $fileName);
     }
 
     // Handle export data to pdf file
