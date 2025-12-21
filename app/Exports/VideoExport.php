@@ -27,7 +27,9 @@ class VideoExport implements FromCollection, WithHeadings, WithStyles, ShouldAut
                 'Category' => $item->category->name ?? 'null',
                 'Type' => $item->type ?? '',
                 'Number' => $item->number ?? 0,
-                'Link' => $item->link ?? '',
+                'Link'     => is_array($item->link)
+                    ? implode(', ', $item->link)
+                    : ($item->link ?? ''),
             ];
         }
 
