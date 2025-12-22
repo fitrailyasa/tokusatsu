@@ -38,7 +38,7 @@ class VideoRequest extends FormRequest
             'link' => 'nullable|array',
             'link.*' => 'nullable|url|max:225',
             'airdate' => 'nullable|date',
-            'status' => 'required|in:0,1',
+            'status' => 'nullable|in:0,1',
         ];
     }
 
