@@ -1,32 +1,20 @@
 @extends('layouts.client.app')
 
 @section('title', 'History')
-
 @section('textHistory', 'rounded aktif')
 
 @section('content')
     <div class="container my-5 py-4">
-        <div class="row mb-3">
-            <div class="col-3 text-left">
-            </div>
-            <div class="col-6">
-                <h1 class="text-center responsive-title">History</h1>
-            </div>
-            <div class="col-3 text-right"></div>
-        </div>
-
-        <div class="mt-4">
-            <ul id="watchHistory" class="list-group"></ul>
-            {{-- <div class="mt-3">
-                <button id="clearHistoryBtn" class="btn btn-danger btn-sm">
-                    Delete All History
-                </button>
-            </div> --}}
+        <div id="historyWrapper" class="d-flex justify-content-center">
+            <ul id="watchHistory" class="list-group w-100"></ul>
         </div>
     </div>
+
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const historyList = document.getElementById("watchHistory");
+            const wrapper = document.getElementById("historyWrapper");
+
             let watchHistory = JSON.parse(localStorage.getItem("watchHistory")) || [];
 
             function timeAgo(dateString) {
@@ -56,10 +44,22 @@
             function renderHistory() {
                 historyList.innerHTML = "";
                 if (watchHistory.length === 0) {
-                    historyList.innerHTML =
-                        "<li class='list-group-item text-muted text-center'>There is no viewing history yet</li>";
+                    wrapper.classList.add("align-items-center");
+                    wrapper.style.minHeight = "calc(100vh - 220px)";
+
+                    historyList.innerHTML = `
+                <li class="list-group-item border-0 bg-transparent">
+                    <div class="d-flex flex-column align-items-center text-muted">
+                        <i class="fa-regular fa-clock fa-2x mb-2"></i>
+                        <span>There is no viewing history yet</span>
+                    </div>
+                </li>
+            `;
                     return;
                 }
+
+                wrapper.classList.remove("align-items-center");
+                wrapper.style.minHeight = "auto";
 
                 watchHistory.forEach((item, index) => {
                     const li = document.createElement("li");
@@ -96,14 +96,6 @@
             }
 
             renderHistory();
-
-            // clearHistoryBtn.addEventListener("click", function() {
-            //     if (confirm("Are you sure you want to delete all viewing history?")) {
-            //         localStorage.removeItem("watchHistory");
-            //         watchHistory = [];
-            //         renderHistory();
-            //     }
-            // });
         });
     </script>
 @endsection
