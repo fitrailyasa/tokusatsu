@@ -37,7 +37,7 @@
                                         <optgroup label="{{ $franchiseName }}">
                                             @foreach ($categoriesGroup as $category)
                                                 <option value="{{ old('category_id', $category->id) }}">
-                                                    {{ $category->name }}
+                                                    {{ $category->fullname }}
                                                 </option>
                                             @endforeach
                                         </optgroup>
