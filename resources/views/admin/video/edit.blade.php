@@ -96,7 +96,7 @@
                                                 value="{{ $url }}" placeholder="https://google.com">
 
                                             <button type="button" class="btn btn-outline-danger"
-                                                onclick="removeLink(this)">
+                                                onclick="removeEditLink(this)">
                                                 ✕
                                             </button>
 
@@ -145,13 +145,17 @@
 
         div.innerHTML = `
             <input type="url" name="link[]" class="form-control" placeholder="https://google.com">
-            <button type="button" class="btn btn-outline-danger" onclick="removeLink(this)">✕</button>
+            <button type="button" class="btn btn-outline-danger" onclick="removeEditLink(this)">✕</button>
         `;
 
         wrapper.appendChild(div);
     }
 
-    function removeLink(button) {
-        button.closest('.input-group').remove();
+    function removeEditLink(button) {
+        const wrapper = document.getElementById('edit-link-wrapper');
+
+        if (wrapper.children.length > 1) {
+            button.closest('.input-group').remove();
+        }
     }
 </script>
