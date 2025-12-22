@@ -27,8 +27,6 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const historyList = document.getElementById("watchHistory");
-            const clearHistoryBtn = document.getElementById("clearHistoryBtn");
-
             let watchHistory = JSON.parse(localStorage.getItem("watchHistory")) || [];
 
             function timeAgo(dateString) {
@@ -59,37 +57,39 @@
                 historyList.innerHTML = "";
                 if (watchHistory.length === 0) {
                     historyList.innerHTML =
-                        "<li class='list-group-item text-muted'>There is no viewing history yet</li>";
+                        "<li class='list-group-item text-muted text-center'>There is no viewing history yet</li>";
                     return;
                 }
 
                 watchHistory.forEach((item, index) => {
                     const li = document.createElement("li");
                     li.className = "list-group-item d-flex justify-content-between align-items-center";
-                    const container = document.createElement("div");
+
+                    const info = document.createElement("div");
+
                     const link = document.createElement("a");
                     link.href = item.url;
-                    link.className = "text-dark fw-semibold text-decoration-none";
                     link.textContent = item.title;
+                    link.className = "fw-semibold text-dark text-decoration-none";
 
-                    const timeAgoText = document.createElement("span");
-                    timeAgoText.className = "text-muted ms-2";
-                    timeAgoText.textContent = "• " + timeAgo(item.time);
+                    const time = document.createElement("div");
+                    time.className = "text-muted small";
+                    time.textContent = timeAgo(item.time);
 
-                    container.appendChild(link);
-                    container.appendChild(timeAgoText);
+                    info.appendChild(link);
+                    info.appendChild(time);
 
                     const deleteBtn = document.createElement("button");
                     deleteBtn.className = "btn btn-sm btn-outline-danger";
                     deleteBtn.innerHTML = "<i class='fas fa-trash'></i>";
 
-                    deleteBtn.addEventListener("click", function() {
+                    deleteBtn.onclick = () => {
                         watchHistory.splice(index, 1);
                         localStorage.setItem("watchHistory", JSON.stringify(watchHistory));
                         renderHistory();
-                    });
+                    };
 
-                    li.appendChild(container);
+                    li.appendChild(info);
                     li.appendChild(deleteBtn);
                     historyList.appendChild(li);
                 });
