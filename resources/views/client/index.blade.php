@@ -183,6 +183,29 @@
                 Terms & Conditions
             </a>
         </div>
+        <div class="container text-center small">
+            @php
+                $at = '@';
+                $username = strtolower(str_replace(' ', '', config('app.name')));
+            @endphp
+            <a href="https://instagram.com/{{ $username }}" class="text-muted text-decoration-none">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+            <span class="text-muted mx-2">|</span>
+            <a href="https://x.com/{{ $username }}" class="text-muted text-decoration-none">
+                <i class="fa-brands fa-twitter"></i>
+            </a>
+            <span class="text-muted mx-2">|</span>
+            <a href="https://www.tiktok.com/{{ $at }}{{ $username }}"
+                class="text-muted text-decoration-none">
+                <i class="fa-brands fa-tiktok"></i>
+            </a>
+            <span class="text-muted mx-2">|</span>
+            <a href="https://www.youtube.com/{{ $at }}{{ $username }}"
+                class="text-muted text-decoration-none">
+                <i class="fa-brands fa-youtube"></i>
+            </a>
+        </div>
     </footer>
 
     {{-- SWIPER JS --}}
