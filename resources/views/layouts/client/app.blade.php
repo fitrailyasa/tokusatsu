@@ -237,7 +237,7 @@
 
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed content">
+<body class="hold-transition sidebar-mini layout-fixed content bg-light">
 
     @include('layouts.client.header')
 

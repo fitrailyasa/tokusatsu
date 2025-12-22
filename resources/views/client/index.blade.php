@@ -42,6 +42,7 @@
             justify-content: center;
             align-items: center;
             position: relative;
+            margin-bottom: 7px;
             padding: 0 15px;
         }
 
