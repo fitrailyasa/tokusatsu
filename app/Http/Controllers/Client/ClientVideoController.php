@@ -66,6 +66,7 @@ class ClientVideoController extends Controller
             ->latest('number')
             ->where('type', 'episode')
             ->where('link', '!=', null)
+            ->where('link', '!=', '[]')
             ->where('status', 1)
             ->paginate(100);
 
