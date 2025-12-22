@@ -86,7 +86,7 @@
         }
     </style>
 
-    <div class="container mt-5 py-4 bg-light text-center">
+    <div class="container mt-5 py-4 text-center">
         @include('client.buttonSearch')
         <br>
         {{-- ===================== KAMEN RIDER ===================== --}}
@@ -95,7 +95,7 @@
             <a class="text-dark" href="{{ route('video.category', 'kamen-rider') }}">View All <i
                     class="fa-solid fa-arrow-up-right-from-square"></i></a>
         </div>
-        <div class="swiper pt-0 pb-3 px-2 bg-light mySwiperKR">
+        <div class="swiper pt-0 pb-3 px-2 mySwiperKR">
             <div class="swiper-wrapper">
                 @foreach ($categories as $category)
                     @if ($category->franchise && $category->franchise->name === 'Kamen Rider')
@@ -121,7 +121,7 @@
             <a class="text-dark" href="{{ route('video.category', 'ultraman') }}">View All <i
                     class="fa-solid fa-arrow-up-right-from-square"></i></a>
         </div>
-        <div class="swiper pt-0 pb-3 px-2 bg-light mySwiperUL">
+        <div class="swiper pt-0 pb-3 px-2 mySwiperUL">
             <div class="swiper-wrapper">
                 @foreach ($categories as $category)
                     @if ($category->franchise && $category->franchise->name === 'Ultraman')
@@ -147,7 +147,7 @@
             <a class="text-dark" href="{{ route('video.category', 'super-sentai') }}">View All <i
                     class="fa-solid fa-arrow-up-right-from-square"></i></a>
         </div>
-        <div class="swiper pt-0 pb-3 px-2 bg-light mySwiperSS">
+        <div class="swiper pt-0 pb-3 px-2 mySwiperSS">
             <div class="swiper-wrapper">
                 @foreach ($categories as $category)
                     @if ($category->franchise && $category->franchise->name === 'Super Sentai')
@@ -168,7 +168,7 @@
         </div>
     </div>
 
-    <footer class="d-none d-lg-block border-top bg-light py-3">
+    <footer class="d-none d-lg-block border-top py-3">
         <div class="container text-center small">
             <a href="{{ route('home') }}" class="text-muted text-decoration-none">
                 Copyright &copy; {{ date('Y') }} {{ config('app.name') }}

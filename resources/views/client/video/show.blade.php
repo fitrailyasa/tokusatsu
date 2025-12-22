@@ -48,10 +48,10 @@
                     <table class="table align-middle table-hover shadow-sm mt-3">
                         <thead class="bg-dark text-white">
                             <tr>
-                                <th class="text-center" style="width: 120px;">Episode</th>
+                                <th class="text-center" style="max-width: 120px;">Episode</th>
                                 <th>Title</th>
-                                <th style="width: 160px;">Release Date</th>
-                                <th class="text-center" style="width: 110px;">Bookmark</th>
+                                <th style="max-width: 160px;">Release Date</th>
+                                <th class="text-center" style="max-width: 110px;">Bookmark</th>
                             </tr>
                         </thead>
                         <tbody>
