@@ -61,14 +61,27 @@ class ClientVideoController extends Controller
             abort(404);
         }
 
-        $videos = $category->videos()
+        $hasEpisode = $category->videos()
+            ->where('type', 'episode')
+            ->where('status', 1)
+            ->whereNotNull('link')
+            ->where('link', '!=', '[]')
+            ->exists();
+
+        $videosQuery = $category->videos()
             ->with('category')
             ->latest('number')
-            ->where('type', 'episode')
-            ->where('link', '!=', null)
-            ->where('link', '!=', '[]')
             ->where('status', 1)
-            ->paginate(100);
+            ->whereNotNull('link')
+            ->where('link', '!=', '[]');
+
+        if ($hasEpisode) {
+            $videosQuery->where('type', 'episode');
+        } else {
+            $videosQuery->where('type', '!=', 'episode');
+        }
+
+        $videos = $videosQuery->paginate(100);
 
         return view('client.video.show', [
             'category' => $category,
