@@ -42,7 +42,6 @@
             justify-content: center;
             align-items: center;
             position: relative;
-            margin-bottom: 5px;
             padding: 0 15px;
         }
 
@@ -86,7 +85,7 @@
         }
     </style>
 
-    <div class="container mt-5 py-4 text-center">
+    <div class="container text-center" style="padding-top: 80px; padding-bottom: 80px;">
         @include('client.buttonSearch')
         <br>
         {{-- ===================== KAMEN RIDER ===================== --}}

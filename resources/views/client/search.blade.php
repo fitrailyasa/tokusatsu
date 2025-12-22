@@ -5,7 +5,7 @@
 @section('textHome', 'rounded aktif')
 
 @section('content')
-    <div class="text-center my-5 py-4">
+    <div class="text-center" style="padding-top: 80px; padding-bottom: 80px;">
         @include('client.buttonSearch')
         <h4 class="text-center responsive-title">Search Result</h4>
         <div class="text-center d-flex flex-wrap justify-content-center py-3">
