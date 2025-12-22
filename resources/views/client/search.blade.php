@@ -5,16 +5,18 @@
 @section('textHome', 'rounded aktif')
 
 @section('content')
-    <div class="text-center my-5 py-5">
+    <div class="text-center my-5 py-4">
         @include('client.buttonSearch')
-        <h4 class="font-weight-bold">Search Result</h4>
-        <div class="text-center d-flex flex-wrap justify-content-center pb-3">
+        <h4 class="text-center responsive-title">Search Result</h4>
+        <div class="text-center d-flex flex-wrap justify-content-center py-3">
             @foreach ($datas as $item)
-                <a class="bg-light px-2 py-1 mx-2 my-2 rounded"
+                <a class="bg-light rounded"
                     href="{{ url('video/' . $item->category->franchise->slug) }}/{{ $item->category->slug }}/{{ $item->type }}/{{ $item->number }}">
                     <img class="img img-fluid img-gallery" loading="lazy" src="{{ asset('storage/' . $item->category->img) }}"
                         alt="{{ $item->category->img }}">
-                    <p>{{ ucwords($item->category->fullname) }} {{ ucwords($item->type) }} {{ $item->number }}</p>
+                    <p class="small px-2">{{ ucwords($item->category->fullname) }} {{ ucwords($item->type) }}
+                        {{ $item->number }}
+                    </p>
                 </a>
             @endforeach
         </div>

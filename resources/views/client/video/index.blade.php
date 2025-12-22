@@ -11,7 +11,7 @@
             transition: all .25s ease;
             border-radius: 12px;
             padding: 20px 15px;
-            font-size: 1.1rem;
+            font-size: 0.9rem;
             font-weight: 600;
             background: #ffffff;
             border: 1px solid #ddd;
@@ -26,8 +26,6 @@
     </style>
 
     <div class="container text-center my-5 py-4">
-        <h1 class="responsive-title">@yield('title')</h1>
-
         <div class="row justify-content-center mt-4">
             @foreach ($franchises as $item)
                 <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
@@ -36,10 +34,9 @@
                             @if ($item->img === null)
                                 <img class="img img-fluid rounded" src="{{ asset('logo.png') }}" alt="">
                             @else
-                                <img class="img img-fluid rounded" src="{{ asset('storage/' . $item->img) }}"
-                                    alt="">
+                                <img class="img img-fluid rounded" src="{{ asset('storage/' . $item->img) }}" alt="">
                             @endif
-                            {{ $item->name }}
+                            <p>{{ $item->name }}</p>
                         </div>
                     </a>
                 </div>
