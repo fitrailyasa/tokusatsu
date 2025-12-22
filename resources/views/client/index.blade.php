@@ -92,7 +92,7 @@
         {{-- ===================== KAMEN RIDER ===================== --}}
         <div class="section-title">
             <h5 class="title fw-bold mb-1">Kamen Rider</h5>
-            <a class="text-dark" href="{{ route('video.category', 'kamen-rider') }}">Lihat Semua <i
+            <a class="text-dark" href="{{ route('video.category', 'kamen-rider') }}">View All <i
                     class="fa-solid fa-arrow-up-right-from-square"></i></a>
         </div>
         <div class="swiper pt-0 pb-3 px-2 bg-light mySwiperKR">
@@ -118,7 +118,7 @@
         {{-- ===================== ULTRAMAN ===================== --}}
         <div class="section-title">
             <h5 class="title fw-bold mb-1">Ultraman</h5>
-            <a class="text-dark" href="{{ route('video.category', 'ultraman') }}">Lihat Semua <i
+            <a class="text-dark" href="{{ route('video.category', 'ultraman') }}">View All <i
                     class="fa-solid fa-arrow-up-right-from-square"></i></a>
         </div>
         <div class="swiper pt-0 pb-3 px-2 bg-light mySwiperUL">
@@ -144,7 +144,7 @@
         {{-- ===================== SUPER SENTAI ===================== --}}
         <div class="section-title">
             <h5 class="title fw-bold mb-1">Super Sentai</h5>
-            <a class="text-dark" href="{{ route('video.category', 'super-sentai') }}">Lihat Semua <i
+            <a class="text-dark" href="{{ route('video.category', 'super-sentai') }}">View All <i
                     class="fa-solid fa-arrow-up-right-from-square"></i></a>
         </div>
         <div class="swiper pt-0 pb-3 px-2 bg-light mySwiperSS">
