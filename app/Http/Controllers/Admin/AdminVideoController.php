@@ -45,15 +45,18 @@ class AdminVideoController extends Controller
             ['id' => 'episode', 'name' => 'Episode'],
             ['id' => 'special', 'name' => 'Special'],
             ['id' => 'movie', 'name' => 'Movie'],
+            ['id' => 'hyper-battle-dvd', 'name' => 'Hyper Battle DVD'],
+            ['id' => 'spin-off', 'name' => 'Spin-Off'],
             ['id' => 'stageshow', 'name' => 'Stage Show'],
             ['id' => 'manga', 'name' => 'Manga'],
             ['id' => 'novel', 'name' => 'Novel'],
-            ['id' => 'herosaga', 'name' => 'Hero Saga'],
-            ['id' => 'audiodrama', 'name' => 'Audio Drama'],
-            ['id' => 'netmovie', 'name' => 'Net Movie'],
-            ['id' => 'videogame', 'name' => 'Video Game'],
+            ['id' => 'hero-saga', 'name' => 'Hero Saga'],
+            ['id' => 'audio-drama', 'name' => 'Audio Drama'],
+            ['id' => 'net-movie', 'name' => 'Net Movie'],
+            ['id' => 'video-game', 'name' => 'Video Game'],
             ['id' => 'other', 'name' => 'Other'],
         ];
+
         $categories = Category::all();
         $groupedCategories = $categories->groupBy('franchise.name');
 
