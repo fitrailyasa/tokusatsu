@@ -23,7 +23,12 @@
 
         <div class="row">
             @if ($videos->isEmpty())
-                <p class="text-center mt-3">There are no video in this category.</p>
+                <div class="d-flex justify-content-center align-items-center" style="min-height: 70vh;">
+                    <div class="text-center text-muted">
+                        <i class="fas fa-tag fa-2x m2-3"></i>
+                        <p>No Categories Available</p>
+                    </div>
+                </div>
             @else
                 <div class="table-responsive">
                     <table class="table align-middle table-hover shadow-sm mt-3">
