@@ -57,6 +57,9 @@
                     </h1>
                 </div>
                 <div class="col-3 text-right">
+                    <button id="shareBtn" class="btn m-0 p-0">
+                        <i class="fa fa-share"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -174,7 +177,19 @@
             @endif
         });
     </script>
+    <script>
+        document.getElementById("shareBtn").addEventListener("click", async function() {
+            const shareData = {
+                title: document.title,
+                text: "{{ $category->fullname }}",
+                url: window.location.href
+            };
 
+            if (navigator.share) {
+                await navigator.share(shareData);
+            }
+        });
+    </script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             // === Watch History ===

@@ -37,7 +37,11 @@
             <div>
                 <h1 class="text-center responsive-title">{{ $category->fullname }}</h1>
             </div>
-            <div></div>
+            <div>
+                <button id="shareBtn" class="btn m-0 p-0">
+                    <i class="fa fa-share"></i>
+                </button>
+            </div>
         </div>
 
         <div class="row">
@@ -136,6 +140,19 @@
             });
 
             updateButtons();
+        });
+    </script>
+    <script>
+        document.getElementById("shareBtn").addEventListener("click", async function() {
+            const shareData = {
+                title: document.title,
+                text: "{{ $category->fullname }}",
+                url: window.location.href
+            };
+
+            if (navigator.share) {
+                await navigator.share(shareData);
+            }
         });
     </script>
 @endsection
