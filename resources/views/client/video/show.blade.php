@@ -52,7 +52,7 @@
                     <table class="table align-middle table-hover shadow-sm mt-3">
                         <thead class="bg-dark text-white">
                             <tr>
-                                <th class="text-center" style="max-width: 120px;">Episode</th>
+                                <th class="text-center" style="max-width: 120px;">List</th>
                                 <th>Title</th>
                                 <th style="max-width: 160px;">Release Date</th>
                                 <th class="text-center" style="max-width: 110px;">Bookmark</th>
@@ -64,7 +64,7 @@
                                     <td class="text-center fw-semibold">
                                         <a class="text-decoration-none text-dark"
                                             href="{{ route('video.watch', [$item->category->franchise->slug, $item->category->slug, $item->type, $item->number]) }}">
-                                            {{ ucfirst($item->type) }} {{ $item->number }}
+                                            {{ $item->label }} {{ $item->number }}
                                             <i class="fa-solid fa-arrow-up-right-from-square ms-1"></i>
                                         </a>
                                     </td>
