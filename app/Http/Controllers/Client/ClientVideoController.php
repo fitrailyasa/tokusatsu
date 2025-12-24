@@ -82,12 +82,37 @@ class ClientVideoController extends Controller
         }
 
         $videos = $videosQuery->paginate(100);
+        $type = $hasEpisode ? 'episode' : 'video';
 
         return view('client.video.show', [
             'category' => $category,
             'franchise' => $category->franchise,
             'videos' => $videos,
+            'type' => $type,
         ]);
+    }
+
+    public function movie(TableRequest $request, string $franchise)
+    {
+        $search = $request->input('search');
+        $perPage = (int) $request->input('perPage', 10);
+        $eraId = $request->input('era_id');
+        $franchiseId = $request->input('franchise_id');
+        $validPerPage = in_array($perPage, [10, 50, 100]) ? $perPage : 10;
+
+        $franchise = Franchise::where('slug', $franchise)->withoutTrashed()->where('status', 1)->firstOrFail();
+
+        $videos = Video::whereHas('category', function ($q) use ($franchise) {
+            $q->where('franchise_id', $franchise->id);
+        })
+            ->where('type', '!=', 'episode')
+            ->where('status', 1)
+            ->whereNotNull('link')
+            ->where('link', '!=', '[]')
+            ->orderBy('airdate', 'desc')
+            ->paginate($validPerPage);
+
+        return view('client.video.movie', compact('franchise', 'search', 'perPage', 'eraId', 'franchiseId', 'videos'));
     }
 
     /**
