@@ -40,8 +40,14 @@
                                     <td class="text-center fw-semibold">
                                         <a class="text-decoration-none text-dark"
                                             href="{{ route('video.watch', [$item->category->franchise->slug, $item->category->slug, $item->type, $item->number]) }}">
-                                            {{ ucfirst($item->type) }} {{ $item->number }}
-                                            <i class="fa-solid fa-arrow-up-right-from-square ms-1"></i>
+                                            @if ($item->category->img === null)
+                                                <img class="img-fluid rounded shadow-sm" width="150px"
+                                                    src="{{ asset('logo.png') }}" alt="{{ $item->category->fullname }}">
+                                            @else
+                                                <img class="img-fluid rounded shadow-sm" width="150px"
+                                                    src="{{ asset('storage/' . $item->category->img ?? '') }}"
+                                                    alt="{{ $item->category->fullname }}">
+                                            @endif
                                         </a>
                                     </td>
 
