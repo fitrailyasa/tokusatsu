@@ -42,11 +42,13 @@ class AdminVideoController extends Controller
         $validPerPage = in_array($perPage, [10, 50, 100]) ? $perPage : 10;
 
         $types = [
-            ['id' => 'episode', 'name' => 'Episode'],
+            ['id' => 'episode', 'name' => 'Series'],
             ['id' => 'special', 'name' => 'Special'],
             ['id' => 'movie', 'name' => 'Movie'],
             ['id' => 'hyper-battle-dvd', 'name' => 'Hyper Battle DVD'],
             ['id' => 'spin-off', 'name' => 'Spin-Off'],
+            ['id' => 'v-cinema', 'name' => 'V-Cinema'],
+            ['id' => 'mini-series', 'name' => 'Mini-Series'],
             ['id' => 'stageshow', 'name' => 'Stage Show'],
             ['id' => 'manga', 'name' => 'Manga'],
             ['id' => 'novel', 'name' => 'Novel'],
