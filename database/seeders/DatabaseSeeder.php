@@ -25,6 +25,9 @@ class DatabaseSeeder extends Seeder
         $this->call(VideoSuperSentaiSeeder::class);
         $this->call(VideoUltramanSeeder::class);
         $this->call(VideoOtherSeeder::class);
+        $this->call(MovieKamenRiderSeeder::class);
+        $this->call(MovieSuperSentaiSeeder::class);
+        $this->call(MovieUltramanSeeder::class);
         // $this->call(GeojsonSeeder::class);
         // $this->call(AddressProvinceSeeder::class);
         // $this->call(AddressRegencySeeder::class);
