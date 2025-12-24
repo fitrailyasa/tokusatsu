@@ -181,7 +181,7 @@
         document.getElementById("shareBtn").addEventListener("click", async function() {
             const shareData = {
                 title: document.title,
-                text: "{{ $category->fullname - $video->type $video->number }}",
+                text: "{{ $category->fullname }} {{ ucword($video->type) }} {{ $video->number }}",
                 url: window.location.href
             };
 
