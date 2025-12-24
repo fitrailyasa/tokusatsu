@@ -48,8 +48,12 @@
                 </div>
                 <div class="col-6">
                     <h1 class="text-center responsive-title">
-                        {{ $category->fullname }} {{ ucfirst($video->type) }}
-                        {{ $video->number }}
+                        @if ($video->type == 'episode')
+                            {{ $category->fullname }} {{ ucfirst($video->type) }}
+                            {{ $video->number }}
+                        @else
+                            {{ $video->title }}
+                        @endif
                     </h1>
                 </div>
                 <div class="col-3 text-right">
