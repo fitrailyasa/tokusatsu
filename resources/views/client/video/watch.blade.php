@@ -82,7 +82,7 @@
 
                     <video id="video-video" class="w-100 h-100 d-none" controls>
                         <source id="video-source" src="">
-                        Browser Anda tidak mendukung video.
+                        Your browser does not support video.
                     </video>
                 </div>
 
