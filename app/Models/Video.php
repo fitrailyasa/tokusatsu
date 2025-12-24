@@ -77,4 +77,27 @@ class Video extends Model
         $hash = crc32($name);
         return $colors[$hash % count($colors)];
     }
+
+    public function getLabelAttribute(): string
+    {
+        $types = [
+            'episode' => 'Series',
+            'special' => 'Special',
+            'movie' => 'Movie',
+            'hyper-battle-dvd' => 'Hyper Battle DVD',
+            'spin-off' => 'Spin-Off',
+            'v-cinema' => 'V-Cinema',
+            'mini-series' => 'Mini Series',
+            'stageshow' => 'Stage Show',
+            'manga' => 'Manga',
+            'novel' => 'Novel',
+            'hero-saga' => 'Hero Saga',
+            'audio-drama' => 'Audio Drama',
+            'net-movie' => 'Net Movie',
+            'video-game' => 'Video Game',
+            'other' => 'Other',
+        ];
+
+        return $types[$this->type] ?? str_replace('-', ' ', ucwords($this->type));
+    }
 }
