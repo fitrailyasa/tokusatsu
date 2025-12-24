@@ -146,10 +146,6 @@ class ClientVideoController extends Controller
 
         $embedUrls = collect($video->getValidEmbedLinks());
 
-        if ($embedUrls->isEmpty()) {
-            abort(403, 'Video is not available or has been removed.');
-        }
-
         $prev = Video::where([
             'category_id' => $category->id,
             'type' => $type,

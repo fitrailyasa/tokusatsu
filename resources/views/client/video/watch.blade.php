@@ -76,14 +76,23 @@
                 <div class="ratio ratio-16x9 rounded overflow-hidden bg-dark mb-4">
                     <div class="no-click-overlay"></div>
 
+                    @if ($embedUrls->isEmpty())
+                        <div class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column align-items-center justify-content-center text-center bg-secondary text-white"
+                            style="z-index: 10;">
+                            <i class="fas fa-video-slash fa-3x mb-3"></i>
+                            <h5 class="mb-0">Video is not available or has been removed.</h5>
+                        </div>
+                    @endif
+
                     <iframe id="video-iframe" class="w-100 h-100 d-none border-0" allow="autoplay; fullscreen"
                         allowfullscreen>
                     </iframe>
 
-                    <video id="video-video" class="w-100 h-100 d-none" controls>
+                    <video id="video-video" class="w-100 h-100 d-none" controls controlsList="nodownload">
                         <source id="video-source" src="">
                         Your browser does not support video.
                     </video>
+
                 </div>
 
                 @if (count($embedUrls) > 1)
