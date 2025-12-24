@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Str;
+use App\Models\Traits\VideoLinkTrait;
 
 class Video extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, VideoLinkTrait;
 
     protected $connection;
     protected $table = 'videos';

@@ -129,12 +129,8 @@ class ClientVideoController extends Controller
         $category = Category::where('slug', $category)
             ->with('franchise')
             ->where('status', 1)
-            ->whereHas('franchise', function ($q) {
-                $q->where('status', 1);
-            })
-            ->whereHas('era', function ($q) {
-                $q->where('status', 1);
-            })
+            ->whereHas('franchise', fn($q) => $q->where('status', 1))
+            ->whereHas('era', fn($q) => $q->where('status', 1))
             ->firstOrFail();
 
         if ($category->franchise->slug !== $franchise) {
@@ -148,10 +144,11 @@ class ClientVideoController extends Controller
             ['status', '=', 1],
         ])->firstOrFail();
 
-        $embedUrls = collect($video->link ?? [])
-            ->map(fn($url) => $this->videoEmbed($url))
-            ->filter()
-            ->values();
+        $embedUrls = collect($video->getValidEmbedLinks());
+
+        if ($embedUrls->isEmpty()) {
+            abort(403, 'Video is not available or has been removed.');
+        }
 
         $prev = Video::where([
             'category_id' => $category->id,
@@ -168,67 +165,12 @@ class ClientVideoController extends Controller
         ])->first();
 
         return view('client.video.watch', [
-            'category' => $category,
-            'franchise' => $category->franchise,
-            'video' => $video,
-            'embedUrls' => $embedUrls,
-            'prev' => $prev,
-            'next' => $next,
+            'category'   => $category,
+            'franchise'  => $category->franchise,
+            'video'      => $video,
+            'embedUrls'  => $embedUrls,
+            'prev'       => $prev,
+            'next'       => $next,
         ]);
-    }
-
-    /**
-     * Convert video link into embeddable URL.
-     */
-    protected function videoEmbed($url)
-    {
-        // Google Drive
-        if (strpos($url, 'drive.google.com') !== false) {
-            if (preg_match('/\/d\/(.*?)\//', $url, $matches)) {
-                return "https://drive.google.com/file/d/" . $matches[1] . "/preview";
-            }
-        }
-
-        // YouTube
-        if (strpos($url, 'youtube.com') !== false || strpos($url, 'youtu.be') !== false) {
-            preg_match('/(youtu\.be\/|v=)([^&]+)/', $url, $matches);
-            if (isset($matches[2])) {
-                return "https://www.youtube.com/embed/" . $matches[2];
-            }
-        }
-
-        // Dropbox
-        if (strpos($url, 'dropbox.com') !== false) {
-            return str_replace('?dl=0', '?raw=1', $url);
-        }
-
-        // OneDrive
-        if (strpos($url, 'onedrive.live.com') !== false) {
-            return $url;
-        }
-
-        // Archive.org
-        if (strpos($url, 'archive.org') !== false) {
-
-            // Jika format /details/xxxx/file.mp4
-            if (preg_match('#archive\.org/details/([^/]+)/(.+)$#', $url, $m)) {
-                return "https://archive.org/embed/{$m[1]}/{$m[2]}";
-            }
-
-            // Jika format /download/xxxx/file.mp4
-            if (preg_match('#archive\.org/download/([^/]+)/(.+)$#', $url, $m)) {
-                return "https://archive.org/embed/{$m[1]}/{$m[2]}";
-            }
-
-            // fallback default
-            return str_replace('/details/', '/embed/', $url);
-        }
-
-        // Direct storage / CDN / S3 / Laravel public storage
-        if (preg_match('/\.(mp4|mkv|webm|ogg)$/i', $url)) {
-            return $url;
-        }
-
-        return $url;
     }
 }
