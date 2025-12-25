@@ -13,19 +13,14 @@ use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminTagController;
 use App\Http\Controllers\Admin\AdminDataController;
 use App\Http\Controllers\Admin\AdminVideoController;
-use App\Http\Controllers\Admin\AdminGeojsonController;
 use App\Http\Controllers\Admin\AdminProviderAccountController;
 use App\Http\Controllers\Auth\ProviderController;
 use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\MidtransController;
-use App\Http\Controllers\AddressController;
-use App\Http\Controllers\Client\ClientEraController;
-use App\Http\Controllers\Client\ClientFranchiseController;
 use App\Http\Controllers\Client\ClientCategoryController;
 use App\Http\Controllers\Client\ClientVideoController;
 use App\Http\Controllers\Client\ClientHistoryController;
 use App\Http\Controllers\Client\ClientBookmarkController;
-use App\Http\Controllers\MapController;
 use App\Livewire\Admin\DashboardLivewire;
 use App\Livewire\Admin\CategoryLivewire;
 use App\Livewire\Admin\DataLivewire;
@@ -41,12 +36,6 @@ Route::get('/privacy-policy', [HomeController::class, 'privacyPolicy'])->name('p
 Route::get('/terms-conditions', [HomeController::class, 'termsConditions'])->name('terms-conditions');
 
 Route::get('/search', [HomeController::class, 'search'])->name('search');
-Route::get('/era', [ClientEraController::class, 'index'])->name('era');
-Route::get('/era/{category}', [ClientEraController::class, 'show'])->name('era.show');
-Route::get('/era/{category}/{data}', [ClientEraController::class, 'category'])->name('era.category');
-Route::get('/franchise', [ClientFranchiseController::class, 'index'])->name('franchise');
-Route::get('/franchise/{category}', [ClientFranchiseController::class, 'show'])->name('franchise.show');
-Route::get('/franchise/{category}/{data}', [ClientFranchiseController::class, 'category'])->name('franchise.category');
 Route::get('/category', [ClientCategoryController::class, 'index'])->name('category');
 Route::get('/category/{data}', [ClientCategoryController::class, 'show'])->name('category.show');
 
@@ -174,20 +163,6 @@ Route::middleware(['auth'])->group(function () {
     // Route::get('/video/exportPDF', [AdminVideoController::class, 'exportPDF'])->name('video.exportPDF');
     Route::put('/video/{id}/toggle-status', [AdminVideoController::class, 'toggleStatus'])->name('video.toggleStatus');
 
-    // CRUD GEOJSON
-    Route::get('/geojson', [AdminGeojsonController::class, 'index'])->name('geojson.index');
-    Route::post('/geojson', [AdminGeojsonController::class, 'store'])->name('geojson.store');
-    Route::put('/geojson/{id}/update', [AdminGeojsonController::class, 'update'])->name('geojson.update');
-    Route::delete('/geojson/{id}/destroy', [AdminGeojsonController::class, 'destroy'])->name('geojson.destroy');
-    Route::delete('/geojson/destroyAll', [AdminGeojsonController::class, 'destroyAll'])->name('geojson.destroyAll');
-    Route::delete('/geojson/{id}/softDelete', [AdminGeojsonController::class, 'softDelete'])->name('geojson.softDelete');
-    Route::delete('/geojson/softDeleteAll', [AdminGeojsonController::class, 'softDeleteAll'])->name('geojson.softDeleteAll');
-    Route::put('/geojson/{id}/restore', [AdminGeojsonController::class, 'restore'])->name('geojson.restore');
-    Route::put('/geojson/restoreAll', [AdminGeojsonController::class, 'restoreAll'])->name('geojson.restoreAll');
-    Route::post('/geojson/import', [AdminGeojsonController::class, 'import'])->name('geojson.import');
-    Route::get('/geojson/exportExcel', [AdminGeojsonController::class, 'exportExcel'])->name('geojson.exportExcel');
-    Route::get('/geojson/exportPDF', [AdminGeojsonController::class, 'exportPDF'])->name('geojson.exportPDF');
-
     // PROVIDER ACCOUNT
     Route::get('/auth/provider', [AdminProviderAccountController::class, 'index'])->name('auth');
     Route::get('/auth/provider/login', [AdminProviderAccountController::class, 'login'])->name('auth.login');
@@ -205,38 +180,38 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/home', [HomeController::class, 'index']);
 Route::get('/history', [ClientHistoryController::class, 'index'])->name('history');
 Route::get('/bookmark', [ClientBookmarkController::class, 'index'])->name('bookmark');
-
-Route::get('/address', [AddressController::class, 'index'])->name('address.index');
-Route::post('/address', [AddressController::class, 'store'])->name('address.store');
-
-Route::get('/map', [MapController::class, 'index'])->name('map.index');
-Route::get('/map/{province}', [MapController::class, 'province'])->name('map.province');
-Route::get('/map/{province}/{regency}', [MapController::class, 'regency'])->name('map.regency');
-Route::get('/map/{province}/{regency}/{district}', [MapController::class, 'district'])->name('map.district');
-
 Route::get('/gallery/{franchise}/{category}', [HomeController::class, 'show'])->name('gallery.show');
 Route::get('/video', [ClientVideoController::class, 'index'])->name('video');
-Route::get('/video/{category}', [ClientVideoController::class, 'category'])->name('video.category');
-Route::get('/video/{franchise}/movie', [ClientVideoController::class, 'movie'])->name('video.movie');
-Route::get('/video/{franchise}/{category}', [ClientVideoController::class, 'show'])->name('video.show');
+Route::get('/video/franchise/{franchise}', [ClientVideoController::class, 'movie'])->name('video.movie');
+Route::get('/video/category/{category}', [ClientVideoController::class, 'category'])->name('video.category');
 Route::get('/video/{franchise}/{category}/{type}/{number}', [ClientVideoController::class, 'watch'])->name('video.watch');
+Route::get('/video/{category}', function ($category) {
+  return redirect()->route('video.category', $category, 301);
+});
 
-// Route::get('/{slug}', function ($slug) {
+Route::get('/video/{franchise}/movie', function ($franchise) {
+  return redirect()->route('video.movie', $franchise, 301);
+});
+Route::get('/video/{franchise}/{category}', function ($franchise, $category) {
+  return redirect()->route('video.category', $category, 301);
+})->name('video.show');
 
-//   if (preg_match('/-sub-[a-zA-Z0-9]+$/', $slug)) {
-//     $slug = preg_replace('/-sub-[a-zA-Z0-9]+$/', '', $slug);
-//   }
+Route::get('/{slug}', function ($slug) {
 
-//   if (preg_match('/-dub$/', $slug)) {
-//     $slug = preg_replace('/-dub$/', '', $slug);
-//   }
+  if (preg_match('/-sub-[a-zA-Z0-9]+$/', $slug)) {
+    $slug = preg_replace('/-sub-[a-zA-Z0-9]+$/', '', $slug);
+  }
 
-//   $video = Video::where('slug', $slug)->firstOrFail();
+  if (preg_match('/-dub$/', $slug)) {
+    $slug = preg_replace('/-dub$/', '', $slug);
+  }
 
-//   return redirect()->route('video.watch', [
-//     'franchise' => $video->category->franchise->slug,
-//     'category'  => $video->category->slug,
-//     'type'      => $video->type,
-//     'number'    => $video->number,
-//   ], 301);
-// })->where('slug', '[A-Za-z0-9\-]+')->name('video.slug');
+  $video = Video::where('slug', $slug)->firstOrFail();
+
+  return redirect()->route('video.watch', [
+    'franchise' => $video->category->franchise->slug,
+    'category'  => $video->category->slug,
+    'type'      => $video->type,
+    'number'    => $video->number,
+  ], 301);
+})->where('slug', '[A-Za-z0-9\-]+')->name('video.slug');
