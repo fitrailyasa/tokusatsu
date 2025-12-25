@@ -183,7 +183,7 @@ Route::get('/bookmark', [ClientBookmarkController::class, 'index'])->name('bookm
 Route::get('/gallery/{franchise}/{category}', [HomeController::class, 'show'])->name('gallery.show');
 Route::get('/video', [ClientVideoController::class, 'index'])->name('video');
 Route::get('/video/{category}', [ClientVideoController::class, 'category'])->name('video.category');
-Route::get('/video/{franchise}/movie', [ClientVideoController::class, 'movie'])->name('video.movie');
+// Route::get('/video/{franchise}/movie', [ClientVideoController::class, 'movie'])->name('video.movie');
 Route::get('/video/{franchise}/{category}', [ClientVideoController::class, 'show'])->name('video.show');
 Route::get('/video/{franchise}/{category}/{type}/{number}', [ClientVideoController::class, 'watch'])->name('video.watch');
 
