@@ -22,7 +22,6 @@
                 <x-sidebar-link route="admin.category.index" icon="list-alt" label="Category" can="view:category" />
                 <x-sidebar-link route="admin.era.index" icon="flag" label="Era" can="view:era" />
                 <x-sidebar-link route="admin.franchise.index" icon="tv" label="Franchise" can="view:franchise" />
-                <x-sidebar-link route="admin.geojson.index" icon="map" label="Geojson" can="view:geojson" />
                 <li class="nav-item">
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" hidden>
                         @csrf
