@@ -182,19 +182,11 @@ Route::get('/history', [ClientHistoryController::class, 'index'])->name('history
 Route::get('/bookmark', [ClientBookmarkController::class, 'index'])->name('bookmark');
 Route::get('/gallery/{franchise}/{category}', [HomeController::class, 'show'])->name('gallery.show');
 Route::get('/video', [ClientVideoController::class, 'index'])->name('video');
-Route::get('/video/franchise/{franchise}', [ClientVideoController::class, 'movie'])->name('video.movie');
-Route::get('/video/category/{category}', [ClientVideoController::class, 'category'])->name('video.category');
+Route::get('/video/{category}', [ClientVideoController::class, 'category'])->name('video.category');
+Route::get('/video/{franchise}/movie', [ClientVideoController::class, 'movie'])->name('video.movie');
+Route::get('/video/{franchise}/movie/{category}', [ClientVideoController::class, 'movieShow'])->name('video.movie.show');
+Route::get('/video/{franchise}/{category}', [ClientVideoController::class, 'show'])->name('video.show');
 Route::get('/video/{franchise}/{category}/{type}/{number}', [ClientVideoController::class, 'watch'])->name('video.watch');
-Route::get('/video/{category}', function ($category) {
-  return redirect()->route('video.category', $category, 301);
-});
-
-Route::get('/video/{franchise}/movie', function ($franchise) {
-  return redirect()->route('video.movie', $franchise, 301);
-});
-Route::get('/video/{franchise}/{category}', function ($franchise, $category) {
-  return redirect()->route('video.category', $category, 301);
-})->name('video.show');
 
 Route::get('/{slug}', function ($slug) {
 
