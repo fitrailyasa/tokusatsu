@@ -120,7 +120,8 @@
                             <div class="mb-3">
                                 <label class="form-label">{{ __('Release Date') }}</label>
                                 <input type="date" class="form-control @error('airdate') is-invalid @enderror"
-                                    name="airdate" id="airdate" value="{{ old('airdate', $item->airdate) }}">
+                                    name="airdate" id="airdate"
+                                    value="{{ old('airdate', optional($item->airdate)->format('Y-m-d')) }}">
                                 @error('airdate')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
