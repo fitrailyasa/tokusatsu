@@ -221,22 +221,22 @@ Route::get('/video/{franchise}/movie', [ClientVideoController::class, 'movie'])-
 Route::get('/video/{franchise}/{category}', [ClientVideoController::class, 'show'])->name('video.show');
 Route::get('/video/{franchise}/{category}/{type}/{number}', [ClientVideoController::class, 'watch'])->name('video.watch');
 
-Route::get('/{slug}', function ($slug) {
+// Route::get('/{slug}', function ($slug) {
 
-  if (preg_match('/-sub-[a-zA-Z0-9]+$/', $slug)) {
-    $slug = preg_replace('/-sub-[a-zA-Z0-9]+$/', '', $slug);
-  }
+//   if (preg_match('/-sub-[a-zA-Z0-9]+$/', $slug)) {
+//     $slug = preg_replace('/-sub-[a-zA-Z0-9]+$/', '', $slug);
+//   }
 
-  if (preg_match('/-dub$/', $slug)) {
-    $slug = preg_replace('/-dub$/', '', $slug);
-  }
+//   if (preg_match('/-dub$/', $slug)) {
+//     $slug = preg_replace('/-dub$/', '', $slug);
+//   }
 
-  $video = Video::where('slug', $slug)->firstOrFail();
+//   $video = Video::where('slug', $slug)->firstOrFail();
 
-  return redirect()->route('video.watch', [
-    'franchise' => $video->category->franchise->slug,
-    'category'  => $video->category->slug,
-    'type'      => $video->type,
-    'number'    => $video->number,
-  ], 301);
-})->where('slug', '[A-Za-z0-9\-]+')->name('video.slug');
+//   return redirect()->route('video.watch', [
+//     'franchise' => $video->category->franchise->slug,
+//     'category'  => $video->category->slug,
+//     'type'      => $video->type,
+//     'number'    => $video->number,
+//   ], 301);
+// })->where('slug', '[A-Za-z0-9\-]+')->name('video.slug');
