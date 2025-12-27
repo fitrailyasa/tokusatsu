@@ -82,7 +82,7 @@ class Video extends Model
     public function getLabelAttribute(): string
     {
         $types = [
-            'episode' => 'Series',
+            'episode' => 'Episode',
             'special' => 'Special',
             'movie' => 'Movie',
             'hyper-battle-dvd' => 'Hyper Battle DVD',
