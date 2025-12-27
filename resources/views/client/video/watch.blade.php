@@ -190,13 +190,6 @@
                         ]) }}";
                 });
             @endif
-
-            const video = document.getElementById('video-video') || document.getElementById('video-iframe');
-            if (video) {
-                video.addEventListener("contextmenu", function(e) {
-                    e.preventDefault();
-                });
-            }
         });
     </script>
     <script>
