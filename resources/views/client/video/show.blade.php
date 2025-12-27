@@ -57,10 +57,10 @@
                     <table class="table align-middle table-hover shadow-sm mt-3">
                         <thead class="bg-dark text-white">
                             <tr>
-                                <th class="text-center" style="max-width: 120px;">List</th>
+                                <th class="text-center" style="max-width: 90px;">List</th>
                                 <th>Title</th>
-                                <th style="max-width: 160px;">Release Date</th>
-                                <th class="text-center" style="max-width: 110px;">Bookmark</th>
+                                <th style="max-width: 160px;">Release</th>
+                                <th class="text-center" style="max-width: 90px;">Bookmark</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -97,7 +97,6 @@
                         </tbody>
                     </table>
                 </div>
-
             @endif
         </div>
     </div>
