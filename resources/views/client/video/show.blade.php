@@ -160,4 +160,5 @@
             }
         });
     </script>
+    @include('components.disable-right-click')
 @endsection

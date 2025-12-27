@@ -190,6 +190,13 @@
                         ]) }}";
                 });
             @endif
+
+            const video = document.getElementById('video-video') || document.getElementById('video-iframe');
+            if (video) {
+                video.addEventListener("contextmenu", function(e) {
+                    e.preventDefault();
+                });
+            }
         });
     </script>
     <script>
@@ -243,24 +250,5 @@
             }
         });
     </script>
-    <script>
-        document.addEventListener("contextmenu", function(e) {
-            e.preventDefault();
-        });
-
-        document.addEventListener("keydown", function(e) {
-            if (e.key === "F12" ||
-                (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J")) ||
-                (e.ctrlKey && e.key === "U")) {
-                e.preventDefault();
-            }
-        });
-
-        const video = document.getElementById('video-video') || document.getElementById('video-iframe');
-        if (video) {
-            video.addEventListener("contextmenu", function(e) {
-                e.preventDefault();
-            });
-        }
-    </script>
+    @include('components.disable-right-click')
 @endsection
