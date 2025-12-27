@@ -3,6 +3,7 @@
 namespace App\Models\Traits;
 
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
 
 trait VideoLinkTrait
 {
@@ -17,7 +18,10 @@ trait VideoLinkTrait
         }
 
         // YouTube
-        if (str_contains($url, ['youtube.com', 'youtu.be'])) {
+        if (
+            str_contains($url, 'youtube.com') ||
+            str_contains($url, 'youtu.be')
+        ) {
             if (preg_match('/(youtu\.be\/|v=)([^&]+)/', $url, $m)) {
                 return "https://www.youtube.com/embed/{$m[2]}";
             }
