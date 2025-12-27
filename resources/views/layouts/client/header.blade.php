@@ -191,7 +191,7 @@ $eras = Era::withoutTrashed()->get()->where('status', 1)->reverse();
                                 <ul class="dropdown-menu m-0" aria-labelledby="otherDropdown">
                                     @foreach ($otherFranchises as $fr)
                                         @php
-                                            $activeCategories = $fr->categories->where('status', 1);
+                                            $activeCategories = $fr->categories->where('status', 1)->reverse();
                                         @endphp
                                         @if ($activeCategories->count() > 0)
                                             <li class="dropdown-submenu" itemprop="name">
