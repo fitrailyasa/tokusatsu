@@ -41,16 +41,17 @@
         <div class="container">
             <div class="row px-3 mb-3 align-items-center">
                 <div class="col-3 text-left">
-                    @if ($video->type == 'episode')
+                    {{-- @if ($video->type == 'episode') --}}
+                    <a
+                        href="{{ route('video.show', ['franchise' => $category->franchise->slug, 'category' => $category->slug]) }}">
+                        <p class="m-0"><i class="text-dark fas fa-arrow-left"></i></p>
+                    </a>
+                    {{-- @else
                         <a
-                            href="{{ route('video.show', ['franchise' => $category->franchise->slug, 'category' => $category->slug]) }}">
+                            href="{{ route('video.movie.show', ['franchise' => $category->franchise->slug, 'category' => $category->slug]) }}">
                             <p class="m-0"><i class="text-dark fas fa-arrow-left"></i></p>
                         </a>
-                    @else
-                        <a href="{{ route('video.movie', ['franchise' => $category->franchise->slug]) }}">
-                            <p class="m-0"><i class="text-dark fas fa-arrow-left"></i></p>
-                        </a>
-                    @endif
+                    @endif --}}
                 </div>
                 <div class="col-6">
                     <h1 class="text-center responsive-title">
