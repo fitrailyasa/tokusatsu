@@ -94,9 +94,18 @@ trait VideoLinkTrait
         foreach ($this->link ?? [] as $url) {
             $embed = $this->videoEmbed($url);
 
-            if ($embed && $this->isLinkAccessible($embed)) {
-                $valid[] = $embed;
+            if (!$embed) {
+                continue;
             }
+
+            if (str_contains($embed, 'drive.google.com')) {
+                if ($this->isLinkAccessible($embed)) {
+                    $valid[] = $embed;
+                }
+                continue;
+            }
+
+            $valid[] = $embed;
         }
 
         return $valid;
