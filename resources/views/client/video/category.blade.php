@@ -111,7 +111,7 @@
         document.getElementById("shareBtn").addEventListener("click", async function() {
             const shareData = {
                 title: document.title,
-                text: "{{ $franchise->name }}",
+                text: "{{ $franchise->name }}\n",
                 url: window.location.href
             };
 

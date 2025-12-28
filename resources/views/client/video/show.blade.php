@@ -150,7 +150,7 @@
         document.getElementById("shareBtn").addEventListener("click", async function() {
             const shareData = {
                 title: document.title,
-                text: "{{ $category->fullname }}",
+                text: "{{ $category->fullname }}\n",
                 url: window.location.href
             };
 
