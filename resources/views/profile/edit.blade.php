@@ -39,7 +39,7 @@
                             <div class="row">
                                 <div class="mb-3 col-md-6">
                                     <label class="form-label fw-semibold">
-                                        Fullname
+                                        Fullname<span class="text-danger">*</span>
                                     </label>
                                     <input type="text" name="name" value="{{ old('name', $user->name) }}"
                                         class="form-control @error('name') is-invalid @enderror" required>
@@ -52,7 +52,7 @@
 
                                 <div class="mb-3 col-md-6">
                                     <label class="form-label fw-semibold">
-                                        Username
+                                        Username<span class="text-danger">*</span>
                                     </label>
                                     <input type="text" name="username" value="{{ old('username', $user->username) }}"
                                         class="form-control @error('username') is-invalid @enderror" required>
@@ -65,7 +65,7 @@
 
                                 <div class="mb-3 col-md-6">
                                     <label class="form-label fw-semibold">
-                                        Email
+                                        Email<span class="text-danger">*</span>
                                     </label>
                                     <input type="email" name="email" value="{{ old('email', $user->email) }}"
                                         class="form-control @error('email') is-invalid @enderror" required>
