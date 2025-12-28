@@ -17,6 +17,13 @@ class ProviderController extends Controller
     {
         $socialUser = Socialite::driver($provider)->user();
 
+        $email = $socialUser->getEmail();
+
+        if (empty($email)) {
+            $domain = parse_url(config('app.url'), PHP_URL_HOST);
+            $email = $provider . '_' . $socialUser->getId() . '@' . $domain;
+        }
+
         $user = User::where('email', $socialUser->getEmail())->first();
 
         if ($user) {
@@ -37,14 +44,14 @@ class ProviderController extends Controller
         } else {
             $user = User::create([
                 'name' => $socialUser->getName(),
-                'email' => $socialUser->getEmail(),
+                'email' => $email,
                 'provider' => [$provider],
                 'provider_id' => [$socialUser->getId()],
                 'provider_tokens' => [$provider => $socialUser->token],
                 'email_verified_at' => now(),
             ]);
 
-            $user->assignRole('user'); 
+            $user->assignRole('user');
         }
 
         auth()->login($user);
