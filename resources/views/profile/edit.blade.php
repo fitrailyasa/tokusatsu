@@ -7,14 +7,8 @@
     <div class="container mb-5">
         <div class="row justify-content-center">
             <div class="col-lg-8">
-
                 @include('components.alert')
-
                 <div class="card shadow-sm border-0">
-                    <div class="card-header bg-white border-0">
-                        <h5 class="mb-0 fw-semibold">Edit Profile</h5>
-                    </div>
-
                     <div class="card-body">
                         <form method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data">
                             @csrf
@@ -42,63 +36,65 @@
                                 </div>
                             </div>
 
-                            <div class="mb-3">
-                                <label class="form-label fw-semibold">
-                                    Fullname
-                                </label>
-                                <input type="text" name="name" value="{{ old('name', $user->name) }}"
-                                    class="form-control @error('name') is-invalid @enderror" required>
-                                @error('name')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
+                            <div class="row">
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label fw-semibold">
+                                        Fullname
+                                    </label>
+                                    <input type="text" name="name" value="{{ old('name', $user->name) }}"
+                                        class="form-control @error('name') is-invalid @enderror" required>
+                                    @error('name')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
 
-                            <div class="mb-3">
-                                <label class="form-label fw-semibold">
-                                    Username
-                                </label>
-                                <input type="text" name="username" value="{{ old('username', $user->username) }}"
-                                    class="form-control @error('username') is-invalid @enderror" required>
-                                @error('username')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label fw-semibold">
+                                        Username
+                                    </label>
+                                    <input type="text" name="username" value="{{ old('username', $user->username) }}"
+                                        class="form-control @error('username') is-invalid @enderror" required>
+                                    @error('username')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
 
-                            <div class="mb-3">
-                                <label class="form-label fw-semibold">
-                                    Email
-                                </label>
-                                <input type="email" name="email" value="{{ old('email', $user->email) }}"
-                                    class="form-control @error('email') is-invalid @enderror" required>
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label fw-semibold">
+                                        Email
+                                    </label>
+                                    <input type="email" name="email" value="{{ old('email', $user->email) }}"
+                                        class="form-control @error('email') is-invalid @enderror" required>
 
-                                @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && !$user->hasVerifiedEmail())
-                                    <small class="text-warning">
-                                        Email not verified
-                                    </small>
-                                @endif
+                                    @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && !$user->hasVerifiedEmail())
+                                        <small class="text-warning">
+                                            Email not verified
+                                        </small>
+                                    @endif
 
-                                @error('email')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
+                                    @error('email')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
 
-                            <div class="mb-4">
-                                <label class="form-label fw-semibold">
-                                    No Handphone
-                                </label>
-                                <input type="text" name="no_hp" value="{{ old('no_hp', $user->no_hp) }}"
-                                    class="form-control @error('no_hp') is-invalid @enderror">
-                                @error('no_hp')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label fw-semibold">
+                                        No Handphone
+                                    </label>
+                                    <input type="text" name="no_hp" value="{{ old('no_hp', $user->no_hp) }}"
+                                        class="form-control @error('no_hp') is-invalid @enderror">
+                                    @error('no_hp')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
                             </div>
 
                             {{-- Button --}}
