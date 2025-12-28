@@ -15,9 +15,9 @@
         <li class="nav-item">
             <a href="{{ route('profile.edit') }}" class="nav-link d-flex align-items-center">
                 <div class="d-none d-lg-block text-dark mx-2">{{ auth()->user()->name ?? 'Guest' }}</div>
-                @if (Auth::check() && Auth::user()->foto_user != null)
-                    <img src="{{ asset('assets/profile/' . Auth::user()->foto_user) }}" class="img-circle elevation-2"
-                        alt="User Image"
+                @if (Auth::check() && Auth::user()->img != null)
+                    <img src="{{ Auth::user()->img ? asset('storage/' . Auth::user()->img) : 'https://ui-avatars.com/api/?name=' . Auth::user()->name }}"
+                        class="img-circle elevation-2" alt="User Image"
                         style="width: 35px; height: 35px; object-fit: cover; object-position: center; border-radius: 50%;">
                 @else
                     <img src="{{ asset('assets/profile/default.png') }}" class="img-circle elevation-2" alt="User Image"
