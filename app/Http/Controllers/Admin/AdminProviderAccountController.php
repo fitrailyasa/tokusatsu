@@ -227,7 +227,7 @@ class AdminProviderAccountController extends Controller
         $query = "'{$folderId}' in parents and trashed = false";
 
         $files = $service->files->listFiles([
-            'pageSize' => 200,
+            'pageSize' => 1000,
             'fields' => 'files(id, name)',
             'q' => $query,
         ])->getFiles();
