@@ -36,7 +36,11 @@
             <div>
                 <h1 class="text-center responsive-title">{{ $franchise->name }}</h1>
             </div>
-            <div></div>
+            <div>
+                <button id="shareBtn" class="btn m-0 p-0">
+                    <i class="fa fa-share"></i>
+                </button>
+            </div>
         </div>
 
         <div class="row">
@@ -103,4 +107,17 @@
             {{ $categories->appends(['era_id' => $eraId, 'franchise_id' => $franchiseId, 'perPage' => $perPage, 'search' => $search])->links() }}
         </div>
     </div>
+    <script>
+        document.getElementById("shareBtn").addEventListener("click", async function() {
+            const shareData = {
+                title: document.title,
+                text: "{{ $franchise->name }}",
+                url: window.location.href
+            };
+
+            if (navigator.share) {
+                await navigator.share(shareData);
+            }
+        });
+    </script>
 @endsection
