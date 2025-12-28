@@ -169,6 +169,33 @@
                 @endforeach
             </div>
         </div>
+
+        {{-- ===================== POWER RANGERS ===================== --}}
+        <div class="section-title">
+            <h5 class="title fw-bold mb-1">Power Rangers</h5>
+            <a class="text-dark" href="{{ route('video.category', 'power-rangers') }}">View All <i
+                    class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        </div>
+        <div class="swiper pt-0 pb-3 px-2 mySwiperSS">
+            <div class="swiper-wrapper">
+                @foreach ($categories as $category)
+                    @if ($category->franchise && $category->franchise->name === 'Power Rangers')
+                        <div class="swiper-slide">
+                            <a href="{{ route('video.show', [$category->franchise->slug, $category->slug]) }}">
+                                <img class="bg-white"
+                                    src="{{ $category->img ? asset('storage/' . $category->img) : asset('storage/comingsoon.jpg') }}"
+                                    loading="lazy" alt="Logo {{ $category->fullname }}">
+                                <p class="small pt-2 text-dark">{{ $category->fullname }}
+                                    @if ($category->first_aired)
+                                        ({{ \Carbon\Carbon::parse($category->first_aired)->year }})
+                                    @endif
+                                </p>
+                            </a>
+                        </div>
+                    @endif
+                @endforeach
+            </div>
+        </div>
     </div>
 
     <footer class="d-none d-lg-block border-top py-3">
