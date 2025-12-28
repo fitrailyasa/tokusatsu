@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Str;
 
 class ProviderController extends Controller
 {
@@ -18,6 +19,11 @@ class ProviderController extends Controller
         $socialUser = Socialite::driver($provider)->user();
 
         $email = $socialUser->getEmail();
+        $username = Str::slug($socialUser->getName(), '_');
+
+        if (empty($username)) {
+            $username = $provider . '_' . $socialUser->getId();
+        }
 
         if (empty($email)) {
             $domain = parse_url(config('app.url'), PHP_URL_HOST);
@@ -45,6 +51,7 @@ class ProviderController extends Controller
             $user = User::create([
                 'name' => $socialUser->getName(),
                 'email' => $email,
+                'username' => $username,
                 'provider' => [$provider],
                 'provider_id' => [$socialUser->getId()],
                 'provider_tokens' => [$provider => $socialUser->token],
