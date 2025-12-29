@@ -11,12 +11,25 @@ class ProviderController extends Controller
 {
     public function redirect($provider)
     {
+        if ($provider === 'linkedin') {
+            return Socialite::driver('linkedin-openid')
+                ->stateless()
+                ->scopes(['openid', 'profile', 'email'])
+                ->redirect();
+        }
+
         return Socialite::driver($provider)->redirect();
     }
 
     public function callback($provider)
     {
-        $socialUser = Socialite::driver($provider)->user();
+        if ($provider === 'linkedin') {
+            $socialUser = Socialite::driver('linkedin-openid')
+                ->stateless()
+                ->user();
+        } else {
+            $socialUser = Socialite::driver($provider)->user();
+        }
 
         $email = $socialUser->getEmail();
         $username = Str::slug($socialUser->getName(), '_');
