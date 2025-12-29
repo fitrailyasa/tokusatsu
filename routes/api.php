@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginApiController;
 use App\Http\Controllers\Api\EraApiController;
@@ -9,8 +8,6 @@ use App\Http\Controllers\Api\CategoryApiController;
 use App\Http\Controllers\Api\TagApiController;
 use App\Http\Controllers\Api\DataApiController;
 use App\Http\Controllers\Api\VideoApiController;
-use App\Http\Controllers\Api\MapApiController;
-use App\Http\Controllers\Api\AddressApiController;
 
 Route::post('/login', [LoginApiController::class, 'loginApi'])->name('loginApi');
 
@@ -38,23 +35,6 @@ Route::get('/tag/all', [TagApiController::class, 'all']);
 // DATA API
 Route::resource('/datas', DataApiController::class, ['only', ['index', 'store', 'show', 'edit', 'update', 'destroy']]);
 Route::get('/data/{franchise}/{category}', [DataApiController::class, 'findByFranchiseCategory']);
-
-// MAP API
-Route::get('/map/{province}', [MapApiController::class, 'province'])->name('map.province');
-Route::get('/map/{province}/{regency}', [MapApiController::class, 'regency'])->name('map.regency');
-
-// ALL ADDRESS API
-Route::get('provinces', [AddressApiController::class, 'getProvinces']);
-Route::get('regencies/{province_id}', [AddressApiController::class, 'getRegencies']);
-Route::get('districts/{regency_id}', [AddressApiController::class, 'getDistricts']);
-Route::get('villages/{district_id}', [AddressApiController::class, 'getVillages']);
-Route::get('address/{village_id}', [AddressApiController::class, 'getVillageCoords']);
-
-// ADDRESS API
-Route::get('province/{id}', [AddressApiController::class, 'getProvince']);
-Route::get('regency/{id}', [AddressApiController::class, 'getRegency']);
-Route::get('district/{id}', [AddressApiController::class, 'getDistrict']);
-Route::get('village/{id}', [AddressApiController::class, 'getVillage']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
