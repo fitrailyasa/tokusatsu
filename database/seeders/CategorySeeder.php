@@ -1207,7 +1207,7 @@ class CategorySeeder extends Seeder
                 'name' => 'Ginga S',
                 'slug' => Str::slug('Ginga S', '-'),
                 'description' => null,
-                'img' => 'category/heisei-11-ultraman-s-logo.jpg',
+                'img' => 'category/heisei-11-ultraman-logo.jpg',
                 'first_aired' => '2014-07-15',
                 'last_aired' => '2014-12-23',
             ],
