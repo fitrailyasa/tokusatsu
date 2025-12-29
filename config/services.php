@@ -34,43 +34,43 @@ return [
     'discord' => [
         'client_id' => env('DISCORD_CLIENT_ID'),
         'client_secret' => env('DISCORD_CLIENT_SECRET'),
-        'redirect' => '/auth/discord/callback',
+        'redirect' => env('DISCORD_REDIRECT_URI'),
     ],
 
     'facebook' => [
         'client_id' => env('FACEBOOK_CLIENT_ID'),
         'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
-        'redirect' => '/auth/facebook/callback',
+        'redirect' => env('FACEBOOK_REDIRECT_URI'),
     ],
 
     'twitter' => [
         'client_id' => env('TWITTER_CLIENT_ID'),
         'client_secret' => env('TWITTER_CLIENT_SECRET'),
-        'redirect' => '/auth/twitter/callback',
+        'redirect' => env('TWITTER_REDIRECT_URI'),
     ],
 
     'github' => [
         'client_id' => env('GITHUB_CLIENT_ID'),
         'client_secret' => env('GITHUB_CLIENT_SECRET'),
-        'redirect' => '/auth/github/callback',
+        'redirect' => env('GITHUB_REDIRECT_URI'),
     ],
 
     'google' => [
         'client_id' => env('GOOGLE_CLIENT_ID'),
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-        'redirect' => '/auth/google/callback',
+        'redirect' => env('GOOGLE_REDIRECT_URI'),
     ],
 
     'linkedin' => [
         'client_id' => env('LINKEDIN_CLIENT_ID'),
         'client_secret' => env('LINKEDIN_CLIENT_SECRET'),
-        'redirect' => '/auth/linkedin/callback',
+        'redirect' => env('LINKEDIN_REDIRECT_URI'),
     ],
 
     'twitch' => [
         'client_id' => env('TWITCH_CLIENT_ID'),
         'client_secret' => env('TWITCH_CLIENT_SECRET'),
-        'redirect' => '/auth/twitch/callback',
+        'redirect' => env('TWITCH_REDIRECT_URI'),
     ],
 
     'telegram-bot-api' => [
