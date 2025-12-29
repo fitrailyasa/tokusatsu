@@ -12,7 +12,7 @@ class ProviderController extends Controller
     public function redirect($provider)
     {
         if ($provider === 'linkedin') {
-            return Socialite::driver('linkedin-openid')
+            return Socialite::driver('linkedin')
                 ->stateless()
                 ->redirect();
         }
@@ -23,7 +23,7 @@ class ProviderController extends Controller
     public function callback($provider)
     {
         if ($provider === 'linkedin') {
-            $socialUser = Socialite::driver('linkedin-openid')
+            $socialUser = Socialite::driver('linkedin')
                 ->stateless()
                 ->user();
         } else {
