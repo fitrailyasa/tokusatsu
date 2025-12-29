@@ -65,6 +65,7 @@ return [
         'client_id' => env('LINKEDIN_CLIENT_ID'),
         'client_secret' => env('LINKEDIN_CLIENT_SECRET'),
         'redirect' => env('LINKEDIN_REDIRECT_URI'),
+        'scopes' => ['openid', 'profile', 'email'],
     ],
 
     'twitch' => [

@@ -14,6 +14,7 @@ class ProviderController extends Controller
         if ($provider === 'linkedin') {
             return Socialite::driver('linkedin-openid')
                 ->stateless()
+                ->scopes(['openid', 'profile', 'email'])
                 ->redirect();
         }
 
