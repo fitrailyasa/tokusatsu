@@ -27,7 +27,10 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        $data = $request->validated();
+        unset($data['password']);
+
+        $request->user()->fill($data);
 
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
@@ -36,6 +39,10 @@ class ProfileController extends Controller
         if ($request->hasFile('img')) {
             $path = $request->file('img')->store('profile', 'public');
             $request->user()->img = $path;
+        }
+
+        if ($request->filled('password')) {
+            $request->user()->password = Hash::make($request->password);
         }
 
         $request->user()->save();

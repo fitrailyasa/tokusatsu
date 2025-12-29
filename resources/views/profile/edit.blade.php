@@ -37,12 +37,13 @@
                             </div>
 
                             <div class="row">
-                                <div class="mb-3 col-md-6">
+                                <div class="mb-3 col-md-12">
                                     <label class="form-label fw-semibold">
                                         Fullname<span class="text-danger">*</span>
                                     </label>
                                     <input type="text" name="name" value="{{ old('name', $user->name) }}"
-                                        class="form-control @error('name') is-invalid @enderror" required>
+                                        class="form-control @error('name') is-invalid @enderror" placeholder="fullname"
+                                        required>
                                     @error('name')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -55,7 +56,8 @@
                                         Username<span class="text-danger">*</span>
                                     </label>
                                     <input type="text" name="username" value="{{ old('username', $user->username) }}"
-                                        class="form-control @error('username') is-invalid @enderror" required>
+                                        class="form-control @error('username') is-invalid @enderror"
+                                        placeholder="username" required>
                                     @error('username')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -68,7 +70,8 @@
                                         Email<span class="text-danger">*</span>
                                     </label>
                                     <input type="email" name="email" value="{{ old('email', $user->email) }}"
-                                        class="form-control @error('email') is-invalid @enderror" required>
+                                        class="form-control @error('email') is-invalid @enderror"
+                                        placeholder="username@gmail.com" required>
 
                                     @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && !$user->hasVerifiedEmail())
                                         <small class="text-warning">
@@ -85,10 +88,25 @@
 
                                 <div class="mb-3 col-md-6">
                                     <label class="form-label fw-semibold">
+                                        New Password (optional)
+                                    </label>
+                                    <input type="password" name="password"
+                                        class="form-control @error('password') is-invalid @enderror"
+                                        placeholder="password">
+                                    @error('password')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label fw-semibold">
                                         No Handphone
                                     </label>
                                     <input type="text" name="no_hp" value="{{ old('no_hp', $user->no_hp) }}"
-                                        class="form-control @error('no_hp') is-invalid @enderror">
+                                        class="form-control @error('no_hp') is-invalid @enderror"
+                                        placeholder="08xxxxxxx">
                                     @error('no_hp')
                                         <div class="invalid-feedback">
                                             {{ $message }}
