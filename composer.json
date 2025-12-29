@@ -20,6 +20,7 @@
         "maatwebsite/excel": "^3.1",
         "midtrans/midtrans-php": "^2.5",
         "socialiteproviders/discord": "^4.2",
+        "socialiteproviders/linkedin": "*",
         "socialiteproviders/twitch": "^5.4",
         "spatie/laravel-permission": "^6.17",
         "srmklive/paypal": "^3.0",
