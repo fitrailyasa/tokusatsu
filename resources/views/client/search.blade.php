@@ -24,9 +24,7 @@
                         href="{{ url('video/' . $item->category->franchise->slug) }}/{{ $item->category->slug }}/{{ $item->type }}/{{ $item->number }}">
                         <img class="img img-fluid img-gallery" loading="lazy"
                             src="{{ asset('storage/' . $item->category->img) }}" alt="{{ $item->category->img }}">
-                        <p class="small px-2">{{ $item->title }} {{ ucwords($item->type) }}
-                            {{ $item->number }}
-                        </p>
+                        <p class="small px-2">{{ $item->title }}</p>
                     </a>
                 @endif
             @endforeach
