@@ -46,6 +46,14 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
+        $user = User::where('email', $this->email)->first();
+
+        if ($user && is_null($user->password)) {
+            throw ValidationException::withMessages([
+                'email' => 'Akun ini terdaftar menggunakan Google. Silakan gunakan menu Lupa Password untuk membuat password.',
+            ])->redirectTo(route('password.request'));
+        }
+
         if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
@@ -85,6 +93,6 @@ class LoginRequest extends FormRequest
      */
     public function throttleKey(): string
     {
-        return Str::transliterate(Str::lower($this->string('email')).'|'.$this->ip());
+        return Str::transliterate(Str::lower($this->string('email')) . '|' . $this->ip());
     }
 }
