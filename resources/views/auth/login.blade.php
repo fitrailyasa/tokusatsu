@@ -39,6 +39,15 @@
                     @enderror
                 </div>
 
+                {{-- Forgot Password --}}
+                <div class="text-end mb-2">
+                    <small>
+                        <a href="{{ route('password.request') }}" class="text-decoration-none">
+                            Forgot password?
+                        </a>
+                    </small>
+                </div>
+
                 {{-- Submit --}}
                 <div class="d-grid mb-2">
                     <button type="submit" class="btn btn-primary fw-semibold" id="authButton">
