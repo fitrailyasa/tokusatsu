@@ -16,7 +16,7 @@
                     <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                         <input class="form-control @error('email') is-invalid @enderror" name="email" type="email"
-                            id="email" placeholder="example@mail.com" value="{{ old('email') }}" required autofocus>
+                            id="email" placeholder="name@mail.com" value="{{ old('email') }}" required autofocus>
                     </div>
                     @error('email')
                         <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -42,7 +42,7 @@
                 {{-- Submit --}}
                 <div class="d-grid mb-2">
                     <button type="submit" class="btn btn-primary fw-semibold" id="authButton">
-                        <span id="authText">Masuk</span>
+                        <span id="authText">Login</span>
                         <span class="spinner-border spinner-border-sm d-none" id="authSpinner" role="status"
                             aria-hidden="true"></span>
                     </button>
@@ -50,12 +50,12 @@
 
                 {{-- Register --}}
                 <div class="text-center">
-                    <small class="text-muted">Belum punya akun? <a href="{{ route('register') }}">Daftar</a></small>
+                    <small class="text-muted">Don't have an account? <a href="{{ route('register') }}">Register</a></small>
                 </div>
 
                 {{-- Social Auth --}}
                 <div class="text-center mb-2">
-                    <small class="text-muted">Atau masuk dengan</small>
+                    <small class="text-muted">Or login with</small>
                     <div class="d-flex justify-content-center gap-3 mt-2">
                         @foreach ($providers as $provider)
                             <a href="{{ route('auth.redirect', $provider['name']) }}"

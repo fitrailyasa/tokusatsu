@@ -12,11 +12,11 @@
 
                 {{-- Name --}}
                 <div class="mb-2">
-                    <label for="name" class="form-label fw-semibold">Nama</label>
+                    <label for="name" class="form-label fw-semibold">Name</label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-user"></i></span>
                         <input class="form-control @error('name') is-invalid @enderror" name="name" type="text"
-                            id="name" placeholder="Nama lengkap" value="{{ old('name') }}" required autofocus>
+                            id="name" placeholder="Full name" value="{{ old('name') }}" required autofocus>
                     </div>
                     @error('name')
                         <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -29,7 +29,7 @@
                     <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                         <input class="form-control @error('email') is-invalid @enderror" name="email" type="email"
-                            id="email" placeholder="email@example.com" value="{{ old('email') }}" required>
+                            id="email" placeholder="name@mail.com" value="{{ old('email') }}" required>
                     </div>
                     @error('email')
                         <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -54,7 +54,7 @@
 
                 {{-- Password Confirmation --}}
                 <div class="mb-2">
-                    <label for="password_confirmation" class="form-label fw-semibold">Konfirmasi Password</label>
+                    <label for="password_confirmation" class="form-label fw-semibold">Confirm Password</label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-lock"></i></span>
                         <input class="form-control @error('password_confirmation') is-invalid @enderror" name="******"
@@ -71,7 +71,7 @@
                 {{-- Submit --}}
                 <div class="d-grid mb-2">
                     <button type="submit" class="btn btn-primary fw-semibold" id="authButton">
-                        <span id="authText">Daftar</span>
+                        <span id="authText">Register</span>
                         <span class="spinner-border spinner-border-sm d-none" id="authSpinner" role="status"
                             aria-hidden="true"></span>
                     </button>
@@ -79,12 +79,12 @@
 
                 {{-- Login --}}
                 <div class="text-center">
-                    <small class="text-muted">Sudah punya akun? <a href="{{ route('login') }}">Masuk</a></small>
+                    <small class="text-muted">Already have an account? <a href="{{ route('login') }}">Login</a></small>
                 </div>
 
                 {{-- Social Auth --}}
                 <div class="text-center mb-2">
-                    <small class="text-muted">Atau daftar dengan</small>
+                    <small class="text-muted">Or register with</small>
                     <div class="d-flex justify-content-center gap-3 mt-2">
                         @foreach ($providers as $provider)
                             <a href="{{ route('auth.redirect', $provider['name']) }}"
