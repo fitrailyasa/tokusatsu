@@ -21,6 +21,7 @@ use App\Http\Controllers\Client\ClientCategoryController;
 use App\Http\Controllers\Client\ClientVideoController;
 use App\Http\Controllers\Client\ClientHistoryController;
 use App\Http\Controllers\Client\ClientBookmarkController;
+use App\Http\Controllers\DownloadController;
 use App\Livewire\Admin\DashboardLivewire;
 use App\Livewire\Admin\CategoryLivewire;
 use App\Livewire\Admin\DataLivewire;
@@ -176,6 +177,8 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/auth/provider/{email}/files/{fileId}', [AdminProviderAccountController::class, 'delete'])->name('provider.delete');
   });
 });
+
+Route::get('/download/{token}', [DownloadController::class, 'handle'])->name('video.download');
 
 Route::get('/home', [HomeController::class, 'index']);
 Route::get('/history', [ClientHistoryController::class, 'index'])->name('history');

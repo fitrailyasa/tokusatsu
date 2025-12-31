@@ -60,6 +60,7 @@
                                 <th class="text-center" style="max-width: 90px;">List</th>
                                 <th>Title</th>
                                 <th style="max-width: 160px;">Release</th>
+                                <th class="text-center" style="max-width: 90px;">Download</th>
                                 <th class="text-center" style="max-width: 90px;">Bookmark</th>
                             </tr>
                         </thead>
@@ -83,6 +84,22 @@
 
                                     <td class="text-muted">
                                         {{ \Carbon\Carbon::parse($item->airdate ?? $item->category->first_aired)->diffForHumans() }}
+                                    </td>
+
+                                    <td class="text-center">
+                                        @foreach ($item->link as $link)
+                                            @php
+                                                preg_match('/\/d\/([a-zA-Z0-9_-]+)/', $link, $matches);
+                                                $fileId = $matches[1] ?? null;
+                                            @endphp
+
+                                            @if ($fileId)
+                                                <a href="{{ route('video.download', encrypt($fileId)) }}"
+                                                    class="btn btn-sm btn-outline-success mb-1">
+                                                    <i class="fa-solid fa-download"></i>
+                                                </a>
+                                            @endif
+                                        @endforeach
                                     </td>
 
                                     <td class="text-center">
