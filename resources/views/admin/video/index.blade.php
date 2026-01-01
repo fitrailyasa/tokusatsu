@@ -68,7 +68,7 @@
                 <th>{{ __('Category') }}</th>
                 <th>{{ __('Type') }}</th>
                 <th>{{ __('Link') }}</th>
-                <th>{{ __('Release Date') }}</th>
+                <th>{{ __('Release') }}</th>
                 <th>{{ __('Status') }}</th>
                 <th class="text-center">{{ __('Action') }}</th>
             </tr>
@@ -138,7 +138,7 @@
                 <th>{{ __('Category') }}</th>
                 <th>{{ __('Type') }}</th>
                 <th>{{ __('Link') }}</th>
-                <th>{{ __('Release Date') }}</th>
+                <th>{{ __('Release') }}</th>
                 <th>{{ __('Status') }}</th>
                 <th class="text-center">{{ __('Action') }}</th>
             </tr>

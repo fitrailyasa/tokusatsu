@@ -36,7 +36,7 @@
                             <tr>
                                 <th class="text-center" style="max-width: 120px;">Movie</th>
                                 <th>Title</th>
-                                <th style="max-width: 160px;">Release Date</th>
+                                <th style="max-width: 160px;">Release</th>
                             </tr>
                         </thead>
                         <tbody>

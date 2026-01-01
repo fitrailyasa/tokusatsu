@@ -119,7 +119,7 @@
                         </div>
                         <div class="col-md-12">
                             <div class="mb-3">
-                                <label class="form-label">{{ __('Release Date') }}</label>
+                                <label class="form-label">{{ __('Release') }}</label>
                                 <input type="date" class="form-control @error('airdate') is-invalid @enderror"
                                     name="airdate" id="airdate" value="{{ old('airdate') }}">
                                 @error('airdate')
