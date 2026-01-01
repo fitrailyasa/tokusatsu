@@ -60,7 +60,7 @@
                                 <th class="text-center" style="max-width: 90px;">List</th>
                                 <th>Title</th>
                                 <th style="max-width: 160px;">Release</th>
-                                <th class="text-center" style="max-width: 90px;">Download</th>
+                                {{-- <th class="text-center" style="max-width: 90px;">Download</th> --}}
                                 <th class="text-center" style="max-width: 90px;">Bookmark</th>
                             </tr>
                         </thead>
@@ -86,7 +86,7 @@
                                         {{ \Carbon\Carbon::parse($item->airdate ?? $item->category->first_aired)->diffForHumans() }}
                                     </td>
 
-                                    <td class="text-center">
+                                    {{-- <td class="text-center">
                                         @foreach ($item->link as $link)
                                             @php
                                                 preg_match('/\/d\/([a-zA-Z0-9_-]+)/', $link, $matches);
@@ -100,7 +100,7 @@
                                                 </a>
                                             @endif
                                         @endforeach
-                                    </td>
+                                    </td> --}}
 
                                     <td class="text-center">
                                         <button class="btn btn-sm bookmark-btn px-3 py-1 btn-outline-warning"
