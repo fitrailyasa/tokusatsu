@@ -107,6 +107,8 @@
             {{ $categories->appends(['era_id' => $eraId, 'franchise_id' => $franchiseId, 'perPage' => $perPage, 'search' => $search])->links() }}
         </div>
     </div>
+
+    {{-- Share Button --}}
     <script>
         document.getElementById("shareBtn").addEventListener("click", async function() {
             const shareData = {

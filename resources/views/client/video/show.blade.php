@@ -118,6 +118,7 @@
         </div>
     </div>
 
+    {{-- Bookmark Button --}}
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const buttons = document.querySelectorAll(".bookmark-btn");
@@ -163,6 +164,8 @@
             updateButtons();
         });
     </script>
+
+    {{-- Share Button --}}
     <script>
         document.getElementById("shareBtn").addEventListener("click", async function() {
             const shareData = {
@@ -176,5 +179,8 @@
             }
         });
     </script>
+
+    {{-- Disable Right Click --}}
     @include('components.disable-right-click')
+
 @endsection

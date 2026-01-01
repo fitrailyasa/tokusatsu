@@ -78,51 +78,7 @@
         </div>
     </div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const buttons = document.querySelectorAll(".bookmark-btn");
-
-            let bookmarks = JSON.parse(localStorage.getItem("bookmarks")) || [];
-
-            function updateButtons() {
-                buttons.forEach(btn => {
-                    const videoUrl = btn.dataset.url;
-                    if (bookmarks.find(b => b.url === videoUrl)) {
-                        btn.textContent = "✅";
-                        btn.classList.remove("btn-outline-warning");
-                        btn.classList.add("btn-success");
-                    } else {
-                        btn.textContent = "⭐";
-                        btn.classList.remove("btn-success");
-                        btn.classList.add("btn-outline-warning");
-                    }
-                });
-            }
-
-            buttons.forEach(btn => {
-                btn.addEventListener("click", function() {
-                    const videoTitle = this.dataset.title;
-                    const videoUrl = this.dataset.url;
-
-                    const index = bookmarks.findIndex(b => b.url === videoUrl);
-
-                    if (index === -1) {
-                        bookmarks.push({
-                            title: videoTitle,
-                            url: videoUrl
-                        });
-                    } else {
-                        bookmarks.splice(index, 1);
-                    }
-
-                    localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
-                    updateButtons();
-                });
-            });
-
-            updateButtons();
-        });
-    </script>
+    {{-- Share Button --}}
     <script>
         document.getElementById("shareBtn").addEventListener("click", async function() {
             const shareData = {

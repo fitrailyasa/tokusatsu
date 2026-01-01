@@ -37,21 +37,15 @@
             z-index: 5;
         }
     </style>
+
     <div class="container my-5 py-4">
         <div class="container">
             <div class="row px-3 mb-3 align-items-center">
                 <div class="col-3 text-left">
-                    {{-- @if ($video->type == 'episode') --}}
                     <a
                         href="{{ route('video.show', ['franchise' => $category->franchise->slug, 'category' => $category->slug]) }}">
                         <p class="m-0"><i class="text-dark fas fa-arrow-left"></i></p>
                     </a>
-                    {{-- @else
-                        <a
-                            href="{{ route('video.movie.show', ['franchise' => $category->franchise->slug, 'category' => $category->slug]) }}">
-                            <p class="m-0"><i class="text-dark fas fa-arrow-left"></i></p>
-                        </a>
-                    @endif --}}
                 </div>
                 <div class="col-6">
                     <h1 class="text-center responsive-title">
@@ -64,6 +58,20 @@
                     </h1>
                 </div>
                 <div class="col-3 text-right">
+                    @php
+                        $downloadTokens = [];
+
+                        foreach ($embedUrls as $link) {
+                            if (preg_match('/\/d\/([a-zA-Z0-9_-]+)/', $link, $matches)) {
+                                $downloadTokens[] = encrypt($matches[1]);
+                            } else {
+                                $downloadTokens[] = null;
+                            }
+                        }
+                    @endphp
+                    <a id="downloadBtn" href="#" class="btn btn-sm d-none">
+                        <i class="fa-solid fa-download"></i>
+                    </a>
                     <button id="shareBtn" class="btn m-0 p-0">
                         <i class="fa fa-share"></i>
                     </button>
@@ -137,6 +145,7 @@
         </div>
     </div>
 
+    {{-- Video Player --}}
     <script>
         document.addEventListener("DOMContentLoaded", function() {
 
@@ -193,6 +202,35 @@
             @endif
         });
     </script>
+
+    {{-- Download Button --}}
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const tokens = @json($downloadTokens);
+            const downloadBtn = document.getElementById("downloadBtn");
+
+            function updateDownload(index) {
+                const token = tokens[index];
+
+                if (token) {
+                    downloadBtn.href = "{{ route('video.download', ':token') }}".replace(':token', token);
+                    downloadBtn.classList.remove("d-none");
+                } else {
+                    downloadBtn.classList.add("d-none");
+                }
+            }
+
+            updateDownload(0);
+
+            document.querySelectorAll(".server-btn").forEach(btn => {
+                btn.addEventListener("click", function() {
+                    updateDownload(this.dataset.index);
+                });
+            });
+        });
+    </script>
+
+    {{-- Share --}}
     <script>
         document.getElementById("shareBtn").addEventListener("click", async function() {
             const shareData = {
@@ -206,16 +244,17 @@
             }
         });
     </script>
+
+    {{-- Watch History --}}
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // === Watch History ===
             let watchHistory = JSON.parse(localStorage.getItem("watchHistory")) || [];
             const videoTitle =
                 "{{ $category->fullname }} {{ ucfirst($video->type) }} {{ $video->number }}";
             const videoUrl = window.location.href;
             const currentTime = new Date().toLocaleString();
 
-            const exists = watchHistory.find(item => item.url === videoUrl);
+            const exists = watchHistory.find(item => item.url videoUrl);
             if (!exists) {
                 watchHistory.unshift({
                     title: videoTitle,
@@ -227,6 +266,8 @@
             }
         });
     </script>
+
+    {{-- Fullscreen Orientation Lock --}}
     <script>
         document.addEventListener("fullscreenchange", async () => {
             if (document.fullscreenElement) {
@@ -244,5 +285,8 @@
             }
         });
     </script>
+
+    {{-- Disable Right Click --}}
     @include('components.disable-right-click')
+
 @endsection
