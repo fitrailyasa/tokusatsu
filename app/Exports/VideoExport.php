@@ -9,6 +9,7 @@ use Maatwebsite\Excel\Concerns\WithStyles;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use PhpOffice\PhpSpreadsheet\Style\Border;
+use PhpOffice\PhpSpreadsheet\Style\Alignment;
 
 class VideoExport implements FromCollection, WithHeadings, WithStyles, ShouldAutoSize
 {
@@ -39,6 +40,7 @@ class VideoExport implements FromCollection, WithHeadings, WithStyles, ShouldAut
                 'Link'     => is_array($item->link)
                     ? implode(', ', $item->link)
                     : ($item->link ?? ''),
+                'AirDate' => $item->airdate ? \Carbon\Carbon::parse($item->airdate)->format('Y-m-d') : '',
             ];
         }
 
@@ -58,13 +60,14 @@ class VideoExport implements FromCollection, WithHeadings, WithStyles, ShouldAut
                 'Type',
                 'Number',
                 'Link',
+                'AirDate',
             ]
         ];
     }
 
     public function styles(Worksheet $sheet)
     {
-        $sheet->mergeCells('A1:F1');
+        $sheet->mergeCells('A1:G1');
 
         $borderStyle = [
             'borders' => [
@@ -75,28 +78,37 @@ class VideoExport implements FromCollection, WithHeadings, WithStyles, ShouldAut
             ],
         ];
 
-        $sheet->getStyle('A1:E' . $sheet->getHighestRow())
+        $sheet->getStyle('A1:G' . $sheet->getHighestRow())
             ->applyFromArray($borderStyle);
 
+        $highestRow = $sheet->getHighestRow();
+        $sheet->getStyle("G3:G{$highestRow}")
+            ->getNumberFormat()
+            ->setFormatCode('yyyy-mm-dd');
+
+        $sheet->getStyle("G3:G{$highestRow}")
+            ->getAlignment()
+            ->setHorizontal(Alignment::HORIZONTAL_RIGHT);
+
         return [
-            // Style untuk heading pertama
+            // Style for the first heading
             1 => [
-                'font' => ['bold' => true, 'color' => ['argb' => 'FFFFFFFF']], // Putih
+                'font' => ['bold' => true, 'color' => ['argb' => 'FFFFFFFF']], // White
                 'fill' => [
                     'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
-                    'color' => ['argb' => 'FF000000'], // Hitam
+                    'color' => ['argb' => 'FF000000'], // Black
                 ],
                 'alignment' => [
                     'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
                     'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER,
                 ],
             ],
-            // Style untuk heading kedua
+            // Style for the second heading
             2 => [
-                'font' => ['bold' => true, 'color' => ['argb' => 'FFFFFFFF']], // Putih
+                'font' => ['bold' => true, 'color' => ['argb' => 'FFFFFFFF']], // White
                 'fill' => [
                     'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
-                    'color' => ['argb' => 'FF000000'], // Hitam
+                    'color' => ['argb' => 'FF000000'], // Black
                 ],
                 'alignment' => [
                     'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,

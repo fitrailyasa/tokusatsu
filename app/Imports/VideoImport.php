@@ -17,6 +17,15 @@ class VideoImport implements ToModel, WithStartRow
         $type         = trim($row[3] ?? '');
         $number       = is_numeric($row[4] ?? null) ? (int) $row[4] : null;
         $rawLink      = trim($row[5] ?? '');
+        $airDateRaw = trim($row[6] ?? '');
+        $airDate = null;
+
+        if ($airDateRaw) {
+            $parsedDate = date_create($airDateRaw);
+            if ($parsedDate) {
+                $airDate = $parsedDate->format('Y-m-d');
+            }
+        }
 
         if (!$title || !$categoryName || !$type) {
             return null;
@@ -63,7 +72,8 @@ class VideoImport implements ToModel, WithStartRow
             ],
             [
                 'title' => $title,
-                'link' => $link
+                'link' => $link,
+                'airdate' => $airDate,
             ]
         );
     }

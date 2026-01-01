@@ -59,24 +59,24 @@ class TagExport implements FromCollection, WithHeadings, WithStyles, ShouldAutoS
             ->applyFromArray($borderStyle);
 
         return [
-            // Style untuk heading pertama
+            // Style for the first heading
             1 => [
-                'font' => ['bold' => true, 'color' => ['argb' => 'FFFFFFFF']], // Putih
+                'font' => ['bold' => true, 'color' => ['argb' => 'FFFFFFFF']], // White
                 'fill' => [
                     'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
-                    'color' => ['argb' => 'FF000000'], // Hitam
+                    'color' => ['argb' => 'FF000000'], // Black
                 ],
                 'alignment' => [
                     'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
                     'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER,
                 ],
             ],
-            // Style untuk heading kedua
+            // Style for the second heading
             2 => [
-                'font' => ['bold' => true, 'color' => ['argb' => 'FFFFFFFF']], // Putih
+                'font' => ['bold' => true, 'color' => ['argb' => 'FFFFFFFF']], // White
                 'fill' => [
                     'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
-                    'color' => ['argb' => 'FF000000'], // Hitam
+                    'color' => ['argb' => 'FF000000'], // Black
                 ],
                 'alignment' => [
                     'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
