@@ -29,7 +29,7 @@ class MovieKamenRiderSeeder extends Seeder
             ['title' => "Kamen Rider Black: Hurry to Onigashima", 'category_id' => $this->Category('black'), 'type' => 'movie', 'number' => 1, 'airdate' => '1988-03-12'],
             ['title' => "Kamen Rider Black: Terrifying! The Phantom House of Devil Pass", 'category_id' => $this->Category('black'), 'type' => 'movie', 'number' => 2, 'airdate' => '1988-07-09'],
             ['title' => "Kamen Rider Black RX: Run All Over the World", 'category_id' => $this->Category('black-rx'), 'type' => 'movie', 'number' => 1, 'airdate' => '1989-04-29'],
-            ['title' => "Kamen Rider World", 'category_id' => $this->Category('j'), 'type' => 'special', 'number' => 1, 'airdate' => '1944-08-06'],
+            ['title' => "Kamen Rider World", 'category_id' => $this->Category('j'), 'type' => 'special', 'number' => 1, 'airdate' => '1994-08-06'],
 
             // Hyper Battle DVD
             ['title' => "Kamen Rider Kuuga vs the Strong Monster Go-Jiino-Da", 'category_id' => $this->Category('kuuga'), 'type' => 'hyper-battle-dvd', 'number' => 1, 'airdate' => '2000-08-27'],
