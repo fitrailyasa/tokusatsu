@@ -77,7 +77,7 @@
             @foreach ($videos as $item)
                 <tr @if ($item->trashed()) class="text-muted" @endif>
                     <td>{{ $videos->firstItem() + $loop->index }}</td>
-                    <td>{{ $item->title ?? '-' }}</td>
+                    <td>{{ Illuminate\Support\Str::words($item->title ?? '-', 10, '...') }}</td>
                     <td>
                         <span class="badge bg-{{ $item->getCategoryColor() }}">
                             {{ $item->category->name ?? '-' }}
