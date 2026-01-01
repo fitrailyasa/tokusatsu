@@ -7,6 +7,7 @@ use App\Models\Category;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithStartRow;
 use Illuminate\Support\Str;
+use PhpOffice\PhpSpreadsheet\Shared\Date as ExcelDate;
 
 class VideoImport implements ToModel, WithStartRow
 {
@@ -20,10 +21,14 @@ class VideoImport implements ToModel, WithStartRow
         $airDateRaw = trim($row[6] ?? '');
         $airDate = null;
 
-        if ($airDateRaw) {
-            $parsedDate = date_create($airDateRaw);
-            if ($parsedDate) {
-                $airDate = $parsedDate->format('Y-m-d');
+        if ($airDateRaw !== null) {
+            if (is_numeric($airDateRaw)) {
+                $airDate = ExcelDate::excelToDateTimeObject($airDateRaw)->format('Y-m-d');
+            } else {
+                $parsedDate = date_create($airDateRaw);
+                if ($parsedDate) {
+                    $airDate = $parsedDate->format('Y-m-d');
+                }
             }
         }
 
