@@ -22,25 +22,21 @@ class VideoExport implements FromCollection, WithHeadings, WithStyles, ShouldAut
 
     public function collection()
     {
-
+        $no         = 1;
         $collection = [];
-
-        $no = 1;
-        $Videos = $this->categoryId
+        $Videos     = $this->categoryId
             ? Video::where('category_id', $this->categoryId)->get()
             : Video::all();
 
         foreach ($Videos as $item) {
             $collection[] = [
-                'No' => $no++,
-                'Title' => $item->title ?? '',
+                'No'       => $no++,
+                'Title'    => $item->title ?? '',
                 'Category' => $item->category->name ?? 'null',
-                'Type' => $item->type ?? '',
-                'Number' => $item->number ?? 0,
-                'Link'     => is_array($item->link)
-                    ? implode(', ', $item->link)
-                    : ($item->link ?? ''),
-                'AirDate' => $item->airdate ? \Carbon\Carbon::parse($item->airdate)->format('Y-m-d') : '',
+                'Type'     => $item->type ?? '',
+                'Number'   => $item->number ?? 0,
+                'Link'     => is_array($item->link) ? implode(', ', $item->link) : ($item->link ?? ''),
+                'AirDate'  => $item->airdate ? \Carbon\Carbon::parse($item->airdate)->format('Y-m-d') : '',
             ];
         }
 
