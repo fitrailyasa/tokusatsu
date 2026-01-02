@@ -9,11 +9,14 @@ $eras = Era::withoutTrashed()->get()->where('status', 1)->reverse();
 
 <style>
     .logo-circle {
-        width: 50px;
-        height: 50px;
+        width: 45px;
+        height: 45px;
+        background-color: #ffffff;
+        display: block;
         object-fit: cover;
         border-radius: 50%;
-        border: 2px solid #fff;
+        margin: 1px;
+        box-sizing: border-box;
     }
 </style>
 
@@ -24,8 +27,7 @@ $eras = Era::withoutTrashed()->get()->where('status', 1)->reverse();
                 <a href="{{ route('home') }}"
                     class="d-flex align-items-center justify-content-center text-decoration-none"
                     title="{{ config('app.name') }}">
-                    <img class="img-fluid logo-circle" width="50px" src="{{ asset('logo.png') }}"
-                        alt="{{ config('app.name') }} Logo">
+                    <img class="img-fluid logo-circle" src="{{ asset('logo.png') }}" alt="{{ config('app.name') }} Logo">
                     <h5 class="my-3 ms-2 font-weight-bold title-sm">{{ strtoupper(config('app.name')) }}</h5>
                 </a>
             </div>
