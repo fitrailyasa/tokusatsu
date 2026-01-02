@@ -209,32 +209,6 @@ body.theme-light .header .nav-link:hover {
 }
 
 /* =========================================================
-   TABLE
-========================================================= */
-.table {
-    color: var(--text-color);
-}
-
-.table thead th,
-.table tbody tr {
-    background-color: var(--card-bg);
-    border-color: var(--border-color);
-}
-
-.table-hover tbody tr:hover {
-    background-color: rgba(255, 255, 255, 0.08);
-}
-
-body.theme-light .table-hover tbody tr:hover {
-    background-color: rgba(0, 0, 0, 0.04);
-}
-
-.table img {
-    max-height: 80px;
-    object-fit: cover;
-}
-
-/* =========================================================
    PAGINATION
 ========================================================= */
 .pagination {

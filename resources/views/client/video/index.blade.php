@@ -6,27 +6,24 @@
 
 @section('content')
 
-    <div class="container my-5 py-4">
-        <div class="row justify-content-center mt-4 g-3">
-
+    <div class="container text-center my-5 py-4">
+        <div class="row justify-content-center mt-4">
             @foreach ($franchises as $item)
-                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-                    <a href="{{ route('video.category', $item->slug) }}" class="text-decoration-none h-100 d-block">
-
-                        <div class="franchise-card h-100 d-flex flex-column align-items-center justify-content-center">
-                            <img src="{{ $item->img ? asset('storage/' . $item->img) : asset('logo.png') }}"
-                                alt="{{ $item->name }}" class="img-fluid mb-2">
-
-                            <p class="mb-0 text-center">
-                                {{ $item->name }}
-                            </p>
+                <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
+                    <a href="{{ route('video.category', $item->slug) }}" class="text-decoration-none">
+                        <div class="franchise-card">
+                            @if ($item->img === null)
+                                <img class="img img-fluid rounded" src="{{ asset('logo.png') }}" alt="">
+                            @else
+                                <img class="img img-fluid rounded" src="{{ asset('storage/' . $item->img) }}" alt="">
+                            @endif
+                            <p>{{ $item->name }}</p>
                         </div>
                     </a>
                 </div>
             @endforeach
         </div>
-
-        <div class="d-flex justify-content-center mt-4">
+        <div class="d-flex justify-content-center mt-3">
             {{ $franchises->onEachSide(0)->links() }}
         </div>
     </div>
