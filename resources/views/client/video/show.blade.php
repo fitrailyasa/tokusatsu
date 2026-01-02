@@ -37,7 +37,7 @@
                 <h1 class="text-center responsive-title">{{ $category->fullname }}</h1>
             </div>
             <div>
-                <button id="shareBtn" class="btn btn-icon m-0 p-0">
+                <button id="shareBtn" class="btn btn-icon">
                     <i class="fa fa-share"></i>
                 </button>
             </div>

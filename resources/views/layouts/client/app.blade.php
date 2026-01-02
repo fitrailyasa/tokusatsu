@@ -69,6 +69,8 @@
             padding: 6px;
             border-radius: 50%;
             transition: background-color 0.2s ease, color 0.2s ease;
+            margin: 0;
+            padding: 0;
         }
 
         #shareBtn i {
