@@ -81,7 +81,7 @@
                                         </a>
                                     </td>
 
-                                    <td>
+                                    <td class="text-decoration-none">
                                         {{ \Carbon\Carbon::parse($item->airdate ?? $item->category->first_aired)->diffForHumans() }}
                                     </td>
 
