@@ -15,39 +15,6 @@ $eras = Era::withoutTrashed()->get()->where('status', 1)->reverse();
         border-radius: 50%;
         border: 2px solid #fff;
     }
-
-    .header-wrapper {
-        display: flex;
-        align-items: center;
-    }
-
-    /* kiri */
-    .header-left {
-        flex: 0 0 auto;
-    }
-
-    /* tengah */
-    .header-center {
-        flex: 1 1 auto;
-        justify-content: center;
-    }
-
-    /* kanan */
-    .header-right {
-        flex: 0 0 auto;
-        margin-left: auto;
-    }
-
-    /* MOBILE FIX */
-    @media (max-width: 991px) {
-        .header-wrapper {
-            justify-content: space-between;
-        }
-
-        .header-center {
-            display: none !important;
-        }
-    }
 </style>
 
 <header class="header px-3 mb-3 fixed-top">

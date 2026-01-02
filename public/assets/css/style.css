@@ -73,6 +73,35 @@ body.theme-light .header .nav-link:hover {
     border-bottom: 2px solid var(--text-color);
 }
 
+.header-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.header-left {
+    flex: 0 0 auto;
+}
+
+.header-center {
+    flex: 1 1 auto;
+    justify-content: center;
+}
+
+.header-right {
+    flex: 0 0 auto;
+    margin-left: auto;
+}
+
+@media (max-width: 991px) {
+    .header-wrapper {
+        justify-content: space-between;
+    }
+
+    .header-center {
+        display: none !important;
+    }
+}
+
 /* =========================================================
    DROPDOWN
 ========================================================= */
