@@ -85,6 +85,16 @@
         body.theme-light #shareBtn:hover {
             background-color: rgba(0, 0, 0, 0.08);
         }
+
+        .table {
+            font-size: 0.9rem;
+        }
+
+        .table th,
+        .table td {
+            padding: 0.45rem 0.6rem;
+            vertical-align: middle;
+        }
     </style>
 
 </head>

@@ -66,7 +66,7 @@
                         <tbody>
                             @foreach ($videos as $item)
                                 <tr>
-                                    <td class="text-center fw-semibold">
+                                    <td class="text-center">
                                         <a class="text-decoration-none"
                                             href="{{ route('video.watch', [$item->category->franchise->slug, $item->category->slug, $item->type, $item->number]) }}">
                                             {{ $item->label }} {{ $item->number }}
@@ -74,7 +74,7 @@
                                         </a>
                                     </td>
 
-                                    <td class="fw-semibold">
+                                    <td>
                                         <a class="text-decoration-none"
                                             href="{{ route('video.watch', [$item->category->franchise->slug, $item->category->slug, $item->type, $item->number]) }}">
                                             {{ $item->title }}

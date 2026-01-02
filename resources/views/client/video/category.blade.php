@@ -65,11 +65,11 @@
                         <tbody>
                             @foreach ($categories as $item)
                                 <tr>
-                                    <td class="text-center fw-semibold">
+                                    <td class="text-cente">
                                         {{ $categories->firstItem() + $loop->index }}
                                     </td>
 
-                                    <td class="fw-semibold">
+                                    <td>
                                         <a class="text-decoration-none"
                                             href="{{ route('video.show', [$item->franchise->slug, $item->slug]) }}">
                                             {{ $item->fullname }}
