@@ -75,7 +75,7 @@
                                             {{ $item->fullname }}
 
                                             @if ($item->first_aired)
-                                                <span>
+                                                <span class="text-muted">
                                                     ({{ \Carbon\Carbon::parse($item->first_aired)->year }})
                                                 </span>
                                             @endif

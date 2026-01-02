@@ -32,7 +32,7 @@
             @else
                 <div class="table-responsive">
                     <table class="table align-middle table-hover shadow-sm mt-3">
-                        <thead class="bg-dark text-white">
+                        <thead>
                             <tr>
                                 <th class="text-center" style="max-width: 120px;">Movie</th>
                                 <th>Title</th>
@@ -42,8 +42,8 @@
                         <tbody>
                             @foreach ($videos as $item)
                                 <tr>
-                                    <td class="text-center fw-semibold">
-                                        <a class="text-decoration-none text-dark"
+                                    <td class="text-center">
+                                        <a class="text-decoration-none"
                                             href="{{ route('video.watch', [$item->category->franchise->slug, $item->category->slug, $item->type, $item->number]) }}">
                                             @if ($item->category->img === null)
                                                 <img class="img-fluid rounded shadow-sm" width="150px"
@@ -57,7 +57,7 @@
                                     </td>
 
                                     <td class="fw-semibold">
-                                        <a class="text-decoration-none text-dark"
+                                        <a class="text-decoration-none"
                                             href="{{ route('video.watch', [$item->category->franchise->slug, $item->category->slug, $item->type, $item->number]) }}">
                                             {{ $item->title }}
                                         </a>
