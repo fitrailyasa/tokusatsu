@@ -36,6 +36,37 @@
             cursor: default;
             z-index: 5;
         }
+
+        .server-btn,
+        .btn-outline-light {
+            background-color: transparent;
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease;
+        }
+
+        .server-btn:hover,
+        .btn-outline-light:hover {
+            background-color: color-mix(in srgb, var(--text-color) 12%, transparent);
+            color: var(--text-color);
+        }
+
+        .server-btn.active {
+            background-color: var(--text-color);
+            color: var(--bg-color);
+            border-color: var(--text-color);
+            font-weight: 600;
+        }
+
+        .server-btn:focus,
+        .btn-outline-light:focus {
+            box-shadow: none;
+        }
+
+        body.theme-light .server-btn:hover,
+        body.theme-light .btn-outline-light:hover {
+            background-color: rgba(0, 0, 0, 0.06);
+        }
     </style>
 
     <div class="container my-5 py-4">
@@ -271,7 +302,6 @@
             }
         });
     </script>
-
 
     {{-- Fullscreen Orientation Lock --}}
     <script>
