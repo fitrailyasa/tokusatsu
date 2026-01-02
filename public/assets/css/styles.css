@@ -368,7 +368,8 @@ body.theme-light .header .nav-link:hover {
     border-right: 0;
 }
 
-#shareBtn {
+#shareBtn,
+#downloadBtn {
     background: transparent;
     border: none;
     color: var(--text-color);
@@ -379,16 +380,19 @@ body.theme-light .header .nav-link:hover {
     padding: 0;
 }
 
-#shareBtn i {
+#shareBtn i,
+#downloadBtn i {
     color: var(--text-color);
     font-size: 16px;
 }
 
-#shareBtn:hover {
+#shareBtn:hover,
+#downloadBtn:hover {
     background-color: rgba(255, 255, 255, 0.12);
 }
 
-body.theme-light #shareBtn:hover {
+body.theme-light #shareBtn:hover,
+body.theme-light #downloadBtn:hover {
     background-color: rgba(0, 0, 0, 0.08);
 }
 

@@ -44,7 +44,7 @@
                 <div class="col-3 text-left">
                     <a
                         href="{{ route('video.show', ['franchise' => $category->franchise->slug, 'category' => $category->slug]) }}">
-                        <p class="m-0"><i class="text-dark fas fa-arrow-left"></i></p>
+                        <p class="m-0"><i class="fas fa-arrow-left"></i></p>
                     </a>
                 </div>
                 <div class="col-6">
@@ -69,7 +69,7 @@
                             }
                         }
                     @endphp
-                    <a id="downloadBtn" href="#" class="btn btn-sm d-none">
+                    <a id="downloadBtn" href="#" class="btn btn-sm d-none me-2">
                         <i class="fa-solid fa-download"></i>
                     </a>
                     <button id="shareBtn" class="btn btn-icon">
@@ -108,7 +108,7 @@
                     <div class="mb-3 d-flex justify-content-center gap-3 flex-wrap">
                         @foreach ($embedUrls as $index => $url)
                             <button type="button"
-                                class="btn btn-sm btn-outline-dark server-btn {{ $index === 0 ? 'active' : '' }}"
+                                class="btn btn-sm btn-outline-light server-btn {{ $index === 0 ? 'active' : '' }}"
                                 data-index="{{ $index }}">
                                 Server {{ $index + 1 }}
                             </button>
@@ -124,7 +124,7 @@
                             'type' => $prev->type,
                             'number' => $prev->number,
                         ]) }}"
-                            class="btn btn-sm btn-outline-dark">
+                            class="btn btn-sm btn-outline-light">
                             <i class="fas fa-arrow-left me-1"></i> Prev
                         </a>
                     @endif
@@ -136,7 +136,7 @@
                             'type' => $next->type,
                             'number' => $next->number,
                         ]) }}"
-                            class="btn btn-sm btn-outline-dark">
+                            class="btn btn-sm btn-outline-light">
                             Next <i class="fas fa-arrow-right ms-1"></i>
                         </a>
                     @endif
