@@ -18,6 +18,35 @@ $eras = Era::withoutTrashed()->get()->where('status', 1)->reverse();
         margin: 1px;
         box-sizing: border-box;
     }
+
+    .header-wrapper {
+        display: flex;
+        align-items: center;
+    }
+
+    .header-left {
+        flex: 0 0 auto;
+    }
+
+    .header-center {
+        flex: 1 1 auto;
+        justify-content: center;
+    }
+
+    .header-right {
+        flex: 0 0 auto;
+        margin-left: auto;
+    }
+
+    @media (max-width: 991px) {
+        .header-wrapper {
+            justify-content: space-between;
+        }
+
+        .header-center {
+            display: none !important;
+        }
+    }
 </style>
 
 <header class="header px-3 mb-3 fixed-top">
