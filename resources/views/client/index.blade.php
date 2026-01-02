@@ -124,7 +124,7 @@
         </div>
     </div>
 
-    <footer class="d-none d-lg-block border-top py-3">
+    <footer class="d-none d-lg-block py-3">
         <div class="container text-center small">
             <a href="{{ route('home') }}" class="text-decoration-none">
                 Copyright &copy; {{ date('Y') }} {{ config('app.name') }}
