@@ -1,4 +1,4 @@
-<footer class="footer px-1 d-block d-lg-none border-top fixed-bottom">
+<footer class="footer px-1 d-block d-lg-none fixed-bottom">
     <div class="container-fluid">
         <ul class="nav nav-fill py-1">
             <li class="nav-item">
