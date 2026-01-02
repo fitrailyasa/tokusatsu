@@ -334,24 +334,8 @@ body.theme-light .header .nav-link:hover {
     color: var(--text-color);
 }
 
-.btn-icon i {
-    background: transparent;
-    border: none;
-    color: #212529;
-    padding: 0;
-    font-size: 1.1rem;
-}
-
-body.dark-mode .btn-icon i {
-    color: #f1f1f1;
-}
-
-.btn-icon:hover i {
-    opacity: 0.75;
-}
-
 /* =========================================================
-   SEARCH INPUT (DARK MODE SUPPORT)
+   SEARCH INPUT
 ========================================================= */
 .input-group-text {
     background-color: var(--card-bg);
@@ -376,7 +360,6 @@ body.dark-mode .btn-icon i {
     box-shadow: none;
 }
 
-/* biar nyatu */
 .input-group .form-control {
     border-left: 0;
 }
