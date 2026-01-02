@@ -39,12 +39,13 @@
 
                 bookmarks.forEach((item, index) => {
                     const li = document.createElement("li");
-                    li.className = "list-group-item d-flex justify-content-between align-items-center";
+                    li.className =
+                        "list-group-item bookmark-item d-flex justify-content-between align-items-center";
 
                     const link = document.createElement("a");
                     link.href = item.url ?? "#";
                     link.textContent = item.title;
-                    link.className = "fw-semibold text-dark text-decoration-none";
+                    link.className = "fw-semibold bookmark-link text-decoration-none";
 
                     const deleteBtn = document.createElement("button");
                     deleteBtn.className = "btn btn-sm btn-outline-danger";

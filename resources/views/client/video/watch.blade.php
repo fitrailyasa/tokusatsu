@@ -72,7 +72,7 @@
                     <a id="downloadBtn" href="#" class="btn btn-sm d-none">
                         <i class="fa-solid fa-download"></i>
                     </a>
-                    <button id="shareBtn" class="btn m-0 p-0">
+                    <button id="shareBtn" class="btn btn-icon">
                         <i class="fa fa-share"></i>
                     </button>
                 </div>
@@ -252,20 +252,26 @@
             const videoTitle =
                 "{{ $category->fullname }} {{ ucfirst($video->type) }} {{ $video->number }}";
             const videoUrl = window.location.href;
-            const currentTime = new Date().toLocaleString();
+            const currentTime = new Date().toISOString();
 
-            const exists = watchHistory.find(item => item.url videoUrl);
+            const exists = watchHistory.find(item => item.url === videoUrl);
+
             if (!exists) {
                 watchHistory.unshift({
                     title: videoTitle,
                     url: videoUrl,
                     time: currentTime
                 });
-                if (watchHistory.length > 20) watchHistory = watchHistory.slice(0, 20);
+
+                if (watchHistory.length > 30) {
+                    watchHistory = watchHistory.slice(0, 30);
+                }
+
                 localStorage.setItem("watchHistory", JSON.stringify(watchHistory));
             }
         });
     </script>
+
 
     {{-- Fullscreen Orientation Lock --}}
     <script>

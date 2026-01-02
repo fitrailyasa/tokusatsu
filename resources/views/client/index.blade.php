@@ -4,95 +4,13 @@
 
 @section('content')
 
-    {{-- SWIPER CSS --}}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
-    <style>
-        .swiper {
-            width: 95%;
-            padding-top: 20px;
-            opacity: 0;
-            transition: opacity .3s ease;
-        }
-
-        .swiper.swiper-initialized {
-            opacity: 1;
-        }
-
-        .swiper-slide img {
-            width: 100%;
-            background-color: #111;
-            border-radius: 8px;
-        }
-
-        .swiper-button-next,
-        .swiper-button-prev {
-            top: 40% !important;
-            color: #fff !important;
-        }
-
-        .swiper-button-next::after,
-        .swiper-button-prev::after {
-            color: #fff !important;
-            font-size: 28px;
-        }
-
-        .section-title {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            margin-bottom: 7px;
-            padding: 0 15px;
-        }
-
-        .section-title .title {
-            text-align: center;
-            margin: 0;
-        }
-
-        .section-title a {
-            position: absolute;
-            right: 45px;
-            font-size: 14px;
-            text-decoration: none;
-            color: #007bff;
-        }
-
-        .section-title a:hover {
-            text-decoration: underline;
-        }
-
-        @media (max-width: 576px) {
-            .section-title {
-                justify-content: flex-start;
-                padding-left: 20px;
-                padding-right: 20px;
-            }
-
-            .section-title .title {
-                text-align: left !important;
-                font-size: 16px !important;
-            }
-
-            .section-title a {
-                right: 20px;
-                font-size: 12px;
-            }
-
-            .swiper {
-                padding-top: 10px;
-            }
-        }
-    </style>
-
     <div class="container text-center" style="padding-top: 80px; padding-bottom: 80px;">
         @include('client.buttonSearch')
         <br>
         {{-- ===================== KAMEN RIDER ===================== --}}
         <div class="section-title">
-            <h5 class="title fw-bold mb-1">Kamen Rider</h5>
-            <a class="text-dark" href="{{ route('video.category', 'kamen-rider') }}">View All <i
+            <h5 class="responsive-title">Kamen Rider</h5>
+            <a href="{{ route('video.category', 'kamen-rider') }}">View All <i
                     class="fa-solid fa-arrow-up-right-from-square"></i></a>
         </div>
         <div class="swiper pt-0 pb-3 px-2 mySwiperKR">
@@ -101,10 +19,10 @@
                     @if ($category->franchise && $category->franchise->name === 'Kamen Rider')
                         <div class="swiper-slide">
                             <a href="{{ route('video.show', [$category->franchise->slug, $category->slug]) }}">
-                                <img class="bg-white"
+                                <img class=""
                                     src="{{ $category->img ? asset('storage/' . $category->img) : asset('storage/comingsoon.jpg') }}"
                                     loading="lazy" alt="Logo {{ $category->name }}">
-                                <p class="small pt-2 text-dark">{{ $category->fullname }}
+                                <p class="small pt-2">{{ $category->fullname }}
                                     @if ($category->first_aired)
                                         ({{ \Carbon\Carbon::parse($category->first_aired)->year }})
                                     @endif
@@ -118,8 +36,8 @@
 
         {{-- ===================== ULTRAMAN ===================== --}}
         <div class="section-title">
-            <h5 class="title fw-bold mb-1">Ultraman</h5>
-            <a class="text-dark" href="{{ route('video.category', 'ultraman') }}">View All <i
+            <h5 class="responsive-title">Ultraman</h5>
+            <a href="{{ route('video.category', 'ultraman') }}">View All <i
                     class="fa-solid fa-arrow-up-right-from-square"></i></a>
         </div>
         <div class="swiper pt-0 pb-3 px-2 mySwiperUL">
@@ -128,10 +46,10 @@
                     @if ($category->franchise && $category->franchise->name === 'Ultraman')
                         <div class="swiper-slide">
                             <a href="{{ route('video.show', [$category->franchise->slug, $category->slug]) }}">
-                                <img class="bg-white"
+                                <img class=""
                                     src="{{ $category->img ? asset('storage/' . $category->img) : asset('storage/comingsoon.jpg') }}"
                                     loading="lazy" alt="Logo {{ $category->name }}">
-                                <p class="small pt-2 text-dark">{{ $category->fullname }}
+                                <p class="small pt-2">{{ $category->fullname }}
                                     @if ($category->first_aired)
                                         ({{ \Carbon\Carbon::parse($category->first_aired)->year }})
                                     @endif
@@ -145,8 +63,8 @@
 
         {{-- ===================== SUPER SENTAI ===================== --}}
         <div class="section-title">
-            <h5 class="title fw-bold mb-1">Super Sentai</h5>
-            <a class="text-dark" href="{{ route('video.category', 'super-sentai') }}">View All <i
+            <h5 class="responsive-title">Super Sentai</h5>
+            <a href="{{ route('video.category', 'super-sentai') }}">View All <i
                     class="fa-solid fa-arrow-up-right-from-square"></i></a>
         </div>
         <div class="swiper pt-0 pb-3 px-2 mySwiperSS">
@@ -155,10 +73,10 @@
                     @if ($category->franchise && $category->franchise->name === 'Super Sentai')
                         <div class="swiper-slide">
                             <a href="{{ route('video.show', [$category->franchise->slug, $category->slug]) }}">
-                                <img class="bg-white"
+                                <img class=""
                                     src="{{ $category->img ? asset('storage/' . $category->img) : asset('storage/comingsoon.jpg') }}"
                                     loading="lazy" alt="Logo {{ $category->name }}">
-                                <p class="small pt-2 text-dark">{{ $category->fullname }}
+                                <p class="small pt-2">{{ $category->fullname }}
                                     @if ($category->first_aired)
                                         ({{ \Carbon\Carbon::parse($category->first_aired)->year }})
                                     @endif
@@ -172,8 +90,8 @@
 
         {{-- ===================== POWER RANGERS ===================== --}}
         <div class="section-title">
-            <h5 class="title fw-bold mb-1">Power Rangers</h5>
-            <a class="text-dark" href="{{ route('video.category', 'power-rangers') }}">View All <i
+            <h5 class="responsive-title">Power Rangers</h5>
+            <a href="{{ route('video.category', 'power-rangers') }}">View All <i
                     class="fa-solid fa-arrow-up-right-from-square"></i></a>
         </div>
         <div class="swiper pt-0 pb-3 px-2 mySwiperSS">
@@ -182,10 +100,10 @@
                     @if ($category->franchise && $category->franchise->name === 'Power Rangers')
                         <div class="swiper-slide">
                             <a href="{{ route('video.show', [$category->franchise->slug, $category->slug]) }}">
-                                <img class="bg-white"
+                                <img class=""
                                     src="{{ $category->img ? asset('storage/' . $category->img) : asset('storage/comingsoon.jpg') }}"
                                     loading="lazy" alt="Logo {{ $category->name }}">
-                                <p class="small pt-2 text-dark">{{ $category->fullname }}
+                                <p class="small pt-2">{{ $category->fullname }}
                                     @if ($category->first_aired)
                                         ({{ \Carbon\Carbon::parse($category->first_aired)->year }})
                                     @endif
@@ -200,16 +118,16 @@
 
     <footer class="d-none d-lg-block border-top py-3">
         <div class="container text-center small">
-            <a href="{{ route('home') }}" class="text-muted text-decoration-none">
+            <a href="{{ route('home') }}" class="text-decoration-none">
                 Copyright &copy; {{ date('Y') }} {{ config('app.name') }}
             </a>
         </div>
         <div class="container text-center small">
-            <a href="{{ route('privacy-policy') }}" class="text-muted text-decoration-none">
+            <a href="{{ route('privacy-policy') }}" class="text-decoration-none">
                 Privacy Policy
             </a>
-            <span class="text-muted mx-2">|</span>
-            <a href="{{ route('terms-conditions') }}" class="text-muted text-decoration-none">
+            <span class="mx-2">|</span>
+            <a href="{{ route('terms-conditions') }}" class="text-decoration-none">
                 Terms & Conditions
             </a>
         </div>
@@ -218,21 +136,19 @@
                 $at = '@';
                 $username = strtolower(str_replace(' ', '', config('app.name')));
             @endphp
-            <a href="https://instagram.com/{{ $username }}" class="text-muted text-decoration-none">
+            <a href="https://instagram.com/{{ $username }}" class="text-decoration-none">
                 <i class="fa-brands fa-instagram"></i>
             </a>
-            <span class="text-muted mx-2">|</span>
-            <a href="https://x.com/{{ $username }}" class="text-muted text-decoration-none">
+            <span class="mx-2">|</span>
+            <a href="https://x.com/{{ $username }}" class="text-decoration-none">
                 <i class="fa-brands fa-twitter"></i>
             </a>
-            <span class="text-muted mx-2">|</span>
-            <a href="https://www.tiktok.com/{{ $at }}{{ $username }}"
-                class="text-muted text-decoration-none">
+            <span class="mx-2">|</span>
+            <a href="https://www.tiktok.com/{{ $at }}{{ $username }}" class="text-decoration-none">
                 <i class="fa-brands fa-tiktok"></i>
             </a>
-            <span class="text-muted mx-2">|</span>
-            <a href="https://www.youtube.com/{{ $at }}{{ $username }}"
-                class="text-muted text-decoration-none">
+            <span class="mx-2">|</span>
+            <a href="https://www.youtube.com/{{ $at }}{{ $username }}" class="text-decoration-none">
                 <i class="fa-brands fa-youtube"></i>
             </a>
         </div>

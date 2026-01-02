@@ -6,49 +6,69 @@ use App\Models\Franchise;
 $franchises = Franchise::withoutTrashed()->where('status', 1)->get();
 $eras = Era::withoutTrashed()->get()->where('status', 1)->reverse();
 ?>
+
 <style>
-    .custom-dropdown {
-        max-height: 60vh;
-        overflow-y: auto;
-        overflow-x: hidden;
+    .logo-circle {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 2px solid #fff;
     }
 
-    .dropdown-header {
-        font-weight: bold;
-        font-size: 0.9rem;
-        color: #555;
+    .header-wrapper {
+        display: flex;
+        align-items: center;
     }
 
-    .dropdown-menu {
-        visibility: hidden;
-        opacity: 0;
-        transition: opacity 0.3s;
+    /* kiri */
+    .header-left {
+        flex: 0 0 auto;
     }
 
-    .nav-item.dropdown:hover>.dropdown-menu,
-    .dropdown-submenu:hover>.dropdown-menu {
-        visibility: visible;
-        opacity: 1;
+    /* tengah */
+    .header-center {
+        flex: 1 1 auto;
+        justify-content: center;
+    }
+
+    /* kanan */
+    .header-right {
+        flex: 0 0 auto;
+        margin-left: auto;
+    }
+
+    /* MOBILE FIX */
+    @media (max-width: 991px) {
+        .header-wrapper {
+            justify-content: space-between;
+        }
+
+        .header-center {
+            display: none !important;
+        }
     }
 </style>
 
-<header class="header px-3 mb-3 fixed-top bg-light" style="border-bottom: 1px solid #afafaf;">
+<header class="header px-3 mb-3 fixed-top">
     <div class="container">
-        <div class="d-flex flex-wrap align-items-center justify-content-between">
-            <a href="{{ route('home') }}"
-                class="d-flex align-items-center justify-content-center text-dark text-decoration-none"
-                title="{{ config('app.name') }}">
-                <img class="img-fluid logo-sm" src="{{ asset('logo.png') }}" alt="{{ config('app.name') }} Logo">
-                <h5 class="my-3 ms-2 font-weight-bold title-sm">{{ strtoupper(config('app.name')) }}</h5>
-            </a>
+        <div class="d-flex align-items-center header-wrapper">
+            <div class="header-left">
+                <a href="{{ route('home') }}"
+                    class="d-flex align-items-center justify-content-center text-decoration-none"
+                    title="{{ config('app.name') }}">
+                    <img class="img-fluid logo-circle" width="50px" src="{{ asset('logo.png') }}"
+                        alt="{{ config('app.name') }} Logo">
+                    <h5 class="my-3 ms-2 font-weight-bold title-sm">{{ strtoupper(config('app.name')) }}</h5>
+                </a>
+            </div>
 
-            <div class="d-none d-lg-block">
+            <div class="header-center d-none d-lg-flex">
                 <nav itemscope itemtype="https://schema.org/SiteNavigationElement">
                     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 mx-3 justify-content-center mb-md-0">
                         <li itemprop="name">
                             <a itemprop="url" href="{{ route('home') }}"
-                                class="nav-link text-dark py-3 px-3 fw-bold @yield('textHome')"
-                                title="{{ config('app.name') }}">
+                                class="nav-link py-3 px-3 fw-bold @yield('textHome')" title="{{ config('app.name') }}">
                                 {{ __('Home') }}
                             </a>
                         </li>
@@ -68,7 +88,7 @@ $eras = Era::withoutTrashed()->get()->where('status', 1)->reverse();
                         {{-- KAMEN RIDER --}}
                         @if ($franchiseKR)
                             <li class="nav-item dropdown" itemprop="name">
-                                <a class="nav-link text-dark dropdown-toggle py-3 px-3 fw-bold" href="#"
+                                <a class="nav-link dropdown-toggle py-3 px-3 fw-bold" href="#"
                                     itemprop="url">Kamen Rider</a>
                                 <ul class="dropdown-menu custom-dropdown m-0">
                                     @foreach ($eras as $era)
@@ -104,7 +124,7 @@ $eras = Era::withoutTrashed()->get()->where('status', 1)->reverse();
                         {{-- ULTRAMAN --}}
                         @if ($franchiseUL)
                             <li class="nav-item dropdown" itemprop="name">
-                                <a class="nav-link text-dark dropdown-toggle py-3 px-3 fw-bold" href="#"
+                                <a class="nav-link dropdown-toggle py-3 px-3 fw-bold" href="#"
                                     itemprop="url">Ultraman</a>
                                 <ul class="dropdown-menu custom-dropdown m-0">
                                     @foreach ($eras as $era)
@@ -140,7 +160,7 @@ $eras = Era::withoutTrashed()->get()->where('status', 1)->reverse();
                         {{-- SUPER SENTAI --}}
                         @if ($franchiseSS)
                             <li class="nav-item dropdown" itemprop="name">
-                                <a class="nav-link text-dark dropdown-toggle py-3 px-3 fw-bold" href="#"
+                                <a class="nav-link dropdown-toggle py-3 px-3 fw-bold" href="#"
                                     itemprop="url">Super Sentai</a>
                                 <ul class="dropdown-menu custom-dropdown m-0">
                                     @foreach ($eras as $era)
@@ -184,8 +204,8 @@ $eras = Era::withoutTrashed()->get()->where('status', 1)->reverse();
                         @endphp
                         @if ($hasActiveOther)
                             <li class="nav-item dropdown" itemprop="name">
-                                <a class="nav-link dropdown-toggle py-3 px-3 text-dark fw-bold" href="#"
-                                    id="otherDropdown" role="button" itemprop="url">
+                                <a class="nav-link dropdown-toggle py-3 px-3 fw-bold" href="#" id="otherDropdown"
+                                    role="button" itemprop="url">
                                     {{ __('Other') }}
                                 </a>
                                 <ul class="dropdown-menu m-0" aria-labelledby="otherDropdown">
@@ -219,19 +239,24 @@ $eras = Era::withoutTrashed()->get()->where('status', 1)->reverse();
 
                         {{-- HISTORY & BOOKMARK --}}
                         <li class="nav-item">
-                            <a class="nav-link text-dark py-3 px-3 fw-bold @yield('textHistory')"
-                                href="{{ route('history') }}" title="Riwayat Tonton">
+                            <a class="nav-link py-3 px-3 fw-bold @yield('textHistory')" href="{{ route('history') }}"
+                                title="Riwayat Tonton">
                                 <i class="far fa-clock fs-5"></i>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark py-3 px-3 fw-bold @yield('textBookmark')"
-                                href="{{ route('bookmark') }}" title="Bookmark Video">
+                            <a class="nav-link py-3 px-3 fw-bold @yield('textBookmark')" href="{{ route('bookmark') }}"
+                                title="Bookmark Video">
                                 <i class="far fa-bookmark fs-5"></i>
                             </a>
                         </li>
                     </ul>
                 </nav>
+            </div>
+            <div class="header-right">
+                <button id="themeToggle" class="btn">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
             </div>
         </div>
     </div>

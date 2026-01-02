@@ -31,14 +31,13 @@
     <div class="container my-5">
         <div class="d-flex justify-content-between align-items-center px-3 pt-4">
             <div>
-                <a class="text-dark" href="{{ route('video.category', $category->franchise->slug) }}"><i
-                        class="fas fa-arrow-left"></i></a>
+                <a href="{{ route('video.category', $category->franchise->slug) }}"><i class="fas fa-arrow-left"></i></a>
             </div>
             <div>
                 <h1 class="text-center responsive-title">{{ $category->fullname }}</h1>
             </div>
             <div>
-                <button id="shareBtn" class="btn m-0 p-0">
+                <button id="shareBtn" class="btn btn-icon">
                     <i class="fa fa-share"></i>
                 </button>
             </div>
@@ -55,7 +54,7 @@
             @else
                 <div class="table-responsive">
                     <table class="table align-middle table-hover shadow-sm mt-3">
-                        <thead class="bg-dark text-white">
+                        <thead>
                             <tr>
                                 <th class="text-center" style="max-width: 90px;">List</th>
                                 <th>Title</th>
@@ -68,7 +67,7 @@
                             @foreach ($videos as $item)
                                 <tr>
                                     <td class="text-center fw-semibold">
-                                        <a class="text-decoration-none text-dark"
+                                        <a class="text-decoration-none"
                                             href="{{ route('video.watch', [$item->category->franchise->slug, $item->category->slug, $item->type, $item->number]) }}">
                                             {{ $item->label }} {{ $item->number }}
                                             <i class="fa-solid fa-arrow-up-right-from-square ms-1"></i>
@@ -76,7 +75,7 @@
                                     </td>
 
                                     <td class="fw-semibold">
-                                        <a class="text-decoration-none text-dark"
+                                        <a class="text-decoration-none"
                                             href="{{ route('video.watch', [$item->category->franchise->slug, $item->category->slug, $item->type, $item->number]) }}">
                                             {{ $item->title }}
                                         </a>

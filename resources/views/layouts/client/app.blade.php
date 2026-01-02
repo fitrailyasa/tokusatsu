@@ -38,6 +38,7 @@
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.13.0/css/OverlayScrollbars.min.css">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     @yield('style')
 
@@ -60,184 +61,9 @@
     <link rel="canonical" href="{{ url()->current() }}">
     <script src="https://unpkg.com/feather-icons"></script>
 
-    <style>
-        .responsive-title {
-            margin: 0;
-            padding: 0;
-            font-size: 14px;
-            font-weight: bold;
-        }
-
-        @media (max-width: 576px) {
-            table.table {
-                font-size: 12px;
-            }
-
-            table.table th,
-            table.table td {
-                padding: 0.35rem;
-            }
-
-            table.table img {
-                width: 60px;
-            }
-
-            .responsive-title {
-                font-size: 16px;
-            }
-        }
-
-        @media (min-width: 768px) {
-            .responsive-title {
-                font-size: 18px;
-            }
-        }
-
-        @media (min-width: 1200px) {
-            .responsive-title {
-                font-size: 22px;
-            }
-        }
-
-        .list-group-item a {
-            text-decoration: none;
-            color: #000;
-            font-size: 1rem;
-            word-break: break-word;
-        }
-
-        .list-group-item button {
-            padding: 0.2rem 0.4rem;
-            font-size: 0.8rem;
-        }
-
-        .logo-sm {
-            width: 50px;
-        }
-
-        @media (max-width: 320px) {
-
-            .responsive-title {
-                font-size: 1rem !important;
-            }
-
-            /* GALLERY */
-            .img-gallery {
-                width: 80px;
-                margin: 2px;
-            }
-
-            .modal-body img {
-                width: 100%;
-            }
-
-            .btn {
-                font-size: 0.75rem;
-                padding: 0.25rem 0.5rem;
-            }
-
-            h4 {
-                font-size: 1rem;
-            }
-
-            /* SEARCH */
-            .input-group {
-                width: 100% !important;
-                flex-wrap: nowrap;
-            }
-
-            .form-control-sm {
-                font-size: 0.75rem;
-                padding: 0.25rem 0.5rem;
-            }
-
-            .btn-sm {
-                font-size: 0.7rem;
-                padding: 0.25rem 0.5rem;
-            }
-
-            .input-group .btn {
-                width: 30% !important;
-            }
-
-            .input-group .form-control {
-                width: 70% !important;
-            }
-
-            /* HISTORY */
-            #watchHistory .list-group-item {
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 0.3rem 0.5rem;
-                font-size: 0.8rem;
-            }
-
-            #watchHistory .list-group-item a {
-                font-size: 0.8rem;
-            }
-
-            #watchHistory .list-group-item button {
-                margin-top: 0.3rem;
-                align-self: flex-end;
-                font-size: 0.7rem;
-                padding: 0.2rem 0.3rem;
-            }
-
-            /* BOOKMARK */
-            #bookmarkList .list-group-item {
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 0.3rem 0.5rem;
-                font-size: 0.8rem;
-            }
-
-            #bookmarkList .list-group-item a {
-                font-size: 0.8rem;
-            }
-
-            #bookmarkList .list-group-item button {
-                margin-top: 0.3rem;
-                align-self: flex-end;
-                font-size: 0.7rem;
-                padding: 0.2rem 0.3rem;
-            }
-
-            /* HEADER */
-            .header {
-                padding: 5px !important;
-            }
-
-            .logo-sm {
-                width: 30px;
-            }
-
-            .title-sm {
-                font-size: 0.9rem;
-            }
-
-            .d-none.d-lg-block {
-                display: none !important;
-            }
-
-            /* FOOTER */
-            .footer {
-                font-size: 10px;
-            }
-
-            .footer i {
-                width: 16px !important;
-                height: 16px !important;
-            }
-
-            .footer .nav-link {
-                padding: 3px !important;
-            }
-        }
-    </style>
-
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed content bg-light">
+<body id="appBody" class="theme-dark hold-transition sidebar-mini layout-fixed content">
 
     @include('layouts.client.header')
 
@@ -254,6 +80,36 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
+
+    {{-- THEME SCRIPT --}}
+    <script>
+        const body = document.getElementById('appBody');
+        const toggleBtn = document.getElementById('themeToggle');
+
+        function setTheme(theme) {
+            body.classList.remove('theme-dark', 'theme-light');
+            body.classList.add(theme);
+            localStorage.setItem('theme', theme);
+
+            toggleBtn.innerHTML =
+                theme === 'theme-dark' ?
+                '<i class="fa-solid fa-moon"></i>' :
+                '<i class="fa-solid fa-sun"></i>';
+        }
+
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const savedTheme = localStorage.getItem('theme') || (prefersDark ? 'theme-dark' : 'theme-light');
+        setTheme(savedTheme);
+
+        toggleBtn.addEventListener('click', () => {
+            setTheme(
+                body.classList.contains('theme-dark') ?
+                'theme-light' :
+                'theme-dark'
+            );
+        });
+    </script>
+
     @yield('script')
 </body>
 
