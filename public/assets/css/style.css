@@ -367,3 +367,176 @@ body.theme-light .header .nav-link:hover {
 .input-group-text {
     border-right: 0;
 }
+
+#shareBtn {
+    background: transparent;
+    border: none;
+    color: var(--text-color);
+    padding: 6px;
+    border-radius: 50%;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    margin: 0;
+    padding: 0;
+}
+
+#shareBtn i {
+    color: var(--text-color);
+    font-size: 16px;
+}
+
+#shareBtn:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+}
+
+body.theme-light #shareBtn:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+}
+
+.table {
+    --bs-table-bg: var(--card-bg);
+    --bs-table-color: var(--text-color);
+    --bs-table-border-color: var(--border-color);
+
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    font-size: 0.88rem;
+}
+
+.table thead th {
+    background-color: color-mix(in srgb, var(--card-bg) 92%, #000);
+    color: var(--text-color);
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.8rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.table th,
+.table td {
+    padding: 0.4rem 0.55rem;
+    vertical-align: middle;
+    border-color: var(--border-color);
+}
+
+.table tbody tr {
+    background-color: var(--card-bg);
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.06);
+}
+
+body.theme-light .table-hover tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+}
+
+.table a {
+    color: var(--text-color);
+}
+
+.table a:hover {
+    text-decoration: underline;
+}
+
+.table i {
+    color: var(--text-color);
+    opacity: 0.85;
+    font-size: 0.8rem;
+}
+
+.table td.text-muted,
+.table .text-muted {
+    font-size: 0.82rem;
+    color: color-mix(in srgb, var(--text-color) 60%, transparent) !important;
+    white-space: nowrap;
+}
+
+.table img {
+    max-height: 65px;
+    width: auto;
+    background-color: var(--card-bg);
+    border-radius: 6px;
+}
+
+.table .btn-sm {
+    padding: 0.2rem 0.45rem;
+    font-size: 0.75rem;
+    line-height: 1;
+}
+
+.bookmark-btn {
+    line-height: 1;
+}
+
+@media (max-width: 576px) {
+    .table {
+        font-size: 0.85rem;
+    }
+
+    .table img {
+        max-height: 55px;
+    }
+
+    .table td.text-muted {
+        display: none;
+    }
+}
+
+.pagination {
+    --bs-pagination-bg: var(--card-bg);
+    --bs-pagination-border-color: var(--border-color);
+    --bs-pagination-color: var(--text-color);
+
+    --bs-pagination-hover-bg: rgba(255, 255, 255, 0.08);
+    --bs-pagination-hover-color: var(--text-color);
+
+    --bs-pagination-active-bg: var(--text-color);
+    --bs-pagination-active-color: var(--bg-color);
+
+    --bs-pagination-disabled-bg: var(--card-bg);
+    --bs-pagination-disabled-color: color-mix(
+        in srgb,
+        var(--text-color) 40%,
+        transparent
+    );
+
+    background-color: transparent;
+}
+
+.page-item .page-link {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    margin: 0 2px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.page-item .page-link:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: var(--text-color);
+}
+
+body.theme-light .page-item .page-link:hover {
+    background-color: rgba(0, 0, 0, 0.06);
+}
+
+.page-item.active .page-link {
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    border-color: var(--text-color);
+    font-weight: 600;
+}
+
+.page-item.disabled .page-link {
+    background-color: var(--card-bg);
+    color: color-mix(in srgb, var(--text-color) 40%, transparent);
+    border-color: var(--border-color);
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.page-link:focus {
+    box-shadow: none;
+}

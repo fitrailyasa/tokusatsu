@@ -65,7 +65,7 @@
                         <tbody>
                             @foreach ($categories as $item)
                                 <tr>
-                                    <td class="text-cente">
+                                    <td class="text-center">
                                         {{ $categories->firstItem() + $loop->index }}
                                     </td>
 
