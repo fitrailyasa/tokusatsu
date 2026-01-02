@@ -477,10 +477,6 @@ body.theme-light .table-hover tbody tr:hover {
     .table img {
         max-height: 55px;
     }
-
-    .table td.text-muted {
-        display: none;
-    }
 }
 
 .pagination {
