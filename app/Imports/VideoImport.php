@@ -18,8 +18,8 @@ class VideoImport implements ToModel, WithStartRow
         $type         = trim($row[3] ?? '');
         $number       = is_numeric($row[4] ?? null) ? (int) $row[4] : null;
         $rawLink      = trim($row[5] ?? '');
-        $airDateRaw = trim($row[6] ?? '');
-        $airDate = null;
+        $airDateRaw   = trim($row[6] ?? '');
+        $airDate      = null;
 
         if ($airDateRaw !== null) {
             if (is_numeric($airDateRaw)) {
@@ -51,11 +51,11 @@ class VideoImport implements ToModel, WithStartRow
             }
 
             $category = Category::create([
-                'name'         => $categoryName,
-                'fullname'     => $categoryName,
-                'franchise_id' => null,
-                'era_id' => null,
-                'slug' => $slug,
+                'name'          => $categoryName,
+                'fullname'      => $categoryName,
+                'franchise_id'  => null,
+                'era_id'        => null,
+                'slug'          => $slug,
             ]);
         }
 
@@ -72,12 +72,12 @@ class VideoImport implements ToModel, WithStartRow
         return Video::updateOrCreate(
             [
                 'category_id' => $category->id,
-                'type' => $type,
-                'number' => $number
+                'type'        => $type,
+                'number'      => $number
             ],
             [
-                'title' => $title,
-                'link' => $link,
+                'title'   => $title,
+                'link'    => $link,
                 'airdate' => $airDate,
             ]
         );

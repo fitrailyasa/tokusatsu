@@ -22,21 +22,19 @@ class DataExport implements FromCollection, WithHeadings, WithStyles, ShouldAuto
 
     public function collection()
     {
-
+        $no         = 1;
         $collection = [];
-
-        $no = 1;
-        $datas = $this->categoryId
+        $datas      = $this->categoryId
             ? Data::where('category_id', $this->categoryId)->get()
             : Data::all();
 
         foreach ($datas as $item) {
             $collection[] = [
-                'No' => $no++,
-                'Name' => $item->name ?? '',
-                'Category' => $item->category->name ?? 'null',
-                'Img' => $item->img ?? '',
-                'Tags' => implode(', ', $item->tags->pluck('name')->toArray()),
+                'No'        => $no++,
+                'Name'      => $item->name ?? '',
+                'Category'  => $item->category->name ?? 'null',
+                'Img'       => $item->img ?? '',
+                'Tags'      => implode(', ', $item->tags->pluck('name')->toArray()),
             ];
         }
 

@@ -14,17 +14,16 @@ class EraExport implements FromCollection, WithHeadings, WithStyles, ShouldAutoS
 {
     public function collection()
     {
+        $no         = 1;
         $collection = [];
-
-        $no = 1;
-        $eras = Era::all();
+        $eras       = Era::all();
 
         foreach ($eras as $item) {
             $collection[] = [
-                'No' => $no++,
-                'Name' => $item->name ?? '',
-                'Img' => $item->img ?? '',
-                'Description' => $item->description ?? '',
+                'No'            => $no++,
+                'Name'          => $item->name ?? '',
+                'Img'           => $item->img ?? '',
+                'Description'   => $item->description ?? '',
             ];
         }
 

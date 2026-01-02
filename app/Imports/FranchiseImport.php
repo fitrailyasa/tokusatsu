@@ -10,15 +10,15 @@ class FranchiseImport implements ToModel, WithStartRow
 {
     public function model(array $row)
     {
-        $name = $row[1];
-        $img = $row[2] ?? null;
-        $description = $row[3] ?? null;
+        $name           = $row[1];
+        $img            = $row[2] ?? null;
+        $description    = $row[3] ?? null;
 
         return Franchise::updateOrCreate(
             ['name' => $name],
             [
-                'img' => $img,
-                'description' => $description
+                'img'           => $img,
+                'description'   => $description
             ]
         );
     }

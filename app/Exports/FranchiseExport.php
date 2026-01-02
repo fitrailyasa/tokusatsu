@@ -14,17 +14,16 @@ class FranchiseExport implements FromCollection, WithHeadings, WithStyles, Shoul
 {
     public function collection()
     {
+        $no         = 1;
         $collection = [];
-
-        $no = 1;
         $franchises = Franchise::all();
 
         foreach ($franchises as $item) {
             $collection[] = [
-                'No' => $no++,
-                'Name' => $item->name ?? '',
-                'Img' => $item->img ?? '',
-                'Description' => $item->description ?? '',
+                'No'            => $no++,
+                'Name'          => $item->name ?? '',
+                'Img'           => $item->img ?? '',
+                'Description'   => $item->description ?? '',
             ];
         }
 

@@ -13,20 +13,20 @@ class DataImport implements ToModel, WithStartRow
 {
     public function model(array $row)
     {
-        $name = $row[1];
-        $categoryName = $row[2] ?? null;
-        $img = $row[3] ?? null;
-        $tagsName = $row[4] ?? null;
+        $name           = $row[1];
+        $categoryName   = $row[2] ?? null;
+        $img            = $row[3] ?? null;
+        $tagsName       = $row[4] ?? null;
 
         $category = Category::withTrashed()->where('name', $categoryName)->first();
 
         if (!$category) {
             $category = Category::create([
-                'fullname' => $categoryName,
-                'name' => $categoryName,
-                'img' => null,
-                'franchise_id' => null,
-                'era_id' => null,
+                'fullname'      => $categoryName,
+                'name'          => $categoryName,
+                'img'           => null,
+                'franchise_id'  => null,
+                'era_id'        => null,
             ]);
         }
 
@@ -36,14 +36,14 @@ class DataImport implements ToModel, WithStartRow
         }
 
         $data = new Data([
-            'name' => $name,
-            'category_id' => $category->id ?? null,
-            'img' => $img,
+            'name'          => $name,
+            'category_id'   => $category->id ?? null,
+            'img'           => $img,
         ]);
         $data->save();
 
         if (!empty($tagsName)) {
-            $tags = explode(',', $tagsName);
+            $tags   = explode(',', $tagsName);
             $tagIds = [];
 
             foreach ($tags as $tagName) {
@@ -51,9 +51,9 @@ class DataImport implements ToModel, WithStartRow
                 $tag = Tag::withTrashed()->where('name', $tagName)->first();
 
                 if (!$tag) {
-                    $tag = new Tag();
-                    $tag->name = $tagName;
-                    $tag->id = Str::uuid();
+                    $tag        = new Tag();
+                    $tag->name  = $tagName;
+                    $tag->id    = Str::uuid();
                     $tag->save();
                 }
 

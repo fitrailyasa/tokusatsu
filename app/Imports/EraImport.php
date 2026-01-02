@@ -11,15 +11,15 @@ class EraImport implements ToModel, WithStartRow
 {
     public function model(array $row)
     {
-        $name = $row[1];
-        $img = $row[2] ?? null;
-        $description = $row[3] ?? null;
+        $name           = $row[1];
+        $img            = $row[2] ?? null;
+        $description    = $row[3] ?? null;
 
         return Era::updateOrCreate(
             ['name' => $name],
             [
-                'img' => $img,
-                'description' => $description
+                'img'           => $img,
+                'description'   => $description
             ]
         );
     }

@@ -14,21 +14,20 @@ class CategoryExport implements FromCollection, WithHeadings, WithStyles, Should
 {
     public function collection()
     {
+        $no         = 1;
         $collection = [];
-
-        $no = 1;
         $categories = Category::all();
 
         foreach ($categories as $item) {
             $collection[] = [
-                'No' => $no++,
-                'Fullname' => $item->fullname ?? '',
-                'Name' => $item->name ?? '',
-                'Img' => $item->img ?? '',
-                'Description' => $item->description ?? '',
-                'Era' => $item->era->name ?? '',
-                'Franchise' => $item->franchise->name ?? '',
-                'Status' => $item->status ?? '',
+                'No'            => $no++,
+                'Fullname'      => $item->fullname ?? '',
+                'Name'          => $item->name ?? '',
+                'Img'           => $item->img ?? '',
+                'Description'   => $item->description ?? '',
+                'Era'           => $item->era->name ?? '',
+                'Franchise'     => $item->franchise->name ?? '',
+                'Status'        => $item->status ?? '',
             ];
         }
 
