@@ -72,7 +72,7 @@
                     <a id="downloadBtn" href="#" class="btn btn-sm d-none">
                         <i class="fa-solid fa-download"></i>
                     </a>
-                    <button id="shareBtn" class="btn btn-icon">
+                    <button id="shareBtn" class="btn btn-icon m-0 p-0">
                         <i class="fa fa-share"></i>
                     </button>
                 </div>

@@ -61,6 +61,30 @@
     <link rel="canonical" href="{{ url()->current() }}">
     <script src="https://unpkg.com/feather-icons"></script>
 
+    <style>
+        #shareBtn {
+            background: transparent;
+            border: none;
+            color: var(--text-color);
+            padding: 6px;
+            border-radius: 50%;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        #shareBtn i {
+            color: var(--text-color);
+            font-size: 16px;
+        }
+
+        #shareBtn:hover {
+            background-color: rgba(255, 255, 255, 0.12);
+        }
+
+        body.theme-light #shareBtn:hover {
+            background-color: rgba(0, 0, 0, 0.08);
+        }
+    </style>
+
 </head>
 
 <body id="appBody" class="theme-dark hold-transition sidebar-mini layout-fixed content">

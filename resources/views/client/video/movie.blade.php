@@ -15,7 +15,7 @@
                 <h1 class="text-center responsive-title">Movie {{ $franchise->name }}</h1>
             </div>
             <div>
-                <button id="shareBtn" class="btn btn-icon">
+                <button id="shareBtn" class="btn btn-icon m-0 p-0">
                     <i class="fa fa-share"></i>
                 </button>
             </div>
