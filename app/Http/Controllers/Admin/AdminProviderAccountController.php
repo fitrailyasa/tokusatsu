@@ -101,7 +101,11 @@ class AdminProviderAccountController extends Controller
 
     public function files(Request $request, string $email)
     {
-        $account = ProviderAccount::where('email', $email)->firstOrFail();
+        $account = ProviderAccount::where('email', $email)
+            ->when(!Gate::allows('edit:provider'), function ($query) {
+                $query->where('status', 1);
+            })
+            ->firstOrFail();
         $this->useAccountToken($account);
 
         $service = new Drive($this->client);
