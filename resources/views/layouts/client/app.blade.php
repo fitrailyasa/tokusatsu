@@ -57,7 +57,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/favicon/favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('assets/favicon/favicon-96x96.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/favicon/favicon-16x16.png') }}">
-    <link rel="icon" href="{{ asset('assets/favicon/favicon.ico') }}">
+    <link rel="icon" href="{{ asset('favicon.ico') }}">
     <link rel="canonical" href="{{ url()->current() }}">
     <script src="https://unpkg.com/feather-icons"></script>
     <style>
