@@ -21,7 +21,9 @@
                 <th class="d-none d-lg-table-cell">{{ __('Email') }}</th>
                 <th class="d-none d-lg-table-cell">{{ __('Role') }}</th>
                 <th class="d-none d-lg-table-cell">{{ __('Status') }}</th>
-                <th class="text-center">{{ __('Action') }}</th>
+                @canany(['edit:user', 'delete:user'])
+                    <th class="text-center">{{ __('Action') }}</th>
+                @endcanany
             </tr>
         </thead>
         <tbody>
@@ -40,14 +42,16 @@
                             <span class="badge badge-danger">tidak aktif</span>
                         @endif
                     </td>
-                    <td class="manage-row text-center">
-                        @can('edit:user')
-                            @include('admin.user.edit')
-                        @endcan
-                        @can('delete:user')
-                            @include('admin.user.delete')
-                        @endcan
-                    </td>
+                    @canany(['edit:user', 'delete:user'])
+                        <td class="manage-row text-center">
+                            @can('edit:user')
+                                @include('admin.user.edit')
+                            @endcan
+                            @can('delete:user')
+                                @include('admin.user.delete')
+                            @endcan
+                        </td>
+                    @endcanany
                 </tr>
             @endforeach
         </tbody>
@@ -58,7 +62,9 @@
                 <th class="d-none d-lg-table-cell">{{ __('Email') }}</th>
                 <th class="d-none d-lg-table-cell">{{ __('Role') }}</th>
                 <th class="d-none d-lg-table-cell">{{ __('Status') }}</th>
-                <th class="text-center">{{ __('Action') }}</th>
+                @canany(['edit:user', 'delete:user'])
+                    <th class="text-center">{{ __('Action') }}</th>
+                @endcanany
             </tr>
         </tfoot>
     </table>

@@ -25,7 +25,9 @@
                 <th>{{ __('No') }}</th>
                 <th>{{ __('Name') }}</th>
                 <th>{{ __('Permissions') }}</th>
-                <th class="text-center">{{ __('Action') }}</th>
+                @canany(['edit:role', 'delete:role'])
+                    <th class="text-center">{{ __('Action') }}</th>
+                @endcanany
             </tr>
         </thead>
         <tbody>
@@ -62,14 +64,16 @@
                         @endforelse
                     </td>
 
-                    <td class="manage-row text-center">
-                        @can('edit:role')
-                            @include('admin.role.edit')
-                        @endcan
-                        @can('delete:role')
-                            @include('admin.role.delete')
-                        @endcan
-                    </td>
+                    @canany(['edit:role', 'delete:role'])
+                        <td class="manage-row text-center">
+                            @can('edit:role')
+                                @include('admin.role.edit')
+                            @endcan
+                            @can('delete:role')
+                                @include('admin.role.delete')
+                            @endcan
+                        </td>
+                    @endcanany
                 </tr>
             @endforeach
         </tbody>
@@ -78,7 +82,9 @@
                 <th>{{ __('No') }}</th>
                 <th>{{ __('Name') }}</th>
                 <th>{{ __('Permissions') }}</th>
-                <th class="text-center">{{ __('Action') }}</th>
+                @canany(['edit:role', 'delete:role'])
+                    <th class="text-center">{{ __('Action') }}</th>
+                @endcanany
             </tr>
         </tfoot>
     </table>

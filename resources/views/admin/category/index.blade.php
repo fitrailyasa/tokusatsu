@@ -72,8 +72,12 @@
                 <th>{{ __('Franchise') }}</th>
                 <th>{{ __('First Aired') }}</th>
                 <th>{{ __('Last Aired') }}</th>
-                <th>{{ __('Status') }}</th>
-                <th class="text-center">{{ __('Action') }}</th>
+                @can('edit:category')
+                    <th>{{ __('Status') }}</th>
+                @endcan
+                @canany(['edit:category', 'delete:category'])
+                    <th class="text-center">{{ __('Action') }}</th>
+                @endcanany
             </tr>
         </thead>
         <tbody>
@@ -141,8 +145,8 @@
                     <td>
                         {{ date('d M Y', strtotime($item->last_aired)) }}
                     </td>
-                    <td class="text-center">
-                        @can('edit:category')
+                    @can('edit:category')
+                        <td class="text-center">
                             <form action="{{ route('admin.category.toggleStatus', $item->id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
@@ -153,29 +157,29 @@
                                     <span class="toggle-slider"></span>
                                 </label>
                             </form>
-                        @else
-                            <span class="badge bg-secondary">No Access</span>
-                        @endcan
-                    </td>
-                    <td class="manage-row text-center">
-                        @if ($item->trashed())
-                            <!-- Restore and Delete Button -->
-                            @can('restore:category')
-                                @include('admin.category.restore')
-                            @endcan
-                            @can('delete:category')
-                                @include('admin.category.delete')
-                            @endcan
-                        @else
-                            <!-- Edit and Soft Delete Buttons -->
-                            @can('edit:category')
-                                @include('admin.category.edit')
-                            @endcan
-                            @can('soft-delete:category')
-                                @include('admin.category.softDelete')
-                            @endcan
-                        @endif
-                    </td>
+                        </td>
+                    @endcan
+                    @canany(['edit:category', 'delete:category'])
+                        <td class="manage-row text-center">
+                            @if ($item->trashed())
+                                <!-- Restore and Delete Button -->
+                                @can('restore:category')
+                                    @include('admin.category.restore')
+                                @endcan
+                                @can('delete:category')
+                                    @include('admin.category.delete')
+                                @endcan
+                            @else
+                                <!-- Edit and Soft Delete Buttons -->
+                                @can('edit:category')
+                                    @include('admin.category.edit')
+                                @endcan
+                                @can('soft-delete:category')
+                                    @include('admin.category.softDelete')
+                                @endcan
+                            @endif
+                        </td>
+                    @endcan
                 </tr>
             @endforeach
         </tbody>
@@ -190,8 +194,12 @@
                 <th>{{ __('Franchise') }}</th>
                 <th>{{ __('First Aired') }}</th>
                 <th>{{ __('Last Aired') }}</th>
-                <th>{{ __('Status') }}</th>
-                <th class="text-center">{{ __('Action') }}</th>
+                @can('edit:category')
+                    <th>{{ __('Status') }}</th>
+                @endcan
+                @canany(['edit:category', 'delete:category'])
+                    <th class="text-center">{{ __('Action') }}</th>
+                @endcanany
             </tr>
         </tfoot>
     </table>

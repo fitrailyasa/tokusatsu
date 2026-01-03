@@ -68,7 +68,9 @@
                 <th>{{ __('Category') }}</th>
                 <th>{{ __('Images') }}</th>
                 <th>{{ __('Tags') }}</th>
-                <th class="text-center">{{ __('Action') }}</th>
+                @canany(['edit:data', 'delete:data'])
+                    <th class="text-center">{{ __('Action') }}</th>
+                @endcanany
             </tr>
         </thead>
         <tbody>
@@ -135,25 +137,27 @@
                             <span class="badge badge-primary">{{ $tag }}</span>
                         @endforeach
                     </td>
-                    <td class="manage-row text-center">
-                        @if ($item->trashed())
-                            <!-- Restore and Delete Button -->
-                            @can('restore:data')
-                                @include('admin.data.restore')
-                            @endcan
-                            @can('delete:data')
-                                @include('admin.data.delete')
-                            @endcan
-                        @else
-                            <!-- Edit and Soft Delete Buttons -->
-                            @can('edit:data')
-                                @include('admin.data.edit')
-                            @endcan
-                            @can('soft-delete:data')
-                                @include('admin.data.softDelete')
-                            @endcan
-                        @endif
-                    </td>
+                    @canany(['edit:data', 'delete:data'])
+                        <td class="manage-row text-center">
+                            @if ($item->trashed())
+                                <!-- Restore and Delete Button -->
+                                @can('restore:data')
+                                    @include('admin.data.restore')
+                                @endcan
+                                @can('delete:data')
+                                    @include('admin.data.delete')
+                                @endcan
+                            @else
+                                <!-- Edit and Soft Delete Buttons -->
+                                @can('edit:data')
+                                    @include('admin.data.edit')
+                                @endcan
+                                @can('soft-delete:data')
+                                    @include('admin.data.softDelete')
+                                @endcan
+                            @endif
+                        </td>
+                    @endcanany
                 </tr>
             @endforeach
         </tbody>
@@ -164,7 +168,9 @@
                 <th>{{ __('Category') }}</th>
                 <th>{{ __('Images') }}</th>
                 <th>{{ __('Tags') }}</th>
-                <th class="text-center">{{ __('Action') }}</th>
+                @canany(['edit:data', 'delete:data'])
+                    <th class="text-center">{{ __('Action') }}</th>
+                @endcanany
             </tr>
         </tfoot>
     </table>

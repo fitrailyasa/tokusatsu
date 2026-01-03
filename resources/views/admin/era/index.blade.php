@@ -67,8 +67,12 @@
                 <th>{{ __('Name') }}</th>
                 <th>{{ __('Img') }}</th>
                 <th>{{ __('Description') }}</th>
-                <th>{{ __('Status') }}</th>
-                <th class="text-center">{{ __('Action') }}</th>
+                @can('edit:era')
+                    <th>{{ __('Status') }}</th>
+                @endcan
+                @canany(['edit:era', 'delete:era'])
+                    <th class="text-center">{{ __('Action') }}</th>
+                @endcanany
             </tr>
         </thead>
         <tbody>
@@ -119,8 +123,8 @@
                         @endif
                     </td>
                     <td>{{ Illuminate\Support\Str::words($item->description ?? '-', 10, '...') }}</td>
-                    <td class="text-center">
-                        @can('edit:era')
+                    @can('edit:era')
+                        <td class="text-center">
                             <form action="{{ route('admin.era.toggleStatus', $item->id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
@@ -131,29 +135,29 @@
                                     <span class="toggle-slider"></span>
                                 </label>
                             </form>
-                        @else
-                            <span class="badge bg-secondary">No Access</span>
-                        @endcan
-                    </td>
-                    <td class="manage-row text-center">
-                        @if ($item->trashed())
-                            <!-- Restore and Delete Button -->
-                            @can('restore:era')
-                                @include('admin.era.restore')
-                            @endcan
-                            @can('delete:era')
-                                @include('admin.era.delete')
-                            @endcan
-                        @else
-                            <!-- Edit and Soft Delete Buttons -->
-                            @can('edit:era')
-                                @include('admin.era.edit')
-                            @endcan
-                            @can('soft-delete:era')
-                                @include('admin.era.softDelete')
-                            @endcan
-                        @endif
-                    </td>
+                        </td>
+                    @endcan
+                    @canany(['edit:era', 'delete:era'])
+                        <td class="manage-row text-center">
+                            @if ($item->trashed())
+                                <!-- Restore and Delete Button -->
+                                @can('restore:era')
+                                    @include('admin.era.restore')
+                                @endcan
+                                @can('delete:era')
+                                    @include('admin.era.delete')
+                                @endcan
+                            @else
+                                <!-- Edit and Soft Delete Buttons -->
+                                @can('edit:era')
+                                    @include('admin.era.edit')
+                                @endcan
+                                @can('soft-delete:era')
+                                    @include('admin.era.softDelete')
+                                @endcan
+                            @endif
+                        </td>
+                    @endcanany
                 </tr>
             @endforeach
         </tbody>
@@ -163,8 +167,12 @@
                 <th>{{ __('Name') }}</th>
                 <th>{{ __('Img') }}</th>
                 <th>{{ __('Description') }}</th>
-                <th>{{ __('Status') }}</th>
-                <th class="text-center">{{ __('Action') }}</th>
+                @can('edit:era')
+                    <th>{{ __('Status') }}</th>
+                @endcan
+                @canany(['edit:era', 'delete:era'])
+                    <th class="text-center">{{ __('Action') }}</th>
+                @endcanany
             </tr>
         </tfoot>
     </table>

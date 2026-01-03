@@ -67,8 +67,12 @@
                 <th>{{ __('Name') }}</th>
                 <th>{{ __('Img') }}</th>
                 <th>{{ __('Description') }}</th>
-                <th>{{ __('Status') }}</th>
-                <th class="text-center">{{ __('Action') }}</th>
+                @can('edit:franchise')
+                    <th>{{ __('Status') }}</th>
+                @endcan
+                @canany(['edit:franchise', 'delete:franchise'])
+                    <th class="text-center">{{ __('Action') }}</th>
+                @endcanany
             </tr>
         </thead>
         <tbody>
@@ -119,8 +123,8 @@
                         @endif
                     </td>
                     <td>{{ Illuminate\Support\Str::words($item->description ?? '-', 10, '...') }}</td>
-                    <td class="text-center">
-                        @can('edit:franchise')
+                    @can('edit:franchise')
+                        <td class="text-center">
                             <form action="{{ route('admin.franchise.toggleStatus', $item->id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
@@ -131,29 +135,29 @@
                                     <span class="toggle-slider"></span>
                                 </label>
                             </form>
-                        @else
-                            <span class="badge bg-secondary">No Access</span>
-                        @endcan
-                    </td>
-                    <td class="manage-row text-center">
-                        @if ($item->trashed())
-                            <!-- Restore and Delete Button -->
-                            @can('restore:franchise')
-                                @include('admin.franchise.restore')
-                            @endcan
-                            @can('delete:franchise')
-                                @include('admin.franchise.delete')
-                            @endcan
-                        @else
-                            <!-- Edit and Soft Delete Buttons -->
-                            @can('edit:franchise')
-                                @include('admin.franchise.edit')
-                            @endcan
-                            @can('soft-delete:franchise')
-                                @include('admin.franchise.softDelete')
-                            @endcan
-                        @endif
-                    </td>
+                        </td>
+                    @endcan
+                    @canany(['edit:franchise', 'delete:franchise'])
+                        <td class="manage-row text-center">
+                            @if ($item->trashed())
+                                <!-- Restore and Delete Button -->
+                                @can('restore:franchise')
+                                    @include('admin.franchise.restore')
+                                @endcan
+                                @can('delete:franchise')
+                                    @include('admin.franchise.delete')
+                                @endcan
+                            @else
+                                <!-- Edit and Soft Delete Buttons -->
+                                @can('edit:franchise')
+                                    @include('admin.franchise.edit')
+                                @endcan
+                                @can('soft-delete:franchise')
+                                    @include('admin.franchise.softDelete')
+                                @endcan
+                            @endif
+                        </td>
+                    @endcanany
                 </tr>
             @endforeach
         </tbody>
@@ -163,8 +167,12 @@
                 <th>{{ __('Name') }}</th>
                 <th>{{ __('Img') }}</th>
                 <th>{{ __('Description') }}</th>
-                <th>{{ __('Status') }}</th>
-                <th class="text-center">{{ __('Action') }}</th>
+                @can('edit:franchise')
+                    <th>{{ __('Status') }}</th>
+                @endcan
+                @canany(['edit:franchise', 'delete:franchise'])
+                    <th class="text-center">{{ __('Action') }}</th>
+                @endcanany
             </tr>
         </tfoot>
     </table>

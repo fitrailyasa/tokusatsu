@@ -69,8 +69,12 @@
                 <th>{{ __('Type') }}</th>
                 <th>{{ __('Link') }}</th>
                 <th>{{ __('Release') }}</th>
-                <th>{{ __('Status') }}</th>
-                <th class="text-center">{{ __('Action') }}</th>
+                @can('edit:video')
+                    <th>{{ __('Status') }}</th>
+                @endcan
+                @canany(['edit:video', 'delete:video'])
+                    <th class="text-center">{{ __('Action') }}</th>
+                @endcanany
             </tr>
         </thead>
         <tbody>
@@ -93,8 +97,8 @@
                         @endforelse
                     </td>
                     <td>{{ date('d M Y', strtotime($item->airdate)) }}</td>
-                    <td class="text-center">
-                        @can('edit:video')
+                    @can('edit:video')
+                        <td class="text-center">
                             <form action="{{ route('admin.video.toggleStatus', $item->id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
@@ -105,29 +109,29 @@
                                     <span class="toggle-slider"></span>
                                 </label>
                             </form>
-                        @else
-                            <span class="badge bg-secondary">No Access</span>
-                        @endcan
-                    </td>
-                    <td class="manage-row text-center">
-                        @if ($item->trashed())
-                            <!-- Restore and Delete Button -->
-                            @can('restore:video')
-                                @include('admin.video.restore')
-                            @endcan
-                            @can('delete:video')
-                                @include('admin.video.delete')
-                            @endcan
-                        @else
-                            <!-- Edit and Soft Delete Buttons -->
-                            @can('edit:video')
-                                @include('admin.video.edit')
-                            @endcan
-                            @can('soft-delete:video')
-                                @include('admin.video.softDelete')
-                            @endcan
-                        @endif
-                    </td>
+                        </td>
+                    @endcan
+                    @canany(['edit:video', 'delete:video'])
+                        <td class="manage-row text-center">
+                            @if ($item->trashed())
+                                <!-- Restore and Delete Button -->
+                                @can('restore:video')
+                                    @include('admin.video.restore')
+                                @endcan
+                                @can('delete:video')
+                                    @include('admin.video.delete')
+                                @endcan
+                            @else
+                                <!-- Edit and Soft Delete Buttons -->
+                                @can('edit:video')
+                                    @include('admin.video.edit')
+                                @endcan
+                                @can('soft-delete:video')
+                                    @include('admin.video.softDelete')
+                                @endcan
+                            @endif
+                        </td>
+                    @endcan
                 </tr>
             @endforeach
         </tbody>
@@ -139,8 +143,12 @@
                 <th>{{ __('Type') }}</th>
                 <th>{{ __('Link') }}</th>
                 <th>{{ __('Release') }}</th>
-                <th>{{ __('Status') }}</th>
-                <th class="text-center">{{ __('Action') }}</th>
+                @can('edit:video')
+                    <th>{{ __('Status') }}</th>
+                @endcan
+                @canany(['edit:video', 'delete:video'])
+                    <th class="text-center">{{ __('Action') }}</th>
+                @endcanany
             </tr>
         </tfoot>
     </table>

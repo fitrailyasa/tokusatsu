@@ -65,7 +65,9 @@
             <tr>
                 <th>{{ __('No') }}</th>
                 <th>{{ __('Name') }}</th>
-                <th class="text-center">{{ __('Action') }}</th>
+                @canany(['edit:tag', 'delete:tag'])
+                    <th class="text-center">{{ __('Action') }}</th>
+                @endcanany
             </tr>
         </thead>
         <tbody>
@@ -73,25 +75,27 @@
                 <tr @if ($item->trashed()) class="text-muted" @endif>
                     <td>{{ $tags->firstItem() + $loop->index }}</td>
                     <td>{{ $item->name ?? '-' }}</td>
-                    <td class="manage-row text-center">
-                        @if ($item->trashed())
-                            <!-- Restore and Delete Button -->
-                            @can('restore:tag')
-                                @include('admin.tag.restore')
-                            @endcan
-                            @can('delete:tag')
-                                @include('admin.tag.delete')
-                            @endcan
-                        @else
-                            <!-- Edit and Soft Delete Buttons -->
-                            @can('edit:tag')
-                                @include('admin.tag.edit')
-                            @endcan
-                            @can('soft-delete:tag')
-                                @include('admin.tag.softDelete')
-                            @endcan
-                        @endif
-                    </td>
+                    @canany(['edit:tag', 'delete:tag'])
+                        <td class="manage-row text-center">
+                            @if ($item->trashed())
+                                <!-- Restore and Delete Button -->
+                                @can('restore:tag')
+                                    @include('admin.tag.restore')
+                                @endcan
+                                @can('delete:tag')
+                                    @include('admin.tag.delete')
+                                @endcan
+                            @else
+                                <!-- Edit and Soft Delete Buttons -->
+                                @can('edit:tag')
+                                    @include('admin.tag.edit')
+                                @endcan
+                                @can('soft-delete:tag')
+                                    @include('admin.tag.softDelete')
+                                @endcan
+                            @endif
+                        </td>
+                    @endcanany
                 </tr>
             @endforeach
         </tbody>
@@ -99,7 +103,9 @@
             <tr>
                 <th>{{ __('No') }}</th>
                 <th>{{ __('Name') }}</th>
-                <th class="text-center">{{ __('Action') }}</th>
+                @canany(['edit:tag', 'delete:tag'])
+                    <th class="text-center">{{ __('Action') }}</th>
+                @endcanany
             </tr>
         </tfoot>
     </table>
