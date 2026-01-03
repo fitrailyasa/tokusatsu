@@ -99,6 +99,13 @@
         body.theme-light .btn-outline-light:hover {
             background-color: rgba(0, 0, 0, 0.06);
         }
+
+        @media (max-width: 576px) {
+            .normal-text {
+                font-size: 0.7rem;
+                line-height: 1.2;
+            }
+        }
     </style>
 </head>
 

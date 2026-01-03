@@ -3,15 +3,6 @@
 @section('textHome', 'rounded aktif')
 
 @section('content')
-
-    <style>
-        @media (max-width: 576px) {
-            .category-name {
-                font-size: 0.7rem;
-                line-height: 1.2;
-            }
-        }
-    </style>
     <div class="container text-center" style="padding-top: 80px; padding-bottom: 80px;">
         @include('client.buttonSearch')
         <br>
@@ -30,7 +21,7 @@
                                 <img class=""
                                     src="{{ $category->img ? asset('storage/' . $category->img) : asset('storage/comingsoon.jpg') }}"
                                     loading="lazy" alt="Logo {{ $category->name }}">
-                                <p class="pt-2 category-name">{{ $category->fullname }}
+                                <p class="pt-2 normal-text">{{ $category->fullname }}
                                     @if ($category->first_aired)
                                         ({{ \Carbon\Carbon::parse($category->first_aired)->year }})
                                     @endif
@@ -57,7 +48,7 @@
                                 <img class=""
                                     src="{{ $category->img ? asset('storage/' . $category->img) : asset('storage/comingsoon.jpg') }}"
                                     loading="lazy" alt="Logo {{ $category->name }}">
-                                <p class="pt-2 category-name">{{ $category->fullname }}
+                                <p class="pt-2 normal-text">{{ $category->fullname }}
                                     @if ($category->first_aired)
                                         ({{ \Carbon\Carbon::parse($category->first_aired)->year }})
                                     @endif
@@ -84,7 +75,7 @@
                                 <img class=""
                                     src="{{ $category->img ? asset('storage/' . $category->img) : asset('storage/comingsoon.jpg') }}"
                                     loading="lazy" alt="Logo {{ $category->name }}">
-                                <p class="pt-2 category-name">{{ $category->fullname }}
+                                <p class="pt-2 normal-text">{{ $category->fullname }}
                                     @if ($category->first_aired)
                                         ({{ \Carbon\Carbon::parse($category->first_aired)->year }})
                                     @endif
@@ -111,7 +102,7 @@
                                 <img class=""
                                     src="{{ $category->img ? asset('storage/' . $category->img) : asset('storage/comingsoon.jpg') }}"
                                     loading="lazy" alt="Logo {{ $category->name }}">
-                                <p class="pt-2 category-name">{{ $category->fullname }}
+                                <p class="pt-2 normal-text">{{ $category->fullname }}
                                     @if ($category->first_aired)
                                         ({{ \Carbon\Carbon::parse($category->first_aired)->year }})
                                     @endif

@@ -58,7 +58,7 @@
                             <tr>
                                 <th class="text-center" style="max-width: 90px;">List</th>
                                 <th>Title</th>
-                                <th style="max-width: 160px;">Release</th>
+                                <th style="max-width: 70px;">Release</th>
                                 {{-- <th class="text-center" style="max-width: 90px;">Download</th> --}}
                                 <th class="text-center" style="max-width: 90px;">Bookmark</th>
                             </tr>
@@ -67,23 +67,23 @@
                             @foreach ($videos as $item)
                                 <tr>
                                     <td class="text-center">
-                                        <a class="text-decoration-none" href="{{ $item->watchUrl() }}">
+                                        <a class="text-decoration-none normal-text" href="{{ $item->watchUrl() }}">
                                             {{ $item->label }} {{ $item->number }}
                                             <i class="fa-solid fa-arrow-up-right-from-square ms-1"></i>
                                         </a>
                                     </td>
 
                                     <td>
-                                        <a class="text-decoration-none" href="{{ $item->watchUrl() }}">
+                                        <a class="text-decoration-none normal-text" href="{{ $item->watchUrl() }}">
                                             {{ $item->title }}
                                         </a>
                                     </td>
 
-                                    <td class="text-muted">
+                                    <td class="text-muted normal-text">
                                         {{ \Carbon\Carbon::parse($item->airdate ?? $item->category->first_aired)->diffForHumans() }}
                                     </td>
 
-                                    {{-- <td class="text-center">
+                                    {{-- <td class="text-center normal-text">
                                         @foreach ($item->link as $link)
                                             @php
                                                 preg_match('/\/d\/([a-zA-Z0-9_-]+)/', $link, $matches);
