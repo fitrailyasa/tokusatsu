@@ -10,7 +10,7 @@ class ProviderAccount extends Model
     use HasFactory;
 
     protected $table = 'provider_accounts';
-    protected $fillable = ['email', 'access_token'];
+    protected $fillable = ['email', 'access_token', 'status'];
     protected $casts = [
         'access_token' => 'array',
     ];

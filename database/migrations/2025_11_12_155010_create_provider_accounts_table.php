@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('email')->unique();
             $table->json('access_token');
+            $table->boolean('status')->default(true)->nullable();
             $table->timestamps();
         });
     }

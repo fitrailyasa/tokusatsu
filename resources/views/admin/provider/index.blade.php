@@ -30,7 +30,20 @@
                                     <i class="fas fa-user-circle me-2 text-secondary"></i>{{ $item->email }}
                                 </a>
                             </span>
-                            <div>
+                            <div class="d-flex align-items-center gap-2">
+                                @can('edit:provider')
+                                    <form class="d-flex align-items-center m-0" class=""
+                                        action="{{ route('admin.provider.accountStatus', $item->id) }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" onchange="this.form.submit()"
+                                                {{ $item->status == 1 ? 'checked' : '' }}>
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                    </form>
+                                @endcan
                                 @can('view:provider')
                                     <a href="{{ route('admin.auth.files', $item->email) }}" class="btn btn-sm btn-primary">
                                         <i class="fas fa-folder-open me-2"></i>

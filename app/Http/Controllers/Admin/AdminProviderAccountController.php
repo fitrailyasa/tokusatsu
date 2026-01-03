@@ -50,6 +50,16 @@ class AdminProviderAccountController extends Controller
         return redirect()->away($authUrl);
     }
 
+    public function accountStatus($email)
+    {
+        $provider = ProviderAccount::findOrFail($email);
+
+        $provider->status = $provider->status == 1 ? 0 : 1;
+        $provider->save();
+
+        return redirect()->back()->with('success', 'Successfully Change Status account!');
+    }
+
     public function callback(Request $request)
     {
         if (!$request->has('code')) {

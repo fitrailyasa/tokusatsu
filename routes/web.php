@@ -168,6 +168,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/auth/provider', [AdminProviderAccountController::class, 'index'])->name('auth');
     Route::get('/auth/provider/login', [AdminProviderAccountController::class, 'login'])->name('auth.login');
     Route::get('/auth/provider/callback', [AdminProviderAccountController::class, 'callback'])->name('auth.callback');
+    Route::put('/auth/provider/{email}/account-status', [AdminProviderAccountController::class, 'accountStatus'])->name('provider.accountStatus');
     Route::get('/auth/provider/{email}/files', [AdminProviderAccountController::class, 'files'])->name('auth.files');
     Route::get('/auth/provider/{email}/export', [AdminProviderAccountController::class, 'exportExcel'])->name('auth.export');
     Route::get('/auth/provider/{email}/logout', [AdminProviderAccountController::class, 'logout'])->name('auth.logout');
