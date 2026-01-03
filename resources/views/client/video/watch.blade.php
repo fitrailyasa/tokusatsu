@@ -1,6 +1,13 @@
 @extends('layouts.client.app')
 
-@section('title', $category->fullname . ' ' . ucfirst($video->type) . ' ' . $video->number)
+@section('title')
+    @if ($video->type == 'episode')
+        {{ $category->fullname }} {{ ucfirst($video->type) }}
+        {{ $video->number }}
+    @else
+        {{ $video->title }}
+    @endif
+@endsection
 
 @section('textvideo', 'rounded aktif')
 
