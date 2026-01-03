@@ -34,7 +34,9 @@ class ClientVideoController extends Controller
             })
             ->paginate(10);
 
-        return view('client.video.category', compact('franchise', 'categories', 'search', 'perPage', 'eraId', 'franchiseId'));
+        $title = $franchise->name;
+
+        return view('client.video.category', compact(['title', 'franchise', 'categories', 'search', 'perPage', 'eraId', 'franchiseId']));
     }
 
     /**
@@ -85,7 +87,10 @@ class ClientVideoController extends Controller
         $videos = $videosQuery->paginate(100);
         $type = $hasEpisode ? 'episode' : 'video';
 
+        $title = $category->fullname;
+
         return view('client.video.show', [
+            'title' => $title,
             'category' => $category,
             'franchise' => $category->franchise,
             'videos' => $videos,
@@ -113,7 +118,7 @@ class ClientVideoController extends Controller
             ->orderBy('airdate', 'desc')
             ->paginate($validPerPage);
 
-        return view('client.video.movie', compact('franchise', 'search', 'perPage', 'eraId', 'franchiseId', 'videos'));
+        return view('client.video.movie', compact('search', 'perPage', 'eraId', 'franchiseId', 'videos'));
     }
 
     /**

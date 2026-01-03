@@ -43,8 +43,7 @@
                             @foreach ($videos as $item)
                                 <tr>
                                     <td class="text-center">
-                                        <a class="text-decoration-none"
-                                            href="{{ route('video.watch', [$item->category->franchise->slug, $item->category->slug, $item->type, $item->number]) }}">
+                                        <a class="text-decoration-none" href="{{ $item->watchUrl() }}">
                                             @if ($item->category->img === null)
                                                 <img class="img-fluid rounded shadow-sm" width="150px"
                                                     src="{{ asset('logo.png') }}" alt="{{ $item->category->fullname }}">
@@ -57,8 +56,7 @@
                                     </td>
 
                                     <td class="fw-semibold">
-                                        <a class="text-decoration-none"
-                                            href="{{ route('video.watch', [$item->category->franchise->slug, $item->category->slug, $item->type, $item->number]) }}">
+                                        <a class="text-decoration-none" href="{{ $item->watchUrl() }}">
                                             {{ $item->title }}
                                         </a>
                                     </td>

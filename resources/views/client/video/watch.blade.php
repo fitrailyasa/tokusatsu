@@ -14,11 +14,9 @@
         "name"        => $title . ' - ' . config('app.name'),
         "description" => $category->description ?: config('app.name'),
         "thumbnailUrl"=> config('app.url') . "/storage/" . $video->category->img ?: config('app.url') . "/logo.png",
-        "uploadDate"  => optional($video->airdate)
-                            ? \Carbon\Carbon::parse($video->airdate)->toIso8601String()
-                            : \Carbon\Carbon::parse($video->category->first_aired)->toIso8601String(),
+        "uploadDate"  => $uploadDate,
         "contentUrl"  => url()->current(), 
-        "genre"       => $category->fullname,
+        "genre"       => $genre,
         "publisher"   => [
             "@type" => "Organization",
             "name"  => config('app.name'),
@@ -34,8 +32,7 @@
         <div class="container">
             <div class="row px-3 mb-3 align-items-center">
                 <div class="col-3 text-left">
-                    <a
-                        href="{{ route('video.show', ['franchise' => $category->franchise->slug, 'category' => $category->slug]) }}">
+                    <a href="{{ $category->showUrl() }}">
                         <p class="m-0"><i class="fas fa-arrow-left"></i></p>
                     </a>
                 </div>

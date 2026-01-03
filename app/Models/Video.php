@@ -101,4 +101,14 @@ class Video extends Model
 
         return $types[$this->type] ?? str_replace('-', ' ', ucwords($this->type));
     }
+
+    public function watchUrl()
+    {
+        return route('video.watch', [
+            $this->category->franchise->slug,
+            $this->category->slug,
+            $this->type,
+            $this->number
+        ]);
+    }
 }

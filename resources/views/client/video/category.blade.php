@@ -1,6 +1,6 @@
 @extends('layouts.client.app')
 
-@section('title', $franchise->name ?? '')
+@section('title', $title ?? '')
 
 @section('textvideo', 'rounded aktif')
 
@@ -9,14 +9,14 @@
     {!! json_encode([
         "@context"    => "https://schema.org",
         "@type"       => "VideoObject",
-        "name"        => $franchise->name . ' - ' . config('app.name'),
+        "name"        => $title . ' - ' . config('app.name'),
         "description" => $franchise->description ?: config('app.name'),
         "thumbnailUrl"=> config('app.url') . "/storage/" . $franchise->img ?: config('app.url') . "/logo.png",
         "uploadDate"  => optional($franchise->first_aired)
                             ? \Carbon\Carbon::parse($franchise->first_aired)->toIso8601String()
                             : \Carbon\Carbon::parse($franchise->created_at)->toIso8601String(),
         "contentUrl"  => url()->current(), 
-        "genre"       => $franchise->name,
+        "genre"       => $title,
         "publisher"   => [
             "@type" => "Organization",
             "name"  => config('app.name'),
@@ -34,7 +34,7 @@
                 <a href="{{ route('video') }}"><i class="fas fa-arrow-left"></i></a>
             </div>
             <div>
-                <h1 class="text-center responsive-title">{{ $franchise->name }}</h1>
+                <h1 class="text-center responsive-title">{{ $title }}</h1>
             </div>
             <div>
                 <button id="shareBtn" class="btn btn-icon">
@@ -70,8 +70,7 @@
                                     </td>
 
                                     <td>
-                                        <a class="text-decoration-none"
-                                            href="{{ route('video.show', [$item->franchise->slug, $item->slug]) }}">
+                                        <a class="text-decoration-none" href="{{ $item->showUrl() }}">
                                             {{ $item->fullname }}
 
                                             @if ($item->first_aired)
@@ -85,7 +84,7 @@
                                     </td>
 
                                     <td class="text-center">
-                                        <a href="{{ route('video.show', [$item->franchise->slug, $item->slug]) }}">
+                                        <a href="{{ $item->showUrl() }}">
                                             @if ($item->img === null)
                                                 <img class="img-fluid rounded shadow-sm" src="{{ asset('logo.png') }}"
                                                     alt="{{ $item->fullname }}">
@@ -113,7 +112,7 @@
         document.getElementById("shareBtn").addEventListener("click", async function() {
             const shareData = {
                 title: document.title,
-                text: "{{ $franchise->name }}\n",
+                text: "{{ $title }}\n",
                 url: window.location.href
             };
 

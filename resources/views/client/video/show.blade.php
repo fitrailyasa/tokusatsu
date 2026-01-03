@@ -1,6 +1,6 @@
 @extends('layouts.client.app')
 
-@section('title', $category->fullname ?? '')
+@section('title', $title ?? '')
 
 @section('textvideo', 'rounded aktif')
 
@@ -9,14 +9,14 @@
     {!! json_encode([
         "@context"    => "https://schema.org",
         "@type"       => "VideoObject",
-        "name"        => $category->fullname . ' - ' . config('app.name'),
+        "name"        => $title . ' - ' . config('app.name'),
         "description" => $category->description ?: config('app.name'),
         "thumbnailUrl"=> config('app.url') . "/storage/" . $category->img ?: config('app.url') . "/logo.png",
         "uploadDate"  => optional($category->first_aired)
                             ? \Carbon\Carbon::parse($category->first_aired)->toIso8601String()
                             : \Carbon\Carbon::parse($category->created_at)->toIso8601String(),
         "contentUrl"  => url()->current(), 
-        "genre"       => $category->fullname,
+        "genre"       => $category->franchise->name,
         "publisher"   => [
             "@type" => "Organization",
             "name"  => config('app.name'),
@@ -34,7 +34,7 @@
                 <a href="{{ route('video.category', $category->franchise->slug) }}"><i class="fas fa-arrow-left"></i></a>
             </div>
             <div>
-                <h1 class="text-center responsive-title">{{ $category->fullname }}</h1>
+                <h1 class="text-center responsive-title">{{ $title }}</h1>
             </div>
             <div>
                 <button id="shareBtn" class="btn btn-icon">
@@ -67,16 +67,14 @@
                             @foreach ($videos as $item)
                                 <tr>
                                     <td class="text-center">
-                                        <a class="text-decoration-none"
-                                            href="{{ route('video.watch', [$item->category->franchise->slug, $item->category->slug, $item->type, $item->number]) }}">
+                                        <a class="text-decoration-none" href="{{ $item->watchUrl() }}">
                                             {{ $item->label }} {{ $item->number }}
                                             <i class="fa-solid fa-arrow-up-right-from-square ms-1"></i>
                                         </a>
                                     </td>
 
                                     <td>
-                                        <a class="text-decoration-none"
-                                            href="{{ route('video.watch', [$item->category->franchise->slug, $item->category->slug, $item->type, $item->number]) }}">
+                                        <a class="text-decoration-none" href="{{ $item->watchUrl() }}">
                                             {{ $item->title }}
                                         </a>
                                     </td>
@@ -103,8 +101,8 @@
 
                                     <td class="text-center">
                                         <button class="btn btn-sm bookmark-btn px-3 py-1 btn-outline-warning"
-                                            data-title="{{ $category->fullname }} {{ ucfirst($item->type) }} {{ $item->number }}"
-                                            data-url="{{ route('video.watch', [$item->category->franchise->slug, $item->category->slug, $item->type, $item->number]) }}">
+                                            data-title="{{ $title }} {{ ucfirst($item->type) }} {{ $item->number }}"
+                                            data-url="{{ $item->watchUrl() }}">
                                             ⭐
                                         </button>
                                     </td>
@@ -169,7 +167,7 @@
         document.getElementById("shareBtn").addEventListener("click", async function() {
             const shareData = {
                 title: document.title,
-                text: "{{ $category->fullname }}\n",
+                text: "{{ $title }}\n",
                 url: window.location.href
             };
 

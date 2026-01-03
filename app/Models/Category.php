@@ -86,4 +86,12 @@ class Category extends Model
         $hash = crc32($name);
         return $colors[$hash % count($colors)];
     }
+
+    public function showUrl()
+    {
+        return route('video.show', [
+            $this->franchise->slug,
+            $this->slug
+        ]);
+    }
 }
