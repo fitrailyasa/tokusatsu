@@ -23,6 +23,7 @@
         "socialiteproviders/linkedin": "*",
         "socialiteproviders/twitch": "^5.4",
         "spatie/laravel-permission": "^6.17",
+        "spatie/laravel-sitemap": "*",
         "srmklive/paypal": "^3.0",
         "xendit/xendit-php": "^6.2"
     },
