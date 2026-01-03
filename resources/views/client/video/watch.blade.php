@@ -13,7 +13,9 @@
         "@type"       => "VideoObject",
         "name"        => $title . ' - ' . config('app.name'),
         "description" => $category->description ?: config('app.name'),
-        "thumbnailUrl"=> config('app.url') . "/storage/" . $video->category->img ?: config('app.url') . "/logo.png",
+        "thumbnailUrl" => $video->category->img
+                            ? config('app.url') . "/storage/" . $video->category->img
+                            : config('app.url') . "/logo.png","thumbnailUrl"=> config('app.url') . "/storage/" . $video->category->img ?: config('app.url') . "/logo.png",
         "uploadDate"  => optional($video->airdate)
                             ? \Carbon\Carbon::parse($video->airdate)->toIso8601String()
                             : \Carbon\Carbon::parse($video->category->first_aired)->toIso8601String(),
