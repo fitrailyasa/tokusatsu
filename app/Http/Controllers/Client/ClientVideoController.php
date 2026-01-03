@@ -161,7 +161,12 @@ class ClientVideoController extends Controller
             'status' => 1,
         ])->first();
 
+        $title = $video->type === 'episode'
+            ? "{$category->fullname} Episode {$video->number}"
+            : $video->title;
+
         return view('client.video.watch', [
+            'title'      => $title,
             'category'   => $category,
             'franchise'  => $category->franchise,
             'video'      => $video,

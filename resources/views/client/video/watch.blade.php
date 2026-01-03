@@ -1,12 +1,7 @@
 @extends('layouts.client.app')
 
 @section('title')
-    @if ($video->type == 'episode')
-        {{ $category->fullname }} {{ ucfirst($video->type) }}
-        {{ $video->number }}
-    @else
-        {{ $video->title }}
-    @endif
+    {{ $title }}
 @endsection
 
 @section('textvideo', 'rounded aktif')
@@ -46,12 +41,7 @@
                 </div>
                 <div class="col-6">
                     <h1 class="text-center responsive-title">
-                        @if ($video->type == 'episode')
-                            {{ $category->fullname }} {{ ucfirst($video->type) }}
-                            {{ $video->number }}
-                        @else
-                            {{ $video->title }}
-                        @endif
+                        {{ $title }}
                     </h1>
                 </div>
                 <div class="col-3 text-right">
