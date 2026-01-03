@@ -11,7 +11,7 @@
     {!! json_encode([
         "@context"    => "https://schema.org",
         "@type"       => "VideoObject",
-        "name"        => $category->fullname . ' ' . ucfirst($video->type) . ' ' . $video->number . ' - ' . config('app.name'),
+        "name"        => $title . ' - ' . config('app.name'),
         "description" => $category->description ?: config('app.name'),
         "thumbnailUrl"=> config('app.url') . "/storage/" . $video->category->img ?: config('app.url') . "/logo.png",
         "uploadDate"  => optional($video->airdate)
