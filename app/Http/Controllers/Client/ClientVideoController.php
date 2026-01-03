@@ -165,14 +165,25 @@ class ClientVideoController extends Controller
             ? "{$category->fullname} Episode {$video->number}"
             : $video->title;
 
+        $downloadTokens = [];
+
+        foreach ($embedUrls as $link) {
+            if (preg_match('/\/d\/([a-zA-Z0-9_-]+)/', $link, $matches)) {
+                $downloadTokens[] = encrypt($matches[1]);
+            } else {
+                $downloadTokens[] = null;
+            }
+        }
+
         return view('client.video.watch', [
             'title'      => $title,
             'category'   => $category,
             'franchise'  => $category->franchise,
             'video'      => $video,
-            'embedUrls'  => $embedUrls,
             'prev'       => $prev,
             'next'       => $next,
+            'embedUrls'  => $embedUrls,
+            'downloadTokens' => $downloadTokens,
         ]);
     }
 }

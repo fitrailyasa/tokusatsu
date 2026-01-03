@@ -45,17 +45,6 @@
                     </h1>
                 </div>
                 <div class="col-3 text-right">
-                    @php
-                        $downloadTokens = [];
-
-                        foreach ($embedUrls as $link) {
-                            if (preg_match('/\/d\/([a-zA-Z0-9_-]+)/', $link, $matches)) {
-                                $downloadTokens[] = encrypt($matches[1]);
-                            } else {
-                                $downloadTokens[] = null;
-                            }
-                        }
-                    @endphp
                     <a id="downloadBtn" href="#" class="btn btn-sm d-none me-2">
                         <i class="fa-solid fa-download"></i>
                     </a>
@@ -222,7 +211,7 @@
         document.getElementById("shareBtn").addEventListener("click", async function() {
             const shareData = {
                 title: document.title,
-                text: "{{ $category->fullname }} {{ ucwords($video->type) }} {{ $video->number }}\n",
+                text: "{{ $title }}\n",
                 url: window.location.href
             };
 
@@ -237,7 +226,7 @@
         document.addEventListener("DOMContentLoaded", function() {
             let watchHistory = JSON.parse(localStorage.getItem("watchHistory")) || [];
             const videoTitle =
-                "{{ $category->fullname }} {{ ucfirst($video->type) }} {{ $video->number }}";
+                "{{ $title }}";
             const videoUrl = window.location.href;
             const currentTime = new Date().toISOString();
 
