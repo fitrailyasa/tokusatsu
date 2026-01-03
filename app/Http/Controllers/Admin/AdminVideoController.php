@@ -22,7 +22,7 @@ class AdminVideoController extends Controller
     {
         $this->middleware('permission:view:video')->only(['index']);
         $this->middleware('permission:create:video')->only(['store']);
-        $this->middleware('permission:edit:video')->only(['update']);
+        $this->middleware('permission:edit:video')->only(['update', 'toggleStatus']);
         $this->middleware('permission:delete:video')->only(['destroy']);
         $this->middleware('permission:delete-all:video')->only(['destroyAll']);
         $this->middleware('permission:soft-delete:video')->only(['softDelete']);

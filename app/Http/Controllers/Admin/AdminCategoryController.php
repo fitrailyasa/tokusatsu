@@ -23,7 +23,7 @@ class AdminCategoryController extends Controller
     {
         $this->middleware('permission:view:category')->only(['index']);
         $this->middleware('permission:create:category')->only(['store']);
-        $this->middleware('permission:edit:category')->only(['update']);
+        $this->middleware('permission:edit:category')->only(['update', 'toggleStatus']);
         $this->middleware('permission:delete:category')->only(['destroy']);
         $this->middleware('permission:delete-all:category')->only(['destroyAll']);
         $this->middleware('permission:soft-delete:category')->only(['softDelete']);

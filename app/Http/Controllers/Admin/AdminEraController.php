@@ -21,7 +21,7 @@ class AdminEraController extends Controller
     {
         $this->middleware('permission:view:era')->only(['index']);
         $this->middleware('permission:create:era')->only(['store']);
-        $this->middleware('permission:edit:era')->only(['update']);
+        $this->middleware('permission:edit:era')->only(['update', 'toggleStatus']);
         $this->middleware('permission:delete:era')->only(['destroy']);
         $this->middleware('permission:delete-all:era')->only(['destroyAll']);
         $this->middleware('permission:soft-delete:era')->only(['softDelete']);

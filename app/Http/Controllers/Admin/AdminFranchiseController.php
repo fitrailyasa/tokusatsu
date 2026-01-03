@@ -21,7 +21,7 @@ class AdminFranchiseController extends Controller
     {
         $this->middleware('permission:view:franchise')->only(['index']);
         $this->middleware('permission:create:franchise')->only(['store']);
-        $this->middleware('permission:edit:franchise')->only(['update']);
+        $this->middleware('permission:edit:franchise')->only(['update', 'toggleStatus']);
         $this->middleware('permission:delete:franchise')->only(['destroy']);
         $this->middleware('permission:delete-all:franchise')->only(['destroyAll']);
         $this->middleware('permission:soft-delete:franchise')->only(['softDelete']);
