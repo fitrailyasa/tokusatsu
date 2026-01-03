@@ -13,13 +13,13 @@
     <meta property="og:description"
         content="Streaming Tokusatsu Kamen Rider, Ultraman, Super Sentai, Metal Heroes, Garo, Etc.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ config('app.url') }}/">
-    <meta property="og:image" content="{{ config('app.url') }}/logo.png">
+    <meta property="og:url" content="{{ config('app.url') }}">
+    <meta property="og:image" content="{{ asset('logo.png') }}">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ ucwords(config('app.name')) }}">
     <meta name="twitter:description"
         content="Streaming Tokusatsu Kamen Rider, Ultraman, Super Sentai, Metal Heroes, Garo, Etc.">
-    <meta name="twitter:image" content="{{ config('app.url') }}/logo.png">
+    <meta name="twitter:image" content="{{ asset('logo.png') }}">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#260751">
 
