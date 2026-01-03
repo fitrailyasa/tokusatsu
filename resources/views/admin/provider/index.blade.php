@@ -4,11 +4,13 @@
 
 @section('content')
     <div class="container mb-5">
-        <div class="mb-3">
-            <a href="{{ route('admin.auth.login') }}" class="btn btn-success">
-                <i class="fas fa-user-plus me-2"></i> Add Account
-            </a>
-        </div>
+        @can('auth:provider')
+            <div class="mb-3">
+                <a href="{{ route('admin.auth.login') }}" class="btn btn-success">
+                    <i class="fas fa-user-plus me-2"></i> Add Account
+                </a>
+            </div>
+        @endcan
 
         @if (session('success'))
             <div class="alert alert-success text-center">{{ session('success') }}</div>
@@ -29,12 +31,16 @@
                                 </a>
                             </span>
                             <div>
-                                <a href="{{ route('admin.auth.files', $item->email) }}" class="btn btn-sm btn-primary">
-                                    <i class="fas fa-folder-open me-2"></i>
-                                </a>
-                                <a href="{{ route('admin.auth.logout', $item->email) }}" class="btn btn-sm btn-danger">
-                                    <i class="fas fa-sign-out-alt me-2"></i>
-                                </a>
+                                @can('view:provider')
+                                    <a href="{{ route('admin.auth.files', $item->email) }}" class="btn btn-sm btn-primary">
+                                        <i class="fas fa-folder-open me-2"></i>
+                                    </a>
+                                @endcan
+                                @can('delete:provider')
+                                    <a href="{{ route('admin.auth.logout', $item->email) }}" class="btn btn-sm btn-danger">
+                                        <i class="fas fa-sign-out-alt me-2"></i>
+                                    </a>
+                                @endcan
                             </div>
                         </li>
                     @endforeach

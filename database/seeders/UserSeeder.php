@@ -36,12 +36,19 @@ class UserSeeder extends Seeder
                 'role' => 'admin',
                 'email_verified_at' => now(),
             ],
+            [
+                'name' => 'User',
+                'email' => 'user@user.com',
+                'no_hp' => '081234567890',
+                'password' => Hash::make('password'),
+                'role' => 'user',
+                'email_verified_at' => now(),
+            ],
         ];
 
-        // Insert user satu per satu dan assign role
         foreach ($users as $userData) {
             $role = $userData['role'];
-            unset($userData['role']); // buang field role sebelum insert
+            unset($userData['role']);
 
             $user = User::create($userData);
             $user->assignRole($role);

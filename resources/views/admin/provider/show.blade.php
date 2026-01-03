@@ -68,20 +68,24 @@
             </div>
 
             <div class="d-flex align-items-center gap-2">
-                <a href="{{ route('admin.auth.export', ['email' => $email, 'folder' => $folderId]) }}"
-                    class="btn btn-success btn-sm d-flex align-items-center">
-                    <i class="fas fa-file-excel me-1"></i> Export
-                </a>
+                @can('export:provider')
+                    <a href="{{ route('admin.auth.export', ['email' => $email, 'folder' => $folderId]) }}"
+                        class="btn btn-success btn-sm d-flex align-items-center">
+                        <i class="fas fa-file-excel me-1"></i> Export
+                    </a>
+                @endcan
 
-                <form action="{{ route('admin.provider.upload', $email) }}" method="POST" enctype="multipart/form-data"
-                    class="d-flex align-items-center">
-                    @csrf
-                    <input type="hidden" name="folder_id" value="{{ $folderId }}">
-                    <input type="file" name="file" hidden id="uploadFile" onchange="this.form.submit()">
-                    <label for="uploadFile" class="btn btn-primary btn-sm d-flex align-items-center mb-0">
-                        <i class="fas fa-plus me-1"></i> Upload
-                    </label>
-                </form>
+                @can('upload:provider')
+                    <form action="{{ route('admin.provider.upload', $email) }}" method="POST" enctype="multipart/form-data"
+                        class="d-flex align-items-center">
+                        @csrf
+                        <input type="hidden" name="folder_id" value="{{ $folderId }}">
+                        <input type="file" name="file" hidden id="uploadFile" onchange="this.form.submit()">
+                        <label for="uploadFile" class="btn btn-primary btn-sm d-flex align-items-center mb-0">
+                            <i class="fas fa-plus me-1"></i> Upload
+                        </label>
+                    </form>
+                @endcan
             </div>
         </div>
 
@@ -143,48 +147,51 @@
                                     <i class="fas {{ $item->is_public ? 'fa-globe' : 'fa-lock' }}"></i>
                                 </span>
 
-                                @if (!$item->is_folder)
-                                    <a href="{{ $downloadLink }}" class="btn btn-xs btn-outline-success" title="Download">
-                                        <i class="fas fa-download"></i>
-                                    </a>
-                                @endif
+                                @can('download:provider')
+                                    @if (!$item->is_folder)
+                                        <a href="{{ $downloadLink }}" class="btn btn-xs btn-outline-success" title="Download">
+                                            <i class="fas fa-download"></i>
+                                        </a>
+                                    @endif
+                                @endcan
                             </div>
 
                             <small class="text-muted">
                                 {{ isset($item->modifiedTime) ? \Carbon\Carbon::parse($item->modifiedTime)->format('d M Y H:i') : '' }}
                             </small>
                         </div>
+                        @can('edit:provider')
+                            <div class="btn-group btn-group-sm align-items-center">
+                                @if ($item->is_folder)
+                                    <button class="btn btn-outline-secondary copy-link" data-link="{{ $folderLink }}">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                @else
+                                    <button class="btn btn-outline-secondary copy-link" data-link="{{ $fileLink }}">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                @endif
 
-                        <div class="btn-group btn-group-sm align-items-center">
-                            @if ($item->is_folder)
-                                <button class="btn btn-outline-secondary copy-link" data-link="{{ $folderLink }}">
-                                    <i class="fas fa-copy"></i>
+                                <button class="btn btn-outline-warning edit-name" data-id="{{ $item->id }}">
+                                    <i class="fas fa-edit"></i>
                                 </button>
-                            @else
-                                <button class="btn btn-outline-secondary copy-link" data-link="{{ $fileLink }}">
-                                    <i class="fas fa-copy"></i>
+
+                                <button class="btn btn-outline-danger delete-file" data-id="{{ $item->id }}"
+                                    data-name="{{ $item->name }}">
+                                    <i class="fas fa-trash"></i>
                                 </button>
-                            @endif
 
-                            <button class="btn btn-outline-warning edit-name" data-id="{{ $item->id }}">
-                                <i class="fas fa-edit"></i>
-                            </button>
-
-                            <button class="btn btn-outline-danger delete-file" data-id="{{ $item->id }}"
-                                data-name="{{ $item->name }}">
-                                <i class="fas fa-trash"></i>
-                            </button>
-
-                            <form action="{{ route('admin.provider.toggleStatus', [$email, $item->id]) }}" method="POST">
-                                @csrf
-                                @method('PUT')
-                                <label class="toggle-switch ms-2">
-                                    <input type="checkbox" onchange="this.form.submit()"
-                                        {{ $item->is_public ? 'checked' : '' }}>
-                                    <span class="toggle-slider"></span>
-                                </label>
-                            </form>
-                        </div>
+                                <form action="{{ route('admin.provider.toggleStatus', [$email, $item->id]) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <label class="toggle-switch ms-2">
+                                        <input type="checkbox" onchange="this.form.submit()"
+                                            {{ $item->is_public ? 'checked' : '' }}>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </form>
+                            </div>
+                        @endcan
                     </li>
                 @endforeach
             </ul>
@@ -192,90 +199,91 @@
             <p class="text-muted">There are no files in this account.</p>
         @endif
     </div>
+    @can('edit:provider')
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-
-            document.querySelectorAll('.copy-link').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    navigator.clipboard.writeText(btn.dataset.link);
-                    btn.innerHTML = '<i class="fas fa-check"></i>';
-                    setTimeout(() => {
-                        btn.innerHTML = '<i class="fas fa-copy"></i>';
-                    }, 1500);
-                });
-            });
-
-            const showRename = id => {
-                document.querySelector(`.file-name[data-id="${id}"]`)?.classList.add('d-none');
-                document.querySelector(`.rename-wrapper[data-id="${id}"]`)?.classList.remove('d-none');
-            };
-
-            const hideRename = id => {
-                document.querySelector(`.file-name[data-id="${id}"]`)?.classList.remove('d-none');
-                document.querySelector(`.rename-wrapper[data-id="${id}"]`)?.classList.add('d-none');
-            };
-
-            const submitRename = id => {
-                const input = document.querySelector(`.rename-input[data-id="${id}"]`);
-                if (!input) return;
-
-                fetch(`{{ url('/admin/auth/provider') }}/${@json($email)}/files/${id}/rename`, {
-                        method: 'PUT',
-                        headers: {
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            name: input.value
-                        })
-                    })
-                    .then(res => res.json())
-                    .then(res => {
-                        if (res.success) {
-                            const nameEl = document.querySelector(`.file-name[data-id="${id}"] a`);
-                            if (nameEl) nameEl.textContent = input.value;
-                            hideRename(id);
-                        }
+                document.querySelectorAll('.copy-link').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        navigator.clipboard.writeText(btn.dataset.link);
+                        btn.innerHTML = '<i class="fas fa-check"></i>';
+                        setTimeout(() => {
+                            btn.innerHTML = '<i class="fas fa-copy"></i>';
+                        }, 1500);
                     });
-            };
+                });
 
-            document.querySelectorAll('.edit-name')
-                .forEach(btn => btn.addEventListener('click', () => showRename(btn.dataset.id)));
+                const showRename = id => {
+                    document.querySelector(`.file-name[data-id="${id}"]`)?.classList.add('d-none');
+                    document.querySelector(`.rename-wrapper[data-id="${id}"]`)?.classList.remove('d-none');
+                };
 
-            document.querySelectorAll('.save-rename')
-                .forEach(btn => btn.addEventListener('click', () => submitRename(btn.dataset.id)));
+                const hideRename = id => {
+                    document.querySelector(`.file-name[data-id="${id}"]`)?.classList.remove('d-none');
+                    document.querySelector(`.rename-wrapper[data-id="${id}"]`)?.classList.add('d-none');
+                };
 
-            document.querySelectorAll('.cancel-rename')
-                .forEach(btn => btn.addEventListener('click', () => hideRename(btn.dataset.id)));
+                const submitRename = id => {
+                    const input = document.querySelector(`.rename-input[data-id="${id}"]`);
+                    if (!input) return;
 
-            document.querySelectorAll('.delete-file').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const {
-                        id,
-                        name
-                    } = btn.dataset;
-
-                    if (!confirm(`Delete "${name}"?\nThis action cannot be undone.`)) return;
-
-                    fetch(`{{ url('/admin/auth/provider') }}/${@json($email)}/files/${id}`, {
-                            method: 'DELETE',
+                    fetch(`{{ url('/admin/auth/provider') }}/${@json($email)}/files/${id}/rename`, {
+                            method: 'PUT',
                             headers: {
-                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                            }
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                name: input.value
+                            })
                         })
                         .then(res => res.json())
                         .then(res => {
                             if (res.success) {
-                                btn.closest('.list-group-item')?.remove();
-                            } else {
-                                alert('Failed to delete file');
+                                const nameEl = document.querySelector(`.file-name[data-id="${id}"] a`);
+                                if (nameEl) nameEl.textContent = input.value;
+                                hideRename(id);
                             }
-                        })
-                        .catch(() => alert('Error deleting file'));
-                });
-            });
+                        });
+                };
 
-        });
-    </script>
+                document.querySelectorAll('.edit-name')
+                    .forEach(btn => btn.addEventListener('click', () => showRename(btn.dataset.id)));
+
+                document.querySelectorAll('.save-rename')
+                    .forEach(btn => btn.addEventListener('click', () => submitRename(btn.dataset.id)));
+
+                document.querySelectorAll('.cancel-rename')
+                    .forEach(btn => btn.addEventListener('click', () => hideRename(btn.dataset.id)));
+
+                document.querySelectorAll('.delete-file').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const {
+                            id,
+                            name
+                        } = btn.dataset;
+
+                        if (!confirm(`Delete "${name}"?\nThis action cannot be undone.`)) return;
+
+                        fetch(`{{ url('/admin/auth/provider') }}/${@json($email)}/files/${id}`, {
+                                method: 'DELETE',
+                                headers: {
+                                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                                }
+                            })
+                            .then(res => res.json())
+                            .then(res => {
+                                if (res.success) {
+                                    btn.closest('.list-group-item')?.remove();
+                                } else {
+                                    alert('Failed to delete file');
+                                }
+                            })
+                            .catch(() => alert('Error deleting file'));
+                    });
+                });
+
+            });
+        </script>
+    @endcan
 @endsection

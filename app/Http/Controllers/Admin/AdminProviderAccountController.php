@@ -19,6 +19,13 @@ class AdminProviderAccountController extends Controller
 
     public function __construct()
     {
+        $this->middleware('permission:view:provider')->only(['index', 'files']);
+        $this->middleware('permission:auth:provider')->only(['login', 'callback', 'logout']);
+        $this->middleware('permission:upload:provider')->only(['upload']);
+        $this->middleware('permission:edit:provider')->only(['renameFile', 'toggleStatus']);
+        $this->middleware('permission:delete:provider')->only(['delete']);
+        $this->middleware('permission:export:provider')->only(['exportExcel']);
+
         $this->client = new Client();
         $this->client->setAuthConfig(storage_path('app/credentials.json'));
         $this->client->addScope([
@@ -71,6 +78,12 @@ class AdminProviderAccountController extends Controller
             ->with('success', "Account {$userinfo->email} successfully logged in!");
     }
 
+    public function logout($email)
+    {
+        ProviderAccount::where('email', $email)->delete();
+        return redirect()->route('admin.auth')->with('status', "Account {$email} successfully logged out!");
+    }
+
     public function files(Request $request, string $email)
     {
         $account = ProviderAccount::where('email', $email)->firstOrFail();
@@ -106,31 +119,6 @@ class AdminProviderAccountController extends Controller
             'folderId',
             'breadcrumbs'
         ));
-    }
-
-    private function getBreadcrumbs(Drive $service, string $folderId): array
-    {
-        $breadcrumbs = [];
-
-        while ($folderId !== 'root') {
-            $folder = $service->files->get($folderId, [
-                'fields' => 'id,name,parents',
-            ]);
-
-            array_unshift($breadcrumbs, [
-                'id' => $folder->id,
-                'name' => $folder->name,
-            ]);
-
-            $folderId = $folder->parents[0] ?? 'root';
-        }
-
-        array_unshift($breadcrumbs, [
-            'id' => 'root',
-            'name' => 'Root',
-        ]);
-
-        return $breadcrumbs;
     }
 
     public function renameFile(Request $request, string $email, string $fileId)
@@ -276,10 +264,29 @@ class AdminProviderAccountController extends Controller
     }
 
 
-    public function logout($email)
+    private function getBreadcrumbs(Drive $service, string $folderId): array
     {
-        ProviderAccount::where('email', $email)->delete();
-        return redirect()->route('admin.auth')->with('status', "Account {$email} successfully logged out!");
+        $breadcrumbs = [];
+
+        while ($folderId !== 'root') {
+            $folder = $service->files->get($folderId, [
+                'fields' => 'id,name,parents',
+            ]);
+
+            array_unshift($breadcrumbs, [
+                'id' => $folder->id,
+                'name' => $folder->name,
+            ]);
+
+            $folderId = $folder->parents[0] ?? 'root';
+        }
+
+        array_unshift($breadcrumbs, [
+            'id' => 'root',
+            'name' => 'Root',
+        ]);
+
+        return $breadcrumbs;
     }
 
     private function useAccountToken(ProviderAccount $account): void
