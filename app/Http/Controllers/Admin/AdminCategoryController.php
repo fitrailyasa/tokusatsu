@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Franchise;
 use App\Models\Era;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\CategoryImport;
 use App\Exports\CategoryExport;
@@ -48,6 +49,9 @@ class AdminCategoryController extends Controller
 
         $categories = Category::withTrashed()
             ->with(['era', 'franchise'])
+            ->when(!Gate::allows('edit:category'), function ($query) {
+                $query->where('status', 1);
+            })
             ->when($search, function ($query, $search) {
                 $query->where(function ($query) use ($search) {
                     $query->where('name', 'like', "%{$search}%")

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Video;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\VideoImport;
 use App\Exports\VideoExport;
@@ -64,6 +65,9 @@ class AdminVideoController extends Controller
 
         $videos = Video::withTrashed()
             ->with(['category', 'category.era', 'category.franchise'])
+            ->when(!Gate::allows('edit:video'), function ($query) {
+                $query->where('status', 1);
+            })
             ->when($search, function ($query, $search) {
                 $searchTerms = preg_split('/\s+/', $search, -1, PREG_SPLIT_NO_EMPTY);
                 foreach ($searchTerms as $term) {

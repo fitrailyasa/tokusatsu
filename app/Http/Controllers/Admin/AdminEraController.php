@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Era;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\EraImport;
 use App\Exports\EraExport;
@@ -42,11 +43,18 @@ class AdminEraController extends Controller
 
         if ($search) {
             $eras = Era::withTrashed()
+                ->when(!Gate::allows('edit:era'), function ($query) {
+                    $query->where('status', 1);
+                })
                 ->where('name', 'like', "%{$search}%")
                 ->orWhere('description', 'like', "%{$search}%")
                 ->paginate($validPerPage);
         } else {
-            $eras = Era::withTrashed()->paginate($validPerPage);
+            $eras = Era::withTrashed()
+                ->when(!Gate::allows('edit:era'), function ($query) {
+                    $query->where('status', 1);
+                })
+                ->paginate($validPerPage);
         }
 
         return view("admin.era.index", compact('eras', 'search', 'perPage'));

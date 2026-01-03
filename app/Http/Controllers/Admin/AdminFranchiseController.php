@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Franchise;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\FranchiseImport;
 use App\Exports\FranchiseExport;
@@ -42,11 +43,18 @@ class AdminFranchiseController extends Controller
 
         if ($search) {
             $franchises = Franchise::withTrashed()
+                ->when(!Gate::allows('edit:franchise'), function ($query) {
+                    $query->where('status', 1);
+                })
                 ->where('name', 'like', "%{$search}%")
                 ->orWhere('description', 'like', "%{$search}%")
                 ->paginate($validPerPage);
         } else {
-            $franchises = Franchise::withTrashed()->paginate($validPerPage);
+            $franchises = Franchise::withTrashed()
+                ->when(!Gate::allows('edit:franchise'), function ($query) {
+                    $query->where('status', 1);
+                })
+                ->paginate($validPerPage);
         }
 
         return view("admin.franchise.index", compact('franchises', 'search', 'perPage'));

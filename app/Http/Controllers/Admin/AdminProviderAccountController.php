@@ -8,6 +8,7 @@ use Google\Client;
 use Google\Service\Drive;
 use Google\Service\Oauth2;
 use App\Models\ProviderAccount;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Maatwebsite\Excel\Concerns\FromCollection;
@@ -39,7 +40,11 @@ class AdminProviderAccountController extends Controller
 
     public function index()
     {
-        $accounts = ProviderAccount::all();
+        if (!Gate::allows('edit:provider')) {
+            $accounts = ProviderAccount::where('status', 1)->get();
+        } else {
+            $accounts = ProviderAccount::all();
+        }
 
         return view('admin.provider.index', compact('accounts'));
     }
