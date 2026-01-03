@@ -101,6 +101,7 @@
             <ul class="list-group shadow-sm rounded">
                 @foreach ($files as $item)
                     @php
+                        $folderLink = "https://drive.google.com/drive/folders/{$item->id}";
                         $fileLink = "https://drive.google.com/file/d/{$item->id}/view";
                         $downloadLink = "https://drive.google.com/uc?export=download&id={$item->id}";
                     @endphp
@@ -155,9 +156,15 @@
                         </div>
 
                         <div class="btn-group btn-group-sm align-items-center">
-                            <button class="btn btn-outline-secondary copy-link" data-link="{{ $fileLink }}">
-                                <i class="fas fa-copy"></i>
-                            </button>
+                            @if ($item->is_folder)
+                                <button class="btn btn-outline-secondary copy-link" data-link="{{ $folderLink }}">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            @else
+                                <button class="btn btn-outline-secondary copy-link" data-link="{{ $fileLink }}">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            @endif
 
                             <button class="btn btn-outline-warning edit-name" data-id="{{ $item->id }}">
                                 <i class="fas fa-edit"></i>
