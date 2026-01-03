@@ -26,7 +26,6 @@ class MovieSuperSentaiSeeder extends Seeder
             ['title' => 'Taiyo Sentai Sun Vulcan: The Movie', 'category_id' => $this->Category('sun-vulcan'), 'type' => 'movie', 'number' => 1, 'airdate' => '1981-07-18'],
             ['title' => 'Dai Sentai Goggle-V: The Movie', 'category_id' => $this->Category('goggle-v'), 'type' => 'movie', 'number' => 1, 'airdate' => '1982-03-13'],
             ['title' => 'Kagaku Sentai Dynaman: The Movie', 'category_id' => $this->Category('dynaman'), 'type' => 'movie', 'number' => 1, 'airdate' => '1983-03-12'],
-            ['title' => 'Choudenshi Bioman: The Movie', 'category_id' => $this->Category('bioman'), 'type' => 'movie', 'number' => 1, 'airdate' => '1984-07-14'],
             ['title' => 'Dengeki Sentai Changeman: The Movie', 'category_id' => $this->Category('changeman'), 'type' => 'movie', 'number' => 1, 'airdate' => '1985-03-16'],
             ['title' => 'Dengeki Sentai Changeman: Shuttle Base! The Critical Moment!', 'category_id' => $this->Category('changeman'), 'type' => 'movie', 'number' => 2, 'airdate' => '1985-07-13'],
             ['title' => 'Choushinsei Flashman: The Movie', 'category_id' => $this->Category('flashman'), 'type' => 'movie', 'number' => 1, 'airdate' => '1986-03-15'],
