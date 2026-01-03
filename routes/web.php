@@ -35,6 +35,9 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/offline', [HomeController::class, 'offline'])->name('offline');
 Route::get('/privacy-policy', [HomeController::class, 'privacyPolicy'])->name('privacy-policy');
 Route::get('/terms-conditions', [HomeController::class, 'termsConditions'])->name('terms-conditions');
+Route::get('/sitemap.xml', function () {
+  return response()->file(public_path('sitemap.xml'));
+});
 
 Route::get('/search', [HomeController::class, 'search'])->name('search');
 Route::get('/category', [ClientCategoryController::class, 'index'])->name('category');
