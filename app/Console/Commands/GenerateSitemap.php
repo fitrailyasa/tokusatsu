@@ -30,7 +30,7 @@ class GenerateSitemap extends Command
         foreach ($staticPages as $page) {
             $sitemap->add(
                 Url::create($page)
-                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
+                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY)
                     ->setPriority(0.9)
             );
         }
@@ -52,7 +52,7 @@ class GenerateSitemap extends Command
                         $category->slug
                     ]))
                         ->setLastModificationDate($category->updated_at)
-                        ->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY)
+                        ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
                         ->setPriority(0.8)
                 );
             });
@@ -77,7 +77,7 @@ class GenerateSitemap extends Command
                             $video->number,
                         ]))
                             ->setLastModificationDate($video->updated_at)
-                            ->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY)
+                            ->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY)
                             ->setPriority(1.0)
                     );
                 }
