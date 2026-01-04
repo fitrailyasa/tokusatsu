@@ -7,6 +7,7 @@ use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\Tags\Url;
 use App\Models\Category;
 use App\Models\Video;
+use Carbon\Carbon;
 
 class GenerateSitemap extends Command
 {
@@ -46,12 +47,16 @@ class GenerateSitemap extends Command
 
                 if (!$category->franchise) return;
 
+                $lastMod = $category->first_aired
+                    ? Carbon::parse($category->first_aired)
+                    : now();
+
                 $sitemap->add(
                     Url::create(route('video.show', [
                         $category->franchise->slug,
                         $category->slug
                     ]))
-                        ->setLastModificationDate($category->updated_at)
+                        ->setLastModificationDate($lastMod)
                         ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
                         ->setPriority(0.8)
                 );
@@ -61,13 +66,21 @@ class GenerateSitemap extends Command
          * WATCH PAGES (MAIN)
          * /video/{franchise}/{category}/{type}/{number}
          ===================== */
+        $currentYear = Carbon::now()->year;
+
         Video::with('category.franchise')
             ->whereNull('deleted_at')
-            ->chunk(500, function ($videos) use ($sitemap) {
+            ->chunk(500, function ($videos) use ($sitemap, $currentYear) {
 
                 foreach ($videos as $video) {
 
                     if (!$video->category || !$video->category->franchise) continue;
+
+                    if ($video->airdate && Carbon::parse($video->airdate)->year === $currentYear) {
+                        $lastMod = $video->updated_at ?? now();
+                    } else {
+                        $lastMod = $video->airdate ? Carbon::parse($video->airdate) : now();
+                    }
 
                     $sitemap->add(
                         Url::create(route('video.watch', [
@@ -76,7 +89,7 @@ class GenerateSitemap extends Command
                             $video->type,
                             $video->number,
                         ]))
-                            ->setLastModificationDate($video->updated_at)
+                            ->setLastModificationDate($lastMod)
                             ->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY)
                             ->setPriority(1.0)
                     );
