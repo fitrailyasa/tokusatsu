@@ -8,7 +8,6 @@ use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithStartRow;
 use Illuminate\Support\Str;
 use PhpOffice\PhpSpreadsheet\Shared\Date as ExcelDate;
-use Illuminate\Support\Carbon;
 
 class VideoImport implements ToModel, WithStartRow
 {
@@ -22,11 +21,14 @@ class VideoImport implements ToModel, WithStartRow
         $airDateRaw   = trim($row[6] ?? '');
         $airDate      = null;
 
-        if ($airDateRaw !== '') {
+        if ($airDateRaw !== null) {
             if (is_numeric($airDateRaw)) {
-                $airDate = ExcelDate::excelToDateTimeObject($airDateRaw);
+                $airDate = ExcelDate::excelToDateTimeObject($airDateRaw)->format('Y-m-d');
             } else {
-                $airDate = null;
+                $parsedDate = date_create($airDateRaw);
+                if ($parsedDate) {
+                    $airDate = $parsedDate->format('Y-m-d');
+                }
             }
         }
 
@@ -67,57 +69,18 @@ class VideoImport implements ToModel, WithStartRow
                 ->toArray();
         }
 
-        $video = Video::where([
-            'category_id' => $category->id,
-            'type'      => $type,
-            'number'      => $number,
-        ])->first();
-
-        if ($video) {
-            $newAirdate = $airDate ? $airDate->format('Y-m-d') : null;
-
-            $shouldUpdate =
-                $video->title !== $title ||
-                $video->type !== $type ||
-                $video->number !== $number ||
-                $video->airdate !== $newAirdate;
-
-            if ($shouldUpdate) {
-                $video->title   = $title;
-                $video->type    = $type;
-                $video->number  = $number;
-
-                if ($newAirdate !== null) {
-                    $video->airdate = $newAirdate;
-                }
-
-                $video->timestamps = false;
-                $video->save();
-            }
-
-            return $video;
-        }
-
-        $video = new Video();
-        $video->category_id = $category->id;
-        $video->type        = $type;
-        $video->number      = $number;
-        $video->title       = $title;
-        $video->link        = $link;
-
-        if ($airDate !== null) {
-            $video->airdate = $airDate->format('Y-m-d');
-        }
-
-        $video->timestamps = false;
-
-        $timestamp = $airDate ? Carbon::instance($airDate) : now();
-        $video->created_at = $timestamp;
-        $video->updated_at = $timestamp;
-
-        $video->save();
-
-        return $video;
+        return Video::updateOrCreate(
+            [
+                'category_id' => $category->id,
+                'type'        => $type,
+                'number'      => $number
+            ],
+            [
+                'title'   => $title,
+                'link'    => $link,
+                'airdate' => $airDate,
+            ]
+        );
     }
 
     public function startRow(): int
