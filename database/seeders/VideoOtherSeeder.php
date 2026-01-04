@@ -184,6 +184,18 @@ class VideoOtherSeeder extends Seeder
             ['title' => "Self-Conceit / Predicament (独尊／窮地 Dokuson / Kyūchi)", 'category_id' => $this->Category('kami-no-kiba-jinga'), 'type' => 'episode', 'number' => 10, 'airdate' => '2018-12-13'],
             ['title' => "Just Cause of Fiction / Truth of Reality (虚構の大義／事実の真理 Kyokō no Taigi / Jijitsu no Shinri)", 'category_id' => $this->Category('kami-no-kiba-jinga'), 'type' => 'episode', 'number' => 11, 'airdate' => '2018-12-20'],
             ['title' => "Demise / Genesis (終焉／創成 Shūen / Sōsei)", 'category_id' => $this->Category('kami-no-kiba-jinga'), 'type' => 'episode', 'number' => 12, 'airdate' => '2018-12-27'],
+            ['title' => 'Prologue (序章 Joshō)', 'category_id' => $this->Category('hagane-o-tsugu-mono'), 'type' => 'episode', 'number' => 1, 'airdate' => '2024-01-11'],
+            ['title' => 'Symptoms (症状 Shōjō)', 'category_id' => $this->Category('hagane-o-tsugu-mono'), 'type' => 'episode', 'number' => 2, 'airdate' => '2024-01-18'],
+            ['title' => 'Hagane (鋼 Hagane)', 'category_id' => $this->Category('hagane-o-tsugu-mono'), 'type' => 'episode', 'number' => 3, 'airdate' => '2024-01-25'],
+            ['title' => 'Scar (傷跡 Kizuato)', 'category_id' => $this->Category('hagane-o-tsugu-mono'), 'type' => 'episode', 'number' => 4, 'airdate' => '2024-02-01'],
+            ['title' => 'Realize (覚醒 Kakusei)', 'category_id' => $this->Category('hagane-o-tsugu-mono'), 'type' => 'episode', 'number' => 5, 'airdate' => '2024-02-08'],
+            ['title' => 'Eyes (眼差し Manazashi)', 'category_id' => $this->Category('hagane-o-tsugu-mono'), 'type' => 'episode', 'number' => 6, 'airdate' => '2024-02-15'],
+            ['title' => 'Tragedy (悲劇 Higeki)', 'category_id' => $this->Category('hagane-o-tsugu-mono'), 'type' => 'episode', 'number' => 7, 'airdate' => '2024-02-22'],
+            ['title' => 'Flash (閃光 Senkō)', 'category_id' => $this->Category('hagane-o-tsugu-mono'), 'type' => 'episode', 'number' => 8, 'airdate' => '2024-02-29'],
+            ['title' => 'Gate (門 Mon)', 'category_id' => $this->Category('hagane-o-tsugu-mono'), 'type' => 'episode', 'number' => 9, 'airdate' => '2024-03-07'],
+            ['title' => 'Deception (欺瞞 Giman)', 'category_id' => $this->Category('hagane-o-tsugu-mono'), 'type' => 'episode', 'number' => 10, 'airdate' => '2024-03-14'],
+            ['title' => 'Invitation (招待 Shōtai)', 'category_id' => $this->Category('hagane-o-tsugu-mono'), 'type' => 'episode', 'number' => 11, 'airdate' => '2024-03-21'],
+            ['title' => 'Inherit (継承 Keishō)', 'category_id' => $this->Category('hagane-o-tsugu-mono'), 'type' => 'episode', 'number' => 12, 'airdate' => '2024-03-28'],
 
         ])->map(function ($item) use ($timestamp) {
 
