@@ -28,7 +28,7 @@ class EraRequest extends FormRequest
                 Rule::unique('eras', 'name')->ignore($id),
             ],
             'description' => 'nullable|max:1024',
-            'img' => 'nullable|mimes:jpg,jpeg,png|max:2048',
+            'img' => 'nullable|mimes:jpg,jpeg,png,webp,svg|max:2048',
             'status' => 'nullable|in:0,1',
         ];
     }
@@ -40,7 +40,7 @@ class EraRequest extends FormRequest
             'name.max' => 'Name must be under 100 chars.',
             'name.unique' => 'Name already exists.',
             'description.max' => 'Description max 1024 chars.',
-            'img.mimes' => 'Image must be jpg, jpeg, or png.',
+            'img.mimes' => 'Image must be jpg, jpeg, png, webp, or svg.',
             'img.max' => 'Image size must be under 2MB.',
             'status.in' => 'Status must be 0 or 1.',
         ];
