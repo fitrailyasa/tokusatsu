@@ -1132,7 +1132,7 @@ class CategorySeeder extends Seeder
                 'description' => null,
                 'img' => 'category/heisei-4-ultraman-logo.webp',
                 'first_aired' => '2000-11-22',
-                'last_aired' => '2001-05-09',
+                'last_aired' => '2001-05-05',
             ],
             [
                 'era_id' => $heisei,

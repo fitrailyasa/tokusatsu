@@ -62,18 +62,18 @@ class MovieUltramanSeeder extends Seeder
             ['title' => 'Ultraman Blazar The Movie: Tokyo Kaiju Showdown', 'category_id' => $this->Category('blazar'), 'type' => 'movie', 'number' => 1, 'airdate' => '2024-02-07'],
 
             // Mini Series
-            ['title' => "Neos Is Born (ネオス誕生, Neosu Tanjō)", 'category_id' => $this->Category('neos'), 'type' => 'mini-series', 'number' => 1, 'airdate' => null],
-            ['title' => "The Mysterious Dark Matter (謎のダークマター, Nāzo no Dāku Matā)", 'category_id' => $this->Category('neos'), 'type' => 'mini-series', 'number' => 2, 'airdate' => null],
-            ['title' => "S.O.S from the Sea (海からのS.O.S, Umi kara no S.O.S)", 'category_id' => $this->Category('neos'), 'type' => 'mini-series', 'number' => 3, 'airdate' => null],
-            ['title' => "The Red Giant! Seven 21 (赤い巨人! セブン21, Akai Kyojin! Sebun 21)", 'category_id' => $this->Category('neos'), 'type' => 'mini-series', 'number' => 4, 'airdate' => null],
-            ['title' => "Invisible Bonds (見えない絆, Mienai Kizuna)", 'category_id' => $this->Category('neos'), 'type' => 'mini-series', 'number' => 5, 'airdate' => null],
-            ['title' => "Revenge of Alien Zamu (ザム星人の復讐, Zamu Seijin no Fukushū)", 'category_id' => $this->Category('neos'), 'type' => 'mini-series', 'number' => 6, 'airdate' => null],
-            ['title' => "King of the Biosphere (生態系の王, Seitaikei no Ō)", 'category_id' => $this->Category('neos'), 'type' => 'mini-series', 'number' => 7, 'airdate' => null],
-            ['title' => "Revive the Earth - HEART To The South (蘇る地球 HEART南へ!, Yomigaeru Chikyū - HEART Minami e)", 'category_id' => $this->Category('neos'), 'type' => 'mini-series', 'number' => 8, 'airdate' => null],
-            ['title' => "Our Dino-Coaster (僕らの恐竜コースター, Bokura no Kyōryū Kōsutā)", 'category_id' => $this->Category('neos'), 'type' => 'mini-series', 'number' => 9, 'airdate' => null],
-            ['title' => "Decide! SX Rescue Operation (決断せよ! SX救出作戦, Ketsudan Seyo! SX Kyūshutsu Sakusen)", 'category_id' => $this->Category('neos'), 'type' => 'mini-series', 'number' => 10, 'airdate' => null],
-            ['title' => "The Assassin-Beast from Space (宇宙からの暗殺獣, Uchū Kara no Ansatsu-jū)", 'category_id' => $this->Category('neos'), 'type' => 'mini-series', 'number' => 11, 'airdate' => null],
-            ['title' => "Warriors of Light, Forever (光の戦士よ永遠に, Hikari no Senshi yo Towa ni)", 'category_id' => $this->Category('neos'), 'type' => 'mini-series', 'number' => 12, 'airdate' => null],
+            ['title' => "Neos Is Born (ネオス誕生, Neosu Tanjō)", 'category_id' => $this->Category('neos'), 'type' => 'mini-series', 'number' => 1, 'airdate' => '2000-11-22'],
+            ['title' => "The Mysterious Dark Matter (謎のダークマター, Nāzo no Dāku Matā)", 'category_id' => $this->Category('neos'), 'type' => 'mini-series', 'number' => 2, 'airdate' => '2000-12-06'],
+            ['title' => "S.O.S from the Sea (海からのS.O.S, Umi kara no S.O.S)", 'category_id' => $this->Category('neos'), 'type' => 'mini-series', 'number' => 3, 'airdate' => '2000-12-21'],
+            ['title' => "The Red Giant! Seven 21 (赤い巨人! セブン21, Akai Kyojin! Sebun 21)", 'category_id' => $this->Category('neos'), 'type' => 'mini-series', 'number' => 4, 'airdate' => '2001-01-05'],
+            ['title' => "Invisible Bonds (見えない絆, Mienai Kizuna)", 'category_id' => $this->Category('neos'), 'type' => 'mini-series', 'number' => 5, 'airdate' => '2001-01-24'],
+            ['title' => "Revenge of Alien Zamu (ザム星人の復讐, Zamu Seijin no Fukushū)", 'category_id' => $this->Category('neos'), 'type' => 'mini-series', 'number' => 6, 'airdate' => '2001-02-07'],
+            ['title' => "King of the Biosphere (生態系の王, Seitaikei no Ō)", 'category_id' => $this->Category('neos'), 'type' => 'mini-series', 'number' => 7, 'airdate' => '2001-02-21'],
+            ['title' => "Revive the Earth - HEART To The South (蘇る地球 HEART南へ!, Yomigaeru Chikyū - HEART Minami e)", 'category_id' => $this->Category('neos'), 'type' => 'mini-series', 'number' => 8, 'airdate' => '2001-03-07'],
+            ['title' => "Our Dino-Coaster (僕らの恐竜コースター, Bokura no Kyōryū Kōsutā)", 'category_id' => $this->Category('neos'), 'type' => 'mini-series', 'number' => 9, 'airdate' => '2001-03-23'],
+            ['title' => "Decide! SX Rescue Operation (決断せよ! SX救出作戦, Ketsudan Seyo! SX Kyūshutsu Sakusen)", 'category_id' => $this->Category('neos'), 'type' => 'mini-series', 'number' => 10, 'airdate' => '2001-04-05'],
+            ['title' => "The Assassin-Beast from Space (宇宙からの暗殺獣, Uchū Kara no Ansatsu-jū)", 'category_id' => $this->Category('neos'), 'type' => 'mini-series', 'number' => 11, 'airdate' => '2001-04-21'],
+            ['title' => "Warriors of Light, Forever (光の戦士よ永遠に, Hikari no Senshi yo Towa ni)", 'category_id' => $this->Category('neos'), 'type' => 'mini-series', 'number' => 12, 'airdate' => '2001-05-05'],
 
         ])->map(function ($item) use ($timestamp) {
 
