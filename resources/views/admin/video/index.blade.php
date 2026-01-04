@@ -59,6 +59,27 @@
         @include('components.search')
     </x-slot>
 
+    <div class="alert alert-warning d-flex align-items-center mb-3">
+        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+        <span>
+            Total Videos without Links:
+            <strong>{{ $totalEmptyLinks }}</strong>
+        </span>
+    </div>
+
+    @if ($emptyLinkPerCategory->isNotEmpty())
+        <div class="mb-4">
+            <div class="d-flex flex-wrap gap-2">
+                @foreach ($emptyLinkPerCategory as $row)
+                    <span class="badge bg-warning text-dark px-3 py-2">
+                        {{ $row->category->name ?? 'Tanpa Kategori' }}
+                        <span class="fw-bold">({{ $row->total }})</span>
+                    </span>
+                @endforeach
+            </div>
+        </div>
+    @endif
+
     <!-- Table -->
     <table id="" class="table table-bordered table-striped">
         <thead>

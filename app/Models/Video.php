@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Str;
 use App\Models\Traits\VideoLinkTrait;
+use Illuminate\Support\Facades\DB;
 
 class Video extends Model
 {
@@ -100,6 +101,24 @@ class Video extends Model
         ];
 
         return $types[$this->type] ?? str_replace('-', ' ', ucwords($this->type));
+    }
+
+    public function scopeEmptyLink($query)
+    {
+        return $query->where(function ($q) {
+            $q->whereNull('link')
+                ->orWhere('link', '')
+                ->orWhere('link', '[]');
+        });
+    }
+
+    public function scopeEmptyLinkPerCategory($query)
+    {
+        return $query
+            ->select('category_id', DB::raw('COUNT(*) as total'))
+            ->emptyLink()
+            ->groupBy('category_id')
+            ->with('category');
     }
 
     public function watchUrl()

@@ -86,8 +86,13 @@ class AdminVideoController extends Controller
             ->orderBy('airdate', 'desc')
             ->paginate($validPerPage);
 
+        $totalEmptyLinks = Video::withTrashed()->emptyLink()->count();
+        $emptyLinkPerCategory = Video::withTrashed()->emptyLinkPerCategory()->get();
+
         return view('admin.video.index', compact(
             'videos',
+            'totalEmptyLinks',
+            'emptyLinkPerCategory',
             'groupedCategories',
             'categories',
             'categoryId',
