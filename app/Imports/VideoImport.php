@@ -67,29 +67,42 @@ class VideoImport implements ToModel, WithStartRow
                 ->toArray();
         }
 
-        $video = Video::firstOrNew([
+        $video = Video::where([
             'category_id' => $category->id,
-            'type'        => $type,
+            'type'      => $type,
             'number'      => $number,
-        ]);
+        ])->first();
 
-        $video->title = $title;
-        $video->link  = $link;
+        if ($video) {
+            $shouldUpdate = $video->title !== $title || $video->type !== $type || $video->number !== $number;
 
-        if ($airDate !== null || !$video->exists) {
-            $video->airdate = $airDate?->format('Y-m-d');
+            if ($shouldUpdate) {
+                $video->title = $title;
+                $video->type  = $type;
+                $video->number = $number;
+                $video->timestamps = false;
+                $video->save();
+            }
+
+            return $video;
+        }
+
+        $video = new Video();
+        $video->category_id = $category->id;
+        $video->type        = $type;
+        $video->number      = $number;
+        $video->title       = $title;
+        $video->link        = $link;
+
+        if ($airDate !== null) {
+            $video->airdate = $airDate->format('Y-m-d');
         }
 
         $video->timestamps = false;
 
-        if (!$video->exists) {
-            $timestamp = $airDate
-                ? Carbon::instance($airDate)
-                : now();
-
-            $video->created_at = $timestamp;
-            $video->updated_at = $timestamp;
-        }
+        $timestamp = $airDate ? Carbon::instance($airDate) : now();
+        $video->created_at = $timestamp;
+        $video->updated_at = $timestamp;
 
         $video->save();
 
