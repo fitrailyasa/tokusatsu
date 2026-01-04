@@ -74,12 +74,23 @@ class VideoImport implements ToModel, WithStartRow
         ])->first();
 
         if ($video) {
-            $shouldUpdate = $video->title !== $title || $video->type !== $type || $video->number !== $number;
+            $newAirdate = $airDate ? $airDate->format('Y-m-d') : null;
+
+            $shouldUpdate =
+                $video->title !== $title ||
+                $video->type !== $type ||
+                $video->number !== $number ||
+                $video->airdate !== $newAirdate;
 
             if ($shouldUpdate) {
-                $video->title = $title;
-                $video->type  = $type;
-                $video->number = $number;
+                $video->title   = $title;
+                $video->type    = $type;
+                $video->number  = $number;
+
+                if ($newAirdate !== null) {
+                    $video->airdate = $newAirdate;
+                }
+
                 $video->timestamps = false;
                 $video->save();
             }
