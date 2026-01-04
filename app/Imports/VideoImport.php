@@ -8,6 +8,7 @@ use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithStartRow;
 use Illuminate\Support\Str;
 use PhpOffice\PhpSpreadsheet\Shared\Date as ExcelDate;
+use Illuminate\Support\Carbon;
 
 class VideoImport implements ToModel, WithStartRow
 {
@@ -21,14 +22,11 @@ class VideoImport implements ToModel, WithStartRow
         $airDateRaw   = trim($row[6] ?? '');
         $airDate      = null;
 
-        if ($airDateRaw !== null) {
+        if ($airDateRaw !== '') {
             if (is_numeric($airDateRaw)) {
-                $airDate = ExcelDate::excelToDateTimeObject($airDateRaw)->format('Y-m-d');
+                $airDate = ExcelDate::excelToDateTimeObject($airDateRaw);
             } else {
-                $parsedDate = date_create($airDateRaw);
-                if ($parsedDate) {
-                    $airDate = $parsedDate->format('Y-m-d');
-                }
+                $airDate = null;
             }
         }
 
@@ -69,18 +67,33 @@ class VideoImport implements ToModel, WithStartRow
                 ->toArray();
         }
 
-        return Video::updateOrCreate(
-            [
-                'category_id' => $category->id,
-                'type'        => $type,
-                'number'      => $number
-            ],
-            [
-                'title'   => $title,
-                'link'    => $link,
-                'airdate' => $airDate,
-            ]
-        );
+        $video = Video::firstOrNew([
+            'category_id' => $category->id,
+            'type'        => $type,
+            'number'      => $number,
+        ]);
+
+        $video->title = $title;
+        $video->link  = $link;
+
+        if ($airDate !== null || !$video->exists) {
+            $video->airdate = $airDate?->format('Y-m-d');
+        }
+
+        $video->timestamps = false;
+
+        if (!$video->exists) {
+            $timestamp = $airDate
+                ? Carbon::instance($airDate)
+                : now();
+
+            $video->created_at = $timestamp;
+            $video->updated_at = $timestamp;
+        }
+
+        $video->save();
+
+        return $video;
     }
 
     public function startRow(): int
