@@ -101,7 +101,7 @@
                             {{ $item->video->category->name ?? '-' }}
                             (
                             {{ $item->video->label ?? '-' }}
-                            @if ($item->video->type == 'episode')
+                            @if ($item->video->type == 'episode' || $item->video->type == 'mini-series' || $item->video->type == 'spin-off')
                                 {{ $item->video->number ?? 0 }}
                             @endif
                             )
