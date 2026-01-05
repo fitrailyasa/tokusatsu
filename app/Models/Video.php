@@ -69,6 +69,11 @@ class Video extends Model
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
+    public function video_reports()
+    {
+        return $this->hasMany(VideoReport::class);
+    }
+
     public function getCategoryColor(): string
     {
         $colors = ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'dark'];
@@ -118,6 +123,7 @@ class Video extends Model
             ->select('category_id', DB::raw('COUNT(*) as total'))
             ->emptyLink()
             ->orWhere('link', '[]')
+            ->orWhere('link', '[null]')
             ->groupBy('category_id')
             ->with('category');
     }
