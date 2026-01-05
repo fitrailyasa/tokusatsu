@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container d-flex justify-content-center align-items-center min-vh-100">
-        <div class="card shadow-lg rounded-4 p-4" style="max-width: 420px; width: 100%;">
+        <div class="shadow-lg rounded-4 p-4" style="max-width: 420px; width: 100%;">
             <h4 class="text-center fw-bold">Registrasi</h4>
 
             <form action="{{ route('register') }}" method="POST" novalidate>
@@ -79,7 +79,8 @@
 
                 {{-- Login --}}
                 <div class="text-center">
-                    <small class="text-muted">Already have an account? <a href="{{ route('login') }}">Login</a></small>
+                    <small class="text-muted">Already have an account? <a class="text-primary"
+                            href="{{ route('login') }}">Login</a></small>
                 </div>
 
                 {{-- Social Auth --}}

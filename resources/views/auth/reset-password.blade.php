@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container d-flex justify-content-center align-items-center min-vh-100">
-        <div class="card shadow-lg rounded-4 p-4" style="max-width: 420px; width: 100%;">
+        <div class="shadow-lg rounded-4 p-4" style="max-width: 420px; width: 100%;">
             <h4 class="text-center fw-bold mb-2">Reset Password</h4>
             <p class="text-center text-muted small mb-3">
                 Please enter your new password below.
@@ -82,7 +82,7 @@
                 <div class="text-center">
                     <small class="text-muted">
                         Remember your password?
-                        <a href="{{ route('login') }}">Back to Login</a>
+                        <a class="text-primary" href="{{ route('login') }}">Back to Login</a>
                     </small>
                 </div>
             </form>

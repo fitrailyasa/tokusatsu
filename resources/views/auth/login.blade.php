@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container d-flex justify-content-center align-items-center min-vh-100">
-        <div class="card shadow-lg rounded-4 p-4" style="max-width: 420px; width: 100%;">
+        <div class="shadow-lg rounded-4 p-4" style="max-width: 420px; width: 100%;">
             <h4 class="text-center fw-bold">Login</h4>
 
             <form action="{{ route('login') }}" method="POST" novalidate>
@@ -42,7 +42,7 @@
                 {{-- Forgot Password --}}
                 <div class="text-end mb-2">
                     <small>
-                        <a href="{{ route('password.request') }}" class="text-decoration-none">
+                        <a href="{{ route('password.request') }}" class="text-primary">
                             Forgot password?
                         </a>
                     </small>
@@ -59,7 +59,8 @@
 
                 {{-- Register --}}
                 <div class="text-center">
-                    <small class="text-muted">Don't have an account? <a href="{{ route('register') }}">Register</a></small>
+                    <small class="text-muted">Don't have an account? <a class="text-primary"
+                            href="{{ route('register') }}">Register</a></small>
                 </div>
 
                 {{-- Social Auth --}}
