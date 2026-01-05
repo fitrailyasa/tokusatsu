@@ -239,13 +239,13 @@ $eras = Era::withoutTrashed()->get()->where('status', 1)->reverse();
                         <li class="nav-item">
                             <a class="nav-link py-3 px-3 fw-bold @yield('textHistory')" href="{{ route('history') }}"
                                 title="Riwayat Tonton">
-                                <i class="far fa-clock fs-5"></i>
+                                <i data-feather="clock"></i>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link py-3 px-3 fw-bold @yield('textBookmark')" href="{{ route('bookmark') }}"
                                 title="Bookmark Video">
-                                <i class="far fa-bookmark fs-5"></i>
+                                <i data-feather="bookmark"></i>
                             </a>
                         </li>
                     </ul>
