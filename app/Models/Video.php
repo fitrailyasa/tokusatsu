@@ -113,7 +113,8 @@ class Video extends Model
         return $query->where(function ($q) {
             $q->whereNull('link')
                 ->orWhere('link', '')
-                ->orWhere('link', '[]');
+                ->orWhere('link', '[]')
+                ->orWhere('link', '[null]');
         });
     }
 

@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TableRequest;
+use App\Models\Franchise;
 use App\Models\Category;
 use App\Models\Video;
-use App\Models\Franchise;
+use App\Models\VideoReport;
+use App\Http\Requests\VideoReportRequest;
+use Illuminate\Support\Facades\Storage;
 
 class ClientVideoController extends Controller
 {
@@ -189,6 +192,20 @@ class ClientVideoController extends Controller
             'next'       => $next,
             'embedUrls'  => $embedUrls,
             'downloadTokens' => $downloadTokens,
+        ]);
+    }
+
+    public function report(VideoReportRequest $request)
+    {
+        $data = $request->validated();
+
+        $data['status'] = 0;
+
+        VideoReport::create($data);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Report submitted successfully.'
         ]);
     }
 }

@@ -88,6 +88,7 @@ class AdminVideoController extends Controller
                                 link IS NULL
                                 OR link = ''
                                 OR link = '[]'
+                                OR link = '[null]'
                                 OR link = '{}'
                             ) DESC
                         ")
