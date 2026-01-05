@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminTagController;
 use App\Http\Controllers\Admin\AdminDataController;
 use App\Http\Controllers\Admin\AdminVideoController;
+use App\Http\Controllers\Admin\AdminVideoReportController;
 use App\Http\Controllers\Admin\AdminProviderAccountController;
 use App\Http\Controllers\Auth\ProviderController;
 use App\Http\Controllers\PayPalController;
@@ -152,7 +153,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/data/exportExcel', [AdminDataController::class, 'exportExcel'])->name('data.exportExcel');
     // Route::get('/data/exportPDF', [AdminDataController::class, 'exportPDF'])->name('data.exportPDF');
 
-    // CRUD video
+    // CRUD VIDEO
     Route::get('/video', [AdminVideoController::class, 'index'])->name('video.index');
     Route::post('/video', [AdminVideoController::class, 'store'])->name('video.store');
     Route::put('/video/{id}/update', [AdminVideoController::class, 'update'])->name('video.update');
@@ -166,6 +167,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/video/exportExcel', [AdminVideoController::class, 'exportExcel'])->name('video.exportExcel');
     // Route::get('/video/exportPDF', [AdminVideoController::class, 'exportPDF'])->name('video.exportPDF');
     Route::put('/video/{id}/toggle-status', [AdminVideoController::class, 'toggleStatus'])->name('video.toggleStatus');
+
+    // CRUD VIDEO REPORT
+    Route::get('/video-report', [AdminVideoReportController::class, 'index'])->name('video-report.index');
+    Route::delete('/video-report/{id}/destroy', [AdminVideoReportController::class, 'destroy'])->name('video-report.destroy');
+    Route::delete('/video-report/destroyAll', [AdminVideoReportController::class, 'destroyAll'])->name('video-report.destroyAll');
 
     // PROVIDER ACCOUNT
     Route::get('/auth/provider', [AdminProviderAccountController::class, 'index'])->name('auth');
@@ -193,6 +199,7 @@ Route::get('/video/{category}', [ClientVideoController::class, 'category'])->nam
 // Route::get('/video/{franchise}/movie', [ClientVideoController::class, 'movie'])->name('video.movie');
 Route::get('/video/{franchise}/{category}', [ClientVideoController::class, 'show'])->name('video.show');
 Route::get('/video/{franchise}/{category}/{type}/{number}', [ClientVideoController::class, 'watch'])->name('video.watch');
+Route::post('/video/report', [ClientVideoController::class, 'report'])->middleware('throttle:5,10')->name('video.report');
 
 Route::get('/{slug}', function ($slug) {
 

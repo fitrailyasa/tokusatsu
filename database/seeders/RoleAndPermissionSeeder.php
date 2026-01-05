@@ -19,6 +19,7 @@ class RoleAndPermissionSeeder extends Seeder
             'tag' => ['view', 'create', 'edit', 'delete', 'delete-all', 'soft-delete', 'soft-delete-all', 'restore', 'restore-all', 'import', 'export'],
             'data' => ['view', 'create', 'edit', 'delete', 'delete-all', 'soft-delete', 'soft-delete-all', 'restore', 'restore-all', 'import', 'export'],
             'video' => ['view', 'create', 'edit', 'delete', 'delete-all', 'soft-delete', 'soft-delete-all', 'restore', 'restore-all', 'import', 'export'],
+            'video-report' => ['view', 'delete', 'delete-all'],
             'provider' => ['view', 'upload', 'download', 'edit', 'delete', 'auth', 'export'],
         ];
 
@@ -30,7 +31,7 @@ class RoleAndPermissionSeeder extends Seeder
 
         $roles = [
             'super-admin' => Permission::all()->pluck('name')->toArray(),
-            'admin' => Permission::where('name', 'not like', '%:role')->where('name', 'not like', '%-all:%')->pluck('name')->toArray(),
+            'admin' => Permission::where('name', 'not like', '%:role')->where('name', 'not like', '%:user')->where('name', 'not like', '%-all:%')->pluck('name')->toArray(),
             'user' => [
                 'view:provider',
                 'view:data'
