@@ -71,7 +71,7 @@
             <div class="d-flex flex-wrap gap-2">
                 @foreach ($emptyLinkPerCategory as $row)
                     <span class="badge bg-warning text-dark px-3 py-2">
-                        {{ $row->category->name ?? 'Tanpa Kategori' }}
+                        {{ $row->category->name ?? 'Uncategorized' }}
                         <span class="fw-bold">({{ $row->total }})</span>
                     </span>
                 @endforeach
