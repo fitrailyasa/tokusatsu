@@ -100,7 +100,7 @@
                             {{ $item->video->category->franchise->name ?? '-' }}
                             {{ $item->video->category->name ?? '-' }}
                             (
-                            {{ $item->video->type ?? '-' }}
+                            {{ $item->video->label ?? '-' }}
                             @if ($item->video->type == 'episode')
                                 {{ $item->video->number ?? 0 }}
                             @endif
