@@ -122,8 +122,6 @@ class Video extends Model
         return $query
             ->select('category_id', DB::raw('COUNT(*) as total'))
             ->emptyLink()
-            ->orWhere('link', '[]')
-            ->orWhere('link', '[null]')
             ->groupBy('category_id')
             ->with('category');
     }
