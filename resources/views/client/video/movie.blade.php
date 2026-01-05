@@ -9,14 +9,14 @@
     <div class="container my-5">
         <div class="d-flex justify-content-between align-items-center px-3 pt-4">
             <div>
-                <a href="{{ route('video') }}"><i class="fas fa-arrow-left"></i></a>
+                <a href="{{ route('video') }}"><i data-feather="arrow-left"></i></a>
             </div>
             <div>
                 <h1 class="text-center responsive-title">Movie {{ $franchise->name }}</h1>
             </div>
             <div>
                 <button id="shareBtn" class="btn btn-icon">
-                    <i class="fa fa-share"></i>
+                    <i data-feather="share-2" class="d-block mx-auto"></i>
                 </button>
             </div>
         </div>

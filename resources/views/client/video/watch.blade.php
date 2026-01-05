@@ -37,7 +37,7 @@
             <div class="row mb-3 align-items-center">
                 <div class="col-3 text-left">
                     <a href="{{ $category->showUrl() }}">
-                        <p class="m-0"><i class="fas fa-arrow-left"></i></p>
+                        <p class="m-0"><i data-feather="arrow-left"></i></p>
                     </a>
                 </div>
                 <div class="col-6">
@@ -47,13 +47,13 @@
                 </div>
                 <div class="col-3 text-right">
                     <a id="downloadBtn" href="#" class="btn btn-icon d-none me-2">
-                        <i class="fa-solid fa-download"></i>
+                        <i data-feather="download" class="d-block mx-auto"></i>
                     </a>
                     <button id="shareBtn" class="btn btn-icon me-2">
-                        <i class="fa fa-share"></i>
+                        <i data-feather="share-2" class="d-block mx-auto"></i>
                     </button>
                     <button id="reportBtn" class="btn btn-icon">
-                        <i class="fa fa-flag"></i>
+                        <i data-feather="flag" class="d-block mx-auto"></i>
                     </button>
                 </div>
             </div>
@@ -105,7 +105,7 @@
                             'number' => $prev->number,
                         ]) }}"
                             class="btn btn-sm btn-outline-light">
-                            <i class="fas fa-arrow-left me-1"></i> Prev
+                            <i data-feather="arrow-left"></i> Prev
                         </a>
                     @endif
 
@@ -117,7 +117,7 @@
                             'number' => $next->number,
                         ]) }}"
                             class="btn btn-sm btn-outline-light">
-                            Next <i class="fas fa-arrow-right ms-1"></i>
+                            Next <i data-feather="arrow-left"></i>
                         </a>
                     @endif
                 </div>

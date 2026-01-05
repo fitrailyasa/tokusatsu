@@ -58,7 +58,7 @@
         <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
             <div class="d-flex align-items-center gap-3">
                 <a href="{{ route('admin.auth') }}" class="text-dark fs-5">
-                    <i class="fas fa-arrow-left"></i>
+                    <i data-feather="arrow-left"></i>
                 </a>
 
                 <div>
