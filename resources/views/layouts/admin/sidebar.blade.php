@@ -18,6 +18,8 @@
                 <x-sidebar-link route="admin.role.index" icon="key" label="Role" can="view:role" />
                 <x-sidebar-link route="admin.data.index" icon="database" label="Data" can="view:data" />
                 <x-sidebar-link route="admin.video.index" icon="video" label="Video" can="view:video" />
+                <x-sidebar-link route="admin.video-report.index" icon="flag" label="Video Report"
+                    can="view:video-report" />
                 <x-sidebar-link route="admin.tag.index" icon="tag" label="Tag" can="view:tag" />
                 <x-sidebar-link route="admin.category.index" icon="list-alt" label="Category" can="view:category" />
                 <x-sidebar-link route="admin.era.index" icon="flag" label="Era" can="view:era" />
