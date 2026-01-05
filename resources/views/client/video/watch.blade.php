@@ -34,7 +34,7 @@
 
     <div class="container my-5 py-4">
         <div class="container">
-            <div class="row px-3 mb-3 align-items-center">
+            <div class="row mb-3 align-items-center">
                 <div class="col-3 text-left">
                     <a href="{{ $category->showUrl() }}">
                         <p class="m-0"><i class="fas fa-arrow-left"></i></p>
