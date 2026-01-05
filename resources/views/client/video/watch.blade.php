@@ -46,10 +46,14 @@
                     </h1>
                 </div>
                 <div class="col-3 text-right">
-                    <a id="downloadBtn" href="#" class="btn btn-icon d-none me-md-2">
-                        <i data-feather="download" class="d-block mx-auto"></i>
-                    </a>
-                    @include('components.button.share')
+                    <span class="me-md-2">
+                        <a id="downloadBtn" href="#" class="btn btn-icon d-none">
+                            <i data-feather="download" class="d-block mx-auto"></i>
+                        </a>
+                    </span>
+                    <span class="me-md-2">
+                        @include('components.button.share')
+                    </span>
                 </div>
             </div>
         </div>
