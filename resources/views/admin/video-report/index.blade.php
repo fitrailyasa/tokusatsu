@@ -93,7 +93,13 @@
             @foreach ($video_reports as $item)
                 <tr @if ($item->trashed()) class="text-muted" @endif>
                     <td>{{ $video_reports->firstItem() + $loop->index }}</td>
-                    <td>{{ $item->video->title ?? '-' }}</td>
+                    <td>
+                        {{ $item->video->title ?? '-' }}
+                        <br>
+                        <span class="badge bg-{{ $item->video->getCategoryColor() }}">
+                            {{ $item->video->category->name ?? '-' }}
+                        </span>
+                    </td>
                     <td>{{ $item->message ?? '-' }}</td>
                     @can('delete:video-report')
                         <td class="manage-row text-center">
