@@ -105,7 +105,7 @@
                             'number' => $prev->number,
                         ]) }}"
                             class="btn btn-sm btn-outline-light">
-                            <i data-feather="arrow-left"></i> Prev
+                            <i data-feather="arrow-left-circle"></i> Prev
                         </a>
                     @endif
 
@@ -117,7 +117,7 @@
                             'number' => $next->number,
                         ]) }}"
                             class="btn btn-sm btn-outline-light">
-                            Next <i data-feather="arrow-left"></i>
+                            Next <i data-feather="arrow-right-circle"></i>
                         </a>
                     @endif
                 </div>
