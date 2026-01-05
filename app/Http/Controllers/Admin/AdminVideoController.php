@@ -63,27 +63,40 @@ class AdminVideoController extends Controller
         $categories = Category::all();
         $groupedCategories = $categories->groupBy('franchise.name');
 
+        $keywords = explode(' ', $search);
+
         $videos = Video::withTrashed()
             ->with(['category', 'category.era', 'category.franchise'])
             ->when(!Gate::allows('edit:video'), function ($query) {
                 $query->where('status', 1);
             })
-            ->when($search, function ($query, $search) {
-                $terms = preg_split('/\s+/', $search, -1, PREG_SPLIT_NO_EMPTY);
+            ->where(function ($query) use ($keywords) {
 
-                $query->where(function ($q) use ($terms) {
-                    foreach ($terms as $term) {
-                        $q->orWhere('name', 'like', "%{$term}%")
-                            ->orWhere('img', 'like', "%{$term}%")
-                            ->orWhere('type', 'like', "%{$term}%")
-                            ->orWhere('number', 'like', "%{$term}%")
-                            ->orWhereHas('category', function ($q) use ($term) {
-                                $q->where('name', 'like', "%{$term}%")
-                                    ->orWhereHas('era', fn($q) => $q->where('name', 'like', "%{$term}%"))
-                                    ->orWhereHas('franchise', fn($q) => $q->where('name', 'like', "%{$term}%"));
-                            });
-                    }
-                });
+                foreach ($keywords as $word) {
+
+                    $query->where(function ($q) use ($word) {
+
+                        if (is_numeric($word)) {
+
+                            $q->where('number', '=', $word)
+                                ->orWhereHas('category', function ($cat) use ($word) {
+                                    $like = '%' . $word . '%';
+                                    $cat->where('fullname', 'like', $like)
+                                        ->orWhere('name', 'like', $like);
+                                });
+                        } else {
+
+                            $like = '%' . $word . '%';
+
+                            $q->where('title', 'like', $like)
+                                ->orWhere('type', 'like', $like)
+                                ->orWhereHas('category', function ($cat) use ($like) {
+                                    $cat->where('name', 'like', $like)
+                                        ->orWhere('fullname', 'like', $like);
+                                });
+                        }
+                    });
+                }
             })
             ->when($categoryId, fn($query) => $query->where('category_id', $categoryId))
             ->orderByRaw("
