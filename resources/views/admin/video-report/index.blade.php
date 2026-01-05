@@ -99,12 +99,10 @@
                         <span class="badge bg-{{ $item->video->getCategoryColor() }}">
                             {{ $item->video->category->franchise->name ?? '-' }}
                             {{ $item->video->category->name ?? '-' }}
-                            (
                             {{ $item->video->label ?? '-' }}
                             @if ($item->video->type == 'episode' || $item->video->type == 'mini-series' || $item->video->type == 'spin-off')
                                 {{ $item->video->number ?? 0 }}
                             @endif
-                            )
                         </span>
                     </td>
                     <td>{{ $item->message ?? '-' }}</td>
