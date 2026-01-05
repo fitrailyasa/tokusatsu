@@ -179,7 +179,7 @@
                                 @endcan
                             @endif
                         </td>
-                    @endcan
+                    @endcanany
                 </tr>
             @endforeach
         </tbody>
