@@ -60,9 +60,8 @@
     </x-slot>
 
     <div class="alert alert-warning d-flex align-items-center mb-3">
-        <i class="bi bi-exclamation-triangle-fill me-2"></i>
         <span>
-            Total Videos without Links:
+            Total videos without links:
             <strong>{{ $totalEmptyLinks }}</strong>
         </span>
     </div>
