@@ -95,8 +95,17 @@
                     <td>{{ $video_reports->firstItem() + $loop->index }}</td>
                     <td>
                         {{ $item->video->title ?? '-' }}
+                        <span class="text-muted">
+                            (
+                            {{ $item->video->type ?? '-' }}
+                            @if ($item->video->type == 'episode')
+                                {{ $item->video->number ?? 0 }}
+                            @endif
+                            )
+                        </span>
                         <br>
                         <span class="badge bg-{{ $item->video->getCategoryColor() }}">
+                            {{ $item->video->category->franchise->name ?? '-' }}
                             {{ $item->video->category->name ?? '-' }}
                         </span>
                     </td>
