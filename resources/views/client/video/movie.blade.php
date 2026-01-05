@@ -15,9 +15,7 @@
                 <h1 class="text-center responsive-title">Movie {{ $franchise->name }}</h1>
             </div>
             <div>
-                <button id="shareBtn" class="btn btn-icon">
-                    <i data-feather="share-2" class="d-block mx-auto"></i>
-                </button>
+                @include('components.button.share')
             </div>
         </div>
 

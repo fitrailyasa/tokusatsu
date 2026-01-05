@@ -49,12 +49,7 @@
                     <a id="downloadBtn" href="#" class="btn btn-icon d-none me-md-2">
                         <i data-feather="download" class="d-block mx-auto"></i>
                     </a>
-                    <button id="shareBtn" class="btn btn-icon me-md-2">
-                        <i data-feather="share-2" class="d-block mx-auto"></i>
-                    </button>
-                    <button id="reportBtn" class="btn btn-icon">
-                        <i data-feather="flag" class="d-block mx-auto"></i>
-                    </button>
+                    @include('components.button.share')
                 </div>
             </div>
         </div>
@@ -207,21 +202,6 @@
                     updateDownload(this.dataset.index);
                 });
             });
-        });
-    </script>
-
-    {{-- Share --}}
-    <script>
-        document.getElementById("shareBtn").addEventListener("click", async function() {
-            const shareData = {
-                title: document.title,
-                text: "{{ $title }}\n",
-                url: window.location.href
-            };
-
-            if (navigator.share) {
-                await navigator.share(shareData);
-            }
         });
     </script>
 
