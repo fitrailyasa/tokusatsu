@@ -47,9 +47,7 @@
                 </div>
                 <div class="col-3 text-right">
                     <span class="me-md-2">
-                        <a id="downloadBtn" href="#" class="btn btn-icon d-none">
-                            <i data-feather="download" class="d-block mx-auto"></i>
-                        </a>
+                        @include('components.button.download')
                     </span>
                     <span class="me-md-2">
                         @include('components.button.share')
@@ -64,8 +62,10 @@
         <div class="row mb-5">
             <div class="col-12">
 
-                <div class="ratio ratio-16x9 rounded overflow-hidden bg-dark mb-4">
-                    <div class="no-click-overlay"></div>
+                <div class="ratio ratio-16x9 rounded overflow-hidden bg-dark mb-4 position-relative">
+                    <div id="fsOverlay" class="position-absolute top-0 start-0 w-100 h-100"
+                        style="z-index: 5; cursor: pointer;">
+                    </div>
 
                     @if ($embedUrls->isEmpty())
                         <div class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column align-items-center justify-content-center text-center bg-secondary text-white"
@@ -79,7 +79,7 @@
                         allowfullscreen>
                     </iframe>
 
-                    <video id="video-video" class="w-100 h-100 d-none" controls controlsList="nodownload">
+                    <video id="video-video" class="w-100 h-100 d-none" controls controlsList="nodownload" playsinline>
                         <source id="video-source" src="">
                         Your browser does not support video.
                     </video>
@@ -127,18 +127,20 @@
         </div>
     </div>
 
-    {{-- Video Player --}}
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", () => {
 
             const servers = @json($embedUrls);
+
             const iframe = document.getElementById("video-iframe");
             const video = document.getElementById("video-video");
             const source = document.getElementById("video-source");
+            const overlay = document.getElementById("fsOverlay");
 
             function resetPlayer() {
                 iframe.classList.add("d-none");
                 video.classList.add("d-none");
+                overlay.style.display = "none";
                 iframe.src = "";
                 video.pause();
                 source.src = "";
@@ -153,81 +155,50 @@
                 if (url.includes("embed") || url.includes("preview")) {
                     iframe.src = url;
                     iframe.classList.remove("d-none");
+                    overlay.style.display = "block";
                 } else {
                     source.src = url;
                     video.load();
                     video.classList.remove("d-none");
                 }
 
-                document.querySelectorAll(".server-btn").forEach(btn => btn.classList.remove("active"));
-                document.querySelector(`.server-btn[data-index='${index}']`)?.classList.add("active");
+                document.querySelectorAll(".server-btn")
+                    .forEach(btn => btn.classList.remove("active"));
+
+                document.querySelector(`.server-btn[data-index='${index}']`)
+                    ?.classList.add("active");
             }
 
             loadServer(0);
 
             document.querySelectorAll(".server-btn").forEach(btn => {
-                btn.addEventListener("click", function() {
-                    loadServer(this.dataset.index);
+                btn.addEventListener("click", () => {
+                    loadServer(btn.dataset.index);
                 });
             });
 
-            @if ($next)
-                video.addEventListener("ended", function() {
-                    window.location.href =
-                        "{{ route('video.watch', [
-                            'franchise' => $category->franchise->slug,
-                            'category' => $category->slug,
-                            'type' => $next->type,
-                            'number' => $next->number,
-                        ]) }}";
-                });
-            @endif
-        });
-    </script>
-
-    {{-- Download Button --}}
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const tokens = @json($downloadTokens);
-            const downloadBtn = document.getElementById("downloadBtn");
-
-            function updateDownload(index) {
-                const token = tokens[index];
-
-                if (token) {
-                    downloadBtn.href = "{{ route('video.download', ':token') }}".replace(':token', token);
-                    downloadBtn.classList.remove("d-none");
-                } else {
-                    downloadBtn.classList.add("d-none");
+            video.addEventListener("play", () => {
+                if (!document.fullscreenElement) {
+                    video.requestFullscreen().catch(() => {});
                 }
-            }
-
-            updateDownload(0);
-
-            document.querySelectorAll(".server-btn").forEach(btn => {
-                btn.addEventListener("click", function() {
-                    updateDownload(this.dataset.index);
-                });
             });
-        });
-    </script>
 
-    {{-- Fullscreen Orientation Lock --}}
-    <script>
-        document.addEventListener("fullscreenchange", async () => {
-            if (document.fullscreenElement) {
-                try {
-                    if (screen.orientation && screen.orientation.lock) {
+            overlay.addEventListener("click", () => {
+                if (!document.fullscreenElement) {
+                    iframe.requestFullscreen().catch(() => {});
+                }
+            });
+
+            document.addEventListener("fullscreenchange", async () => {
+                if (document.fullscreenElement) {
+                    try {
                         await screen.orientation.lock("landscape");
-                    }
-                } catch (err) {
-                    console.log("Orientation lock failed:", err);
+                    } catch (e) {}
+                } else {
+                    screen.orientation.unlock?.();
                 }
-            } else {
-                if (screen.orientation && screen.orientation.unlock) {
-                    screen.orientation.unlock();
-                }
-            }
+            });
+
         });
     </script>
 
