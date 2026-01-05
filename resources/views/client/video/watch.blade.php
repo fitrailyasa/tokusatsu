@@ -46,10 +46,10 @@
                     </h1>
                 </div>
                 <div class="col-3 text-right">
-                    <a id="downloadBtn" href="#" class="btn btn-icon d-none me-2">
+                    <a id="downloadBtn" href="#" class="btn btn-icon d-none me-md-2">
                         <i data-feather="download" class="d-block mx-auto"></i>
                     </a>
-                    <button id="shareBtn" class="btn btn-icon me-2">
+                    <button id="shareBtn" class="btn btn-icon me-md-2">
                         <i data-feather="share-2" class="d-block mx-auto"></i>
                     </button>
                     <button id="reportBtn" class="btn btn-icon">
