@@ -83,6 +83,14 @@ class AdminVideoController extends Controller
                 }
             })
             ->when($categoryId, fn($query) => $query->where('category_id', $categoryId))
+            ->orderByRaw("
+                            (
+                                link IS NULL
+                                OR link = ''
+                                OR link = '[]'
+                                OR link = '{}'
+                            ) DESC
+                        ")
             ->orderBy('airdate', 'desc')
             ->paginate($validPerPage);
 
