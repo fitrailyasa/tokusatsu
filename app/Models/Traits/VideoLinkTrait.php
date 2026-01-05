@@ -7,8 +7,12 @@ use Illuminate\Support\Str;
 
 trait VideoLinkTrait
 {
-    public function videoEmbed(string $url): ?string
+    public function videoEmbed(?string $url): ?string
     {
+        if (!$url) {
+            return null;
+        }
+
         // Google Drive
         if (str_contains($url, 'drive.google.com')) {
             if (preg_match('/\/d\/([^\/]+)/', $url, $m)) {
