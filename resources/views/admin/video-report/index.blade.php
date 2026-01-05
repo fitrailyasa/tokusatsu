@@ -94,13 +94,33 @@
                 <tr @if ($item->trashed()) class="text-muted" @endif>
                     <td>{{ $video_reports->firstItem() + $loop->index }}</td>
                     <td>
-                        {{ $item->video->title ?? '-' }}
+                        @php
+                            $video = $item->video;
+                            $searchQuery = collect([
+                                $video->category->name ?? null,
+                                $video->type ?? null,
+                                in_array($video->type, ['episode', 'mini-series', 'spin-off']) ? $video->number : null,
+                            ])
+                                ->filter()
+                                ->implode(' ');
+                        @endphp
+                        @if ($video)
+                            <a href="{{ route('admin.video.index', [
+                                'perPage' => 10,
+                                'search' => $searchQuery,
+                            ]) }}"
+                                class="fw-semibold text-decoration-none">
+                                {{ $video->title ?? '-' }} <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+                        @else
+                            -
+                        @endif
                         <br>
                         <span class="badge bg-{{ $item->video->getCategoryColor() }}">
                             {{ $item->video->category->franchise->name ?? '-' }}
                             {{ $item->video->category->name ?? '-' }}
                             {{ $item->video->label ?? '-' }}
-                            @if ($item->video->type == 'episode' || $item->video->type == 'mini-series' || $item->video->type == 'spin-off')
+                            @if (in_array($item->video->type, ['episode', 'mini-series', 'spin-off']))
                                 {{ $item->video->number ?? 0 }}
                             @endif
                         </span>
