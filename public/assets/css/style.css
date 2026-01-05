@@ -536,3 +536,40 @@ body.theme-light .page-item .page-link:hover {
 .page-link:focus {
     box-shadow: none;
 }
+
+/* =========================================================
+   MODAL THEME (DARK / LIGHT)
+========================================================= */
+.modal-theme {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+.modal-theme .modal-header,
+.modal-theme .modal-footer {
+    border-color: var(--border-color);
+}
+
+.modal-theme .btn-close {
+    filter: invert(1);
+}
+
+body.theme-light .modal-theme .btn-close {
+    filter: invert(0);
+}
+
+.modal-theme textarea,
+.modal-theme input {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+.modal-theme textarea::placeholder {
+    color: color-mix(in srgb, var(--text-color) 50%, transparent);
+}
+
+.modal-theme {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}

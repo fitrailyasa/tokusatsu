@@ -54,9 +54,9 @@
                     <span class="me-md-2">
                         @include('components.button.share')
                     </span>
-                    {{-- <span>
+                    <span>
                         @include('components.button.video-report')
-                    </span> --}}
+                    </span>
                 </div>
             </div>
         </div>

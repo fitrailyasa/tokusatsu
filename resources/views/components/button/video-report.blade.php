@@ -6,7 +6,7 @@
 {{-- Video Report Modal --}}
 <div class="modal fade" id="reportModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content bg-dark text-white">
+        <div class="modal-content modal-theme">
             <div class="modal-header">
                 <h5 class="modal-title">Report Video</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
