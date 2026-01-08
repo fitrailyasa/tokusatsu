@@ -11,7 +11,7 @@
         <div class="text-center d-flex flex-wrap justify-content-center py-3">
             @foreach ($datas as $item)
                 @if ($item->type == 'episode')
-                    <a class="bg-light rounded"
+                    <a class="rounded"
                         href="{{ url('video/' . $item->category->franchise->slug) }}/{{ $item->category->slug }}/{{ $item->type }}/{{ $item->number }}">
                         <img class="img img-fluid img-gallery" loading="lazy"
                             src="{{ asset('storage/' . $item->category->img) }}" alt="{{ $item->category->img }}">
@@ -20,7 +20,7 @@
                         </p>
                     </a>
                 @else
-                    <a class="bg-light rounded"
+                    <a class="rounded"
                         href="{{ url('video/' . $item->category->franchise->slug) }}/{{ $item->category->slug }}/{{ $item->type }}/{{ $item->number }}">
                         <img class="img img-fluid img-gallery" loading="lazy"
                             src="{{ asset('storage/' . $item->category->img) }}" alt="{{ $item->category->img }}">
