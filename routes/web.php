@@ -18,7 +18,6 @@ use App\Http\Controllers\Admin\AdminProviderAccountController;
 use App\Http\Controllers\Auth\ProviderController;
 use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\MidtransController;
-use App\Http\Controllers\Client\ClientCategoryController;
 use App\Http\Controllers\Client\ClientVideoController;
 use App\Http\Controllers\Client\ClientHistoryController;
 use App\Http\Controllers\Client\ClientBookmarkController;
@@ -41,8 +40,6 @@ Route::get('/sitemap.xml', function () {
 });
 
 Route::get('/search', [HomeController::class, 'search'])->name('search');
-Route::get('/category', [ClientCategoryController::class, 'index'])->name('category');
-Route::get('/category/{data}', [ClientCategoryController::class, 'show'])->name('category.show');
 
 // Payment Gateway
 Route::get('/midtrans', [MidtransController::class, 'createTransaction']);
