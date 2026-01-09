@@ -35,10 +35,9 @@
     <style>
         .no-click-overlay {
             position: absolute;
-            width: 100%;
-            height: 70px;
-            cursor: default;
-            z-index: 10;
+            inset: 0;
+            z-index: 9;
+            pointer-events: all;
         }
     </style>
 
@@ -72,16 +71,16 @@
         <div class="row mb-5">
             <div class="col-12">
 
-                <div class="ratio ratio-16x9 rounded overflow-hidden bg-dark mb-4 position-relative">
-                    <div id="fsOverlay" class="position-absolute top-0 start-0 w-100 h-100"
-                        style="z-index: 5; cursor: pointer;">
-                    </div>
+                <div class="ratio ratio-16x9 rounded overflow-hidden bg-dark mb-4 position-relative" id="playerWrapper">
                     <div class="no-click-overlay"></div>
 
+                    <div id="fsOverlay" class="position-absolute top-0 start-0 w-100 h-100"
+                        style="z-index: 8; cursor: pointer;">
+                    </div>
+
                     @if ($embedUrls->isEmpty())
-                        <div class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column align-items-center justify-content-center text-center bg-secondary text-white"
+                        <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center bg-secondary text-white"
                             style="z-index: 10;">
-                            <i class="fas fa-video-slash fa-3x mb-3"></i>
                             <h5 class="mb-0">Video is not available or has been removed.</h5>
                         </div>
                     @endif
