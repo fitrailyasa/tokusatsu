@@ -142,6 +142,7 @@
 
             const servers = @json($embedUrls);
 
+            const wrapper = document.getElementById("playerWrapper");
             const iframe = document.getElementById("video-iframe");
             const video = document.getElementById("video-video");
             const source = document.getElementById("video-source");
@@ -150,7 +151,6 @@
             function resetPlayer() {
                 iframe.classList.add("d-none");
                 video.classList.add("d-none");
-                overlay.style.display = "none";
                 iframe.src = "";
                 video.pause();
                 source.src = "";
@@ -165,7 +165,6 @@
                 if (url.includes("embed") || url.includes("preview")) {
                     iframe.src = url;
                     iframe.classList.remove("d-none");
-                    overlay.style.display = "block";
                 } else {
                     source.src = url;
                     video.load();
@@ -187,15 +186,15 @@
                 });
             });
 
-            video.addEventListener("play", () => {
+            overlay.addEventListener("click", () => {
                 if (!document.fullscreenElement) {
-                    video.requestFullscreen().catch(() => {});
+                    wrapper.requestFullscreen().catch(() => {});
                 }
             });
 
-            overlay.addEventListener("click", () => {
+            video.addEventListener("play", () => {
                 if (!document.fullscreenElement) {
-                    iframe.requestFullscreen().catch(() => {});
+                    wrapper.requestFullscreen().catch(() => {});
                 }
             });
 
