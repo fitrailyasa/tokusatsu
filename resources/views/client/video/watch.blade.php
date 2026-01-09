@@ -32,6 +32,16 @@
     ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
     </script>
 
+    <style>
+        .no-click-overlay {
+            position: absolute;
+            width: 100%;
+            height: 70px;
+            cursor: default;
+            z-index: 5;
+        }
+    </style>
+
     <div class="container my-5 py-4">
         <div class="container">
             <div class="row mb-3 align-items-center">

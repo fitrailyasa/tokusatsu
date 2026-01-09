@@ -62,14 +62,6 @@
     <link rel="canonical" href="{{ url()->current() }}">
     <script src="https://unpkg.com/feather-icons"></script>
     <style>
-        .no-click-overlay {
-            position: absolute;
-            width: 100%;
-            height: 70px;
-            cursor: default;
-            z-index: 5;
-        }
-
         .server-btn,
         .btn-outline-light {
             background-color: transparent;
