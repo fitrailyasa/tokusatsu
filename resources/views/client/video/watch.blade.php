@@ -35,9 +35,10 @@
     <style>
         .no-click-overlay {
             position: absolute;
-            inset: 0;
-            z-index: 9;
-            pointer-events: all;
+            width: 100%;
+            height: 70px;
+            cursor: default;
+            z-index: 10;
         }
     </style>
 
@@ -71,16 +72,16 @@
         <div class="row mb-5">
             <div class="col-12">
 
-                <div class="ratio ratio-16x9 rounded overflow-hidden bg-dark mb-4 position-relative" id="playerWrapper">
+                <div class="ratio ratio-16x9 rounded overflow-hidden bg-dark mb-4 position-relative">
                     <div class="no-click-overlay"></div>
-
                     <div id="fsOverlay" class="position-absolute top-0 start-0 w-100 h-100"
-                        style="z-index: 8; cursor: pointer;">
+                        style="z-index: 5; cursor: pointer;">
                     </div>
 
                     @if ($embedUrls->isEmpty())
-                        <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center bg-secondary text-white"
+                        <div class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column align-items-center justify-content-center text-center bg-secondary text-white"
                             style="z-index: 10;">
+                            <i class="fas fa-video-slash fa-3x mb-3"></i>
                             <h5 class="mb-0">Video is not available or has been removed.</h5>
                         </div>
                     @endif
@@ -142,7 +143,6 @@
 
             const servers = @json($embedUrls);
 
-            const wrapper = document.getElementById("playerWrapper");
             const iframe = document.getElementById("video-iframe");
             const video = document.getElementById("video-video");
             const source = document.getElementById("video-source");
@@ -151,6 +151,7 @@
             function resetPlayer() {
                 iframe.classList.add("d-none");
                 video.classList.add("d-none");
+                overlay.style.display = "none";
                 iframe.src = "";
                 video.pause();
                 source.src = "";
@@ -165,6 +166,7 @@
                 if (url.includes("embed") || url.includes("preview")) {
                     iframe.src = url;
                     iframe.classList.remove("d-none");
+                    overlay.style.display = "block";
                 } else {
                     source.src = url;
                     video.load();
@@ -186,15 +188,15 @@
                 });
             });
 
-            overlay.addEventListener("click", () => {
+            video.addEventListener("play", () => {
                 if (!document.fullscreenElement) {
-                    wrapper.requestFullscreen().catch(() => {});
+                    video.requestFullscreen().catch(() => {});
                 }
             });
 
-            video.addEventListener("play", () => {
+            overlay.addEventListener("click", () => {
                 if (!document.fullscreenElement) {
-                    wrapper.requestFullscreen().catch(() => {});
+                    iframe.requestFullscreen().catch(() => {});
                 }
             });
 
