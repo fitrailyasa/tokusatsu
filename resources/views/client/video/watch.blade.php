@@ -73,6 +73,7 @@
             <div class="col-12">
 
                 <div class="ratio ratio-16x9 rounded overflow-hidden bg-dark mb-4 position-relative">
+                    <div class="no-click-overlay"></div>
                     <div id="fsOverlay" class="position-absolute top-0 start-0 w-100 h-100"
                         style="z-index: 5; cursor: pointer;">
                     </div>
