@@ -38,7 +38,7 @@
             width: 100%;
             height: 70px;
             cursor: default;
-            z-index: 5;
+            z-index: 10;
         }
     </style>
 
