@@ -51,6 +51,7 @@
             overflow-x: auto;
             padding: 10px 5px;
             scrollbar-width: none;
+            scroll-behavior: auto;
         }
 
         .episode-scroll::-webkit-scrollbar {
