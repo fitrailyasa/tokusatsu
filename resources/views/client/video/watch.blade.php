@@ -333,7 +333,17 @@
         </div>
 
         <section class="info-section">
-            <h1 class="video-title">{{ Illuminate\Support\Str::words($video->title ?? '-', 10, '...') }}</h1>
+            @php
+                $title = $video->title ?? '-';
+            @endphp
+
+            <h1 class="video-title">
+                <span class="d-block d-sm-none">{{ Str::words($title, 4) }}</span>
+                <span class="d-none d-sm-block d-md-none">{{ Str::words($title, 6) }}</span>
+                <span class="d-none d-md-block d-lg-none">{{ Str::words($title, 8) }}</span>
+                <span class="d-none d-lg-block d-xl-none">{{ Str::words($title, 10) }}</span>
+                <span class="d-none d-xl-block">{{ Str::words($title, 12) }}</span>
+            </h1>
 
             <div class="video-meta">
                 <div class="meta-left">
