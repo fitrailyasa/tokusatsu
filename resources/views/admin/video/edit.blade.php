@@ -84,7 +84,7 @@
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="form-label">{{ __('Link') }}</label>
-                                <div id="edit-link-wrapper">
+                                <div id="edit-link-wrapper-{{ $item->id }}">
                                     @php
                                         $links = old('link', $item->link ?? []);
                                     @endphp
@@ -111,7 +111,7 @@
                                 </div>
 
                                 <button type="button" class="btn btn-sm btn-outline-primary mt-2"
-                                    onclick="addEditLink()">
+                                    onclick="addEditLink({{ $item->id }})">
                                     + Add Link
                                 </button>
                             </div>
@@ -138,8 +138,8 @@
     </div>
 </div>
 <script>
-    function addEditLink() {
-        const wrapper = document.getElementById('edit-link-wrapper');
+    function addEditLink(id) {
+        const wrapper = document.getElementById(`edit-link-wrapper-${id}`);
 
         const div = document.createElement('div');
         div.className = 'input-group mb-2';
@@ -153,7 +153,7 @@
     }
 
     function removeEditLink(button) {
-        const wrapper = document.getElementById('edit-link-wrapper');
+        const wrapper = button.closest('[id^="edit-link-wrapper"]');
 
         if (wrapper.children.length > 1) {
             button.closest('.input-group').remove();
