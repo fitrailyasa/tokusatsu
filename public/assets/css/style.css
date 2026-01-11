@@ -13,10 +13,10 @@
    THEME VARIABLES
 ========================================================= */
 :root {
-    --bg-color: #1d2127;
+    --bg-color: #121212;
     --text-color: #ffffff;
-    --card-bg: #2a2f36;
-    --border-color: #3a3f45;
+    --card-bg: #1e1e1e;
+    --border-color: #2a2a2a;
 }
 
 body.theme-light {
@@ -572,4 +572,42 @@ body.theme-light .modal-theme .btn-close {
 
 .modal-theme {
     transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.server-btn,
+.btn-outline-light {
+    background-color: transparent;
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    transition: all 0.2s ease;
+}
+
+.server-btn:hover,
+.btn-outline-light:hover {
+    background-color: color-mix(in srgb, var(--text-color) 12%, transparent);
+    color: var(--text-color);
+}
+
+.server-btn.active {
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    border-color: var(--text-color);
+    font-weight: 600;
+}
+
+.server-btn:focus,
+.btn-outline-light:focus {
+    box-shadow: none;
+}
+
+body.theme-light .server-btn:hover,
+body.theme-light .btn-outline-light:hover {
+    background-color: rgba(0, 0, 0, 0.06);
+}
+
+@media (max-width: 576px) {
+    .normal-text {
+        font-size: 0.7rem;
+        line-height: 1.2;
+    }
 }

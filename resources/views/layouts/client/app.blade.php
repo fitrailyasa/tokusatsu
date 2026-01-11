@@ -23,7 +23,7 @@
     {{-- OPEN GRAPH --}}
     <meta property="og:title" content="{{ $pageTitle }}">
     <meta property="og:description" content="{{ $description }}">
-    <meta property="og:type" content="video.other">
+    <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:image" content="{{ $image }}">
     <meta property="og:image:width" content="1280">
@@ -75,45 +75,6 @@
     <link rel="icon" href="{{ asset('favicon.ico') }}">
     <link rel="canonical" href="{{ url()->current() }}">
     <script src="https://unpkg.com/feather-icons"></script>
-    <style>
-        .server-btn,
-        .btn-outline-light {
-            background-color: transparent;
-            color: var(--text-color);
-            border: 1px solid var(--border-color);
-            transition: all 0.2s ease;
-        }
-
-        .server-btn:hover,
-        .btn-outline-light:hover {
-            background-color: color-mix(in srgb, var(--text-color) 12%, transparent);
-            color: var(--text-color);
-        }
-
-        .server-btn.active {
-            background-color: var(--text-color);
-            color: var(--bg-color);
-            border-color: var(--text-color);
-            font-weight: 600;
-        }
-
-        .server-btn:focus,
-        .btn-outline-light:focus {
-            box-shadow: none;
-        }
-
-        body.theme-light .server-btn:hover,
-        body.theme-light .btn-outline-light:hover {
-            background-color: rgba(0, 0, 0, 0.06);
-        }
-
-        @media (max-width: 576px) {
-            .normal-text {
-                font-size: 0.7rem;
-                line-height: 1.2;
-            }
-        }
-    </style>
 </head>
 
 <body id="appBody" class="theme-dark hold-transition sidebar-mini layout-fixed content">
