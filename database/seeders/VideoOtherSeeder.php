@@ -67,7 +67,6 @@ class VideoOtherSeeder extends Seeder
             ['title' => "Sworn Friends / Alliance (盟友, Meiyū)", 'category_id' => $this->Category('makai-senki'), 'type' => 'episode', 'number' => 22, 'airdate' => '2012-03-08'],
             ['title' => "Golden (金色, Kin’iro)", 'category_id' => $this->Category('makai-senki'), 'type' => 'episode', 'number' => 23, 'airdate' => '2012-03-15'],
             ['title' => "Era / Time (時代, Jidai)", 'category_id' => $this->Category('makai-senki'), 'type' => 'episode', 'number' => 24, 'airdate' => '2012-03-22'],
-            ['title' => "My title is Garo - The History of Kouga Saejima's Battles (我が名は牙狼 - 冴島鋼牙 戦いの軌跡, Waga Na wa Garo)", 'category_id' => $this->Category('makai-senki'), 'type' => 'episode', 'number' => 25, 'airdate' => '2012-03-29'],
             ['title' => "Ryuga (流牙 Ryūga)", 'category_id' => $this->Category('yami-o-terasu-mono'), 'type' => 'episode', 'number' => 1, 'airdate' => '2013-04-05'],
             ['title' => "Gold Wave (波 Nami)", 'category_id' => $this->Category('yami-o-terasu-mono'), 'type' => 'episode', 'number' => 2, 'airdate' => '2013-04-12'],
             ['title' => "Dungeon (迷 Mayoi)", 'category_id' => $this->Category('yami-o-terasu-mono'), 'type' => 'episode', 'number' => 3, 'airdate' => '2013-04-19'],
