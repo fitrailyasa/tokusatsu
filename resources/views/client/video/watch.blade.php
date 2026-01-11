@@ -503,7 +503,7 @@
                 </div>
                 <div class="channel-text">
                     <h4>{{ $video->category->fullname }}</h4>
-                    <span>Official
+                    <span>
                         @if ($video->type == 'episode')
                             Series
                         @else
