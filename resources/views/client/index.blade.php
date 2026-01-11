@@ -12,7 +12,7 @@
             <a href="{{ route('video.category', 'kamen-rider') }}">View All <i
                     class="fa-solid fa-arrow-up-right-from-square"></i></a>
         </div>
-        <div class="swiper pt-0 pb-3 px-2 mySwiperKR">
+        <div class="swiper pt-0 pb-3 px-2 mySwiper">
             <div class="swiper-wrapper">
                 @foreach ($categories as $category)
                     @if ($category->franchise && $category->franchise->name === 'Kamen Rider')
@@ -39,7 +39,7 @@
             <a href="{{ route('video.category', 'ultraman') }}">View All <i
                     class="fa-solid fa-arrow-up-right-from-square"></i></a>
         </div>
-        <div class="swiper pt-0 pb-3 px-2 mySwiperUL">
+        <div class="swiper pt-0 pb-3 px-2 mySwiper">
             <div class="swiper-wrapper">
                 @foreach ($categories as $category)
                     @if ($category->franchise && $category->franchise->name === 'Ultraman')
@@ -66,7 +66,7 @@
             <a href="{{ route('video.category', 'super-sentai') }}">View All <i
                     class="fa-solid fa-arrow-up-right-from-square"></i></a>
         </div>
-        <div class="swiper pt-0 pb-3 px-2 mySwiperSS">
+        <div class="swiper pt-0 pb-3 px-2 mySwiper">
             <div class="swiper-wrapper">
                 @foreach ($categories as $category)
                     @if ($category->franchise && $category->franchise->name === 'Super Sentai')
@@ -93,7 +93,7 @@
             <a href="{{ route('video.category', 'power-rangers') }}">View All <i
                     class="fa-solid fa-arrow-up-right-from-square"></i></a>
         </div>
-        <div class="swiper pt-0 pb-3 px-2 mySwiperSS">
+        <div class="swiper pt-0 pb-3 px-2 mySwiper">
             <div class="swiper-wrapper">
                 @foreach ($categories as $category)
                     @if ($category->franchise && $category->franchise->name === 'Power Rangers')
@@ -158,57 +158,13 @@
 
     <script>
         // Kamen Rider
-        new Swiper(".mySwiperKR", {
+        new Swiper(".mySwiper", {
             slidesPerView: 3,
             spaceBetween: 10,
             loop: true,
             navigation: {
-                nextEl: ".mySwiperKR .swiper-button-next",
-                prevEl: ".mySwiperKR .swiper-button-prev",
-            },
-            breakpoints: {
-                768: {
-                    slidesPerView: 3
-                },
-                992: {
-                    slidesPerView: 4
-                },
-                1200: {
-                    slidesPerView: 5
-                },
-            }
-        });
-
-        // Ultraman
-        new Swiper(".mySwiperUL", {
-            slidesPerView: 3,
-            spaceBetween: 10,
-            loop: true,
-            navigation: {
-                nextEl: ".mySwiperUL .swiper-button-next",
-                prevEl: ".mySwiperUL .swiper-button-prev",
-            },
-            breakpoints: {
-                768: {
-                    slidesPerView: 3
-                },
-                992: {
-                    slidesPerView: 4
-                },
-                1200: {
-                    slidesPerView: 5
-                },
-            }
-        });
-
-        // Super Sentai
-        new Swiper(".mySwiperSS", {
-            slidesPerView: 3,
-            spaceBetween: 10,
-            loop: true,
-            navigation: {
-                nextEl: ".mySwiperSS .swiper-button-next",
-                prevEl: ".mySwiperSS .swiper-button-prev",
+                nextEl: ".mySwiper .swiper-button-next",
+                prevEl: ".mySwiper .swiper-button-prev",
             },
             breakpoints: {
                 768: {
