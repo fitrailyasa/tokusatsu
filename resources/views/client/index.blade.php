@@ -118,7 +118,7 @@
     <footer class="d-none d-lg-block py-3">
         <div class="container text-center small">
             <a href="{{ route('home') }}" class="text-decoration-none">
-                Copyright &copy; {{ date('Y') }} {{ config('app.name') }}
+                Copyright &copy; {{ date('Y') }} {{ ucwords(config('app.name')) }}
             </a>
         </div>
         <div class="container text-center small">
@@ -133,7 +133,7 @@
         <div class="container text-center small">
             @php
                 $at = '@';
-                $username = strtolower(str_replace(' ', '', config('app.name')));
+                $username = strtolower(str_replace(' ', '', ucwords(config('app.name'))));
             @endphp
             <a href="https://instagram.com/{{ $username }}" class="text-decoration-none">
                 <i class="fa-brands fa-instagram"></i>

@@ -3,7 +3,7 @@
 
 <head>
     @php
-        $pageTitle = !empty($title) ? $title . ' - ' . config('app.name') : config('app.name');
+        $pageTitle = !empty($title) ? $title . ' - ' . ucwords(config('app.name')) : ucwords(config('app.name'));
         $description = !empty($category->description)
             ? $category->description
             : 'Streaming Tokusatsu Kamen Rider, Ultraman, Super Sentai, Metal Heroes, Garo, Etc.';
@@ -17,7 +17,7 @@
     <meta name="title" content="{{ $pageTitle }}">
     <meta name="description" content="{{ $description }}">
     <meta name="keywords" content="{{ $keywords }}">
-    <meta name="author" content="{{ config('app.name') }}">
+    <meta name="author" content="{{ ucwords(config('app.name')) }}">
     <meta name="robots" content="index, follow">
 
     {{-- OPEN GRAPH --}}
@@ -28,7 +28,7 @@
     <meta property="og:image" content="{{ $image }}">
     <meta property="og:image:width" content="1280">
     <meta property="og:image:height" content="720">
-    <meta property="og:site_name" content="{{ config('app.name') }}">
+    <meta property="og:site_name" content="{{ ucwords(config('app.name')) }}">
 
     {{-- TWITTER --}}
     <meta name="twitter:card" content="summary_large_image">
@@ -39,9 +39,9 @@
 
     <title>
         @hasSection('title')
-            @yield('title') - {{ config('app.name') }}
+            @yield('title') - {{ ucwords(config('app.name')) }}
         @else
-            {{ config('app.name') }}
+            {{ ucwords(config('app.name')) }}
         @endif
     </title>
 

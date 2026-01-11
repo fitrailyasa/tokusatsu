@@ -9,8 +9,8 @@
     {!! json_encode([
         "@context"    => "https://schema.org",
         "@type"       => "VideoObject",
-        "name"        => $title . ' - ' . config('app.name'),
-        "description" => $category->description ?: config('app.name'),
+        "name"        => $title . ' - ' . ucwords(config('app.name')),
+        "description" => $category->description ?: ucwords(config('app.name')),
         "thumbnailUrl"=> config('app.url') . "/storage/" . $category->img ?: config('app.url') . "/logo.png",
         "uploadDate"  => optional($category->first_aired)
                             ? \Carbon\Carbon::parse($category->first_aired)->toIso8601String()
@@ -19,7 +19,7 @@
         "genre"       => $category->franchise->name,
         "publisher"   => [
             "@type" => "Organization",
-            "name"  => config('app.name'),
+            "name"  => ucwords(config('app.name')),
             "logo"  => [
                 "@type" => "ImageObject",
                 "url"   => config('app.url') . "/logo.png",

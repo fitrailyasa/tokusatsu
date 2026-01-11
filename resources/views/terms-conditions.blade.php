@@ -34,7 +34,7 @@
             <h4>4. Intellectual Property</h4>
             <p>
                 All content, trademarks, logos, and materials displayed on this website belong to
-                <strong>{{ config('app.name') }}</strong> unless otherwise stated. You may not copy, reproduce, or
+                <strong>{{ ucwords(config('app.name')) }}</strong> unless otherwise stated. You may not copy, reproduce, or
                 distribute any content without prior written permission.
             </p>
 

@@ -55,8 +55,9 @@ $eras = Era::withoutTrashed()->get()->where('status', 1)->reverse();
             <div class="header-left">
                 <a href="{{ route('home') }}"
                     class="d-flex align-items-center justify-content-center text-decoration-none"
-                    title="{{ config('app.name') }}">
-                    <img class="img-fluid logo-circle" src="{{ asset('logo.png') }}" alt="{{ config('app.name') }} Logo">
+                    title="{{ ucwords(config('app.name')) }}">
+                    <img class="img-fluid logo-circle" src="{{ asset('logo.png') }}"
+                        alt="{{ ucwords(config('app.name')) }} Logo">
                     <h5 class="my-3 ms-2 font-weight-bold title-sm">{{ strtoupper(config('app.name')) }}</h5>
                 </a>
             </div>
@@ -66,7 +67,8 @@ $eras = Era::withoutTrashed()->get()->where('status', 1)->reverse();
                     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 mx-3 justify-content-center mb-md-0">
                         <li itemprop="name">
                             <a itemprop="url" href="{{ route('home') }}"
-                                class="nav-link py-3 px-3 fw-bold @yield('textHome')" title="{{ config('app.name') }}">
+                                class="nav-link py-3 px-3 fw-bold @yield('textHome')"
+                                title="{{ ucwords(config('app.name')) }}">
                                 {{ __('Home') }}
                             </a>
                         </li>
