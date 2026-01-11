@@ -356,7 +356,7 @@
                     @include('components.button.share')
                     <span>Share</span>
                 </div>
-                <div id="downloadBtn" class="action-item d-none">
+                <div class="action-item">
                     @include('components.button.download')
                     <span>Download</span>
                 </div>
