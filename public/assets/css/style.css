@@ -14,14 +14,16 @@
 ========================================================= */
 :root {
     --bg-color: #121212;
-    --text-color: #ffffff;
+    --text-main: #ffffff;
+    --text-sec: #aaaaaa;
     --card-bg: #1e1e1e;
     --border-color: #2a2a2a;
 }
 
 body.theme-light {
     --bg-color: #f8f9fa;
-    --text-color: #212529;
+    --text-main: #111111;
+    --text-sec: #666666;
     --card-bg: #ffffff;
     --border-color: #dee2e6;
 }
@@ -31,7 +33,7 @@ body.theme-light {
 ========================================================= */
 body {
     background-color: var(--bg-color);
-    color: var(--text-color);
+    color: var(--text-main);
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -41,7 +43,7 @@ a {
 }
 
 .text-muted {
-    color: color-mix(in srgb, var(--text-color) 60%, transparent) !important;
+    color: color-mix(in srgb, var(--text-main) 60%, transparent) !important;
 }
 
 /* =========================================================
@@ -57,7 +59,7 @@ a {
 .header .nav-link,
 .header h5,
 .header i {
-    color: var(--text-color) !important;
+    color: var(--text-main) !important;
 }
 
 .header .nav-link:hover,
@@ -70,7 +72,7 @@ body.theme-light .header .nav-link:hover {
 }
 
 .header .nav-link.aktif {
-    border-bottom: 2px solid var(--text-color);
+    border-bottom: 2px solid var(--text-main);
 }
 
 /* =========================================================
@@ -88,7 +90,7 @@ body.theme-light .header .nav-link:hover {
 }
 
 .dropdown-header {
-    color: var(--text-color);
+    color: var(--text-main);
     opacity: 0.65;
     font-size: 0.85rem;
 }
@@ -117,13 +119,13 @@ body.theme-light .header .nav-link:hover {
 }
 
 .footer .nav-link {
-    color: var(--text-color);
+    color: var(--text-main);
     opacity: 0.55;
     transition: opacity 0.2s ease;
 }
 
 .footer .nav-link svg {
-    stroke: var(--text-color);
+    stroke: var(--text-main);
 }
 
 .footer .nav-link:hover {
@@ -140,7 +142,7 @@ body.theme-light .header .nav-link:hover {
     display: block;
     width: 18px;
     height: 2px;
-    background-color: var(--text-color);
+    background-color: var(--text-main);
     margin: 3px auto 0;
     border-radius: 2px;
 }
@@ -187,7 +189,7 @@ body.theme-light .header .nav-link:hover {
 ========================================================= */
 .franchise-card {
     background-color: var(--card-bg);
-    color: var(--text-color);
+    color: var(--text-main);
     border: 1px solid var(--border-color);
     border-radius: 12px;
     padding: 20px 15px;
@@ -214,9 +216,9 @@ body.theme-light .header .nav-link:hover {
 .pagination {
     --bs-pagination-bg: var(--card-bg);
     --bs-pagination-border-color: var(--border-color);
-    --bs-pagination-color: var(--text-color);
+    --bs-pagination-color: var(--text-main);
     --bs-pagination-hover-bg: rgba(255, 255, 255, 0.08);
-    --bs-pagination-active-bg: var(--text-color);
+    --bs-pagination-active-bg: var(--text-main);
     --bs-pagination-active-color: var(--bg-color);
 }
 
@@ -243,7 +245,7 @@ body.theme-light .header .nav-link:hover {
 .swiper-button-next,
 .swiper-button-prev {
     top: 40% !important;
-    color: var(--text-color) !important;
+    color: var(--text-main) !important;
 }
 
 .swiper-button-next::after,
@@ -298,13 +300,13 @@ body.theme-light .header .nav-link:hover {
 .history-item,
 .bookmark-item {
     background-color: var(--card-bg) !important;
-    color: var(--text-color) !important;
+    color: var(--text-main) !important;
     border: 1px solid var(--border-color);
 }
 
 .history-link,
 .bookmark-link {
-    color: var(--text-color) !important;
+    color: var(--text-main) !important;
 }
 
 .history-link:hover,
@@ -314,7 +316,7 @@ body.theme-light .header .nav-link:hover {
 
 .history-item .text-muted,
 .bookmark-item .text-muted {
-    color: color-mix(in srgb, var(--text-color) 60%, transparent) !important;
+    color: color-mix(in srgb, var(--text-main) 60%, transparent) !important;
 }
 
 .history-item .btn-outline-danger,
@@ -331,7 +333,7 @@ body.theme-light .header .nav-link:hover {
 
 #watchHistory li,
 #bookmarkList li {
-    color: var(--text-color);
+    color: var(--text-main);
 }
 
 /* =========================================================
@@ -340,23 +342,23 @@ body.theme-light .header .nav-link:hover {
 .input-group-text {
     background-color: var(--card-bg);
     border: 1px solid var(--border-color);
-    color: var(--text-color);
+    color: var(--text-main);
 }
 
 .form-control {
     background-color: var(--card-bg);
     border: 1px solid var(--border-color);
-    color: var(--text-color);
+    color: var(--text-main);
 }
 
 .form-control::placeholder {
-    color: color-mix(in srgb, var(--text-color) 55%, transparent);
+    color: color-mix(in srgb, var(--text-main) 55%, transparent);
 }
 
 .form-control:focus {
     background-color: var(--card-bg);
-    color: var(--text-color);
-    border-color: var(--text-color);
+    color: var(--text-main);
+    border-color: var(--text-main);
     box-shadow: none;
 }
 
@@ -371,7 +373,7 @@ body.theme-light .header .nav-link:hover {
 .btn-icon {
     background: transparent;
     border: none;
-    color: var(--text-color);
+    color: var(--text-sec);
     padding: 6px;
     border-radius: 50%;
     transition: background-color 0.2s ease, color 0.2s ease;
@@ -380,7 +382,7 @@ body.theme-light .header .nav-link:hover {
 }
 
 .btn-icon i {
-    color: var(--text-color);
+    color: var(--text-sec);
     font-size: 16px;
 }
 
@@ -394,17 +396,17 @@ body.theme-light .btn-icon:hover {
 
 .table {
     --bs-table-bg: var(--card-bg);
-    --bs-table-color: var(--text-color);
+    --bs-table-color: var(--text-main);
     --bs-table-border-color: var(--border-color);
 
     background-color: var(--card-bg);
-    color: var(--text-color);
+    color: var(--text-main);
     font-size: 0.88rem;
 }
 
 .table thead th {
     background-color: color-mix(in srgb, var(--card-bg) 92%, #000);
-    color: var(--text-color);
+    color: var(--text-main);
     border-bottom: 1px solid var(--border-color);
     font-size: 0.8rem;
     letter-spacing: 0.03em;
@@ -432,7 +434,7 @@ body.theme-light .table-hover tbody tr:hover {
 }
 
 .table a {
-    color: var(--text-color);
+    color: var(--text-main);
 }
 
 .table a:hover {
@@ -440,7 +442,7 @@ body.theme-light .table-hover tbody tr:hover {
 }
 
 .table i {
-    color: var(--text-color);
+    color: var(--text-main);
     opacity: 0.85;
     font-size: 0.8rem;
 }
@@ -448,7 +450,7 @@ body.theme-light .table-hover tbody tr:hover {
 .table td.text-muted,
 .table .text-muted {
     font-size: 0.82rem;
-    color: color-mix(in srgb, var(--text-color) 60%, transparent) !important;
+    color: color-mix(in srgb, var(--text-main) 60%, transparent) !important;
     white-space: nowrap;
 }
 
@@ -482,18 +484,18 @@ body.theme-light .table-hover tbody tr:hover {
 .pagination {
     --bs-pagination-bg: var(--card-bg);
     --bs-pagination-border-color: var(--border-color);
-    --bs-pagination-color: var(--text-color);
+    --bs-pagination-color: var(--text-main);
 
     --bs-pagination-hover-bg: rgba(255, 255, 255, 0.08);
-    --bs-pagination-hover-color: var(--text-color);
+    --bs-pagination-hover-color: var(--text-main);
 
-    --bs-pagination-active-bg: var(--text-color);
+    --bs-pagination-active-bg: var(--text-main);
     --bs-pagination-active-color: var(--bg-color);
 
     --bs-pagination-disabled-bg: var(--card-bg);
     --bs-pagination-disabled-color: color-mix(
         in srgb,
-        var(--text-color) 40%,
+        var(--text-main) 40%,
         transparent
     );
 
@@ -502,7 +504,7 @@ body.theme-light .table-hover tbody tr:hover {
 
 .page-item .page-link {
     background-color: var(--card-bg);
-    color: var(--text-color);
+    color: var(--text-main);
     border: 1px solid var(--border-color);
     margin: 0 2px;
     border-radius: 8px;
@@ -511,7 +513,7 @@ body.theme-light .table-hover tbody tr:hover {
 
 .page-item .page-link:hover {
     background-color: rgba(255, 255, 255, 0.08);
-    color: var(--text-color);
+    color: var(--text-main);
 }
 
 body.theme-light .page-item .page-link:hover {
@@ -519,15 +521,15 @@ body.theme-light .page-item .page-link:hover {
 }
 
 .page-item.active .page-link {
-    background-color: var(--text-color);
+    background-color: var(--text-main);
     color: var(--bg-color);
-    border-color: var(--text-color);
+    border-color: var(--text-main);
     font-weight: 600;
 }
 
 .page-item.disabled .page-link {
     background-color: var(--card-bg);
-    color: color-mix(in srgb, var(--text-color) 40%, transparent);
+    color: color-mix(in srgb, var(--text-main) 40%, transparent);
     border-color: var(--border-color);
     opacity: 0.6;
     pointer-events: none;
@@ -542,7 +544,7 @@ body.theme-light .page-item .page-link:hover {
 ========================================================= */
 .modal-theme {
     background-color: var(--card-bg);
-    color: var(--text-color);
+    color: var(--text-main);
     border: 1px solid var(--border-color);
 }
 
@@ -562,12 +564,12 @@ body.theme-light .modal-theme .btn-close {
 .modal-theme textarea,
 .modal-theme input {
     background-color: var(--bg-color);
-    color: var(--text-color);
+    color: var(--text-main);
     border: 1px solid var(--border-color);
 }
 
 .modal-theme textarea::placeholder {
-    color: color-mix(in srgb, var(--text-color) 50%, transparent);
+    color: color-mix(in srgb, var(--text-main) 50%, transparent);
 }
 
 .modal-theme {
@@ -577,21 +579,21 @@ body.theme-light .modal-theme .btn-close {
 .server-btn,
 .btn-outline-light {
     background-color: transparent;
-    color: var(--text-color);
+    color: var(--text-main);
     border: 1px solid var(--border-color);
     transition: all 0.2s ease;
 }
 
 .server-btn:hover,
 .btn-outline-light:hover {
-    background-color: color-mix(in srgb, var(--text-color) 12%, transparent);
-    color: var(--text-color);
+    background-color: color-mix(in srgb, var(--text-main) 12%, transparent);
+    color: var(--text-main);
 }
 
 .server-btn.active {
-    background-color: var(--text-color);
+    background-color: var(--text-main);
     color: var(--bg-color);
-    border-color: var(--text-color);
+    border-color: var(--text-main);
     font-weight: 600;
 }
 
