@@ -51,7 +51,6 @@
             overflow-x: auto;
             padding: 10px 5px;
             scrollbar-width: none;
-            scroll-behavior: auto;
         }
 
         .episode-scroll::-webkit-scrollbar {
@@ -184,12 +183,10 @@
 
             const active = scroll.querySelector(".episode-btn.active");
             if (active) {
-                const scrollCenter =
-                    active.offsetLeft -
-                    scroll.clientWidth / 2 +
-                    active.clientWidth / 2;
-
-                scroll.scrollLeft = scrollCenter;
+                active.scrollIntoView({
+                    inline: "center",
+                    block: "nearest"
+                });
             }
         });
     </script>
