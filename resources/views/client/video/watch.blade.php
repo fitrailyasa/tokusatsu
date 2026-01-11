@@ -41,10 +41,6 @@
             z-index: 10;
         }
 
-        .episode-wrapper {
-            overflow: hidden;
-        }
-
         .episode-scroll {
             display: flex;
             gap: 10px;
@@ -62,15 +58,19 @@
         }
 
         .episode-btn {
-            min-width: 44px;
-            padding: 8px 14px;
-            border-radius: 999px;
-            background: #e0e0e0;
-            color: #333;
-            text-align: center;
-            font-weight: 500;
-            white-space: nowrap;
-            transition: all .2s ease;
+            flex: 0 0 auto;
+            width: 49px;
+            height: 49px;
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-main);
+            position: relative;
         }
 
         .episode-btn:hover {
@@ -78,42 +78,233 @@
         }
 
         .episode-btn.active {
-            background: #111;
+            background: #260751;
             color: #fff;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .app-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--header-height);
+            background: var(--card-bg);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .back-btn {
+            font-size: 1.2rem;
+        }
+
+        .header-title {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .header-right {
+            display: flex;
+            gap: 18px;
+            color: var(--text-sec);
+        }
+
+        .header-right i {
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+
+        .video-container {
+            width: 100%;
+            background: #000;
+            position: relative;
+            padding-top: 56.25%;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .info-section {
+            padding: 16px;
+            background: var(--card-bg);
+            margin-bottom: 8px;
+        }
+
+        .video-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            line-height: 1.4;
+            margin-bottom: 8px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .video-meta {
+            font-size: 0.8rem;
+            color: var(--text-sec);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .meta-left span {
+            margin-right: 8px;
+        }
+
+        .action-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .action-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            color: var(--text-sec);
+            font-size: 0.75rem;
+            cursor: pointer;
+        }
+
+        .action-item i {
+            font-size: 1.2rem;
+            margin-bottom: 2px;
+        }
+
+        .action-item.active {
+            color: var(--primary);
+        }
+
+        .channel-section {
+            padding: 12px 16px;
+            background: var(--card-bg);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 8px;
+        }
+
+        .channel-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .channel-avatar {
+            width: 50px;
+            height: 50px;
+            background: #ddd;
+            border-radius: 50%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .channel-avatar img {
+            width: 95%;
+            height: 95%;
+            object-fit: contain;
+        }
+
+        .channel-text h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .channel-text span {
+            font-size: 0.75rem;
+            color: var(--text-sec);
+        }
+
+        .btn-subscribe {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .episodes-section {
+            padding: 16px;
+            background: var(--card-bg);
+            margin-bottom: 8px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .section-more {
+            font-size: 0.85rem;
+            color: var(--text-sec);
+        }
+
+        .comments-section {
+            padding: 16px;
+            background: var(--card-bg);
+        }
+
+        .comment-input-area {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .user-mini-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #444;
         }
     </style>
 
-    <div class="container my-5 py-4">
-        <div class="container">
-            <div class="row mb-3 align-items-center">
-                <div class="col-3 text-left">
-                    <a href="{{ $category->showUrl() }}">
-                        <p class="m-0"><i data-feather="arrow-left"></i></p>
-                    </a>
-                </div>
-                <div class="col-6">
-                    <h1 class="text-center responsive-title">
-                        {{ $title }}
-                    </h1>
-                </div>
-                <div class="col-3 text-right">
-                    <span class="me-md-2">
-                        @include('components.button.download')
-                    </span>
-                    <span class="me-md-2">
-                        @include('components.button.share')
-                    </span>
-                    <span>
-                        @include('components.button.video-report')
-                    </span>
-                </div>
-            </div>
-        </div>
-
-        <div class="row mb-5">
+    <div class="container my-2 py-5">
+        <div class="row">
             <div class="col-12">
 
-                <div class="ratio ratio-16x9 rounded overflow-hidden bg-dark mb-4 position-relative">
+                <div class="ratio ratio-16x9 rounded overflow-hidden bg-dark position-relative">
                     <div class="no-click-overlay"></div>
                     <div id="fsOverlay" class="position-absolute top-0 start-0 w-100 h-100"
                         style="z-index: 5; cursor: pointer;">
@@ -138,40 +329,120 @@
 
                 </div>
 
-                @if (count($embedUrls) > 1)
-                    <div class="mb-3 d-flex justify-content-center gap-3 flex-wrap">
-                        @foreach ($embedUrls as $index => $url)
-                            <button type="button"
-                                class="btn btn-sm btn-outline-light server-btn {{ $index === 0 ? 'active' : '' }}"
-                                data-index="{{ $index }}">
-                                Server {{ $index + 1 }}
-                            </button>
-                        @endforeach
-                    </div>
-                @endif
-
-                @if ($episodes->count())
-                    <div class="episode-wrapper mb-4">
-                        <div class="episode-scroll">
-                            @foreach ($episodes as $ep)
-                                <a href="{{ route('video.watch', [
-                                    'franchise' => $franchise->slug,
-                                    'category' => $category->slug,
-                                    'type' => $ep->type,
-                                    'number' => $ep->number,
-                                ]) }}"
-                                    class="episode-btn {{ $ep->id === $video->id ? 'active' : '' }}">
-                                    {{ $ep->number }}
-                                </a>
-                            @endforeach
-                        </div>
-                    </div>
-                @endif
-
             </div>
         </div>
-    </div>
 
+        <section class="info-section">
+            <h1 class="video-title">{{ Illuminate\Support\Str::words($video->title ?? '-', 10, '...') }}</h1>
+
+            <div class="video-meta">
+                <div class="meta-left">
+                    <span>10K views</span>
+                    <span>•</span>
+                    <span>{{ \Carbon\Carbon::parse($video->airdate ?? $video->category->first_aired)->diffForHumans() }}</span>
+                </div>
+            </div>
+
+            <div class="action-bar">
+                <div class="action-item active">
+                    <i class="fa-regular fa-thumbs-up"></i>
+                    <span>1K</span>
+                </div>
+                <div class="action-item">
+                    <i class="fa-regular fa-thumbs-down"></i>
+                    <span>Dislike</span>
+                </div>
+                <div class="action-item">
+                    @include('components.button.share')
+                    <span>Share</span>
+                </div>
+                <div id="downloadBtn" class="action-item d-none">
+                    @include('components.button.download')
+                    <span>Download</span>
+                </div>
+                <div class="action-item">
+                    @include('components.button.video-report')
+                    <span>Report</span>
+                </div>
+            </div>
+
+            @if (count($embedUrls) > 1)
+                <div class="mt-3 d-flex justify-content-center gap-3 flex-wrap">
+                    @foreach ($embedUrls as $index => $url)
+                        <button type="button"
+                            class="btn btn-sm btn-outline-light server-btn {{ $index === 0 ? 'active' : '' }}"
+                            data-index="{{ $index }}">
+                            Server {{ $index + 1 }}
+                        </button>
+                    @endforeach
+                </div>
+            @endif
+        </section>
+
+        <section class="channel-section">
+            <div class="channel-info">
+                <div class="channel-avatar">
+                    <img src="{{ $video->category->img ? asset('storage/' . $video->category->img) : asset('logo.png') }}"
+                        alt="{{ $video->category->name }}">
+                </div>
+                <div class="channel-text">
+                    <h4>{{ $video->category->franchise->name }} {{ $video->category->name }}</h4>
+                    <span>Official
+                        @if ($video->type == 'episode')
+                            Series
+                        @else
+                            {{ $video->label }}
+                        @endif
+                    </span>
+                </div>
+            </div>
+            {{-- <button class="btn-subscribe">Follow</button> --}}
+        </section>
+
+        <section class="episodes-section">
+            <div class="section-header">
+                <span class="fw-bold">Episode</span>
+                <span class="section-more">({{ $episodes->count() }})</span>
+            </div>
+
+            @if ($episodes->count())
+                <div class="episode-scroll">
+                    @foreach ($episodes as $ep)
+                        <a href="{{ route('video.watch', [
+                            'franchise' => $franchise->slug,
+                            'category' => $category->slug,
+                            'type' => $ep->type,
+                            'number' => $ep->number,
+                        ]) }}"
+                            class="episode-btn {{ $ep->id === $video->id ? 'active' : '' }}">
+                            {{ $ep->number }}
+                        </a>
+                    @endforeach
+                </div>
+            @endif
+        </section>
+
+        <section class="comments-section">
+            <div class="section-header">
+                <span class="fw-bold">Comments (100)</span>
+                <span class="section-more"><i class="fa-solid fa-sliders"></i> Filter</span>
+            </div>
+
+            <div class="d-flex gap-2 mb-2" style="display:flex; gap:10px;">
+                <div class="user-mini-avatar"><img src="https://via.placeholder.com/40" alt=""></div>
+                <div>
+                    <div style="font-size:0.8rem; font-weight:600; color:var(--text-sec); margin-bottom:2px;">User_1
+                    </div>
+                    <div style="font-size:0.9rem;">Finally the new form is out too! 🔥</div>
+                </div>
+            </div>
+
+            <div class="comment-input-area">
+                <div class="user-mini-avatar"><img src="https://via.placeholder.com/40" alt=""></div>
+                <input type="text" placeholder="Type a comment..." class="form-control">
+            </div>
+        </section>
+    </div>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const scroll = document.querySelector(".episode-scroll");
