@@ -399,28 +399,30 @@
             {{-- <button class="btn-subscribe">Follow</button> --}}
         </section>
 
-        <section class="episodes-section">
-            <div class="section-header">
-                <span class="fw-bold">{{ ucwords($video->type) }}</span>
-                <span class="section-more">({{ $episodes->count() }})</span>
-            </div>
-
-            @if ($episodes->count())
-                <div class="episode-scroll">
-                    @foreach ($episodes as $ep)
-                        <a href="{{ route('video.watch', [
-                            'franchise' => $franchise->slug,
-                            'category' => $category->slug,
-                            'type' => $ep->type,
-                            'number' => $ep->number,
-                        ]) }}"
-                            class="episode-btn {{ $ep->id === $video->id ? 'active' : '' }}">
-                            {{ $ep->number }}
-                        </a>
-                    @endforeach
+        @if (count($embedUrls) > 1)
+            <section class="episodes-section">
+                <div class="section-header">
+                    <span class="fw-bold">{{ ucwords($video->type) }}</span>
+                    <span class="section-more">({{ $episodes->count() }})</span>
                 </div>
-            @endif
-        </section>
+
+                @if ($episodes->count())
+                    <div class="episode-scroll">
+                        @foreach ($episodes as $ep)
+                            <a href="{{ route('video.watch', [
+                                'franchise' => $franchise->slug,
+                                'category' => $category->slug,
+                                'type' => $ep->type,
+                                'number' => $ep->number,
+                            ]) }}"
+                                class="episode-btn {{ $ep->id === $video->id ? 'active' : '' }}">
+                                {{ $ep->number }}
+                            </a>
+                        @endforeach
+                    </div>
+                @endif
+            </section>
+        @endif
 
         <section class="comments-section">
             <div class="section-header">
