@@ -488,7 +488,7 @@
                         alt="{{ $video->category->name }}">
                 </div>
                 <div class="channel-text">
-                    <h4>{{ $video->category->franchise->name }} {{ $video->category->name }}</h4>
+                    <h4>{{ $video->category->fullname }}</h4>
                     <span>Official
                         @if ($video->type == 'episode')
                             Series
