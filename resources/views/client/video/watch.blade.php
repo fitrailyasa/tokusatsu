@@ -399,7 +399,7 @@
             {{-- <button class="btn-subscribe">Follow</button> --}}
         </section>
 
-        @if (count($embedUrls) > 1)
+        @if (count($episodes) > 1)
             <section class="episodes-section">
                 <div class="section-header">
                     <span class="fw-bold">{{ ucwords($video->type) }}</span>
