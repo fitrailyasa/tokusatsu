@@ -57,6 +57,10 @@
             display: none;
         }
 
+        .episode-scroll.centered {
+            justify-content: center;
+        }
+
         .episode-btn {
             min-width: 44px;
             padding: 8px 14px;
@@ -170,7 +174,14 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            const active = document.querySelector(".episode-btn.active");
+            const scroll = document.querySelector(".episode-scroll");
+            if (!scroll) return;
+
+            if (scroll.scrollWidth <= scroll.clientWidth) {
+                scroll.classList.add("centered");
+            }
+
+            const active = scroll.querySelector(".episode-btn.active");
             if (active) {
                 active.scrollIntoView({
                     behavior: "smooth",
