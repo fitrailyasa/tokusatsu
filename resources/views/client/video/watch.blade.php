@@ -496,7 +496,7 @@
         </section>
 
         <section class="channel-section">
-            <div class="channel-info">
+            <a href="{{ $category->showUrl() }}" class="channel-info">
                 <div class="channel-avatar">
                     <img src="{{ $video->category->img ? asset('storage/' . $video->category->img) : asset('logo.png') }}"
                         alt="{{ $video->category->name }}">
@@ -511,7 +511,7 @@
                         @endif
                     </span>
                 </div>
-            </div>
+            </a>
         </section>
 
         @if (count($episodes) > 1)
