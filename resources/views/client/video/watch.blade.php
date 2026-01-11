@@ -356,7 +356,6 @@
                     @include('components.button.share')
                     <span>Share</span>
                 </div>
-                {{-- jika token valid --}}
                 @if ($downloadTokens)
                     <div class="action-item">
                         @include('components.button.download')
