@@ -184,11 +184,12 @@
 
             const active = scroll.querySelector(".episode-btn.active");
             if (active) {
-                active.scrollIntoView({
-                    inline: "center",
-                    block: "nearest",
-                    behavior: "auto",
-                });
+                const scrollCenter =
+                    active.offsetLeft -
+                    scroll.clientWidth / 2 +
+                    active.clientWidth / 2;
+
+                scroll.scrollLeft = scrollCenter;
             }
         });
     </script>
