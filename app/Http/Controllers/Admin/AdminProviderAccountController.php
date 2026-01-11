@@ -96,7 +96,7 @@ class AdminProviderAccountController extends Controller
     public function logout($email)
     {
         ProviderAccount::where('email', $email)->delete();
-        return redirect()->route('admin.auth')->with('status', "Account {$email} successfully logged out!");
+        return redirect()->route('admin.auth')->with('success', "Account {$email} successfully logged out!");
     }
 
     public function files(Request $request, string $email)

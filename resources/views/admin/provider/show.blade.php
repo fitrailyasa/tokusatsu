@@ -53,6 +53,8 @@
         }
     </style>
 
+    @include('components.alert')
+
     <div class="container mb-5">
 
         <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
@@ -78,7 +80,7 @@
 
                         <input type="hidden" name="folder_id" value="{{ $folderId }}">
 
-                        <button class="btn btn-sm btn-primary d-flex align-items-center">
+                        <button type="submit" class="btn btn-sm btn-primary d-flex align-items-center">
                             <i class="fas fa-clone me-1"></i>Clone
                         </button>
                     </form>

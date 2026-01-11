@@ -12,12 +12,7 @@
             </div>
         @endcan
 
-        @if (session('success'))
-            <div class="alert alert-success text-center">{{ session('success') }}</div>
-        @endif
-        @if (session('status'))
-            <div class="alert alert-info text-center">{{ session('status') }}</div>
-        @endif
+        @include('components.alert')
 
         @if (isset($accounts) && count($accounts) > 0)
             <div class="card shadow-sm">
