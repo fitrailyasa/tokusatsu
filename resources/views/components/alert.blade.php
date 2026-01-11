@@ -1,10 +1,23 @@
-@if ($errors->any() || session('error'))
+@if ($errors->any())
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
                 html: `{!! implode('<br>', $errors->all()) !!}`,
+                confirmButtonColor: '#d33',
+            });
+        });
+    </script>
+@endif
+
+@if (session('error'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                html: '{!! session('error') !!}',
                 confirmButtonColor: '#d33',
             });
         });
