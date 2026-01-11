@@ -401,7 +401,7 @@
 
         <section class="episodes-section">
             <div class="section-header">
-                <span class="fw-bold">Episode</span>
+                <span class="fw-bold">{{ ucwords($video->type) }}</span>
                 <span class="section-more">({{ $episodes->count() }})</span>
             </div>
 
