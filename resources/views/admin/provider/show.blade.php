@@ -68,10 +68,26 @@
             </div>
 
             <div class="d-flex align-items-center gap-2">
+                @can('upload:provider')
+                    <form class="d-flex align-items-center m-0 p-0" method="POST"
+                        action="{{ route('admin.provider.clone', $email) }}">
+                        @csrf
+
+                        <input type="text" name="source" placeholder="Paste Google Drive link or File ID"
+                            class="form-control" required>
+
+                        <input type="hidden" name="folder_id" value="{{ $folderId }}">
+
+                        <button class="btn btn-sm btn-primary d-flex align-items-center">
+                            <i class="fas fa-clone me-1"></i>Clone
+                        </button>
+                    </form>
+                @endcan
+
                 @can('export:provider')
                     <a href="{{ route('admin.auth.export', ['email' => $email, 'folder' => $folderId]) }}"
                         class="btn btn-success btn-sm d-flex align-items-center">
-                        <i class="fas fa-file-excel me-1"></i> Export
+                        <i class="fas fa-file-excel me-1"></i>Export
                     </a>
                 @endcan
 
@@ -82,7 +98,7 @@
                         <input type="hidden" name="folder_id" value="{{ $folderId }}">
                         <input type="file" name="file" hidden id="uploadFile" onchange="this.form.submit()">
                         <label for="uploadFile" class="btn btn-primary btn-sm d-flex align-items-center mb-0">
-                            <i class="fas fa-plus me-1"></i> Upload
+                            <i class="fas fa-plus me-1"></i>Upload
                         </label>
                     </form>
                 @endcan

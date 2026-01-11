@@ -191,6 +191,38 @@ class AdminProviderAccountController extends Controller
         return back()->with('success', 'File uploaded successfully');
     }
 
+    public function cloneFile(Request $request, string $email)
+    {
+        $request->validate([
+            'source' => 'required|string',
+            'folder_id' => 'nullable|string',
+        ]);
+
+        $account = ProviderAccount::where('email', $email)->firstOrFail();
+        $this->useAccountToken($account);
+
+        $service = new Drive($this->client);
+
+        $fileId = ProviderAccount::extractDriveFileId($request->source);
+
+        if (!$fileId) {
+            return back()->with('error', 'Invalid Google Drive link or file ID');
+        }
+
+        $sourceFile = $service->files->get($fileId, [
+            'fields' => 'name',
+        ]);
+
+        $copiedFile = new \Google\Service\Drive\DriveFile([
+            'name' => $sourceFile->name,
+            'parents' => [$request->folder_id ?? 'root'],
+        ]);
+
+        $service->files->copy($fileId, $copiedFile);
+
+        return back()->with('success', 'File successfully cloned');
+    }
+
     public function toggleStatus(string $email, string $fileId)
     {
         $account = ProviderAccount::where('email', $email)->firstOrFail();
