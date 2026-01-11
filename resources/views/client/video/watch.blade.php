@@ -326,8 +326,22 @@
                     <div id="fsOverlay" class="position-absolute top-0 start-0 w-100 h-100"
                         style="z-index: 5; cursor: pointer;">
                     </div>
+                    @php
+                        use Carbon\Carbon;
 
-                    @if ($embedUrls->isEmpty())
+                        $isComingSoon = $video->airdate && Carbon::parse($video->airdate)->isFuture();
+                    @endphp
+
+                    @if ($isComingSoon)
+                        <div class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column align-items-center justify-content-center text-center bg-dark text-white"
+                            style="z-index: 10;">
+                            <i class="fas fa-clock fa-3x mb-3"></i>
+                            <h5 class="mb-1">Coming Soon</h5>
+                            <small>
+                                Airs on {{ Carbon::parse($video->airdate)->format('d M Y') }}
+                            </small>
+                        </div>
+                    @elseif ($embedUrls->isEmpty())
                         <div class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column align-items-center justify-content-center text-center bg-secondary text-white"
                             style="z-index: 10;">
                             <i class="fas fa-video-slash fa-3x mb-3"></i>
@@ -498,7 +512,6 @@
                     </span>
                 </div>
             </div>
-            {{-- <button class="btn-subscribe">Follow</button> --}}
         </section>
 
         @if (count($episodes) > 1)
