@@ -356,10 +356,13 @@
                     @include('components.button.share')
                     <span>Share</span>
                 </div>
-                <div class="action-item">
-                    @include('components.button.download')
-                    <span>Download</span>
-                </div>
+                {{-- jika token valid --}}
+                @if ($downloadTokens)
+                    <div class="action-item">
+                        @include('components.button.download')
+                        <span>Download</span>
+                    </div>
+                @endif
                 <div class="action-item">
                     @include('components.button.video-report')
                     <span>Report</span>
