@@ -32,6 +32,25 @@
     ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
     </script>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const scroll = document.querySelector(".episode-scroll");
+            if (!scroll) return;
+
+            if (scroll.scrollWidth <= scroll.clientWidth) {
+                scroll.classList.add("centered");
+            }
+
+            const active = scroll.querySelector(".episode-btn.active");
+            if (active) {
+                active.scrollIntoView({
+                    inline: "center",
+                    block: "nearest"
+                });
+            }
+        });
+    </script>
+
     <style>
         .no-click-overlay {
             position: absolute;
@@ -171,26 +190,6 @@
             </div>
         </div>
     </div>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const scroll = document.querySelector(".episode-scroll");
-            if (!scroll) return;
-
-            if (scroll.scrollWidth <= scroll.clientWidth) {
-                scroll.classList.add("centered");
-            }
-
-            const active = scroll.querySelector(".episode-btn.active");
-            if (active) {
-                active.scrollIntoView({
-                    // behavior: "smooth",
-                    inline: "center",
-                    block: "nearest"
-                });
-            }
-        });
-    </script>
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
