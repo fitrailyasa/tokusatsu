@@ -73,9 +73,11 @@
                                     </td>
 
                                     <td>
-                                        <a class="text-decoration-none normal-text" href="{{ $item->watchUrl() }}">
-                                            {{ $item->title }}
-                                        </a>
+                                        @if (strpos($item->title, '(') !== false)
+                                            <a class="text-decoration-none normal-text" href="{{ $item->watchUrl() }}">
+                                                {{ $item->title }}
+                                            </a>
+                                        @endif
                                     </td>
 
                                     <td class="text-muted normal-text">
