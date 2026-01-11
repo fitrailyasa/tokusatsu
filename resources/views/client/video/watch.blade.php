@@ -184,7 +184,7 @@
             const active = scroll.querySelector(".episode-btn.active");
             if (active) {
                 active.scrollIntoView({
-                    behavior: "smooth",
+                    // behavior: "smooth",
                     inline: "center",
                     block: "nearest"
                 });
