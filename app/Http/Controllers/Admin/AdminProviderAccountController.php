@@ -22,7 +22,7 @@ class AdminProviderAccountController extends Controller
     {
         $this->middleware('permission:view:provider')->only(['index', 'files']);
         $this->middleware('permission:auth:provider')->only(['login', 'callback', 'logout']);
-        $this->middleware('permission:upload:provider')->only(['upload']);
+        $this->middleware('permission:upload:provider')->only(['upload', 'cloneFile']);
         $this->middleware('permission:edit:provider')->only(['renameFile', 'toggleStatus']);
         $this->middleware('permission:delete:provider')->only(['delete']);
         $this->middleware('permission:export:provider')->only(['exportExcel']);
