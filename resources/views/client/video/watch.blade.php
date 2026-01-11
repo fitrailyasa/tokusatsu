@@ -298,6 +298,23 @@
             border-radius: 50%;
             background: #444;
         }
+
+        .video-title-wrapper.expanded .truncate {
+            display: none !important;
+        }
+
+        .video-title-wrapper.expanded .full,
+        .video-title-wrapper.expanded .category-desc {
+            display: block !important;
+        }
+
+        .video-title-wrapper .accordion-toggle i {
+            transition: transform .2s ease;
+        }
+
+        .video-title-wrapper.expanded .accordion-toggle i {
+            transform: rotate(180deg);
+        }
     </style>
 
     <div class="container my-2 py-5">
@@ -335,15 +352,55 @@
         <section class="info-section">
             @php
                 $title = $video->title ?? '-';
+                $categoryDesc = $video->category?->description ?: $video->category?->franchise?->description ?: '-';
             @endphp
 
-            <h1 class="video-title">
-                <span class="d-block d-sm-none">{{ Str::words($title, 4) }}</span>
-                <span class="d-none d-sm-block d-md-none">{{ Str::words($title, 6) }}</span>
-                <span class="d-none d-md-block d-lg-none">{{ Str::words($title, 8) }}</span>
-                <span class="d-none d-lg-block d-xl-none">{{ Str::words($title, 10) }}</span>
-                <span class="d-none d-xl-block">{{ Str::words($title, 12) }}</span>
-            </h1>
+            <div class="video-title-wrapper" id="videoTitle">
+
+                <div class="d-flex align-items-start gap-2">
+
+                    <h1 class="video-title flex-grow-1 mb-0">
+
+                        {{-- Mobile --}}
+                        <span class="truncate d-block d-sm-none">
+                            {{ Str::words($title, 8, '...') }}
+                        </span>
+
+                        {{-- Tablet --}}
+                        <span class="truncate d-none d-sm-block d-md-none">
+                            {{ Str::words($title, 10, '...') }}
+                        </span>
+
+                        {{-- Desktop --}}
+                        <span class="truncate d-none d-md-block d-lg-none">
+                            {{ Str::words($title, 12, '...') }}
+                        </span>
+
+                        {{-- Large --}}
+                        <span class="truncate d-none d-lg-block">
+                            {{ Str::words($title, 14, '...') }}
+                        </span>
+
+                        {{-- FULL --}}
+                        <span class="full d-none">
+                            {{ $title }}
+                        </span>
+
+                    </h1>
+
+                    {{-- ARROW --}}
+                    <button class="accordion-toggle btn btn-icon p-0" aria-expanded="false" aria-label="Toggle title">
+                        <i data-feather="chevron-down"></i>
+                    </button>
+
+                </div>
+
+                {{-- DESCRIPTION --}}
+                <p class="category-desc d-none mt-2 text-muted">
+                    {{ $categoryDesc }}
+                </p>
+
+            </div>
 
             <div class="video-meta">
                 <div class="meta-left">
@@ -506,6 +563,21 @@
                     block: "nearest"
                 });
             }
+        });
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+
+            const wrapper = document.getElementById("videoTitle");
+            const toggleBtn = wrapper.querySelector(".accordion-toggle");
+
+            toggleBtn.addEventListener("click", function() {
+                const expanded = wrapper.classList.toggle("expanded");
+
+                toggleBtn.setAttribute("aria-expanded", expanded);
+            });
+
         });
     </script>
 
