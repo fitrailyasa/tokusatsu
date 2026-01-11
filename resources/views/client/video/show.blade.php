@@ -73,11 +73,15 @@
                                     </td>
 
                                     <td>
-                                        @if (strpos($item->title, '(') !== false)
-                                            <a class="text-decoration-none normal-text" href="{{ $item->watchUrl() }}">
-                                                {{ $item->title }}
-                                            </a>
-                                        @endif
+                                        @php
+                                            $pos = strpos($item->title, '(');
+                                            $displayTitle =
+                                                $pos !== false ? trim(substr($item->title, 0, $pos)) : $item->title;
+                                        @endphp
+
+                                        <a class="text-decoration-none normal-text" href="{{ $item->watchUrl() }}">
+                                            {{ $displayTitle }}
+                                        </a>
                                     </td>
 
                                     <td class="text-muted normal-text">
