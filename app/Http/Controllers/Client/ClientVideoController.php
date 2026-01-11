@@ -155,20 +155,6 @@ class ClientVideoController extends Controller
 
         $embedUrls = collect($video->getValidEmbedLinks());
 
-        $prev = Video::where([
-            'category_id' => $category->id,
-            'type' => $type,
-            'number' => $number - 1,
-            'status' => 1,
-        ])->first();
-
-        $next = Video::where([
-            'category_id' => $category->id,
-            'type' => $type,
-            'number' => $number + 1,
-            'status' => 1,
-        ])->first();
-
         $title = $video->type === 'episode'
             ? "{$category->fullname} Episode {$video->number}"
             : $video->title;
@@ -183,13 +169,17 @@ class ClientVideoController extends Controller
             }
         }
 
+        $episodes = Video::where('category_id', $category->id)
+            ->where('type', $video->type)
+            ->orderBy('number')
+            ->get();
+
         return view('client.video.watch', [
             'title'      => $title,
             'category'   => $category,
             'franchise'  => $category->franchise,
             'video'      => $video,
-            'prev'       => $prev,
-            'next'       => $next,
+            'episodes'   => $episodes,
             'embedUrls'  => $embedUrls,
             'downloadTokens' => $downloadTokens,
         ]);

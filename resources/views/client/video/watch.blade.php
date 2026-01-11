@@ -40,6 +40,43 @@
             cursor: default;
             z-index: 10;
         }
+
+        .episode-wrapper {
+            overflow: hidden;
+        }
+
+        .episode-scroll {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 10px 5px;
+            scrollbar-width: none;
+        }
+
+        .episode-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .episode-btn {
+            min-width: 44px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: #e0e0e0;
+            color: #333;
+            text-align: center;
+            font-weight: 500;
+            white-space: nowrap;
+            transition: all .2s ease;
+        }
+
+        .episode-btn:hover {
+            background: #cfcfcf;
+        }
+
+        .episode-btn.active {
+            background: #111;
+            color: #fff;
+        }
     </style>
 
     <div class="container my-5 py-4">
@@ -109,34 +146,40 @@
                     </div>
                 @endif
 
-                <div class="d-flex justify-content-center gap-3 mb-3">
-                    @if ($prev)
-                        <a href="{{ route('video.watch', [
-                            'franchise' => $category->franchise->slug,
-                            'category' => $category->slug,
-                            'type' => $prev->type,
-                            'number' => $prev->number,
-                        ]) }}"
-                            class="btn btn-sm btn-outline-light">
-                            <i data-feather="arrow-left-circle"></i> Prev
-                        </a>
-                    @endif
+                @if ($episodes->count())
+                    <div class="episode-wrapper mb-4">
+                        <div class="episode-scroll">
+                            @foreach ($episodes as $ep)
+                                <a href="{{ route('video.watch', [
+                                    'franchise' => $franchise->slug,
+                                    'category' => $category->slug,
+                                    'type' => $ep->type,
+                                    'number' => $ep->number,
+                                ]) }}"
+                                    class="episode-btn {{ $ep->id === $video->id ? 'active' : '' }}">
+                                    {{ $ep->number }}
+                                </a>
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
 
-                    @if ($next)
-                        <a href="{{ route('video.watch', [
-                            'franchise' => $category->franchise->slug,
-                            'category' => $category->slug,
-                            'type' => $next->type,
-                            'number' => $next->number,
-                        ]) }}"
-                            class="btn btn-sm btn-outline-light">
-                            Next <i data-feather="arrow-right-circle"></i>
-                        </a>
-                    @endif
-                </div>
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const active = document.querySelector(".episode-btn.active");
+            if (active) {
+                active.scrollIntoView({
+                    behavior: "smooth",
+                    inline: "center",
+                    block: "nearest"
+                });
+            }
+        });
+    </script>
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
