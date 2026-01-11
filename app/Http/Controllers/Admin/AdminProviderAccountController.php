@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Google\Client;
 use Google\Service\Drive;
 use Google\Service\Oauth2;
+use Google\Service\Exception as GoogleServiceException;
 use App\Models\ProviderAccount;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
@@ -209,18 +210,26 @@ class AdminProviderAccountController extends Controller
             return back()->with('error', 'Invalid Google Drive link or file ID');
         }
 
-        $sourceFile = $service->files->get($fileId, [
-            'fields' => 'name',
-        ]);
+        try {
+            $sourceFile = $service->files->get($fileId, [
+                'fields' => 'name',
+            ]);
 
-        $copiedFile = new \Google\Service\Drive\DriveFile([
-            'name' => $sourceFile->name,
-            'parents' => [$request->folder_id ?? 'root'],
-        ]);
+            $copiedFile = new \Google\Service\Drive\DriveFile([
+                'name' => $sourceFile->name,
+                'parents' => [$request->folder_id ?? 'root'],
+            ]);
 
-        $service->files->copy($fileId, $copiedFile);
+            $service->files->copy($fileId, $copiedFile);
 
-        return back()->with('success', 'File successfully cloned');
+            return back()->with('success', 'File successfully cloned');
+        } catch (GoogleServiceException $e) {
+            if (in_array($e->getCode(), [403, 404])) {
+                return back()->with('error', 'File is private or not found');
+            }
+
+            return back()->with('error', 'Failed to clone file: ' . $e->getMessage());
+        }
     }
 
     public function toggleStatus(string $email, string $fileId)
