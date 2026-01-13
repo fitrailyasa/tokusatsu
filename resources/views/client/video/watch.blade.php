@@ -382,17 +382,17 @@
 
                         {{-- Tablet --}}
                         <span class="truncate d-none d-sm-block d-md-none">
-                            {{ Str::words($title, 8, '...') }}
+                            {{ Str::words($title, 10, '...') }}
                         </span>
 
                         {{-- Desktop --}}
                         <span class="truncate d-none d-md-block d-lg-none">
-                            {{ Str::words($title, 10, '...') }}
+                            {{ Str::words($title, 14, '...') }}
                         </span>
 
                         {{-- Large --}}
                         <span class="truncate d-none d-lg-block">
-                            {{ Str::words($title, 12, '...') }}
+                            {{ Str::words($title, 18, '...') }}
                         </span>
 
                         {{-- FULL --}}
