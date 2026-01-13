@@ -51,7 +51,9 @@
         window.matchMedia('(display-mode: standalone)').matches ||
         window.navigator.standalone === true;
 
-    // Tangkap event install
+    const isIOS = () =>
+        /iphone|ipad|ipod/i.test(navigator.userAgent.toLowerCase());
+
     window.addEventListener('beforeinstallprompt', (e) => {
         e.preventDefault();
         deferredPrompt = e;
@@ -63,7 +65,7 @@
 
         const lastShown = localStorage.getItem('pwa');
         const time = 7 * 24 * 60 * 60 * 1000;
-        const now = new Date().getTime();
+        const now = Date.now();
         if (lastShown && now - lastShown < time) return;
 
         const modalEl = document.getElementById('pwaModal');
