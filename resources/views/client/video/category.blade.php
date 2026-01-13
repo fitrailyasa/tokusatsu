@@ -6,26 +6,26 @@
 
 @section('content')
     <script type="application/ld+json">
-    {!! json_encode([
-        "@context"    => "https://schema.org",
-        "@type"       => "VideoObject",
-        "name"        => $title . ' - ' . ucwords(config('app.name')),
-        "description" => $franchise->description ?: ucwords(config('app.name')),
-        "thumbnailUrl"=> config('app.url') . "/storage/" . $franchise->img ?: config('app.url') . "/logo.png",
-        "uploadDate"  => optional($franchise->first_aired)
-                            ? \Carbon\Carbon::parse($franchise->first_aired)->toIso8601String()
-                            : \Carbon\Carbon::parse($franchise->created_at)->toIso8601String(),
-        "contentUrl"  => url()->current(), 
-        "genre"       => $title,
-        "publisher"   => [
-            "@type" => "Organization",
-            "name"  => ucwords(config('app.name')),
-            "logo"  => [
-                "@type" => "ImageObject",
-                "url"   => config('app.url') . "/logo.png",
+        {!! json_encode([
+            "@context"    => "https://schema.org",
+            "@type"       => "VideoObject",
+            "name"        => $title . ' - ' . ucwords(config('app.name')),
+            "description" => $franchise->description ?: ucwords(config('app.name')),
+            "thumbnailUrl"=> config('app.url') . "/storage/" . $franchise->img ?: config('app.url') . "/logo.png",
+            "uploadDate"  => optional($franchise->first_aired)
+                                ? \Carbon\Carbon::parse($franchise->first_aired)->toIso8601String()
+                                : \Carbon\Carbon::parse($franchise->created_at)->toIso8601String(),
+            "contentUrl"  => url()->current(), 
+            "genre"       => $title,
+            "publisher"   => [
+                "@type" => "Organization",
+                "name"  => ucwords(config('app.name')),
+                "logo"  => [
+                    "@type" => "ImageObject",
+                    "url"   => config('app.url') . "/logo.png",
+                ],
             ],
-        ],
-    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
+        ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
     </script>
 
     <div class="container my-5">
