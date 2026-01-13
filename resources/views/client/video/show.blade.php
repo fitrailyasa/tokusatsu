@@ -167,21 +167,6 @@
         });
     </script>
 
-    {{-- Share Button --}}
-    <script>
-        document.getElementById("shareBtn").addEventListener("click", async function() {
-            const shareData = {
-                title: document.title,
-                text: "{{ $title }}\n",
-                url: window.location.href
-            };
-
-            if (navigator.share) {
-                await navigator.share(shareData);
-            }
-        });
-    </script>
-
     {{-- Disable Right Click --}}
     @include('components.disable-right-click')
 

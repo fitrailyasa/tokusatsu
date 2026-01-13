@@ -1,6 +1,6 @@
 @extends('layouts.client.app')
 
-@section('title', 'Movie ' . $franchise->name ?? '')
+@section('title', $title ?? '')
 
 @section('textvideo', 'rounded aktif')
 
@@ -12,7 +12,7 @@
                 <a href="{{ route('video') }}"><i data-feather="arrow-left"></i></a>
             </div>
             <div>
-                <h1 class="text-center responsive-title">Movie {{ $franchise->name }}</h1>
+                <h1 class="text-center responsive-title">{{ $title }}</h1>
             </div>
             <div>
                 @include('components.button.share')
@@ -73,19 +73,4 @@
             </div>
         </div>
     </div>
-
-    {{-- Share Button --}}
-    <script>
-        document.getElementById("shareBtn").addEventListener("click", async function() {
-            const shareData = {
-                title: document.title,
-                text: "{{ $franchise->name }}",
-                url: window.location.href
-            };
-
-            if (navigator.share) {
-                await navigator.share(shareData);
-            }
-        });
-    </script>
 @endsection

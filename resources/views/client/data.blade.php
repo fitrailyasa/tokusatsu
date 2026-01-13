@@ -3,7 +3,7 @@
         <div class="row px-3 mb-3 align-items-center">
             <div class="col-3 text-left">
                 <a href="#" onclick="history.back();">
-                    <p class="text-dark m-0"><i data-feather="arrow-left"></i></p>
+                    <p class="m-0"><i data-feather="arrow-left"></i></p>
                 </a>
             </div>
 
@@ -12,7 +12,7 @@
             </div>
 
             <div class="col-3 text-right">
-                <a class="btn btn-xs text-dark rounded aktif"
+                <a class="btn btn-xs btn-icon rounded"
                     href="{{ route('video.show', [$category->franchise->slug, $category->slug]) }}">
                     <i data-feather="play-circle"></i>
                 </a>
@@ -29,15 +29,15 @@
         <div class="modal fade" id="myModal{{ $item->id }}" tabindex="-1" role="dialog"
             aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
-                <div class="modal-content">
+                <div class="modal-content modal-theme">
                     <div class="modal-body">
-                        <button type="button" class="close text-dark" data-bs-dismiss="modal" aria-label="Close">
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                         <img class="img img-fluid" src="{{ asset('storage/' . $item->img) }}" alt="{{ $item->img }}">
                         <!-- Tombol Download -->
                         <a href="{{ asset('storage/' . $item->img) }}" download="{{ $item->img }}"
-                            class="btn aktif text-dark border my-3 col-12">Download</a>
+                            class="btn border my-3 col-12">Download</a>
                         <div>
                             <p>{{ $item->category->description ?? '---------------' }}</p>
                         </div>

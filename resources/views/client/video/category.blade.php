@@ -104,19 +104,4 @@
             {{ $categories->appends(['era_id' => $eraId, 'franchise_id' => $franchiseId, 'perPage' => $perPage, 'search' => $search])->links() }}
         </div>
     </div>
-
-    {{-- Share Button --}}
-    <script>
-        document.getElementById("shareBtn").addEventListener("click", async function() {
-            const shareData = {
-                title: document.title,
-                text: "{{ $title }}\n",
-                url: window.location.href
-            };
-
-            if (navigator.share) {
-                await navigator.share(shareData);
-            }
-        });
-    </script>
 @endsection
