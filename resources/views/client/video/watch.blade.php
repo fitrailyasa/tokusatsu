@@ -8,28 +8,28 @@
 
 @section('content')
     <script type="application/ld+json">
-    {!! json_encode([
-        "@context"    => "https://schema.org",
-        "@type"       => "VideoObject",
-        "name"        => $title . ' - ' . config('app.name'),
-        "description" => $category->description ?: config('app.name'),
-        "thumbnailUrl" => $video->category->img
-                            ? config('app.url') . "/storage/" . $video->category->img
-                            : config('app.url') . "/logo.png",
-        "uploadDate"  => optional($video->airdate)
-                            ? \Carbon\Carbon::parse($video->airdate)->toIso8601String()
-                            : \Carbon\Carbon::parse($video->category->first_aired)->toIso8601String(),
-        "contentUrl"  => url()->current(), 
-        "genre"       => $category->fullname,
-        "publisher"   => [
-            "@type" => "Organization",
-            "name"  => config('app.name'),
-            "logo"  => [
-                "@type" => "ImageObject",
-                "url"   => config('app.url') . "/logo.png",
+        {!! json_encode([
+            "@context"    => "https://schema.org",
+            "@type"       => "VideoObject",
+            "name"        => $title . ' - ' . config('app.name'),
+            "description" => $category->description ?: config('app.name'),
+            "thumbnailUrl" => $video->category->img
+                                ? config('app.url') . "/storage/" . $video->category->img
+                                : config('app.url') . "/logo.png",
+            "uploadDate"  => optional($video->airdate)
+                                ? \Carbon\Carbon::parse($video->airdate)->toIso8601String()
+                                : \Carbon\Carbon::parse($video->category->first_aired)->toIso8601String(),
+            "contentUrl"  => url()->current(), 
+            "genre"       => $category->fullname,
+            "publisher"   => [
+                "@type" => "Organization",
+                "name"  => config('app.name'),
+                "logo"  => [
+                    "@type" => "ImageObject",
+                    "url"   => config('app.url') . "/logo.png",
+                ],
             ],
-        ],
-    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
+        ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
     </script>
 
     <style>
@@ -426,11 +426,11 @@
 
             <div class="action-bar">
                 <div class="action-item active">
-                    <i class="fa-regular fa-thumbs-up"></i>
+                    <i data-feather="thumbs-up" class="d-block mx-auto"></i>
                     <span>1K</span>
                 </div>
                 <div class="action-item">
-                    <i class="fa-regular fa-thumbs-down"></i>
+                    <i data-feather="thumbs-down" class="d-block mx-auto"></i>
                     <span>Dislike</span>
                 </div>
                 <div class="action-item">
