@@ -3,6 +3,8 @@
 @section('textHome', 'rounded aktif')
 
 @section('content')
+    @include('components.pwa')
+
     <div class="container text-center" style="padding-top: 80px; padding-bottom: 80px;">
         @include('client.buttonSearch')
         <br>
