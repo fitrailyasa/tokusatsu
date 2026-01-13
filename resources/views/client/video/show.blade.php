@@ -114,6 +114,9 @@
                 </div>
             @endif
         </div>
+        <div class="d-flex justify-content-center">
+            {{ $videos->appends(['perPage' => $perPage])->links() }}
+        </div>
     </div>
 
     {{-- Disable Right Click --}}

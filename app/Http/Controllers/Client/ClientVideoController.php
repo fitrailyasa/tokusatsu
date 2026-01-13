@@ -9,7 +9,6 @@ use App\Models\Category;
 use App\Models\Video;
 use App\Models\VideoReport;
 use App\Http\Requests\VideoReportRequest;
-use Illuminate\Support\Facades\Storage;
 
 class ClientVideoController extends Controller
 {
@@ -49,8 +48,11 @@ class ClientVideoController extends Controller
      * @param string $category The slug of the category.
      * @return \Illuminate\Http\Response
      */
-    public function show($franchise, $category)
+    public function show(TableRequest $request, $franchise, $category)
     {
+        $perPage = (int) $request->input('perPage', 20);
+        $validPerPage = in_array($perPage, [10, 80, 100]) ? $perPage : 20;
+
         $category = Category::where('slug', $category)
             ->with('franchise')
             ->where('status', 1)
@@ -87,12 +89,13 @@ class ClientVideoController extends Controller
         //     $videosQuery->where('type', '!=', 'episode');
         // }
 
-        $videos = $videosQuery->paginate(100);
+        $videos = $videosQuery->paginate($validPerPage);
         $type = $hasEpisode ? 'episode' : 'video';
 
         $title = $category->fullname;
 
         return view('client.video.show', [
+            'perPage'    => $perPage,
             'title' => $title,
             'category' => $category,
             'franchise' => $category->franchise,
