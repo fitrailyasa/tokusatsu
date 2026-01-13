@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('type')->nullable();
             $table->string('img')->nullable();
             $table->string('notes')->nullable();
+            $table->string('progress')->default('finished')->nullable();
+            $table->boolean('status')->default(true)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
