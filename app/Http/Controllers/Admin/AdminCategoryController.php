@@ -66,6 +66,7 @@ class AdminCategoryController extends Controller
             ->when($franchiseId, function ($query, $franchiseId) {
                 $query->where('franchise_id', $franchiseId);
             })
+            ->latest('first_aired')
             ->paginate($validPerPage);
 
         return view("admin.category.index", compact('categories', 'eras', 'franchises', 'eraId', 'franchiseId', 'search', 'perPage'));
