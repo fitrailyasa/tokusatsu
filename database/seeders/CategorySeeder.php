@@ -1432,7 +1432,7 @@ class CategorySeeder extends Seeder
                 'last_aired' => '2018-12-27',
             ],
             [
-                'era_id' => $heisei,
+                'era_id' => $reiwa,
                 'franchise_id' => $garo,
                 'fullname' => 'Garo: Versus Road',
                 'name' => 'Versus Road',
@@ -1443,7 +1443,7 @@ class CategorySeeder extends Seeder
                 'last_aired' => '2020-06-25',
             ],
             [
-                'era_id' => $heisei,
+                'era_id' => $reiwa,
                 'franchise_id' => $garo,
                 'fullname' => 'Garo: Hagane o Tsugu Mono',
                 'name' => 'Hagane o Tsugu Mono',
