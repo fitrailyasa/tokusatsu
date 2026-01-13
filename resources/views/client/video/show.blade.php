@@ -63,33 +63,33 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($videos as $item)
+                            @foreach ($videos as $video)
                                 <tr>
                                     <td class="text-center">
-                                        <a class="text-decoration-none normal-text" href="{{ $item->watchUrl() }}">
-                                            {{ $item->label }} {{ $item->number }}
+                                        <a class="text-decoration-none normal-text" href="{{ $video->watchUrl() }}">
+                                            {{ $video->label }} {{ $video->number }}
                                             <i class="fa-solid fa-arrow-up-right-from-square ms-1"></i>
                                         </a>
                                     </td>
 
                                     <td>
                                         @php
-                                            $pos = strpos($item->title, '(');
+                                            $pos = strpos($video->title, '(');
                                             $displayTitle =
-                                                $pos !== false ? trim(substr($item->title, 0, $pos)) : $item->title;
+                                                $pos !== false ? trim(substr($video->title, 0, $pos)) : $video->title;
                                         @endphp
 
-                                        <a class="text-decoration-none normal-text" href="{{ $item->watchUrl() }}">
+                                        <a class="text-decoration-none normal-text" href="{{ $video->watchUrl() }}">
                                             {{ $displayTitle }}
                                         </a>
                                     </td>
 
                                     <td class="text-muted normal-text">
-                                        {{ \Carbon\Carbon::parse($item->airdate ?? $item->category->first_aired)->diffForHumans() }}
+                                        {{ \Carbon\Carbon::parse($video->airdate ?? $video->category->first_aired)->diffForHumans() }}
                                     </td>
 
                                     {{-- <td class="text-center normal-text">
-                                        @foreach ($item->link as $link)
+                                        @foreach ($video->link as $link)
                                             @php
                                                 preg_match('/\/d\/([a-zA-Z0-9_-]+)/', $link, $matches);
                                                 $fileId = $matches[1] ?? null;
@@ -105,11 +105,7 @@
                                     </td> --}}
 
                                     <td class="text-center">
-                                        <button class="btn btn-sm bookmark-btn px-3 py-1 btn-outline-warning"
-                                            data-title="{{ $title }} {{ ucfirst($item->type) }} {{ $item->number }}"
-                                            data-url="{{ $item->watchUrl() }}">
-                                            ⭐
-                                        </button>
+                                        @include('components.button.bookmark')
                                     </td>
                                 </tr>
                             @endforeach
@@ -119,53 +115,6 @@
             @endif
         </div>
     </div>
-
-    {{-- Bookmark Button --}}
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const buttons = document.querySelectorAll(".bookmark-btn");
-
-            let bookmarks = JSON.parse(localStorage.getItem("bookmarks")) || [];
-
-            function updateButtons() {
-                buttons.forEach(btn => {
-                    const videoUrl = btn.dataset.url;
-                    if (bookmarks.find(b => b.url === videoUrl)) {
-                        btn.textContent = "✅";
-                        btn.classList.remove("btn-outline-warning");
-                        btn.classList.add("btn-success");
-                    } else {
-                        btn.textContent = "⭐";
-                        btn.classList.remove("btn-success");
-                        btn.classList.add("btn-outline-warning");
-                    }
-                });
-            }
-
-            buttons.forEach(btn => {
-                btn.addEventListener("click", function() {
-                    const videoTitle = this.dataset.title;
-                    const videoUrl = this.dataset.url;
-
-                    const index = bookmarks.findIndex(b => b.url === videoUrl);
-
-                    if (index === -1) {
-                        bookmarks.push({
-                            title: videoTitle,
-                            url: videoUrl
-                        });
-                    } else {
-                        bookmarks.splice(index, 1);
-                    }
-
-                    localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
-                    updateButtons();
-                });
-            });
-
-            updateButtons();
-        });
-    </script>
 
     {{-- Disable Right Click --}}
     @include('components.disable-right-click')

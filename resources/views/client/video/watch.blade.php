@@ -480,6 +480,10 @@
                     @include('components.button.video-report')
                     <span>Report</span>
                 </div>
+                <div class="action-item">
+                    @include('components.button.bookmark')
+                    <span>Bookmark</span>
+                </div>
             </div>
 
             @if (count($embedUrls) > 1)
