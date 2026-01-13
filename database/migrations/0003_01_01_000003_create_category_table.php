@@ -24,7 +24,6 @@ class CreateCategoryTable extends Migration
             $table->date('last_aired')->nullable();
             $table->foreignId('era_id')->nullable();
             $table->foreignId('franchise_id')->nullable();
-            $table->string('progress')->default('finished')->nullable();
             $table->boolean('status')->default(true)->nullable();
             $table->timestamps();
             $table->softDeletes();
