@@ -6,16 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Franchise;
 use App\Models\Era;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
-use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\CategoryImport;
 use App\Exports\CategoryExport;
 use App\Http\Requests\CategoryRequest;
 use App\Http\Requests\TableRequest;
-use Barryvdh\DomPDF\Facade\Pdf;
 
-class AdminCategoryController extends Controller
+class AdminCategoryController extends AdminBaseCrudController
 {
     protected $model = Category::class;
     protected $title = 'category';
