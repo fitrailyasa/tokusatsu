@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Video;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -12,27 +11,20 @@ use App\Imports\VideoImport;
 use App\Exports\VideoExport;
 use App\Http\Requests\VideoRequest;
 use App\Http\Requests\TableRequest;
-use Barryvdh\DomPDF\Facade\Pdf;
 
-class AdminVideoController extends Controller
+class AdminVideoController extends AdminBaseCrudController
 {
-    protected $title = "Video";
+    protected $model = Video::class;
+    protected $title = 'video';
+    protected $permissionName = 'video';
 
-    // Middleware for video permissions
-    public function __construct()
-    {
-        $this->middleware('permission:view:video')->only(['index']);
-        $this->middleware('permission:create:video')->only(['store']);
-        $this->middleware('permission:edit:video')->only(['update', 'toggleStatus']);
-        $this->middleware('permission:delete:video')->only(['destroy']);
-        $this->middleware('permission:delete-all:video')->only(['destroyAll']);
-        $this->middleware('permission:soft-delete:video')->only(['softDelete']);
-        $this->middleware('permission:soft-delete-all:video')->only(['softDeleteAll']);
-        $this->middleware('permission:restore:video')->only(['restore']);
-        $this->middleware('permission:restore-all:video')->only(['restoreAll']);
-        $this->middleware('permission:import:video')->only(['import']);
-        $this->middleware('permission:export:video')->only(['exportExcel', 'exportPDF']);
-    }
+    protected $exportClass = VideoExport::class;
+    protected $importClass = VideoImport::class;
+    protected $requestClass = VideoRequest::class;
+    protected $pdfView = 'admin.video.pdf.template';
+
+    protected $imageField = 'img';
+    protected $imageFolder = 'video';
 
     // Display a listing of the resource
     public function index(TableRequest $request)
@@ -125,118 +117,5 @@ class AdminVideoController extends Controller
             'search',
             'perPage'
         ));
-    }
-
-    // Handle toggle status video
-    public function toggleStatus($id)
-    {
-        $video = Video::withTrashed()->findOrFail($id);
-
-        $video->status = $video->status == 1 ? 0 : 1;
-        $video->save();
-
-        return redirect()->back()->with('success', 'Successfully Change Status ' . $this->title . '!');
-    }
-
-    // Handle import video data from excel file
-    public function import(Request $request)
-    {
-        $request->validate([
-            'file' => 'required|max:10240|mimes:xlsx,xls',
-        ]);
-
-        $file = $request->file('file');
-
-        Excel::import(new VideoImport, $file);
-
-        return back()->with('success', 'Successfully Import ' . $this->title . '!');
-    }
-
-    // Handle export video data to excel file
-    public function exportExcel(Request $request)
-    {
-        $categoryId = $request->query('category_id');
-
-        $categoryName = $categoryId
-            ? Category::where('id', $categoryId)->value('fullname')
-            : null;
-
-        $fileName = 'Data Video';
-
-        if (!empty($categoryName)) {
-            $fileName .= ' ' . $categoryName;
-        }
-
-        $fileName .= '.xlsx';
-
-        return Excel::download(new VideoExport($categoryId), $fileName);
-    }
-
-    // Handle export video data to pdf file
-    public function exportPDF()
-    {
-        $videos = Video::all();
-        $pdf = Pdf::loadView('admin.video.pdf.template', compact('videos'));
-
-        return $pdf->stream('Data video.pdf');
-    }
-
-    // Handle store data
-    public function store(VideoRequest $request)
-    {
-        Video::create($request->validated());
-
-        return back()->with('success', 'Successfully Create ' . $this->title . '!');
-    }
-
-    // Handle update data
-    public function update(VideoRequest $request, $id)
-    {
-        Video::findOrFail($id)->update($request->validated());
-
-        return back()->with('success', 'Successfully Edit ' . $this->title . '!');
-    }
-
-    // Handle hard delete data
-    public function destroy($id)
-    {
-        Video::withTrashed()->findOrFail($id)->forceDelete();
-        return back()->with('success', 'Successfully Delete ' . $this->title . '!');
-    }
-
-    // Handle hard delete all data
-    public function destroyAll()
-    {
-        Video::truncate();
-        return back()->with('success', 'Successfully Delete All ' . $this->title . '!');
-    }
-
-    // Handle soft delete data
-    public function softDelete($id)
-    {
-        Video::findOrFail($id)->delete();
-        return back()->with('success', 'Successfully Delete ' . $this->title . '!');
-    }
-
-    // Handle soft delete all data
-    public function softDeleteAll()
-    {
-        Video::query()->delete();
-        return back()->with('success', 'Successfully Delete All ' . $this->title . '!');
-    }
-
-    // Handle restore data
-    public function restore($id)
-    {
-        Video::withTrashed()->findOrFail($id)->restore();
-        return back()->with('success', 'Successfully Restore ' . $this->title . '!');
-    }
-
-    // Handle restore all data
-    public function restoreAll()
-    {
-        Video::onlyTrashed()->restore();
-
-        return back()->with('success', 'Successfully Restore All ' . $this->title . '!');
     }
 }

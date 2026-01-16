@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Data;
 use App\Models\Category;
 use App\Models\Tag;
@@ -12,27 +11,20 @@ use App\Imports\DataImport;
 use App\Exports\DataExport;
 use App\Http\Requests\DataRequest;
 use App\Http\Requests\TableRequest;
-use Barryvdh\DomPDF\Facade\Pdf;
 
-class AdminDataController extends Controller
+class AdminDataController extends AdminBaseCrudController
 {
-    protected $title = 'Data';
+    protected $model = Data::class;
+    protected $title = 'data';
+    protected $permissionName = 'data';
 
-    // Middleware for data permissions
-    public function __construct()
-    {
-        $this->middleware('permission:view:data')->only(['index']);
-        $this->middleware('permission:create:data')->only(['store']);
-        $this->middleware('permission:edit:data')->only(['update']);
-        $this->middleware('permission:delete:data')->only(['destroy']);
-        $this->middleware('permission:delete-all:data')->only(['destroyAll']);
-        $this->middleware('permission:soft-delete:data')->only(['softDelete']);
-        $this->middleware('permission:soft-delete-all:data')->only(['softDeleteAll']);
-        $this->middleware('permission:restore:data')->only(['restore']);
-        $this->middleware('permission:restore-all:data')->only(['restoreAll']);
-        $this->middleware('permission:import:data')->only(['import']);
-        $this->middleware('permission:export:data')->only(['exportExcel', 'exportPDF']);
-    }
+    protected $exportClass = DataExport::class;
+    protected $importClass = DataImport::class;
+    protected $requestClass = DataRequest::class;
+    protected $pdfView = 'admin.data.pdf.template';
+
+    protected $imageField = 'img';
+    protected $imageFolder = 'data';
 
     // Display a listing of the resource
     public function index(TableRequest $request)
@@ -75,126 +67,5 @@ class AdminDataController extends Controller
             'search',
             'perPage'
         ));
-    }
-
-    // Handle import data
-    public function import(Request $request)
-    {
-        $request->validate([
-            'file' => 'required|max:10240|mimes:xlsx,xls',
-        ]);
-
-        $file = $request->file('file');
-
-        Excel::import(new DataImport, $file);
-
-        return back()->with('success', 'Successfully Import ' . $this->title . '!');
-    }
-
-    // Handle export data to excel file
-    public function exportExcel(Request $request)
-    {
-        $categoryId = $request->query('category_id');
-
-        $categoryName = $categoryId
-            ? Category::where('id', $categoryId)->value('fullname')
-            : null;
-
-        $fileName = 'Data';
-
-        if (!empty($categoryName)) {
-            $fileName .= ' ' . $categoryName;
-        }
-
-        $fileName .= '.xlsx';
-
-        return Excel::download(new DataExport($categoryId), $fileName);
-    }
-
-    // Handle export data to pdf file
-    public function exportPDF()
-    {
-        $datas = Data::withTrashed()->get();
-        $pdf = Pdf::loadView('admin.data.pdf.template', compact('datas'));
-
-        return $pdf->stream($this->title . '.pdf');
-    }
-
-    // Handle store data
-    public function store(DataRequest $request)
-    {
-        $data = Data::create($request->validated());
-        $data->tags()->attach($request->tags);
-
-        if ($request->hasFile('img')) {
-            $img = $request->file('img');
-            $file_name = $data->slug . '_' . $data->category->slug . '.' . $img->getClientOriginalExtension();
-            $data->img = $file_name;
-            $data->update();
-            $img->storeAs('public', $file_name);
-        }
-
-        return back()->with('success', 'Successfully Create ' . $this->title . '!');
-    }
-
-    // Handle update data
-    public function update(DataRequest $request, $id)
-    {
-        $data = Data::findOrFail($id);
-        $data->update($request->validated());
-        $data->tags()->sync($request->tags);
-
-        if ($request->hasFile('img')) {
-            $img = $request->file('img');
-            $file_name = $data->slug . '_' . $data->category->slug . '.' . $img->getClientOriginalExtension();
-            $data->img = $file_name;
-            $data->update();
-            $img->storeAs('public', $file_name);
-        }
-
-        return back()->with('success', 'Successfully Edit ' . $this->title . '!');
-    }
-
-    // Handle hard delete data
-    public function destroy($id)
-    {
-        Data::withTrashed()->findOrFail($id)->forceDelete();
-        return back()->with('success', 'Successfully Delete ' . $this->title . '!');
-    }
-
-    // Handle hard delete all data
-    public function destroyAll()
-    {
-        Data::truncate();
-        return back()->with('success', 'Successfully Delete All ' . $this->title . '!');
-    }
-
-    // Handle soft delete data
-    public function softDelete($id)
-    {
-        Data::findOrFail($id)->delete();
-        return back()->with('success', 'Successfully Delete ' . $this->title . '!');
-    }
-
-    // Handle soft delete all data
-    public function softDeleteAll()
-    {
-        Data::query()->delete();
-        return back()->with('success', 'Successfully Delete All ' . $this->title . '!');
-    }
-
-    // Handle restore data
-    public function restore($id)
-    {
-        Data::withTrashed()->findOrFail($id)->restore();
-        return back()->with('success', 'Successfully Restore ' . $this->title . '!');
-    }
-
-    // Handle restore all data
-    public function restoreAll()
-    {
-        Data::onlyTrashed()->restore();
-
-        return back()->with('success', 'Successfully Restore All ' . $this->title . '!');
     }
 }
