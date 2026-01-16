@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Export Video</title>
+    <title>Export {{ $title ?? '-' }}</title>
     <style>
         body {
             font-family: sans-serif;
@@ -36,8 +36,8 @@
 </head>
 
 <body>
-    <h2>Daftar Video</h2>
-    <p>Total: {{ $videos->count() }}</p>
+    <h2>Daftar {{ $title ?? '-' }}</h2>
+    <p>Total: {{ $data->count() }}</p>
 
     <table>
         <thead>
@@ -49,7 +49,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($videos as $item)
+            @foreach ($data as $item)
                 <tr>
                     <td>{{ $loop->iteration + (($page ?? 1) - 1) * ($perPage ?? 10) }}</td>
                     <td>{{ $item->title ?? '-' }}</td>

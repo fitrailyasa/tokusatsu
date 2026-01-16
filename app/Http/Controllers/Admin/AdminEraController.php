@@ -4,34 +4,25 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Era;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
-use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\EraImport;
 use App\Exports\EraExport;
 use App\Http\Requests\EraRequest;
 use App\Http\Requests\TableRequest;
-use Barryvdh\DomPDF\Facade\Pdf;
 
 class AdminEraController extends Controller
 {
-    protected $title = "Era";
+    protected $model = Era::class;
+    protected $title = 'era';
+    protected $permissionName = 'era';
 
-    // Middleware for era permissions
-    public function __construct()
-    {
-        $this->middleware('permission:view:era')->only(['index']);
-        $this->middleware('permission:create:era')->only(['store']);
-        $this->middleware('permission:edit:era')->only(['update', 'toggleStatus']);
-        $this->middleware('permission:delete:era')->only(['destroy']);
-        $this->middleware('permission:delete-all:era')->only(['destroyAll']);
-        $this->middleware('permission:soft-delete:era')->only(['softDelete']);
-        $this->middleware('permission:soft-delete-all:era')->only(['softDeleteAll']);
-        $this->middleware('permission:restore:era')->only(['restore']);
-        $this->middleware('permission:restore-all:era')->only(['restoreAll']);
-        $this->middleware('permission:import:era')->only(['import']);
-        $this->middleware('permission:export:era')->only(['exportExcel', 'exportPDF']);
-    }
+    protected $exportClass = EraExport::class;
+    protected $importClass = EraImport::class;
+    protected $requestClass = EraRequest::class;
+    protected $pdfView = 'admin.era.pdf.template';
+
+    protected $imageField = 'img';
+    protected $imageFolder = 'era';
 
     // Display a listing of the resource
     public function index(TableRequest $request)
@@ -58,119 +49,5 @@ class AdminEraController extends Controller
         }
 
         return view("admin.era.index", compact('eras', 'search', 'perPage'));
-    }
-
-    // Handle toggle status era
-    public function toggleStatus($id)
-    {
-        $era = Era::withTrashed()->findOrFail($id);
-
-        $era->status = $era->status == 1 ? 0 : 1;
-        $era->save();
-
-        return redirect()->back()->with('success', 'Successfully Change Status ' . $this->title . '!');
-    }
-
-    // Handle import data era from excel file
-    public function import(Request $request)
-    {
-        $request->validate([
-            'file' => 'required|max:10240|mimes:xlsx,xls',
-        ]);
-
-        $file = $request->file('file');
-        Excel::import(new EraImport, $file);
-
-        return back()->with('success', 'Successfully Import Data ' . $this->title . '!');
-    }
-
-    // Handle export data era to excel file
-    public function exportExcel()
-    {
-        return Excel::download(new EraExport, 'Data ' . $this->title . '.xlsx');
-    }
-
-    // Handle export data era to pdf file
-    public function exportPDF()
-    {
-        $eras = Era::withTrashed()->get();
-        $pdf = Pdf::loadView('admin.era.pdf.template', compact('eras'));
-
-        return $pdf->stream('Data ' . $this->title . '.pdf');
-    }
-
-    // Handle store data era
-    public function store(EraRequest $request)
-    {
-        $era = Era::create($request->validated());
-
-        if ($request->hasFile('img')) {
-            $img = $request->file('img');
-            $file_name = $era->slug . '_' . time() . '.' . $img->getClientOriginalExtension();
-            $era->img = $file_name;
-            $era->update();
-            $img->storeAs('public', $file_name);
-        }
-
-        return back()->with('success', 'Successfully Create Data ' . $this->title . '!');
-    }
-
-    // Handle update data era
-    public function update(EraRequest $request, $id)
-    {
-        $era = Era::findOrFail($id);
-        $era->update($request->validated());
-
-        if ($request->hasFile('img')) {
-            $img = $request->file('img');
-            $file_name = $era->slug . '_' . time() . '.' . $img->getClientOriginalExtension();
-            $era->img = $file_name;
-            $era->update();
-            $img->storeAs('public', $file_name);
-        }
-
-        return back()->with('success', 'Successfully Edit Data ' . $this->title . '!');
-    }
-
-    // Handle hard delete data era
-    public function destroy($id)
-    {
-        Era::withTrashed()->findOrFail($id)->forceDelete();
-        return back()->with('success', 'Successfully Delete Data ' . $this->title . '!');
-    }
-
-    // Handle hard delete all data era
-    public function destroyAll()
-    {
-        Era::truncate();
-        return back()->with('success', 'Successfully Delete All ' . $this->title . '!');
-    }
-
-    // Handle soft delete data era
-    public function softDelete($id)
-    {
-        Era::findOrFail($id)->delete();
-        return back()->with('success', 'Successfully Delete Data ' . $this->title . '!');
-    }
-
-    // Handle soft delete all data era
-    public function softDeleteAll()
-    {
-        Era::query()->delete();
-        return back()->with('success', 'Successfully Delete All ' . $this->title . '!');
-    }
-
-    // Handle restore data era
-    public function restore($id)
-    {
-        Era::withTrashed()->findOrFail($id)->restore();
-        return back()->with('success', 'Successfully Restore ' . $this->title . '!');
-    }
-
-    // Handle restore all data era
-    public function restoreAll()
-    {
-        Era::onlyTrashed()->restore();
-        return back()->with('success', 'Successfully Restore All ' . $this->title . '!');
     }
 }
