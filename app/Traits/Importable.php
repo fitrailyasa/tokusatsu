@@ -18,6 +18,6 @@ trait Importable
             $request->file('file')
         );
 
-        return back()->with('success', 'Successfully Import Data!');
+        return back()->with('success', 'Successfully import data!');
     }
 }

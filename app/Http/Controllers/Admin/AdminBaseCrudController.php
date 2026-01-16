@@ -127,7 +127,7 @@ class AdminBaseCrudController extends Controller
             ]);
         }
 
-        return back()->with('success', 'Successfully Create ' . $this->title . '!');
+        return back()->with('success', 'Successfully create ' . $this->title . '!');
     }
 
     // Handle update data
@@ -158,48 +158,48 @@ class AdminBaseCrudController extends Controller
             ]);
         }
 
-        return back()->with('success', 'Successfully Update ' . $this->title . '!');
+        return back()->with('success', 'Successfully update ' . $this->title . '!');
     }
 
     // Handle hard delete data
     public function destroy($id)
     {
         $this->model::withTrashed()->findOrFail($id)->forceDelete();
-        return back()->with('success', 'Successfully Delete Data ' . $this->title . '!');
+        return back()->with('success', 'Successfully delete data ' . $this->title . '!');
     }
 
     // Handle hard delete all data
     public function destroyAll()
     {
         $this->model::truncate();
-        return back()->with('success', 'Successfully Delete All ' . $this->title . '!');
+        return back()->with('success', 'Successfully delete all ' . $this->title . '!');
     }
 
     // Handle soft delete data
     public function softDelete($id)
     {
         $this->model::findOrFail($id)->delete();
-        return back()->with('success', 'Successfully Delete Data ' . $this->title . '!');
+        return back()->with('success', 'Successfully delete data ' . $this->title . '!');
     }
 
     // Handle soft delete all data
     public function softDeleteAll()
     {
         $this->model::query()->delete();
-        return back()->with('success', 'Successfully Delete All ' . $this->title . '!');
+        return back()->with('success', 'Successfully delete all ' . $this->title . '!');
     }
 
     // Handle restore data
     public function restore($id)
     {
         $this->model::withTrashed()->findOrFail($id)->restore();
-        return back()->with('success', 'Successfully Restore ' . $this->title . '!');
+        return back()->with('success', 'Successfully restore ' . $this->title . '!');
     }
 
     // Handle restore all data
     public function restoreAll()
     {
         $this->model::onlyTrashed()->restore();
-        return back()->with('success', 'Successfully Restore All ' . $this->title . '!');
+        return back()->with('success', 'Successfully restore all ' . $this->title . '!');
     }
 }
