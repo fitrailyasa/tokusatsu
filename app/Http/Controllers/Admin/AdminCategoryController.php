@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Franchise;
 use App\Models\Era;
@@ -60,6 +59,8 @@ class AdminCategoryController extends AdminBaseCrudController
             ->latest('first_aired')
             ->paginate($validPerPage);
 
-        return view("admin.category.index", compact('categories', 'eras', 'franchises', 'eraId', 'franchiseId', 'search', 'perPage'));
+        $permission = $this->permissionName;
+
+        return view("admin.category.index", compact('categories', 'eras', 'franchises', 'eraId', 'franchiseId', 'search', 'perPage', 'permission'));
     }
 }

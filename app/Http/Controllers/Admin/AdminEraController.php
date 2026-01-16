@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Era;
 use Illuminate\Support\Facades\Gate;
 use App\Imports\EraImport;
@@ -10,7 +9,7 @@ use App\Exports\EraExport;
 use App\Http\Requests\EraRequest;
 use App\Http\Requests\TableRequest;
 
-class AdminEraController extends Controller
+class AdminEraController extends AdminBaseCrudController
 {
     protected $model = Era::class;
     protected $title = 'era';
@@ -48,6 +47,8 @@ class AdminEraController extends Controller
                 ->paginate($validPerPage);
         }
 
-        return view("admin.era.index", compact('eras', 'search', 'perPage'));
+        $permission = $this->permissionName;
+
+        return view("admin.era.index", compact('eras', 'search', 'perPage', 'permission'));
     }
 }

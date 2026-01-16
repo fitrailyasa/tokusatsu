@@ -1,63 +1,6 @@
 <x-admin-table>
 
-    <!-- Title -->
-    <x-slot name="title">
-        Video
-    </x-slot>
-
-    <!-- Button Form Create -->
-    <x-slot name="formCreate">
-        @can('create:video')
-            @include('admin.video.create')
-        @endcan
-    </x-slot>
-
-    <!-- Button Import -->
-    <x-slot name="import">
-        @can('import:video')
-            @include('admin.video.excel.import')
-        @endcan
-    </x-slot>
-
-    <!-- Button Export Excel -->
-    <x-slot name="exportExcel">
-        @can('export:video')
-            @include('admin.video.excel.export')
-        @endcan
-    </x-slot>
-
-    <!-- Button Export PDF -->
-    <x-slot name="exportPDF">
-        @can('export:video')
-            {{-- @include('admin.video.pdf.export') --}}
-        @endcan
-    </x-slot>
-
-    <!-- Button Soft Delete All -->
-    <x-slot name="softDeleteAll">
-        @can('soft-delete-all:video')
-            @include('admin.video.softDeleteAll')
-        @endcan
-    </x-slot>
-
-    <!-- Button Restore All -->
-    <x-slot name="restoreAll">
-        @can('restore-all:video')
-            @include('admin.video.restoreAll')
-        @endcan
-    </x-slot>
-
-    <!-- Button Permanent Delete All -->
-    <x-slot name="deleteAll">
-        @can('delete-all:video')
-            @include('admin.video.deleteAll')
-        @endcan
-    </x-slot>
-
-    <!-- Search & Pagination -->
-    <x-slot name="search">
-        @include('components.search')
-    </x-slot>
+    @include('components.table-header', ['permission' => $permission])
 
     <div class="alert alert-warning d-flex align-items-center mb-3">
         <span>
@@ -136,27 +79,21 @@
                             </form>
                         </td>
                     @endcan
-                    @canany(['edit:video', 'delete:video'])
-                        <td class="manage-row text-center">
-                            @if ($item->trashed())
-                                <!-- Restore and Delete Button -->
-                                @can('restore:video')
-                                    @include('admin.video.restore')
-                                @endcan
-                                @can('delete:video')
-                                    @include('admin.video.delete')
-                                @endcan
-                            @else
-                                <!-- Edit and Soft Delete Buttons -->
-                                @can('edit:video')
-                                    @include('admin.video.edit')
-                                @endcan
-                                @can('soft-delete:video')
-                                    @include('admin.video.softDelete')
-                                @endcan
-                            @endif
+                    @can('edit:' . $permission)
+                        <td class="text-center">
+                            <form action="{{ route('admin.' . $permission . '.toggleStatus', $item->id) }}" method="POST">
+                                @csrf
+                                @method('PUT')
+
+                                <label class="toggle-switch">
+                                    <input type="checkbox" onchange="this.form.submit()"
+                                        {{ $item->status == 1 ? 'checked' : '' }}>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </form>
                         </td>
-                    @endcanany
+                    @endcan
+                    @include('components.table-action', ['permission' => $permission, 'item' => $item])
                 </tr>
             @endforeach
         </tbody>

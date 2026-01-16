@@ -47,6 +47,8 @@ class AdminFranchiseController extends AdminBaseCrudController
                 ->paginate($validPerPage);
         }
 
-        return view("admin.franchise.index", compact('franchises', 'search', 'perPage'));
+        $permission = $this->permissionName;
+
+        return view("admin.franchise.index", compact('franchises', 'search', 'perPage', 'permission'));
     }
 }

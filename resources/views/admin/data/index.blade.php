@@ -1,63 +1,6 @@
 <x-admin-table>
 
-    <!-- Title -->
-    <x-slot name="title">
-        Data
-    </x-slot>
-
-    <!-- Button Form Create -->
-    <x-slot name="formCreate">
-        @can('create:data')
-            @include('admin.data.create')
-        @endcan
-    </x-slot>
-
-    <!-- Button Import -->
-    <x-slot name="import">
-        @can('import:data')
-            @include('admin.data.excel.import')
-        @endcan
-    </x-slot>
-
-    <!-- Button Export Excel -->
-    <x-slot name="exportExcel">
-        @can('export:data')
-            @include('admin.data.excel.export')
-        @endcan
-    </x-slot>
-
-    <!-- Button Export PDF -->
-    <x-slot name="exportPDF">
-        @can('export:data')
-            {{-- @include('admin.data.pdf.export') --}}
-        @endcan
-    </x-slot>
-
-    <!-- Button Soft Delete All -->
-    <x-slot name="softDeleteAll">
-        @can('soft-delete-all:data')
-            @include('admin.data.softDeleteAll')
-        @endcan
-    </x-slot>
-
-    <!-- Button Restore All -->
-    <x-slot name="restoreAll">
-        @can('restore-all:data')
-            @include('admin.data.restoreAll')
-        @endcan
-    </x-slot>
-
-    <!-- Button Permanent Delete All -->
-    <x-slot name="deleteAll">
-        @can('delete-all:data')
-            @include('admin.data.deleteAll')
-        @endcan
-    </x-slot>
-
-    <!-- Search & Pagination -->
-    <x-slot name="search">
-        @include('components.search')
-    </x-slot>
+    @include('components.table-header', ['permission' => $permission])
 
     <!-- Table -->
     <table id="" class="table table-bordered table-striped">
@@ -137,27 +80,7 @@
                             <span class="badge badge-primary">{{ $tag }}</span>
                         @endforeach
                     </td>
-                    @canany(['edit:data', 'delete:data'])
-                        <td class="manage-row text-center">
-                            @if ($item->trashed())
-                                <!-- Restore and Delete Button -->
-                                @can('restore:data')
-                                    @include('admin.data.restore')
-                                @endcan
-                                @can('delete:data')
-                                    @include('admin.data.delete')
-                                @endcan
-                            @else
-                                <!-- Edit and Soft Delete Buttons -->
-                                @can('edit:data')
-                                    @include('admin.data.edit')
-                                @endcan
-                                @can('soft-delete:data')
-                                    @include('admin.data.softDelete')
-                                @endcan
-                            @endif
-                        </td>
-                    @endcanany
+                    @include('components.table-action', ['permission' => $permission, 'item' => $item])
                 </tr>
             @endforeach
         </tbody>

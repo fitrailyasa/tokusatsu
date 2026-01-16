@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Data;
 use App\Models\Category;
 use App\Models\Tag;
-use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\DataImport;
 use App\Exports\DataExport;
 use App\Http\Requests\DataRequest;
@@ -58,6 +56,8 @@ class AdminDataController extends AdminBaseCrudController
             ->orderBy('id', 'desc')
             ->paginate($validPerPage);
 
+        $permission = $this->permissionName;
+
         return view('admin.data.index', compact(
             'datas',
             'groupedCategories',
@@ -65,7 +65,8 @@ class AdminDataController extends AdminBaseCrudController
             'categoryId',
             'tags',
             'search',
-            'perPage'
+            'perPage',
+            'permission',
         ));
     }
 }

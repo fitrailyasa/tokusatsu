@@ -1,63 +1,6 @@
 <x-admin-table>
 
-    <!-- Title -->
-    <x-slot name="title">
-        Era
-    </x-slot>
-
-    <!-- Button Form Create -->
-    <x-slot name="formCreate">
-        @can('create:era')
-            @include('admin.era.create')
-        @endcan
-    </x-slot>
-
-    <!-- Button Import -->
-    <x-slot name="import">
-        @can('import:era')
-            @include('admin.era.excel.import')
-        @endcan
-    </x-slot>
-
-    <!-- Button Export Excel -->
-    <x-slot name="exportExcel">
-        @can('export:era')
-            @include('admin.era.excel.export')
-        @endcan
-    </x-slot>
-
-    <!-- Button Export PDF -->
-    <x-slot name="exportPDF">
-        @can('export:era')
-            @include('admin.era.pdf.export')
-        @endcan
-    </x-slot>
-
-    <!-- Button Soft Delete All -->
-    <x-slot name="softDeleteAll">
-        @can('soft-delete-all:era')
-            @include('admin.era.softDeleteAll')
-        @endcan
-    </x-slot>
-
-    <!-- Button Restore All -->
-    <x-slot name="restoreAll">
-        @can('restore-all:era')
-            @include('admin.era.restoreAll')
-        @endcan
-    </x-slot>
-
-    <!-- Button Permanent Delete All -->
-    <x-slot name="deleteAll">
-        @can('delete-all:era')
-            @include('admin.era.deleteAll')
-        @endcan
-    </x-slot>
-
-    <!-- Search & Pagination -->
-    <x-slot name="search">
-        @include('components.search')
-    </x-slot>
+    @include('components.table-header', ['permission' => $permission])
 
     <!-- Table -->
     <table id="" class="table table-bordered table-striped">
@@ -82,8 +25,7 @@
                     <td>{{ $item->name ?? '-' }}</td>
                     <td>
                         @if ($item->img == null)
-                            <img src="{{ asset('assets/profile/default.png') }}" alt="{{ $item->name }}"
-                                width="100">
+                            <img src="{{ asset('assets/profile/default.png') }}" alt="{{ $item->name }}" width="100">
                         @else
                             <a href="#" data-bs-toggle="modal" data-bs-target="#myModal{{ $item->id }}">
                                 <img class="img img-fluid rounded" src="{{ asset('storage/' . $item->img) }}"
@@ -137,27 +79,7 @@
                             </form>
                         </td>
                     @endcan
-                    @canany(['edit:era', 'delete:era'])
-                        <td class="manage-row text-center">
-                            @if ($item->trashed())
-                                <!-- Restore and Delete Button -->
-                                @can('restore:era')
-                                    @include('admin.era.restore')
-                                @endcan
-                                @can('delete:era')
-                                    @include('admin.era.delete')
-                                @endcan
-                            @else
-                                <!-- Edit and Soft Delete Buttons -->
-                                @can('edit:era')
-                                    @include('admin.era.edit')
-                                @endcan
-                                @can('soft-delete:era')
-                                    @include('admin.era.softDelete')
-                                @endcan
-                            @endif
-                        </td>
-                    @endcanany
+                    @include('components.table-action', ['permission' => $permission, 'item' => $item])
                 </tr>
             @endforeach
         </tbody>

@@ -4,9 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Video;
 use App\Models\Category;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
-use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\VideoImport;
 use App\Exports\VideoExport;
 use App\Http\Requests\VideoRequest;
@@ -106,6 +104,8 @@ class AdminVideoController extends AdminBaseCrudController
         $totalEmptyLinks = Video::withTrashed()->emptyLink()->count();
         $emptyLinkPerCategory = Video::withTrashed()->emptyLinkPerCategory()->get();
 
+        $permission = $this->permissionName;
+
         return view('admin.video.index', compact(
             'videos',
             'totalEmptyLinks',
@@ -115,7 +115,8 @@ class AdminVideoController extends AdminBaseCrudController
             'categoryId',
             'types',
             'search',
-            'perPage'
+            'perPage',
+            'permission',
         ));
     }
 }

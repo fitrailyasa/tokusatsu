@@ -1,63 +1,6 @@
 <x-admin-table>
 
-    <!-- Title -->
-    <x-slot name="title">
-        Tag
-    </x-slot>
-
-    <!-- Button Form Create -->
-    <x-slot name="formCreate">
-        @can('create:tag')
-            @include('admin.tag.create')
-        @endcan
-    </x-slot>
-
-    <!-- Button Import -->
-    <x-slot name="import">
-        @can('import:tag')
-            @include('admin.tag.excel.import')
-        @endcan
-    </x-slot>
-
-    <!-- Button Export Excel -->
-    <x-slot name="exportExcel">
-        @can('export:tag')
-            @include('admin.tag.excel.export')
-        @endcan
-    </x-slot>
-
-    <!-- Button Export PDF -->
-    <x-slot name="exportPDF">
-        @can('export:tag')
-            @include('admin.tag.pdf.export')
-        @endcan
-    </x-slot>
-
-    <!-- Button Soft Delete All -->
-    <x-slot name="softDeleteAll">
-        @can('soft-delete-all:tag')
-            @include('admin.tag.softDeleteAll')
-        @endcan
-    </x-slot>
-
-    <!-- Button Restore All -->
-    <x-slot name="restoreAll">
-        @can('restore-all:tag')
-            @include('admin.tag.restoreAll')
-        @endcan
-    </x-slot>
-
-    <!-- Button Permanent Delete All -->
-    <x-slot name="deleteAll">
-        @can('delete-all:tag')
-            @include('admin.tag.deleteAll')
-        @endcan
-    </x-slot>
-
-    <!-- Search & Pagination -->
-    <x-slot name="search">
-        @include('components.search')
-    </x-slot>
+    @include('components.table-header', ['permission' => $permission])
 
     <!-- Table -->
     <table id="" class="table table-bordered table-striped">
@@ -75,27 +18,7 @@
                 <tr @if ($item->trashed()) class="text-muted" @endif>
                     <td>{{ $tags->firstItem() + $loop->index }}</td>
                     <td>{{ $item->name ?? '-' }}</td>
-                    @canany(['edit:tag', 'delete:tag'])
-                        <td class="manage-row text-center">
-                            @if ($item->trashed())
-                                <!-- Restore and Delete Button -->
-                                @can('restore:tag')
-                                    @include('admin.tag.restore')
-                                @endcan
-                                @can('delete:tag')
-                                    @include('admin.tag.delete')
-                                @endcan
-                            @else
-                                <!-- Edit and Soft Delete Buttons -->
-                                @can('edit:tag')
-                                    @include('admin.tag.edit')
-                                @endcan
-                                @can('soft-delete:tag')
-                                    @include('admin.tag.softDelete')
-                                @endcan
-                            @endif
-                        </td>
-                    @endcanany
+                    @include('components.table-action', ['permission' => $permission, 'item' => $item])
                 </tr>
             @endforeach
         </tbody>

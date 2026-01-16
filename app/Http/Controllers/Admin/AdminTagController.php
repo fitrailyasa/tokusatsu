@@ -38,6 +38,8 @@ class AdminTagController extends AdminBaseCrudController
             $tags = Tag::withTrashed()->paginate($validPerPage);
         }
 
-        return view("admin.tag.index", compact('tags', 'search', 'perPage'));
+        $permission = $this->permissionName;
+
+        return view("admin.tag.index", compact('tags', 'search', 'perPage', 'permission'));
     }
 }

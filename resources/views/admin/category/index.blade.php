@@ -1,63 +1,6 @@
 <x-admin-table>
 
-    <!-- Title -->
-    <x-slot name="title">
-        Category
-    </x-slot>
-
-    <!-- Button Form Create -->
-    <x-slot name="formCreate">
-        @can('create:category')
-            @include('admin.category.create')
-        @endcan
-    </x-slot>
-
-    <!-- Button Import -->
-    <x-slot name="import">
-        @can('import:category')
-            @include('admin.category.excel.import')
-        @endcan
-    </x-slot>
-
-    <!-- Button Export Excel -->
-    <x-slot name="exportExcel">
-        @can('export:category')
-            @include('admin.category.excel.export')
-        @endcan
-    </x-slot>
-
-    <!-- Button Export PDF -->
-    <x-slot name="exportPDF">
-        @can('export:category')
-            @include('admin.category.pdf.export')
-        @endcan
-    </x-slot>
-
-    <!-- Button Soft Delete All -->
-    <x-slot name="softDeleteAll">
-        @can('soft-delete-all:category')
-            @include('admin.category.softDeleteAll')
-        @endcan
-    </x-slot>
-
-    <!-- Button Restore All -->
-    <x-slot name="restoreAll">
-        @can('restore-all:category')
-            @include('admin.category.restoreAll')
-        @endcan
-    </x-slot>
-
-    <!-- Button Permanent Delete All -->
-    <x-slot name="deleteAll">
-        @can('delete-all:category')
-            @include('admin.category.deleteAll')
-        @endcan
-    </x-slot>
-
-    <!-- Search & Pagination -->
-    <x-slot name="search">
-        @include('components.search')
-    </x-slot>
+    @include('components.table-header', ['permission' => $permission])
 
     <!-- Table -->
     <table id="" class="table table-bordered table-striped">
@@ -72,10 +15,10 @@
                 <th>{{ __('Franchise') }}</th>
                 <th>{{ __('First Aired') }}</th>
                 <th>{{ __('Last Aired') }}</th>
-                @can('edit:category')
+                @can('edit:' . $permission)
                     <th>{{ __('Status') }}</th>
                 @endcan
-                @canany(['edit:category', 'delete:category'])
+                @canany(['edit:' . $permission, 'delete:' . $permission])
                     <th class="text-center">{{ __('Action') }}</th>
                 @endcanany
             </tr>
@@ -145,9 +88,9 @@
                     <td>
                         {{ date('d M Y', strtotime($item->last_aired)) }}
                     </td>
-                    @can('edit:category')
+                    @can('edit:' . $permission)
                         <td class="text-center">
-                            <form action="{{ route('admin.category.toggleStatus', $item->id) }}" method="POST">
+                            <form action="{{ route('admin.' . $permission . '.toggleStatus', $item->id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
 
@@ -159,27 +102,7 @@
                             </form>
                         </td>
                     @endcan
-                    @canany(['edit:category', 'delete:category'])
-                        <td class="manage-row text-center">
-                            @if ($item->trashed())
-                                <!-- Restore and Delete Button -->
-                                @can('restore:category')
-                                    @include('admin.category.restore')
-                                @endcan
-                                @can('delete:category')
-                                    @include('admin.category.delete')
-                                @endcan
-                            @else
-                                <!-- Edit and Soft Delete Buttons -->
-                                @can('edit:category')
-                                    @include('admin.category.edit')
-                                @endcan
-                                @can('soft-delete:category')
-                                    @include('admin.category.softDelete')
-                                @endcan
-                            @endif
-                        </td>
-                    @endcanany
+                    @include('components.table-action', ['permission' => $permission, 'item' => $item])
                 </tr>
             @endforeach
         </tbody>
@@ -194,10 +117,10 @@
                 <th>{{ __('Franchise') }}</th>
                 <th>{{ __('First Aired') }}</th>
                 <th>{{ __('Last Aired') }}</th>
-                @can('edit:category')
+                @can('edit:' . $permission)
                     <th>{{ __('Status') }}</th>
                 @endcan
-                @canany(['edit:category', 'delete:category'])
+                @canany(['edit:' . $permission, 'delete:' . $permission])
                     <th class="text-center">{{ __('Action') }}</th>
                 @endcanany
             </tr>

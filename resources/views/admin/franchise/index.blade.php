@@ -1,63 +1,6 @@
 <x-admin-table>
 
-    <!-- Title -->
-    <x-slot name="title">
-        Franchise
-    </x-slot>
-
-    <!-- Button Form Create -->
-    <x-slot name="formCreate">
-        @can('create:franchise')
-            @include('admin.franchise.create')
-        @endcan
-    </x-slot>
-
-    <!-- Button Import -->
-    <x-slot name="import">
-        @can('import:franchise')
-            @include('admin.franchise.excel.import')
-        @endcan
-    </x-slot>
-
-    <!-- Button Export Excel -->
-    <x-slot name="exportExcel">
-        @can('export:franchise')
-            @include('admin.franchise.excel.export')
-        @endcan
-    </x-slot>
-
-    <!-- Button Export PDF -->
-    <x-slot name="exportPDF">
-        @can('export:franchise')
-            @include('admin.franchise.pdf.export')
-        @endcan
-    </x-slot>
-
-    <!-- Button Soft Delete All -->
-    <x-slot name="softDeleteAll">
-        @can('soft-delete-all:franchise')
-            @include('admin.franchise.softDeleteAll')
-        @endcan
-    </x-slot>
-
-    <!-- Button Restore All -->
-    <x-slot name="restoreAll">
-        @can('restore-all:franchise')
-            @include('admin.franchise.restoreAll')
-        @endcan
-    </x-slot>
-
-    <!-- Button Permanent Delete All -->
-    <x-slot name="deleteAll">
-        @can('delete-all:franchise')
-            @include('admin.franchise.deleteAll')
-        @endcan
-    </x-slot>
-
-    <!-- Search & Pagination -->
-    <x-slot name="search">
-        @include('components.search')
-    </x-slot>
+    @include('components.table-header', ['permission' => $permission])
 
     <!-- Table -->
     <table id="" class="table table-bordered table-striped">
@@ -82,8 +25,7 @@
                     <td>{{ $item->name ?? '-' }}</td>
                     <td>
                         @if ($item->img == null)
-                            <img src="{{ asset('assets/profile/default.png') }}" alt="{{ $item->name }}"
-                                width="100">
+                            <img src="{{ asset('assets/profile/default.png') }}" alt="{{ $item->name }}" width="100">
                         @else
                             <a href="#" data-bs-toggle="modal" data-bs-target="#myModal{{ $item->id }}">
                                 <img class="img img-fluid rounded" src="{{ asset('storage/' . $item->img) }}"
@@ -137,27 +79,7 @@
                             </form>
                         </td>
                     @endcan
-                    @canany(['edit:franchise', 'delete:franchise'])
-                        <td class="manage-row text-center">
-                            @if ($item->trashed())
-                                <!-- Restore and Delete Button -->
-                                @can('restore:franchise')
-                                    @include('admin.franchise.restore')
-                                @endcan
-                                @can('delete:franchise')
-                                    @include('admin.franchise.delete')
-                                @endcan
-                            @else
-                                <!-- Edit and Soft Delete Buttons -->
-                                @can('edit:franchise')
-                                    @include('admin.franchise.edit')
-                                @endcan
-                                @can('soft-delete:franchise')
-                                    @include('admin.franchise.softDelete')
-                                @endcan
-                            @endif
-                        </td>
-                    @endcanany
+                    @include('components.table-action', ['permission' => $permission, 'item' => $item])
                 </tr>
             @endforeach
         </tbody>
