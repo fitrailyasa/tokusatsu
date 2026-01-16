@@ -15,7 +15,7 @@ class VideoExport implements FromCollection, WithHeadings, WithStyles, ShouldAut
 {
     protected $categoryId;
 
-    public function __construct($categoryId)
+    public function __construct($categoryId = null)
     {
         $this->categoryId = $categoryId;
     }

@@ -15,7 +15,7 @@ class DataExport implements FromCollection, WithHeadings, WithStyles, ShouldAuto
 
     protected $categoryId;
 
-    public function __construct($categoryId)
+    public function __construct($categoryId = null)
     {
         $this->categoryId = $categoryId;
     }
