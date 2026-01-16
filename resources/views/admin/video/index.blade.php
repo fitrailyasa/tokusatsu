@@ -79,20 +79,6 @@
                             </form>
                         </td>
                     @endcan
-                    @can('edit:' . $permission)
-                        <td class="text-center">
-                            <form action="{{ route('admin.' . $permission . '.toggleStatus', $item->id) }}" method="POST">
-                                @csrf
-                                @method('PUT')
-
-                                <label class="toggle-switch">
-                                    <input type="checkbox" onchange="this.form.submit()"
-                                        {{ $item->status == 1 ? 'checked' : '' }}>
-                                    <span class="toggle-slider"></span>
-                                </label>
-                            </form>
-                        </td>
-                    @endcan
                     @include('components.table-action', ['permission' => $permission, 'item' => $item])
                 </tr>
             @endforeach
