@@ -4,12 +4,11 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TableRequest;
+use App\Http\Requests\VideoReportRequest;
 use App\Models\Franchise;
 use App\Models\Category;
 use App\Models\Video;
 use App\Models\VideoReport;
-use App\Http\Requests\VideoReportRequest;
-use Illuminate\Support\Facades\Storage;
 
 class ClientVideoController extends Controller
 {
