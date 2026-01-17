@@ -1006,7 +1006,8 @@ class VideoUltramanSeeder extends Seeder
             ['title' => "Raionji, Enraged (雷音寺、荒ぶる, Raionji, Araburu)", 'category_id' => $this->Category('omega'), 'type' => 'episode', 'number' => 21, 'airdate' => '2025-12-06'],
             ['title' => "He Who Looks to the Stars (星を見つめる人, Hoshi o Mitsumeru Hito)", 'category_id' => $this->Category('omega'), 'type' => 'episode', 'number' => 22, 'airdate' => '2025-12-13'],
             ['title' => "Space Gazers (宇宙観測隊, Uchū Kansoku-tai)", 'category_id' => $this->Category('omega'), 'type' => 'episode', 'number' => 23, 'airdate' => '2025-12-20'],
-            ['title' => "The Final Blow (最後の力, Saigo no Chikara)", 'category_id' => $this->Category('omega'), 'type' => 'episode', 'number' => 24, 'airdate' => null],
+            ['title' => "The Final Blow (最後の力, Saigo no Chikara)", 'category_id' => $this->Category('omega'), 'type' => 'episode', 'number' => 24, 'airdate' => '2026-01-10'],
+            ['title' => "Overlapping Futures (重なる未来, Kasanaru Mirai)", 'category_id' => $this->Category('omega'), 'type' => 'episode', 'number' => 25, 'airdate' => '2026-01-17'],
 
         ])->map(function ($item) use ($timestamp) {
 
