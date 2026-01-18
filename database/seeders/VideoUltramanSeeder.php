@@ -3,9 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
+use App\Models\Video;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\DB;
 
 class VideoUltramanSeeder extends Seeder
 {
@@ -1020,7 +1020,7 @@ class VideoUltramanSeeder extends Seeder
             return array_merge($item, $timestamp);
         });
 
-        DB::table('videos')->insert($data->toArray());
+        Video::query()->insert($data->toArray());
     }
 
     private function Category(string $slug): string
