@@ -13,7 +13,7 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
-                <x-sidebar-link route="admin.dashboard" icon="tachometer-alt" label="Dashboard" />
+                <x-sidebar-link route="admin.dashboard" icon="tachometer-alt" label="Dashboard" can="admin:dashboard" />
                 <x-sidebar-link route="admin.user.index" icon="users" label="User" can="view:user" />
                 <x-sidebar-link route="admin.role.index" icon="key" label="Role" can="view:role" />
                 <x-sidebar-link route="admin.data.index" icon="database" label="Data" can="view:data" />

@@ -76,6 +76,7 @@
 
     @include('layouts.client.header')
 
+    {{ $slot ?? '' }}
     @yield('content')
 
     @include('layouts.client.footer')

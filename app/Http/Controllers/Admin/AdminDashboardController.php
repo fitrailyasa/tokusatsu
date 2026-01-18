@@ -19,7 +19,7 @@ class AdminDashboardController extends Controller
         $this->middleware(function ($request, $next) {
 
             if (!auth()->user() || !auth()->user()->can('admin:dashboard')) {
-                return redirect('/');
+                return redirect('/profile');
             }
 
             return $next($request);
