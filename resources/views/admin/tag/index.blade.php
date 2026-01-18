@@ -8,7 +8,7 @@
             <tr>
                 <th>{{ __('No') }}</th>
                 <th>{{ __('Name') }}</th>
-                @canany(['edit:tag', 'delete:tag'])
+                @canany(['edit:' . $permission, 'delete:' . $permission])
                     <th class="text-center">{{ __('Action') }}</th>
                 @endcanany
             </tr>
@@ -26,7 +26,7 @@
             <tr>
                 <th>{{ __('No') }}</th>
                 <th>{{ __('Name') }}</th>
-                @canany(['edit:tag', 'delete:tag'])
+                @canany(['edit:' . $permission, 'delete:' . $permission])
                     <th class="text-center">{{ __('Action') }}</th>
                 @endcanany
             </tr>

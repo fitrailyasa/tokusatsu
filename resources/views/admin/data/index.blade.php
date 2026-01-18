@@ -11,7 +11,7 @@
                 <th>{{ __('Category') }}</th>
                 <th>{{ __('Images') }}</th>
                 <th>{{ __('Tags') }}</th>
-                @canany(['edit:data', 'delete:data'])
+                @canany(['edit:' . $permission, 'delete:' . $permission])
                     <th class="text-center">{{ __('Action') }}</th>
                 @endcanany
             </tr>
@@ -91,7 +91,7 @@
                 <th>{{ __('Category') }}</th>
                 <th>{{ __('Images') }}</th>
                 <th>{{ __('Tags') }}</th>
-                @canany(['edit:data', 'delete:data'])
+                @canany(['edit:' . $permission, 'delete:' . $permission])
                     <th class="text-center">{{ __('Action') }}</th>
                 @endcanany
             </tr>

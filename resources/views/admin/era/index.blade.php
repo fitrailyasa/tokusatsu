@@ -10,10 +10,10 @@
                 <th>{{ __('Name') }}</th>
                 <th>{{ __('Img') }}</th>
                 <th>{{ __('Description') }}</th>
-                @can('edit:era')
+                @can('edit:' . $permission)
                     <th>{{ __('Status') }}</th>
                 @endcan
-                @canany(['edit:era', 'delete:era'])
+                @canany(['edit:' . $permission, 'delete:' . $permission])
                     <th class="text-center">{{ __('Action') }}</th>
                 @endcanany
             </tr>
@@ -89,10 +89,10 @@
                 <th>{{ __('Name') }}</th>
                 <th>{{ __('Img') }}</th>
                 <th>{{ __('Description') }}</th>
-                @can('edit:era')
+                @can('edit:' . $permission)
                     <th>{{ __('Status') }}</th>
                 @endcan
-                @canany(['edit:era', 'delete:era'])
+                @canany(['edit:' . $permission, 'delete:' . $permission])
                     <th class="text-center">{{ __('Action') }}</th>
                 @endcanany
             </tr>

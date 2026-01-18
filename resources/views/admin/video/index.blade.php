@@ -37,10 +37,10 @@
                 <th>{{ __('Type') }}</th>
                 <th>{{ __('Link') }}</th>
                 <th>{{ __('Release') }}</th>
-                @can('edit:video')
+                @can('edit:' . $permission)
                     <th>{{ __('Status') }}</th>
                 @endcan
-                @canany(['edit:video', 'delete:video'])
+                @canany(['edit:' . $permission, 'delete:' . $permission])
                     <th class="text-center">{{ __('Action') }}</th>
                 @endcanany
             </tr>
@@ -56,7 +56,6 @@
                         </span>
                     </td>
                     <td>{{ $item->type ?? '-' }} {{ $item->number ?? 0 }}</td>
-                    {{-- <td><a href="{{ $item->link ?? '-' }}" target="_blank">{{ $item->link ?? '-' }}</a></td> --}}
                     <td>
                         @forelse ($item->link ?? [] as $url)
                             <a href="{{ $url }}" target="_blank">{{ $url }}</a><br>
@@ -91,10 +90,10 @@
                 <th>{{ __('Type') }}</th>
                 <th>{{ __('Link') }}</th>
                 <th>{{ __('Release') }}</th>
-                @can('edit:video')
+                @can('edit:' . $permission)
                     <th>{{ __('Status') }}</th>
                 @endcan
-                @canany(['edit:video', 'delete:video'])
+                @canany(['edit:' . $permission, 'delete:' . $permission])
                     <th class="text-center">{{ __('Action') }}</th>
                 @endcanany
             </tr>
