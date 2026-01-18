@@ -5,6 +5,13 @@
 @section('textvideo', 'rounded aktif')
 
 @section('content')
+    <style>
+        .franchise-img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+    </style>
 
     <div class="container text-center my-5 py-4">
         <div class="row justify-content-center mt-4">
