@@ -49,7 +49,17 @@
             @foreach ($videos as $item)
                 <tr @if ($item->trashed()) class="text-muted" @endif>
                     <td>{{ $videos->firstItem() + $loop->index }}</td>
-                    <td>{{ Illuminate\Support\Str::words($item->title ?? '-', 10, '...') }}</td>
+                    <td>
+                        {{ Illuminate\Support\Str::words($item->title ?? '-', 10, '...') }} <br>
+                        <span class="text-muted me-2"><i class="fas fa-comment"></i>:
+                            {{ $item->video_comments->count() ?? 0 }}</span>
+                        <span class="text-muted me-2"><i class="fas fa-thumbs-up"></i>:
+                            {{ $item->video_reacts->where('status', 'like')->count() ?? 0 }}</span>
+                        <span class="text-muted me-2"><i class="fas fa-thumbs-down"></i>:
+                            {{ $item->video_reacts->where('status', 'dislike')->count() ?? 0 }}</span>
+                        <span class="text-muted me-2"><i class="fas fa-eye"></i>:
+                            {{ $item->video_views->count() ?? 0 }}</span>
+                    </td>
                     <td>
                         <span class="badge bg-{{ $item->getCategoryColor() }}">
                             {{ $item->category->name ?? '-' }}
