@@ -25,7 +25,7 @@ class EraRequest extends FormRequest
             'name' => [
                 'required',
                 'max:100',
-                Rule::unique('eras', 'name')->ignore($id),
+                Rule::unique(Era::class, 'name')->ignore($id),
             ],
             'description' => 'nullable|max:1024',
             'img' => 'nullable|mimes:jpg,jpeg,png,webp,svg|max:2048',

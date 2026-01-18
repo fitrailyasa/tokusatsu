@@ -26,13 +26,12 @@ class VideoRequest extends FormRequest
             'number' => [
                 'nullable',
                 'numeric',
-                Rule::unique('videos', 'number')
-                    ->where(function ($query) use ($video) {
-                        return $query
-                            ->where('type', $this->input('type', $video?->type))
-                            ->where('category_id', $this->input('category_id', $video?->category_id));
-                    })
-                    ->ignore($videoId),
+                Rule::unique(Video::class, 'number')
+                    ->ignore($videoId)
+                    ->where(function ($query) {
+                        $query->where('type', $this->input('type'))
+                            ->where('category_id', $this->input('category_id'));
+                    }),
             ],
 
             'link' => 'nullable|array',

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Video;
 use Illuminate\Foundation\Http\FormRequest;
 
 class VideoReportRequest extends FormRequest
@@ -15,7 +16,7 @@ class VideoReportRequest extends FormRequest
     {
 
         return [
-            'video_id' => 'required|exists:videos,id',
+            'video_id' => ['required', 'exists:' . (new Video)->getConnectionName() . '.videos,id'],
             'message' => 'nullable|max:1024',
         ];
     }

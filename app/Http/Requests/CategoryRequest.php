@@ -27,12 +27,12 @@ class CategoryRequest extends FormRequest
             'fullname' => [
                 'required',
                 'max:200',
-                Rule::unique('categories', 'fullname')->ignore($id),
+                Rule::unique(Category::class, 'fullname')->ignore($id),
             ],
             'name' => [
                 'required',
                 'max:100',
-                Rule::unique('categories', 'name')->ignore($id),
+                Rule::unique(Category::class, 'name')->ignore($id),
             ],
             'description' => 'nullable|max:1024',
             'img' => 'nullable|mimes:jpg,jpeg,png,webp,svg|max:2048',

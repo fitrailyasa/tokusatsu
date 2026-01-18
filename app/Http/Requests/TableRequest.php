@@ -3,7 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\Table;
+use App\Models\Era;
+use App\Models\Franchise;
+use App\Models\Category;
 
 class TableRequest extends FormRequest
 {
@@ -17,9 +19,9 @@ class TableRequest extends FormRequest
         return [
             'search' => 'nullable|string|max:255',
             'perPage' => 'nullable|integer|in:10,50,100',
-            'era_id' => 'nullable|exists:eras,id',
-            'franchise_id' => 'nullable|exists:franchises,id',
-            'category_id' => 'nullable|exists:categories,id',
+            'era_id' => ['nullable', 'exists:' . (new Era)->getConnectionName() . '.eras,id'],
+            'franchise_id' => ['nullable', 'exists:' . (new Franchise)->getConnectionName() . '.franchises,id'],
+            'category_id' => ['nullable', 'exists:' . (new Category)->getConnectionName() . '.categories,id'],
         ];
     }
 

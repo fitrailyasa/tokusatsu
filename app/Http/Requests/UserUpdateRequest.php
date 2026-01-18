@@ -19,7 +19,7 @@ class UserUpdateRequest extends FormRequest
 
         // dd($db->getConnection()->getDatabaseName());
 
-        $id = $this->route('user');
+        $id = $this->route('id');
 
         return [
             'name' => 'required|max:100',
@@ -27,7 +27,7 @@ class UserUpdateRequest extends FormRequest
                 'required',
                 'max:255',
                 'email',
-                Rule::unique('users', 'email')->ignore($id),
+                Rule::unique(User::class, 'email')->ignore($id),
             ],
             'no_hp' => 'max:255',
             'password' => 'nullable|min:8',
