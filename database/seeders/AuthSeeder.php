@@ -13,7 +13,7 @@ class AuthSeeder extends Seeder
     public function run(): void
     {
         // Role & User
-        $this->call(\Database\Seeders\Auth\RoleAndPermissionSeeder::class);
-        $this->call(\Database\Seeders\Auth\UserSeeder::class);
+        $this->call(\Database\Seeders\auth\RoleAndPermissionSeeder::class);
+        $this->call(\Database\Seeders\auth\UserSeeder::class);
     }
 }
