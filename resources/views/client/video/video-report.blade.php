@@ -1,9 +1,12 @@
-{{-- Video Report --}}
-<button id="reportBtn" class="btn btn-icon">
-    <i data-feather="flag" class="d-block mx-auto"></i>
-</button>
+{{-- Report Button --}}
+<div class="action-item">
+    <button id="reportBtn" class="btn btn-icon">
+        <i data-feather="flag" class="d-block mx-auto"></i>
+    </button>
+    <span>Report</span>
+</div>
 
-{{-- Video Report Modal --}}
+{{-- Report Modal --}}
 <div class="modal fade" id="reportModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content modal-theme">
