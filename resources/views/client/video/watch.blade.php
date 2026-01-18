@@ -424,9 +424,28 @@
 
             </div>
 
+            @php
+                if (!function_exists('format_number_short')) {
+                    function format_number_short($num)
+                    {
+                        if ($num < 1000) {
+                            return $num;
+                        }
+                        if ($num < 1000000) {
+                            return round($num / 1000, 1) . 'K';
+                        }
+                        if ($num < 1000000000) {
+                            return round($num / 1000000, 1) . 'M';
+                        }
+                        return round($num / 1000000000, 1) . 'B';
+                    }
+                }
+
+            @endphp
+
             <div class="video-meta">
                 <div class="meta-left">
-                    <span>{{ number_format($video->video_views->count()) }} views</span>
+                    <span>{{ format_number_short($video->video_views->count()) }} views</span>
                     <span>•</span>
                     <span>{{ \Carbon\Carbon::parse($video->airdate ?? $video->category->first_aired)->diffForHumans() }}</span>
                 </div>
