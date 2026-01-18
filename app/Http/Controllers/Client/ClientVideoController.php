@@ -11,8 +11,10 @@ use App\Models\Video;
 use App\Models\VideoComment;
 use App\Models\VideoReact;
 use App\Models\VideoReport;
+use App\Models\VideoView;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request as FacadeRequest;
 
 class ClientVideoController extends Controller
 {
@@ -160,12 +162,15 @@ class ClientVideoController extends Controller
             abort(404);
         }
 
-        $video = Video::where([
-            ['category_id', '=', $category->id],
-            ['type', '=', $type],
-            ['number', '=', $number],
-            ['status', '=', 1],
-        ])->firstOrFail();
+        $video = Video::withCount('video_views')
+            ->where([
+                ['category_id', '=', $category->id],
+                ['type', '=', $type],
+                ['number', '=', $number],
+                ['status', '=', 1],
+            ])->firstOrFail();
+
+        $this->view($video);
 
         $embedUrls = collect($video->getValidEmbedLinks());
 
@@ -273,5 +278,25 @@ class ClientVideoController extends Controller
             ],
             'created_at' => $comment->created_at->diffForHumans(),
         ]);
+    }
+
+    private function view(Video $video)
+    {
+        $ip = FacadeRequest::ip();
+        $agent = FacadeRequest::header('User-Agent');
+
+        $exists = VideoView::where('video_id', $video->id)
+            ->where('ip_address', $ip)
+            ->where('user_agent', $agent)
+            ->where('created_at', '>=', now()->subHour(1))
+            ->exists();
+
+        if (!$exists) {
+            VideoView::create([
+                'video_id' => $video->id,
+                'ip_address' => $ip,
+                'user_agent' => $agent,
+            ]);
+        }
     }
 }

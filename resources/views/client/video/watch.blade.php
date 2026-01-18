@@ -426,7 +426,7 @@
 
             <div class="video-meta">
                 <div class="meta-left">
-                    <span>10K views</span>
+                    <span>{{ number_format($video->video_views->count()) }} views</span>
                     <span>•</span>
                     <span>{{ \Carbon\Carbon::parse($video->airdate ?? $video->category->first_aired)->diffForHumans() }}</span>
                 </div>
