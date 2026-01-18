@@ -22,7 +22,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     @include('components.alert')
-                    <div class="shadow-sm border-0">
+                    <div class="border-0">
                         <div class="">
                             @include('profile.form')
                         </div>

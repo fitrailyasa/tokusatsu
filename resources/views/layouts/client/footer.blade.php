@@ -25,6 +25,14 @@
                     <small>Bookmark</small>
                 </a>
             </li>
+            @auth
+                <li class="nav-item">
+                    <a href="{{ route('profile.edit') }}" class="nav-link p-1 fw-normal text-center @yield('textProfile')">
+                        <i data-feather="user" class="d-block mx-auto"></i>
+                        <small>Profile</small>
+                    </a>
+                </li>
+            @endauth
         </ul>
     </div>
 </footer>

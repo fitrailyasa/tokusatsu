@@ -257,6 +257,15 @@ $eras = Era::withoutTrashed()->get()->where('status', 1)->reverse();
                 <button id="themeToggle" class="btn">
                     <i class="fa-solid fa-moon"></i>
                 </button>
+                @auth
+                    <a href="{{ route('profile.edit') }}" class="btn d-none d-lg-flex" title="Profile">
+                        <i class="fa-solid fa-user"></i>
+                    </a>
+                @else
+                    <a href="{{ route('login') }}" class="btn" title="Login">
+                        <i class="fa-solid fa-right-to-bracket"></i>
+                    </a>
+                @endauth
             </div>
         </div>
     </div>
