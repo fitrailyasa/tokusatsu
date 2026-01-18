@@ -35,7 +35,6 @@ class RoleAndPermissionSeeder extends Seeder
             'admin' => Permission::where('name', 'not like', '%:role')->where('name', 'not like', '%:user')->where('name', 'not like', '%-all:%')->pluck('name')->toArray(),
             'user' => [
                 'view:provider',
-                'view:data',
                 'user:dashboard',
             ],
         ];
