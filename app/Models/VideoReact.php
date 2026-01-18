@@ -3,20 +3,20 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class VideoReport extends Model
+class VideoReact extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
     protected $connection;
-    protected $table = 'video_reports';
+    protected $table = 'video_reacts';
     protected $primaryKey = 'id';
 
     protected $fillable = [
         'video_id',
-        'message',
+        'user_id',
+        'status',
     ];
 
     protected $dates = [
@@ -34,5 +34,10 @@ class VideoReport extends Model
     public function video()
     {
         return $this->belongsTo(Video::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

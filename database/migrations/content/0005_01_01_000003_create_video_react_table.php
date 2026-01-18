@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('video_reports', function (Blueprint $table) {
+        Schema::create('video_reacts', function (Blueprint $table) {
             $table->id('id');
             $table->foreignId('video_id')->nullable();
-            $table->string('message')->nullable();
+            $table->foreignId('user_id')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('video_reports');
+        Schema::dropIfExists('video_reacts');
     }
 };

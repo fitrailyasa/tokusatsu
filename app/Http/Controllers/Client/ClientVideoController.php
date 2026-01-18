@@ -8,7 +8,11 @@ use App\Http\Requests\VideoReportRequest;
 use App\Models\Franchise;
 use App\Models\Category;
 use App\Models\Video;
+use App\Models\VideoComment;
+use App\Models\VideoReact;
 use App\Models\VideoReport;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class ClientVideoController extends Controller
 {
@@ -184,14 +188,25 @@ class ClientVideoController extends Controller
             ->orderBy('number')
             ->get();
 
+        $userReaction = null;
+        if (Auth::check()) {
+            $userReact = VideoReact::where('video_id', $video->id)
+                ->where('user_id', Auth::id())
+                ->first();
+            if ($userReact) {
+                $userReaction = $userReact->status;
+            }
+        }
+
         return view('client.video.watch', [
-            'title'      => $title,
-            'category'   => $category,
-            'franchise'  => $category->franchise,
-            'video'      => $video,
-            'episodes'   => $episodes,
-            'embedUrls'  => $embedUrls,
+            'title'          => $title,
+            'category'       => $category,
+            'franchise'      => $category->franchise,
+            'video'          => $video,
+            'episodes'       => $episodes,
+            'embedUrls'      => $embedUrls,
             'downloadTokens' => $downloadTokens,
+            'userReaction'   => $userReaction,
         ]);
     }
 
@@ -206,6 +221,57 @@ class ClientVideoController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Report submitted successfully.'
+        ]);
+    }
+
+    public function react(Request $request, Video $video)
+    {
+        $request->validate([
+            'status' => 'required|in:like,dislike',
+        ]);
+
+        $user = $request->user();
+
+        $react = VideoReact::firstOrNew([
+            'video_id' => $video->id,
+            'user_id' => $user->id,
+        ]);
+
+        $react->status = $request->status;
+        $react->save();
+
+        $likes = VideoReact::where('video_id', $video->id)->where('status', 'like')->count();
+        $dislikes = VideoReact::where('video_id', $video->id)->where('status', 'dislike')->count();
+
+        return response()->json([
+            'likes' => $likes,
+            'dislikes' => $dislikes,
+            'user_reaction' => $react->status,
+        ]);
+    }
+
+    public function comment(Request $request, Video $video)
+    {
+        $request->validate([
+            'message' => 'required|string|max:1000',
+        ]);
+
+        $comment = VideoComment::create([
+            'video_id' => $video->id,
+            'user_id' => $request->user()->id,
+            'message' => $request->message,
+        ]);
+
+        $comment->load('user');
+
+        return response()->json([
+            'id' => $comment->id,
+            'message' => $comment->message,
+            'user' => [
+                'name' => $comment->user->name,
+                'avatar' => $comment->user->img ?? 'https://via.placeholder.com/40',
+            ],
+            'created_at' => $comment->created_at->diffForHumans(),
         ]);
     }
 }

@@ -198,6 +198,8 @@ Route::get('/video/{category}', [ClientVideoController::class, 'category'])->nam
 Route::get('/video/{franchise}/{category}', [ClientVideoController::class, 'show'])->name('video.show');
 Route::get('/video/{franchise}/{category}/{type}/{number}', [ClientVideoController::class, 'watch'])->name('video.watch');
 Route::post('/video/report', [ClientVideoController::class, 'report'])->middleware('throttle:5,10')->name('video.report');
+Route::post('/video/{video}/react', [ClientVideoController::class, 'react'])->middleware('auth', 'throttle:5,10')->name('video.react');
+Route::post('/video/{video}/comment', [ClientVideoController::class, 'comment'])->middleware('auth', 'throttle:5,10')->name('video.comment');
 
 Route::get('/{slug}', function ($slug) {
 

@@ -72,6 +72,16 @@ class Video extends Model
         return $this->hasMany(VideoReport::class);
     }
 
+    public function video_reacts()
+    {
+        return $this->hasMany(VideoReact::class);
+    }
+
+    public function video_comments()
+    {
+        return $this->hasMany(VideoComment::class);
+    }
+
     public function getCategoryColor(): string
     {
         $colors = ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'dark'];
