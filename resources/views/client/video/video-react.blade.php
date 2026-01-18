@@ -1,19 +1,27 @@
 {{-- Like Button --}}
-<div class="action-item {{ $userReaction === 'like' ? 'active' : '' }}" data-status="like" data-video="{{ $video->id }}"
-    onclick="@guest window.location='{{ route('login') }}' @endguest">
-    <i data-feather="thumbs-up" class="d-block mx-auto"></i>
-    <span id="like-count">{{ $video->video_reacts()->where('status', 'like')->count() }}</span>
+<div id="like-button" class="action-item {{ $userReaction === 'like' ? 'active' : '' }}" data-status="like"
+    data-video="{{ $video->id }}">
+    <i data-feather="thumbs-up"></i>
+    <span id="like-count">
+        {{ $video->video_reacts()->where('status', 'like')->count() }}
+    </span>
 </div>
 
 {{-- Dislike Button --}}
-<div class="action-item {{ $userReaction === 'dislike' ? 'active' : '' }}" data-status="dislike"
-    data-video="{{ $video->id }}" onclick="@guest window.location='{{ route('login') }}' @endguest">
-    <i data-feather="thumbs-down" class="d-block mx-auto"></i>
-    <span id="dislike-count">{{ $video->video_reacts()->where('status', 'dislike')->count() }}</span>
+<div id="dislike-button" class="action-item {{ $userReaction === 'dislike' ? 'active' : '' }}" data-status="dislike"
+    data-video="{{ $video->id }}">
+    <i data-feather="thumbs-down"></i>
+    <span id="dislike-count">
+        {{ $video->video_reacts()->where('status', 'dislike')->count() }}
+    </span>
 </div>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        const isLoggedIn = {{ Auth::check() ? 'true' : 'false' }};
+        const likeBtn = document.getElementById('like-button');
+        const dislikeBtn = document.getElementById('dislike-button');
+
         function react(videoId, status) {
             fetch(`/video/${videoId}/react`, {
                     method: 'POST',
@@ -30,21 +38,30 @@
                     document.getElementById('like-count').innerText = data.likes;
                     document.getElementById('dislike-count').innerText = data.dislikes;
 
-                    if (data.user_reaction === 'like') {
-                        document.getElementById('like-button').classList.add('active');
-                        document.getElementById('dislike-button').classList.remove('active');
-                    } else {
-                        document.getElementById('like-button').classList.remove('active');
-                        document.getElementById('dislike-button').classList.add('active');
-                    }
-                });
+                    likeBtn.classList.toggle('active', data.user_reaction === 'like');
+                    dislikeBtn.classList.toggle('active', data.user_reaction === 'dislike');
+
+                })
+                .catch(err => console.error(err));
         }
 
-        document.getElementById('like-button').addEventListener('click', function() {
+        likeBtn.addEventListener('click', function() {
+
+            if (!isLoggedIn) {
+                window.location.href = "{{ route('login') }}";
+                return;
+            }
+
             react(this.dataset.video, 'like');
         });
 
-        document.getElementById('dislike-button').addEventListener('click', function() {
+        dislikeBtn.addEventListener('click', function() {
+
+            if (!isLoggedIn) {
+                window.location.href = "{{ route('login') }}";
+                return;
+            }
+
             react(this.dataset.video, 'dislike');
         });
     });
