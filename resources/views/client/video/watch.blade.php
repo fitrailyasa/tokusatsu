@@ -373,7 +373,7 @@
 
         <section class="info-section">
             @php
-                $title = $video->title ?? '-';
+                $titleVideo = $video->title ?? '-';
                 $categoryDesc = $video->category?->description ?: $video->category?->franchise?->description ?: '-';
             @endphp
 
@@ -385,27 +385,27 @@
 
                         {{-- Mobile --}}
                         <span class="truncate d-block d-sm-none">
-                            {{ Str::words($title, 6, '...') }}
+                            {{ Str::words($titleVideo, 6, '...') }}
                         </span>
 
                         {{-- Tablet --}}
                         <span class="truncate d-none d-sm-block d-md-none">
-                            {{ Str::words($title, 10, '...') }}
+                            {{ Str::words($titleVideo, 10, '...') }}
                         </span>
 
                         {{-- Desktop --}}
                         <span class="truncate d-none d-md-block d-lg-none">
-                            {{ Str::words($title, 14, '...') }}
+                            {{ Str::words($titleVideo, 14, '...') }}
                         </span>
 
                         {{-- Large --}}
                         <span class="truncate d-none d-lg-block">
-                            {{ Str::words($title, 18, '...') }}
+                            {{ Str::words($titleVideo, 18, '...') }}
                         </span>
 
                         {{-- FULL --}}
                         <span class="full d-none">
-                            {{ $title }}
+                            {{ $titleVideo }}
                         </span>
 
                     </h1>
