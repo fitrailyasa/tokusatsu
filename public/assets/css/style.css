@@ -613,3 +613,9 @@ body.theme-light .btn-outline-light:hover {
         line-height: 1.2;
     }
 }
+
+.franchise-img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
