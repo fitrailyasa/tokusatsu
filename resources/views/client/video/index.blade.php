@@ -5,13 +5,6 @@
 @section('textvideo', 'rounded aktif')
 
 @section('content')
-    <style>
-        .franchise-img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-        }
-    </style>
 
     <div class="container text-center my-5 py-4">
         <div class="row justify-content-center mt-4">
@@ -20,9 +13,10 @@
                     <a href="{{ route('video.category', $item->slug) }}" class="text-decoration-none">
                         <div class="franchise-card">
                             @if ($item->img === null)
-                                <img class="img img-fluid rounded" src="{{ asset('logo.png') }}" alt="">
+                                <img class="img img-fluid franchise-img rounded" src="{{ asset('logo.png') }}" alt="">
                             @else
-                                <img class="img img-fluid rounded" src="{{ asset('storage/' . $item->img) }}" alt="">
+                                <img class="img img-fluid franchise-img rounded" src="{{ asset('storage/' . $item->img) }}"
+                                    alt="">
                             @endif
                             <p>{{ $item->name }}</p>
                         </div>
