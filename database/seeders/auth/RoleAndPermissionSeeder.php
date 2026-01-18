@@ -11,6 +11,7 @@ class RoleAndPermissionSeeder extends Seeder
     public function run()
     {
         $entities = [
+            'dashboard' => ['admin', 'user'],
             'user' => ['view', 'create', 'edit', 'delete'],
             'role' => ['view', 'create', 'edit', 'delete'],
             'era' => ['view', 'create', 'edit', 'delete', 'delete-all', 'soft-delete', 'soft-delete-all', 'restore', 'restore-all', 'import', 'export'],
@@ -34,7 +35,8 @@ class RoleAndPermissionSeeder extends Seeder
             'admin' => Permission::where('name', 'not like', '%:role')->where('name', 'not like', '%:user')->where('name', 'not like', '%-all:%')->pluck('name')->toArray(),
             'user' => [
                 'view:provider',
-                'view:data'
+                'view:data',
+                'user:dashboard',
             ],
         ];
 

@@ -14,11 +14,18 @@ use App\Http\Controllers\Controller;
 
 class AdminDashboardController extends Controller
 {
-    /**
-     * Display the admin dashboard, which shows a count of all the available resources.
-     *
-     * @return \Illuminate\Contracts\View\View
-     */
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+
+            if (!auth()->user() || !auth()->user()->can('admin:dashboard')) {
+                return redirect('/');
+            }
+
+            return $next($request);
+        })->only(['index']);
+    }
+
     public function index()
     {
         $users = User::all()->count();
