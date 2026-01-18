@@ -7,7 +7,7 @@
         $description = !empty($category->description)
             ? $category->description
             : 'Streaming Tokusatsu Kamen Rider, Ultraman, Super Sentai, Metal Heroes, Garo, Etc.';
-        $image = !empty($category->img) ? asset('storage/' . $category->img) : asset('logo.png');
+        $image = asset('logo.png');
         $keywords = 'Tokusatsu, Kamen Rider, Ultraman, Super Sentai, Metal Heroes, Garo';
     @endphp
 
