@@ -4,28 +4,23 @@
 <head>
     @php
         $pageTitle = !empty($title) ? $title . ' - ' . ucwords(config('app.name')) : ucwords(config('app.name'));
-        $description = !empty($category->description)
-            ? $category->description
-            : 'Streaming Tokusatsu Kamen Rider, Ultraman, Super Sentai, Metal Heroes, Garo, Etc.';
-        $image = asset('logo.png');
-        $keywords = 'Tokusatsu, Kamen Rider, Ultraman, Super Sentai, Metal Heroes, Garo';
     @endphp
 
     <link rel="manifest" href="/manifest.json">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="title" content="{{ $pageTitle }}">
-    <meta name="description" content="{{ $description }}">
-    <meta name="keywords" content="{{ $keywords }}">
+    <meta name="description" content="@yield('description', 'Streaming Tokusatsu Kamen Rider, Ultraman, Super Sentai, Metal Heroes, Garo, Etc.')">
+    <meta name="keywords" content="@yield('image', 'Tokusatsu, Kamen Rider, Ultraman, Super Sentai, Metal Heroes, Garo')">
     <meta name="author" content="{{ ucwords(config('app.name')) }}">
     <meta name="robots" content="index, follow">
 
     {{-- OPEN GRAPH --}}
     <meta property="og:title" content="{{ $pageTitle }}">
-    <meta property="og:description" content="{{ $description }}">
+    <meta property="og:description" content="@yield('description', 'Streaming Tokusatsu Kamen Rider, Ultraman, Super Sentai, Metal Heroes, Garo, Etc.')">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:image" content="{{ $image }}">
+    <meta property="og:image" content="@yield('image', asset('logo.png'))">
     <meta property="og:image:width" content="1280">
     <meta property="og:image:height" content="720">
     <meta property="og:site_name" content="{{ ucwords(config('app.name')) }}">
@@ -33,8 +28,8 @@
     {{-- TWITTER --}}
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ $pageTitle }}">
-    <meta name="twitter:description" content="{{ $description }}">
-    <meta name="twitter:image" content="{{ $image }}">
+    <meta name="twitter:description" content="@yield('description', 'Streaming Tokusatsu Kamen Rider, Ultraman, Super Sentai, Metal Heroes, Garo, Etc.')">
+    <meta name="twitter:image" content="@yield('image', asset('logo.png'))">
     <meta name="theme-color" content="#260751">
 
     <title>

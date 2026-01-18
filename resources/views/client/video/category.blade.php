@@ -4,6 +4,14 @@
 
 @section('textvideo', 'rounded aktif')
 
+@section('description')
+    {{ $franchise->description }}
+@endsection
+
+@section('image')
+    {{ $franchise->img ? config('app.url') . '/storage/' . $franchise->img : config('app.url') . '/logo.png' }}
+@endsection
+
 @section('content')
     <script type="application/ld+json">
         {!! json_encode([

@@ -4,6 +4,14 @@
     {{ $title }}
 @endsection
 
+@section('description')
+    {{ $category->description }}
+@endsection
+
+@section('image')
+    {{ $video->category->img ? config('app.url') . '/storage/' . $video->category->img : config('app.url') . '/logo.png' }}
+@endsection
+
 @section('textvideo', 'rounded aktif')
 
 @section('content')
