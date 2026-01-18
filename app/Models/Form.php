@@ -6,17 +6,22 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class VideoReport extends Model
+class Form extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $connection;
-    protected $table = 'video_reports';
+    protected $connection = 'content';
+    protected $table = 'category_forms';
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'video_id',
-        'message',
+        'id',
+        'name',
+        'form',
+        'type',
+        'notes',
+        'img',
+        'category_id',
     ];
 
     protected $dates = [
@@ -25,15 +30,8 @@ class VideoReport extends Model
         'deleted_at',
     ];
 
-    public function __construct(array $attributes = [])
+    public function category()
     {
-        parent::__construct($attributes);
-
-        $this->connection = env('DB_CONTENT_CONNECTION');
-    }
-
-    public function video()
-    {
-        return $this->belongsTo(Video::class);
+        return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 }

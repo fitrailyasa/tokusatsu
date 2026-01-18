@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class Tag extends Model
@@ -23,9 +22,7 @@ class Tag extends Model
     {
         parent::__construct($attributes);
 
-        $this->connection = env('DB_CONNECTION');
-        // $this->connection = env('DB2_CONNECTION');
-        // $this->connection = env('DB3_CONNECTION');
+        $this->connection = env('DB_CONTENT_CONNECTION');
     }
 
     protected static function boot()

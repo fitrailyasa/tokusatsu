@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\Content;
 
 use App\Models\Era;
 use Illuminate\Database\Seeder;

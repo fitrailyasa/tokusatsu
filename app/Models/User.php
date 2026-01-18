@@ -6,7 +6,6 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
@@ -65,8 +64,6 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         parent::__construct($attributes);
 
-        $this->connection = env('DB_CONNECTION');
-        // $this->connection = env('DB2_CONNECTION');
-        // $this->connection = env('DB3_CONNECTION');
+        $this->connection = env('DB_AUTH_CONNECTION');
     }
 }

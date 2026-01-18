@@ -25,4 +25,11 @@ class ProviderAccount extends Model
 
         return $matches[1] ?? null;
     }
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+
+        $this->connection = env('DB_AUTH_CONNECTION');
+    }
 }

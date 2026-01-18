@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\DB;
 
 class Data extends Model
 {
@@ -28,6 +27,13 @@ class Data extends Model
         'updated_at',
         'deleted_at',
     ];
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+
+        $this->connection = env('DB_CONTENT_CONNECTION');
+    }
 
     protected static function boot()
     {
