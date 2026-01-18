@@ -1,6 +1,6 @@
 <div class="shadow-sm border-0">
     <div class="">
-        <form method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data">
+        <form id="profile-form" method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data">
             @csrf
             @method('PATCH')
 
@@ -99,13 +99,24 @@
                 </div>
             </div>
 
-            {{-- Button --}}
-            <div class="d-flex justify-content-end">
-                <button type="submit" class="btn btn-primary px-4">
-                    <i class="bi bi-save me-1"></i> Save
-                </button>
-            </div>
-
         </form>
+
+        <div class="d-flex justify-content-between align-items-center mt-4">
+
+            {{-- LOGOUT --}}
+            <form action="{{ route('logout') }}" method="POST" class="m-0">
+                @csrf
+                <button type="submit" class="btn btn-danger">
+                    <i class="bi bi-box-arrow-right me-1"></i> Logout
+                </button>
+            </form>
+
+            {{-- SAVE --}}
+            <button type="submit" form="profile-form" class="btn btn-primary px-4">
+                <i class="bi bi-save me-1"></i> Save
+            </button>
+
+        </div>
+
     </div>
 </div>
