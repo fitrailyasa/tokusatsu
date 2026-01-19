@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\TableRequest;
 use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
 use Spatie\Permission\Models\Role;
@@ -12,6 +13,7 @@ use Spatie\Permission\Models\Role;
 class AdminUserController extends Controller
 {
     protected $title = "User";
+    protected $permissionName = 'user';
 
     public function __construct()
     {
@@ -21,11 +23,27 @@ class AdminUserController extends Controller
         $this->middleware('permission:delete:user')->only(['destroy']);
     }
 
-    public function index()
+    public function index(TableRequest $request)
     {
+        $search = $request->input('search');
+        $perPage = (int) $request->input('perPage', 10);
+
+        $validPerPage = in_array($perPage, [10, 50, 100]) ? $perPage : 10;
+
         $roles = Role::all();
-        $users = User::all();
-        return view('admin.user.index', compact('users', 'roles'));
+
+        if ($search) {
+            $users = User::withTrashed()
+                ->where('name', 'like', "%{$search}%")
+                ->orWhere('email', 'like', "%{$search}%")
+                ->paginate($validPerPage);
+        } else {
+            $users = User::withTrashed()->paginate($validPerPage);
+        }
+
+        $permission = $this->permissionName;
+
+        return view('admin.user.index', compact('users', 'roles', 'search', 'perPage', 'permission'));
     }
 
     public function store(UserStoreRequest $request)

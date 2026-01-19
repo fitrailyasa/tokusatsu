@@ -41,12 +41,12 @@
                                                     name="permissions[]" value="{{ $permission->id }}"
                                                     id="edit-perm-{{ $item->id }}-{{ $permission->id }}"
                                                     {{ $item->permissions->contains('id', $permission->id) ? 'checked' : '' }}>
-                                                <label class="form-check-label flex-grow-1"
+                                                {{-- <label class="form-check-label flex-grow-1"
                                                     for="edit-perm-{{ $item->id }}-{{ $permission->id }}">
                                                     {{ $permission->name }}
-                                                </label>
+                                                </label> --}}
                                                 <span
-                                                    class="badge {{ $permission->badgeClass }}">{{ $permission->type }}</span>
+                                                    class="badge {{ $permission->badgeClass }}">{{ $permission->name }}</span>
                                             </div>
                                         </div>
                                     @endforeach

@@ -39,12 +39,12 @@
                                                     name="permissions[]" value="{{ $permission->id }}"
                                                     id="create-perm-{{ $permission->id }}"
                                                     {{ is_array(old('permissions')) && in_array($permission->id, old('permissions')) ? 'checked' : '' }}>
-                                                <label class="form-check-label mb-0 flex-grow-1"
+                                                {{-- <label class="form-check-label mb-0 flex-grow-1"
                                                     for="create-perm-{{ $permission->id }}" style="cursor:pointer;">
                                                     {{ $permission->name }}
-                                                </label>
+                                                </label> --}}
                                                 <span
-                                                    class="badge {{ $permission->badgeClass }}">{{ $permission->type }}</span>
+                                                    class="badge {{ $permission->badgeClass }}">{{ $permission->name }}</span>
                                             </div>
                                         </div>
                                     @endforeach

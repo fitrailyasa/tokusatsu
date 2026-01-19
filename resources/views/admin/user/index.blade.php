@@ -12,8 +12,13 @@
         @endcan
     </x-slot>
 
+    <!-- Search & Pagination -->
+    <x-slot name="search">
+        @include('components.search')
+    </x-slot>
+
     <!-- Table -->
-    <table id="example1" class="table table-bordered table-striped">
+    <table class="table table-bordered table-striped">
         <thead>
             <tr>
                 <th>{{ __('No') }}</th>
@@ -112,5 +117,6 @@
             </tr>
         </tfoot>
     </table>
+    {{ $users->appends(['perPage' => $perPage, 'search' => $search])->links() }}
 
 </x-admin-table>
