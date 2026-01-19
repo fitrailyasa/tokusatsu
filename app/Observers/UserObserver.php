@@ -37,13 +37,15 @@ class UserObserver
     {
         $roles = $model->getRoleNames()->implode(', ');
 
-        $emailVerified = $model->email_verified_at ? 'Active' : 'Not Active';
+        $email = $model->email_verified_at ? 'Active' : 'Not Active';
 
         return "<b>📢 {$title}</b>\n" .
             "ID: {$model->id}\n" .
             "Name: {$model->name}\n" .
+            "Username: {$model->username}\n" .
             "Email: {$model->email}\n" .
-            "Role: {$roles}\n" .
-            "Email: {$emailVerified}";
+            "Phone: {$model->no_hp}\n" .
+            "Status: {$email}\n" .
+            "Role: {$roles}\n";
     }
 }
