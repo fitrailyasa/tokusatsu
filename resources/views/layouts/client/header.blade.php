@@ -47,6 +47,25 @@ $eras = Era::withoutTrashed()->get()->where('status', 1)->reverse();
             display: none !important;
         }
     }
+
+    .header-right {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .header-right .btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 38px;
+        width: 38px;
+        padding: 0;
+    }
+
+    .header-right i {
+        line-height: 1;
+    }
 </style>
 
 <header class="header px-3 mb-3 fixed-top">
