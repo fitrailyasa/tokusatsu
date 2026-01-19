@@ -5,7 +5,7 @@
 
 <!-- Modal -->
 <div class="modal fade formEdit{{ $item->id }}" tabindex="-1" role="dialog" aria-hidden="">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <form method="POST" action="{{ route('admin.role.update', $item->id) }}" enctype="multipart/form-data">
                 @csrf
@@ -35,7 +35,7 @@
                                 <label class="form-label">{{ __('Permissions') }}</label>
                                 <div class="row">
                                     @foreach ($permissions as $permission)
-                                        <div class="col-sm-6 mb-2">
+                                        <div class="col-md-4 mb-2">
                                             <div class="border rounded px-3 py-2 d-flex align-items-center gap-2">
                                                 <input class="form-check-input me-2" type="checkbox"
                                                     name="permissions[]" value="{{ $permission->id }}"

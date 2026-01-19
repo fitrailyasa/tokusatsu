@@ -105,7 +105,7 @@ class AdminRoleController extends Controller
             $name = strtolower($permission->name);
 
             if (str_contains($name, 'view')) {
-                $badgeClass = 'badge-secondary';
+                $badgeClass = 'badge-dark';
             } elseif (str_contains($name, 'create')) {
                 $badgeClass = 'badge-primary';
             } elseif (str_contains($name, 'edit')) {
@@ -113,13 +113,13 @@ class AdminRoleController extends Controller
             } elseif (str_contains($name, 'delete')) {
                 $badgeClass = 'badge-danger';
             } elseif (str_contains($name, 'restore')) {
-                $badgeClass = 'badge-dark';
+                $badgeClass = 'badge-secondary';
             } elseif (str_contains($name, 'import')) {
                 $badgeClass = 'badge-info';
             } elseif (str_contains($name, 'export')) {
                 $badgeClass = 'badge-success';
             } else {
-                $badgeClass = 'badge-gray';
+                $badgeClass = 'badge-dark';
             }
 
             $type = ucfirst(explode('-', $name)[0]);
