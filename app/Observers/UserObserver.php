@@ -35,17 +35,17 @@ class UserObserver
 
     private function formatMessage(string $title, User $model): string
     {
-        $roles = $model->getRoleNames()->implode(', ');
+        $roles = $model->getRoleNames()->implode(', ') ?: '-';
 
-        $email = $model->email_verified_at ? 'Active' : 'Not Active';
+        $emailStatus = $model->email_verified_at ? 'Active' : 'Not Active';
 
         return "<b>📢 {$title}</b>\n" .
-            "ID: {$model->id}\n" .
-            "Name: {$model->name}\n" .
-            "Username: {$model->username}\n" .
-            "Email: {$model->email}\n" .
-            "Phone: {$model->no_hp}\n" .
-            "Status: {$email}\n" .
+            "ID: " . ($model->id ?? '-') . "\n" .
+            "Name: " . ($model->name ?? '-') . "\n" .
+            "Username: " . ($model->username ?? '-') . "\n" .
+            "Email: " . ($model->email ?? '-') . "\n" .
+            "Phone: " . ($model->no_hp ?? '-') . "\n" .
+            "Status: {$emailStatus}\n" .
             "Role: {$roles}\n";
     }
 }
