@@ -40,10 +40,10 @@ class UserObserver
         $emailVerified = $model->email_verified_at ? 'Active' : 'Not Active';
 
         return "<b>📢 {$title}</b>\n" .
-            "ID            : {$model->id}\n" .
-            "Name          : {$model->name}\n" .
-            "Email         : {$model->email}\n" .
-            "Role          : {$roles}\n" .
-            "Email Verified: {$emailVerified}";
+            "ID: {$model->id}\n" .
+            "Name: {$model->name}\n" .
+            "Email: {$model->email}\n" .
+            "Role: {$roles}\n" .
+            "Email: {$emailVerified}";
     }
 }
