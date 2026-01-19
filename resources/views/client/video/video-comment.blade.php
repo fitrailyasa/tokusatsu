@@ -7,7 +7,9 @@
         @foreach ($video->video_comments()->with('user')->latest()->get() as $comment)
             <div class="d-flex gap-2 mb-2 comment-item">
                 <div class="user-mini-avatar">
-                    <img src="{{ $comment->user->avatar ?? 'https://via.placeholder.com/40' }}" alt="">
+                    <img width="30px"
+                        src="{{ $comment->user->img ? asset('storage/' . $comment->user->img) : 'https://via.placeholder.com/40' }}"
+                        alt="">
                 </div>
                 <div>
                     <div style="font-size:0.8rem; font-weight:600; color:var(--text-sec); margin-bottom:2px;">
@@ -23,9 +25,6 @@
 
     @auth
         <div class="comment-input-area mt-3">
-            <div class="user-mini-avatar">
-                <img src="{{ auth()->user()->avatar ?? 'https://via.placeholder.com/40' }}" alt="">
-            </div>
             <input type="text" id="comment-input" placeholder="Type a comment..." class="form-control">
             <button id="comment-submit" class="btn btn-primary btn-sm ms-2">Send</button>
         </div>
@@ -46,40 +45,78 @@
         submit.addEventListener('click', function() {
             const message = input.value.trim();
             if (!message) return;
+            submit.disabled = true;
 
             fetch("{{ route('video.comment', $video->id) }}", {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        'Accept': 'application/json'
                     },
                     body: JSON.stringify({
-                        message: message
+                        message
                     })
                 })
-                .then(res => res.json())
+                .then(response => {
+
+                    if (!response.ok) {
+                        throw new Error('Server error');
+                    }
+
+                    return response.json();
+                })
                 .then(data => {
+
+                    let avatar = 'https://via.placeholder.com/40';
+
+                    if (data.user && data.user.img) {
+
+                        if (data.user.img.startsWith('http')) {
+                            avatar = data.user.img;
+                        } else {
+                            avatar = `/storage/${data.user.img}`;
+                        }
+                    }
+
                     const div = document.createElement('div');
-                    div.classList.add('d-flex', 'gap-2', 'mb-2', 'comment-item');
+                    div.className = 'd-flex gap-2 mb-2 comment-item';
+
                     div.innerHTML = `
-                                            <div class="user-mini-avatar">
-                                                <img src="${data.user.avatar}" alt="">
-                                            </div>
-                                            <div>
-                                                <div style="font-size:0.8rem; font-weight:600; color:var(--text-sec); margin-bottom:2px;">
-                                                    ${data.user.name}
-                                                </div>
-                                                <div style="font-size:0.9rem;">${data.message}</div>
-                                                <div style="font-size:0.7rem; color:var(--text-sec);">${data.created_at}</div>
-                                            </div>
-                                        `;
+                            <div class="user-mini-avatar">
+                                <img width="30" src="${avatar}" alt="">
+                            </div>
+
+                            <div>
+                                <div style="font-size:0.8rem; font-weight:600; color:var(--text-sec); margin-bottom:2px;">
+                                    ${escapeHtml(data.user.name)}
+                                </div>
+
+                                <div style="font-size:0.9rem;">
+                                    ${escapeHtml(data.message)}
+                                </div>
+
+                                <div style="font-size:0.7rem; color:var(--text-sec);">
+                                    ${data.created_at}
+                                </div>
+                            </div>
+                        `;
+
                     commentList.prepend(div);
 
                     commentCount.innerText = parseInt(commentCount.innerText) + 1;
 
                     input.value = '';
+
                 })
-                .catch(err => console.error(err));
+                .catch(error => {
+                    console.error(error);
+                    alert('Failed to send comment!');
+                })
+                .finally(() => {
+                    submit.disabled = false;
+                });
+
         });
 
         input.addEventListener('keypress', function(e) {
