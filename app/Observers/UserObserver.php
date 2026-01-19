@@ -10,11 +10,9 @@ use Illuminate\Support\Facades\Mail;
 
 class UserObserver
 {
-    public function saved(User $model)
+    public function created(User $model)
     {
-        if ($model->wasRecentlyCreated) {
-            $this->notify('User Created', $model);
-        }
+        $this->notify('User Created', $model);
     }
 
     public function updated(User $model)
