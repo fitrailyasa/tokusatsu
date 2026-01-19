@@ -2,13 +2,13 @@
 
     <!-- Title -->
     <x-slot name="title">
-        Video Report
+        Video React
     </x-slot>
 
     <!-- Button Permanent Delete All -->
     <x-slot name="deleteAll">
-        @can('delete-all:video-report')
-            @include('admin.video-report.deleteAll')
+        @can('delete-all:video-react')
+            @include('admin.video-react.deleteAll')
         @endcan
     </x-slot>
 
@@ -17,47 +17,22 @@
         @include('components.search')
     </x-slot>
 
-    <div class="alert alert-warning d-flex align-items-center mb-3">
-        <span>
-            Total problematic videos:
-            <strong>{{ $totalProblematicVideos }}</strong>
-        </span>
-    </div>
-
-    @if ($problematicVideoPerCategory->isNotEmpty())
-        <div class="mb-4">
-            <div class="d-flex flex-wrap gap-2">
-                @foreach ($problematicVideoPerCategory as $row)
-                    <a href="{{ route('admin.video.index', [
-                        'perPage' => 10,
-                        'category_id' => $row->category_id,
-                        'search' => '',
-                    ]) }}"
-                        class="badge bg-warning text-dark px-3 py-2 text-decoration-none">
-                        {{ $row->category->name ?? 'Uncategorized' }}
-                        <span class="fw-bold">({{ $row->total }})</span>
-                    </a>
-                @endforeach
-            </div>
-        </div>
-    @endif
-
     <!-- Table -->
     <table id="" class="table table-bordered table-striped">
         <thead>
             <tr>
                 <th>{{ __('No') }}</th>
                 <th>{{ __('Video') }}</th>
-                <th>{{ __('Message') }}</th>
-                @can('delete:video-report')
+                <th>{{ __('Status') }}</th>
+                @can('delete:video-react')
                     <th class="text-center">{{ __('Action') }}</th>
                 @endcan
             </tr>
         </thead>
         <tbody>
-            @foreach ($video_reports as $item)
+            @foreach ($video_reacts as $item)
                 <tr @if ($item->trashed()) class="text-muted" @endif>
-                    <td>{{ $video_reports->firstItem() + $loop->index }}</td>
+                    <td>{{ $video_reacts->firstItem() + $loop->index }}</td>
                     <td>
                         @php
                             $video = $item->video;
@@ -90,11 +65,11 @@
                             @endif
                         </span>
                     </td>
-                    <td>{{ $item->message ?? '-' }}</td>
-                    @can('delete:video-report')
+                    <td>{{ $item->status ?? '-' }}</td>
+                    @can('delete:video-react')
                         <td class="manage-row text-center">
-                            @can('delete:video-report')
-                                @include('admin.video-report.delete')
+                            @can('delete:video-react')
+                                @include('admin.video-react.delete')
                             @endcan
                         </td>
                     @endcan
@@ -105,13 +80,13 @@
             <tr>
                 <th>{{ __('No') }}</th>
                 <th>{{ __('Video') }}</th>
-                <th>{{ __('Message') }}</th>
-                @can('delete:video-report')
+                <th>{{ __('Status') }}</th>
+                @can('delete:video-react')
                     <th class="text-center">{{ __('Action') }}</th>
                 @endcan
             </tr>
         </tfoot>
     </table>
-    {{ $video_reports->appends(['perPage' => $perPage, 'search' => $search])->links() }}
+    {{ $video_reacts->appends(['perPage' => $perPage, 'search' => $search])->links() }}
 
 </x-admin-table>

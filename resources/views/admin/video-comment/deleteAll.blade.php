@@ -16,7 +16,7 @@
                 <p>Are you sure you want to permanently delete all data?</p>
             </div>
             <div class="modal-footer">
-                <form method="POST" action="{{ route('admin.video-report.destroyAll') }}">
+                <form method="POST" action="{{ route('admin.video-comment.destroyAll') }}">
                     @csrf
                     @method('DELETE')
                     <x-button.close />

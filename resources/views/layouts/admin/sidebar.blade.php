@@ -18,6 +18,10 @@
                 <x-sidebar-link route="admin.role.index" icon="key" label="Role" can="view:role" />
                 <x-sidebar-link route="admin.data.index" icon="database" label="Data" can="view:data" />
                 <x-sidebar-link route="admin.video.index" icon="video" label="Video" can="view:video" />
+                <x-sidebar-link route="admin.video-comment.index" icon="comment" label="Video Comment"
+                    can="view:video-comment" />
+                <x-sidebar-link route="admin.video-react.index" icon="heart" label="Video React"
+                    can="view:video-react" />
                 <x-sidebar-link route="admin.video-report.index" icon="flag" label="Video Report"
                     can="view:video-report" />
                 <x-sidebar-link route="admin.tag.index" icon="tag" label="Tag" can="view:tag" />

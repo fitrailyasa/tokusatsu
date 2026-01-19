@@ -28,12 +28,9 @@ class AdminVideoReportController extends Controller
         $validPerPage = in_array($perPage, [10, 50, 100]) ? $perPage : 10;
 
         if ($search) {
-            $video_reports = VideoReport::withTrashed()
-                ->where('message', 'like', "%{$search}%")
-                ->paginate($validPerPage);
+            $video_reports = VideoReport::where('message', 'like', "%{$search}%")->paginate($validPerPage);
         } else {
-            $video_reports = VideoReport::withTrashed()
-                ->paginate($validPerPage);
+            $video_reports = VideoReport::paginate($validPerPage);
         }
 
         $totalProblematicVideos = VideoReport::withTrashed()
@@ -61,13 +58,13 @@ class AdminVideoReportController extends Controller
     public function destroy($id)
     {
         VideoReport::withTrashed()->findOrFail($id)->forceDelete();
-        return back()->with('success', 'Successfully Delete ' . $this->title . '!');
+        return back()->with('success', 'Successfully delete ' . $this->title . '!');
     }
 
     // Handle hard delete all data
     public function destroyAll()
     {
         VideoReport::truncate();
-        return back()->with('success', 'Successfully Delete All ' . $this->title . '!');
+        return back()->with('success', 'Successfully delete all ' . $this->title . '!');
     }
 }

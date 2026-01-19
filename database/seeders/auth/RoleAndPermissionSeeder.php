@@ -20,6 +20,8 @@ class RoleAndPermissionSeeder extends Seeder
             'tag' => ['view', 'create', 'edit', 'delete', 'delete-all', 'soft-delete', 'soft-delete-all', 'restore', 'restore-all', 'import', 'export'],
             'data' => ['view', 'create', 'edit', 'delete', 'delete-all', 'soft-delete', 'soft-delete-all', 'restore', 'restore-all', 'import', 'export'],
             'video' => ['view', 'create', 'edit', 'delete', 'delete-all', 'soft-delete', 'soft-delete-all', 'restore', 'restore-all', 'import', 'export'],
+            'video-comment' => ['view', 'delete', 'delete-all'],
+            'video-react' => ['view', 'delete', 'delete-all'],
             'video-report' => ['view', 'delete', 'delete-all'],
             'provider' => ['view', 'upload', 'download', 'edit', 'delete', 'auth', 'export'],
         ];

@@ -12,9 +12,11 @@ use App\Http\Controllers\Admin\AdminFranchiseController;
 use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminTagController;
 use App\Http\Controllers\Admin\AdminDataController;
-use App\Http\Controllers\Admin\AdminVideoController;
-use App\Http\Controllers\Admin\AdminVideoReportController;
 use App\Http\Controllers\Admin\AdminProviderAccountController;
+use App\Http\Controllers\Admin\AdminVideoController;
+use App\Http\Controllers\Admin\AdminVideoCommentController;
+use App\Http\Controllers\Admin\AdminVideoReactController;
+use App\Http\Controllers\Admin\AdminVideoReportController;
 use App\Http\Controllers\Auth\ProviderController;
 use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\MidtransController;
@@ -164,6 +166,16 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/video/exportExcel', [AdminVideoController::class, 'exportExcel'])->name('video.exportExcel');
     // Route::get('/video/exportPDF', [AdminVideoController::class, 'exportPDF'])->name('video.exportPDF');
     Route::put('/video/{id}/toggle-status', [AdminVideoController::class, 'toggleStatus'])->name('video.toggleStatus');
+
+    // CRUD VIDEO COMMENT
+    Route::get('/video-comment', [AdminVideoCommentController::class, 'index'])->name('video-comment.index');
+    Route::delete('/video-comment/{id}/destroy', [AdminVideoCommentController::class, 'destroy'])->name('video-comment.destroy');
+    Route::delete('/video-comment/destroyAll', [AdminVideoCommentController::class, 'destroyAll'])->name('video-comment.destroyAll');
+
+    // CRUD VIDEO REACT
+    Route::get('/video-react', [AdminVideoReactController::class, 'index'])->name('video-react.index');
+    Route::delete('/video-react/{id}/destroy', [AdminVideoReactController::class, 'destroy'])->name('video-react.destroy');
+    Route::delete('/video-react/destroyAll', [AdminVideoReactController::class, 'destroyAll'])->name('video-react.destroyAll');
 
     // CRUD VIDEO REPORT
     Route::get('/video-report', [AdminVideoReportController::class, 'index'])->name('video-report.index');
