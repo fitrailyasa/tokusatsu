@@ -28,13 +28,19 @@ class RoleAndPermissionSeeder extends Seeder
 
         foreach ($entities as $entity => $actions) {
             foreach ($actions as $action) {
-                Permission::firstOrCreate(['name' => "{$action}:{$entity}"]);
+                Permission::updateOrCreate(['name' => "{$action}:{$entity}"]);
             }
         }
 
         $roles = [
-            'super-admin' => Permission::all()->pluck('name')->toArray(),
-            'admin' => Permission::where('name', 'not like', '%:role')->where('name', 'not like', '%:user')->where('name', 'not like', '%-all:%')->pluck('name')->toArray(),
+            'super-admin' => Permission::all()
+                ->pluck('name')
+                ->toArray(),
+            'admin' => Permission::where('name', 'not like', '%:role')
+                ->where('name', 'not like', '%:user')
+                ->where('name', 'not like', '%-all:%')
+                ->pluck('name')
+                ->toArray(),
             'user' => [
                 'view:provider',
                 'user:dashboard',
@@ -42,7 +48,7 @@ class RoleAndPermissionSeeder extends Seeder
         ];
 
         foreach ($roles as $roleName => $permissions) {
-            $role = Role::firstOrCreate(['name' => $roleName]);
+            $role = Role::updateOrCreate(['name' => $roleName]);
             $role->syncPermissions($permissions);
         }
     }
