@@ -141,29 +141,46 @@ class CategoryGaroSeeder extends Seeder
         ]);
 
         foreach ($data as $item) {
-            Category::create($item);
+
+            $category = Category::firstOrNew([
+                'slug' => $item['slug'],
+            ]);
+
+            $category->fill($item);
+
+            if ($category->isDirty()) {
+                $category->save();
+            }
         }
     }
 
-    private function Era(string $name): string
+    private function era(string $name): int
     {
-        $era = Era::where('name', $name)->first();
-        if (!$era) {
-            $era = Era::create([
-                'name' => $name,
-            ]);
+        $era = Era::firstOrNew([
+            'name' => $name,
+        ]);
+
+        $era->slug = Str::slug($name);
+
+        if ($era->isDirty()) {
+            $era->save();
         }
+
         return $era->id;
     }
 
-    private function Franchise(string $name): string
+    private function franchise(string $name): int
     {
-        $franchise = Franchise::where('name', $name)->first();
-        if (!$franchise) {
-            $franchise = Franchise::create([
-                'name' => $name,
-            ]);
+        $franchise = Franchise::firstOrNew([
+            'name' => $name,
+        ]);
+
+        $franchise->slug = Str::slug($name);
+
+        if ($franchise->isDirty()) {
+            $franchise->save();
         }
+
         return $franchise->id;
     }
 }

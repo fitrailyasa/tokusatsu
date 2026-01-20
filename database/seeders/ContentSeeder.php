@@ -13,32 +13,32 @@ class ContentSeeder extends Seeder
     public function run(): void
     {
         // Era &Franchise
-        $this->call(\Database\Seeders\content\EraSeeder::class);
-        $this->call(\Database\Seeders\content\FranchiseSeeder::class);
+        $this->call(\Database\Seeders\Content\EraSeeder::class);
+        $this->call(\Database\Seeders\Content\FranchiseSeeder::class);
 
         // Category
-        $this->call(\Database\Seeders\content\CategoryKamenRiderSeeder::class);
-        $this->call(\Database\Seeders\content\CategorySuperSentaiSeeder::class);
-        $this->call(\Database\Seeders\content\CategoryUltramanSeeder::class);
-        $this->call(\Database\Seeders\content\CategoryPowerRangersSeeder::class);
-        $this->call(\Database\Seeders\content\CategoryGaroSeeder::class);
-        $this->call(\Database\Seeders\content\CategoryMetalHeroSeeder::class);
+        $this->call(\Database\Seeders\Content\CategoryKamenRiderSeeder::class);
+        $this->call(\Database\Seeders\Content\CategorySuperSentaiSeeder::class);
+        $this->call(\Database\Seeders\Content\CategoryUltramanSeeder::class);
+        $this->call(\Database\Seeders\Content\CategoryPowerRangersSeeder::class);
+        $this->call(\Database\Seeders\Content\CategoryGaroSeeder::class);
+        $this->call(\Database\Seeders\Content\CategoryMetalHeroSeeder::class);
 
         // Data & Tag
-        $this->call(\Database\Seeders\content\TagSeeder::class);
-        $this->call(\Database\Seeders\content\DataSeeder::class);
+        $this->call(\Database\Seeders\Content\TagSeeder::class);
+        $this->call(\Database\Seeders\Content\DataSeeder::class);
 
         // Video Series
-        $this->call(\Database\Seeders\content\VideoKamenRiderSeeder::class);
-        $this->call(\Database\Seeders\content\VideoSuperSentaiSeeder::class);
-        $this->call(\Database\Seeders\content\VideoUltramanSeeder::class);
-        $this->call(\Database\Seeders\content\VideoPowerRangersSeeder::class);
-        $this->call(\Database\Seeders\content\VideoGaroSeeder::class);
-        $this->call(\Database\Seeders\content\VideoMetalHeroSeeder::class);
+        $this->call(\Database\Seeders\Content\VideoKamenRiderSeeder::class);
+        $this->call(\Database\Seeders\Content\VideoSuperSentaiSeeder::class);
+        $this->call(\Database\Seeders\Content\VideoUltramanSeeder::class);
+        $this->call(\Database\Seeders\Content\VideoPowerRangersSeeder::class);
+        $this->call(\Database\Seeders\Content\VideoGaroSeeder::class);
+        $this->call(\Database\Seeders\Content\VideoMetalHeroSeeder::class);
 
         // Video Movie
-        $this->call(\Database\Seeders\content\MovieKamenRiderSeeder::class);
-        $this->call(\Database\Seeders\content\MovieSuperSentaiSeeder::class);
-        $this->call(\Database\Seeders\content\MovieUltramanSeeder::class);
+        $this->call(\Database\Seeders\Content\MovieKamenRiderSeeder::class);
+        $this->call(\Database\Seeders\Content\MovieSuperSentaiSeeder::class);
+        $this->call(\Database\Seeders\Content\MovieUltramanSeeder::class);
     }
 }

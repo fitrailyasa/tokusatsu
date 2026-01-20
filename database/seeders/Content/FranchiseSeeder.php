@@ -51,7 +51,22 @@ class FranchiseSeeder extends Seeder
         ]);
 
         foreach ($data as $item) {
-            Franchise::create($item);
+
+            $slug = Str::slug($item['name']);
+
+            $franchise = Franchise::firstOrNew([
+                'slug' => $slug,
+            ]);
+
+            $franchise->fill([
+                'name' => $item['name'],
+                'slug' => $slug,
+                'description' => $item['description'],
+            ]);
+
+            if ($franchise->isDirty()) {
+                $franchise->save();
+            }
         }
     }
 }

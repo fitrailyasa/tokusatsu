@@ -30,7 +30,22 @@ class EraSeeder extends Seeder
         ];
 
         foreach ($data as $item) {
-            Era::create($item);
+
+            $slug = Str::slug($item['name']);
+
+            $era = Era::firstOrNew([
+                'slug' => $slug,
+            ]);
+
+            $era->fill([
+                'name' => $item['name'],
+                'slug' => $slug,
+                'description' => $item['description'],
+            ]);
+
+            if ($era->isDirty()) {
+                $era->save();
+            }
         }
     }
 }
