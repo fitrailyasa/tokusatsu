@@ -31,7 +31,7 @@
         </thead>
         <tbody>
             @foreach ($video_reacts as $item)
-                <tr @if ($item->trashed()) class="text-muted" @endif>
+                <tr class="text-muted">
                     <td>{{ $video_reacts->firstItem() + $loop->index }}</td>
                     <td>
                         @php
