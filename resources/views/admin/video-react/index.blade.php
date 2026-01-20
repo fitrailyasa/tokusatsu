@@ -23,6 +23,7 @@
             <tr>
                 <th>{{ __('No') }}</th>
                 <th>{{ __('Video') }}</th>
+                <th>{{ __('User') }}</th>
                 <th>{{ __('Status') }}</th>
                 @can('delete:video-react')
                     <th class="text-center">{{ __('Action') }}</th>
@@ -65,7 +66,14 @@
                             @endif
                         </span>
                     </td>
-                    <td>{{ $item->status ?? '-' }}</td>
+                    <td>{{ $item->user->name ?? '-' }}</td>
+                    <td>
+                        @if ($item->status == 'like')
+                            <span class="badge bg-success">Like</span>
+                        @elseif ($item->status == 'dislike')
+                            <span class="badge bg-danger">Dislike</span>
+                        @endif
+                    </td>
                     @can('delete:video-react')
                         <td class="manage-row text-center">
                             @can('delete:video-react')
@@ -80,6 +88,7 @@
             <tr>
                 <th>{{ __('No') }}</th>
                 <th>{{ __('Video') }}</th>
+                <th>{{ __('User') }}</th>
                 <th>{{ __('Status') }}</th>
                 @can('delete:video-react')
                     <th class="text-center">{{ __('Action') }}</th>

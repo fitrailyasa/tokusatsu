@@ -23,6 +23,7 @@
             <tr>
                 <th>{{ __('No') }}</th>
                 <th>{{ __('Video') }}</th>
+                <th>{{ __('User') }}</th>
                 <th>{{ __('Message') }}</th>
                 @can('delete:video-comment')
                     <th class="text-center">{{ __('Action') }}</th>
@@ -65,6 +66,7 @@
                             @endif
                         </span>
                     </td>
+                    <td>{{ $item->user->name ?? '-' }}</td>
                     <td>{{ $item->message ?? '-' }}</td>
                     @can('delete:video-comment')
                         <td class="manage-row text-center">
@@ -80,6 +82,7 @@
             <tr>
                 <th>{{ __('No') }}</th>
                 <th>{{ __('Video') }}</th>
+                <th>{{ __('User') }}</th>
                 <th>{{ __('Message') }}</th>
                 @can('delete:video-comment')
                     <th class="text-center">{{ __('Action') }}</th>
