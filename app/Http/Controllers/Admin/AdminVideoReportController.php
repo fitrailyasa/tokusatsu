@@ -57,7 +57,7 @@ class AdminVideoReportController extends Controller
     // Handle hard delete data
     public function destroy($id)
     {
-        VideoReport::withTrashed()->findOrFail($id)->forceDelete();
+        VideoReport::findOrFail($id)->forceDelete();
         return back()->with('success', 'Successfully delete ' . $this->title . '!');
     }
 

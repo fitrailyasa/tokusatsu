@@ -41,7 +41,7 @@ class AdminVideoCommentController extends Controller
     // Handle hard delete data
     public function destroy($id)
     {
-        VideoComment::withTrashed()->findOrFail($id)->forceDelete();
+        VideoComment::findOrFail($id)->forceDelete();
         return back()->with('success', 'Successfully delete ' . $this->title . '!');
     }
 

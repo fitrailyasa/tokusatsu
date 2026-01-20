@@ -41,7 +41,7 @@ class AdminVideoReactController extends Controller
     // Handle hard delete data
     public function destroy($id)
     {
-        VideoReact::withTrashed()->findOrFail($id)->forceDelete();
+        VideoReact::findOrFail($id)->forceDelete();
         return back()->with('success', 'Successfully delete ' . $this->title . '!');
     }
 
