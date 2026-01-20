@@ -113,7 +113,7 @@ $eras = Era::withoutTrashed()->get()->where('status', 1)->reverse();
 
                         @foreach ($mainFranchises as $franchise)
                             <li class="nav-item dropdown" itemprop="name">
-                                <a class="nav-link dropdown-toggle py-3 px-3 fw-bold {{ $activeFranchise == $franchise->slug ? 'aktif' : '' }}"
+                                <a class="nav-link dropdown-toggle py-3 px-3 fw-bold {{ $activeFranchise == $franchise->slug ? 'aktif rounded' : '' }}"
                                     href="#" itemprop="url">
                                     {{ $franchise->name }}
                                 </a>
@@ -163,7 +163,7 @@ $eras = Era::withoutTrashed()->get()->where('status', 1)->reverse();
                         @endphp
                         @if ($hasActiveOther)
                             <li class="nav-item dropdown" itemprop="name">
-                                <a class="nav-link dropdown-toggle py-3 px-3 fw-bold {{ $isOtherActive ? 'aktif' : '' }} {{ request()->route('category') == $item->slug ? 'aktif' : '' }}"
+                                <a class="nav-link dropdown-toggle py-3 px-3 fw-bold {{ $isOtherActive ? 'aktif rounded' : '' }} {{ request()->route('category') == $item->slug ? 'aktif rounded' : '' }}"
                                     href="#" id="otherDropdown" role="button" itemprop="url">
                                     {{ __('Other') }}
                                 </a>
