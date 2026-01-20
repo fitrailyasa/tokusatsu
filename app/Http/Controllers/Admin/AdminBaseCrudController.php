@@ -136,7 +136,10 @@ class AdminBaseCrudController extends Controller
         $request = app($this->requestClass);
 
         $data = $this->model::findOrFail($id);
-        $data->update($request->validated());
+
+        $validated = $request->validated();
+
+        $data->fill($validated);
 
         if ($request->hasFile($this->imageField)) {
 
@@ -153,12 +156,17 @@ class AdminBaseCrudController extends Controller
                 $folder
             );
 
-            $data->update([
-                $this->imageField => $filename
-            ]);
+            $data->{$this->imageField} = $filename;
         }
 
-        return back()->with('success', 'Successfully update ' . $this->title . '!');
+        if ($data->isDirty()) {
+
+            $data->save();
+
+            return back()->with('success', 'Successfully update ' . $this->title . '!');
+        }
+
+        return back()->with('success', 'No data changes detected.');
     }
 
     // Handle hard delete data

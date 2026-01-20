@@ -82,7 +82,7 @@ Route::middleware(['auth'])->group(function () {
     // CRUD ERA
     Route::get('/era', [AdminEraController::class, 'index'])->name('era.index');
     Route::post('/era', [AdminEraController::class, 'store'])->name('era.store');
-    Route::put('/era/{id}/update', [AdminEraController::class, 'update'])->name('era.update');
+    Route::patch('/era/{id}/update', [AdminEraController::class, 'update'])->name('era.update');
     Route::delete('/era/{id}/destroy', [AdminEraController::class, 'destroy'])->name('era.destroy');
     Route::delete('/era/destroyAll', [AdminEraController::class, 'destroyAll'])->name('era.destroyAll');
     Route::delete('/era/{id}/softDelete', [AdminEraController::class, 'softDelete'])->name('era.softDelete');
@@ -97,7 +97,7 @@ Route::middleware(['auth'])->group(function () {
     // CRUD FRANCHISE
     Route::get('/franchise', [AdminFranchiseController::class, 'index'])->name('franchise.index');
     Route::post('/franchise', [AdminFranchiseController::class, 'store'])->name('franchise.store');
-    Route::put('/franchise/{id}/update', [AdminFranchiseController::class, 'update'])->name('franchise.update');
+    Route::patch('/franchise/{id}/update', [AdminFranchiseController::class, 'update'])->name('franchise.update');
     Route::delete('/franchise/{id}/destroy', [AdminFranchiseController::class, 'destroy'])->name('franchise.destroy');
     Route::delete('/franchise/destroyAll', [AdminFranchiseController::class, 'destroyAll'])->name('franchise.destroyAll');
     Route::delete('/franchise/{id}/softDelete', [AdminFranchiseController::class, 'softDelete'])->name('franchise.softDelete');
@@ -112,7 +112,7 @@ Route::middleware(['auth'])->group(function () {
     // CRUD CATEGORY
     Route::get('/category', [AdminCategoryController::class, 'index'])->name('category.index');
     Route::post('/category', [AdminCategoryController::class, 'store'])->name('category.store');
-    Route::put('/category/{id}/update', [AdminCategoryController::class, 'update'])->name('category.update');
+    Route::patch('/category/{id}/update', [AdminCategoryController::class, 'update'])->name('category.update');
     Route::delete('/category/{id}/destroy', [AdminCategoryController::class, 'destroy'])->name('category.destroy');
     Route::delete('/category/destroyAll', [AdminCategoryController::class, 'destroyAll'])->name('category.destroyAll');
     Route::delete('/category/{id}/softDelete', [AdminCategoryController::class, 'softDelete'])->name('category.softDelete');
@@ -127,7 +127,7 @@ Route::middleware(['auth'])->group(function () {
     // CRUD TAG
     Route::get('/tag', [AdminTagController::class, 'index'])->name('tag.index');
     Route::post('/tag', [AdminTagController::class, 'store'])->name('tag.store');
-    Route::put('/tag/{id}/update', [AdminTagController::class, 'update'])->name('tag.update');
+    Route::patch('/tag/{id}/update', [AdminTagController::class, 'update'])->name('tag.update');
     Route::delete('/tag/{id}/destroy', [AdminTagController::class, 'destroy'])->name('tag.destroy');
     Route::delete('/tag/destroyAll', [AdminTagController::class, 'destroyAll'])->name('tag.destroyAll');
     Route::delete('/tag/{id}/softDelete', [AdminTagController::class, 'softDelete'])->name('tag.softDelete');
@@ -141,7 +141,7 @@ Route::middleware(['auth'])->group(function () {
     // CRUD DATA
     Route::get('/data', [AdminDataController::class, 'index'])->name('data.index');
     Route::post('/data', [AdminDataController::class, 'store'])->name('data.store');
-    Route::put('/data/{id}/update', [AdminDataController::class, 'update'])->name('data.update');
+    Route::patch('/data/{id}/update', [AdminDataController::class, 'update'])->name('data.update');
     Route::delete('/data/{id}/destroy', [AdminDataController::class, 'destroy'])->name('data.destroy');
     Route::delete('/data/destroyAll', [AdminDataController::class, 'destroyAll'])->name('data.destroyAll');
     Route::delete('/data/{id}/softDelete', [AdminDataController::class, 'softDelete'])->name('data.softDelete');
@@ -155,7 +155,7 @@ Route::middleware(['auth'])->group(function () {
     // CRUD VIDEO
     Route::get('/video', [AdminVideoController::class, 'index'])->name('video.index');
     Route::post('/video', [AdminVideoController::class, 'store'])->name('video.store');
-    Route::put('/video/{id}/update', [AdminVideoController::class, 'update'])->name('video.update');
+    Route::patch('/video/{id}/update', [AdminVideoController::class, 'update'])->name('video.update');
     Route::delete('/video/{id}/destroy', [AdminVideoController::class, 'destroy'])->name('video.destroy');
     Route::delete('/video/destroyAll', [AdminVideoController::class, 'destroyAll'])->name('video.destroyAll');
     Route::delete('/video/{id}/softDelete', [AdminVideoController::class, 'softDelete'])->name('video.softDelete');

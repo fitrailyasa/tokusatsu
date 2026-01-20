@@ -9,7 +9,7 @@
         <div class="modal-content">
             <form method="POST" action="{{ route('admin.video.update', $item->id) }}" enctype="multipart/form-data">
                 @csrf
-                @method('PUT')
+                @method('PATCH')
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalFormLabel">{{ __('Edit Data') }}
                     </h5>
