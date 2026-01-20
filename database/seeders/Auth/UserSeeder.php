@@ -14,10 +14,6 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        // Buat roles jika belum ada
-        $superAdminRole = Role::firstOrCreate(['name' => 'super-admin']);
-        $adminRole = Role::firstOrCreate(['name' => 'admin']);
-
         // Daftar user
         $users = [
             [
@@ -50,8 +46,12 @@ class UserSeeder extends Seeder
             $role = $userData['role'];
             unset($userData['role']);
 
-            $user = User::create($userData);
-            $user->assignRole($role);
+            $user = User::updateOrCreate(
+                ['email' => $userData['email']],
+                $userData
+            );
+
+            $user->syncRoles([$role]);
         }
     }
 }
