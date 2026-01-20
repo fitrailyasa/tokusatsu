@@ -93,6 +93,13 @@ $eras = Era::withoutTrashed()->get()->where('status', 1)->reverse();
                         </li>
 
                         @php
+                            $activeFranchise = request()->route('franchise');
+                            $activeCategory = request()->route('category');
+                            if (!$activeFranchise && $activeCategory) {
+                                $cat = Category::where('slug', $activeCategory)->first();
+                                $activeFranchise = $cat?->franchise?->slug;
+                            }
+
                             $mainFranchiseNames = ['Kamen Rider', 'Ultraman', 'Super Sentai'];
 
                             $mainFranchises = $franchises->whereIn('name', $mainFranchiseNames)->sortBy(function ($fr) {
@@ -106,7 +113,8 @@ $eras = Era::withoutTrashed()->get()->where('status', 1)->reverse();
 
                         @foreach ($mainFranchises as $franchise)
                             <li class="nav-item dropdown" itemprop="name">
-                                <a class="nav-link dropdown-toggle py-3 px-3 fw-bold" href="#" itemprop="url">
+                                <a class="nav-link dropdown-toggle py-3 px-3 fw-bold {{ $activeFranchise == $franchise->slug ? 'aktif' : '' }}"
+                                    href="#" itemprop="url">
                                     {{ $franchise->name }}
                                 </a>
 
@@ -150,11 +158,13 @@ $eras = Era::withoutTrashed()->get()->where('status', 1)->reverse();
                                         return $fr->categories->where('status', 1)->count() > 0;
                                     })
                                     ->count() > 0;
+
+                            $isOtherActive = $otherFranchises->pluck('slug')->contains($activeFranchise);
                         @endphp
                         @if ($hasActiveOther)
                             <li class="nav-item dropdown" itemprop="name">
-                                <a class="nav-link dropdown-toggle py-3 px-3 fw-bold" href="#" id="otherDropdown"
-                                    role="button" itemprop="url">
+                                <a class="nav-link dropdown-toggle py-3 px-3 fw-bold {{ $isOtherActive ? 'aktif' : '' }} {{ request()->route('category') == $item->slug ? 'aktif' : '' }}"
+                                    href="#" id="otherDropdown" role="button" itemprop="url">
                                     {{ __('Other') }}
                                 </a>
                                 <ul class="dropdown-menu m-0" aria-labelledby="otherDropdown">
