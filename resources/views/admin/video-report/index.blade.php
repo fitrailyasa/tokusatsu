@@ -75,7 +75,7 @@
                                 'search' => $searchQuery,
                             ]) }}"
                                 class="text-decoration-none">
-                                {{ Illuminate\Support\Str::words($item->title ?? '-', 10, '...') }} <i
+                                {{ Illuminate\Support\Str::words($video->title ?? '-', 10, '...') }} <i
                                     class="fa-solid fa-arrow-up-right-from-square"></i>
                             </a>
                         @else
