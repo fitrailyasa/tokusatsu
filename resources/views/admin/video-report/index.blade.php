@@ -74,8 +74,9 @@
                                 'perPage' => 10,
                                 'search' => $searchQuery,
                             ]) }}"
-                                class="fw-semibold text-decoration-none">
-                                {{ $video->title ?? '-' }} <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                class="text-decoration-none">
+                                {{ Illuminate\Support\Str::words($item->title ?? '-', 10, '...') }} <i
+                                    class="fa-solid fa-arrow-up-right-from-square"></i>
                             </a>
                         @else
                             -
