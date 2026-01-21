@@ -58,8 +58,7 @@
                         @endif
                         <br>
                         <span class="badge bg-{{ $item->video->getCategoryColor() }}">
-                            {{ $item->video->category->franchise->name ?? '-' }}
-                            {{ $item->video->category->name ?? '-' }}
+                            {{ $item->video->category->fullname ?? '-' }}
                             {{ $item->video->label ?? '-' }}
                             @if (in_array($item->video->type, ['episode', 'mini-series', 'spin-off']))
                                 {{ $item->video->number ?? 0 }}
