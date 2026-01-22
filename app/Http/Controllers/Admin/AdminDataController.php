@@ -13,7 +13,7 @@ use App\Http\Requests\TableRequest;
 class AdminDataController extends AdminBaseCrudController
 {
     protected $model = Data::class;
-    protected $title = 'data';
+    protected $title = 'Data';
     protected $permissionName = 'data';
 
     protected $exportClass = DataExport::class;
