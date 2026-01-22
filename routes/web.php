@@ -2,52 +2,82 @@
 
 use App\Models\Video;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Admin\AdminDashboardController;
-use App\Http\Controllers\Admin\AdminUserController;
-use App\Http\Controllers\Admin\AdminRoleController;
-use App\Http\Controllers\Admin\AdminEraController;
-use App\Http\Controllers\Admin\AdminFranchiseController;
-use App\Http\Controllers\Admin\AdminCategoryController;
-use App\Http\Controllers\Admin\AdminTagController;
-use App\Http\Controllers\Admin\AdminDataController;
-use App\Http\Controllers\Admin\AdminProviderAccountController;
-use App\Http\Controllers\Admin\AdminVideoController;
-use App\Http\Controllers\Admin\AdminVideoCommentController;
-use App\Http\Controllers\Admin\AdminVideoReactController;
-use App\Http\Controllers\Admin\AdminVideoReportController;
-use App\Http\Controllers\Auth\ProviderController;
-use App\Http\Controllers\PayPalController;
-use App\Http\Controllers\MidtransController;
-use App\Http\Controllers\Client\ClientVideoController;
-use App\Http\Controllers\Client\ClientHistoryController;
-use App\Http\Controllers\Client\ClientBookmarkController;
-use App\Http\Controllers\DownloadController;
-use App\Livewire\Admin\DashboardLivewire;
-use App\Livewire\Admin\CategoryLivewire;
-use App\Livewire\Admin\DataLivewire;
-use App\Livewire\Admin\EraLivewire;
-use App\Livewire\Admin\FranchiseLivewire;
-use App\Livewire\Admin\TagLivewire;
-use App\Livewire\Admin\UserLivewire;
 
-// CLIENT SIDE
+use App\Http\Controllers\{
+  ProfileController,
+  HomeController,
+  PayPalController,
+  MidtransController,
+  DownloadController
+};
+
+use App\Http\Controllers\Admin\{
+  AdminDashboardController,
+  AdminUserController,
+  AdminRoleController,
+  AdminProviderAccountController,
+  AdminEraController,
+  AdminFranchiseController,
+  AdminCategoryController,
+  AdminTagController,
+  AdminDataController,
+  AdminVideoController,
+  AdminVideoCommentController,
+  AdminVideoReactController,
+  AdminVideoReportController,
+};
+
+use App\Livewire\Admin\{
+  DashboardLivewire,
+  CategoryLivewire,
+  DataLivewire,
+  EraLivewire,
+  FranchiseLivewire,
+  TagLivewire,
+  UserLivewire,
+};
+
+use App\Http\Controllers\Client\{
+  ClientVideoController,
+  ClientHistoryController,
+  ClientBookmarkController,
+};
+
+use App\Http\Controllers\Auth\ProviderController;
+
+// --- PUBLIC ROUTES ---
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/offline', [HomeController::class, 'offline'])->name('offline');
-Route::get('/privacy-policy', [HomeController::class, 'privacyPolicy'])->name('privacy-policy');
-Route::get('/terms-conditions', [HomeController::class, 'termsConditions'])->name('terms-conditions');
-Route::get('/sitemap.xml', function () {
-  return response()->file(public_path('sitemap.xml'));
+Route::view('/offline', 'offline')->name('offline');
+Route::view('/privacy-policy', 'privacy-policy')->name('privacy-policy');
+Route::view('/terms-conditions', 'terms-conditions')->name('terms-conditions');
+Route::get('/sitemap.xml', fn() => response()->file(public_path('sitemap.xml')));
+Route::get('/search', [HomeController::class, 'search'])->name('search');
+Route::get('/home', [HomeController::class, 'index']);
+Route::get('/history', [ClientHistoryController::class, 'index'])->name('history');
+Route::get('/bookmark', [ClientBookmarkController::class, 'index'])->name('bookmark');
+Route::get('/gallery/{franchise}/{category}', [HomeController::class, 'show'])->name('gallery.show');
+
+Route::controller(ClientVideoController::class)->prefix('video')->name('video.')->group(function () {
+  Route::get('/', 'index')->name('index');
+  Route::get('/{category}', 'category')->name('category');
+  Route::get('/{franchise}/{category}', 'show')->name('show');
+  Route::get('/{franchise}/{category}/{type}/{number}', 'watch')->name('watch');
+  Route::post('/report', 'report')->middleware('throttle:5,10')->name('report');
+  Route::post('/{video}/react', 'react')->middleware(['auth', 'throttle:5,10'])->name('react');
+  Route::post('/{video}/comment', 'comment')->middleware(['auth', 'throttle:5,10'])->name('comment');
+  Route::get('/download/{token}', [DownloadController::class, 'handle'])->name('download');
 });
 
-Route::get('/search', [HomeController::class, 'search'])->name('search');
+// Payment
+Route::controller(MidtransController::class)->group(function () {
+  Route::get('/midtrans', 'createTransaction');
+  Route::post('/midtrans/finish', 'finish');
+});
 
-// Payment Gateway
-Route::get('/midtrans', [MidtransController::class, 'createTransaction']);
-Route::post('/midtrans/finish', [MidtransController::class, 'finish']);
-Route::get('/paypal', [PayPalController::class, 'payWithPayPal'])->name('paypal');
-Route::get('/paypal/status', [PayPalController::class, 'payPalStatus'])->name('paypal.status');
+Route::controller(PayPalController::class)->group(function () {
+  Route::get('/paypal', 'payWithPayPal')->name('paypal');
+  Route::get('/paypal/status', 'payPalStatus')->name('paypal.status');
+});
 
 // OAuth
 Route::get('/auth/{provider}/redirect', [ProviderController::class, 'redirect'])->name('auth.redirect');
@@ -55,18 +85,22 @@ Route::get('/auth/{provider}/callback', [ProviderController::class, 'callback'])
 
 require __DIR__ . '/auth.php';
 
-Route::middleware(['auth'])->group(function () {
+// --- AUTHENTICATED ROUTES ---
+Route::middleware('auth')->group(function () {
   Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
-  Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-  Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-  Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-  // CMS ADMINITRASTOR
-  Route::middleware(['verified'])->name('admin.')->prefix('admin')->group(function () {
+  Route::controller(ProfileController::class)->prefix('profile')->name('profile.')->group(function () {
+    Route::get('/', 'edit')->name('edit');
+    Route::patch('/', 'update')->name('update');
+    Route::delete('/', 'destroy')->name('destroy');
+  });
+
+  // --- ADMIN PANEL (CMS) ---
+  Route::middleware('verified')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
 
-    // CRUD LIVEWIRE
+    // Livewire Routes
     Route::get('/dashboards', DashboardLivewire::class)->name('dashboards');
     Route::get('/categories', CategoryLivewire::class)->name('category');
     Route::get('/datas', DataLivewire::class)->name('data');
@@ -75,155 +109,79 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/tags', TagLivewire::class)->name('tag');
     Route::get('/users', UserLivewire::class)->name('user');
 
-    // CRUD USER
     Route::resource('user', AdminUserController::class)->only(['index', 'store', 'update', 'destroy']);
     Route::resource('role', AdminRoleController::class)->only(['index', 'store', 'update', 'destroy']);
 
-    // CRUD ERA
-    Route::get('/era', [AdminEraController::class, 'index'])->name('era.index');
-    Route::post('/era', [AdminEraController::class, 'store'])->name('era.store');
-    Route::patch('/era/{id}/update', [AdminEraController::class, 'update'])->name('era.update');
-    Route::delete('/era/{id}/destroy', [AdminEraController::class, 'destroy'])->name('era.destroy');
-    Route::delete('/era/destroyAll', [AdminEraController::class, 'destroyAll'])->name('era.destroyAll');
-    Route::delete('/era/{id}/softDelete', [AdminEraController::class, 'softDelete'])->name('era.softDelete');
-    Route::delete('/era/softDeleteAll', [AdminEraController::class, 'softDeleteAll'])->name('era.softDeleteAll');
-    Route::put('/era/{id}/restore', [AdminEraController::class, 'restore'])->name('era.restore');
-    Route::put('/era/restoreAll', [AdminEraController::class, 'restoreAll'])->name('era.restoreAll');
-    Route::post('/era/import', [AdminEraController::class, 'import'])->name('era.import');
-    Route::get('/era/exportExcel', [AdminEraController::class, 'exportExcel'])->name('era.exportExcel');
-    Route::get('/era/exportPDF', [AdminEraController::class, 'exportPDF'])->name('era.exportPDF');
-    Route::put('/era/{id}/toggle-status', [AdminEraController::class, 'toggleStatus'])->name('era.toggleStatus');
+    $extendedResources = [
+      'era' => AdminEraController::class,
+      'franchise' => AdminFranchiseController::class,
+      'category' => AdminCategoryController::class,
+      'data' => AdminDataController::class,
+      'video' => AdminVideoController::class,
+      'tag' => AdminTagController::class,
+    ];
 
-    // CRUD FRANCHISE
-    Route::get('/franchise', [AdminFranchiseController::class, 'index'])->name('franchise.index');
-    Route::post('/franchise', [AdminFranchiseController::class, 'store'])->name('franchise.store');
-    Route::patch('/franchise/{id}/update', [AdminFranchiseController::class, 'update'])->name('franchise.update');
-    Route::delete('/franchise/{id}/destroy', [AdminFranchiseController::class, 'destroy'])->name('franchise.destroy');
-    Route::delete('/franchise/destroyAll', [AdminFranchiseController::class, 'destroyAll'])->name('franchise.destroyAll');
-    Route::delete('/franchise/{id}/softDelete', [AdminFranchiseController::class, 'softDelete'])->name('franchise.softDelete');
-    Route::delete('/franchise/softDeleteAll', [AdminFranchiseController::class, 'softDeleteAll'])->name('franchise.softDeleteAll');
-    Route::put('/franchise/{id}/restore', [AdminFranchiseController::class, 'restore'])->name('franchise.restore');
-    Route::put('/franchise/restoreAll', [AdminFranchiseController::class, 'restoreAll'])->name('franchise.restoreAll');
-    Route::post('/franchise/import', [AdminFranchiseController::class, 'import'])->name('franchise.import');
-    Route::get('/franchise/exportExcel', [AdminFranchiseController::class, 'exportExcel'])->name('franchise.exportExcel');
-    Route::get('/franchise/exportPDF', [AdminFranchiseController::class, 'exportPDF'])->name('franchise.exportPDF');
-    Route::put('/franchise/{id}/toggle-status', [AdminFranchiseController::class, 'toggleStatus'])->name('franchise.toggleStatus');
+    foreach ($extendedResources as $name => $controller) {
+      Route::controller($controller)->prefix($name)->name("$name.")->group(function () use ($name, $controller) {
+        Route::get('/', 'index')->name('index');
+        Route::post('/', 'store')->name('store');
+        Route::patch('/{id}/update', 'update')->name('update');
+        Route::delete('/{id}/destroy', 'destroy')->name('destroy');
+        Route::delete('/destroyAll', 'destroyAll')->name('destroyAll');
 
-    // CRUD CATEGORY
-    Route::get('/category', [AdminCategoryController::class, 'index'])->name('category.index');
-    Route::post('/category', [AdminCategoryController::class, 'store'])->name('category.store');
-    Route::patch('/category/{id}/update', [AdminCategoryController::class, 'update'])->name('category.update');
-    Route::delete('/category/{id}/destroy', [AdminCategoryController::class, 'destroy'])->name('category.destroy');
-    Route::delete('/category/destroyAll', [AdminCategoryController::class, 'destroyAll'])->name('category.destroyAll');
-    Route::delete('/category/{id}/softDelete', [AdminCategoryController::class, 'softDelete'])->name('category.softDelete');
-    Route::delete('/category/softDeleteAll', [AdminCategoryController::class, 'softDeleteAll'])->name('category.softDeleteAll');
-    Route::put('/category/{id}/restore', [AdminCategoryController::class, 'restore'])->name('category.restore');
-    Route::put('/category/restoreAll', [AdminCategoryController::class, 'restoreAll'])->name('category.restoreAll');
-    Route::post('/category/import', [AdminCategoryController::class, 'import'])->name('category.import');
-    Route::get('/category/exportExcel', [AdminCategoryController::class, 'exportExcel'])->name('category.exportExcel');
-    Route::get('/category/exportPDF', [AdminCategoryController::class, 'exportPDF'])->name('category.exportPDF');
-    Route::put('/category/{id}/toggle-status', [AdminCategoryController::class, 'toggleStatus'])->name('category.toggleStatus');
+        if (method_exists($controller, 'softDelete')) {
+          Route::delete('/{id}/softDelete', 'softDelete')->name('softDelete');
+          Route::delete('/softDeleteAll', 'softDeleteAll')->name('softDeleteAll');
+          Route::put('/{id}/restore', 'restore')->name('restore');
+          Route::put('/restoreAll', 'restoreAll')->name('restoreAll');
+        }
 
-    // CRUD TAG
-    Route::get('/tag', [AdminTagController::class, 'index'])->name('tag.index');
-    Route::post('/tag', [AdminTagController::class, 'store'])->name('tag.store');
-    Route::patch('/tag/{id}/update', [AdminTagController::class, 'update'])->name('tag.update');
-    Route::delete('/tag/{id}/destroy', [AdminTagController::class, 'destroy'])->name('tag.destroy');
-    Route::delete('/tag/destroyAll', [AdminTagController::class, 'destroyAll'])->name('tag.destroyAll');
-    Route::delete('/tag/{id}/softDelete', [AdminTagController::class, 'softDelete'])->name('tag.softDelete');
-    Route::delete('/tag/softDeleteAll', [AdminTagController::class, 'softDeleteAll'])->name('tag.softDeleteAll');
-    Route::put('/tag/{id}/restore', [AdminTagController::class, 'restore'])->name('tag.restore');
-    Route::put('/tag/restoreAll', [AdminTagController::class, 'restoreAll'])->name('tag.restoreAll');
-    Route::post('/tag/import', [AdminTagController::class, 'import'])->name('tag.import');
-    Route::get('/tag/exportExcel', [AdminTagController::class, 'exportExcel'])->name('tag.exportExcel');
-    Route::get('/tag/exportPDF', [AdminTagController::class, 'exportPDF'])->name('tag.exportPDF');
+        Route::post('/import', 'import')->name('import');
+        Route::get('/exportExcel', 'exportExcel')->name('exportExcel');
+        Route::get('/exportPDF', 'exportPDF')->name('exportPDF');
+        Route::put('/{id}/toggle-status', 'toggleStatus')->name('toggleStatus');
+      });
+    }
 
-    // CRUD DATA
-    Route::get('/data', [AdminDataController::class, 'index'])->name('data.index');
-    Route::post('/data', [AdminDataController::class, 'store'])->name('data.store');
-    Route::patch('/data/{id}/update', [AdminDataController::class, 'update'])->name('data.update');
-    Route::delete('/data/{id}/destroy', [AdminDataController::class, 'destroy'])->name('data.destroy');
-    Route::delete('/data/destroyAll', [AdminDataController::class, 'destroyAll'])->name('data.destroyAll');
-    Route::delete('/data/{id}/softDelete', [AdminDataController::class, 'softDelete'])->name('data.softDelete');
-    Route::delete('/data/softDeleteAll', [AdminDataController::class, 'softDeleteAll'])->name('data.softDeleteAll');
-    Route::put('/data/{id}/restore', [AdminDataController::class, 'restore'])->name('data.restore');
-    Route::put('/data/restoreAll', [AdminDataController::class, 'restoreAll'])->name('data.restoreAll');
-    Route::post('/data/import', [AdminDataController::class, 'import'])->name('data.import');
-    Route::get('/data/exportExcel', [AdminDataController::class, 'exportExcel'])->name('data.exportExcel');
-    // Route::get('/data/exportPDF', [AdminDataController::class, 'exportPDF'])->name('data.exportPDF');
+    // Admin Interaction Management
+    $interactions = [
+      'video-comment' => AdminVideoCommentController::class,
+      'video-react' => AdminVideoReactController::class,
+      'video-report' => AdminVideoReportController::class,
+    ];
 
-    // CRUD VIDEO
-    Route::get('/video', [AdminVideoController::class, 'index'])->name('video.index');
-    Route::post('/video', [AdminVideoController::class, 'store'])->name('video.store');
-    Route::patch('/video/{id}/update', [AdminVideoController::class, 'update'])->name('video.update');
-    Route::delete('/video/{id}/destroy', [AdminVideoController::class, 'destroy'])->name('video.destroy');
-    Route::delete('/video/destroyAll', [AdminVideoController::class, 'destroyAll'])->name('video.destroyAll');
-    Route::delete('/video/{id}/softDelete', [AdminVideoController::class, 'softDelete'])->name('video.softDelete');
-    Route::delete('/video/softDeleteAll', [AdminVideoController::class, 'softDeleteAll'])->name('video.softDeleteAll');
-    Route::put('/video/{id}/restore', [AdminVideoController::class, 'restore'])->name('video.restore');
-    Route::put('/video/restoreAll', [AdminVideoController::class, 'restoreAll'])->name('video.restoreAll');
-    Route::post('/video/import', [AdminVideoController::class, 'import'])->name('video.import');
-    Route::get('/video/exportExcel', [AdminVideoController::class, 'exportExcel'])->name('video.exportExcel');
-    // Route::get('/video/exportPDF', [AdminVideoController::class, 'exportPDF'])->name('video.exportPDF');
-    Route::put('/video/{id}/toggle-status', [AdminVideoController::class, 'toggleStatus'])->name('video.toggleStatus');
+    foreach ($interactions as $prefix => $controller) {
+      Route::controller($controller)->prefix($prefix)->name("$prefix.")->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::delete('/{id}/destroy', 'destroy')->name('destroy');
+        Route::delete('/destroyAll', 'destroyAll')->name('destroyAll');
+      });
+    }
 
-    // CRUD VIDEO COMMENT
-    Route::get('/video-comment', [AdminVideoCommentController::class, 'index'])->name('video-comment.index');
-    Route::delete('/video-comment/{id}/destroy', [AdminVideoCommentController::class, 'destroy'])->name('video-comment.destroy');
-    Route::delete('/video-comment/destroyAll', [AdminVideoCommentController::class, 'destroyAll'])->name('video-comment.destroyAll');
-
-    // CRUD VIDEO REACT
-    Route::get('/video-react', [AdminVideoReactController::class, 'index'])->name('video-react.index');
-    Route::delete('/video-react/{id}/destroy', [AdminVideoReactController::class, 'destroy'])->name('video-react.destroy');
-    Route::delete('/video-react/destroyAll', [AdminVideoReactController::class, 'destroyAll'])->name('video-react.destroyAll');
-
-    // CRUD VIDEO REPORT
-    Route::get('/video-report', [AdminVideoReportController::class, 'index'])->name('video-report.index');
-    Route::delete('/video-report/{id}/destroy', [AdminVideoReportController::class, 'destroy'])->name('video-report.destroy');
-    Route::delete('/video-report/destroyAll', [AdminVideoReportController::class, 'destroyAll'])->name('video-report.destroyAll');
-
-    // PROVIDER ACCOUNT
-    Route::get('/auth/provider', [AdminProviderAccountController::class, 'index'])->name('auth');
-    Route::get('/auth/provider/login', [AdminProviderAccountController::class, 'login'])->name('auth.login');
-    Route::get('/auth/provider/callback', [AdminProviderAccountController::class, 'callback'])->name('auth.callback');
-    Route::put('/auth/provider/{email}/account-status', [AdminProviderAccountController::class, 'accountStatus'])->name('provider.accountStatus');
-    Route::get('/auth/provider/{email}/files', [AdminProviderAccountController::class, 'files'])->name('auth.files');
-    Route::get('/auth/provider/{email}/export', [AdminProviderAccountController::class, 'exportExcel'])->name('auth.export');
-    Route::get('/auth/provider/{email}/logout', [AdminProviderAccountController::class, 'logout'])->name('auth.logout');
-    Route::post('/auth/provider/{email}/upload', [AdminProviderAccountController::class, 'upload'])->name('provider.upload');
-    Route::post('/auth/provider/{email}/clone', [AdminProviderAccountController::class, 'cloneFile'])->name('provider.clone');
-    Route::put('/auth/provider/{email}/files/{fileId}/rename', [AdminProviderAccountController::class, 'renameFile'])->name('provider.rename');
-    Route::put('/auth/provider/{email}/files/{fileId}/toggle-status', [AdminProviderAccountController::class, 'toggleStatus'])->name('provider.toggleStatus');
-    Route::delete('/auth/provider/{email}/files/{fileId}', [AdminProviderAccountController::class, 'delete'])->name('provider.delete');
+    // Provider Account Management
+    Route::controller(AdminProviderAccountController::class)->prefix('auth/provider')->name('auth.provider.')->group(function () {
+      Route::get('/', 'index')->name('index');
+      Route::get('/login', 'login')->name('login');
+      Route::get('/callback', 'callback')->name('callback');
+      Route::prefix('{email}')->group(function () {
+        Route::put('/account-status', 'accountStatus')->name('accountStatus');
+        Route::get('/files', 'files')->name('files');
+        Route::get('/export', 'exportExcel')->name('export');
+        Route::post('/upload', 'upload')->name('upload');
+        Route::post('/clone', 'cloneFile')->name('clone');
+        Route::put('/files/{fileId}/rename', 'renameFile')->name('rename');
+        Route::put('/files/{fileId}/toggle-status', 'toggleStatus')->name('toggleStatus');
+        Route::delete('/files/{fileId}', 'delete')->name('delete');
+        Route::get('/logout', 'logout')->name('logout');
+      });
+    });
   });
 });
 
-Route::get('/download/{token}', [DownloadController::class, 'handle'])->name('video.download');
-
-Route::get('/home', [HomeController::class, 'index']);
-Route::get('/history', [ClientHistoryController::class, 'index'])->name('history');
-Route::get('/bookmark', [ClientBookmarkController::class, 'index'])->name('bookmark');
-Route::get('/gallery/{franchise}/{category}', [HomeController::class, 'show'])->name('gallery.show');
-Route::get('/video', [ClientVideoController::class, 'index'])->name('video');
-Route::get('/video/{category}', [ClientVideoController::class, 'category'])->name('video.category');
-// Route::get('/video/{franchise}/movie', [ClientVideoController::class, 'movie'])->name('video.movie');
-Route::get('/video/{franchise}/{category}', [ClientVideoController::class, 'show'])->name('video.show');
-Route::get('/video/{franchise}/{category}/{type}/{number}', [ClientVideoController::class, 'watch'])->name('video.watch');
-Route::post('/video/report', [ClientVideoController::class, 'report'])->middleware('throttle:5,10')->name('video.report');
-Route::post('/video/{video}/react', [ClientVideoController::class, 'react'])->middleware('auth', 'throttle:5,10')->name('video.react');
-Route::post('/video/{video}/comment', [ClientVideoController::class, 'comment'])->middleware('auth', 'throttle:5,10')->name('video.comment');
-
+// SEO Friendly Slug Redirect
 Route::get('/{slug}', function ($slug) {
-
-  if (preg_match('/-sub-[a-zA-Z0-9]+$/', $slug)) {
-    $slug = preg_replace('/-sub-[a-zA-Z0-9]+$/', '', $slug);
-  }
-
-  if (preg_match('/-dub$/', $slug)) {
-    $slug = preg_replace('/-dub$/', '', $slug);
-  }
-
-  $video = Video::where('slug', $slug)->firstOrFail();
+  $cleanSlug = preg_replace('/(-sub-[a-zA-Z0-9]+|-dub)$/', '', $slug);
+  $video = Video::where('slug', $cleanSlug)->firstOrFail();
 
   return redirect()->route('video.watch', [
     'franchise' => $video->category->franchise->slug,

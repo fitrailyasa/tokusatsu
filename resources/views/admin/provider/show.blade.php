@@ -59,7 +59,7 @@
 
         <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
             <div class="d-flex align-items-center gap-3">
-                <a href="{{ route('admin.auth') }}" class="text-dark fs-5">
+                <a href="{{ route('admin.auth.provider.index') }}" class="text-dark fs-5">
                     <i class="fas fa-arrow-left"></i>
                 </a>
 
@@ -72,7 +72,7 @@
             <div class="d-flex align-items-center gap-2">
                 @can('upload:provider')
                     <form class="d-flex align-items-center m-0 p-0" method="POST"
-                        action="{{ route('admin.provider.clone', $email) }}">
+                        action="{{ route('admin.auth.provider.clone', $email) }}">
                         @csrf
 
                         <input type="text" name="source" placeholder="Paste Google Drive link or File ID"
@@ -87,15 +87,15 @@
                 @endcan
 
                 @can('export:provider')
-                    <a href="{{ route('admin.auth.export', ['email' => $email, 'folder' => $folderId]) }}"
+                    <a href="{{ route('admin.auth.provider.export', ['email' => $email, 'folder' => $folderId]) }}"
                         class="btn btn-success btn-sm d-flex align-items-center">
                         <i class="fas fa-file-excel me-1"></i>Export
                     </a>
                 @endcan
 
                 @can('upload:provider')
-                    <form action="{{ route('admin.provider.upload', $email) }}" method="POST" enctype="multipart/form-data"
-                        class="d-flex align-items-center">
+                    <form action="{{ route('admin.auth.provider.upload', $email) }}" method="POST"
+                        enctype="multipart/form-data" class="d-flex align-items-center">
                         @csrf
                         <input type="hidden" name="folder_id" value="{{ $folderId }}">
                         <input type="file" name="file" hidden id="uploadFile" onchange="this.form.submit()">
@@ -111,7 +111,7 @@
             <ol class="breadcrumb breadcrumb-sm">
                 @foreach ($breadcrumbs as $bc)
                     <li class="breadcrumb-item">
-                        <a href="{{ route('admin.auth.files', [$email, 'folder' => $bc['id']]) }}">
+                        <a href="{{ route('admin.auth.provider.files', [$email, 'folder' => $bc['id']]) }}">
                             {{ $bc['name'] }}
                         </a>
                     </li>
@@ -137,7 +137,7 @@
                                 <span class="file-name fw-medium" data-id="{{ $item->id }}">
                                     @if ($item->is_folder)
                                         <a
-                                            href="{{ route('admin.auth.files', ['email' => $email, 'folder' => $item->id]) }}">
+                                            href="{{ route('admin.auth.provider.files', ['email' => $email, 'folder' => $item->id]) }}">
                                             <i class="fas fa-folder text-warning me-1"></i>{{ $item->name }}
                                         </a>
                                     @else
@@ -199,7 +199,8 @@
                                     <i class="fas fa-trash"></i>
                                 </button>
 
-                                <form action="{{ route('admin.provider.toggleStatus', [$email, $item->id]) }}" method="POST">
+                                <form action="{{ route('admin.auth.provider.toggleStatus', [$email, $item->id]) }}"
+                                    method="POST">
                                     @csrf
                                     @method('PUT')
                                     <label class="toggle-switch ms-2">

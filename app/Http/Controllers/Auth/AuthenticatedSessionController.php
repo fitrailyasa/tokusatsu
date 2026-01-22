@@ -25,7 +25,7 @@ class AuthenticatedSessionController extends Controller
             ['name' => 'twitch', 'color' => '#6441a5', 'icon' => 'fab fa-twitch'],
         ];
 
-        return view('auth.login', compact('providers'));
+        return view('auth.provider.login', compact('providers'));
     }
 
     /**

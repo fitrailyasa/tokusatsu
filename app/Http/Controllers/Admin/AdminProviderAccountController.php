@@ -34,7 +34,7 @@ class AdminProviderAccountController extends Controller
             Drive::DRIVE,
             Oauth2::USERINFO_EMAIL
         ]);
-        $this->client->setRedirectUri(route('admin.auth.callback'));
+        $this->client->setRedirectUri(route('admin.auth.provider.callback'));
         $this->client->setAccessType('offline');
         $this->client->setPrompt('select_account consent');
     }
@@ -69,14 +69,14 @@ class AdminProviderAccountController extends Controller
     public function callback(Request $request)
     {
         if (!$request->has('code')) {
-            return redirect()->route('admin.auth')
+            return redirect()->route('admin.auth.provider.index')
                 ->with('error', 'Login failed: no auth code');
         }
 
         $token = $this->client->fetchAccessTokenWithAuthCode($request->code);
 
         if (isset($token['error'])) {
-            return redirect()->route('admin.auth')
+            return redirect()->route('admin.auth.provider.index')
                 ->with('error', $token['error_description'] ?? 'OAuth error');
         }
 
@@ -90,14 +90,14 @@ class AdminProviderAccountController extends Controller
             ['access_token' => $token]
         );
 
-        return redirect()->route('admin.auth')
+        return redirect()->route('admin.auth.provider.index')
             ->with('success', "Account {$userinfo->email} successfully logged in!");
     }
 
     public function logout($email)
     {
         ProviderAccount::where('email', $email)->delete();
-        return redirect()->route('admin.auth')->with('success', "Account {$email} successfully logged out!");
+        return redirect()->route('admin.auth.provider.index')->with('success', "Account {$email} successfully logged out!");
     }
 
     public function files(Request $request, string $email)

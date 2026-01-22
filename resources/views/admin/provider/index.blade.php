@@ -6,7 +6,7 @@
     <div class="container mb-5">
         @can('auth:provider')
             <div class="mb-3">
-                <a href="{{ route('admin.auth.login') }}" class="btn btn-success">
+                <a href="{{ route('admin.auth.provider.login') }}" class="btn btn-success">
                     <i class="fas fa-user-plus me-2"></i> Add Account
                 </a>
             </div>
@@ -21,14 +21,14 @@
                     @foreach ($accounts as $item)
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <span>
-                                <a href="{{ route('admin.auth.files', $item->email) }}">
+                                <a href="{{ route('admin.auth.provider.files', $item->email) }}">
                                     <i class="fas fa-user-circle me-2 text-secondary"></i>{{ $item->email }}
                                 </a>
                             </span>
                             <div class="d-flex align-items-center gap-2">
                                 @can('edit:provider')
                                     <form class="d-flex align-items-center m-0" class=""
-                                        action="{{ route('admin.provider.accountStatus', $item->id) }}" method="POST">
+                                        action="{{ route('admin.auth.provider.accountStatus', $item->id) }}" method="POST">
                                         @csrf
                                         @method('PUT')
 
@@ -40,12 +40,14 @@
                                     </form>
                                 @endcan
                                 @can('view:provider')
-                                    <a href="{{ route('admin.auth.files', $item->email) }}" class="btn btn-sm btn-primary">
+                                    <a href="{{ route('admin.auth.provider.files', $item->email) }}"
+                                        class="btn btn-sm btn-primary">
                                         <i class="fas fa-folder-open me-2"></i>
                                     </a>
                                 @endcan
                                 @can('delete:provider')
-                                    <a href="{{ route('admin.auth.logout', $item->email) }}" class="btn btn-sm btn-danger">
+                                    <a href="{{ route('admin.auth.provider.logout', $item->email) }}"
+                                        class="btn btn-sm btn-danger">
                                         <i class="fas fa-sign-out-alt me-2"></i>
                                     </a>
                                 @endcan
