@@ -86,6 +86,10 @@ class AdminBaseCrudController extends Controller
     {
         $data = $this->model::withTrashed()->get();
 
+        if (!view()->exists($this->pdfView)) {
+            return back()->with('error', 'PDF template not found!');
+        }
+
         return $this->exportPdfFile(
             $this->pdfView,
             [
