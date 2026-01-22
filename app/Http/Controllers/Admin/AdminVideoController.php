@@ -13,7 +13,7 @@ use App\Http\Requests\TableRequest;
 class AdminVideoController extends AdminBaseCrudController
 {
     protected $model = Video::class;
-    protected $title = 'video';
+    protected $title = 'Video';
     protected $permissionName = 'video';
 
     protected $exportClass = VideoExport::class;

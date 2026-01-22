@@ -14,7 +14,7 @@ use App\Http\Requests\TableRequest;
 class AdminCategoryController extends AdminBaseCrudController
 {
     protected $model = Category::class;
-    protected $title = 'category';
+    protected $title = 'Category';
     protected $permissionName = 'category';
 
     protected $exportClass = CategoryExport::class;

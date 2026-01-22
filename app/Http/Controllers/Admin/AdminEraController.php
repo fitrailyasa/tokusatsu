@@ -12,7 +12,7 @@ use App\Http\Requests\TableRequest;
 class AdminEraController extends AdminBaseCrudController
 {
     protected $model = Era::class;
-    protected $title = 'era';
+    protected $title = 'Era';
     protected $permissionName = 'era';
 
     protected $exportClass = EraExport::class;

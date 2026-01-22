@@ -11,7 +11,7 @@ use App\Http\Requests\TableRequest;
 class AdminTagController extends AdminBaseCrudController
 {
     protected $model = Tag::class;
-    protected $title = 'tag';
+    protected $title = 'Tag';
     protected $permissionName = 'tag';
 
     protected $exportClass = TagExport::class;
