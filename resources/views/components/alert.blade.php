@@ -1,11 +1,13 @@
 @if ($errors->any())
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', () => {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
                 html: `{!! implode('<br>', $errors->all()) !!}`,
-                confirmButtonColor: '#d33',
+                background: 'var(--card-bg)',
+                color: 'var(--text-main)',
+                confirmButtonText: 'OK'
             });
         });
     </script>
@@ -13,12 +15,14 @@
 
 @if (session('error'))
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', () => {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                html: '{!! session('error') !!}',
-                confirmButtonColor: '#d33',
+                html: `{!! session('error') !!}`,
+                background: 'var(--card-bg)',
+                color: 'var(--text-main)',
+                confirmButtonText: 'OK'
             });
         });
     </script>
@@ -26,12 +30,14 @@
 
 @if (session('success'))
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', () => {
             Swal.fire({
                 icon: 'success',
-                title: 'Successfully!',
-                text: '{{ session('success') }}',
-                confirmButtonColor: '#28a745',
+                title: 'Success!',
+                text: "{{ session('success') }}",
+                background: 'var(--card-bg)',
+                color: 'var(--text-main)',
+                confirmButtonText: 'OK'
             });
         });
     </script>

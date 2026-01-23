@@ -919,3 +919,53 @@ ul {
     color: var(--text-main);
     border: 1px solid var(--border-color);
 }
+
+/* =========================================================
+   SWEETALERT THEME SUPPORT
+========================================================= */
+
+.swal2-popup {
+    background: var(--card-bg) !important;
+    color: var(--text-main) !important;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+}
+
+.swal2-title {
+    color: var(--text-main) !important;
+}
+
+.swal2-html-container {
+    color: var(--text-sec) !important;
+}
+
+.swal2-confirm {
+    background-color: transparent !important;
+    color: var(--text-main) !important;
+    border: 1px solid var(--border-color) !important;
+    padding: 8px 16px;
+    border-radius: 8px;
+}
+
+.swal2-confirm:hover {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+body.theme-light .swal2-confirm:hover {
+    background-color: rgba(0, 0, 0, 0.06) !important;
+}
+
+.swal2-icon.swal2-success {
+    border-color: #22c55e !important;
+    color: #22c55e !important;
+}
+
+.swal2-icon.swal2-error {
+    border-color: #ef4444 !important;
+    color: #ef4444 !important;
+}
+
+.swal2-icon.swal2-warning {
+    border-color: #facc15 !important;
+    color: #facc15 !important;
+}
