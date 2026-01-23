@@ -18,7 +18,9 @@ class ProviderController extends Controller
                 ->redirect();
         }
 
-        return Socialite::driver($provider)->redirect();
+        return Socialite::driver($provider)
+            ->stateless()
+            ->redirect();
     }
 
     public function callback($provider)
@@ -28,7 +30,9 @@ class ProviderController extends Controller
                 ->stateless()
                 ->user();
         } else {
-            $socialUser = Socialite::driver($provider)->user();
+            $socialUser = Socialite::driver($provider)
+                ->stateless()
+                ->user();
         }
 
         $email = $socialUser->getEmail();
