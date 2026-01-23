@@ -1,4 +1,4 @@
-<div class="shadow-sm border-0">
+<div class="border-0">
     <div class="">
         <form id="profile-form" method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data">
             @csrf

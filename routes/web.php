@@ -80,8 +80,8 @@ Route::controller(PayPalController::class)->group(function () {
 });
 
 // OAuth
-Route::get('/auth/{provider}/redirect', [ProviderController::class, 'redirect'])->name('auth.redirect');
-Route::get('/auth/{provider}/callback', [ProviderController::class, 'callback'])->name('auth.callback');
+Route::get('/auth/{provider}/redirect', [ProviderController::class, 'redirect'])->name('provider.redirect');
+Route::get('/auth/{provider}/callback', [ProviderController::class, 'callback'])->name('provider.callback');
 
 require __DIR__ . '/auth.php';
 
@@ -94,6 +94,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/', 'update')->name('update');
     Route::delete('/', 'destroy')->name('destroy');
   });
+
+  Route::post('/auth/{provider}/disconnect', [ProviderController::class, 'disconnect'])->name('provider.disconnect');
 
   // --- ADMIN PANEL (CMS) ---
   Route::middleware('verified')->prefix('admin')->name('admin.')->group(function () {

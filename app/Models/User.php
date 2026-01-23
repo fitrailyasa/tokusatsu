@@ -60,6 +60,11 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+    public function hasProvider(string $provider): bool
+    {
+        return in_array($provider, $this->provider ?? []);
+    }
+
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);

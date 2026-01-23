@@ -88,4 +88,27 @@ class ProviderController extends Controller
 
         return is_array($value) ? $value : [];
     }
+
+    public function disconnect($provider)
+    {
+        $user = auth()->user();
+
+        if (count($user->provider) <= 1) {
+            return back()->with('success', 'At least one provider must remain connected');
+        }
+
+        $providers = collect($user->provider)->filter(fn($p) => $p !== $provider)->values();
+        $providerIds = collect($user->provider_id)->values();
+
+        $tokens = collect($user->provider_tokens);
+        $tokens->forget($provider);
+
+        $user->update([
+            'provider' => $providers,
+            'provider_id' => $providerIds,
+            'provider_tokens' => $tokens,
+        ]);
+
+        return back()->with('success', ucfirst($provider) . ' disconnected successfully');
+    }
 }

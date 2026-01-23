@@ -909,3 +909,13 @@ ul {
     object-fit: cover;
     border-radius: 50%;
 }
+
+/* =========================================================
+   CARD & MODAL
+========================================================= */
+.card,
+.modal-content {
+    background-color: var(--card-bg);
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+}

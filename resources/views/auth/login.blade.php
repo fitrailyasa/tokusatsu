@@ -68,7 +68,7 @@
                     <small class="text-muted">Or login with</small>
                     <div class="d-flex justify-content-center gap-3 mt-2">
                         @foreach ($providers as $provider)
-                            <a href="{{ route('auth.redirect', $provider['name']) }}"
+                            <a href="{{ route('provider.redirect', $provider['name']) }}"
                                 class="d-flex align-items-center justify-content-center rounded-circle text-white"
                                 style="background-color: {{ $provider['color'] }}; width: 45px; height: 45px;">
                                 <i class="{{ $provider['icon'] }}"></i>

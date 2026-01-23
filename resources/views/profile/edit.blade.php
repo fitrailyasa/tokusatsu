@@ -10,6 +10,7 @@
                     <div class="card shadow-sm border-0">
                         <div class="card-body">
                             @include('profile.form')
+                            @include('profile.provider')
                         </div>
                     </div>
                 </div>
@@ -22,9 +23,10 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     @include('components.alert')
-                    <div class="border-0">
-                        <div class="">
+                    <div class="card shadow-sm border-0">
+                        <div class="card-body">
                             @include('profile.form')
+                            @include('profile.provider')
                         </div>
                     </div>
                 </div>
