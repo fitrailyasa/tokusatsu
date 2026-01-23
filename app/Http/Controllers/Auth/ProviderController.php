@@ -98,7 +98,7 @@ class ProviderController extends Controller
         $user = auth()->user();
 
         if (count($user->provider) <= 1) {
-            return back()->with('success', 'At least one provider must remain connected');
+            return back()->with('error', 'At least one provider must remain connected');
         }
 
         $providers = collect($user->provider)->filter(fn($p) => $p !== $provider)->values();
