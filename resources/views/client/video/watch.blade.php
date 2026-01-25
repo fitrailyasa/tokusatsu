@@ -86,9 +86,13 @@
                         allowfullscreen>
                     </iframe>
 
-                    <video id="video-video" class="w-100 h-100 d-none" controls controlsList="nodownload" playsinline>
-                        <source id="video-source" src="">
-                        Your browser does not support video.
+                    <video id="video-video" class="plyr w-100 h-100 d-none" playsinline controls
+                        data-plyr-config='{
+                                            "controls": ["play-large","play","progress","current-time","mute","volume","settings","fullscreen"],
+                                            "settings": ["quality","speed"],
+                                            "disableContextMenu": true
+                                        }'>
+                        <source id="video-source" src="" type="video/mp4">
                     </video>
 
                 </div>
@@ -181,12 +185,19 @@
             const source = document.getElementById("video-source");
             const overlay = document.getElementById("fsOverlay");
 
+            let player = null;
+
             function resetPlayer() {
                 iframe.classList.add("d-none");
                 video.classList.add("d-none");
                 overlay.style.display = "none";
                 iframe.src = "";
-                video.pause();
+
+                if (player) {
+                    player.destroy();
+                    player = null;
+                }
+
                 source.src = "";
             }
 
@@ -202,8 +213,29 @@
                     overlay.style.display = "block";
                 } else {
                     source.src = url;
-                    video.load();
                     video.classList.remove("d-none");
+
+                    player = new Plyr(video, {
+                        autoplay: true,
+                        fullscreen: {
+                            enabled: true,
+                            iosNative: true
+                        },
+                        controls: [
+                            "play-large",
+                            "play",
+                            "progress",
+                            "current-time",
+                            "mute",
+                            "volume",
+                            "settings",
+                            "fullscreen"
+                        ]
+                    });
+
+                    player.on('ready', () => {
+                        player.play();
+                    });
                 }
 
                 document.querySelectorAll(".server-btn")
