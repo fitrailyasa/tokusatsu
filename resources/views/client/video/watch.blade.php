@@ -48,6 +48,17 @@
             cursor: default;
             z-index: 10;
         }
+
+        .ratio>.plyr {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .plyr video {
+            object-fit: contain;
+        }
     </style>
 
     <div class="container my-2 py-5">
