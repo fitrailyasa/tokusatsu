@@ -65,8 +65,9 @@ Route::controller(ClientVideoController::class)->prefix('video')->name('video.')
   Route::post('/report', 'report')->middleware('throttle:5,10')->name('report');
   Route::post('/{video}/react', 'react')->middleware(['auth', 'throttle:5,10'])->name('react');
   Route::post('/{video}/comment', 'comment')->middleware(['auth', 'throttle:5,10'])->name('comment');
-  Route::get('/download/{token}', [DownloadController::class, 'handle'])->name('download');
 });
+
+Route::get('/download/{token}', [DownloadController::class, 'handle'])->name('video.download');
 
 // Payment
 Route::controller(MidtransController::class)->group(function () {
