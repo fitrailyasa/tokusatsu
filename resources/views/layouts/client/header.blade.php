@@ -135,7 +135,7 @@ $eras = Era::withoutTrashed()->get()->where('status', 1)->reverse();
                                                 <li itemprop="name">
                                                     <a class="dropdown-item"
                                                         href="{{ route('video.category.series', [$franchise->slug, $item->slug]) }}"
-                                                        title="Tonton {{ $item->fullname }} dari franchise {{ $franchise->name }}"
+                                                        title="Watch {{ $item->fullname }} from the {{ $item->franchise->name }} franchise"
                                                         itemprop="url">
                                                         {{ $item->fullname }}
                                                     </a>
@@ -182,7 +182,7 @@ $eras = Era::withoutTrashed()->get()->where('status', 1)->reverse();
                                                         <li itemprop="name">
                                                             <a class="dropdown-item"
                                                                 href="{{ route('video.category.series', [$item->franchise->slug, $item->slug]) }}"
-                                                                title="Tonton {{ $item->fullname }} dari franchise {{ $item->franchise->name }}"
+                                                                title="Watch {{ $item->fullname }} from the {{ $item->franchise->name }} franchise"
                                                                 itemprop="url">
                                                                 {{ $item->fullname }}
                                                             </a>
