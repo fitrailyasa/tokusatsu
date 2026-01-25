@@ -23,7 +23,7 @@
         @foreach ($franchises as $franchiseName => $franchiseSlug)
             <div class="section-title">
                 <h5 class="responsive-title">{{ $franchiseName }}</h5>
-                <a href="{{ route('video.category', $franchiseSlug) }}">
+                <a href="{{ route('video.franchise.series', $franchiseSlug) }}">
                     View All <i class="fa-solid fa-arrow-up-right-from-square"></i>
                 </a>
             </div>
@@ -32,7 +32,7 @@
                 <div class="swiper-wrapper">
                     @foreach ($groupedCategories[$franchiseName] ?? [] as $category)
                         <div class="swiper-slide">
-                            <a href="{{ route('video.show', [$category->franchise->slug, $category->slug]) }}">
+                            <a href="{{ route('video.category.series', [$category->franchise->slug, $category->slug]) }}">
                                 <img src="{{ $category->img ? asset('storage/' . $category->img) : asset('storage/comingsoon.jpg') }}"
                                     loading="lazy" alt="Logo {{ $category->name }}">
                                 <p class="pt-2 normal-text">
