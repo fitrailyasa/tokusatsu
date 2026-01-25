@@ -86,7 +86,7 @@ class Category extends Model
 
     public function showUrl()
     {
-        return route('video.show', [
+        return route('video.category.series', [
             $this->franchise->slug,
             $this->slug
         ]);

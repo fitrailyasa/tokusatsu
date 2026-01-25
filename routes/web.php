@@ -58,9 +58,12 @@ Route::get('/bookmark', [ClientBookmarkController::class, 'index'])->name('bookm
 Route::get('/gallery/{franchise}/{category}', [HomeController::class, 'show'])->name('gallery.show');
 
 Route::controller(ClientVideoController::class)->prefix('video')->name('video.')->group(function () {
-  Route::get('/', 'index')->name('index');
-  Route::get('/{category}', 'category')->name('category');
-  Route::get('/{franchise}/{category}', 'show')->name('show');
+  Route::get('/', 'indexSeries')->name('series');
+  // Route::get('/movie', 'indexMovie')->name('movie');
+  Route::get('/{franchise}', 'franchiseSeries')->name('franchise.series');
+  // Route::get('/{franchise}/movie', [ClientVideoController::class, 'franchiseMovie'])->name('franchise.movie');
+  Route::get('/{franchise}/{category}', 'categorySeries')->name('category.series');
+  // Route::get('/{franchise}/{category}/movie', [ClientVideoController::class, 'categoryMovie'])->name('category.movie');
   Route::get('/{franchise}/{category}/{type}/{number}', 'watch')->name('watch');
   Route::post('/report', 'report')->middleware('throttle:5,10')->name('report');
   Route::post('/{video}/react', 'react')->middleware(['auth', 'throttle:5,10'])->name('react');

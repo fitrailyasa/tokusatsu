@@ -1,16 +1,17 @@
 @extends('layouts.client.app')
 
-@section('title', 'Video')
+@section('title', 'Series')
 
-@section('textvideo', 'rounded aktif')
+@section('series', 'rounded aktif')
 
 @section('content')
 
     <div class="container text-center my-5 py-4">
+        <h1 class="text-center responsive-title">Series</h1>
         <div class="row justify-content-center mt-4">
             @foreach ($franchises as $item)
                 <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
-                    <a href="{{ route('video.category', $item->slug) }}" class="text-decoration-none">
+                    <a href="{{ route('video.franchise.series', $item->slug) }}" class="text-decoration-none">
                         <div class="franchise-card">
                             @if ($item->img === null)
                                 <img class="img img-fluid franchise-img rounded" src="{{ asset('logo.png') }}" alt="">

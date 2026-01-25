@@ -213,21 +213,25 @@
         </section>
 
         <section class="channel-section">
-            <a href="{{ $category->showUrl() }}" class="channel-info">
-                <div class="channel-avatar">
-                    <img src="{{ $video->category->img ? asset('storage/' . $video->category->img) : asset('logo.png') }}"
-                        alt="{{ $video->category->name }}">
-                </div>
-                <div class="channel-text">
-                    <h4>{{ $video->category->fullname }}</h4>
-                    <span>
-                        @if ($video->type == 'episode')
-                            Series
-                        @else
-                            {{ $video->label }}
-                        @endif
-                    </span>
-                </div>
+            @if ($video->type == 'episode')
+                <a href="{{ $category->showUrl() }}" class="channel-info">
+                @else
+                    <a href="{{ $category->showUrl() }}/movie" class="channel-info">
+            @endif
+            <div class="channel-avatar">
+                <img src="{{ $video->category->img ? asset('storage/' . $video->category->img) : asset('logo.png') }}"
+                    alt="{{ $video->category->name }}">
+            </div>
+            <div class="channel-text">
+                <h4>{{ $video->category->fullname }}</h4>
+                <span>
+                    @if ($video->type == 'episode')
+                        Series
+                    @else
+                        {{ $video->label }}
+                    @endif
+                </span>
+            </div>
             </a>
         </section>
 

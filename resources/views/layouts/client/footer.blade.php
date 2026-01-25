@@ -8,9 +8,9 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('video.index') }}" class="nav-link p-1 fw-normal text-center @yield('textvideo')">
+                <a href="{{ route('video.series') }}" class="nav-link p-1 fw-normal text-center @yield('series')">
                     <i data-feather="play-circle" class="d-block mx-auto"></i>
-                    <small>Video</small>
+                    <small>Series</small>
                 </a>
             </li>
             <li class="nav-item">

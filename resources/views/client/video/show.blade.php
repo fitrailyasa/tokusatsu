@@ -2,7 +2,7 @@
 
 @section('title', $title ?? '')
 
-@section('textvideo', 'rounded aktif')
+@section('series', 'rounded aktif')
 
 @section('description')
     {{ $category->description }}
@@ -39,8 +39,7 @@
     <div class="container my-5">
         <div class="d-flex justify-content-between align-items-center px-3 pt-4">
             <div>
-                <a href="{{ route('video.category', $category->franchise->slug) }}"><i data-feather="arrow-left"
-                        class="d-block mx-auto"></i></a>
+                <a href="{{ $routeBack }}"><i data-feather="arrow-left" class="d-block mx-auto"></i></a>
             </div>
             <div>
                 <h1 class="text-center responsive-title">{{ $title }}</h1>

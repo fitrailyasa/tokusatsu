@@ -2,7 +2,7 @@
 
 @section('title', $title ?? '')
 
-@section('textvideo', 'rounded aktif')
+@section('movie', 'rounded aktif')
 
 @section('description')
     {{ $franchise->description }}
@@ -39,7 +39,7 @@
     <div class="container my-5">
         <div class="d-flex justify-content-between align-items-center px-3 pt-4">
             <div>
-                <a href="{{ route('video.index') }}"><i data-feather="arrow-left"></i></a>
+                <a href="{{ route('video.movie') }}"><i data-feather="arrow-left"></i></a>
             </div>
             <div>
                 <h1 class="text-center responsive-title">{{ $title }}</h1>
@@ -76,7 +76,7 @@
                                     </td>
 
                                     <td>
-                                        <a class="text-decoration-none" href="{{ $item->showUrl() }}">
+                                        <a class="text-decoration-none" href="{{ $item->showUrl() }}/movie">
                                             {{ $item->fullname }}
 
                                             @if ($item->first_aired)
@@ -90,7 +90,7 @@
                                     </td>
 
                                     <td class="text-center">
-                                        <a href="{{ $item->showUrl() }}">
+                                        <a href="{{ $item->showUrl() }}/movie">
                                             @if ($item->img === null)
                                                 <img class="img-fluid rounded shadow-sm" src="{{ asset('logo.png') }}"
                                                     alt="{{ $item->fullname }}">
