@@ -65,7 +65,6 @@
                             <tr>
                                 <th class="text-center" style="max-width: 90px;">List</th>
                                 <th>Title</th>
-                                <th style="max-width: 70px;">Release</th>
                                 {{-- <th class="text-center" style="max-width: 90px;">Download</th> --}}
                                 <th class="text-center" style="max-width: 90px;">Bookmark</th>
                             </tr>
@@ -89,11 +88,11 @@
 
                                         <a class="text-decoration-none normal-text" href="{{ $video->watchUrl() }}">
                                             {{ $displayTitle }}
+                                            <br>
+                                            <span class="text-muted">
+                                                {{ \Carbon\Carbon::parse($video->airdate ?? $video->category->first_aired)->diffForHumans() }}
+                                            </span>
                                         </a>
-                                    </td>
-
-                                    <td class="text-muted normal-text">
-                                        {{ \Carbon\Carbon::parse($video->airdate ?? $video->category->first_aired)->diffForHumans() }}
                                     </td>
 
                                     {{-- <td class="text-center normal-text">

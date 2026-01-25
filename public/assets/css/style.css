@@ -607,10 +607,14 @@ body.theme-light .btn-outline-light:hover {
     background-color: rgba(0, 0, 0, 0.06);
 }
 
-@media (max-width: 576px) {
+@media (max-width: 768px) {
     .normal-text {
-        font-size: 0.7rem;
-        line-height: 1.2;
+        font-size: 0.7rem !important;
+        line-height: 1;
+    }
+
+    .text-muted {
+        font-size: 0.6rem !important;
     }
 }
 
