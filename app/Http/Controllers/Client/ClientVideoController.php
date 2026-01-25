@@ -333,9 +333,23 @@ class ClientVideoController extends Controller
             'message' => $comment->message,
             'user' => [
                 'name' => $comment->user->name,
-                'avatar' => $comment->user->img ?? 'https://via.placeholder.com/40',
+                'img' => $comment->user->img,
             ],
             'created_at' => $comment->created_at->diffForHumans(),
+        ]);
+    }
+
+    public function deleteComment(VideoComment $comment)
+    {
+        if ($comment->user_id !== Auth::id()) {
+            return response()->json(['message' => 'Unauthorized'], 403);
+        }
+
+        $comment->delete();
+
+        return response()->json([
+            'success' => true,
+            'id' => $comment->id
         ]);
     }
 

@@ -61,13 +61,14 @@ Route::controller(ClientVideoController::class)->prefix('video')->name('video.')
   Route::get('/', 'indexSeries')->name('series');
   // Route::get('/movie', 'indexMovie')->name('movie');
   Route::get('/{franchise}', 'franchiseSeries')->name('franchise.series');
-  // Route::get('/{franchise}/movie', [ClientVideoController::class, 'franchiseMovie'])->name('franchise.movie');
+  // Route::get('/{franchise}/movie', 'franchiseMovie')->name('franchise.movie');
   Route::get('/{franchise}/{category}', 'categorySeries')->name('category.series');
-  // Route::get('/{franchise}/{category}/movie', [ClientVideoController::class, 'categoryMovie'])->name('category.movie');
+  // Route::get('/{franchise}/{category}/movie', 'categoryMovie')->name('category.movie');
   Route::get('/{franchise}/{category}/{type}/{number}', 'watch')->name('watch');
   Route::post('/report', 'report')->middleware('throttle:5,10')->name('report');
   Route::post('/{video}/react', 'react')->middleware(['auth', 'throttle:5,10'])->name('react');
-  Route::post('/{video}/comment', 'comment')->middleware(['auth', 'throttle:5,10'])->name('comment');
+  Route::post('/{video}/comment', 'comment')->middleware(['auth'])->name('comment');
+  Route::delete('/comment/{comment}', 'deleteComment')->middleware(['auth'])->name('comment.delete');
 });
 
 Route::get('/download/{token}', [DownloadController::class, 'handle'])->name('video.download');
