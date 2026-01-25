@@ -39,7 +39,8 @@
     <div class="container my-5">
         <div class="d-flex justify-content-between align-items-center px-3 pt-4">
             <div>
-                <a href="{{ $routeBack }}"><i data-feather="arrow-left" class="d-block mx-auto"></i></a>
+                <a href="{{ route('video.franchise.series', $category->franchise->slug) }}"><i data-feather="arrow-left"
+                        class="d-block mx-auto"></i></a>
             </div>
             <div>
                 <h1 class="text-center responsive-title">{{ $title }}</h1>
