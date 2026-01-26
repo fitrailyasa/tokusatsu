@@ -116,7 +116,7 @@ class ClientVideoController extends Controller
             ->where('link', '!=', '[]');
 
         if (empty($category->last_aired)) {
-            $videosQuery->orderByDesc('number');
+            $videosQuery->orderByDesc('airdate');
         } else {
             $videosQuery->latest('type')->orderByDesc('last_aired');
         }
