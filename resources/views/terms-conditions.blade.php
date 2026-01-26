@@ -7,8 +7,8 @@
 @section('content')
 
     <div class="my-5 py-4">
-        <h3 class="text-dark text-center">Terms &amp; Conditions</h3>
-        <div class="container text-dark mb-5" style="max-width: 900px;">
+        <h3 class="text-center">Terms &amp; Conditions</h3>
+        <div class="container mb-5" style="max-width: 900px;">
 
             <h4>1. Introduction</h4>
             <p>
