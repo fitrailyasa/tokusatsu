@@ -111,7 +111,6 @@ class ClientVideoController extends Controller
 
         $videosQuery = $category->videos()
             ->with('category')
-            ->latest('type')
             ->where('status', 1)
             ->whereNotNull('link')
             ->where('link', '!=', '[]');
@@ -119,7 +118,7 @@ class ClientVideoController extends Controller
         if (empty($category->last_aired)) {
             $videosQuery->orderByDesc('number');
         } else {
-            $videosQuery->orderByDesc('last_aired');
+            $videosQuery->latest('type')->orderByDesc('last_aired');
         }
 
         if ($hasEpisode) {
