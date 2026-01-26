@@ -124,6 +124,7 @@ $eras = Era::withoutTrashed()->get()->where('status', 1)->reverse();
                                             $list = $franchise->categories
                                                 ->where('era_id', $era->id)
                                                 ->where('status', 1)
+                                                ->sortByDesc('first_aired')
                                                 ->reverse();
                                         @endphp
 
