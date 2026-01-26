@@ -613,7 +613,7 @@ body.theme-light .btn-outline-light:hover {
         line-height: 1;
     }
 
-    .text-muted {
+    span.text-muted {
         font-size: 0.6rem !important;
     }
 }
