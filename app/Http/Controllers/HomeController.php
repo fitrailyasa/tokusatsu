@@ -19,6 +19,7 @@ class HomeController extends Controller
             ->whereHas('era', function ($q) {
                 $q->where('status', 1);
             })
+            ->orderBy('first_aired')
             ->get()->reverse();
         return view('client.index', compact('categories'));
     }
