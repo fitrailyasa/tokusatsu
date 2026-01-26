@@ -125,7 +125,7 @@ $eras = Era::withoutTrashed()->get()->where('status', 1)->reverse();
                                                 ->where('era_id', $era->id)
                                                 ->where('status', 1)
                                                 ->sortByDesc('first_aired')
-                                                ->reverse();
+                                                ->get();
                                         @endphp
 
                                         @if ($list->count())
