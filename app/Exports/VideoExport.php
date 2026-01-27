@@ -24,15 +24,17 @@ class VideoExport implements FromCollection, WithHeadings, WithStyles, ShouldAut
     {
         $no         = 1;
         $collection = [];
-        $Videos = $this->categoryId
-            ? Video::where('category_id', $this->categoryId)
-            ->orderBy('type')
-            ->orderBy('franchise_id')
-            ->orderBy('category_id')
-            ->get()
-            : Video::orderBy('type')
-            ->orderBy('franchise_id')
-            ->orderBy('category_id')
+        $Videos = Video::leftJoin('categories', 'videos.category_id', '=', 'categories.id')
+            ->leftJoin('franchises', 'categories.franchise_id', '=', 'franchises.id')
+            ->select('videos.*')
+            ->when(
+                $this->categoryId,
+                fn($q) =>
+                $q->where('videos.category_id', $this->categoryId)
+            )
+            ->orderBy('videos.type')
+            ->orderBy('franchises.id')
+            ->orderBy('categories.first_aired')
             ->get();
 
         foreach ($Videos as $item) {
