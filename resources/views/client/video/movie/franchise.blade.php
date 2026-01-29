@@ -71,7 +71,7 @@
                 </div>
             @endif
             <div class="d-flex justify-content-center">
-                {{ $videos->appends(['era_id' => $eraId, 'franchise_id' => $franchiseId, 'perPage' => $perPage, 'search' => $search])->links() }}
+                {{ $videos->appends(['era_id' => $eraId, 'franchise_id' => $franchiseId, 'perPage' => $perPage, 'search' => $search])->links('vendor.pagination.mobile') }}
             </div>
         </div>
     </div>
