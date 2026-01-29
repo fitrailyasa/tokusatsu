@@ -194,6 +194,13 @@ $eras = Era::withoutTrashed()->get()->where('status', 1)->reverse();
                             </li>
                         @endif
 
+                        <li itemprop="name">
+                            <a itemprop="url" href="{{ route('video.movie') }}"
+                                class="nav-link py-3 px-3 fw-bold @yield('movie')" title="Movie">
+                                {{ __('Movie') }}
+                            </a>
+                        </li>
+
                         {{-- HISTORY & BOOKMARK --}}
                         <li class="nav-item">
                             <a class="nav-link py-3 px-3 fw-bold @yield('textHistory')" href="{{ route('history') }}"

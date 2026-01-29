@@ -62,18 +62,20 @@ class ClientVideoController extends Controller
         $validPerPage = in_array($perPage, [10, 50, 100]) ? $perPage : 10;
 
         $franchise = Franchise::where('slug', $franchise)->withoutTrashed()->where('status', 1)->firstOrFail();
-        $categories = Category::where('franchise_id', $franchise->id)
-            ->withoutTrashed()
-            ->orderBy('id', 'desc')
+
+        $videos = Video::whereHas('category', function ($q) use ($franchise) {
+            $q->where('franchise_id', $franchise->id);
+        })
+            ->where('type', '!=', 'episode')
             ->where('status', 1)
-            ->whereHas('era', function ($q) {
-                $q->where('status', 1);
-            })
-            ->paginate(10);
+            ->whereNotNull('link')
+            ->where('link', '!=', '[]')
+            ->orderBy('airdate', 'desc')
+            ->paginate($validPerPage);
 
-        $title = $franchise->name . ' Movie';
+        $title = 'Movie ' . $franchise->name;
 
-        return view('client.video.movie.franchise', compact(['title', 'franchise', 'categories', 'search', 'perPage', 'eraId', 'franchiseId']));
+        return view('client.video.movie.franchise', compact('title', 'search', 'perPage', 'eraId', 'franchiseId', 'videos'));
     }
 
     /**
@@ -132,63 +134,7 @@ class ClientVideoController extends Controller
 
         $title = $category->fullname;
 
-        return view('client.video.show', [
-            'perPage'    => $perPage,
-            'title' => $title,
-            'category' => $category,
-            'franchise' => $category->franchise,
-            'videos' => $videos,
-            'type' => $type,
-        ]);
-    }
-
-    public function categoryMovie(TableRequest $request, $franchise, $category)
-    {
-        $perPage = (int) $request->input('perPage', 100);
-        $validPerPage = in_array($perPage, [10, 50, 100]) ? $perPage : 100;
-
-        $category = Category::where('slug', $category)
-            ->with('franchise')
-            ->where('status', 1)
-            ->whereHas('franchise', function ($q) {
-                $q->where('status', 1);
-            })
-            ->whereHas('era', function ($q) {
-                $q->where('status', 1);
-            })
-            ->firstOrFail();
-
-        if ($category->franchise->slug !== $franchise) {
-            abort(404);
-        }
-
-        $hasEpisode = $category->videos()
-            ->where('status', 1)
-            ->whereNotNull('link')
-            ->where('link', '!=', '[]')
-            ->exists();
-
-        $videosQuery = $category->videos()
-            ->with('category')
-            ->latest('type')
-            ->where('status', 1)
-            ->whereNotNull('link')
-            ->where('link', '!=', '[]');
-
-        if (empty($category->last_aired)) {
-            $videosQuery->orderByDesc('number');
-        } else {
-            $videosQuery->orderByDesc('last_aired');
-        }
-
-        $videosQuery->where('type', '!=', 'episode');
-
-        $videos = $videosQuery->paginate($validPerPage);
-        $type = $hasEpisode ? 'episode' : 'video';
-
-        $title = $category->fullname;
-
-        return view('client.video.show', [
+        return view('client.video.series.category', [
             'perPage'    => $perPage,
             'title' => $title,
             'category' => $category,

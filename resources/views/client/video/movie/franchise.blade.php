@@ -4,37 +4,7 @@
 
 @section('movie', 'rounded aktif')
 
-@section('description')
-    {{ $franchise->description }}
-@endsection
-
-@section('image')
-    {{ $franchise->img ? config('app.url') . '/storage/' . $franchise->img : config('app.url') . '/logo.png' }}
-@endsection
-
 @section('content')
-    <script type="application/ld+json">
-        {!! json_encode([
-            "@context"    => "https://schema.org",
-            "@type"       => "VideoObject",
-            "name"        => $title . ' - ' . ucwords(config('app.name')),
-            "description" => $franchise->description ?: ucwords(config('app.name')),
-            "thumbnailUrl"=> config('app.url') . "/storage/" . $franchise->img ?: config('app.url') . "/logo.png",
-            "uploadDate"  => optional($franchise->first_aired)
-                                ? \Carbon\Carbon::parse($franchise->first_aired)->toIso8601String()
-                                : \Carbon\Carbon::parse($franchise->created_at)->toIso8601String(),
-            "contentUrl"  => url()->current(), 
-            "genre"       => $title,
-            "publisher"   => [
-                "@type" => "Organization",
-                "name"  => ucwords(config('app.name')),
-                "logo"  => [
-                    "@type" => "ImageObject",
-                    "url"   => config('app.url') . "/logo.png",
-                ],
-            ],
-        ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
-    </script>
 
     <div class="container my-5">
         <div class="d-flex justify-content-between align-items-center px-3 pt-4">
@@ -48,9 +18,11 @@
                 @include('components.button.share')
             </div>
         </div>
-
+        <div class="mt-3">
+            @include('client.buttonSearch')
+        </div>
         <div class="row">
-            @if ($categories->isEmpty())
+            @if ($videos->isEmpty())
                 <div class="d-flex justify-content-center align-items-center" style="min-height: 70vh;">
                     <div class="text-center text-muted">
                         <i class="fas fa-tag fa-2x m2-3"></i>
@@ -60,46 +32,37 @@
             @else
                 <div class="table-responsive">
                     <table class="table align-middle table-hover shadow-sm mt-3">
-                        <thead class="">
+                        <thead>
                             <tr>
-                                <th class="text-center" style="width: 25px;">No</th>
+                                <th class="text-center" style="max-width: 120px;">Movie</th>
                                 <th>Title</th>
-                                <th class="text-center" style="width: 120px;">Cover</th>
+                                <th style="max-width: 160px;">Release</th>
                             </tr>
                         </thead>
-
                         <tbody>
-                            @foreach ($categories as $item)
+                            @foreach ($videos as $item)
                                 <tr>
-                                    <td class="text-center text-decoration-none">
-                                        {{ $categories->firstItem() + $loop->index }}
-                                    </td>
-
-                                    <td>
-                                        <a class="text-decoration-none" href="{{ $item->showUrl() }}/movie">
-                                            {{ $item->fullname }}
-
-                                            @if ($item->first_aired)
-                                                <span class="text-muted">
-                                                    ({{ \Carbon\Carbon::parse($item->first_aired)->year }})
-                                                </span>
-                                            @endif
-
-                                            <i class="fa-solid fa-arrow-up-right-from-square ms-1"></i>
-                                        </a>
-                                    </td>
-
                                     <td class="text-center">
-                                        <a href="{{ $item->showUrl() }}/movie">
-                                            @if ($item->img === null)
-                                                <img class="img-fluid rounded shadow-sm" src="{{ asset('logo.png') }}"
-                                                    alt="{{ $item->fullname }}">
+                                        <a class="text-decoration-none" href="{{ $item->watchUrl() }}">
+                                            @if ($item->category->img === null)
+                                                <img class="img-fluid rounded shadow-sm" width="150px"
+                                                    src="{{ asset('logo.png') }}" alt="{{ $item->category->fullname }}">
                                             @else
-                                                <img class="img-fluid rounded shadow-sm"
-                                                    src="{{ asset('storage/' . $item->img ?? '') }}"
-                                                    alt="{{ $item->fullname }}">
+                                                <img class="img-fluid rounded shadow-sm" width="150px"
+                                                    src="{{ asset('storage/' . $item->category->img ?? '') }}"
+                                                    alt="{{ $item->category->fullname }}">
                                             @endif
                                         </a>
+                                    </td>
+
+                                    <td class="fw-semibold">
+                                        <a class="text-decoration-none" href="{{ $item->watchUrl() }}">
+                                            {{ $item->title }}
+                                        </a>
+                                    </td>
+
+                                    <td class="text-muted">
+                                        {{ \Carbon\Carbon::parse($item->airdate ?? $item->category->first_aired)->diffForHumans() }}
                                     </td>
                                 </tr>
                             @endforeach
@@ -107,9 +70,9 @@
                     </table>
                 </div>
             @endif
-        </div>
-        <div class="d-flex justify-content-center">
-            {{ $categories->appends(['era_id' => $eraId, 'franchise_id' => $franchiseId, 'perPage' => $perPage, 'search' => $search])->links() }}
+            <div class="d-flex justify-content-center">
+                {{ $videos->appends(['era_id' => $eraId, 'franchise_id' => $franchiseId, 'perPage' => $perPage, 'search' => $search])->links() }}
+            </div>
         </div>
     </div>
 @endsection

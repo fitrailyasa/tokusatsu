@@ -7,7 +7,7 @@
 @section('content')
 
     <div class="container text-center my-5 py-4">
-        <h1 class="text-center responsive-title">Series</h1>
+        <h1 class="text-center responsive-title">SERIES</h1>
         <div class="row justify-content-center mt-4">
             @foreach ($franchises as $item)
                 <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">

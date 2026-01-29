@@ -59,11 +59,10 @@ Route::get('/gallery/{franchise}/{category}', [HomeController::class, 'show'])->
 
 Route::controller(ClientVideoController::class)->prefix('video')->name('video.')->group(function () {
   Route::get('/', 'indexSeries')->name('series');
-  // Route::get('/movie', 'indexMovie')->name('movie');
+  Route::get('/movie', 'indexMovie')->name('movie');
   Route::get('/{franchise}', 'franchiseSeries')->name('franchise.series');
-  // Route::get('/{franchise}/movie', 'franchiseMovie')->name('franchise.movie');
+  Route::get('/{franchise}/movie', 'franchiseMovie')->name('franchise.movie');
   Route::get('/{franchise}/{category}', 'categorySeries')->name('category.series');
-  // Route::get('/{franchise}/{category}/movie', 'categoryMovie')->name('category.movie');
   Route::get('/{franchise}/{category}/{type}/{number}', 'watch')->name('watch');
   Route::post('/report', 'report')->middleware('throttle:5,10')->name('report');
   Route::post('/{video}/react', 'react')->middleware(['auth', 'throttle:5,10'])->name('react');
