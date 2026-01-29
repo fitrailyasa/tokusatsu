@@ -109,6 +109,29 @@ body.theme-light .header .nav-link:hover {
 }
 
 /* =========================================================
+   DROPDOWN THEME FIX
+========================================================= */
+.dropdown-menu {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+.dropdown-item {
+    color: var(--text-main) !important;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+    background-color: color-mix(in srgb, var(--text-main) 10%, transparent);
+    color: var(--text-main) !important;
+}
+
+.dropdown-item i,
+.dropdown-item svg {
+    color: var(--text-main);
+}
+
+/* =========================================================
    FOOTER (MOBILE)
 ========================================================= */
 .footer {

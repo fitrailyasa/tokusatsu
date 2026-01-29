@@ -52,22 +52,6 @@
                     <small>Movie</small>
                 </a>
             </li>
-            <li class="nav-item">
-                <a href="{{ route('history') }}" class="nav-link p-1 fw-normal text-center @yield('textHistory')">
-                    <span class="nav-icon">
-                        <i data-feather="clock"></i>
-                    </span>
-                    <small>History</small>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ route('bookmark') }}" class="nav-link p-1 fw-normal text-center @yield('textBookmark')">
-                    <span class="nav-icon">
-                        <i data-feather="bookmark"></i>
-                    </span>
-                    <small>Bookmark</small>
-                </a>
-            </li>
             @auth
                 <li class="nav-item">
                     <a href="{{ route('profile.edit') }}" class="nav-link p-1 fw-normal text-center @yield('textProfile')">

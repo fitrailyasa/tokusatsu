@@ -107,8 +107,8 @@
 
             toggleBtn.innerHTML =
                 theme === 'theme-dark' ?
-                '<i class="fa-solid fa-moon"></i>' :
-                '<i class="fa-solid fa-sun"></i>';
+                '<i class="fa-solid fa-moon fa-fw me-2"></i> Dark Mode' :
+                '<i class="fa-solid fa-sun fa-fw me-2"></i> Light Mode';
         }
 
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;

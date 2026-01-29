@@ -201,35 +201,43 @@ $eras = Era::withoutTrashed()->get()->where('status', 1)->reverse();
                             </a>
                         </li>
 
-                        {{-- HISTORY & BOOKMARK --}}
-                        <li class="nav-item">
-                            <a class="nav-link py-3 px-3 fw-bold @yield('textHistory')" href="{{ route('history') }}"
-                                title="History">
-                                <i data-feather="clock"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link py-3 px-3 fw-bold @yield('textBookmark')" href="{{ route('bookmark') }}"
-                                title="Bookmark Video">
-                                <i data-feather="bookmark"></i>
-                            </a>
-                        </li>
                     </ul>
                 </nav>
             </div>
-            <div class="header-right">
-                <button id="themeToggle" class="btn">
-                    <i class="fa-solid fa-moon"></i>
-                </button>
+            <div class="header-right d-flex align-items-center gap-2">
                 @auth
-                    <a href="{{ route('profile.edit') }}" class="btn d-none d-lg-flex" title="Profile">
+                    <a href="{{ route('profile.edit') }}" class="btn btn-sm d-none d-lg-flex" title="Profile">
                         <i class="fa-solid fa-user"></i>
                     </a>
                 @else
-                    <a href="{{ route('login') }}" class="btn" title="Login">
+                    <a href="{{ route('login') }}" class="btn btn-sm" title="Login">
                         <i class="fa-solid fa-right-to-bracket"></i>
                     </a>
                 @endauth
+                <div class="dropdown">
+                    <button class="btn btn-sm fw-bold" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                        title="Menu">
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </button>
+
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li>
+                            <a class="dropdown-item @yield('textHistory')" href="{{ route('history') }}">
+                                <i data-feather="clock" class="fa-fw me-2"></i> History
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item @yield('textBookmark')" href="{{ route('bookmark') }}">
+                                <i data-feather="bookmark" class="fa-fw me-2"></i> Bookmark
+                            </a>
+                        </li>
+                        <li>
+                            <button id="themeToggle" class="dropdown-item" type="button">
+                                <i class="fa-solid fa-moon fa-fw me-2"></i> Dark Mode
+                            </button>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
