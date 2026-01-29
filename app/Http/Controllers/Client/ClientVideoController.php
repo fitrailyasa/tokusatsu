@@ -73,7 +73,7 @@ class ClientVideoController extends Controller
             ->orderBy('airdate', 'desc')
             ->paginate($validPerPage);
 
-        $title = 'Movie ' . $franchise->name;
+        $title = $franchise->name . ' Movie';
 
         return view('client.video.movie.franchise', compact('title', 'franchise', 'search', 'perPage', 'eraId', 'franchiseId', 'videos'));
     }
