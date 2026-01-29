@@ -36,7 +36,6 @@
                             <tr>
                                 <th class="text-center" style="max-width: 120px;">Movie</th>
                                 <th>Title</th>
-                                <th style="max-width: 160px;">Release</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -59,10 +58,10 @@
                                         <a class="text-decoration-none" href="{{ $item->watchUrl() }}">
                                             {{ $item->title }}
                                         </a>
-                                    </td>
-
-                                    <td class="text-muted">
-                                        {{ \Carbon\Carbon::parse($item->airdate ?? $item->category->first_aired)->diffForHumans() }}
+                                        <br>
+                                        <span class="text-muted">
+                                            {{ \Carbon\Carbon::parse($video->airdate ?? $video->category->first_aired)->diffForHumans() }}
+                                        </span>
                                     </td>
                                 </tr>
                             @endforeach
