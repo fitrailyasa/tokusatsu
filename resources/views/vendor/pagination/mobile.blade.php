@@ -1,8 +1,27 @@
 @if ($paginator->hasPages())
+    @php
+        $current = $paginator->currentPage();
+        $last = $paginator->lastPage();
+
+        $range = 5;
+        $half = floor($range / 2);
+
+        $start = max(1, $current - $half);
+        $end = min($last, $current + $half);
+
+        if ($end - $start + 1 < $range) {
+            if ($start == 1) {
+                $end = min($last, $start + $range - 1);
+            } elseif ($end == $last) {
+                $start = max(1, $last - $range + 1);
+            }
+        }
+    @endphp
+
     <nav>
         <ul class="pagination justify-content-center flex-wrap">
 
-            {{-- Previous --}}
+            {{-- Prev --}}
             @if ($paginator->onFirstPage())
                 <li class="page-item disabled"><span class="page-link">‹</span></li>
             @else
@@ -11,34 +30,36 @@
                 </li>
             @endif
 
-            {{-- First page --}}
-            <li class="page-item {{ $paginator->currentPage() == 1 ? 'active' : '' }}">
-                <a class="page-link" href="{{ $paginator->url(1) }}">1</a>
-            </li>
-
-            {{-- Left dots --}}
-            @if ($paginator->currentPage() > 3)
-                <li class="page-item disabled"><span class="page-link">...</span></li>
-            @endif
-
-            {{-- Current page (middle) --}}
-            @if ($paginator->currentPage() != 1 && $paginator->currentPage() != $paginator->lastPage())
-                <li class="page-item active">
-                    <span class="page-link">{{ $paginator->currentPage() }}</span>
+            {{-- First page + dots --}}
+            @if ($start > 1)
+                <li class="page-item">
+                    <a class="page-link" href="{{ $paginator->url(1) }}">1</a>
                 </li>
+
+                @if ($start > 2)
+                    <li class="page-item disabled"><span class="page-link">...</span></li>
+                @endif
             @endif
 
-            {{-- Right dots --}}
-            @if ($paginator->currentPage() < $paginator->lastPage() - 2)
-                <li class="page-item disabled"><span class="page-link">...</span></li>
-            @endif
+            {{-- Page numbers --}}
+            @for ($page = $start; $page <= $end; $page++)
+                <li class="page-item {{ $page == $current ? 'active' : '' }}">
+                    @if ($page == $current)
+                        <span class="page-link">{{ $page }}</span>
+                    @else
+                        <a class="page-link" href="{{ $paginator->url($page) }}">{{ $page }}</a>
+                    @endif
+                </li>
+            @endfor
 
-            {{-- Last page (only if > 1) --}}
-            @if ($paginator->lastPage() > 1)
-                <li class="page-item {{ $paginator->currentPage() == $paginator->lastPage() ? 'active' : '' }}">
-                    <a class="page-link" href="{{ $paginator->url($paginator->lastPage()) }}">
-                        {{ $paginator->lastPage() }}
-                    </a>
+            {{-- Last page + dots --}}
+            @if ($end < $last)
+                @if ($end < $last - 1)
+                    <li class="page-item disabled"><span class="page-link">...</span></li>
+                @endif
+
+                <li class="page-item">
+                    <a class="page-link" href="{{ $paginator->url($last) }}">{{ $last }}</a>
                 </li>
             @endif
 
