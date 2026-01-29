@@ -19,7 +19,7 @@
                                 <img class="img img-fluid franchise-img rounded" src="{{ asset('storage/' . $item->img) }}"
                                     alt="">
                             @endif
-                            <p class="m-0 p-0">{{ $item->name }}</p>
+                            <p class="m-0 p-2">{{ $item->name }}</p>
                         </div>
                     </a>
                 </div>
