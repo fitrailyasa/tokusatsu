@@ -107,8 +107,13 @@
 
             toggleBtn.innerHTML =
                 theme === 'theme-dark' ?
-                '<i class="fa-solid fa-moon fa-fw me-2"></i> Dark Mode' :
-                '<i class="fa-solid fa-sun fa-fw me-2"></i> Light Mode';
+                '<i data-feather="moon" class="fa-fw me-2"></i> Dark Mode' :
+                '<i data-feather="sun" class="fa-fw me-2"></i> Light Mode';
+
+            feather.replace({
+                width: 18,
+                height: 18
+            });
         }
 
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;

@@ -233,7 +233,7 @@ $eras = Era::withoutTrashed()->get()->where('status', 1)->reverse();
                         </li>
                         <li>
                             <button id="themeToggle" class="dropdown-item" type="button">
-                                <i class="fa-solid fa-moon fa-fw me-2"></i> Dark Mode
+                                <i data-feather="moon" class="fa-fw me-2"></i> Dark Mode
                             </button>
                         </li>
                     </ul>
