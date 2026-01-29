@@ -34,7 +34,7 @@
                     <table class="table align-middle table-hover shadow-sm mt-3">
                         <thead>
                             <tr>
-                                <th class="text-center" style="max-width: 120px;">Movie</th>
+                                <th class="text-center" style="width: 120px;">Movie</th>
                                 <th>Title</th>
                             </tr>
                         </thead>
