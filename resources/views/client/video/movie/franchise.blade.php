@@ -60,7 +60,7 @@
                                         </a>
                                         <br>
                                         <span class="text-muted">
-                                            {{ \Carbon\Carbon::parse($video->airdate ?? $video->category->first_aired)->diffForHumans() }}
+                                            {{ \Carbon\Carbon::parse($item->airdate ?? $item->category->first_aired)->diffForHumans() }}
                                         </span>
                                     </td>
                                 </tr>
