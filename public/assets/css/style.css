@@ -215,7 +215,7 @@ body.theme-light .header .nav-link:hover {
     color: var(--text-main);
     border: 1px solid var(--border-color);
     border-radius: 12px;
-    padding: 20px 15px;
+    padding: 10px 15px;
     font-size: 0.9rem;
     font-weight: 600;
     text-align: center;
@@ -230,7 +230,6 @@ body.theme-light .header .nav-link:hover {
 .franchise-card img {
     max-height: 90px;
     object-fit: contain;
-    margin-bottom: 10px;
 }
 
 /* =========================================================
