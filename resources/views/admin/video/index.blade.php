@@ -109,6 +109,6 @@
             </tr>
         </tfoot>
     </table>
-    {{ $videos->appends(['category_id' => $categoryId, 'perPage' => $perPage, 'search' => $search])->links() }}
+    {{ $videos->appends(['category_id' => $categoryId, 'perPage' => $perPage, 'search' => $search])->links('vendor.pagination.mobile') }}
 
 </x-admin-table>

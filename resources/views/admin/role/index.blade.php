@@ -87,6 +87,6 @@
             </tr>
         </tfoot>
     </table>
-    {{ $roles->appends(['perPage' => $perPage, 'search' => $search])->links() }}
+    {{ $roles->appends(['perPage' => $perPage, 'search' => $search])->links('vendor.pagination.mobile') }}
 
 </x-admin-table>

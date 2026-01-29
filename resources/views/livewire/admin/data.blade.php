@@ -171,6 +171,6 @@
             </tbody>
         </table>
 
-        {{ $datas->links() }}
+        {{ $datas->links('vendor.pagination.mobile') }}
     </div>
 </div>

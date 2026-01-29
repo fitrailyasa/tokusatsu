@@ -109,7 +109,7 @@
             @endif
         </div>
         <div class="d-flex justify-content-center">
-            {{ $categories->appends(['era_id' => $eraId, 'franchise_id' => $franchiseId, 'perPage' => $perPage, 'search' => $search])->links() }}
+            {{ $categories->appends(['era_id' => $eraId, 'franchise_id' => $franchiseId, 'perPage' => $perPage, 'search' => $search])->links('vendor.pagination.mobile') }}
         </div>
     </div>
 @endsection

@@ -31,7 +31,7 @@
         </div>
         <div class="d-flex justify-content-center mt-3">
             <div class="d-flex justify-content-center w-100 overflow-auto">
-                {{ $datas->appends(request()->query())->links() }}
+                {{ $datas->appends(request()->query())->links('vendor.pagination.mobile') }}
             </div>
         </div>
     </div>

@@ -131,6 +131,6 @@
             </tbody>
         </table>
 
-        {{ $eras->links() }}
+        {{ $eras->links('vendor.pagination.mobile') }}
     </div>
 </div>

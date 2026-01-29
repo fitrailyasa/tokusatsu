@@ -32,6 +32,6 @@
             </tr>
         </tfoot>
     </table>
-    {{ $tags->appends(['perPage' => $perPage, 'search' => $search])->links() }}
+    {{ $tags->appends(['perPage' => $perPage, 'search' => $search])->links('vendor.pagination.mobile') }}
 
 </x-admin-table>

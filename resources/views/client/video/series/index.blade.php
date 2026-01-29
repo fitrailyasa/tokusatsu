@@ -26,7 +26,7 @@
             @endforeach
         </div>
         <div class="d-flex justify-content-center mt-3">
-            {{ $franchises->onEachSide(0)->links() }}
+            {{ $franchises->onEachSide(0)->links('vendor.pagination.mobile') }}
         </div>
     </div>
 

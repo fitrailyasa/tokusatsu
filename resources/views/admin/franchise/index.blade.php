@@ -98,7 +98,7 @@
             </tr>
         </tfoot>
     </table>
-    {{ $franchises->appends(['perPage' => $perPage, 'search' => $search])->links() }}
+    {{ $franchises->appends(['perPage' => $perPage, 'search' => $search])->links('vendor.pagination.mobile') }}
 
     <x-slot name="script">
         <x-preview-image />

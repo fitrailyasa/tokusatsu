@@ -122,7 +122,7 @@
             @endif
         </div>
         <div class="d-flex justify-content-center">
-            {{ $videos->appends(['perPage' => $perPage])->links() }}
+            {{ $videos->appends(['perPage' => $perPage])->links('vendor.pagination.mobile') }}
         </div>
     </div>
 

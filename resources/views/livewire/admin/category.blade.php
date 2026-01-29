@@ -185,6 +185,6 @@
             </tbody>
         </table>
 
-        {{ $categories->links() }}
+        {{ $categories->links('vendor.pagination.mobile') }}
     </div>
 </div>

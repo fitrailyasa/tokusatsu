@@ -98,7 +98,7 @@
             </tr>
         </tfoot>
     </table>
-    {{ $eras->appends(['perPage' => $perPage, 'search' => $search])->links() }}
+    {{ $eras->appends(['perPage' => $perPage, 'search' => $search])->links('vendor.pagination.mobile') }}
 
     <x-slot name="script">
         <x-preview-image />

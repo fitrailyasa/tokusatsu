@@ -90,6 +90,6 @@
             </tr>
         </tfoot>
     </table>
-    {{ $video_comments->appends(['perPage' => $perPage, 'search' => $search])->links() }}
+    {{ $video_comments->appends(['perPage' => $perPage, 'search' => $search])->links('vendor.pagination.mobile') }}
 
 </x-admin-table>

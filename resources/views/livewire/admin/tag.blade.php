@@ -54,6 +54,6 @@
             </tbody>
         </table>
 
-        {{ $tags->links() }}
+        {{ $tags->links('vendor.pagination.mobile') }}
     </div>
 </div>

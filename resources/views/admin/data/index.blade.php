@@ -97,7 +97,7 @@
             </tr>
         </tfoot>
     </table>
-    {{ $datas->appends(['category_id' => $categoryId, 'perPage' => $perPage, 'search' => $search])->links() }}
+    {{ $datas->appends(['category_id' => $categoryId, 'perPage' => $perPage, 'search' => $search])->links('vendor.pagination.mobile') }}
 
     <x-slot name="script">
         <x-preview-image />

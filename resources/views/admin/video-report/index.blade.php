@@ -112,6 +112,6 @@
             </tr>
         </tfoot>
     </table>
-    {{ $video_reports->appends(['perPage' => $perPage, 'search' => $search])->links() }}
+    {{ $video_reports->appends(['perPage' => $perPage, 'search' => $search])->links('vendor.pagination.mobile') }}
 
 </x-admin-table>

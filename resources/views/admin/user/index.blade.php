@@ -117,6 +117,6 @@
             </tr>
         </tfoot>
     </table>
-    {{ $users->appends(['perPage' => $perPage, 'search' => $search])->links() }}
+    {{ $users->appends(['perPage' => $perPage, 'search' => $search])->links('vendor.pagination.mobile') }}
 
 </x-admin-table>
