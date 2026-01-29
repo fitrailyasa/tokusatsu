@@ -75,7 +75,7 @@ class ClientVideoController extends Controller
 
         $title = 'Movie ' . $franchise->name;
 
-        return view('client.video.movie.franchise', compact('title', 'search', 'perPage', 'eraId', 'franchiseId', 'videos'));
+        return view('client.video.movie.franchise', compact('title', 'franchise', 'search', 'perPage', 'eraId', 'franchiseId', 'videos'));
     }
 
     /**
