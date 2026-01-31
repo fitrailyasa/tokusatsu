@@ -35,7 +35,7 @@
         <tbody>
             @foreach ($users->where('email', '!=', 'super@admin.com') as $item)
                 <tr>
-                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $users->firstItem() + $loop->index }}</td>
                     <td>
                         @if ($item->img == null)
                             <img src="{{ asset('assets/profile/default.png') }}" alt="{{ $item->name }}"
