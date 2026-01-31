@@ -124,6 +124,15 @@ $eras = Era::withoutTrashed()->get()->where('status', 1)->reverse();
                                             $list = $franchise->categories
                                                 ->where('era_id', $era->id)
                                                 ->where('status', 1)
+                                                ->filter(function ($cat) {
+                                                    return $cat
+                                                        ->videos()
+                                                        ->where('status', 1)
+                                                        ->where('type', 'episode')
+                                                        ->whereNotNull('link')
+                                                        ->where('link', '!=', '[]')
+                                                        ->exists();
+                                                })
                                                 ->sortByDesc('first_aired');
                                         @endphp
 
@@ -169,7 +178,18 @@ $eras = Era::withoutTrashed()->get()->where('status', 1)->reverse();
                                 <ul class="dropdown-menu m-0" aria-labelledby="otherDropdown">
                                     @foreach ($otherFranchises as $fr)
                                         @php
-                                            $activeCategories = $fr->categories->where('status', 1)->reverse();
+                                            $activeCategories = $fr->categories
+                                                ->where('status', 1)
+                                                ->filter(function ($cat) {
+                                                    return $cat
+                                                        ->videos()
+                                                        ->where('status', 1)
+                                                        ->where('type', 'episode')
+                                                        ->whereNotNull('link')
+                                                        ->where('link', '!=', '[]')
+                                                        ->exists();
+                                                })
+                                                ->reverse();
                                         @endphp
                                         @if ($activeCategories->count() > 0)
                                             <li class="dropdown-submenu" itemprop="name">

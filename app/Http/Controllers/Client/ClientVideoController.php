@@ -46,6 +46,12 @@ class ClientVideoController extends Controller
             ->whereHas('era', function ($q) {
                 $q->where('status', 1);
             })
+            ->whereHas('videos', function ($q) {
+                $q->where('status', 1)
+                    ->where('type', 'episode')
+                    ->whereNotNull('link')
+                    ->where('link', '!=', '[]');
+            })
             ->paginate(10);
 
         $title = $franchise->name . ' Series';
